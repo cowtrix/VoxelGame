@@ -23,6 +23,13 @@ public enum EPaintingTool
 [CustomEditor(typeof(VoxelRenderer))]
 public class VoxelPainter : Editor
 {
+	[MenuItem("GameObject/3D Object/Voxel Object")]
+	public static void CreateNew()
+	{
+		var go = new GameObject("New Voxel Object");
+		var r = go.AddComponent<VoxelRenderer>();
+	}
+
 	Dictionary<EPaintingTool, VoxelPainterTool> m_tools = new Dictionary<EPaintingTool, VoxelPainterTool>
 	{
 		{ EPaintingTool.Select, new SelectTool() },
@@ -64,17 +71,22 @@ public class VoxelPainter : Editor
 			EditorPrefUtility.SetPref("VoxelPainter_CurrentTool", value);
 		}
 	}
-
 	private VoxelRenderer Renderer => target as VoxelRenderer;
 
 	public HashSet<VoxelCoordinate> CurrentSelection = new HashSet<VoxelCoordinate>();
-
-	private Camera m_cam => Camera.current;
 
 	public override bool RequiresConstantRepaint() => true;
 
 	public override void OnInspectorGUI()
 	{
+		if(Enabled)
+		{
+			VoxelManager.Instance.DefaultMaterial.EnableKeyword("ShowGrid");
+		}
+		else
+		{
+			VoxelManager.Instance.DefaultMaterial.DisableKeyword("ShowGrid");
+		}
 		base.OnInspectorGUI();
 
 		EditorGUILayout.LabelField("Painter", EditorStyles.whiteLargeLabel);
@@ -95,6 +107,10 @@ public class VoxelPainter : Editor
 
 	void OnSceneGUI()
 	{
+		if(!Enabled)
+		{
+			return;
+		}
 		Tools.current = Tool.Custom;
 		var t = m_tools[CurrentTool];
 		t.DrawSceneGUI(this, Renderer, Event.current, CurrentLayer);
@@ -106,5 +122,10 @@ public class VoxelPainter : Editor
 		{
 			t.Value.OnEnable();
 		}
+	}
+
+	public void OnDisable()
+	{
+		VoxelManager.Instance.DefaultMaterial.DisableKeyword("ShowGrid");
 	}
 }

@@ -4,13 +4,13 @@ using System.Collections.Generic;
 [Serializable]
 public struct Voxel
 {
-	public VoxelMaterialData Surfaces;
+	public VoxelMaterial Material;
 	public VoxelCoordinate Coordinate;
 
-	public Voxel(VoxelCoordinate coord, VoxelMaterialData surfaces)
+	public Voxel(VoxelCoordinate coord, VoxelMaterial surfaces)
 	{
 		Coordinate = coord;
-		Surfaces = surfaces;
+		Material = surfaces;
 	}
 
 	public IEnumerable<Voxel> Subdivide()
@@ -24,7 +24,7 @@ public struct Voxel
 				for (var z = -2; z <= 0; ++z)
 				{
 					var coord = centerCoord + new VoxelCoordinate(x, y, z, newLayer);
-					yield return new Voxel(coord, Surfaces.Copy());
+					yield return new Voxel(coord, Material.Copy());
 				}
 			}
 		}

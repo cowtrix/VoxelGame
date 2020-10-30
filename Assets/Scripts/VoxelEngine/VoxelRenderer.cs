@@ -28,7 +28,7 @@ public class VoxelRenderer : MonoBehaviour
 
 	private void Update()
 	{
-		if(Mesh.Hash == m_lastMeshHash)
+		if(Mesh?.Hash == m_lastMeshHash)
 		{
 			return;
 		}
@@ -66,7 +66,10 @@ public class VoxelRenderer : MonoBehaviour
 	public void Invalidate()
 	{
 		SetupComponents();
-
+		if(!Mesh)
+		{
+			return;
+		}
 		if(MinLayer > MaxLayer)
 		{
 			MinLayer = MaxLayer;

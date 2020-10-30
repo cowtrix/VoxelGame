@@ -45,7 +45,7 @@ public class VoxelMesh : ScriptableObject
 		var data = new IntermediateVoxelMeshData();
 		foreach(var vox in Voxels.Where(v => v.Key.Layer >= minLayer && v.Key.Layer <= maxLayer))
 		{ 
-			switch (vox.Value.Surfaces.NormalMode)
+			switch (vox.Value.Material.NormalMode)
 			{
 				case ENormalMode.Hard:
 					Cube(vox.Value, data);
@@ -81,11 +81,12 @@ public class VoxelMesh : ScriptableObject
 		for (int i = dirs.Count - 1; i >= 0; i--)
 		{
 			EVoxelDirection dir = dirs[i];
+
+			var surface = vox.Material.GetSurface(dir);
 			// Get the basic mesh stuff
-			VoxelMeshUtility.GetPlane(origin, size, dir, data);
+			VoxelMeshUtility.GetPlane(origin, size, dir, surface.UVMode, data);
 
 			// Do the colors
-			var surface = vox.Surfaces.GetSurface(dir);
 			var colWithMetallic = new Color(surface.Albedo.r,
 				surface.Albedo.g,
 				surface.Albedo.b,
@@ -93,7 +94,7 @@ public class VoxelMesh : ScriptableObject
 			data.Color1.AddRange(Enumerable.Repeat(colWithMetallic, 4));
 
 			// UV2 extra data
-			var uv2 = new Vector4(surface.Smoothness, surface.TextureIndex, vox.Coordinate.GetScale(), 0);
+			var uv2 = new Vector4(surface.Smoothness, surface.Texture.Index, vox.Coordinate.GetScale(), 0);
 			data.UV2.AddRange(Enumerable.Repeat(uv2, 4));
 
 			var endTri = data.Triangles.Count / 3;

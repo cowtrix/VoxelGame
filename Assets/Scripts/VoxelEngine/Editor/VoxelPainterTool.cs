@@ -70,7 +70,8 @@ public abstract class VoxelPainterTool
 
 		var layerScale = VoxelCoordinate.LayerToScale(brushCoord.Layer);
 		var voxelWorldPos = renderer.transform.localToWorldMatrix.MultiplyPoint3x4(brushCoord.ToVector3());
-		var voxelScale = renderer.transform.localToWorldMatrix.MultiplyVector(layerScale * Vector3.one * .51f);
+		var voxelScale = layerScale * Vector3.one * .51f;
+		voxelScale.Scale(renderer.transform.localToWorldMatrix.GetScale());
 		HandleExtensions.DrawWireCube(voxelWorldPos, voxelScale, renderer.transform.rotation, Color.cyan);
 		Handles.Label(voxelWorldPos, brushCoord.ToString(), EditorStyles.textField);
 

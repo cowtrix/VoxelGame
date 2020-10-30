@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum ENormalMode
+public enum EUVMode : byte
+{
+	Local, LocalScaled, Global, GlobalScaled,
+}
+
+public enum ENormalMode : byte
 {
 	Hard,
 }
 
-public enum EVoxelDirection
+public enum EVoxelDirection : byte
 {
 	YNeg, XNeg,
 	ZPos, ZNeg,
@@ -24,6 +29,12 @@ public struct DirectionOverride
 }
 
 [Serializable]
+public struct TextureIndex
+{
+	public int Index;
+}
+
+[Serializable]
 public struct SurfaceData
 {
 	[ColorUsage(false, true)]
@@ -32,11 +43,12 @@ public struct SurfaceData
 	public float Metallic;
 	[Range(0, 1)]
 	public float Smoothness;
-	public int TextureIndex;
+	public TextureIndex Texture;
+	public EUVMode UVMode;
 }
 
 [Serializable]
-public struct VoxelMaterialData
+public struct VoxelMaterial
 {
 	public ENormalMode NormalMode;
 	public SurfaceData Default;
@@ -44,26 +56,30 @@ public struct VoxelMaterialData
 
 	public SurfaceData GetSurface(EVoxelDirection dir)
 	{
-		var ov = Overrides.Where(o => o.Direction == dir);
-		if (ov.Any())
+		if (Overrides != null)
 		{
-			return ov.Single().Data;
+			var ov = Overrides.Where(o => o.Direction == dir);
+			if (ov.Any())
+			{
+				return ov.Single().Data;
+			}
 		}
+
 		return Default;
 	}
 
-	public VoxelMaterialData Copy()
+	public VoxelMaterial Copy()
 	{
-		return new VoxelMaterialData
-		{ 
-			Default = Default, 
-			Overrides = Overrides?.ToArray() 
+		return new VoxelMaterial
+		{
+			Default = Default,
+			Overrides = Overrides?.ToArray()
 		};
 	}
 }
 
 [CreateAssetMenu]
-public class VoxelMaterial : ScriptableObject
+public class VoxelMaterialAsset : ScriptableObject
 {
-	public VoxelMaterialData Data;
+	public VoxelMaterial Data;
 }

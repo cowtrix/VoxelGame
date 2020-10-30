@@ -138,7 +138,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &39426588
 MonoBehaviour:
@@ -152,8 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3a57cdce1fab4408533db885df689b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MinLayer: -128
+  MaxLayer: 127
   Mesh: {fileID: 11400000, guid: 7b4577b3bf501304795924c828560340, type: 2}
-  m_lastMeshHash: 83561e80-f884-4661-9078-54c84c3ddb52
+  m_lastMeshHash: a5882c6f-cd50-4069-9621-e4e166ac8f28
 --- !u!4 &39426589
 Transform:
   m_ObjectHideFlags: 0
@@ -166,7 +168,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &653260035
 GameObject:
@@ -341,6 +343,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultMaterial: {fileID: 2100000, guid: 94a3f69f175f81c458a0afa4ff6409ab, type: 2}
+  TextureArray: {fileID: 18700000, guid: c784014695385364aad8ffb5d4c103ee, type: 2}
+  Sprites:
+  - {fileID: 2800000, guid: f052a0cdfa382e846853d5f7404f63e0, type: 3}
+  - {fileID: 2800000, guid: 5d8ba0626ebc53146bb45344d5410b1d, type: 3}
+  - {fileID: 2800000, guid: 9017e91f1c5ce234c8e21bbefe60e289, type: 3}
+  - {fileID: 2800000, guid: b14a5dbf8b34c0642a941ef8967ec37a, type: 3}
+  - {fileID: 2800000, guid: e02c115d94abbd54b9c6eea6c7338d5c, type: 3}
+  - {fileID: 2800000, guid: cf52858de98f0a54d9b4990be3346b60, type: 3}
+  - {fileID: 2800000, guid: 88502d6e222a0274da34cecf9b574367, type: 3}
 --- !u!4 &1089978046
 Transform:
   m_ObjectHideFlags: 0
@@ -353,7 +364,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1687258581
 GameObject:
