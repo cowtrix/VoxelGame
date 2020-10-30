@@ -11,9 +11,6 @@ public class IntermediateVoxelMeshData
 	public List<Color> Color1 = new List<Color>();
 	public List<Vector2> UV1 = new List<Vector2>();
 	public List<Vector4> UV2 = new List<Vector4>();
-	public IntermediateVoxelMeshData()
-	{
-	}
 }
 
 [Serializable]
@@ -75,8 +72,6 @@ public class VoxelMesh : ScriptableObject
 	{
 		var origin = vox.Coordinate.ToVector3();
 		var size = vox.Coordinate.GetScale() * Vector3.one;
-		var offset = data.Vertices.Count;
-
 		var dirs = Directions.ToList();
 		for (int i = dirs.Count - 1; i >= 0; i--)
 		{
@@ -92,23 +87,25 @@ public class VoxelMesh : ScriptableObject
 		for (int i = dirs.Count - 1; i >= 0; i--)
 		{
 			EVoxelDirection dir = dirs[i];
+			// Get the basic mesh stuff
+			VoxelMeshUtility.GetPlane(origin, size, dir, data);
+
+			// Do the colors
 			var surface = vox.Surfaces.GetSurface(dir);
 			var colWithMetallic = new Color(surface.Albedo.r,
 				surface.Albedo.g,
 				surface.Albedo.b,
 				surface.Metallic);
-
-			VoxelMeshUtility.GetPlane(origin, size, dir, data);
-
 			data.Color1.AddRange(Enumerable.Repeat(colWithMetallic, 4));
 
+			// UV2 extra data
 			var uv2 = new Vector4(surface.Smoothness, surface.TextureIndex, vox.Coordinate.GetScale(), 0);
 			data.UV2.AddRange(Enumerable.Repeat(uv2, 4));
 
 			var endTri = data.Triangles.Count / 3;
 			if(endTri > startTri)
 			{
-				for (var j = endTri - 6; j < endTri; ++j)
+				for (var j = startTri; j < endTri; ++j)
 				{
 					VoxelMapping[j] = new VoxelCoordinateTriangleMapping { Coordinate = vox.Coordinate, Direction = dir };
 				}
