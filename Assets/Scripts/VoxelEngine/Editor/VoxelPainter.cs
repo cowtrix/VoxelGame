@@ -14,6 +14,7 @@ using UnityEngine.UIElements;
 
 public enum EPaintingTool
 {
+	Select,
 	Add,
 	Remove,
 	Subdivide,
@@ -22,8 +23,13 @@ public enum EPaintingTool
 [CustomEditor(typeof(VoxelRenderer))]
 public class VoxelPainter : Editor
 {
-	static diff_match_patch dmp = new diff_match_patch();
-	static Stack<List<Patch>> m_undoHistory = new Stack<List<Patch>>();
+	Dictionary<EPaintingTool, VoxelPainterTool> m_tools = new Dictionary<EPaintingTool, VoxelPainterTool>
+	{
+		{ EPaintingTool.Select, new SelectTool() },
+		{ EPaintingTool.Add, new AddTool() },
+		{ EPaintingTool.Remove, new RemoveTool() },
+		{ EPaintingTool.Subdivide, new SubdivideTool() },
+	};
 
 	public bool Enabled
 	{
@@ -47,8 +53,8 @@ public class VoxelPainter : Editor
 			EditorPrefUtility.SetPref("VoxelPainter_CurrentLayer", value);
 		}
 	}
-	public EPaintingTool CurrentTool;
-	/*{
+	public EPaintingTool CurrentTool
+	{
 		get
 		{
 			return EditorPrefUtility.GetPref("VoxelPainter_CurrentTool", EPaintingTool.Add);
@@ -57,54 +63,32 @@ public class VoxelPainter : Editor
 		{
 			EditorPrefUtility.SetPref("VoxelPainter_CurrentTool", value);
 		}
-	*/
+	}
 
-	private Editor m_cachedBrushEditor;
-	private bool m_cachedEditorNeedsRefresh = true;
-
-	public VoxelMaterial CurrentBrush;
 	private VoxelRenderer Renderer => target as VoxelRenderer;
 
+	public HashSet<VoxelCoordinate> CurrentSelection = new HashSet<VoxelCoordinate>();
+
 	private Camera m_cam => Camera.current;
-
-	public VoxelPainter() : base()
-	{
-		Undo.undoRedoPerformed += OnUndoRedo;
-	}
-
-	private void OnUndoRedo()
-	{
-		throw new NotImplementedException();
-	}
 
 	public override bool RequiresConstantRepaint() => true;
 
 	public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI();
+
+		EditorGUILayout.LabelField("Painter", EditorStyles.whiteLargeLabel);
+		EditorGUILayout.BeginVertical("Box");
 		Enabled = EditorGUILayout.Toggle("Enabled", Enabled);
 		GUI.enabled = Enabled;
 		CurrentLayer = (sbyte)EditorGUILayout.IntSlider("Current Layer", CurrentLayer, -5, 5);
-		
-		//CurrentTool = (EPaintingTool)GUILayout.Toolbar((int)CurrentTool, Enum.GetNames(typeof(EPaintingTool)));
-		//if (CurrentTool == EPaintingTool.Add)
-		{
-			var newBrush = (VoxelMaterial)EditorGUILayout.ObjectField("Current Brush", CurrentBrush, typeof(VoxelMaterial), false);
-			var dirty = newBrush != CurrentBrush;
-			CurrentBrush = newBrush;
-			if (CurrentBrush)
-			{
-				if (dirty || m_cachedBrushEditor == null || m_cachedEditorNeedsRefresh)
-				{
-					m_cachedBrushEditor = Editor.CreateEditor(CurrentBrush);
-					m_cachedEditorNeedsRefresh = false;
-				}
-				EditorGUILayout.BeginVertical(EditorStyles.foldout);
-				m_cachedBrushEditor?.DrawDefaultInspector();
-				EditorGUILayout.EndVertical();
-			}
-		}
+		CurrentTool = (EPaintingTool)GUILayout.Toolbar((int)CurrentTool, Enum.GetNames(typeof(EPaintingTool)));
+		var t = m_tools[CurrentTool];
+		EditorGUILayout.BeginVertical("Box");
+		t.DrawInspectorGUI(this);
+		EditorGUILayout.EndVertical();
 		GUI.enabled = true;
+		EditorGUILayout.EndVertical();
 
 		SceneView.RepaintAll();
 	}
@@ -112,144 +96,15 @@ public class VoxelPainter : Editor
 	void OnSceneGUI()
 	{
 		Tools.current = Tool.Custom;
-		DrawBrushScene();
-	}
-
-	void DrawBrushScene()
-	{
-		if (!Enabled)
-		{
-			return;
-		}
-
-		CurrentTool = EPaintingTool.Add;
-		if(Event.current.shift)
-		{
-			CurrentTool = EPaintingTool.Remove;
-		}
-		else if (Event.current.control)
-		{
-			CurrentTool = EPaintingTool.Subdivide;
-		}
-
-		var collider = Renderer.GetComponent<MeshCollider>();
-		Ray worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-		var hitPoint = Vector3.zero;
-		var hitNorm = Vector3.up;
-		var triIndex = -1;
-
-		if (collider.Raycast(worldRay, out var hitInfo, 10000))
-		{
-			hitPoint = hitInfo.point;
-			hitNorm = hitInfo.normal;
-			triIndex = hitInfo.triangleIndex;
-		}
-		else
-		{
-			var p = new Plane(Renderer.transform.up, Renderer.transform.position.y); ;
-			if (!p.Raycast(worldRay, out var planePoint))
-			{
-				return;
-			}
-			hitPoint = worldRay.origin + worldRay.direction * planePoint;
-			hitNorm = Renderer.transform.up;
-		}
-
-		Handles.DrawWireCube(hitPoint, Vector3.one * .02f);
-		Handles.DrawLine(hitPoint, hitPoint + hitNorm * .2f);
-
-		VoxelCoordinate brushCoord = default;
-		Voxel voxel = default;
-		switch (CurrentTool)
-		{
-			case EPaintingTool.Add:
-				var scale = VoxelCoordinate.LayerToScale(CurrentLayer);
-				brushCoord = VoxelCoordinate.FromVector3(hitPoint + hitNorm * scale / 2f, CurrentLayer);
-				break;
-			case EPaintingTool.Remove:
-			case EPaintingTool.Subdivide:
-				var voxelN = Renderer.GetVoxel(triIndex);
-				if (voxelN.HasValue)
-				{
-					voxel = voxelN.Value;
-					brushCoord = voxel.Coordinate;
-				}
-				else
-				{
-					return;
-				}
-				break;
-		}
-
-		if (CurrentTool == EPaintingTool.Subdivide)
-		{
-			foreach (var sub in voxel.Subdivide())
-			{
-				var subLayerScale = VoxelCoordinate.LayerToScale(sub.Coordinate.Layer);
-				var subPos = Renderer.transform.localToWorldMatrix.MultiplyPoint3x4(sub.Coordinate.ToVector3());
-				var subScale = Renderer.transform.localToWorldMatrix.MultiplyVector(subLayerScale * Vector3.one * .4f);
-				HandleExtensions.DrawWireCube(subPos, subScale, Renderer.transform.rotation, Color.magenta);
-			}
-		}
-
-		var layerScale = VoxelCoordinate.LayerToScale(brushCoord.Layer);
-		var voxelWorldPos = Renderer.transform.localToWorldMatrix.MultiplyPoint3x4(brushCoord.ToVector3());
-		var voxelScale = Renderer.transform.localToWorldMatrix.MultiplyVector(layerScale * Vector3.one * .51f);
-
-		HandleExtensions.DrawWireCube(voxelWorldPos, voxelScale, Renderer.transform.rotation, Color.cyan);
-		Handles.Label(voxelWorldPos, brushCoord.ToString(), EditorStyles.textField);
-
-		if (Event.current.type == EventType.MouseDown && Event.current.button == 0)
-		{
-			/*var now = JsonUtility.ToJson(Renderer.Mesh.Voxels);
-			if(!m_undoHistory.Any())
-			{
-				var newDiff = dmp.patch_make("", now);
-				m_undoHistory.Push(newDiff);
-			}
-			else
-			{
-				var newDiff = dmp.patch_make(now, m_undoHistory.SelectMany(l => l.SelectMany(s => s.diffs)).ToList());
-				m_undoHistory.Push(newDiff);
-			}*/
-			switch (CurrentTool)
-			{
-				case EPaintingTool.Add:
-					if (!CurrentBrush)
-					{
-						return;
-					}
-					var collScale = Vector3.one * layerScale * .495f;
-					var coll = Physics.OverlapBox(voxelWorldPos, collScale, Renderer.transform.rotation);
-					if (coll.Any())
-					{
-						DebugHelper.DrawCube(voxelWorldPos, collScale, Renderer.transform.rotation, Color.red, 5);
-						return;
-					}
-					Renderer.Mesh.Voxels[brushCoord] = new Voxel(brushCoord, CurrentBrush.Data.Copy());
-					Renderer.Invalidate();
-					break;
-				case EPaintingTool.Remove:
-					Renderer.Mesh.Voxels.Remove(brushCoord);
-					break;
-				case EPaintingTool.Subdivide:
-					Renderer.Mesh.Voxels.Remove(brushCoord);
-					foreach (var sub in voxel.Subdivide())
-					{
-						Renderer.Mesh.Voxels[sub.Coordinate] = sub;
-					}
-					break;
-			}
-			Renderer.Mesh.Hash = System.Guid.NewGuid().ToString();
-			EditorUtility.SetDirty(Renderer.Mesh);
-			Event.current.Use();
-			Debug.LogWarning("Used event");
-		}
+		var t = m_tools[CurrentTool];
+		t.DrawSceneGUI(this, Renderer, Event.current, CurrentLayer);
 	}
 
 	public void OnEnable()
 	{
-		m_cachedBrushEditor = null;
-		m_cachedEditorNeedsRefresh = true;
+		foreach(var t in m_tools)
+		{
+			t.Value.OnEnable();
+		}
 	}
 }

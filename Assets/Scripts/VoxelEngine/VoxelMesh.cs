@@ -36,20 +36,19 @@ public class VoxelMesh : ScriptableObject
 
 	private static EVoxelDirection[] Directions = Enum.GetValues(typeof(EVoxelDirection)).Cast<EVoxelDirection>().ToArray();
 
-	public Mesh GenerateMeshInstance()
+	public Mesh GenerateMeshInstance(sbyte minLayer = sbyte.MinValue, sbyte maxLayer = sbyte.MaxValue)
 	{
 		Debug.Log("Generating new mesh instance");
 		
 		VoxelMapping.Clear();
 		var m = new Mesh();
 		var data = new IntermediateVoxelMeshData();
-		for (int i = 0; i < Voxels.Values.Count; i++)
-		{
-			var vox = Voxels.Values.ElementAt(i);
-			switch (vox.Surfaces.NormalMode)
+		foreach(var vox in Voxels.Where(v => v.Key.Layer >= minLayer && v.Key.Layer <= maxLayer))
+		{ 
+			switch (vox.Value.Surfaces.NormalMode)
 			{
 				case ENormalMode.Hard:
-					Cube(vox, data);
+					Cube(vox.Value, data);
 					break;
 			}
 		}
@@ -59,11 +58,6 @@ public class VoxelMesh : ScriptableObject
 		m.SetUVs(0, data.UV1);
 		m.SetUVs(1, data.UV2);
 		m.RecalculateNormals();
-
-		var meshSimplifier = new UnityMeshSimplifier.MeshSimplifier();
-		meshSimplifier.Initialize(m);
-		meshSimplifier.SimplifyMesh(1f);
-		m = meshSimplifier.ToMesh();
 
 		return m;
 	}

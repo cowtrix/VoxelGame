@@ -75,7 +75,7 @@ public struct VoxelCoordinate
 
 	public float GetScale() => LayerToScale(Layer);
 
-	public Bounds ToBounds() => new Bounds(ToVector3(), GetScale() * Vector3.one * 2);
+	public Bounds ToBounds() => new Bounds(ToVector3(), GetScale() * Vector3.one );
 
 	public override bool Equals(object obj)
 	{

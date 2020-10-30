@@ -7,6 +7,10 @@ using UnityEngine;
 [ExecuteAlways]
 public class VoxelRenderer : MonoBehaviour
 {
+	[Range(sbyte.MinValue, sbyte.MaxValue)]
+	public sbyte MinLayer = sbyte.MinValue;
+	[Range(sbyte.MinValue, sbyte.MaxValue)]
+	public sbyte MaxLayer = sbyte.MaxValue;
 	public VoxelMesh Mesh;
 
 	private MeshFilter m_filter;
@@ -63,7 +67,11 @@ public class VoxelRenderer : MonoBehaviour
 	{
 		SetupComponents();
 
-		m_filter.sharedMesh = Mesh.GenerateMeshInstance();
+		if(MinLayer > MaxLayer)
+		{
+			MinLayer = MaxLayer;
+		}
+		m_filter.sharedMesh = Mesh.GenerateMeshInstance(MinLayer, MaxLayer);
 		m_collider.sharedMesh = m_filter.sharedMesh;		
 		m_renderer.sharedMaterial = VoxelManager.Instance.DefaultMaterial;
 
