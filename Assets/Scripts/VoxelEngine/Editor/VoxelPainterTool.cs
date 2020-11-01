@@ -98,7 +98,6 @@ public abstract class VoxelPainterTool
 			return;
 		}
 
-
 		var layerScale = VoxelCoordinate.LayerToScale(brushCoord.Layer);
 		var voxelWorldPos = renderer.transform.localToWorldMatrix.MultiplyPoint3x4(brushCoord.ToVector3());
 		var voxelScale = layerScale * Vector3.one * .51f;
@@ -148,12 +147,9 @@ public abstract class VoxelPainterTool
 
 	public virtual void OnEnable()
 	{
-		
-		Debug.Log($"OnEnable {ToolID}");
 	}
 
 	public virtual void OnDisable()
 	{
-		Debug.Log($"OnDisable {ToolID}");
 	}
 }

@@ -90,6 +90,12 @@ public class VoxelPainter : Editor
 		}
 		base.OnInspectorGUI();
 
+		if(!Renderer.Mesh)
+		{
+			EditorGUILayout.HelpBox("Select a Voxel Mesh asset", MessageType.Info);
+			return;
+		}
+
 		EditorGUILayout.LabelField("Painter", EditorStyles.whiteLargeLabel);
 		EditorGUILayout.BeginVertical("Box");
 		Enabled = EditorGUILayout.Toggle("Enabled", Enabled);
@@ -109,6 +115,7 @@ public class VoxelPainter : Editor
 		if(t.DrawInspectorGUI(this))
 		{
 			EditorUtility.SetDirty(Renderer.Mesh);
+			Renderer.Invalidate();
 		}
 		EditorGUILayout.EndVertical();
 		GUI.enabled = true;

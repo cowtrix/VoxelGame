@@ -6,12 +6,18 @@ using UnityEngine;
 
 public enum EUVMode : byte
 {
-	Local, LocalScaled, Global, GlobalScaled,
+	Global, GlobalScaled, Local, LocalScaled, 
 }
 
 public enum ENormalMode : byte
 {
 	Hard,
+}
+
+public enum EMaterialMode
+{
+	Opaque,
+	Transparent,
 }
 
 public enum ERenderMode
@@ -49,7 +55,7 @@ public struct TextureIndex
 [Serializable]
 public struct SurfaceData
 {
-	[ColorUsage(false, true)]
+	[ColorUsage(true, true)]
 	public Color Albedo;
 	[Range(0, 1)]
 	public float Metallic;
@@ -64,6 +70,7 @@ public struct SurfaceData
 [Serializable]
 public struct VoxelMaterial
 {
+	public EMaterialMode MaterialMode;
 	public ERenderMode RenderMode;
 	public ENormalMode NormalMode;
 	public SurfaceData Default;
@@ -91,6 +98,7 @@ public struct VoxelMaterial
 			Overrides = Overrides?.ToArray(),
 			RenderMode = RenderMode,
 			NormalMode = NormalMode,
+			MaterialMode = MaterialMode,
 		};
 	}
 }

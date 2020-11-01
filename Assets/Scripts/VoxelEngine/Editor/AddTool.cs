@@ -78,7 +78,7 @@ public class AddTool : VoxelPainterTool
 			}
 
 			var creationList = new HashSet<VoxelCoordinate>() { brushCoord };
-			/*if (currentEvent.control && currentEvent.shift)
+			if (currentEvent.control && currentEvent.shift)
 			{
 				var bounds = voxelPainter.CurrentSelection.GetBounds();
 				bounds.Encapsulate(brushCoord.ToBounds());
@@ -86,7 +86,7 @@ public class AddTool : VoxelPainterTool
 				{
 					creationList.Add(coord);
 				}
-			}*/
+			}
 			if(CreateVoxel(creationList, renderer))
 			{
 				voxelPainter.CurrentSelection = creationList;

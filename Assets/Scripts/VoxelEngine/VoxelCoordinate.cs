@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -165,4 +166,21 @@ public struct VoxelCoordinate
 	}
 
 	public override string ToString() => $"{{ {X}, {Y}, {Z} }} :: {Layer}";
+
+	public IEnumerable<VoxelCoordinate> Subdivide()
+	{
+		var newLayer = (sbyte)(Layer + 1);
+		var centerCoord = ChangeLayer(newLayer) - new VoxelCoordinate(0, 0, -1, newLayer);
+		for (var x = -1; x <= 1; ++x)
+		{
+			for (var y = -1; y <= 1; ++y)
+			{
+				for (var z = -2; z <= 0; ++z)
+				{
+					var coord = centerCoord + new VoxelCoordinate(x, y, z, newLayer);
+					yield return coord;
+				}
+			}
+		}
+	}
 }

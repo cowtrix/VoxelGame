@@ -36,7 +36,7 @@ public class VoxelRenderer : MonoBehaviour
 		(
 			snapValue * Mathf.Round(v.x / snapValue),
 			snapValue * Mathf.Round(v.y / snapValue),
-			v.z
+			snapValue * Mathf.Round(v.z / snapValue)
 		);
 	}
 
@@ -57,17 +57,17 @@ public class VoxelRenderer : MonoBehaviour
 		{
 			m_filter = gameObject.GetOrAddComponent<MeshFilter>();
 		}
-		m_filter.hideFlags = HideFlags.HideAndDontSave;
+		//m_filter.hideFlags = HideFlags.HideAndDontSave;
 		if (!m_renderer)
 		{
 			m_renderer = gameObject.GetOrAddComponent<MeshRenderer>();
 		}
-		m_renderer.hideFlags = HideFlags.HideAndDontSave;
+		//m_renderer.hideFlags = HideFlags.HideAndDontSave;
 		if (!m_collider)
 		{
 			m_collider = gameObject.GetOrAddComponent<MeshCollider>();
 		}
-		m_collider.hideFlags = HideFlags.HideAndDontSave;
+		//m_collider.hideFlags = HideFlags.HideAndDontSave;
 		m_collider.convex = false;
 	}
 
@@ -90,10 +90,9 @@ public class VoxelRenderer : MonoBehaviour
 		{
 			MinLayer = MaxLayer;
 		}
-		m_filter.sharedMesh = Mesh.GenerateMeshInstance(MinLayer, MaxLayer);
+		m_filter.sharedMesh = Mesh.GenerateMeshInstance(m_filter.sharedMesh, MinLayer, MaxLayer);
 		m_collider.sharedMesh = m_filter.sharedMesh;		
-		m_renderer.sharedMaterial = VoxelManager.Instance.DefaultMaterial;
-
+		m_renderer.sharedMaterials = new[] { VoxelManager.Instance.DefaultMaterial, VoxelManager.Instance.DefaultMaterialTransparent, };
 		m_lastMeshHash = Mesh.Hash;
 	}
 
@@ -102,9 +101,27 @@ public class VoxelRenderer : MonoBehaviour
 		if(triangleIndex < 0)
 		{
 			return null;
-		}	
-		var mapping = Mesh.VoxelMapping[triangleIndex];
-		var vox = Mesh.Voxels.Where(v => v.Key == mapping.Coordinate);
+		}
+
+		int limit = triangleIndex * 3;
+		int submesh;
+		for (submesh = 0; submesh < m_filter.sharedMesh.subMeshCount; submesh++)
+		{
+			int numIndices = m_filter.sharedMesh.GetTriangles(submesh).Length;
+			
+			if (numIndices > limit)
+				break;
+			triangleIndex -= numIndices / 3;
+			limit -= numIndices;
+		}
+
+		if(!Mesh.VoxelMapping.TryGetValue(submesh, out var innermap))
+		{
+			throw new Exception($"Couldn't find submesh mapping for {submesh}");
+		}
+
+		var triMapping = innermap[triangleIndex];
+		var vox = Mesh.Voxels.Where(v => v.Key == triMapping.Coordinate);
 		if(!vox.Any())
 		{
 			return null;

@@ -9,7 +9,7 @@ using UnityEngine.Rendering;
 public class IntermediateVoxelMeshData
 {
 	public List<Vector3> Vertices = new List<Vector3>();
-	public List<int> Triangles = new List<int>();
+	public Dictionary<int, List<int>> Triangles = new Dictionary<int, List<int>>();
 	public List<Color> Color1 = new List<Color>();
 	public List<Vector2> UV1 = new List<Vector2>();
 	public List<Vector4> UV2 = new List<Vector4>();
@@ -23,7 +23,12 @@ public struct VoxelCoordinateTriangleMapping
 }
 
 [Serializable]
-public class TriangleVoxelMapping : SerializableDictionary<int, VoxelCoordinateTriangleMapping> { }
+public class TriangleVoxelMapping : SerializableDictionary<int, TriangleVoxelMapping.InnerMapping>
+{
+
+	[Serializable]
+	public class InnerMapping : SerializableDictionary<int, VoxelCoordinateTriangleMapping> { }
+}
 [Serializable]
 public class VoxelMapping : SerializableDictionary<VoxelCoordinate, Voxel> { }
 
@@ -38,13 +43,22 @@ public class VoxelMesh : ScriptableObject
 
 	public static EVoxelDirection[] Directions = Enum.GetValues(typeof(EVoxelDirection)).Cast<EVoxelDirection>().ToArray();
 
-	public Mesh GenerateMeshInstance(sbyte minLayer = sbyte.MinValue, sbyte maxLayer = sbyte.MaxValue)
-	{		
-		VoxelMapping.Clear();
-		var m = new Mesh();
+	public Mesh GenerateMeshInstance(Mesh mesh, sbyte minLayer = sbyte.MinValue, sbyte maxLayer = sbyte.MaxValue)
+	{
+		VoxelMapping = new TriangleVoxelMapping();
+		if (!mesh)
+		{
+			mesh = new Mesh();
+		}
 		var data = new IntermediateVoxelMeshData();
-		foreach(var vox in Voxels.Where(v => v.Key.Layer >= minLayer && v.Key.Layer <= maxLayer))
-		{ 
+		foreach (var vox in Voxels
+			.Where(v => v.Key.Layer >= minLayer && v.Key.Layer <= maxLayer)
+			.OrderBy(v => v.Value.Material.MaterialMode))
+		{
+			if (vox.Key != vox.Value.Coordinate)
+			{
+				throw new Exception($"Voxel {vox.Key} had incorrect key in data");
+			}
 			switch (vox.Value.Material.RenderMode)
 			{
 				case ERenderMode.Block:
@@ -66,33 +80,40 @@ public class VoxelMesh : ScriptableObject
 					Plane(vox.Value, data, new[] { EVoxelDirection.XPos, EVoxelDirection.XNeg, EVoxelDirection.ZPos, EVoxelDirection.ZNeg, });
 					break;
 				case ERenderMode.ZYCross:
-					Plane(vox.Value, data, new[] { EVoxelDirection.ZPos, EVoxelDirection.ZNeg, EVoxelDirection.YPos, EVoxelDirection.YNeg,});
+					Plane(vox.Value, data, new[] { EVoxelDirection.ZPos, EVoxelDirection.ZNeg, EVoxelDirection.YPos, EVoxelDirection.YNeg, });
 					break;
 				case ERenderMode.FullCross:
 					Plane(vox.Value, data, Directions.ToArray());
 					break;
 			}
 		}
-		m.SetVertices(data.Vertices);
-		m.SetColors(data.Color1);
-		m.SetTriangles(data.Triangles, 0);
-		m.SetUVs(0, data.UV1);
-		m.SetUVs(1, data.UV2);
-		m.RecalculateNormals();
+		mesh.Clear();
+		mesh.SetVertices(data.Vertices);
+		mesh.SetColors(data.Color1);
+		mesh.subMeshCount = data.Triangles.Count();
+		foreach (var submesh in data.Triangles)
+		{
+			mesh.SetTriangles(submesh.Value, submesh.Key);
+		}
+		mesh.SetUVs(0, data.UV1);
+		mesh.SetUVs(1, data.UV2);
+		mesh.RecalculateNormals();
 
-		return m;
+		return mesh;
 	}
 
 	public IEnumerable<VoxelCoordinate> GetVoxelCoordinates(Bounds bounds, sbyte currentLayer)
 	{
-		var minCoord = VoxelCoordinate.FromVector3(bounds.min, currentLayer);
-		var maxCoord = VoxelCoordinate.FromVector3(bounds.max, currentLayer);
+		var layerScale = VoxelCoordinate.LayerToScale(currentLayer);
+		var halfVox = layerScale * .5f * Vector3.one;
+		var minCoord = VoxelCoordinate.FromVector3(bounds.min + halfVox, currentLayer);
+		var maxCoord = VoxelCoordinate.FromVector3(bounds.max - halfVox, currentLayer);
 
-		for(var x = minCoord.X; x < maxCoord.X; ++x)
+		for (var x = minCoord.X; x <= maxCoord.X; ++x)
 		{
-			for (var y = minCoord.Y; y < maxCoord.Y; ++y)
+			for (var y = minCoord.Y; y <= maxCoord.Y; ++y)
 			{
-				for (var z = minCoord.Z; z < maxCoord.Z; ++z)
+				for (var z = minCoord.Z; z <= maxCoord.Z; ++z)
 				{
 					yield return new VoxelCoordinate(x, y, z, currentLayer);
 				}
@@ -134,30 +155,35 @@ public class VoxelMesh : ScriptableObject
 	private void DoPlanes(Vector3 origin, float offset, Vector2 size,
 		IEnumerable<EVoxelDirection> dirs, Voxel vox, IntermediateVoxelMeshData data)
 	{
-		var startTri = data.Triangles.Count / 3;
-		foreach(var dir in dirs)
-		{ 
+		var submeshIndex = (int)vox.Material.MaterialMode;
+		if (!data.Triangles.TryGetValue(submeshIndex, out var tris))
+		{
+			tris = new List<int>();
+			data.Triangles[submeshIndex] = tris;
+			VoxelMapping[submeshIndex] = new TriangleVoxelMapping.InnerMapping();
+		}
+		var startTri = tris.Count / 3;
+		foreach (var dir in dirs)
+		{
 			var surface = vox.Material.GetSurface(dir);
 			// Get the basic mesh stuff
-			VoxelMeshUtility.GetPlane(origin, offset, size, dir, surface.UVMode, data);
+			VoxelMeshUtility.GetPlane(origin, offset, size, dir, vox.Material, data);
 
 			// Do the colors
-			var colWithMetallic = new Color(surface.Albedo.r,
-				surface.Albedo.g,
-				surface.Albedo.b,
-				surface.Metallic);
-			data.Color1.AddRange(Enumerable.Repeat(colWithMetallic, 4));
+			data.Color1.AddRange(Enumerable.Repeat(surface.Albedo, 4));
 
 			// UV2 extra data
-			var uv2 = new Vector4(surface.Smoothness, surface.Texture.Index, vox.Coordinate.GetScale(), 1 - surface.TextureFade);
+			var uv2 = new Vector4(surface.Smoothness, surface.Texture.Index, surface.Metallic, 1 - surface.TextureFade);
 			data.UV2.AddRange(Enumerable.Repeat(uv2, 4));
 
-			var endTri = data.Triangles.Count / 3;
+			var endTri = tris.Count / 3;
 			if (endTri > startTri)
 			{
 				for (var j = startTri; j < endTri; ++j)
 				{
-					VoxelMapping[j] = new VoxelCoordinateTriangleMapping { Coordinate = vox.Coordinate, Direction = dir };
+					var key = j;
+					VoxelMapping[submeshIndex][key] =
+						new VoxelCoordinateTriangleMapping { Coordinate = vox.Coordinate, Direction = dir };
 				}
 			}
 		}

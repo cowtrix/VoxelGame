@@ -15,26 +15,47 @@ public class SelectTool : VoxelPainterTool
 	public override bool DrawInspectorGUI(VoxelPainter voxelPainter)
 	{
 		var result = base.DrawInspectorGUI(voxelPainter);
-
-		if (GUILayout.Button("Apply Material To Selection"))
+		if (GUILayout.Button("Apply Material To Selection (SHIFT + M)") || 
+			(Event.current.isKey && Event.current.shift && Event.current.keyCode == KeyCode.M))
 		{
-			foreach(var v in voxelPainter.CurrentSelection)
+			Debug.Log($"Applying material");
+			foreach (var v in voxelPainter.CurrentSelection)
 			{
 				voxelPainter.Renderer.Mesh.Voxels[v] = new Voxel(v, CurrentBrush.Copy());
 			}
-			voxelPainter.Renderer.Invalidate();
+			return true;
+		}
+		if (GUILayout.Button("Set Voxels For Selection (SHIFT + F)") || 
+			(Event.current.isKey && Event.current.shift && Event.current.keyCode == KeyCode.F))
+		{
+			Debug.Log($"Setting voxels material");
+			var bounds = voxelPainter.CurrentSelection.GetBounds();
+			foreach (VoxelCoordinate coord in voxelPainter.Renderer.Mesh.GetVoxelCoordinates(bounds, voxelPainter.CurrentLayer))
+			{
+				DebugHelper.DrawPoint(voxelPainter.Renderer.transform.localToWorldMatrix.MultiplyPoint3x4(coord.ToVector3()), .1f, Color.white, 5);
+				voxelPainter.Renderer.Mesh.Voxels[coord] = new Voxel(coord, CurrentBrush.Copy());
+			}
+			return true;
+		}
+		if (GUILayout.Button("Subdivide Selection (SHIFT + S)") || 
+			(Event.current.isKey && Event.current.shift && Event.current.keyCode == KeyCode.S))
+		{
+			Debug.Log($"Subdividing");
+			var newSelection = new HashSet<VoxelCoordinate>();
+			foreach (var v in voxelPainter.CurrentSelection)
+			{
+				voxelPainter.Renderer.Mesh.Voxels.Remove(v);
+				foreach (var subV in v.Subdivide())
+				{
+					voxelPainter.Renderer.Mesh.Voxels[subV] = new Voxel(subV, CurrentBrush.Copy());
+					newSelection.Add(subV);
+				}
+			}
+			voxelPainter.CurrentSelection = newSelection;
 			return true;
 		}
 		return result;
 	}
-
-	protected override bool GetVoxelDataFromPoint(VoxelPainter voxelPainterTool, VoxelRenderer renderer, 
-		Vector3 hitPoint, Vector3 hitNorm, int triIndex, sbyte layer, out List<Voxel> selection, out VoxelCoordinate brushCoord, out EVoxelDirection hitDir)
-	{
-		base.GetVoxelDataFromPoint(voxelPainterTool, renderer, hitPoint, hitNorm, triIndex, layer, out selection, out brushCoord, out hitDir);
-		return true;
-	}
-
 	protected override bool DrawSceneGUIInternal(VoxelPainter voxelPainter, VoxelRenderer renderer, Event currentEvent, 
 		List<Voxel> selection, VoxelCoordinate brushCoord, EVoxelDirection hitDir)
 	{
@@ -71,8 +92,6 @@ public class SelectTool : VoxelPainterTool
 					}
 				}
 			}
-
-			Debug.Log($"Added {string.Join(", ", coords)}");
 		}
 
 		Handles.matrix = renderer.transform.localToWorldMatrix;

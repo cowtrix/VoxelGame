@@ -5,8 +5,11 @@ using UnityEngine;
 public static class VoxelMeshUtility
 {
 	public static void GetPlane(Vector3 origin, float offset, Vector2 size, EVoxelDirection dir,
-		EUVMode uvMode, IntermediateVoxelMeshData data)
+		VoxelMaterial material, IntermediateVoxelMeshData data)
 	{
+		var surface = material.GetSurface(dir);
+		var submeshIndex = (int)material.MaterialMode;
+
 		var cubeLength = size.x;
 		var cubeWidth = offset;
 		var cubeHeight = size.y;
@@ -25,7 +28,12 @@ public static class VoxelMeshUtility
 		});
 
 		// Triangles
-		data.Triangles.AddRange(new[]
+		if(!data.Triangles.TryGetValue(submeshIndex, out var submeshList))
+		{
+			submeshList = new System.Collections.Generic.List<int>();
+			data.Triangles[submeshIndex] = submeshList;
+		}
+		submeshList.AddRange(new[]
 		{
 			// Cube Left Side Triangles
 			3 + vOffset, 1 + vOffset, 0 + vOffset,
@@ -36,6 +44,7 @@ public static class VoxelMeshUtility
 		Vector2 _10_CORDINATES = new Vector2(0f, 1f);
 		Vector2 _01_CORDINATES = new Vector2(1f, 0f);
 		Vector2 _11_CORDINATES = new Vector2(0f, 0f);
+		var uvMode = surface.UVMode;
 		switch (uvMode)
 		{
 			case EUVMode.Local:

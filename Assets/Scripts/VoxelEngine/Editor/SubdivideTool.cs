@@ -20,9 +20,9 @@ public class SubdivideTool : VoxelPainterTool
 		if (currentEvent.type == EventType.MouseDown && currentEvent.button == 0)
 		{
 			renderer.Mesh.Voxels.Remove(brushCoord);
-			foreach (var sub in selection.SelectMany(s => s.Subdivide()))
+			foreach (var sub in selection.SelectMany(s => s.Coordinate.Subdivide()))
 			{
-				renderer.Mesh.Voxels[sub.Coordinate] = sub;
+				renderer.Mesh.Voxels[sub] = new Voxel(sub, CurrentBrush.Copy());
 			}
 			return true;
 		}
@@ -34,10 +34,10 @@ public class SubdivideTool : VoxelPainterTool
 	{
 		if(base.GetVoxelDataFromPoint(painter, renderer, hitPoint, hitNorm, triIndex, layer, out selection, out brushCoord, out hitDir))
 		{
-			foreach (var sub in selection.SelectMany(v => v.Subdivide()))
+			foreach (var sub in selection.SelectMany(v => v.Coordinate.Subdivide()))
 			{
-				var subLayerScale = VoxelCoordinate.LayerToScale(sub.Coordinate.Layer);
-				var subPos = renderer.transform.localToWorldMatrix.MultiplyPoint3x4(sub.Coordinate.ToVector3());
+				var subLayerScale = VoxelCoordinate.LayerToScale(sub.Layer);
+				var subPos = renderer.transform.localToWorldMatrix.MultiplyPoint3x4(sub.ToVector3());
 				var subScale = renderer.transform.localToWorldMatrix.MultiplyVector(subLayerScale * Vector3.one * .4f);
 				HandleExtensions.DrawWireCube(subPos, subScale, renderer.transform.rotation, Color.magenta);
 			}
