@@ -18,6 +18,7 @@ public enum EPaintingTool
 	Add,
 	Remove,
 	Subdivide,
+	Paint,
 }
 
 [CustomEditor(typeof(VoxelRenderer))]
@@ -36,6 +37,7 @@ public class VoxelPainter : Editor
 		{ EPaintingTool.Add, new AddTool() },
 		{ EPaintingTool.Remove, new RemoveTool() },
 		{ EPaintingTool.Subdivide, new SubdivideTool() },
+		{ EPaintingTool.Paint, new PaintTool() },
 	};
 
 	public bool Enabled
@@ -71,8 +73,7 @@ public class VoxelPainter : Editor
 			EditorPrefUtility.SetPref("VoxelPainter_CurrentTool", value);
 		}
 	}
-	private VoxelRenderer Renderer => target as VoxelRenderer;
-
+	public VoxelRenderer Renderer => target as VoxelRenderer;
 	public HashSet<VoxelCoordinate> CurrentSelection = new HashSet<VoxelCoordinate>();
 
 	public override bool RequiresConstantRepaint() => true;
@@ -93,11 +94,22 @@ public class VoxelPainter : Editor
 		EditorGUILayout.BeginVertical("Box");
 		Enabled = EditorGUILayout.Toggle("Enabled", Enabled);
 		GUI.enabled = Enabled;
+		var oldTool = CurrentTool;
 		CurrentLayer = (sbyte)EditorGUILayout.IntSlider("Current Layer", CurrentLayer, -5, 5);
-		CurrentTool = (EPaintingTool)GUILayout.Toolbar((int)CurrentTool, Enum.GetNames(typeof(EPaintingTool)));
+		var newTool = (EPaintingTool)GUILayout.Toolbar((int)CurrentTool, Enum.GetNames(typeof(EPaintingTool)));
+		bool dirty = newTool != CurrentTool;
+		CurrentTool = newTool;
 		var t = m_tools[CurrentTool];
+		if(dirty)
+		{
+			m_tools[oldTool].OnDisable();
+			t.OnEnable();
+		}
 		EditorGUILayout.BeginVertical("Box");
-		t.DrawInspectorGUI(this);
+		if(t.DrawInspectorGUI(this))
+		{
+			EditorUtility.SetDirty(Renderer.Mesh);
+		}
 		EditorGUILayout.EndVertical();
 		GUI.enabled = true;
 		EditorGUILayout.EndVertical();
@@ -112,16 +124,14 @@ public class VoxelPainter : Editor
 			return;
 		}
 		Tools.current = Tool.Custom;
+		var tran = Renderer.transform;
+		Handles.color = Color.white.WithAlpha(.1f);
+		Handles.DrawLine(tran.position - tran.up * 100, tran.position + tran.up * 100);
+		Handles.DrawLine(tran.position - tran.right * 100, tran.position + tran.right * 100);
+		Handles.DrawLine(tran.position - tran.forward * 100, tran.position + tran.forward * 100);
+
 		var t = m_tools[CurrentTool];
 		t.DrawSceneGUI(this, Renderer, Event.current, CurrentLayer);
-	}
-
-	public void OnEnable()
-	{
-		foreach(var t in m_tools)
-		{
-			t.Value.OnEnable();
-		}
 	}
 
 	public void OnDisable()

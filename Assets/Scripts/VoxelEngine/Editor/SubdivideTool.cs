@@ -9,7 +9,13 @@ public class SubdivideTool : VoxelPainterTool
 {
 	protected override EPaintingTool ToolID => EPaintingTool.Subdivide;
 
-	protected override bool DrawSceneGUIInternal(VoxelPainter voxelPainter, VoxelRenderer renderer, Event currentEvent, List<Voxel> selection, VoxelCoordinate brushCoord)
+	public override bool DrawInspectorGUI(VoxelPainter voxelPainter)
+	{
+		return false;
+	}
+
+	protected override bool DrawSceneGUIInternal(VoxelPainter voxelPainter, VoxelRenderer renderer, 
+		Event currentEvent, List<Voxel> selection, VoxelCoordinate brushCoord, EVoxelDirection hitDir)
 	{
 		if (currentEvent.type == EventType.MouseDown && currentEvent.button == 0)
 		{
@@ -24,9 +30,9 @@ public class SubdivideTool : VoxelPainterTool
 	}
 
 	protected override bool GetVoxelDataFromPoint(VoxelPainter painter, VoxelRenderer renderer, Vector3 hitPoint, Vector3 hitNorm, int triIndex, sbyte layer, 
-		out List<Voxel> selection, out VoxelCoordinate brushCoord)
+		out List<Voxel> selection, out VoxelCoordinate brushCoord, out EVoxelDirection hitDir)
 	{
-		if(base.GetVoxelDataFromPoint(painter, renderer, hitPoint, hitNorm, triIndex, layer, out selection, out brushCoord))
+		if(base.GetVoxelDataFromPoint(painter, renderer, hitPoint, hitNorm, triIndex, layer, out selection, out brushCoord, out hitDir))
 		{
 			foreach (var sub in selection.SelectMany(v => v.Subdivide()))
 			{

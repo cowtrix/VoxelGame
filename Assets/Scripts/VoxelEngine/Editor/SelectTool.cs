@@ -12,19 +12,42 @@ public class SelectTool : VoxelPainterTool
 	public Bounds SelectionBounds;
 	protected override EPaintingTool ToolID => EPaintingTool.Select;
 
-	protected override bool GetVoxelDataFromPoint(VoxelPainter voxelPainterTool, VoxelRenderer renderer, Vector3 hitPoint, Vector3 hitNorm, int triIndex, sbyte layer, out List<Voxel> selection, out VoxelCoordinate brushCoord)
+	public override bool DrawInspectorGUI(VoxelPainter voxelPainter)
 	{
-		base.GetVoxelDataFromPoint(voxelPainterTool, renderer, hitPoint, hitNorm, triIndex, layer, out selection, out brushCoord);
+		var result = base.DrawInspectorGUI(voxelPainter);
+
+		if (GUILayout.Button("Apply Material To Selection"))
+		{
+			foreach(var v in voxelPainter.CurrentSelection)
+			{
+				voxelPainter.Renderer.Mesh.Voxels[v] = new Voxel(v, CurrentBrush.Copy());
+			}
+			voxelPainter.Renderer.Invalidate();
+			return true;
+		}
+		return result;
+	}
+
+	protected override bool GetVoxelDataFromPoint(VoxelPainter voxelPainterTool, VoxelRenderer renderer, 
+		Vector3 hitPoint, Vector3 hitNorm, int triIndex, sbyte layer, out List<Voxel> selection, out VoxelCoordinate brushCoord, out EVoxelDirection hitDir)
+	{
+		base.GetVoxelDataFromPoint(voxelPainterTool, renderer, hitPoint, hitNorm, triIndex, layer, out selection, out brushCoord, out hitDir);
 		return true;
 	}
 
-	protected override bool DrawSceneGUIInternal(VoxelPainter voxelPainter, VoxelRenderer renderer, Event currentEvent, List<Voxel> selection, VoxelCoordinate brushCoord)
+	protected override bool DrawSceneGUIInternal(VoxelPainter voxelPainter, VoxelRenderer renderer, Event currentEvent, 
+		List<Voxel> selection, VoxelCoordinate brushCoord, EVoxelDirection hitDir)
 	{
 		if (currentEvent.type == EventType.MouseDown && currentEvent.button == 0)
 		{
 			if(!currentEvent.shift)
 			{
 				voxelPainter.CurrentSelection.Clear();
+			}
+
+			if(selection == null)
+			{
+				return false;
 			}
 			
 			var coords = selection.Select(v => v.Coordinate);

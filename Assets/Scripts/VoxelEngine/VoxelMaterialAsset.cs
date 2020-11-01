@@ -14,6 +14,18 @@ public enum ENormalMode : byte
 	Hard,
 }
 
+public enum ERenderMode
+{
+	Block,
+	XPlane,
+	YPlane,
+	ZPlane,
+	XZCross,
+	XYCross,
+	ZYCross,
+	FullCross,
+}
+
 public enum EVoxelDirection : byte
 {
 	YNeg, XNeg,
@@ -45,11 +57,14 @@ public struct SurfaceData
 	public float Smoothness;
 	public TextureIndex Texture;
 	public EUVMode UVMode;
+	[Range(0, 1)]
+	public float TextureFade;
 }
 
 [Serializable]
 public struct VoxelMaterial
 {
+	public ERenderMode RenderMode;
 	public ENormalMode NormalMode;
 	public SurfaceData Default;
 	public DirectionOverride[] Overrides;
@@ -73,7 +88,9 @@ public struct VoxelMaterial
 		return new VoxelMaterial
 		{
 			Default = Default,
-			Overrides = Overrides?.ToArray()
+			Overrides = Overrides?.ToArray(),
+			RenderMode = RenderMode,
+			NormalMode = NormalMode,
 		};
 	}
 }

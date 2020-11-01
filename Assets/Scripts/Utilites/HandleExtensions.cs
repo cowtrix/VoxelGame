@@ -7,7 +7,7 @@ namespace MadMaps.Common
 {
 	public static class HandleExtensions
 	{
-		public static void DrawWireCube(Vector3 origin, Vector3 extents, Quaternion rotation, Color color)
+		public static void DrawWireCube(Vector3 origin, Vector3 extents, Quaternion rotation, Color color, float thickness = 0f)
 		{
 			var verts = new[]
 			{
@@ -27,22 +27,22 @@ namespace MadMaps.Common
 			Handles.color = color;
 
 			// top square
-			Handles.DrawLine(verts[0], verts[2]);
-			Handles.DrawLine(verts[1], verts[3]);
-			Handles.DrawLine(verts[1], verts[0]);
-			Handles.DrawLine(verts[2], verts[3]);
+			Handles.DrawLine(verts[0], verts[2], thickness);
+			Handles.DrawLine(verts[1], verts[3], thickness);
+			Handles.DrawLine(verts[1], verts[0], thickness);
+			Handles.DrawLine(verts[2], verts[3], thickness);
 
 			// bottom square
-			Handles.DrawLine(verts[4], verts[6]);
-			Handles.DrawLine(verts[5], verts[7]);
-			Handles.DrawLine(verts[5], verts[4]);
-			Handles.DrawLine(verts[6], verts[7]);
+			Handles.DrawLine(verts[4], verts[6], thickness);
+			Handles.DrawLine(verts[5], verts[7], thickness);
+			Handles.DrawLine(verts[5], verts[4], thickness);
+			Handles.DrawLine(verts[6], verts[7], thickness);
 
 			// connections
-			Handles.DrawLine(verts[0], verts[4]);
-			Handles.DrawLine(verts[1], verts[5]);
-			Handles.DrawLine(verts[2], verts[6]);
-			Handles.DrawLine(verts[3], verts[7]);
+			Handles.DrawLine(verts[0], verts[4], thickness);
+			Handles.DrawLine(verts[1], verts[5], thickness);
+			Handles.DrawLine(verts[2], verts[6], thickness);
+			Handles.DrawLine(verts[3], verts[7], thickness);
 
 			Handles.color = Color.white;
 		}

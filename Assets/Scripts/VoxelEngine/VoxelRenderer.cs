@@ -11,6 +11,10 @@ public class VoxelRenderer : MonoBehaviour
 	public sbyte MinLayer = sbyte.MinValue;
 	[Range(sbyte.MinValue, sbyte.MaxValue)]
 	public sbyte MaxLayer = sbyte.MaxValue;
+
+	[Range(sbyte.MinValue, sbyte.MaxValue)]
+	public sbyte SnapLayer = 0;
+
 	public VoxelMesh Mesh;
 
 	private MeshFilter m_filter;
@@ -26,9 +30,21 @@ public class VoxelRenderer : MonoBehaviour
 		Invalidate();
 	}
 
+	private Vector3 RoundTransform(Vector3 v, float snapValue)
+	{
+		return new Vector3
+		(
+			snapValue * Mathf.Round(v.x / snapValue),
+			snapValue * Mathf.Round(v.y / snapValue),
+			v.z
+		);
+	}
+
 	private void Update()
 	{
-		if(Mesh?.Hash == m_lastMeshHash)
+		var scale = VoxelCoordinate.LayerToScale(SnapLayer);
+		transform.position = RoundTransform(transform.position, scale / (float)VoxelCoordinate.LayerRatio);
+		if (Mesh?.Hash == m_lastMeshHash)
 		{
 			return;
 		}

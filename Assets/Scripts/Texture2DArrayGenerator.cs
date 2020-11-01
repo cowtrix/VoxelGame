@@ -1,36 +1,31 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public static class Texture2DArrayGenerator
 {
-	public static Texture2DArray Generate(Texture2DArray texture2DArray, IList<Texture2D> textures, TextureFormat format)
-	{
-		// NOTE:
-		// Maybe Texture2DArray doesn't support mipChain in Unity.2018.2.8f1.
+	const int SIZE = 32;
 
-		// NOTE:
-		// format needs to be ARGB32, RGBA32, RGB24, R8, Alpha8 or one of float formats.
-		if(!texture2DArray)
-			texture2DArray = new Texture2DArray(textures[0].width,
-														   textures[0].height,
-														   textures.Count,
-														   format,
-														   false);
+	static Texture2D Resize(Texture2D texture2D, int targetX, int targetY)
+	{
+		RenderTexture rt = new RenderTexture(targetX, targetY, 24);
+		RenderTexture.active = rt;
+		Graphics.Blit(texture2D, rt);
+		Texture2D result = new Texture2D(targetX, targetY);
+		result.ReadPixels(new Rect(0, 0, targetX, targetY), 0, 0);
+		result.Apply();
+		return result;
+	}
+
+	public static Texture2DArray Generate(IList<Texture2D> textures, TextureFormat format)
+	{
+		var texture2DArray = new Texture2DArray(SIZE, SIZE, textures.Count, format, false);
 		for (int i = 0; i < textures.Count; i++)
 		{
-			// NOTE:
-			// It is able to make a Texture2DArray with "Graphics.CopyTexture()".
-			// However, it has a problem which is able to make Texture2DArray in Editor
-			// without enabling read-write settings of texture.
-			// And then, it causes some wrong result in build app.
-			// So we should make a Texture2DArray with "SetPixels()".
-			// 
-			// Graphics.CopyTexture(textures[i], 0, 0, texture2DArray, i, 0);
-
 			var tex = textures[i];
-			if (tex.height != 32 || tex.width != 32)
+			if (tex.height != SIZE || tex.width != SIZE)
 			{
-				tex.Resize(32, 32, TextureFormat.RGBA32, true);
+				tex = Resize(tex, SIZE, SIZE);
 			}
 			texture2DArray.SetPixels(tex.GetPixels(), i);
 		}

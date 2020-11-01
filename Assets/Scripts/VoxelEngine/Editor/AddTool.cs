@@ -6,103 +6,104 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-
 [Serializable]
 public class AddTool : VoxelPainterTool
 {
-	private Editor m_cachedBrushEditor;
-	private bool m_cachedEditorNeedsRefresh = true;
-
-	[SerializeField]
-	private VoxelMaterialAsset m_asset;
-	public VoxelMaterial CurrentBrush
-	{
-		get
-		{
-			if (!m_asset)
-			{
-				m_asset = ScriptableObject.CreateInstance<VoxelMaterialAsset>();
-				m_asset.Data = DefaultMaterial;
-			}
-			return m_asset.Data;
-		}
-		set
-		{
-			if (!m_asset)
-			{
-				m_asset = ScriptableObject.CreateInstance<VoxelMaterialAsset>();
-			}
-			m_asset.Data = value;
-			EditorUtility.SetDirty(m_asset);
-		}
-	}
+	private double m_lastAdd;
+	private VoxelMesh m_previewMesh;
 
 	public override void OnEnable()
 	{
-		CurrentBrush = EditorPrefUtility.GetPref("VoxelPainter_Brush", DefaultMaterial);
+		m_previewMesh = ScriptableObject.CreateInstance<VoxelMesh>();
+		base.OnEnable();
+	}
+
+	public override void OnDisable()
+	{
+		GameObject.DestroyImmediate(m_previewMesh);
+		m_previewMesh = null;
 	}
 
 	protected override EPaintingTool ToolID => EPaintingTool.Add;
 
-	protected override bool GetVoxelDataFromPoint(VoxelPainter painter, VoxelRenderer renderer, Vector3 hitPoint, Vector3 hitNorm, int triIndex, sbyte layer,
-		out List<Voxel> selection, out VoxelCoordinate brushCoord)
+	protected override bool GetVoxelDataFromPoint(VoxelPainter painter, VoxelRenderer renderer, Vector3 hitPoint, 
+		Vector3 hitNorm, int triIndex, sbyte layer,
+		out List<Voxel> selection, out VoxelCoordinate brushCoord, out EVoxelDirection hitDir)
 	{
-		if(Event.current.alt)
+		if (Event.current.alt)
 		{
-			return base.GetVoxelDataFromPoint(painter, renderer, hitPoint, hitNorm, triIndex, layer, out selection, out brushCoord);
+			return base.GetVoxelDataFromPoint(painter, renderer, hitPoint, hitNorm, triIndex, layer, out selection, out brushCoord, out hitDir);
 		}
+
 		hitPoint = renderer.transform.worldToLocalMatrix.MultiplyPoint3x4(hitPoint);
 		hitNorm = renderer.transform.worldToLocalMatrix.MultiplyVector(hitNorm);
+		hitDir = VoxelCoordinate.CoordinateToDirection(hitNorm);
 		var scale = VoxelCoordinate.LayerToScale(layer);
 		brushCoord = VoxelCoordinate.FromVector3(hitPoint + hitNorm * scale / 2f, layer);
+
 		selection = null;
 		return true;
 	}
 
-	private VoxelMaterial DefaultMaterial => new VoxelMaterial { Default = new SurfaceData { Albedo = Color.gray } };
-
-	public override void DrawInspectorGUI(VoxelPainter voxelPainter)
+	protected override bool DrawSceneGUIInternal(VoxelPainter voxelPainter, VoxelRenderer renderer, 
+		Event currentEvent, List<Voxel> selection, VoxelCoordinate brushCoord, EVoxelDirection hitDir)
 	{
-		if (Event.current.alt)
+		Handles.BeginGUI();
+		if (currentEvent.alt)
 		{
-			EditorGUILayout.HelpBox("Sampling. Click anywhere to get data.", MessageType.Info);
+			GUI.Label(new Rect(5, 5, 180, 64),
+				"PICKING\nRelease ALT to stop"
+				, "Window");
 		}
-
-		var brushes = AssetDatabase.FindAssets($"t: {nameof(VoxelMaterialAsset)}")
-			.Select(b => AssetDatabase.GUIDToAssetPath(b));
-		bool dirty = false;
-		GUILayout.BeginVertical("Box");
-		var selIndex = GUILayout.SelectionGrid(-1, brushes.Select(b => new GUIContent(Path.GetFileNameWithoutExtension(b))).ToArray(), 1);
-		if (selIndex >= 0)
+		else
 		{
-			dirty = true;
-			CurrentBrush = AssetDatabase.LoadAssetAtPath<VoxelMaterialAsset>(brushes.ElementAt(selIndex)).Data;
+			GUI.Label(new Rect(5, 5, 180, 64),
+			"ALT to change to picker", "Window");
 		}
-		GUILayout.EndVertical();
+		Handles.EndGUI();
 
-		if (dirty || m_cachedBrushEditor == null || !m_cachedBrushEditor || m_cachedEditorNeedsRefresh)
-		{
-			m_cachedBrushEditor = Editor.CreateEditor(m_asset);
-			m_cachedEditorNeedsRefresh = false;
-		} 
-		m_cachedBrushEditor?.DrawDefaultInspector();
-		EditorPrefUtility.SetPref("VoxelPainter_Brush", CurrentBrush);
-	}
-
-	protected override bool DrawSceneGUIInternal(VoxelPainter voxelPainter, VoxelRenderer renderer, Event currentEvent, List<Voxel> selection, VoxelCoordinate brushCoord)
-	{
 		if (currentEvent.type == EventType.MouseDown && currentEvent.button == 0)
 		{
-			if (Event.current.alt)
+			if(EditorApplication.timeSinceStartup < m_lastAdd + .1f)
+			{
+				Debug.LogWarning($"Swallowed double event");
+				return false;
+			}
+			m_lastAdd = EditorApplication.timeSinceStartup;
+			if (currentEvent.alt)
 			{
 				var vox = selection.First();
 				CurrentBrush = vox.Material.Copy();
 				return false;
 			}
 
+			var creationList = new HashSet<VoxelCoordinate>() { brushCoord };
+			/*if (currentEvent.control && currentEvent.shift)
+			{
+				var bounds = voxelPainter.CurrentSelection.GetBounds();
+				bounds.Encapsulate(brushCoord.ToBounds());
+				foreach (VoxelCoordinate coord in renderer.Mesh.GetVoxelCoordinates(bounds, voxelPainter.CurrentLayer))
+				{
+					creationList.Add(coord);
+				}
+			}*/
+			if(CreateVoxel(creationList, renderer))
+			{
+				voxelPainter.CurrentSelection = creationList;
+			}
+		}
+		return false;
+	}
+
+	private bool CreateVoxel(IEnumerable<VoxelCoordinate> coords, VoxelRenderer renderer)
+	{
+		var coordList = coords.ToList();
+		foreach (var brushCoord in coordList)
+		{
 			var layerScale = VoxelCoordinate.LayerToScale(brushCoord.Layer);
 			var voxelWorldPos = renderer.transform.localToWorldMatrix.MultiplyPoint3x4(brushCoord.ToVector3());
 			var collScale = Vector3.one * layerScale * .495f;
+			collScale.Scale(renderer.transform.localToWorldMatrix.GetScale());
 			var coll = Physics.OverlapBox(voxelWorldPos, collScale, renderer.transform.rotation);
 			if (coll.Any())
 			{
@@ -110,10 +111,13 @@ public class AddTool : VoxelPainterTool
 				DebugHelper.DrawCube(voxelWorldPos, collScale, renderer.transform.rotation, Color.red, 5);
 				return false;
 			}
-			renderer.Mesh.Voxels[brushCoord] = new Voxel(brushCoord, CurrentBrush.Copy());
-			renderer.Invalidate();
-			return true;
 		}
-		return false;
+		foreach (var brushCoord in coordList)
+		{
+			Debug.Log($"Added new voxel at {brushCoord}");
+			renderer.Mesh.Voxels[brushCoord] = new Voxel(brushCoord, CurrentBrush.Copy());
+		}
+		renderer.Invalidate();
+		return true;
 	}
 }
