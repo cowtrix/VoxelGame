@@ -7,6 +7,9 @@ using UnityEngine;
 [ExecuteAlways]
 public class VoxelRenderer : MonoBehaviour
 {
+	public bool GenerateCollider;
+	public bool SnapToGrid;
+
 	[Range(sbyte.MinValue, sbyte.MaxValue)]
 	public sbyte MinLayer = sbyte.MinValue;
 	[Range(sbyte.MinValue, sbyte.MaxValue)]
@@ -42,8 +45,11 @@ public class VoxelRenderer : MonoBehaviour
 
 	private void Update()
 	{
-		var scale = VoxelCoordinate.LayerToScale(SnapLayer);
-		transform.position = RoundTransform(transform.position, scale / (float)VoxelCoordinate.LayerRatio);
+		if(SnapToGrid)
+		{
+			var scale = VoxelCoordinate.LayerToScale(SnapLayer);
+			transform.position = RoundTransform(transform.position, scale / (float)VoxelCoordinate.LayerRatio);
+		}
 		if (Mesh?.Hash == m_lastMeshHash)
 		{
 			return;
@@ -63,12 +69,15 @@ public class VoxelRenderer : MonoBehaviour
 			m_renderer = gameObject.GetOrAddComponent<MeshRenderer>();
 		}
 		//m_renderer.hideFlags = HideFlags.HideAndDontSave;
-		if (!m_collider)
+		if(GenerateCollider)
 		{
-			m_collider = gameObject.GetOrAddComponent<MeshCollider>();
+			if (!m_collider)
+			{
+				m_collider = gameObject.GetOrAddComponent<MeshCollider>();
+			}
+			//m_collider.hideFlags = HideFlags.HideAndDontSave;
+			m_collider.convex = false;
 		}
-		//m_collider.hideFlags = HideFlags.HideAndDontSave;
-		m_collider.convex = false;
 	}
 
 	[ContextMenu("Clear")]
@@ -91,7 +100,10 @@ public class VoxelRenderer : MonoBehaviour
 			MinLayer = MaxLayer;
 		}
 		m_filter.sharedMesh = Mesh.GenerateMeshInstance(m_filter.sharedMesh, MinLayer, MaxLayer);
-		m_collider.sharedMesh = m_filter.sharedMesh;		
+		if(GenerateCollider)
+		{
+			m_collider.sharedMesh = m_filter.sharedMesh;
+		}
 		m_renderer.sharedMaterials = new[] { VoxelManager.Instance.DefaultMaterial, VoxelManager.Instance.DefaultMaterialTransparent, };
 		m_lastMeshHash = Mesh.Hash;
 	}

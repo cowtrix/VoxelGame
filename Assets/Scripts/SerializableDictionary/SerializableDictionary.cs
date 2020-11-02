@@ -10,6 +10,11 @@ abstract public class SerializableDictionary<K, V>
     private V[] values;
  
     public void OnAfterDeserialize() {
+        if(keys == null || values == null)
+		{
+            Debug.LogError("Failed to deserialize SerializableDictionary<>");
+            return;
+		}
         var c = keys.Length;
         for (int i = 0; i < c; i++) {
             this[keys[i]] = values[i];
