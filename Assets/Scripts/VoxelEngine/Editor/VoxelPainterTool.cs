@@ -71,14 +71,18 @@ public abstract class VoxelPainterTool
 
 		var collider = renderer.GetComponent<MeshCollider>();
 		Ray worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
+		//worldRay = new Ray(collider.transform.worldToLocalMatrix.MultiplyPoint3x4(worldRay.origin), collider.transform.worldToLocalMatrix.MultiplyVector(worldRay.direction));
 		var hitPoint = Vector3.zero;
 		var hitNorm = Vector3.up;
 		var triIndex = -1;
-		if (collider.Raycast(worldRay, out var hitInfo, 10000))
+		if (Physics.Raycast(worldRay, out var hitInfo, 10000))
 		{
 			hitPoint = hitInfo.point;
 			hitNorm = hitInfo.normal;
-			triIndex = hitInfo.triangleIndex;
+			if(hitInfo.collider == collider)
+			{
+				triIndex = hitInfo.triangleIndex;
+			}
 		}
 		else
 		{

@@ -130,7 +130,7 @@ public class PaintTool : VoxelPainterTool
 			}
 			renderer.Mesh.Voxels[brushCoord] = vox;
 		}
-		renderer.Invalidate();
+		renderer.Invalidate(true);
 		return true;
 	}
 }

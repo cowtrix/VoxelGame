@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class MovementController : MonoBehaviour
 {
-	public Transform CameraTransform;
+	public CameraController CameraController;
     public PlayerInput Input;
 	public Rigidbody Rigidbody;
 
@@ -17,15 +17,17 @@ public class MovementController : MonoBehaviour
 	public float StrafeSpeed = .7f;
 	public GravitySource GravitySource;
 	public Vector3 GravityVector = new Vector3(0, -1, 0);
-	public Vector3 Jetpack = new Vector3(0, 2, 0);
+	public AnimationCurve Jetpack;
 	public Vector3 Jump = new Vector3(0, 2, 0);
 	public float GroundCastDistance = 10f;
-	public float GravityDamper = 1.1f;
+	public AnimationCurve GravityDamper;
 	public float HoverHeight = .5f;
 	public LayerMask LayerMask;
 	public float RotateSpeed = 1f;
 
 	private InputAction m_move, m_jump;
+	private float m_jumpTime;
+	public bool IsGrounded;
 
 	private Vector3 GetGravityVector()
 	{
@@ -48,35 +50,61 @@ public class MovementController : MonoBehaviour
 	{
 		var dt = Time.fixedDeltaTime;
 		var gravityVec = GetGravityVector();
-		var castVector = transform.localToWorldMatrix.MultiplyVector(gravityVec.normalized * GroundCastDistance * transform.lossyScale.x);
+		var scaleFactor = transform.lossyScale.x;
+		var castVector = transform.localToWorldMatrix.MultiplyVector(gravityVec.normalized * GroundCastDistance * scaleFactor);
 		Debug.DrawLine(transform.position, transform.position + castVector, Color.white);
-		if (Physics.Raycast(transform.position, -transform.up, out var hitInfo, GroundCastDistance * transform.lossyScale.x, LayerMask))
+		if (Physics.Raycast(transform.position, -transform.up, out var hitInfo, GroundCastDistance * scaleFactor, LayerMask))
 		{
 			var hoverVector = transform.localToWorldMatrix.MultiplyVector(Vector3.down * HoverHeight);
 			Debug.DrawLine(transform.position + new Vector3(.1f, 0, .1f), transform.position + hoverVector + new Vector3(.1f, 0, .1f), Color.green);
 			Debug.DrawLine(transform.position, hitInfo.point, Color.magenta);
-			if(hitInfo.distance < hoverVector.magnitude)
+			
+			if(hitInfo.distance < HoverHeight * scaleFactor)
 			{
-				Rigidbody.AddForce(-gravityVec * dt * GravityDamper);
+				var percent = 1 - (hitInfo.distance / hoverVector.magnitude);
+				Rigidbody.AddForce(-gravityVec * dt * GravityDamper.Evaluate(percent) * scaleFactor);
+				IsGrounded = true;
 			}
 		}
+
+		Rigidbody.mass = scaleFactor;
+		Rigidbody.ResetCenterOfMass();
 
 		Rigidbody.MoveRotation(Quaternion.Lerp(Rigidbody.rotation, 
 			Quaternion.LookRotation(Vector3.forward, -gravityVec), RotateSpeed * dt));
 
-		Rigidbody.AddForce(gravityVec * dt);
+		Rigidbody.AddForce(gravityVec * dt * scaleFactor);
 		/*if(m_jump.triggered)
 		{
 			Debug.Log($"Jumping");
 			Rigidbody.AddForce(transform.localToWorldMatrix.MultiplyVector(Jump));
 		}*/
+		
 		if(m_jump.ReadValue<float>() > 0)
 		{
-			Rigidbody.AddForce(transform.localToWorldMatrix.MultiplyVector(Jetpack) * dt);
+			if (!IsGrounded)
+			{
+				m_jumpTime = 1;
+			}
+			var amount = Jetpack.Evaluate(m_jumpTime);
+			Rigidbody.AddForce(transform.localToWorldMatrix.MultiplyVector(amount * Vector3.up) * dt);
+			m_jumpTime += dt;
+		}
+		else
+		{
+			m_jumpTime = 0;
 		}
 
 		var movement = m_move.ReadValue<Vector2>();
-		Rigidbody.velocity += CameraTransform.transform.localToWorldMatrix.MultiplyVector(
-			new Vector3(movement.x * StrafeSpeed, 0, movement.y * MovementSpeed) * dt);
+		if(CameraController.IsFreeLook)
+		{
+			Rigidbody.velocity += transform.localToWorldMatrix.MultiplyVector(
+				new Vector3(movement.x * StrafeSpeed, 0, movement.y * MovementSpeed) * dt);
+		}
+		else
+		{
+			Rigidbody.velocity += CameraController.transform.localToWorldMatrix.MultiplyVector(
+				new Vector3(movement.x * StrafeSpeed, 0, movement.y * MovementSpeed) * dt);
+		}
 	}
 }

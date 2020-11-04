@@ -117,7 +117,7 @@ public class AddTool : VoxelPainterTool
 			Debug.Log($"Added new voxel at {brushCoord}");
 			renderer.Mesh.Voxels[brushCoord] = new Voxel(brushCoord, CurrentBrush.Copy());
 		}
-		renderer.Invalidate();
+		renderer.Invalidate(true);
 		return true;
 	}
 }

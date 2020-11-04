@@ -115,7 +115,7 @@ public class VoxelPainter : Editor
 		if(t.DrawInspectorGUI(this))
 		{
 			EditorUtility.SetDirty(Renderer.Mesh);
-			Renderer.Invalidate();
+			Renderer.Invalidate(true);
 		}
 		EditorGUILayout.EndVertical();
 		GUI.enabled = true;

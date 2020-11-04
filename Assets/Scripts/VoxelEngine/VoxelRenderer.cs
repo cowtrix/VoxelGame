@@ -30,7 +30,7 @@ public class VoxelRenderer : MonoBehaviour
 
 	private void Start()
 	{
-		Invalidate();
+		Invalidate(false);
 	}
 
 	private Vector3 RoundTransform(Vector3 v, float snapValue)
@@ -54,10 +54,10 @@ public class VoxelRenderer : MonoBehaviour
 		{
 			return;
 		}
-		Invalidate();
+		Invalidate(false);
 	}
 
-	private void SetupComponents()
+	private void SetupComponents(bool forceCollider)
 	{
 		if (!m_filter)
 		{
@@ -69,7 +69,7 @@ public class VoxelRenderer : MonoBehaviour
 			m_renderer = gameObject.GetOrAddComponent<MeshRenderer>();
 		}
 		//m_renderer.hideFlags = HideFlags.HideAndDontSave;
-		if(GenerateCollider)
+		if(GenerateCollider && !forceCollider)
 		{
 			if (!m_collider)
 			{
@@ -88,9 +88,15 @@ public class VoxelRenderer : MonoBehaviour
 	}
 
 	[ContextMenu("Force Redraw")]
-	public void Invalidate()
+	public void ForceRedraw()
 	{
-		SetupComponents();
+		Invalidate(false);
+	}
+
+	public void Invalidate(bool forceCollider)
+	{
+		Debug.Log($"Invalidated {this}", gameObject);
+		SetupComponents(forceCollider);
 		if(!Mesh)
 		{
 			return;
@@ -99,7 +105,7 @@ public class VoxelRenderer : MonoBehaviour
 		{
 			MinLayer = MaxLayer;
 		}
-		m_filter.sharedMesh = Mesh.GenerateMeshInstance(m_filter.sharedMesh, MinLayer, MaxLayer);
+		m_filter.sharedMesh = Mesh.GenerateMeshInstance(null, MinLayer, MaxLayer);
 		if(GenerateCollider)
 		{
 			m_collider.sharedMesh = m_filter.sharedMesh;

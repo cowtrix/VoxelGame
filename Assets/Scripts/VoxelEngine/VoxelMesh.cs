@@ -177,14 +177,11 @@ public class VoxelMesh : ScriptableObject
 			data.UV2.AddRange(Enumerable.Repeat(uv2, 4));
 
 			var endTri = tris.Count / 3;
-			if (endTri > startTri)
+			for (var j = startTri; j < endTri; ++j)
 			{
-				for (var j = startTri; j < endTri; ++j)
-				{
-					var key = j;
-					VoxelMapping[submeshIndex][key] =
-						new VoxelCoordinateTriangleMapping { Coordinate = vox.Coordinate, Direction = dir };
-				}
+				var key = j;
+				VoxelMapping[submeshIndex][key] =
+					new VoxelCoordinateTriangleMapping { Coordinate = vox.Coordinate, Direction = dir };
 			}
 		}
 	}
