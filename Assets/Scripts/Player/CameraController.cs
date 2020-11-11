@@ -5,13 +5,14 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CameraController : MonoBehaviour
+public class CameraController : Singleton<CameraController>
 {
 	[Header("Focus")]
-	
+	public float FocusSpeed = 3;
 	public LayerMask FocusMask = ~1;
 	public Vector3 FocusOffset = new Vector3(1, 0, 0);
 	public Vector3 FocusPoint;
+	public Vector3 m_targetFocusPoint;
 	public float FocusDistance = 10;
 
 	[Space]
@@ -21,12 +22,12 @@ public class CameraController : MonoBehaviour
 	public float LookSensitivity = 1;
 	public Vector2 LookAngle;
 
-
 	public bool IsFreeLook { get; private set; }
 
 	[Header("References")]
 	public PlayerInput Input;
 
+	private Vector3 SmoothPos => Input.GetComponent<MovementController>().SmoothPosition.SmoothPosition;
 	private Camera m_camera;
 	private float m_currentZoom;
 	private InputAction m_look, m_zoom, m_freelook;
@@ -54,8 +55,8 @@ public class CameraController : MonoBehaviour
 		DebugHelper.DrawPoint(worldFocusPos, .2f, Color.cyan, 0);
 
 		var scaleFactor = transform.lossyScale.x;
-		var distFromPlayerToCamera = (transform.position - Input.transform.position).magnitude;
-		var obstacleRay = new Ray(Input.transform.position, (transform.position - Input.transform.position));
+		var distFromPlayerToCamera = (transform.position - SmoothPos).magnitude;
+		var obstacleRay = new Ray(SmoothPos, (transform.position - SmoothPos));
 		Debug.DrawRay(obstacleRay.origin, obstacleRay.direction * FocusDistance, Color.gray);
 		if (Physics.SphereCast(obstacleRay, CameraCastSize * scaleFactor, out var hit, distFromPlayerToCamera, FocusMask))
 		{
@@ -66,16 +67,23 @@ public class CameraController : MonoBehaviour
 		var fdist = FocusDistance * scaleFactor;
 		var focusRay = new Ray(transform.position, transform.forward * fdist);
 
-		FocusPoint = focusRay.origin + focusRay.direction * fdist;
+		m_targetFocusPoint = focusRay.origin + focusRay.direction * fdist;
 		Debug.DrawRay(focusRay.origin, focusRay.direction * fdist, Color.grey);
 		if (Physics.SphereCast(focusRay, CameraCastSize * scaleFactor, out hit, fdist, FocusMask))
 		{
 			Debug.DrawLine(focusRay.origin, hit.point, Color.green);
-			FocusPoint = hit.point;
+			m_targetFocusPoint = hit.point;
 		}
+		FocusPoint = Vector3.Lerp(FocusPoint, m_targetFocusPoint, Time.deltaTime * FocusSpeed);
 
 		transform.LookAt(worldFocusPos);
 		m_camera.nearClipPlane = .3f * scaleFactor;
 		m_camera.farClipPlane = 5000 * scaleFactor;
+
+		while (LookAngle.x < -180) LookAngle.x += 360;
+		while (LookAngle.x > 180) LookAngle.x -= 360;
+
+		while (LookAngle.y < -90) LookAngle.y += 180;
+		while (LookAngle.x > 90) LookAngle.y -= 180;
 	}
 }

@@ -58,34 +58,42 @@ public struct VoxelCoordinate
 		throw new NotSupportedException($"{dir} not supported");
 	}
 
-	public static EVoxelDirection CoordinateToDirection(Vector3 hitNorm)
+	public static bool CoordinateToDirection(Vector3 hitNorm, out EVoxelDirection dir)
 	{
 		hitNorm = hitNorm.normalized;
+		dir = EVoxelDirection.XNeg;
+		bool success = false;
 		if(hitNorm.x == 1)
 		{
-			return EVoxelDirection.XPos;
+			dir = EVoxelDirection.XPos;
+			success = true;
 		}
-		if (hitNorm.x == -1)
+		else if (hitNorm.x == -1)
 		{
-			return EVoxelDirection.XNeg;
+			dir = EVoxelDirection.XNeg;
+			success = true;
 		}
 		if (hitNorm.y == 1)
 		{
-			return EVoxelDirection.YPos;
+			dir = EVoxelDirection.YPos;
+			success = true;
 		}
 		if (hitNorm.y == -1)
 		{
-			return EVoxelDirection.YNeg;
+			dir = EVoxelDirection.YNeg;
+			success = true;
 		}
 		if (hitNorm.z == 1)
 		{
-			return EVoxelDirection.ZPos;
+			dir = EVoxelDirection.ZPos;
+			success = true;
 		}
 		if (hitNorm.z == -1)
 		{
-			return EVoxelDirection.ZNeg;
+			dir = EVoxelDirection.ZNeg;
+			success = true;
 		}
-		throw new Exception($"Bad normal: {hitNorm}");
+		return success;
 	}
 
 	public static float LayerToScale(int layer) => 1 / Mathf.Pow(LayerRatio, layer);

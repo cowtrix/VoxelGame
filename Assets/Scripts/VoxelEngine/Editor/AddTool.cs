@@ -37,7 +37,7 @@ public class AddTool : VoxelPainterTool
 
 		hitPoint = renderer.transform.worldToLocalMatrix.MultiplyPoint3x4(hitPoint);
 		hitNorm = renderer.transform.worldToLocalMatrix.MultiplyVector(hitNorm);
-		hitDir = VoxelCoordinate.CoordinateToDirection(hitNorm);
+		VoxelCoordinate.CoordinateToDirection(hitNorm, out hitDir);
 		var scale = VoxelCoordinate.LayerToScale(layer);
 		brushCoord = VoxelCoordinate.FromVector3(hitPoint + hitNorm * scale / 2f, layer);
 
@@ -48,20 +48,6 @@ public class AddTool : VoxelPainterTool
 	protected override bool DrawSceneGUIInternal(VoxelPainter voxelPainter, VoxelRenderer renderer, 
 		Event currentEvent, List<Voxel> selection, VoxelCoordinate brushCoord, EVoxelDirection hitDir)
 	{
-		Handles.BeginGUI();
-		if (currentEvent.alt)
-		{
-			GUI.Label(new Rect(5, 5, 180, 64),
-				"PICKING\nRelease ALT to stop"
-				, "Window");
-		}
-		else
-		{
-			GUI.Label(new Rect(5, 5, 180, 64),
-			"ALT to change to picker", "Window");
-		}
-		Handles.EndGUI();
-
 		if (currentEvent.type == EventType.MouseDown && currentEvent.button == 0)
 		{
 			if(EditorApplication.timeSinceStartup < m_lastAdd + .1f)
@@ -70,13 +56,6 @@ public class AddTool : VoxelPainterTool
 				return false;
 			}
 			m_lastAdd = EditorApplication.timeSinceStartup;
-			if (currentEvent.alt)
-			{
-				var vox = selection.First();
-				CurrentBrush = vox.Material.Copy();
-				return false;
-			}
-
 			var creationList = new HashSet<VoxelCoordinate>() { brushCoord };
 			if (currentEvent.control && currentEvent.shift)
 			{
@@ -109,6 +88,7 @@ public class AddTool : VoxelPainterTool
 			{
 				// Collided with something, don't change
 				DebugHelper.DrawCube(voxelWorldPos, collScale, renderer.transform.rotation, Color.red, 5);
+				Debug.LogWarning($"Brush overlapped with {coll.First()}", coll.First());
 				return false;
 			}
 		}

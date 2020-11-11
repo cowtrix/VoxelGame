@@ -54,25 +54,11 @@ public class PaintTool : VoxelPainterTool
 		return result;
 	}
 
-	protected override EPaintingTool ToolID => EPaintingTool.Add;
+	protected override EPaintingTool ToolID => EPaintingTool.Paint;
 
 	protected override bool DrawSceneGUIInternal(VoxelPainter voxelPainter, VoxelRenderer renderer,
 		Event currentEvent, List<Voxel> selection, VoxelCoordinate brushCoord, EVoxelDirection hitDir)
 	{
-		Handles.BeginGUI();
-		if (currentEvent.alt)
-		{
-			GUI.Label(new Rect(5, 5, 180, 64),
-				"PICKING\nRelease ALT to stop"
-				, "Window");
-		}
-		else
-		{
-			GUI.Label(new Rect(5, 5, 180, 64),
-			"ALT to change to picker", "Window");
-		}
-		Handles.EndGUI();
-
 		if (currentEvent.type == EventType.MouseDown && currentEvent.button == 0)
 		{
 			if (EditorApplication.timeSinceStartup < m_lastAdd + .1f)
@@ -81,12 +67,6 @@ public class PaintTool : VoxelPainterTool
 				return false;
 			}
 			m_lastAdd = EditorApplication.timeSinceStartup;
-			if (currentEvent.alt)
-			{
-				var vox = selection.First();
-				CurrentBrush = vox.Material.Copy();
-				return false;
-			}
 			var creationList = new HashSet<VoxelCoordinate>() { brushCoord };
 			/*if (currentEvent.control && currentEvent.shift)
 			{
@@ -122,6 +102,10 @@ public class PaintTool : VoxelPainterTool
 			{
 				Debug.Log($"Set voxel at {brushCoord} ({dir})");
 				var surface = CurrentBrush.GetSurface(dir);
+				if(vox.Material.Overrides == null)
+				{
+					vox.Material.Overrides = new DirectionOverride[0];
+				}
 				vox.Material.Overrides = vox.Material.Overrides.Where(o => o.Direction != dir).Append(new DirectionOverride
 				{
 					Direction = dir,

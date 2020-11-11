@@ -44,10 +44,11 @@ public class SelectTool : VoxelPainterTool
 			var newSelection = new HashSet<VoxelCoordinate>();
 			foreach (var v in voxelPainter.CurrentSelection)
 			{
+				var vox = voxelPainter.Renderer.Mesh.Voxels[v];
 				voxelPainter.Renderer.Mesh.Voxels.Remove(v);
 				foreach (var subV in v.Subdivide())
 				{
-					voxelPainter.Renderer.Mesh.Voxels[subV] = new Voxel(subV, CurrentBrush.Copy());
+					voxelPainter.Renderer.Mesh.Voxels[subV] = new Voxel(subV, vox.Material.Copy());
 					newSelection.Add(subV);
 				}
 			}

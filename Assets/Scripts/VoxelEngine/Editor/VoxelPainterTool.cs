@@ -42,7 +42,7 @@ public abstract class VoxelPainterTool
 		out List<Voxel> selection, out VoxelCoordinate brushCoord, out EVoxelDirection hitDir)
 	{
 		hitNorm = renderer.transform.worldToLocalMatrix.MultiplyVector(hitNorm);
-		hitDir = VoxelCoordinate.CoordinateToDirection(hitNorm);
+		VoxelCoordinate.CoordinateToDirection(hitNorm, out hitDir);
 		var voxelN = renderer.GetVoxel(triIndex);
 		if (voxelN.HasValue)
 		{
@@ -108,6 +108,36 @@ public abstract class VoxelPainterTool
 		voxelScale.Scale(renderer.transform.localToWorldMatrix.GetScale());
 		HandleExtensions.DrawWireCube(voxelWorldPos, voxelScale, renderer.transform.rotation, Color.cyan);
 		Handles.Label(voxelWorldPos, brushCoord.ToString(), EditorStyles.textField);
+
+		Handles.BeginGUI();
+		if (currentEvent.alt)
+		{
+			GUI.Label(new Rect(5, 5, 180, 64),
+				"PICKING\nRelease ALT to stop"
+				, "Window");
+			if (currentEvent.type == EventType.MouseUp && currentEvent.button == 0)
+			{
+				var vox = selection.First();
+				CurrentBrush = vox.Material.Copy();
+				if (ToolID == EPaintingTool.Paint)
+				{
+					var cb = CurrentBrush;
+					cb.Overrides = null;
+					var surface = CurrentBrush.GetSurface(hitDir);
+					cb.Default = surface;
+					CurrentBrush = cb;
+				}
+				currentEvent.Use();
+			}
+			return;
+		}
+		else
+		{
+			GUI.Label(new Rect(5, 5, 180, 64),
+			"ALT to change to picker", "Window");
+		}
+		Handles.EndGUI();
+		
 
 		if (DrawSceneGUIInternal(voxelPainter, renderer, currentEvent, selection, brushCoord, hitDir))
 		{

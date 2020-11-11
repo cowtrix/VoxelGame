@@ -19,10 +19,11 @@ public class SubdivideTool : VoxelPainterTool
 	{
 		if (currentEvent.type == EventType.MouseDown && currentEvent.button == 0)
 		{
+			var vox = renderer.Mesh.Voxels[brushCoord];
 			renderer.Mesh.Voxels.Remove(brushCoord);
 			foreach (var sub in selection.SelectMany(s => s.Coordinate.Subdivide()))
 			{
-				renderer.Mesh.Voxels[sub] = new Voxel(sub, CurrentBrush.Copy());
+				renderer.Mesh.Voxels[sub] = new Voxel(sub, vox.Material.Copy());
 			}
 			return true;
 		}

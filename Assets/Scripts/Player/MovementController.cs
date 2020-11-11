@@ -8,7 +8,9 @@ using UnityEngine.InputSystem;
 
 public class MovementController : MonoBehaviour
 {
-	public CameraController CameraController;
+	public SmoothPositionVector3 SmoothPosition { get; private set; }
+
+	public CameraController CameraController => CameraController.Instance;
     public PlayerInput Input;
 	public Rigidbody Rigidbody;
 
@@ -44,6 +46,7 @@ public class MovementController : MonoBehaviour
 		m_jump = Input.actions.Single(a => a.name == "Jump");
 		Rigidbody.useGravity = false;
 		Cursor.lockState = CursorLockMode.Locked;
+		SmoothPosition = new SmoothPositionVector3(10, transform.position);
 	}
 
 	private void FixedUpdate()
@@ -106,5 +109,6 @@ public class MovementController : MonoBehaviour
 			Rigidbody.velocity += CameraController.transform.localToWorldMatrix.MultiplyVector(
 				new Vector3(movement.x * StrafeSpeed, 0, movement.y * MovementSpeed) * dt);
 		}
+		SmoothPosition.Push(Rigidbody.position);
 	}
 }

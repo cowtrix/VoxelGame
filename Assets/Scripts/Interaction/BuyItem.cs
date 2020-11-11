@@ -7,7 +7,7 @@ public class BuyItem : MonoBehaviour
 {
     public uint Cost = 10;
 
-    public void OnInteract(PlayerController player)
+    public void OnInteract(PlayerInteractionManager player)
 	{
 		var state = player.GetComponent<PlayerState>();
 		if(state.CurrentState.Credits < Cost)

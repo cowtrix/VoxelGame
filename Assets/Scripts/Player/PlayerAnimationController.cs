@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerAnimationController : MonoBehaviour
 {
     public float RotateSpeed = 1;
-    public CameraController CameraController;
+    public CameraController CameraController => CameraController.Instance;
     public Transform Head;
 
     void Update()

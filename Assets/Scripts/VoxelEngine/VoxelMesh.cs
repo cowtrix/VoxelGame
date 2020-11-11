@@ -90,11 +90,15 @@ public class VoxelMesh : ScriptableObject
 		mesh.Clear();
 		mesh.SetVertices(data.Vertices);
 		mesh.SetColors(data.Color1);
-		mesh.subMeshCount = data.Triangles.Count();
-		foreach (var submesh in data.Triangles)
+		if(data.Triangles.Any())
 		{
-			mesh.SetTriangles(submesh.Value, submesh.Key);
-		}
+			var meshCount = data.Triangles.Max(k => k.Key) + 1;
+			mesh.subMeshCount = meshCount;
+			foreach (var submesh in data.Triangles)
+			{
+				mesh.SetTriangles(submesh.Value, submesh.Key);
+			}
+		}		
 		mesh.SetUVs(0, data.UV1);
 		mesh.SetUVs(1, data.UV2);
 		mesh.RecalculateNormals();
@@ -144,7 +148,9 @@ public class VoxelMesh : ScriptableObject
 		{
 			EVoxelDirection dir = dirs[i];
 			var neighborCoord = vox.Coordinate + VoxelCoordinate.DirectionToCoordinate(dir, vox.Coordinate.Layer);
-			if (Voxels.TryGetValue(neighborCoord, out var n) && n.Material.RenderMode == ERenderMode.Block)
+			if (Voxels.TryGetValue(neighborCoord, out var n) 
+				&& n.Material.RenderMode == ERenderMode.Block
+				&& n.Material.MaterialMode == vox.Material.MaterialMode)
 			{
 				dirs.RemoveAt(i);
 			}

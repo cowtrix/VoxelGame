@@ -57,8 +57,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Utilities\DebugHelper.cs" />
     <Compile Include="Assets\Scripts\SerializableDictionary\SerializableDictionary.cs" />
+    <Compile Include="Assets\Scripts\Utilities\LightScale.cs" />
     <Compile Include="Assets\Scripts\TransformAnimationPulse.cs" />
     <Compile Include="Assets\Scripts\Utilities\DiffMatchPatch.cs" />
+    <Compile Include="Assets\Scripts\Player\UI\CreditsDisplay.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
+    <Compile Include="Assets\Scripts\Player\UI\HUDManager.cs" />
     <Compile Include="Assets\Scripts\VoxelEngine\VoxelExtensions.cs" />
     <Compile Include="Assets\Scripts\Player\FaceControllerEditor.cs" />
     <Compile Include="Assets\Scripts\VoxelEngine\VoxelMaterialAsset.cs" />
@@ -69,6 +73,7 @@
     <Compile Include="Assets\Scripts\Utilities\CompositionDictionary.cs" />
     <Compile Include="Assets\Scripts\Utilities\RotationalBounds.cs" />
     <Compile Include="Assets\Scripts\Utilities\EditorCoroutineManager.cs" />
+    <Compile Include="Assets\Scripts\Utilities\CameraScale.cs" />
     <Compile Include="Assets\Scripts\Utilities\CurveExtensions.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInteractionManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\Mathfx.cs" />
@@ -77,6 +82,7 @@
     <Compile Include="Assets\Scripts\Player\GravitySource.cs" />
     <Compile Include="Assets\Scripts\Texture2DArrayGenerator.cs" />
     <Compile Include="Assets\Scripts\Utilities\BestFitSprite.cs" />
+    <Compile Include="Assets\Scripts\Interaction\BuyItem.cs" />
     <Compile Include="Assets\Scripts\Utilities\ObjectBounds.cs" />
     <Compile Include="Assets\Scripts\Utilities\RectExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\VectorExtensions.cs" />
@@ -96,11 +102,14 @@
     <Compile Include="Assets\Scripts\VoxelEngine\VoxelRenderer.cs" />
     <Compile Include="Assets\Scripts\SerializableDictionary\SerializableDictionaryDrawer.cs" />
     <Compile Include="Assets\Scripts\Utilities\Triangle.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Label.cs" />
     <Compile Include="Assets\Scripts\TransformAnimationController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
     <Compile Include="Assets\Scripts\Utilities\GUIGradientField.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Interactable.cs" />
     <Compile Include="Assets\Scripts\Utilities\ColorExtensions.cs" />
     <Compile Include="Assets\Scripts\Player\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerChaser.cs" />
     <Compile Include="Assets\Scripts\VoxelEngine\VoxelMesh.cs" />
     <Compile Include="Assets\Scripts\Utilities\TypeExtensions.cs" />
     <Compile Include="Assets\Scripts\SerializableDictionary\SerializableDictionaryImplementations.cs" />
@@ -114,11 +123,6 @@
     <Compile Include="Assets\Scripts\Utilities\EditorExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\HandleExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\ArrayExtensions.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Interaction\Interactable.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
-    <Compile Include="Assets\Scripts\Interaction\BuyItem.cs" />
-    <Compile Include="Assets\Scripts\Player\UI\CreditsDisplay.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Plugins\Newtonsoft.Json.dll" />
@@ -730,6 +734,9 @@
     </Reference>
     <Reference Include="Unity.Searcher.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>

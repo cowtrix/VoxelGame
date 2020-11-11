@@ -7,6 +7,7 @@ using UnityEngine;
 [ExecuteAlways]
 public class VoxelRenderer : MonoBehaviour
 {
+	public bool CustomMaterials;
 	public bool GenerateCollider;
 	public bool SnapToGrid;
 
@@ -110,7 +111,10 @@ public class VoxelRenderer : MonoBehaviour
 		{
 			m_collider.sharedMesh = m_filter.sharedMesh;
 		}
-		m_renderer.sharedMaterials = new[] { VoxelManager.Instance.DefaultMaterial, VoxelManager.Instance.DefaultMaterialTransparent, };
+		if(!CustomMaterials)
+		{
+			m_renderer.sharedMaterials = new[] { VoxelManager.Instance.DefaultMaterial, VoxelManager.Instance.DefaultMaterialTransparent, };
+		}
 		m_lastMeshHash = Mesh.Hash;
 	}
 
