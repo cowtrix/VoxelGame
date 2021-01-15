@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace MadMaps.Common
+namespace Common
 {
     public static class ReflectionExtensions
     {

@@ -57,6 +57,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Utilities\DebugHelper.cs" />
     <Compile Include="Assets\Scripts\SerializableDictionary\SerializableDictionary.cs" />
+    <Compile Include="Assets\Scripts\Player\InteractionColliderEvent.cs" />
+    <Compile Include="Assets\Scripts\Utilities\TrackedObject.cs" />
     <Compile Include="Assets\Scripts\Utilities\LightScale.cs" />
     <Compile Include="Assets\Scripts\TransformAnimationPulse.cs" />
     <Compile Include="Assets\Scripts\Utilities\DiffMatchPatch.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
     <Compile Include="Assets\Scripts\Player\UI\HUDManager.cs" />
     <Compile Include="Assets\Scripts\VoxelEngine\VoxelExtensions.cs" />
+    <Compile Include="Assets\Scripts\UniverseEffector.cs" />
     <Compile Include="Assets\Scripts\Player\FaceControllerEditor.cs" />
     <Compile Include="Assets\Scripts\VoxelEngine\VoxelMaterialAsset.cs" />
     <Compile Include="Assets\Scripts\Utilities\ObjectExtensions.cs" />
@@ -88,10 +91,12 @@
     <Compile Include="Assets\Scripts\Utilities\VectorExtensions.cs" />
     <Compile Include="Assets\Scripts\SerializableDictionary\SerializedPropertyExtension.cs" />
     <Compile Include="Assets\Scripts\VoxelEngine\VoxelCoordinate.cs" />
-    <Compile Include="Assets\Scripts\Player\MovementController.cs" />
+    <Compile Include="Assets\Scripts\Interaction\PeripheralInteraction.cs" />
+    <Compile Include="Assets\Scripts\Player\Controllers\MovementController.cs" />
     <Compile Include="Assets\Scripts\Utilities\MoveUpAndFade.cs" />
     <Compile Include="Assets\Scripts\VoxelEngine\Voxel.cs" />
     <Compile Include="Assets\Scripts\Utilities\TransformExtensions.cs" />
+    <Compile Include="Assets\Scripts\Player\UI\UIResources.cs" />
     <Compile Include="Assets\Scripts\Utilities\Geometry3D.cs" />
     <Compile Include="Assets\Scripts\Utilities\LayerMaskFieldUtility.cs" />
     <Compile Include="Assets\Scripts\Utilities\MiscUtilities.cs" />
@@ -103,19 +108,21 @@
     <Compile Include="Assets\Scripts\SerializableDictionary\SerializableDictionaryDrawer.cs" />
     <Compile Include="Assets\Scripts\Utilities\Triangle.cs" />
     <Compile Include="Assets\Scripts\Interaction\Label.cs" />
+    <Compile Include="Assets\Scripts\Player\Controllers\HeadlightController.cs" />
     <Compile Include="Assets\Scripts\TransformAnimationController.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
+    <Compile Include="Assets\Scripts\Interaction\WaveInterction.cs" />
+    <Compile Include="Assets\Scripts\Player\Controllers\PlayerAnimationController.cs" />
     <Compile Include="Assets\Scripts\Utilities\GUIGradientField.cs" />
     <Compile Include="Assets\Scripts\Interaction\Interactable.cs" />
     <Compile Include="Assets\Scripts\Utilities\ColorExtensions.cs" />
-    <Compile Include="Assets\Scripts\Player\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Player\Controllers\CameraController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerChaser.cs" />
     <Compile Include="Assets\Scripts\VoxelEngine\VoxelMesh.cs" />
     <Compile Include="Assets\Scripts\Utilities\TypeExtensions.cs" />
     <Compile Include="Assets\Scripts\SerializableDictionary\SerializableDictionaryImplementations.cs" />
     <Compile Include="Assets\Scripts\Utilities\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\GizmoExtensions.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerScaleController.cs" />
+    <Compile Include="Assets\Scripts\Player\Controllers\PlayerScaleController.cs" />
     <Compile Include="Assets\Scripts\Utilities\AssetCreationHelper.cs" />
     <Compile Include="Assets\Scripts\Utilities\DragRect.cs" />
     <Compile Include="Assets\Scripts\Utilities\UIExtensions.cs" />

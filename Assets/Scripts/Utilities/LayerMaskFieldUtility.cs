@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace MadMaps.Common
+namespace Common
 {
     public class LayerMaskFieldUtility : EditorWindow
     {

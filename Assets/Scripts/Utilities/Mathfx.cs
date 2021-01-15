@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace MadMaps.Common
+namespace Common
 {
     public static class Mathfx
     {

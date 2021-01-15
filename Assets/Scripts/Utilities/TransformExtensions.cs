@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 
-namespace MadMaps.Common
+namespace Common
 {
-    public static class TransformExtensions
+
+	public static class TransformExtensions
     {
         public static int GetHierarchyDepth(this Transform transform)
         {

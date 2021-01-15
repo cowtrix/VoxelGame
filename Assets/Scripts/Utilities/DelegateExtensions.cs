@@ -1,6 +1,6 @@
 using System;
 
-namespace MadMaps.Common
+namespace Common
 {
     public static class DelegateExtensions
     {

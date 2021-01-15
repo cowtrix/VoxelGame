@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using MadMaps.Common;
+using Common;
 
 public class DragRect : MonoBehaviour, IBeginDragHandler, IDragHandler, IScrollHandler
 {

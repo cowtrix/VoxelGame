@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using MadMaps.Common;
+using Common;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -14,6 +14,7 @@ public abstract class VoxelPainterTool
 	protected static VoxelMaterial DefaultMaterial => new VoxelMaterial { Default = new SurfaceData { Albedo = Color.white } };
 
 	protected static VoxelMaterialAsset m_asset;
+
 	protected static VoxelMaterial CurrentBrush
 	{
 		get
@@ -61,7 +62,7 @@ public abstract class VoxelPainterTool
 		if (voxelPainter.CurrentSelection != null)
 		{
 			// Show selection handles
-			foreach (var v in voxelPainter.CurrentSelection)
+			foreach (var v in voxelPainter.CurrentSelection.Take(50))
 			{
 				var pos = renderer.transform.localToWorldMatrix.MultiplyPoint3x4(v.ToVector3());
 				var scale = renderer.transform.localToWorldMatrix.MultiplyVector(VoxelCoordinate.LayerToScale(v.Layer) * Vector3.one * .51f);
@@ -97,7 +98,7 @@ public abstract class VoxelPainterTool
 		Handles.DrawLine(hitPoint, hitPoint + hitNorm * .2f);
 
 		if (!GetVoxelDataFromPoint(voxelPainter, renderer, hitPoint, hitNorm, triIndex, painterLayer,
-			out var selection, out var brushCoord, out var hitDir))
+			out var selection, out var brushCoord, out var hitDir) && ToolID != EPaintingTool.Clipboard)
 		{
 			return;
 		}

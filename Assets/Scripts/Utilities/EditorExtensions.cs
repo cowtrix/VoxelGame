@@ -6,7 +6,7 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 
-namespace MadMaps.Common
+namespace Common
 {
     public static class EditorExtensions
     {

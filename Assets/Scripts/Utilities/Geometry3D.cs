@@ -2,7 +2,7 @@
 
 using System;
 using UnityEngine;
-using MadMaps.Common;
+using Common;
 
 public static class Geometry3D
 {

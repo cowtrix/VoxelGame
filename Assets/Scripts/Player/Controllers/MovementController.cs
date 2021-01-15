@@ -1,4 +1,4 @@
-using MadMaps.Common;
+using Common;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,9 +64,16 @@ public class MovementController : MonoBehaviour
 			
 			if(hitInfo.distance < HoverHeight * scaleFactor)
 			{
-				var percent = 1 - (hitInfo.distance / hoverVector.magnitude);
-				Rigidbody.AddForce(-gravityVec * dt * GravityDamper.Evaluate(percent) * scaleFactor);
-				IsGrounded = true;
+				if (!Physics.Raycast(transform.position, transform.up, out var uphitInfo, HoverHeight * scaleFactor * .75f, LayerMask))
+				{
+					var percent = 1 - (hitInfo.distance / hoverVector.magnitude);
+					Rigidbody.AddForce(-gravityVec * dt * GravityDamper.Evaluate(percent) * scaleFactor);
+					IsGrounded = true;
+				}
+				else
+				{
+					Debug.DrawLine(uphitInfo.point, transform.position, Color.magenta);
+				}
 			}
 		}
 

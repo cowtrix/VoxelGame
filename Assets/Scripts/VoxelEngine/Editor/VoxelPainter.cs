@@ -1,6 +1,6 @@
 using DiffMatchPatch;
 using ICSharpCode.NRefactory.Ast;
-using MadMaps.Common;
+using Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +19,7 @@ public enum EPaintingTool
 	Remove,
 	Subdivide,
 	Paint,
+	Clipboard,
 }
 
 [CustomEditor(typeof(VoxelRenderer))]
@@ -38,6 +39,7 @@ public class VoxelPainter : Editor
 		{ EPaintingTool.Remove, new RemoveTool() },
 		{ EPaintingTool.Subdivide, new SubdivideTool() },
 		{ EPaintingTool.Paint, new PaintTool() },
+		{ EPaintingTool.Clipboard, new ClipboardTool() },
 	};
 
 	public bool Enabled
@@ -75,6 +77,18 @@ public class VoxelPainter : Editor
 	}
 	public VoxelRenderer Renderer => target as VoxelRenderer;
 	public HashSet<VoxelCoordinate> CurrentSelection = new HashSet<VoxelCoordinate>();
+	public static int LayerMask
+	{
+		get
+		{
+			return EditorPrefs.GetInt("Voxel_LayerMask", ~0);
+		}
+		set
+		{
+			EditorPrefs.SetInt("Voxel_LayerMask", value);
+		}
+	}
+
 
 	public override bool RequiresConstantRepaint() => true;
 
@@ -95,7 +109,7 @@ public class VoxelPainter : Editor
 			EditorGUILayout.HelpBox("Select a Voxel Mesh asset", MessageType.Info);
 			return;
 		}
-
+		LayerMask = EditorGUILayout.LayerField(LayerMask);
 		EditorGUILayout.LabelField("Painter", EditorStyles.whiteLargeLabel);
 		EditorGUILayout.BeginVertical("Box");
 		Enabled = EditorGUILayout.Toggle("Enabled", Enabled);

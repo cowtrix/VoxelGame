@@ -1,4 +1,4 @@
-﻿using MadMaps.Common;
+﻿using Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -83,7 +83,8 @@ public class AddTool : VoxelPainterTool
 			var voxelWorldPos = renderer.transform.localToWorldMatrix.MultiplyPoint3x4(brushCoord.ToVector3());
 			var collScale = Vector3.one * layerScale * .495f;
 			collScale.Scale(renderer.transform.localToWorldMatrix.GetScale());
-			var coll = Physics.OverlapBox(voxelWorldPos, collScale, renderer.transform.rotation);
+			var coll = Physics.OverlapBox(voxelWorldPos, collScale, renderer.transform.rotation,
+				VoxelPainter.LayerMask, QueryTriggerInteraction.Ignore);
 			if (coll.Any())
 			{
 				// Collided with something, don't change

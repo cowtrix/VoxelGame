@@ -1,7 +1,7 @@
 using UnityEngine;
 using Random = System.Random;
 
-namespace MadMaps.Common
+namespace Common
 {
     public static class QuaternionExtensions
     {
@@ -148,6 +148,16 @@ namespace MadMaps.Common
         public static Vector3 RandomNormalized()
         {
             return new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized;
+        }
+
+        public static Vector3 RoundToIncrement(this Vector3 v, float snapValue)
+        {
+            return new Vector3
+            (
+                snapValue * Mathf.Round(v.x / snapValue),
+                snapValue * Mathf.Round(v.y / snapValue),
+                snapValue * Mathf.Round(v.z / snapValue)
+            );
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace MadMaps.Common.Collections
+namespace Common.Collections
 {
     [Serializable]
     public class CompositionDictionary<TKey, TValue> : ISerializationCallbackReceiver

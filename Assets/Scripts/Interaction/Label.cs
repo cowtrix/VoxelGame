@@ -6,7 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Interactable))]
 public class Label : MonoBehaviour
 {
-    public string Text;
+	[SerializeField]
+    protected string m_text;
 
 	private void Awake()
 	{
@@ -15,6 +16,8 @@ public class Label : MonoBehaviour
 		interactable.OnFocusEnd.AddListener(OnFocusEnd);
 	}
 
+	public virtual string GetText() => m_text;
+
 	private void OnFocusEnd(PlayerInteractionManager arg0)
 	{
 		HUDManager.Instance.Label.text = "";
@@ -22,6 +25,6 @@ public class Label : MonoBehaviour
 
 	private void OnFocusStart(PlayerInteractionManager arg0)
 	{
-		HUDManager.Instance.Label.text = Text;
+		HUDManager.Instance.Label.text = m_text;
 	}
 }

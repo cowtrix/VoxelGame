@@ -1,5 +1,5 @@
 using UnityEngine;
-using MadMaps.Common;
+using Common;
 public static class GizmoExtensions
 {
     public static void Label(Vector3 position, string label)

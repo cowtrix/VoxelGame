@@ -1,4 +1,4 @@
-﻿using MadMaps.Common.Collections;
+﻿using Common.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +8,7 @@ using Object = UnityEngine.Object;
 using UnityEditor;
 #endif
 
-namespace MadMaps.Common
+namespace Common
 {
     public static class  MiscUtilities
     {

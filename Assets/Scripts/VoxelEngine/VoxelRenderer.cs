@@ -1,3 +1,4 @@
+using Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,22 +35,14 @@ public class VoxelRenderer : MonoBehaviour
 		Invalidate(false);
 	}
 
-	private Vector3 RoundTransform(Vector3 v, float snapValue)
-	{
-		return new Vector3
-		(
-			snapValue * Mathf.Round(v.x / snapValue),
-			snapValue * Mathf.Round(v.y / snapValue),
-			snapValue * Mathf.Round(v.z / snapValue)
-		);
-	}
+	
 
 	private void Update()
 	{
 		if(SnapToGrid)
 		{
 			var scale = VoxelCoordinate.LayerToScale(SnapLayer);
-			transform.position = RoundTransform(transform.position, scale / (float)VoxelCoordinate.LayerRatio);
+			transform.localPosition = transform.localPosition.RoundToIncrement(scale / (float)VoxelCoordinate.LayerRatio);
 		}
 		if (Mesh?.Hash == m_lastMeshHash)
 		{

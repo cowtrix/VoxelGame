@@ -9,6 +9,7 @@ public class PlayerState : MonoBehaviour
 	public class State
 	{
 		public uint Credits = 100;
+		public bool HeadlightOn;
 	}
 
 	public State CurrentState;

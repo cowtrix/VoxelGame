@@ -1,4 +1,4 @@
-﻿using MadMaps.Common;
+﻿using Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,28 @@ public class TriangleVoxelMapping : SerializableDictionary<int, TriangleVoxelMap
 	public class InnerMapping : SerializableDictionary<int, VoxelCoordinateTriangleMapping> { }
 }
 [Serializable]
-public class VoxelMapping : SerializableDictionary<VoxelCoordinate, Voxel> { }
+public class VoxelMapping : SerializableDictionary<VoxelCoordinate, Voxel>
+{
+	public bool AddSafe(Voxel vox)
+	{
+		if (Keys.CollideCheck(vox.Coordinate, out var hit))
+		{
+			Debug.LogWarning($"Voxel {vox.Coordinate} collided with {hit} and so was skipped");
+			return false;
+		}
+		Add(vox.Coordinate, vox);
+		return true;
+	}
+
+	public void SetSafe(Voxel vox)
+	{
+		while (Keys.CollideCheck(vox.Coordinate, out var hit))
+		{
+			Remove(hit);
+		}
+		Add(vox.Coordinate, vox);
+	}
+}
 
 [CreateAssetMenu]
 public class VoxelMesh : ScriptableObject
@@ -90,7 +111,7 @@ public class VoxelMesh : ScriptableObject
 		mesh.Clear();
 		mesh.SetVertices(data.Vertices);
 		mesh.SetColors(data.Color1);
-		if(data.Triangles.Any())
+		if (data.Triangles.Any())
 		{
 			var meshCount = data.Triangles.Max(k => k.Key) + 1;
 			mesh.subMeshCount = meshCount;
@@ -98,7 +119,7 @@ public class VoxelMesh : ScriptableObject
 			{
 				mesh.SetTriangles(submesh.Value, submesh.Key);
 			}
-		}		
+		}
 		mesh.SetUVs(0, data.UV1);
 		mesh.SetUVs(1, data.UV2);
 		mesh.RecalculateNormals();
@@ -148,7 +169,7 @@ public class VoxelMesh : ScriptableObject
 		{
 			EVoxelDirection dir = dirs[i];
 			var neighborCoord = vox.Coordinate + VoxelCoordinate.DirectionToCoordinate(dir, vox.Coordinate.Layer);
-			if (Voxels.TryGetValue(neighborCoord, out var n) 
+			if (Voxels.TryGetValue(neighborCoord, out var n)
 				&& n.Material.RenderMode == ERenderMode.Block
 				&& n.Material.MaterialMode == vox.Material.MaterialMode)
 			{

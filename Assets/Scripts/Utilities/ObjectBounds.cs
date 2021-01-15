@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MadMaps.Common
+namespace Common
 {
     // A non-axis-aligned bounding box (just does tests in the local rotated space)
     public struct ObjectBounds

@@ -1,4 +1,4 @@
-using MadMaps.Common;
+using Common;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class CameraController : Singleton<CameraController>
 {
+	public bool DisableXRotation, DisableYRotation;
+
 	[Header("Focus")]
 	public float FocusSpeed = 3;
 	public LayerMask FocusMask = ~1;
@@ -31,6 +33,7 @@ public class CameraController : Singleton<CameraController>
 	private Camera m_camera;
 	private float m_currentZoom;
 	private InputAction m_look, m_zoom, m_freelook;
+	private SmoothPositionVector3 m_cameraPosition;
 
 	private void Start()
 	{
@@ -45,11 +48,23 @@ public class CameraController : Singleton<CameraController>
 		IsFreeLook = m_freelook.ReadValue<float>() > 0;
 
 		var lookDelta = m_look.ReadValue<Vector2>() * LookSensitivity * Time.deltaTime;
+		if (DisableXRotation)
+		{
+			lookDelta.x = 0;
+		}
+		if(DisableYRotation)
+		{
+			lookDelta.y = 0;
+		}
 		m_currentZoom = Mathf.Clamp(m_currentZoom + m_zoom.ReadValue<float>(), ZoomLimits.x, ZoomLimits.y);
 
 		LookAngle += lookDelta;
+		while (LookAngle.x < -180) LookAngle.x += 360;
+		while (LookAngle.x > 180) LookAngle.x -= 360;
+		LookAngle.y = Mathf.Clamp(LookAngle.y, -89, 89);
+
 		var rotation = Quaternion.Euler(-LookAngle.y, LookAngle.x, 0);
-		transform.localPosition = rotation * Vector3.back * m_currentZoom;
+		transform.localPosition = rotation * (Vector3.back + Vector3.up * .1f) * m_currentZoom;
 
 		var worldFocusPos = Input.transform.localToWorldMatrix.MultiplyPoint3x4(FocusOffset);
 		DebugHelper.DrawPoint(worldFocusPos, .2f, Color.cyan, 0);
@@ -79,11 +94,5 @@ public class CameraController : Singleton<CameraController>
 		transform.LookAt(worldFocusPos);
 		m_camera.nearClipPlane = .3f * scaleFactor;
 		m_camera.farClipPlane = 5000 * scaleFactor;
-
-		while (LookAngle.x < -180) LookAngle.x += 360;
-		while (LookAngle.x > 180) LookAngle.x -= 360;
-
-		while (LookAngle.y < -90) LookAngle.y += 180;
-		while (LookAngle.x > 90) LookAngle.y -= 180;
 	}
 }

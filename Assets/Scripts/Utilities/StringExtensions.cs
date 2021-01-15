@@ -1,4 +1,4 @@
-namespace MadMaps.Common
+namespace Common
 {
     public static class StringExtensions
     {

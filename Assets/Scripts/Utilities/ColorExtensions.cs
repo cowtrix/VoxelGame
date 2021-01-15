@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MadMaps.Common
+namespace Common
 {
     public static class ColorExtensions
     {
