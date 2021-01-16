@@ -12,6 +12,8 @@ public class VoxelManager : Singleton<VoxelManager>
 
 	public Texture2DArray TextureArray;
 	public List<Texture2D> Sprites;
+	public Mesh CubeMesh;
+	public Material LODMaterial;
 
 	[ContextMenu("Regenerate Spritesheet")]
 	public void RegenerateSpritesheet()

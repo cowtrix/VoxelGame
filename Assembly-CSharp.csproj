@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{24147965-48E0-17B4-6E29-46F02954FD57}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -59,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Utilities\DebugHelper.cs" />
     <Compile Include="Assets\Scripts\SerializableDictionary\SerializableDictionary.cs" />
+    <Compile Include="Assets\Scripts\VoxelEngine\MeshUtility.cs" />
     <Compile Include="Assets\Scripts\Utilities\TrackedObject.cs" />
     <Compile Include="Assets\Scripts\Player\InteractionColliderEvent.cs" />
     <Compile Include="Assets\Scripts\Utilities\LightScale.cs" />
@@ -70,7 +70,6 @@
     <Compile Include="Assets\Scripts\VoxelEngine\VoxelExtensions.cs" />
     <Compile Include="Assets\Scripts\UniverseEffector.cs" />
     <Compile Include="Assets\Scripts\Player\FaceControllerEditor.cs" />
-    <Compile Include="Assets\Scripts\VoxelEngine\VoxelLOD.cs" />
     <Compile Include="Assets\Scripts\VoxelEngine\VoxelMaterialAsset.cs" />
     <Compile Include="Assets\Scripts\Utilities\ObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\DelegateExtensions.cs" />
@@ -81,6 +80,7 @@
     <Compile Include="Assets\Scripts\Utilities\EditorCoroutineManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\CameraScale.cs" />
     <Compile Include="Assets\Scripts\Utilities\CurveExtensions.cs" />
+    <Compile Include="Assets\Scripts\VoxelEngine\VoxelLODManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInteractionManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\Mathfx.cs" />
     <Compile Include="Assets\Scripts\VoxelEngine\VoxelMeshUtility.cs" />
@@ -128,16 +128,18 @@
     <Compile Include="Assets\Scripts\Utilities\GizmoExtensions.cs" />
     <Compile Include="Assets\Scripts\Player\Controllers\PlayerScaleController.cs" />
     <Compile Include="Assets\Scripts\Utilities\AssetCreationHelper.cs" />
+    <Compile Include="Assets\Scripts\VoxelEngine\VoxelLOD.cs" />
     <Compile Include="Assets\Scripts\Utilities\DragRect.cs" />
     <Compile Include="Assets\Scripts\Utilities\UIExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\ListExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\EditorExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\HandleExtensions.cs" />
+    <Compile Include="Assets\Scripts\VoxelEngine\MeshVoxelLOD.cs" />
+    <Compile Include="Assets\Scripts\VoxelEngine\CamCubeVoxelLOD.cs" />
     <Compile Include="Assets\Scripts\Utilities\ArrayExtensions.cs" />
-    <Compile Include="Assets\Scripts\VoxelEngine\VoxelLODManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Scripts\Plugins\Newtonsoft.Json.dll" />
+     <None Include="Assets\Scripts\Plugins\Newtonsoft.Json.dll" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.1f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

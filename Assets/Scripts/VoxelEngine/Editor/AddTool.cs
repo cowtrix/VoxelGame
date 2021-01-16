@@ -95,7 +95,6 @@ public class AddTool : VoxelPainterTool
 		}
 		foreach (var brushCoord in coordList)
 		{
-			Debug.Log($"Added new voxel at {brushCoord}");
 			renderer.Mesh.Voxels[brushCoord] = new Voxel(brushCoord, CurrentBrush.Copy());
 		}
 		renderer.Invalidate(true);

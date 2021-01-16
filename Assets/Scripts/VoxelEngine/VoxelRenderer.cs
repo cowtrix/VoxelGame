@@ -23,12 +23,14 @@ public class VoxelRenderer : MonoBehaviour
 	public VoxelMesh Mesh;
 
 	private MeshFilter m_filter;
-	private MeshRenderer m_renderer;
+	public MeshRenderer MeshRenderer;
 	private MeshCollider m_collider;
 
 	[SerializeField]
 	[HideInInspector]
 	private string m_lastMeshHash;
+
+	public Bounds Bounds => MeshRenderer.bounds;
 
 	private void Start()
 	{
@@ -58,9 +60,9 @@ public class VoxelRenderer : MonoBehaviour
 			m_filter = gameObject.GetOrAddComponent<MeshFilter>();
 		}
 		//m_filter.hideFlags = HideFlags.HideAndDontSave;
-		if (!m_renderer)
+		if (!MeshRenderer)
 		{
-			m_renderer = gameObject.GetOrAddComponent<MeshRenderer>();
+			MeshRenderer = gameObject.GetOrAddComponent<MeshRenderer>();
 		}
 		//m_renderer.hideFlags = HideFlags.HideAndDontSave;
 		if(GenerateCollider && !forceCollider)
@@ -106,7 +108,7 @@ public class VoxelRenderer : MonoBehaviour
 		}
 		if(!CustomMaterials)
 		{
-			m_renderer.sharedMaterials = new[] { VoxelManager.Instance.DefaultMaterial, VoxelManager.Instance.DefaultMaterialTransparent, };
+			MeshRenderer.sharedMaterials = new[] { VoxelManager.Instance.DefaultMaterial, VoxelManager.Instance.DefaultMaterialTransparent, };
 		}
 		m_lastMeshHash = Mesh.Hash;
 	}

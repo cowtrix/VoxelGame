@@ -49,9 +49,29 @@ namespace Common
         {
             return new Vector2(obj.x, obj.y);
         }
+        public static Vector3 xzy(this Vector3 obj)
+        {
+            return new Vector3(obj.x, obj.z, obj.y);
+        }
+        public static Vector3 zyx(this Vector3 obj)
+        {
+            return new Vector3(obj.z, obj.y, obj.x);
+        }
+        public static Vector2 yx(this Vector3 obj)
+        {
+            return new Vector2(obj.y, obj.x);
+        }
+        public static Vector2 zy(this Vector3 obj)
+        {
+            return new Vector2(obj.z, obj.y);
+        }
         public static Vector2 xz(this Vector3 obj)
         {
             return new Vector2(obj.x, obj.z);
+        }
+        public static Vector2 zx(this Vector3 obj)
+        {
+            return new Vector2(obj.z, obj.x);
         }
         public static Vector2 yz(this Vector3 obj)
         {
