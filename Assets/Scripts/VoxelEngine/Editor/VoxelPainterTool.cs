@@ -59,17 +59,6 @@ public abstract class VoxelPainterTool
 
 	public void DrawSceneGUI(VoxelPainter voxelPainter, VoxelRenderer renderer, Event currentEvent, sbyte painterLayer)
 	{
-		if (voxelPainter.CurrentSelection != null)
-		{
-			// Show selection handles
-			foreach (var v in voxelPainter.CurrentSelection.Take(50))
-			{
-				var pos = renderer.transform.localToWorldMatrix.MultiplyPoint3x4(v.ToVector3());
-				var scale = renderer.transform.localToWorldMatrix.MultiplyVector(VoxelCoordinate.LayerToScale(v.Layer) * Vector3.one * .51f);
-				HandleExtensions.DrawWireCube(pos, scale, renderer.transform.rotation, new Color(1, 1, 1, .1f));
-			}
-		}
-
 		var collider = renderer.GetComponent<MeshCollider>();
 		Ray worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
 		//worldRay = new Ray(collider.transform.worldToLocalMatrix.MultiplyPoint3x4(worldRay.origin), collider.transform.worldToLocalMatrix.MultiplyVector(worldRay.direction));

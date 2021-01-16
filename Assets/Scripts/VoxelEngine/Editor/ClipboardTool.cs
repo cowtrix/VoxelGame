@@ -21,14 +21,17 @@ public class ClipboardTool : VoxelPainterTool
 		public Bounds Bounds => Data.Keys.GetBounds();
 		public sbyte SnapLayer;
 
-		public Snippet(string name, IEnumerable<Voxel> data)
+		public Snippet(IEnumerable<Voxel> data)
 		{
 			Data = new VoxelMapping();
 			foreach (var v in data)
 			{
 				Data.Add(v.Coordinate, v);
 			}
-			SnapLayer = data.Min(d => d.Coordinate.Layer);
+			if(Data.Any())
+			{
+				SnapLayer = data.Min(d => d.Coordinate.Layer);
+			}	
 		}
 
 		public void DrawGUI()
@@ -44,6 +47,24 @@ public class ClipboardTool : VoxelPainterTool
 	public Snippet CurrentClipboard;
 	public Bounds SelectionBounds;
 	public Vector3 Offset;
+	public VoxelCursor Cursor
+	{
+		get
+		{
+			if (__cursor == null)
+			{
+				__cursor = new VoxelCursor();
+			}
+			return __cursor;
+		}
+	}
+	private VoxelCursor __cursor;
+
+	public override void OnDisable()
+	{
+		Cursor.Destroy();
+		base.OnDisable();
+	}
 
 	protected override EPaintingTool ToolID => EPaintingTool.Clipboard;
 
@@ -55,8 +76,10 @@ public class ClipboardTool : VoxelPainterTool
 			if (GUILayout.Button("Copy Selection To Clipboard") ||
 			(Event.current.isKey && Event.current.control && Event.current.keyCode == KeyCode.C))
 			{
-				CurrentClipboard = new Snippet("Untitled Snippet", voxelPainter.CurrentSelection.Select(c => voxelPainter.Renderer.Mesh.Voxels[c]));
-				voxelPainter.CurrentSelection.Clear();
+				CurrentClipboard = new Snippet(voxelPainter.CurrentSelection.Select(c => voxelPainter.Renderer.Mesh.Voxels[c]));
+				Cursor.SetData(voxelPainter.Renderer.transform.localToWorldMatrix, CurrentClipboard.Data.Values);
+				voxelPainter.SetSelection(null);
+				Offset = Vector3.zero;
 				return true;
 			}
 		}
@@ -64,33 +87,59 @@ public class ClipboardTool : VoxelPainterTool
 		{
 			CurrentClipboard.DrawGUI();
 
+			var snappedBoundsCenter = CurrentClipboard.Bounds.center.RoundToIncrement(VoxelCoordinate.LayerToScale(CurrentClipboard.SnapLayer));
 			EditorGUILayout.BeginHorizontal();
 			if (GUILayout.Button("↶ 90°"))
 			{
-				CurrentClipboard.Data = CurrentClipboard.Data.Values.Rotate(Quaternion.Euler(0, 90, 0))
+				CurrentClipboard.Data = CurrentClipboard.Data.Values
+					.Rotate(Quaternion.Euler(0, 90, 0), snappedBoundsCenter)
 					.Finalise();
+				Cursor.SetData(voxelPainter.Renderer.transform.localToWorldMatrix, CurrentClipboard.Data.Values);
 			}
 			if (GUILayout.Button("↷ 90°"))
 			{
 				CurrentClipboard.Data =
-					CurrentClipboard.Data.Values.Rotate(Quaternion.Euler(0, -90, 0))
+					CurrentClipboard.Data.Values
+					.Rotate(Quaternion.Euler(0, -90, 0), snappedBoundsCenter)
 					.Finalise();
+				Cursor.SetData(voxelPainter.Renderer.transform.localToWorldMatrix, CurrentClipboard.Data.Values);
 			}
 			if (GUILayout.Button("↺ 180°"))
 			{
 				CurrentClipboard.Data =
-					CurrentClipboard.Data.Values.Rotate(Quaternion.Euler(0, 180, 0))
+					CurrentClipboard.Data.Values
+					.Rotate(Quaternion.Euler(0, 180, 0), snappedBoundsCenter)
 					.Finalise();
+				Cursor.SetData(voxelPainter.Renderer.transform.localToWorldMatrix, CurrentClipboard.Data.Values);
 			}
 			EditorGUILayout.EndHorizontal();
 			EditorGUILayout.BeginHorizontal();
-			if (GUILayout.Button("⤒ Flip Vert"))
+			if (GUILayout.Button("⤒ Flip Y"))
 			{
-
+				CurrentClipboard.Data =
+					CurrentClipboard.Data.Values
+					.Transform(x => new VoxelCoordinate(x.X, -x.Y, x.Z, x.Layer))
+					.FlipSurface(EVoxelDirection.YPos)
+					.Finalise();
+				Cursor.SetData(voxelPainter.Renderer.transform.localToWorldMatrix, CurrentClipboard.Data.Values);
 			}
-			if (GUILayout.Button("⇥ Flip Horizontal°"))
+			if (GUILayout.Button("⇥ Flip X"))
 			{
-
+				CurrentClipboard.Data =
+					CurrentClipboard.Data.Values
+					.Transform(x => new VoxelCoordinate(-x.X, x.Y, x.Z, x.Layer))
+					.FlipSurface(EVoxelDirection.XPos)
+					.Finalise();
+				Cursor.SetData(voxelPainter.Renderer.transform.localToWorldMatrix, CurrentClipboard.Data.Values);
+			}
+			if (GUILayout.Button("⇤ Flip Z"))
+			{
+				CurrentClipboard.Data =
+					CurrentClipboard.Data.Values
+					.Transform(x => new VoxelCoordinate(x.X, x.Y, -x.Z, x.Layer))
+					.FlipSurface(EVoxelDirection.ZPos)
+					.Finalise();
+				Cursor.SetData(voxelPainter.Renderer.transform.localToWorldMatrix, CurrentClipboard.Data.Values);
 			}
 			EditorGUILayout.EndHorizontal();
 
@@ -101,10 +150,10 @@ public class ClipboardTool : VoxelPainterTool
 				{
 					var coord = v.Key;
 					var offset = VoxelCoordinate.FromVector3(Offset, v.Key.Layer);
-					var newVox = new Voxel(coord + offset, v.Value.Material);
+					var newVox = new Voxel(coord + offset, v.Value.Material.Copy());
 					if (PasteMode == ePasteMode.Add)
 					{
-						if(!voxelPainter.Renderer.Mesh.Voxels.AddSafe(newVox))
+						if (!voxelPainter.Renderer.Mesh.Voxels.AddSafe(newVox))
 						{
 							DebugHelper.DrawCube(newVox.Coordinate, voxelPainter.Renderer.transform.localToWorldMatrix, Color.red, 5);
 						}
@@ -119,6 +168,7 @@ public class ClipboardTool : VoxelPainterTool
 			if (GUILayout.Button("Clear Clipboard"))
 			{
 				CurrentClipboard = null;
+				Cursor.Destroy();
 			}
 		}
 		return false;
@@ -127,14 +177,16 @@ public class ClipboardTool : VoxelPainterTool
 	protected override bool DrawSceneGUIInternal(VoxelPainter voxelPainter, VoxelRenderer renderer, Event currentEvent,
 		List<Voxel> selection, VoxelCoordinate brushCoord, EVoxelDirection hitDir)
 	{
-		Handles.matrix = renderer.transform.localToWorldMatrix;
+		var mat = renderer.transform.localToWorldMatrix;
+
+		Handles.matrix = mat;
 		if (CurrentClipboard == null)
 		{
 			if (currentEvent.type == EventType.MouseDown && currentEvent.button == 0)
 			{
 				if (!currentEvent.shift)
 				{
-					voxelPainter.CurrentSelection.Clear();
+					voxelPainter.SetSelection(null);
 				}
 				if (selection == null)
 				{
@@ -143,7 +195,7 @@ public class ClipboardTool : VoxelPainterTool
 				var coords = selection.Select(v => v.Coordinate);
 				foreach (var c in coords)
 				{
-					voxelPainter.CurrentSelection.Add(c);
+					voxelPainter.AddSelection(c);
 				}
 				SelectionBounds = voxelPainter.CurrentSelection.First().ToBounds();
 				foreach (var p in voxelPainter.CurrentSelection.Skip(1))
@@ -156,7 +208,7 @@ public class ClipboardTool : VoxelPainterTool
 					{
 						if (SelectionBounds.Contains(v.Key.ToVector3()))
 						{
-							voxelPainter.CurrentSelection.Add(v.Key);
+							voxelPainter.AddSelection(v.Key);
 						}
 					}
 				}
@@ -170,10 +222,8 @@ public class ClipboardTool : VoxelPainterTool
 			Offset = Offset.RoundToIncrement(VoxelCoordinate.LayerToScale(CurrentClipboard.SnapLayer));
 			HandleExtensions.DrawWireCube(bcenter, CurrentClipboard.Bounds.extents, Quaternion.identity, Color.magenta);
 
-			foreach(var v in CurrentClipboard.Data.Keys)
-			{
-				HandleExtensions.DrawWireCube(v.ToVector3() + Offset, v.ToBounds().extents, Quaternion.identity, Color.white, 0);
-			}
+			Cursor.SetData(mat * Matrix4x4.TRS(Offset, Quaternion.identity, Vector3.one));
+			Cursor.Update();
 		}
 
 		return false;

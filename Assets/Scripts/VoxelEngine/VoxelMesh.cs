@@ -165,11 +165,25 @@ public class VoxelMesh : ScriptableObject
 		var origin = vox.Coordinate.ToVector3();
 		var size = vox.Coordinate.GetScale() * Vector3.one;
 		var dirs = Directions.ToList();
+
+		var higherLayer = (sbyte)(vox.Coordinate.Layer - 1);
+		var higherCoord = vox.Coordinate.ChangeLayer(higherLayer);
+
 		for (int i = dirs.Count - 1; i >= 0; i--)
 		{
 			EVoxelDirection dir = dirs[i];
 			var neighborCoord = vox.Coordinate + VoxelCoordinate.DirectionToCoordinate(dir, vox.Coordinate.Layer);
 			if (Voxels.TryGetValue(neighborCoord, out var n)
+				&& n.Material.RenderMode == ERenderMode.Block
+				&& n.Material.MaterialMode == vox.Material.MaterialMode)
+			{
+				dirs.RemoveAt(i);
+				continue;
+			}
+
+			// If the neighbour in a higher layer blocks then the whole side is guaranteed to be occluded
+			neighborCoord = higherCoord + VoxelCoordinate.DirectionToCoordinate(dir, higherLayer);
+			if (Voxels.TryGetValue(neighborCoord, out n)
 				&& n.Material.RenderMode == ERenderMode.Block
 				&& n.Material.MaterialMode == vox.Material.MaterialMode)
 			{

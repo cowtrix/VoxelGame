@@ -7,6 +7,7 @@ using UnityEngine.Video;
 public class VoxelManager : Singleton<VoxelManager>
 {
 	public Material DefaultMaterial;
+	public Material DefaultMaterialDebug;
 	public Material DefaultMaterialTransparent;
 
 	public Texture2DArray TextureArray;

@@ -46,7 +46,7 @@ public class PaintTool : VoxelPainterTool
 				{
 					var rot = VoxelCoordinate.DirectionToQuaternion(d);
 					var pos = s.Coordinate.ToVector3() + rot * (layerScale * .5f * Vector3.up);
-					HandleExtensions.DrawWireCube(pos, new Vector3(layerScale / 2f, layerScale * .05f, layerScale / 2f), rot, Color.blue);
+					HandleExtensions.DrawWireCube(pos, new Vector3(layerScale / 2f, layerScale * .05f, layerScale / 2f), rot, Color.magenta);
 				}
 				
 			}
@@ -79,7 +79,7 @@ public class PaintTool : VoxelPainterTool
 			}*/
 			if (SetVoxelSurface(creationList, renderer, hitDir, currentEvent))
 			{
-				voxelPainter.CurrentSelection = creationList;
+				voxelPainter.SetSelection(creationList);
 			}
 		}
 		return false;

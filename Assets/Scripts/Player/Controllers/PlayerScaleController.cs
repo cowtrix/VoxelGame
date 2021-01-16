@@ -10,6 +10,7 @@ public class PlayerScaleController : MonoBehaviour
 	public LayerMask CollisionMask;
 	public Bounds PlayerBounds;
 	public float TransitionSpeed = 1;
+	public float DefaultScale = 0.666f;
 
 	private float m_targetScale = 1;
 	private float m_currentScale = 1;
@@ -27,7 +28,7 @@ public class PlayerScaleController : MonoBehaviour
 		}
 		else
 		{
-			m_targetScale = 1;
+			m_targetScale = DefaultScale;
 		}
 
 		var step = Mathf.MoveTowards(m_currentScale, m_targetScale, TransitionSpeed * Time.deltaTime);

@@ -11,4 +11,16 @@ public static class GameobjectExtensions
 		}
 		return c;
 	}
+
+	public static void SafeDestroy(this Object obj)
+	{
+		if(Application.isPlaying)
+		{
+			Object.Destroy(obj);
+		}
+		else
+		{
+			Object.DestroyImmediate(obj);
+		}
+	}
 }

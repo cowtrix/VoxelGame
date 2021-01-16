@@ -1,16 +1,9 @@
-using DiffMatchPatch;
-using ICSharpCode.NRefactory.Ast;
 using Common;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using UnityEditor;
-using UnityEditor.EditorTools;
-using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public enum EPaintingTool
 {
@@ -76,7 +69,44 @@ public class VoxelPainter : Editor
 		}
 	}
 	public VoxelRenderer Renderer => target as VoxelRenderer;
-	public HashSet<VoxelCoordinate> CurrentSelection = new HashSet<VoxelCoordinate>();
+
+	public IEnumerable<VoxelCoordinate> CurrentSelection => m_selection;
+	private HashSet<VoxelCoordinate> m_selection = new HashSet<VoxelCoordinate>();
+	private bool m_selectionDirty = true;
+	
+	public void SetSelection(IEnumerable<VoxelCoordinate> coords)
+	{
+		m_selection.Clear();
+		m_selectionDirty = true;
+		if(coords == null)
+		{
+			return;
+		}
+		foreach(var c in coords)
+		{
+			m_selection.Add(c);
+		}
+	}
+	public void AddSelection(VoxelCoordinate c)
+	{
+		m_selection.Add(c);
+		m_selectionDirty = true;
+	}
+
+
+	public VoxelCursor SelectionCursor
+	{
+		get
+		{
+			if (__selectionCursor == null)
+			{
+				__selectionCursor = new VoxelCursor();
+			}
+			return __selectionCursor;
+		}
+	}
+	private VoxelCursor __selectionCursor;
+
 	public static int LayerMask
 	{
 		get
@@ -89,22 +119,13 @@ public class VoxelPainter : Editor
 		}
 	}
 
-
 	public override bool RequiresConstantRepaint() => true;
 
 	public override void OnInspectorGUI()
 	{
-		if(Enabled)
-		{
-			VoxelManager.Instance.DefaultMaterial.EnableKeyword("ShowGrid");
-		}
-		else
-		{
-			VoxelManager.Instance.DefaultMaterial.DisableKeyword("ShowGrid");
-		}
 		base.OnInspectorGUI();
 
-		if(!Renderer.Mesh)
+		if (!Renderer.Mesh)
 		{
 			EditorGUILayout.HelpBox("Select a Voxel Mesh asset", MessageType.Info);
 			return;
@@ -120,13 +141,13 @@ public class VoxelPainter : Editor
 		bool dirty = newTool != CurrentTool;
 		CurrentTool = newTool;
 		var t = m_tools[CurrentTool];
-		if(dirty)
+		if (dirty)
 		{
 			m_tools[oldTool].OnDisable();
 			t.OnEnable();
 		}
 		EditorGUILayout.BeginVertical("Box");
-		if(t.DrawInspectorGUI(this))
+		if (t.DrawInspectorGUI(this))
 		{
 			EditorUtility.SetDirty(Renderer.Mesh);
 			Renderer.Invalidate(true);
@@ -140,7 +161,7 @@ public class VoxelPainter : Editor
 
 	void OnSceneGUI()
 	{
-		if(!Enabled)
+		if (!Enabled)
 		{
 			return;
 		}
@@ -153,10 +174,21 @@ public class VoxelPainter : Editor
 
 		var t = m_tools[CurrentTool];
 		t.DrawSceneGUI(this, Renderer, Event.current, CurrentLayer);
+
+		if(m_selectionDirty)
+		{
+			SelectionCursor.SetData(Renderer.transform.localToWorldMatrix, m_selection.Select(x => Renderer.Mesh.Voxels[x]));
+		}
+		else
+		{
+			SelectionCursor.SetData(Renderer.transform.localToWorldMatrix);
+		}
+		m_selectionDirty = false;
+		SelectionCursor.Update();
 	}
 
 	public void OnDisable()
 	{
-		VoxelManager.Instance.DefaultMaterial.DisableKeyword("ShowGrid");
+		m_tools[CurrentTool]?.OnDisable();
 	}
 }

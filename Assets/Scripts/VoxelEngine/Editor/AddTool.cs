@@ -26,7 +26,7 @@ public class AddTool : VoxelPainterTool
 
 	protected override EPaintingTool ToolID => EPaintingTool.Add;
 
-	protected override bool GetVoxelDataFromPoint(VoxelPainter painter, VoxelRenderer renderer, Vector3 hitPoint, 
+	protected override bool GetVoxelDataFromPoint(VoxelPainter painter, VoxelRenderer renderer, Vector3 hitPoint,
 		Vector3 hitNorm, int triIndex, sbyte layer,
 		out List<Voxel> selection, out VoxelCoordinate brushCoord, out EVoxelDirection hitDir)
 	{
@@ -45,12 +45,12 @@ public class AddTool : VoxelPainterTool
 		return true;
 	}
 
-	protected override bool DrawSceneGUIInternal(VoxelPainter voxelPainter, VoxelRenderer renderer, 
+	protected override bool DrawSceneGUIInternal(VoxelPainter voxelPainter, VoxelRenderer renderer,
 		Event currentEvent, List<Voxel> selection, VoxelCoordinate brushCoord, EVoxelDirection hitDir)
 	{
 		if (currentEvent.type == EventType.MouseDown && currentEvent.button == 0)
 		{
-			if(EditorApplication.timeSinceStartup < m_lastAdd + .1f)
+			if (EditorApplication.timeSinceStartup < m_lastAdd + .1f)
 			{
 				Debug.LogWarning($"Swallowed double event");
 				return false;
@@ -66,9 +66,9 @@ public class AddTool : VoxelPainterTool
 					creationList.Add(coord);
 				}
 			}
-			if(CreateVoxel(creationList, renderer))
+			if (CreateVoxel(creationList, renderer))
 			{
-				voxelPainter.CurrentSelection = creationList;
+				voxelPainter.SetSelection(creationList);
 			}
 		}
 		return false;

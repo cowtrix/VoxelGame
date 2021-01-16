@@ -52,7 +52,7 @@ public class SelectTool : VoxelPainterTool
 					newSelection.Add(subV);
 				}
 			}
-			voxelPainter.CurrentSelection = newSelection;
+			voxelPainter.SetSelection(newSelection);
 			return true;
 		}
 		return result;
@@ -64,7 +64,7 @@ public class SelectTool : VoxelPainterTool
 		{
 			if(!currentEvent.shift)
 			{
-				voxelPainter.CurrentSelection.Clear();
+				voxelPainter.SetSelection(null);
 			}
 
 			if(selection == null)
@@ -75,7 +75,7 @@ public class SelectTool : VoxelPainterTool
 			var coords = selection.Select(v => v.Coordinate);
 			foreach(var c in coords)
 			{
-				voxelPainter.CurrentSelection.Add(c);
+				voxelPainter.AddSelection(c);
 			}
 			SelectionBounds = voxelPainter.CurrentSelection.First().ToBounds();
 			foreach(var p in voxelPainter.CurrentSelection.Skip(1))
@@ -89,7 +89,7 @@ public class SelectTool : VoxelPainterTool
 				{
 					if(SelectionBounds.Contains(v.Key.ToVector3()))
 					{
-						voxelPainter.CurrentSelection.Add(v.Key);
+						voxelPainter.AddSelection(v.Key);
 					}
 				}
 			}
@@ -104,7 +104,7 @@ public class SelectTool : VoxelPainterTool
 			{
 				renderer.Mesh.Voxels.Remove(c);
 			}
-			voxelPainter.CurrentSelection.Clear();
+			voxelPainter.SetSelection(null);
 			SelectionBounds = default;
 			return true;
 		}

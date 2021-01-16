@@ -8,18 +8,23 @@ public static class VoxelExtensions
 	public static VoxelMapping Finalise(this IEnumerable<Voxel> voxels)
 	{
 		var result = new VoxelMapping();
-		foreach(var v in voxels)
+		foreach (var v in voxels)
 		{
 			result[v.Coordinate] = v;
 		}
 		return result;
 	}
 
-	public static IEnumerable<Voxel> Rotate(this IEnumerable<Voxel> voxels, Quaternion angle)
+	public static IEnumerable<Voxel> Offset(this IEnumerable<Voxel> voxels, Vector3 offset)
+	{
+		return voxels.Transform(v => v + VoxelCoordinate.FromVector3(offset, v.Layer));
+	}
+
+	public static IEnumerable<Voxel> Rotate(this IEnumerable<Voxel> voxels, Quaternion angle, Vector3 rotationCenter)
 	{
 		return voxels.Transform(v =>
 		{
-			var newPos = angle * v.ToVector3();			
+			var newPos = angle * (v.ToVector3() - rotationCenter) + rotationCenter;
 			return VoxelCoordinate.FromVector3(newPos, v.Layer);
 		});
 	}
@@ -29,18 +34,40 @@ public static class VoxelExtensions
 		return voxels.Select(v =>
 		{
 			var newCoord = func(v.Coordinate);
-			return new Voxel(newCoord, v.Material);
+			return new Voxel(newCoord, v.Material.Copy());
+		});
+	}
+
+	public static IEnumerable<Voxel> FlipSurface(this IEnumerable<Voxel> voxels, EVoxelDirection dir)
+	{
+		var dAxis = dir.ToString()[0];
+		var dirVals = Enum.GetValues(typeof(EVoxelDirection)).Cast<EVoxelDirection>();
+		return voxels.Select(v =>
+		{
+			v.Material = v.Material.Copy();
+			for (int i = 0; i < v.Material.Overrides.Length; i++)
+			{
+				var o = v.Material.Overrides[i];
+				var oAxis = o.Direction.ToString()[0];
+				if (oAxis != dAxis)
+				{
+					continue;
+				}
+				o.Direction = dirVals.First(d => d != o.Direction && d.ToString()[0] == oAxis);
+				v.Material.Overrides[i] = o;
+			}
+			return v;
 		});
 	}
 
 	public static Bounds GetBounds(this IEnumerable<VoxelCoordinate> voxels)
 	{
-		if(voxels == null || !voxels.Any())
+		if (voxels == null || !voxels.Any())
 		{
 			return default;
 		}
 		var b = voxels.First().ToBounds();
-		foreach(var b2 in voxels.Skip(1))
+		foreach (var b2 in voxels.Skip(1))
 		{
 			b.Encapsulate(b2.ToBounds());
 		}
