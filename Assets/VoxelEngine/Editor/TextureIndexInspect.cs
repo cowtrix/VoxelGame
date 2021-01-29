@@ -34,7 +34,7 @@ public class TextureIndexInspect : PropertyDrawer
 				{
 					vm.Sprites.Add(newTex);
 					vm.RegenerateSpritesheet();
-					EditorUtility.SetDirty(vm.TextureArray);
+					EditorUtility.SetDirty(vm.TextureArrayData);
 				}
 				var index = vm.Sprites.IndexOf(newTex);
 				prop.intValue = index;

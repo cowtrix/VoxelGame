@@ -58,7 +58,7 @@ public struct VoxelCoordinate
 		throw new NotSupportedException($"{dir} not supported");
 	}
 
-	public static bool CoordinateToDirection(Vector3 hitNorm, out EVoxelDirection dir)
+	public static bool VectorToDirection(Vector3 hitNorm, out EVoxelDirection dir)
 	{
 		hitNorm = hitNorm.normalized;
 		dir = EVoxelDirection.XNeg;

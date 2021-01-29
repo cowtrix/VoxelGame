@@ -10,7 +10,8 @@ public class VoxelLODManager : MonoBehaviour
     private LODGroup m_lodGroup => GetComponent<LODGroup>();
     private VoxelRenderer m_renderer => GetComponent<VoxelRenderer>();
 
-	public float TopLODLevel = .5f;
+	[Range(0, 1)]
+	public float TopLODLevel = .1f;
     public VoxelLOD[] LODs;
 
 
@@ -28,7 +29,7 @@ public class VoxelLODManager : MonoBehaviour
 	{
 		var prevLayer = gameObject.layer;
 		gameObject.layer = 31;
-        LODs = GetComponentsInChildren<VoxelLOD>();
+        LODs = GetComponentsInChildren<VoxelLOD>().Where(l => l.transform.parent == transform).ToArray();
 		foreach(var l in LODs)
 		{
 			l.MeshRenderer.enabled = false;
@@ -43,11 +44,9 @@ public class VoxelLODManager : MonoBehaviour
 			.GroupBy(l => l.ScreenRelativeTransitionHeight)
 			.Select(l => GetUnityLod(l));
 
-
 		var lods = new[] {
-			new LOD(1, new[] { m_renderer.MeshRenderer }),
-			new LOD(TopLODLevel, new[] { m_renderer.MeshRenderer }) }		
-		.Concat(subLods)
+			new LOD(TopLODLevel, new[] { m_renderer.MeshRenderer }) 
+		}.Concat(subLods)
 		.OrderByDescending(l => l.screenRelativeTransitionHeight);
 
 		m_lodGroup.SetLODs(lods.ToArray());

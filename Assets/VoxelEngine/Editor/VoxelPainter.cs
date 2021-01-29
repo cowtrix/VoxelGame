@@ -5,27 +5,34 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-public enum EPaintingTool
+namespace VoxulEngine.Painter
 {
-	Select,
-	Add,
-	Remove,
-	Subdivide,
-	Paint,
-	Clipboard,
-}
-
-[CustomEditor(typeof(VoxelRenderer))]
-public class VoxelPainter : Editor
-{
-	[MenuItem("GameObject/3D Object/Voxel Object")]
-	public static void CreateNew()
+	public enum EPaintingTool
 	{
-		var go = new GameObject("New Voxel Object");
-		var r = go.AddComponent<VoxelRenderer>();
+		Select,
+		Add,
+		Remove,
+		Subdivide,
+		Paint,
+		Clipboard,
 	}
 
-	Dictionary<EPaintingTool, VoxelPainterTool> m_tools = new Dictionary<EPaintingTool, VoxelPainterTool>
+	public enum eMirrorMode
+	{
+		None, X, Y, Z
+	}
+
+	[CustomEditor(typeof(VoxelRenderer))]
+	public class VoxelPainter : Editor
+	{
+		[MenuItem("GameObject/3D Object/Voxel Object")]
+		public static void CreateNew()
+		{
+			var go = new GameObject("New Voxel Object");
+			var r = go.AddComponent<VoxelRenderer>();
+		}
+
+		Dictionary<EPaintingTool, VoxelPainterTool> m_tools = new Dictionary<EPaintingTool, VoxelPainterTool>
 	{
 		{ EPaintingTool.Select, new SelectTool() },
 		{ EPaintingTool.Add, new AddTool() },
@@ -35,160 +42,176 @@ public class VoxelPainter : Editor
 		{ EPaintingTool.Clipboard, new ClipboardTool() },
 	};
 
-	public bool Enabled
-	{
-		get
+		public eMirrorMode MirrorMode
 		{
-			return EditorPrefUtility.GetPref("VoxelPainter_Enabled", true);
+			get
+			{
+				return EditorPrefUtility.GetPref("VoxelPainter_MirrorMode", eMirrorMode.None);
+			}
+			set
+			{
+				EditorPrefUtility.SetPref("VoxelPainter_MirrorMode", value);
+			}
 		}
-		set
+		public bool Enabled
 		{
-			EditorPrefUtility.SetPref("VoxelPainter_Enabled", value);
+			get
+			{
+				return EditorPrefUtility.GetPref("VoxelPainter_Enabled", true);
+			}
+			set
+			{
+				EditorPrefUtility.SetPref("VoxelPainter_Enabled", value);
+			}
 		}
-	}
-	public sbyte CurrentLayer
-	{
-		get
+		public sbyte CurrentLayer
 		{
-			return EditorPrefUtility.GetPref("VoxelPainter_CurrentLayer", default(sbyte));
+			get
+			{
+				return EditorPrefUtility.GetPref("VoxelPainter_CurrentLayer", default(sbyte));
+			}
+			set
+			{
+				EditorPrefUtility.SetPref("VoxelPainter_CurrentLayer", value);
+			}
 		}
-		set
+		public EPaintingTool CurrentTool
 		{
-			EditorPrefUtility.SetPref("VoxelPainter_CurrentLayer", value);
+			get
+			{
+				return EditorPrefUtility.GetPref("VoxelPainter_CurrentTool", EPaintingTool.Add);
+			}
+			set
+			{
+				EditorPrefUtility.SetPref("VoxelPainter_CurrentTool", value);
+			}
 		}
-	}
-	public EPaintingTool CurrentTool
-	{
-		get
-		{
-			return EditorPrefUtility.GetPref("VoxelPainter_CurrentTool", EPaintingTool.Add);
-		}
-		set
-		{
-			EditorPrefUtility.SetPref("VoxelPainter_CurrentTool", value);
-		}
-	}
-	public VoxelRenderer Renderer => target as VoxelRenderer;
+		public VoxelRenderer Renderer => target as VoxelRenderer;
 
-	public IEnumerable<VoxelCoordinate> CurrentSelection => m_selection;
-	private HashSet<VoxelCoordinate> m_selection = new HashSet<VoxelCoordinate>();
-	private bool m_selectionDirty = true;
-	
-	public void SetSelection(IEnumerable<VoxelCoordinate> coords)
-	{
-		m_selection.Clear();
-		m_selectionDirty = true;
-		if(coords == null)
+		public IEnumerable<VoxelCoordinate> CurrentSelection => m_selection;
+		private HashSet<VoxelCoordinate> m_selection = new HashSet<VoxelCoordinate>();
+		private bool m_selectionDirty = true;
+
+		public void SetSelection(IEnumerable<VoxelCoordinate> coords)
 		{
-			return;
+			m_selection.Clear();
+			m_selectionDirty = true;
+			if (coords == null)
+			{
+				return;
+			}
+			foreach (var c in coords)
+			{
+				m_selection.Add(c);
+			}
 		}
-		foreach(var c in coords)
+		public void AddSelection(VoxelCoordinate c)
 		{
 			m_selection.Add(c);
+			m_selectionDirty = true;
 		}
-	}
-	public void AddSelection(VoxelCoordinate c)
-	{
-		m_selection.Add(c);
-		m_selectionDirty = true;
-	}
 
 
-	public VoxelCursor SelectionCursor
-	{
-		get
+		public VoxelCursor SelectionCursor
 		{
-			if (__selectionCursor == null)
+			get
 			{
-				__selectionCursor = new VoxelCursor();
+				if (__selectionCursor == null)
+				{
+					__selectionCursor = new VoxelCursor();
+				}
+				return __selectionCursor;
 			}
-			return __selectionCursor;
 		}
-	}
-	private VoxelCursor __selectionCursor;
+		private VoxelCursor __selectionCursor;
 
-	public static int LayerMask
-	{
-		get
+		public static int LayerMask
 		{
-			return EditorPrefs.GetInt("Voxel_LayerMask", ~0);
+			get
+			{
+				return EditorPrefs.GetInt("Voxel_LayerMask", ~0);
+			}
+			set
+			{
+				EditorPrefs.SetInt("Voxel_LayerMask", value);
+			}
 		}
-		set
+
+		public override bool RequiresConstantRepaint() => true;
+
+		public override void OnInspectorGUI()
 		{
-			EditorPrefs.SetInt("Voxel_LayerMask", value);
+			base.OnInspectorGUI();
+
+			if (!Renderer.Mesh)
+			{
+				EditorGUILayout.HelpBox("Select a Voxel Mesh asset", MessageType.Info);
+				return;
+			}
+			LayerMask = EditorGUILayout.LayerField(LayerMask);
+			EditorGUILayout.LabelField("Painter", EditorStyles.whiteLargeLabel);
+			EditorGUILayout.BeginVertical("Box");
+			Enabled = EditorGUILayout.Toggle("Enabled", Enabled);
+			GUI.enabled = Enabled;
+
+			MirrorMode = (eMirrorMode)EditorGUILayout.EnumPopup("Mirror Mode", MirrorMode);
+			var oldTool = CurrentTool;
+			CurrentLayer = (sbyte)EditorGUILayout.IntSlider("Current Layer", CurrentLayer, -5, 5);
+			var newTool = (EPaintingTool)GUILayout.Toolbar((int)CurrentTool, Enum.GetNames(typeof(EPaintingTool)));
+			bool dirty = newTool != CurrentTool;
+			CurrentTool = newTool;
+			var t = m_tools[CurrentTool];
+			if (dirty)
+			{
+				m_tools[oldTool].OnDisable();
+				t.OnEnable();
+			}
+			EditorGUILayout.BeginVertical("Box");
+			if (t.DrawInspectorGUI(this))
+			{
+				EditorUtility.SetDirty(Renderer.Mesh);
+				Renderer.Invalidate(true);
+			}
+			EditorGUILayout.EndVertical();
+			GUI.enabled = true;
+			EditorGUILayout.EndVertical();
+
+			SceneView.RepaintAll();
 		}
-	}
 
-	public override bool RequiresConstantRepaint() => true;
-
-	public override void OnInspectorGUI()
-	{
-		base.OnInspectorGUI();
-
-		if (!Renderer.Mesh)
+		void OnSceneGUI()
 		{
-			EditorGUILayout.HelpBox("Select a Voxel Mesh asset", MessageType.Info);
-			return;
-		}
-		LayerMask = EditorGUILayout.LayerField(LayerMask);
-		EditorGUILayout.LabelField("Painter", EditorStyles.whiteLargeLabel);
-		EditorGUILayout.BeginVertical("Box");
-		Enabled = EditorGUILayout.Toggle("Enabled", Enabled);
-		GUI.enabled = Enabled;
-		var oldTool = CurrentTool;
-		CurrentLayer = (sbyte)EditorGUILayout.IntSlider("Current Layer", CurrentLayer, -5, 5);
-		var newTool = (EPaintingTool)GUILayout.Toolbar((int)CurrentTool, Enum.GetNames(typeof(EPaintingTool)));
-		bool dirty = newTool != CurrentTool;
-		CurrentTool = newTool;
-		var t = m_tools[CurrentTool];
-		if (dirty)
-		{
-			m_tools[oldTool].OnDisable();
-			t.OnEnable();
-		}
-		EditorGUILayout.BeginVertical("Box");
-		if (t.DrawInspectorGUI(this))
-		{
-			EditorUtility.SetDirty(Renderer.Mesh);
-			Renderer.Invalidate(true);
-		}
-		EditorGUILayout.EndVertical();
-		GUI.enabled = true;
-		EditorGUILayout.EndVertical();
+			if (!Enabled)
+			{
+				return;
+			}
 
-		SceneView.RepaintAll();
-	}
+			var tran = Renderer.transform;
 
-	void OnSceneGUI()
-	{
-		if (!Enabled)
-		{
-			return;
+			Tools.current = Tool.Custom;
+			Handles.color = Color.white.WithAlpha(.1f);
+			Handles.DrawLine(tran.position - tran.up * 100, tran.position + tran.up * 100);
+			Handles.DrawLine(tran.position - tran.right * 100, tran.position + tran.right * 100);
+			Handles.DrawLine(tran.position - tran.forward * 100, tran.position + tran.forward * 100);
+
+			var t = m_tools[CurrentTool];
+			t.DrawSceneGUI(this, Renderer, Event.current, CurrentLayer);
+
+			if (m_selectionDirty)
+			{
+				SelectionCursor.SetData(Renderer.transform.localToWorldMatrix, m_selection.Select(x => Renderer.Mesh.Voxels[x]));
+			}
+			else
+			{
+				SelectionCursor.SetData(Renderer.transform.localToWorldMatrix);
+			}
+			m_selectionDirty = false;
+			SelectionCursor.Update();
 		}
-		Tools.current = Tool.Custom;
-		var tran = Renderer.transform;
-		Handles.color = Color.white.WithAlpha(.1f);
-		Handles.DrawLine(tran.position - tran.up * 100, tran.position + tran.up * 100);
-		Handles.DrawLine(tran.position - tran.right * 100, tran.position + tran.right * 100);
-		Handles.DrawLine(tran.position - tran.forward * 100, tran.position + tran.forward * 100);
 
-		var t = m_tools[CurrentTool];
-		t.DrawSceneGUI(this, Renderer, Event.current, CurrentLayer);
-
-		if(m_selectionDirty)
+		public void OnDisable()
 		{
-			SelectionCursor.SetData(Renderer.transform.localToWorldMatrix, m_selection.Select(x => Renderer.Mesh.Voxels[x]));
+			m_tools[CurrentTool]?.OnDisable();
 		}
-		else
-		{
-			SelectionCursor.SetData(Renderer.transform.localToWorldMatrix);
-		}
-		m_selectionDirty = false;
-		SelectionCursor.Update();
-	}
-
-	public void OnDisable()
-	{
-		m_tools[CurrentTool]?.OnDisable();
 	}
 }

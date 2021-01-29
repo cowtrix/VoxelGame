@@ -5,116 +5,118 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-[Serializable]
-public class PaintTool : VoxelPainterTool
+namespace VoxulEngine.Painter
 {
-	private double m_lastAdd;
-	private VoxelMesh m_previewMesh;
-
-	public override void OnEnable()
+	[Serializable]
+	public class PaintTool : VoxelPainterTool
 	{
-		m_previewMesh = ScriptableObject.CreateInstance<VoxelMesh>();
-		base.OnEnable();
-	}
+		private double m_lastAdd;
+		private VoxelMesh m_previewMesh;
 
-	public override void OnDisable()
-	{
-		GameObject.DestroyImmediate(m_previewMesh);
-		m_previewMesh = null;
-	}
-
-	protected override bool GetVoxelDataFromPoint(VoxelPainter voxelPainterTool, VoxelRenderer renderer, 
-		Vector3 hitPoint, Vector3 hitNorm, int triIndex, sbyte layer, out List<Voxel> selection, 
-		out VoxelCoordinate brushCoord, out EVoxelDirection hitDir)
-	{
-		var result = base.GetVoxelDataFromPoint(voxelPainterTool, renderer, hitPoint, hitNorm, triIndex, layer, out selection, out brushCoord, out hitDir);
-		if (result)
+		public override void OnEnable()
 		{
-			Handles.matrix = renderer.transform.localToWorldMatrix;
-			foreach (var s in selection)
+			m_previewMesh = ScriptableObject.CreateInstance<VoxelMesh>();
+			base.OnEnable();
+		}
+
+		public override void OnDisable()
+		{
+			GameObject.DestroyImmediate(m_previewMesh);
+			m_previewMesh = null;
+		}
+
+		protected override bool GetVoxelDataFromPoint(VoxelPainter voxelPainterTool, VoxelRenderer renderer,
+			Vector3 hitPoint, Vector3 hitNorm, int triIndex, sbyte layer, out List<VoxelCoordinate> selection, out EVoxelDirection hitDir)
+		{
+			var result = base.GetVoxelDataFromPoint(voxelPainterTool, renderer, hitPoint, hitNorm, triIndex, layer, out selection, out hitDir);
+			if (result)
 			{
-				var layerScale = VoxelCoordinate.LayerToScale(brushCoord.Layer);
-				var dirs = new HashSet<EVoxelDirection>() { hitDir };
-				if(Event.current.shift)
+				Handles.matrix = renderer.transform.localToWorldMatrix;
+				foreach (var s in selection)
 				{
-					foreach(var d in VoxelMesh.Directions)
+					var layerScale = VoxelCoordinate.LayerToScale(s.Layer);
+					var dirs = new HashSet<EVoxelDirection>() { hitDir };
+					if (Event.current.shift)
 					{
-						dirs.Add(d);
+						foreach (var d in VoxelMesh.Directions)
+						{
+							dirs.Add(d);
+						}
 					}
+					foreach (var d in dirs)
+					{
+						var rot = VoxelCoordinate.DirectionToQuaternion(d);
+						var pos = s.ToVector3() + rot * (layerScale * .5f * Vector3.up);
+						HandleExtensions.DrawWireCube(pos, new Vector3(layerScale / 2f, layerScale * .05f, layerScale / 2f), rot, Color.magenta);
+					}
+
 				}
-				foreach(var d in dirs)
-				{
-					var rot = VoxelCoordinate.DirectionToQuaternion(d);
-					var pos = s.Coordinate.ToVector3() + rot * (layerScale * .5f * Vector3.up);
-					HandleExtensions.DrawWireCube(pos, new Vector3(layerScale / 2f, layerScale * .05f, layerScale / 2f), rot, Color.magenta);
-				}
-				
 			}
+			return result;
 		}
-		return result;
-	}
 
-	protected override EPaintingTool ToolID => EPaintingTool.Paint;
+		protected override EPaintingTool ToolID => EPaintingTool.Paint;
 
-	protected override bool DrawSceneGUIInternal(VoxelPainter voxelPainter, VoxelRenderer renderer,
-		Event currentEvent, List<Voxel> selection, VoxelCoordinate brushCoord, EVoxelDirection hitDir)
-	{
-		if (currentEvent.type == EventType.MouseDown && currentEvent.button == 0)
+		protected override bool DrawSceneGUIInternal(VoxelPainter voxelPainter, VoxelRenderer renderer,
+			Event currentEvent, List<VoxelCoordinate> selection, EVoxelDirection hitDir)
 		{
-			if (EditorApplication.timeSinceStartup < m_lastAdd + .1f)
+			if (currentEvent.type == EventType.MouseDown && currentEvent.button == 0)
 			{
-				Debug.LogWarning($"Swallowed double event");
-				return false;
-			}
-			m_lastAdd = EditorApplication.timeSinceStartup;
-			var creationList = new HashSet<VoxelCoordinate>() { brushCoord };
-			/*if (currentEvent.control && currentEvent.shift)
-			{
-				var bounds = voxelPainter.CurrentSelection.GetBounds();
-				bounds.Encapsulate(brushCoord.ToBounds());
-				foreach (VoxelCoordinate coord in renderer.Mesh.GetVoxelCoordinates(bounds, voxelPainter.CurrentLayer))
+				if (EditorApplication.timeSinceStartup < m_lastAdd + .1f)
 				{
-					creationList.Add(coord);
+					Debug.LogWarning($"Swallowed double event");
+					return false;
 				}
-			}*/
-			if (SetVoxelSurface(creationList, renderer, hitDir, currentEvent))
-			{
-				voxelPainter.SetSelection(creationList);
+				m_lastAdd = EditorApplication.timeSinceStartup;
+				var creationList = new HashSet<VoxelCoordinate>(selection);
+				/*if (currentEvent.control && currentEvent.shift)
+				{
+					var bounds = voxelPainter.CurrentSelection.GetBounds();
+					bounds.Encapsulate(brushCoord.ToBounds());
+					foreach (VoxelCoordinate coord in renderer.Mesh.GetVoxelCoordinates(bounds, voxelPainter.CurrentLayer))
+					{
+						creationList.Add(coord);
+					}
+				}*/
+				if (SetVoxelSurface(creationList, renderer, hitDir, currentEvent))
+				{
+					voxelPainter.SetSelection(creationList);
+				}
 			}
+			return false;
 		}
-		return false;
-	}
 
-	private bool SetVoxelSurface(IEnumerable<VoxelCoordinate> coords, VoxelRenderer renderer, EVoxelDirection dir, Event currentEvent)
-	{
-		var coordList = coords.ToList();
-		foreach (var brushCoord in coordList)
+		private bool SetVoxelSurface(IEnumerable<VoxelCoordinate> coords, VoxelRenderer renderer, EVoxelDirection dir, Event currentEvent)
 		{
-			if(!renderer.Mesh.Voxels.TryGetValue(brushCoord, out var vox))
+			var coordList = coords.ToList();
+			foreach (var brushCoord in coordList)
 			{
-				continue;
-			}
-			if(currentEvent.shift)
-			{
-				vox.Material = CurrentBrush.Copy();
-			}
-			else
-			{
-				Debug.Log($"Set voxel at {brushCoord} ({dir})");
-				var surface = CurrentBrush.GetSurface(dir);
-				if(vox.Material.Overrides == null)
+				if (!renderer.Mesh.Voxels.TryGetValue(brushCoord, out var vox))
 				{
-					vox.Material.Overrides = new DirectionOverride[0];
+					continue;
 				}
-				vox.Material.Overrides = vox.Material.Overrides.Where(o => o.Direction != dir).Append(new DirectionOverride
+				if (currentEvent.shift)
 				{
-					Direction = dir,
-					Data = surface,
-				}).ToArray();
+					vox.Material = CurrentBrush.Copy();
+				}
+				else
+				{
+					Debug.Log($"Set voxel at {brushCoord} ({dir})");
+					var surface = CurrentBrush.GetSurface(dir);
+					if (vox.Material.Overrides == null)
+					{
+						vox.Material.Overrides = new DirectionOverride[0];
+					}
+					vox.Material.Overrides = vox.Material.Overrides.Where(o => o.Direction != dir).Append(new DirectionOverride
+					{
+						Direction = dir,
+						Data = surface,
+					}).ToArray();
+				}
+				renderer.Mesh.Voxels[brushCoord] = vox;
 			}
-			renderer.Mesh.Voxels[brushCoord] = vox;
+			renderer.Invalidate(true);
+			return true;
 		}
-		renderer.Invalidate(true);
-		return true;
 	}
 }

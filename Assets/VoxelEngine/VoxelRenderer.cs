@@ -25,19 +25,13 @@ public class VoxelRenderer : MonoBehaviour
 	private MeshFilter m_filter;
 	public MeshRenderer MeshRenderer;
 	private MeshCollider m_collider;
+	private bool m_isDirty;
 
 	[SerializeField]
 	[HideInInspector]
 	private string m_lastMeshHash;
 
 	public Bounds Bounds => MeshRenderer.bounds;
-
-	private void Start()
-	{
-		Invalidate(false);
-	}
-
-	
 
 	private void Update()
 	{
@@ -46,12 +40,13 @@ public class VoxelRenderer : MonoBehaviour
 			var scale = VoxelCoordinate.LayerToScale(SnapLayer);
 			transform.localPosition = transform.localPosition.RoundToIncrement(scale / (float)VoxelCoordinate.LayerRatio);
 		}
-		if (Mesh?.Hash == m_lastMeshHash)
+		if (m_isDirty || Mesh?.Hash != m_lastMeshHash)
 		{
-			return;
+			Invalidate(false);
 		}
-		Invalidate(false);
 	}
+
+	public void SetDirty() => m_isDirty = true;
 
 	private void SetupComponents(bool forceCollider)
 	{
@@ -65,7 +60,7 @@ public class VoxelRenderer : MonoBehaviour
 			MeshRenderer = gameObject.GetOrAddComponent<MeshRenderer>();
 		}
 		//m_renderer.hideFlags = HideFlags.HideAndDontSave;
-		if(GenerateCollider && !forceCollider)
+		if(GenerateCollider || forceCollider)
 		{
 			if (!m_collider)
 			{
@@ -89,8 +84,9 @@ public class VoxelRenderer : MonoBehaviour
 		Invalidate(false);
 	}
 
-	public void Invalidate(bool forceCollider)
+	public void Invalidate(bool forceCollider)	
 	{
+		m_isDirty = false;
 		Debug.Log($"Invalidated {this}", gameObject);
 		SetupComponents(forceCollider);
 		if(!Mesh)
@@ -108,7 +104,14 @@ public class VoxelRenderer : MonoBehaviour
 		}
 		if(!CustomMaterials)
 		{
-			MeshRenderer.sharedMaterials = new[] { VoxelManager.Instance.DefaultMaterial, VoxelManager.Instance.DefaultMaterialTransparent, };
+			if (Mesh.Voxels.Any(v => v.Value.Material.MaterialMode == EMaterialMode.Transparent))
+			{
+				MeshRenderer.sharedMaterials = new[] { VoxelManager.Instance.DefaultMaterial, VoxelManager.Instance.DefaultMaterialTransparent, };
+			}
+			else if (MeshRenderer)
+			{
+				MeshRenderer.sharedMaterials = new[] { VoxelManager.Instance.DefaultMaterial, };
+			}
 		}
 		m_lastMeshHash = Mesh.Hash;
 	}

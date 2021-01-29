@@ -182,13 +182,13 @@ public class VoxelMesh : ScriptableObject
 			}
 
 			// If the neighbour in a higher layer blocks then the whole side is guaranteed to be occluded
-			neighborCoord = higherCoord + VoxelCoordinate.DirectionToCoordinate(dir, higherLayer);
+			/*neighborCoord = higherCoord + VoxelCoordinate.DirectionToCoordinate(dir, higherLayer);
 			if (Voxels.TryGetValue(neighborCoord, out n)
 				&& n.Material.RenderMode == ERenderMode.Block
 				&& n.Material.MaterialMode == vox.Material.MaterialMode)
 			{
 				dirs.RemoveAt(i);
-			}
+			}*/
 		}
 		DoPlanes(origin, size.y, size.xz(), dirs, vox, data);
 	}
