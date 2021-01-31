@@ -118,8 +118,9 @@ public class VoxelRenderer : MonoBehaviour
 
 	public Voxel? GetVoxel(int triangleIndex)
 	{
-		if(triangleIndex < 0)
+		if(triangleIndex < 0 || !m_filter || !m_filter.sharedMesh)
 		{
+			SetDirty();
 			return null;
 		}
 
