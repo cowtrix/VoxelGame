@@ -64,9 +64,10 @@ public class InputManager : Singleton<InputManager>
 			HeldItem.transform.SetParent(UIManager.Instance.HeldItemContainer);
 			HeldItem.GetComponent<Rigidbody>().isKinematic = true;
 			HeldItem.transform.localPosition = Vector3.zero;
-			HeldItem.transform.localRotation = Quaternion.identity;
+			HeldItem.transform.localRotation = Quaternion.Euler(0, 180, 0);
 			HeldItem.gameObject.layer = 5;
 			UIManager.Instance.HeldItemName.text = HeldItem.name.Replace("(Clone)", "").Trim();
+			UIManager.Instance.HeldItemDescription.text = HeldItem?.Description;
 			for (int i = 0; i < HeldItem.Traits.Count; i++)
 			{
 				var trait = HeldItem.Traits[i];
@@ -116,10 +117,11 @@ public class InputManager : Singleton<InputManager>
 				var go = HeldItem;
 				HeldItem = null;
 				go.transform.SetParent(null);
+				go.gameObject.layer = 9;
 				go.transform.position = box.transform.position + box.InsertPosition;
 				var rb = go.GetComponent<Rigidbody>();
 				rb.isKinematic = false;
-				box.StoredItems.Add(HeldItem);
+				//box.StoredItems.Add(go);
 				box.DelayClose(.5f);
 				TargetTransform = BoxViewTransform;
 			}
@@ -150,7 +152,6 @@ public class InputManager : Singleton<InputManager>
 			}
 			LostFoundGameManager.Instance.Boxes.ForEach(b =>
 			{
-				b.StoredItems.Remove(HeldItem);
 				b.DelayClose(.5f);
 			});
 		}
@@ -160,6 +161,7 @@ public class InputManager : Singleton<InputManager>
 			{
 				var go = HeldItem;
 				HeldItem = null;
+				go.gameObject.layer = 9;
 				mat.CurrentItem = go;
 				go.transform.SetParent(null);
 				go.transform.position = mat.transform.position + mat.InsertPosition;
@@ -172,6 +174,10 @@ public class InputManager : Singleton<InputManager>
 			Destroy(HeldItem.gameObject);
 			bin.Destr();
 			HeldItem = null;
+		}
+		else if (FocusedItem is Credits cr)
+		{
+			cr.CreditsContainer.SetActive(!cr.CreditsContainer.activeSelf);
 		}
 	}
 }

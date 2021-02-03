@@ -9,6 +9,7 @@ public class UIManager : Singleton<UIManager>
 	public Transform HeldItemContainer;
 	public Text VerbText;
 	public Text HeldItemName;
+	public Text HeldItemDescription;
 
 	public List<RectTransform> HeldItemTraits;
 }

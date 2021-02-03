@@ -3,7 +3,7 @@
 public class GameItem : InteractableItem 
 {
 	public List<eItemTrait> Traits;
-
+	public string Description;
 	public override string Verb => InputManager.Instance.HeldItem ? "" : "Pick Up";
 }
 
