@@ -8,6 +8,28 @@ namespace Common
 {
     public static class GameObjectExtensions
     {
+        public static T GetOrAddComponent<T>(this GameObject go) where T : Component
+        {
+            var c = go?.GetComponent<T>();
+            if (!c)
+            {
+                c = go?.AddComponent<T>();
+            }
+            return c;
+        }
+
+        public static void SafeDestroy(this Object obj)
+        {
+            if (Application.isPlaying)
+            {
+                Object.Destroy(obj);
+            }
+            else
+            {
+                Object.DestroyImmediate(obj);
+            }
+        }
+
         public static void OptimizeAndFlattenHierarchy(Transform root)
         {
             FlattenHierarchyRecursive(root, root);
@@ -107,16 +129,6 @@ namespace Common
                 return gameObject.AddComponent<T>();
             }
             return null;
-        }
-
-        public static T GetOrAddComponent<T>(this GameObject gameObject) where T : Component
-        {
-            T ret = gameObject.GetComponent<T>();
-            if (ret == null)
-            {
-                ret = gameObject.AddComponent<T>();
-            }
-            return ret;
         }
 
         public static Component GetOrAddComponent(this GameObject gameObject, Type t)
