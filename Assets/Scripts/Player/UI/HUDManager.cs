@@ -28,7 +28,7 @@ public class HUDManager : Singleton<HUDManager>
 		}
 		else
 		{
-			FocusTransform.position = Camera.WorldToScreenPoint(CameraController.FocusPoint);
+			FocusTransform.position = Vector3.one;
 			FocusTransform.sizeDelta = Vector2.one * NoObjectScale;
 			Icon.sprite = null;
 		}

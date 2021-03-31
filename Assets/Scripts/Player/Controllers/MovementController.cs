@@ -1,41 +1,31 @@
 
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class MovementController : MonoBehaviour
 {
-	public SmoothPositionVector3 SmoothPosition { get; private set; }
+	private GravityManager GravityManager => GravityManager.Instance;
+	private CameraController CameraController => CameraController.Instance;
 
-	public CameraController CameraController => CameraController.Instance;
-    public PlayerInput Input;
+	[Header("References")]
+	public PlayerInput Input;
 	public Rigidbody Rigidbody;
 
 	[Header("Parameters")]
-	public float MovementSpeed = 1f;
-	public float StrafeSpeed = .7f;
-	public GravitySource GravitySource;
-	public Vector3 GravityVector = new Vector3(0, -1, 0);
-	public AnimationCurve Jetpack;
-	public Vector3 Jump = new Vector3(0, 2, 0);
-	public float GroundCastDistance = 10f;
-	public AnimationCurve GravityDamper;
-	public float HoverHeight = .5f;
-	public LayerMask LayerMask;
-	public float RotateSpeed = 1f;
+	public float MovementSpeed = 100f;
+	public float StrafeSpeed = 100f;
+	public Vector3 JumpStrength = new Vector3(0, 500, 0);
+	public LayerMask CollisionMask;
+	public float RotateTowardGravitySpeed = 1f;
 
-	private InputAction m_move, m_jump;
-	private float m_jumpTime;
+	public float GroundingDistance = 1;
 	public bool IsGrounded;
 
-	private Vector3 GetGravityVector()
-	{
-		if(GravitySource)
-		{
-			return (transform.position - GravitySource.transform.position).normalized * GravitySource.Strength;
-		}
-		return GravityVector;
-	}
+	public SmoothPositionVector3 SmoothPosition { get; private set; }
+
+	private InputAction m_move, m_jump;
 
 	private void Start()
 	{
@@ -49,69 +39,43 @@ public class MovementController : MonoBehaviour
 	private void FixedUpdate()
 	{
 		var dt = Time.fixedDeltaTime;
-		var gravityVec = GetGravityVector();
-		var scaleFactor = transform.lossyScale.x;
-		var castVector = transform.localToWorldMatrix.MultiplyVector(gravityVec.normalized * GroundCastDistance * scaleFactor);
-		Debug.DrawLine(transform.position, transform.position + castVector, Color.white);
-		if (Physics.Raycast(transform.position, -transform.up, out var hitInfo, GroundCastDistance * scaleFactor, LayerMask))
+		var gravityVec = GravityManager.GetGravityForce(transform.position);
+
+		IsGrounded = Physics.Raycast(transform.position, gravityVec, out var groundHit, GroundingDistance, CollisionMask, QueryTriggerInteraction.Ignore);
+		Debug.DrawLine(transform.position, transform.position + gravityVec, Color.green);
+
 		{
-			var hoverVector = transform.localToWorldMatrix.MultiplyVector(Vector3.down * HoverHeight);
-			Debug.DrawLine(transform.position + new Vector3(.1f, 0, .1f), transform.position + hoverVector + new Vector3(.1f, 0, .1f), Color.green);
-			Debug.DrawLine(transform.position, hitInfo.point, Color.magenta);
-			
-			if(hitInfo.distance < HoverHeight * scaleFactor)
+			// Straighten up
+			var straightenQuat = Quaternion.FromToRotation(Vector3.up, -gravityVec.normalized);
+			var straightenLerp = RotateTowardGravitySpeed * dt;
+			Rigidbody.rotation = Quaternion.Lerp(Rigidbody.rotation, straightenQuat, straightenLerp);
+			//Rigidbody.rotation = straightenQuat;
+			Debug.DrawLine(transform.position, transform.position + straightenQuat * transform.forward, Color.yellow);
+		}
+
+		{
+			// Move from input
+			if (m_jump.triggered)
 			{
-				if (!Physics.Raycast(transform.position, transform.up, out var uphitInfo, HoverHeight * scaleFactor * .75f, LayerMask))
-				{
-					var percent = 1 - (hitInfo.distance / hoverVector.magnitude);
-					Rigidbody.AddForce(-gravityVec * dt * GravityDamper.Evaluate(percent) * scaleFactor);
-					IsGrounded = true;
-				}
-				else
-				{
-					Debug.DrawLine(uphitInfo.point, transform.position, Color.magenta);
-				}
+				Debug.Log($"Jumping");
+				Rigidbody.AddForce(transform.localToWorldMatrix.MultiplyVector(JumpStrength) * Rigidbody.mass);
 			}
-		}
 
-		Rigidbody.mass = scaleFactor;
-		Rigidbody.ResetCenterOfMass();
-
-		Rigidbody.MoveRotation(Quaternion.Lerp(Rigidbody.rotation, 
-			Quaternion.LookRotation(Vector3.forward, -gravityVec), RotateSpeed * dt));
-
-		Rigidbody.AddForce(gravityVec * dt * scaleFactor);
-		/*if(m_jump.triggered)
-		{
-			Debug.Log($"Jumping");
-			Rigidbody.AddForce(transform.localToWorldMatrix.MultiplyVector(Jump));
-		}*/
-		
-		if(m_jump.ReadValue<float>() > 0)
-		{
-			if (!IsGrounded)
+			var movement = m_move.ReadValue<Vector2>();
+			var localVelocityDirection = new Vector3(movement.x, 0, movement.y);
+			var worldVelocityDirection = CameraController.transform.localToWorldMatrix.MultiplyVector(localVelocityDirection);
+			if (IsGrounded)
 			{
-				m_jumpTime = 1;
+				Debug.DrawLine(transform.position, groundHit.point, Color.white, 5);
+				Debug.DrawLine(transform.position, transform.position + worldVelocityDirection, Color.magenta, 5);
+				worldVelocityDirection -= groundHit.normal * Vector3.Dot(worldVelocityDirection, groundHit.normal);
 			}
-			var amount = Jetpack.Evaluate(m_jumpTime);
-			Rigidbody.AddForce(transform.localToWorldMatrix.MultiplyVector(amount * Vector3.up) * dt);
-			m_jumpTime += dt;
-		}
-		else
-		{
-			m_jumpTime = 0;
-		}
-
-		var movement = m_move.ReadValue<Vector2>();
-		if(CameraController.IsFreeLook)
-		{
-			Rigidbody.velocity += transform.localToWorldMatrix.MultiplyVector(
-				new Vector3(movement.x * StrafeSpeed, 0, movement.y * MovementSpeed) * dt);
-		}
-		else
-		{
-			Rigidbody.velocity += CameraController.transform.localToWorldMatrix.MultiplyVector(
-				new Vector3(movement.x * StrafeSpeed, 0, movement.y * MovementSpeed) * dt);
+			else
+			{
+				Rigidbody.AddForce(gravityVec * dt * Rigidbody.mass);
+			}
+			Debug.DrawLine(transform.position, transform.position + worldVelocityDirection, Color.cyan, 5);
+			Rigidbody.velocity += worldVelocityDirection.normalized * MovementSpeed * dt;
 		}
 		SmoothPosition.Push(Rigidbody.position);
 	}

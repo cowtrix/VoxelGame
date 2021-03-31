@@ -8,11 +8,44 @@ using UnityEngine.Rendering;
 
 public class IntermediateVoxelMeshData
 {
+	public IntermediateVoxelMeshData(VoxelMesh mesh)
+	{
+		Voxels = mesh?.Voxels;
+		VoxelMapping = mesh?.VoxelMapping;
+	}
+
+	public TriangleVoxelMapping VoxelMapping;
+	public VoxelMapping Voxels;
+
 	public List<Vector3> Vertices = new List<Vector3>();
 	public Dictionary<int, List<int>> Triangles = new Dictionary<int, List<int>>();
 	public List<Color> Color1 = new List<Color>();
 	public List<Vector2> UV1 = new List<Vector2>();
 	public List<Vector4> UV2 = new List<Vector4>();
+
+	public Mesh SetMesh(Mesh mesh)
+	{
+		if (!mesh)
+		{
+			mesh = new Mesh();
+		}
+		mesh.Clear();
+		mesh.SetVertices(Vertices);
+		mesh.SetColors(Color1);
+		if (Triangles.Any())
+		{
+			var meshCount = Triangles.Max(k => k.Key) + 1;
+			mesh.subMeshCount = meshCount;
+			foreach (var submesh in Triangles)
+			{
+				mesh.SetTriangles(submesh.Value, submesh.Key);
+			}
+		}
+		mesh.SetUVs(0, UV1);
+		mesh.SetUVs(1, UV2);
+		mesh.RecalculateNormals();
+		return mesh;
+	}
 }
 
 [Serializable]
@@ -64,14 +97,15 @@ public class VoxelMesh : ScriptableObject
 
 	public static EVoxelDirection[] Directions = Enum.GetValues(typeof(EVoxelDirection)).Cast<EVoxelDirection>().ToArray();
 
+	public void Invalidate() => Hash = Guid.NewGuid().ToString();
+
 	public Mesh GenerateMeshInstance(Mesh mesh, sbyte minLayer = sbyte.MinValue, sbyte maxLayer = sbyte.MaxValue)
 	{
-		VoxelMapping = new TriangleVoxelMapping();
 		if (!mesh)
 		{
 			mesh = new Mesh();
 		}
-		var data = new IntermediateVoxelMeshData();
+		var data = new IntermediateVoxelMeshData(this);
 		foreach (var vox in Voxels
 			.Where(v => v.Key.Layer >= minLayer && v.Key.Layer <= maxLayer)
 			.OrderBy(v => v.Value.Material.MaterialMode))
@@ -108,22 +142,10 @@ public class VoxelMesh : ScriptableObject
 					break;
 			}
 		}
-		mesh.Clear();
-		mesh.SetVertices(data.Vertices);
-		mesh.SetColors(data.Color1);
-		if (data.Triangles.Any())
-		{
-			var meshCount = data.Triangles.Max(k => k.Key) + 1;
-			mesh.subMeshCount = meshCount;
-			foreach (var submesh in data.Triangles)
-			{
-				mesh.SetTriangles(submesh.Value, submesh.Key);
-			}
-		}
-		mesh.SetUVs(0, data.UV1);
-		mesh.SetUVs(1, data.UV2);
-		mesh.RecalculateNormals();
 
+		data.SetMesh(mesh);
+		VoxelMapping = data.VoxelMapping;
+		Voxels = data.Voxels;
 		return mesh;
 	}
 
@@ -153,14 +175,14 @@ public class VoxelMesh : ScriptableObject
 			.Select(v => v.Value);
 	}
 
-	private void Plane(Voxel vox, IntermediateVoxelMeshData data, IEnumerable<EVoxelDirection> dirs)
+	public static void Plane(Voxel vox, IntermediateVoxelMeshData data, IEnumerable<EVoxelDirection> dirs)
 	{
 		var origin = vox.Coordinate.ToVector3();
 		var size = vox.Coordinate.GetScale() * Vector3.one;
 		DoPlanes(origin, 0, size.xz(), dirs, vox, data);
 	}
 
-	private void Cube(Voxel vox, IntermediateVoxelMeshData data)
+	public static void Cube(Voxel vox, IntermediateVoxelMeshData data)
 	{
 		var origin = vox.Coordinate.ToVector3();
 		var size = vox.Coordinate.GetScale() * Vector3.one;
@@ -173,7 +195,8 @@ public class VoxelMesh : ScriptableObject
 		{
 			EVoxelDirection dir = dirs[i];
 			var neighborCoord = vox.Coordinate + VoxelCoordinate.DirectionToCoordinate(dir, vox.Coordinate.Layer);
-			if (Voxels.TryGetValue(neighborCoord, out var n)
+			if (data.Voxels != null
+				&& data.Voxels.TryGetValue(neighborCoord, out var n)
 				&& n.Material.RenderMode == ERenderMode.Block
 				&& n.Material.MaterialMode == vox.Material.MaterialMode)
 			{
@@ -193,7 +216,7 @@ public class VoxelMesh : ScriptableObject
 		DoPlanes(origin, size.y, size.xz(), dirs, vox, data);
 	}
 
-	private void DoPlanes(Vector3 origin, float offset, Vector2 size,
+	private static void DoPlanes(Vector3 origin, float offset, Vector2 size,
 		IEnumerable<EVoxelDirection> dirs, Voxel vox, IntermediateVoxelMeshData data)
 	{
 		var submeshIndex = (int)vox.Material.MaterialMode;
@@ -201,7 +224,10 @@ public class VoxelMesh : ScriptableObject
 		{
 			tris = new List<int>();
 			data.Triangles[submeshIndex] = tris;
-			VoxelMapping[submeshIndex] = new TriangleVoxelMapping.InnerMapping();
+			if(data.VoxelMapping != null)
+			{
+				data.VoxelMapping[submeshIndex] = new TriangleVoxelMapping.InnerMapping();
+			}
 		}
 		var startTri = tris.Count / 3;
 		foreach (var dir in dirs)
@@ -220,9 +246,11 @@ public class VoxelMesh : ScriptableObject
 			var endTri = tris.Count / 3;
 			for (var j = startTri; j < endTri; ++j)
 			{
-				var key = j;
-				VoxelMapping[submeshIndex][key] =
-					new VoxelCoordinateTriangleMapping { Coordinate = vox.Coordinate, Direction = dir };
+				if(data.VoxelMapping != null)
+				{
+					data.VoxelMapping[submeshIndex][j] =
+						new VoxelCoordinateTriangleMapping { Coordinate = vox.Coordinate, Direction = dir };
+				}
 			}
 		}
 	}

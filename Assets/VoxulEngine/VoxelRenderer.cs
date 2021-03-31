@@ -8,19 +8,21 @@ using UnityEngine;
 [ExecuteAlways]
 public class VoxelRenderer : MonoBehaviour
 {
-	public bool CustomMaterials;
-	public bool GenerateCollider;
-	public bool SnapToGrid;
+	[HideInInspector]
+	public VoxelMesh Mesh;
 
+	[Header("Settings")]
+	public bool CustomMaterials;
+	public bool GenerateCollider = true;
+	public bool SnapToGrid;
+	[Range(sbyte.MinValue, sbyte.MaxValue)]
+	public sbyte SnapLayer = 0;
+
+	[Header("Rendering")]
 	[Range(sbyte.MinValue, sbyte.MaxValue)]
 	public sbyte MinLayer = sbyte.MinValue;
 	[Range(sbyte.MinValue, sbyte.MaxValue)]
 	public sbyte MaxLayer = sbyte.MaxValue;
-
-	[Range(sbyte.MinValue, sbyte.MaxValue)]
-	public sbyte SnapLayer = 0;
-
-	public VoxelMesh Mesh;
 
 	private MeshFilter m_filter;
 	public MeshRenderer MeshRenderer;
@@ -74,7 +76,7 @@ public class VoxelRenderer : MonoBehaviour
 	[ContextMenu("Clear")]
 	public void ClearMesh()
 	{
-		Mesh.Hash = Guid.NewGuid().ToString();
+		Mesh.Invalidate();
 		Mesh.Voxels.Clear();
 	}
 
@@ -118,6 +120,7 @@ public class VoxelRenderer : MonoBehaviour
 
 	public Voxel? GetVoxel(int triangleIndex)
 	{
+		SetupComponents(false);
 		if(triangleIndex < 0 || !m_filter || !m_filter.sharedMesh)
 		{
 			SetDirty();

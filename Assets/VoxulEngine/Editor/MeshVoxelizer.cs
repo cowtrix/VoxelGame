@@ -54,7 +54,7 @@ public class MeshVoxelizer : ScriptableWizard
 				}
 			}
 		}
-		TargetVoxelMesh.Hash = System.Guid.NewGuid().ToString();
+		TargetVoxelMesh.Invalidate();
 	}
 
 	private bool CheckParams(out string error)

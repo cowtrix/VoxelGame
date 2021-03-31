@@ -36,7 +36,7 @@ namespace VoxulEngine
 					v.Material.Overrides = null;
 					return v;
 				}).Finalise();
-				m_tempVoxelData.Hash = Guid.NewGuid().ToString();
+				m_tempVoxelData.Invalidate();
 				m_dirty = true;
 			}
 		}

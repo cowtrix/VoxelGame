@@ -58,7 +58,6 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Utilities\DebugHelper.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\SerializableDictionary.cs" />
-    <Compile Include="Assets\Scripts\VoxelGenerators\VoxelTreeGenerator.cs" />
     <Compile Include="Assets\VoxulEngine\MeshUtility.cs" />
     <Compile Include="Assets\Scripts\Utilities\TrackedObject.cs" />
     <Compile Include="Assets\Scripts\Player\InteractionColliderEvent.cs" />
@@ -70,14 +69,11 @@
     <Compile Include="Assets\Scripts\Player\UI\HUDManager.cs" />
     <Compile Include="Assets\VoxulEngine\TextureArrayCollection.cs" />
     <Compile Include="Assets\VoxulEngine\VoxelExtensions.cs" />
-    <Compile Include="Assets\Scripts\UniverseEffector.cs" />
     <Compile Include="Assets\VoxulEngine\VoxelMaterialAsset.cs" />
     <Compile Include="Assets\Scripts\Player\FaceControllerEditor.cs" />
-    <Compile Include="Assets\Scripts\Vehicles\VehicleEngineAnimation.cs" />
     <Compile Include="Assets\Scripts\Utilities\ObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\DelegateExtensions.cs" />
     <Compile Include="Assets\VoxulEngine\VoxelManager.cs" />
-    <Compile Include="Assets\Scripts\Vehicles\VehicleController.cs" />
     <Compile Include="Assets\Scripts\Utilities\Geometry2D.cs" />
     <Compile Include="Assets\Scripts\Utilities\CompositionDictionary.cs" />
     <Compile Include="Assets\Scripts\Utilities\RotationalBounds.cs" />
@@ -89,7 +85,7 @@
     <Compile Include="Assets\Scripts\Utilities\Mathfx.cs" />
     <Compile Include="Assets\VoxulEngine\VoxelMeshUtility.cs" />
     <Compile Include="Assets\Scripts\Utilities\Singleton.cs" />
-    <Compile Include="Assets\Scripts\Player\GravitySource.cs" />
+    <Compile Include="Assets\Scripts\Gravity\GravitySource.cs" />
     <Compile Include="Assets\Scripts\Utilities\Texture2DArrayGenerator.cs" />
     <Compile Include="Assets\Scripts\Utilities\BestFitSprite.cs" />
     <Compile Include="Assets\Scripts\Interaction\BuyItem.cs" />
@@ -112,10 +108,8 @@
     <Compile Include="Assets\VoxulEngine\VoxelRenderer.cs" />
     <Compile Include="Assets\Scripts\Utilities\Triangle.cs" />
     <Compile Include="Assets\Scripts\Interaction\Label.cs" />
-    <Compile Include="Assets\Scripts\Player\Controllers\HeadlightController.cs" />
     <Compile Include="Assets\Scripts\Animation\TransformAnimationController.cs" />
     <Compile Include="Assets\Scripts\Interaction\WaveInterction.cs" />
-    <Compile Include="Assets\Scripts\Player\Controllers\PlayerAnimationController.cs" />
     <Compile Include="Assets\Scripts\Utilities\GUIGradientField.cs" />
     <Compile Include="Assets\Scripts\Interaction\Interactable.cs" />
     <Compile Include="Assets\Scripts\Utilities\ColorExtensions.cs" />
@@ -126,7 +120,6 @@
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\SerializableDictionaryImplementations.cs" />
     <Compile Include="Assets\Scripts\Utilities\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\GizmoExtensions.cs" />
-    <Compile Include="Assets\Scripts\Player\Controllers\PlayerScaleController.cs" />
     <Compile Include="Assets\Scripts\Utilities\AssetCreationHelper.cs" />
     <Compile Include="Assets\VoxulEngine\VoxelLOD.cs" />
     <Compile Include="Assets\Scripts\Utilities\DragRect.cs" />
@@ -137,6 +130,12 @@
     <Compile Include="Assets\VoxulEngine\MeshVoxelLOD.cs" />
     <Compile Include="Assets\VoxulEngine\CamCubeVoxelLOD.cs" />
     <Compile Include="Assets\Scripts\Utilities\ArrayExtensions.cs" />
+    <Compile Include="Assets\Scripts\Gravity\GravityManager.cs" />
+    <Compile Include="Assets\Scripts\Gravity\RadialGravitySource.cs" />
+    <Compile Include="Assets\Scripts\DestroyableVoxel.cs" />
+    <Compile Include="Assets\Scripts\SingleVoxelRenderer.cs" />
+    <Compile Include="Assets\Scripts\Utilities\DestroyInTime.cs" />
+    <Compile Include="Assets\Scripts\Gravity\GravityRigidbody.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\GeneratedFromGraph-ItemOutline.shader" />

@@ -66,6 +66,11 @@ namespace VoxulEngine.Painter
 
 		public void DrawSceneGUI(VoxelPainter voxelPainter, VoxelRenderer renderer, Event currentEvent, sbyte painterLayer)
 		{
+			if(renderer.Mesh == null)
+			{
+				return;
+			}
+
 			var collider = renderer.GetComponent<MeshCollider>();
 			Ray worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
 			//worldRay = new Ray(collider.transform.worldToLocalMatrix.MultiplyPoint3x4(worldRay.origin), collider.transform.worldToLocalMatrix.MultiplyVector(worldRay.direction));
@@ -142,7 +147,6 @@ namespace VoxulEngine.Painter
 				"ALT to change to picker", "Window");
 			}
 			Handles.EndGUI();
-
 
 			if (DrawSceneGUIInternal(voxelPainter, renderer, currentEvent, selection, hitDir))
 			{

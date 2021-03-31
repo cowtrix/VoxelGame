@@ -105,12 +105,12 @@ namespace VoxulEngine.Painter
 				m_selection.Add(c);
 			}
 		}
+
 		public void AddSelection(VoxelCoordinate c)
 		{
 			m_selection.Add(c);
 			m_selectionDirty = true;
 		}
-
 
 		public VoxelCursor SelectionCursor
 		{
@@ -129,23 +129,62 @@ namespace VoxulEngine.Painter
 		{
 			get
 			{
-				return EditorPrefs.GetInt("Voxel_LayerMask", ~0);
+				return EditorPrefs.GetInt("VoxelPainter_LayerMask", ~0);
 			}
 			set
 			{
-				EditorPrefs.SetInt("Voxel_LayerMask", value);
+				EditorPrefs.SetInt("VoxelPainter_LayerMask", value);
 			}
 		}
+
+		public static int Tab
+		{
+			get
+			{
+				return EditorPrefs.GetInt("VoxelPainter_Tab", 0);
+			}
+			set
+			{
+				EditorPrefs.SetInt("VoxelPainter_Tab", value);
+			}
+		}
+
+		public static GUIContent[] Tabs => new[] { new GUIContent("Edit Mesh"), new GUIContent("Settings") };
 
 		public override bool RequiresConstantRepaint() => true;
 
 		public override void OnInspectorGUI()
 		{
-			base.OnInspectorGUI();
+			Renderer.Mesh = (VoxelMesh)EditorGUILayout.ObjectField("Voxel Mesh", Renderer.Mesh, typeof(VoxelMesh), true);
+			if(Renderer.Mesh == null)
+			{
+				if(GUILayout.Button("Create In-Scene Mesh"))
+				{
+					Renderer.Mesh = CreateInstance<VoxelMesh>();
+				}
+			}
+			else if(!AssetDatabase.Contains(Renderer.Mesh) && GUILayout.Button("Save In-Scene Mesh"))
+			{
+				var path = EditorUtility.SaveFilePanelInProject("Save Voxel Mesh", Renderer.name, "asset", "");
+				if(!string.IsNullOrEmpty(path))
+				{
+					AssetDatabase.CreateAsset(Renderer.Mesh, path);
+					AssetDatabase.SaveAssets();
+					AssetDatabase.Refresh();
+				}
+			}
+
+			Tab = GUILayout.Toolbar(Tab, Tabs);
+
+			if (Tab == 1)
+			{
+				base.OnInspectorGUI();
+				return;
+			}
 
 			if (!Renderer.Mesh)
 			{
-				EditorGUILayout.HelpBox("Select a Voxel Mesh asset", MessageType.Info);
+				EditorGUILayout.HelpBox("Mesh (Voxel Mesh) asset cannot be null", MessageType.Info);
 				return;
 			}
 			LayerMask = EditorGUILayout.LayerField(LayerMask);

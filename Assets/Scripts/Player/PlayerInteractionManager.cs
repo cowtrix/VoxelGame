@@ -7,12 +7,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteractionManager : MonoBehaviour
 {
+	public Transform GravCursor;
 	public float MaximumInteractionDistance = 1000;
-	public float FocusCubeSize = .1f;
-	public Transform FocusCube;
 	public LayerMask InteractionLayerMask;
 
-	private Dictionary<Interactable, Func<Vector3>> m_secondaryInteractables 
+	private Dictionary<Interactable, Func<Vector3>> m_secondaryInteractables
 		= new Dictionary<Interactable, Func<Vector3>>();
 
 	public void AddSecondaryInteractable(Interactable interactable, Func<Vector3> position)
@@ -29,41 +28,56 @@ public class PlayerInteractionManager : MonoBehaviour
 	public CameraController CameraController => CameraController.Instance;
 	public Interactable FocusedInteractable;
 
-	private InputAction m_useAction;
+	bool m_gravDown;
+	RaycastHit? m_currentHit;
 
-	private void Start()
+	public void OnGravity(InputAction.CallbackContext cntxt)
 	{
-		m_useAction = PlayerInput.actions.Single(a => a.name == "Use");
+		m_gravDown = cntxt.ReadValue<float>() > 0;
+		Debug.Log($"Set Grav Down to {m_gravDown}");
+	}
+
+	public void OnFire(InputAction.CallbackContext cntxt)
+	{
+		if (m_currentHit == null || !cntxt.started)
+		{
+			return;
+		}
+		Debug.Log("Fire!");
+		var hit = m_currentHit.Value;
+		if (m_gravDown)
+		{
+			Debug.Log($"Set gravity to {hit.normal}");
+			GravityManager.Instance.DefaultGravity = -hit.normal;
+		}
+		else
+		{
+			var destroyable = hit.collider.GetComponent<DestroyableVoxel>();
+			if (destroyable)
+			{
+				Debug.Log($"Found destroyable : {hit.collider}", hit.collider);
+				destroyable.Hit(hit.collider.transform.position, hit.point, hit.normal, hit.triangleIndex);
+			}
+			else
+			{
+				Debug.Log($"Nothing happened: {hit.collider}", hit.collider);
+			}
+		}
 	}
 
 	private void Update()
 	{
-		Interactable newInteractable = null;
-		if (Physics.Raycast(transform.position, (CameraController.FocusPoint - transform.position).normalized, out var hit,
-			MaximumInteractionDistance * transform.lossyScale.x,  InteractionLayerMask, QueryTriggerInteraction.Collide))
+		var ray = new Ray(transform.position, CameraController.transform.forward);
+		if (!Physics.Raycast(ray, out var hit, MaximumInteractionDistance, InteractionLayerMask, QueryTriggerInteraction.Ignore))
 		{
-			newInteractable = hit.collider.GetComponent<Interactable>();
+			Debug.DrawRay(ray.origin, ray.direction * MaximumInteractionDistance, Color.red);
+			m_currentHit = null;
+			return;
 		}
-		if(FocusedInteractable != newInteractable)
-		{
-			FocusedInteractable?.OnFocusEnd.Invoke(this);
-			newInteractable?.OnFocusStart.Invoke(this);
-		}
-		FocusedInteractable = newInteractable;
-		if (FocusedInteractable)
-		{
-			FocusCube.position = FocusedInteractable.Bounds.center;
-			FocusCube.localScale = transform.worldToLocalMatrix.MultiplyVector(FocusedInteractable.Bounds.size);
-			FocusedInteractable.OnFocus.Invoke(this);
-			if (m_useAction.triggered)
-			{
-				FocusedInteractable.OnUsed.Invoke(this);
-			}
-		}
-		else
-		{
-			FocusCube.position = CameraController.FocusPoint;
-			FocusCube.localScale = FocusCubeSize * Vector3.one;
-		}
+		Debug.DrawLine(transform.position, hit.point, Color.green);
+		m_currentHit = hit;
+		GravCursor.position = hit.point;
+		GravCursor.rotation = Quaternion.LookRotation(hit.normal);
+		GravCursor.gameObject.SetActive(m_gravDown);
 	}
 }
