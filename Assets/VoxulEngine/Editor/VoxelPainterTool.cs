@@ -83,10 +83,10 @@ namespace VoxulEngine.Painter
 			}
 			else
 			{
-				var p = new Plane(renderer.transform.up, renderer.transform.position.y); ;
+				var p = new Plane(renderer.transform.up, -renderer.transform.position.y); ;
 				if (p.Raycast(worldRay, out var planePoint))
 				{
-					hitPoint = worldRay.origin + worldRay.direction * planePoint;
+					hitPoint = worldRay.origin + worldRay.direction * planePoint ;
 					hitNorm = renderer.transform.up; ;
 				}
 			}

@@ -114,8 +114,6 @@ GameObject:
   - component: {fileID: 2988922637513050689}
   - component: {fileID: 2988922637513050693}
   - component: {fileID: 2988922637513050688}
-  - component: {fileID: 2103374643}
-  - component: {fileID: 2103374642}
   m_Layer: 31
   m_Name: Crate
   m_TagString: Untagged
@@ -187,7 +185,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 94a3f69f175f81c458a0afa4ff6409ab, type: 2}
-  - {fileID: 2100000, guid: 6916ec5c864c2fc4ea6e73489af6da1e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -238,41 +235,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2222223, y: 1.1111113, z: 1.2222223}
   m_Center: {x: 0, y: 0.055555522, z: 0}
---- !u!205 &2103374643
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2988922637513050691}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0, y: 0.055555522, z: 0}
-  m_Size: 1.2222223
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.1
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2988922637513050689}
-  - screenRelativeHeight: 0.01
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 69890580}
-  m_Enabled: 1
---- !u!114 &2103374642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2988922637513050691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be8fc36ee3dfbb24d9ffa9679c68ffb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TopLODLevel: 0.1
-  LODs:
-  - {fileID: 69890578}
