@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyInTime : MonoBehaviour
 {
-    public bool ScaleOverTime = true;
+    public float ColliderOffTime = 1f;
     public float DestroyTime = 5f;
 
     private float m_timer;
@@ -17,6 +17,10 @@ public class DestroyInTime : MonoBehaviour
 	void Update()
     {
         m_timer -= Time.deltaTime;
+        if(m_timer < ColliderOffTime)
+		{
+            GetComponent<Collider>().enabled = false;
+		}
         if(m_timer < 0)
 		{
             Destroy(gameObject);

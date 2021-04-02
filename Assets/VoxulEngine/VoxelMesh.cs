@@ -175,6 +175,13 @@ public class VoxelMesh : ScriptableObject
 			.Select(v => v.Value);
 	}
 
+	public IEnumerable<Voxel> GetVoxels(Vector3 localPos, float radius)
+	{
+		return Voxels
+			.Where(v => (v.Key.ToVector3() - localPos).sqrMagnitude < (radius * radius))
+			.Select(v => v.Value);
+	}
+
 	public static void Plane(Voxel vox, IntermediateVoxelMeshData data, IEnumerable<EVoxelDirection> dirs)
 	{
 		var origin = vox.Coordinate.ToVector3();
@@ -254,4 +261,5 @@ public class VoxelMesh : ScriptableObject
 			}
 		}
 	}
+
 }

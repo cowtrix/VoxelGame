@@ -39,5 +39,10 @@ namespace Common
                 Mathf.MoveTowards(color.a, target.a, maxDelta)
                 );
         }
+
+        public static float Luminosity(this Color c)
+		{
+            return 0.2126f * c.r + 0.7152f * c.g + 0.0722f * c.b;
+        }
     }
 }

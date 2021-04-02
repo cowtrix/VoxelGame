@@ -56,7 +56,8 @@ public class PlayerInteractionManager : MonoBehaviour
 			if (destroyable)
 			{
 				Debug.Log($"Found destroyable : {hit.collider}", hit.collider);
-				destroyable.Hit(hit.collider.transform.position, hit.point, hit.normal, hit.triangleIndex);
+				//destroyable.Hit(hit.collider.transform.position, hit.point, 1, .1f);
+				destroyable.Hit(hit.triangleIndex, 1);
 			}
 			else
 			{
