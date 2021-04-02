@@ -173,6 +173,10 @@ namespace VoxulEngine.Painter
 					AssetDatabase.Refresh();
 				}
 			}
+			else if(GUILayout.Button("Clone Mesh"))
+			{
+				Renderer.Mesh = Instantiate(Renderer.Mesh);
+			}
 
 			Tab = GUILayout.Toolbar(Tab, Tabs);
 

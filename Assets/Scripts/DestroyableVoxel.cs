@@ -8,8 +8,9 @@ using Common;
 [RequireComponent(typeof(VoxelRenderer))]
 public class DestroyableVoxel : MonoBehaviour
 {
-	public float ExplosionForce;
-	public float ExplosionDistance;
+	public GameObject HealthEffect;
+	public float ExplosionForce = 400;
+	public float ExplosionDistance = 10;
 	public int Health;
 
 	private VoxelRenderer Renderer => GetComponent<VoxelRenderer>();
@@ -64,25 +65,7 @@ public class DestroyableVoxel : MonoBehaviour
 
 		foreach (var v in voxels)
 		{
-			Debug.Log($"Destroying a voxel: {v.Coordinate}");
-			if (!Mesh.Voxels.Remove(v.Coordinate))
-			{
-				continue;
-			}
-
-			// Setup the single gib
-			var gib = new GameObject("gib");
-			gib.transform.position = transform.position;
-			var r = gib.AddComponent<SingleVoxelRenderer>();
-			r.Voxel = v;
-			r.Invalidate();
-			var bc = gib.AddComponent<BoxCollider>();
-			bc.size *= .95f;
-			gib.AddComponent<DestroyInTime>();
-			var rb = r.gameObject.AddComponent<Rigidbody>();
-			rb.gameObject.AddComponent<GravityRigidbody>();
-			rb.AddExplosionForce(ExplosionForce * force, hitPoint, ExplosionDistance);
-			rb.AddTorque(Vector3.one * UnityEngine.Random.value * force);
+			DestroyVoxel(v, force, hitPoint);
 			yield return null;
 		}
 
@@ -102,6 +85,11 @@ public class DestroyableVoxel : MonoBehaviour
 		if(IsHealthBlock(v) && Health > 0)
 		{
 			Health--;
+			if(HealthEffect)
+			{
+				Instantiate(HealthEffect).transform.position = transform.position;
+			}			
+			return;
 		}
 
 		// Setup the single gib
@@ -117,6 +105,14 @@ public class DestroyableVoxel : MonoBehaviour
 		rb.gameObject.AddComponent<GravityRigidbody>();
 		rb.AddExplosionForce(ExplosionForce * force, hitPoint, ExplosionDistance);
 		rb.AddTorque(Vector3.one * UnityEngine.Random.value * force);
+	}
+
+	private void OnDisable()
+	{
+		if (Application.isPlaying && HealthEffect)
+		{
+			Instantiate(HealthEffect).transform.position = transform.position;
+		}
 	}
 }
 

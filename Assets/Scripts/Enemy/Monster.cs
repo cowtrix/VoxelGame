@@ -8,7 +8,7 @@ public class Monster : MonoBehaviour
 	public int TotalHealth => Components.Sum(x => x.Health);
 	protected IEnumerable<DestroyableVoxel> Components => GetComponentsInChildren<DestroyableVoxel>();
 
-	private void Update()
+	protected virtual void Update()
 	{
 		if(TotalHealth <= 0)
 		{
