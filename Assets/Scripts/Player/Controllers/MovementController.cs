@@ -23,17 +23,28 @@ public class MovementController : MonoBehaviour
 	public float GroundingDistance = 1;
 	public bool IsGrounded;
 
-	public SmoothPositionVector3 SmoothPosition { get; private set; }
+	private Vector2 m_inputLook;
+	private bool m_inputJump;
+	private int m_jumpCount;
 
-	private InputAction m_move, m_jump;
+	public SmoothPositionVector3 SmoothPosition { get; private set; }
 
 	private void Start()
 	{
-		m_move = Input.actions.Single(a => a.name == "Move");
-		m_jump = Input.actions.Single(a => a.name == "Jump");
 		Rigidbody.useGravity = false;
 		Cursor.lockState = CursorLockMode.Locked;
 		SmoothPosition = new SmoothPositionVector3(10, transform.position);
+	}
+
+	public void OnMove(InputAction.CallbackContext context)
+	{
+		m_inputLook = context.ReadValue<Vector2>();
+	}
+
+	public void OnJump(InputAction.CallbackContext context)
+	{
+		Debug.Log("Received jump");
+		m_inputJump = context.canceled;
 	}
 
 	private void FixedUpdate()
@@ -43,6 +54,10 @@ public class MovementController : MonoBehaviour
 
 		IsGrounded = Physics.Raycast(transform.position, gravityVec, out var groundHit, GroundingDistance, CollisionMask, QueryTriggerInteraction.Ignore);
 		Debug.DrawLine(transform.position, transform.position + gravityVec, Color.green);
+		if(IsGrounded)
+		{
+			m_jumpCount = 2;
+		}
 
 		{
 			// Straighten up
@@ -55,13 +70,15 @@ public class MovementController : MonoBehaviour
 
 		{
 			// Move from input
-			if (m_jump.triggered)
+			if (m_jumpCount > 0 && m_inputJump)
 			{
 				Debug.Log($"Jumping");
 				Rigidbody.AddForce(transform.localToWorldMatrix.MultiplyVector(JumpStrength) * Rigidbody.mass);
+				m_jumpCount--;
+				m_inputJump = false;
 			}
 
-			var movement = m_move.ReadValue<Vector2>();
+			var movement = m_inputLook;
 			var localVelocityDirection = new Vector3(movement.x, 0, movement.y);
 			var worldVelocityDirection = CameraController.transform.localToWorldMatrix.MultiplyVector(localVelocityDirection);
 			if (IsGrounded)

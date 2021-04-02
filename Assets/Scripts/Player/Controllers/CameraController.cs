@@ -11,15 +11,12 @@ public class CameraController : Singleton<CameraController>
 	[Header("Camera")]
 	public float LookSensitivity = 1;
 	public Vector2 LookAngle;
-	
-	[Header("References")]
-	public PlayerInput Input;
 
 	private InputAction m_look;
 
 	private void Start()
 	{
-		m_look = Input.actions.Single(a => a.name == "Look");
+		m_look = transform.parent.GetComponent<PlayerInput>().actions.Single(a => a.name == "Look");
 	}
 
 	private void Update()

@@ -33,8 +33,7 @@ public class PlayerInteractionManager : MonoBehaviour
 
 	public void OnGravity(InputAction.CallbackContext cntxt)
 	{
-		m_gravDown = cntxt.ReadValue<float>() > 0;
-		Debug.Log($"Set Grav Down to {m_gravDown}");
+		m_gravDown = cntxt.ReadValueAsButton();
 	}
 
 	public void OnFire(InputAction.CallbackContext cntxt)
