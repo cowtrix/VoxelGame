@@ -89,22 +89,32 @@ public class VoxelMapping : SerializableDictionary<VoxelCoordinate, Voxel>
 [CreateAssetMenu]
 public class VoxelMesh : ScriptableObject
 {
+	public Mesh Mesh;
 	[HideInInspector]
 	public string Hash;
 	[HideInInspector]
 	public TriangleVoxelMapping VoxelMapping = new TriangleVoxelMapping();
+	[HideInInspector]
 	public VoxelMapping Voxels = new VoxelMapping();
 
 	public static EVoxelDirection[] Directions = Enum.GetValues(typeof(EVoxelDirection)).Cast<EVoxelDirection>().ToArray();
 
 	public void Invalidate() => Hash = Guid.NewGuid().ToString();
 
-	public Mesh GenerateMeshInstance(Mesh mesh, sbyte minLayer = sbyte.MinValue, sbyte maxLayer = sbyte.MaxValue)
+	public Mesh GenerateMeshInstance(sbyte minLayer = sbyte.MinValue, sbyte maxLayer = sbyte.MaxValue)
 	{
-		if (!mesh)
+		if (!Mesh)
 		{
-			mesh = new Mesh();
+			Mesh = new Mesh();
+#if UNITY_EDITOR
+			if(UnityEditor.AssetDatabase.Contains(this))
+			{
+				var assetPath = UnityEditor.AssetDatabase.GetAssetPath(this);
+				UnityEditor.AssetDatabase.AddObjectToAsset(Mesh, assetPath);
+			}
+#endif
 		}
+		Mesh.name = $"{name}_mesh_{Hash}";
 		var data = new IntermediateVoxelMeshData(this);
 		foreach (var vox in Voxels
 			.Where(v => v.Key.Layer >= minLayer && v.Key.Layer <= maxLayer)
@@ -143,10 +153,10 @@ public class VoxelMesh : ScriptableObject
 			}
 		}
 
-		data.SetMesh(mesh);
+		Mesh = data.SetMesh(Mesh);
 		VoxelMapping = data.VoxelMapping;
 		Voxels = data.Voxels;
-		return mesh;
+		return Mesh;
 	}
 
 	public IEnumerable<VoxelCoordinate> GetVoxelCoordinates(Bounds bounds, sbyte currentLayer)
@@ -231,7 +241,7 @@ public class VoxelMesh : ScriptableObject
 		{
 			tris = new List<int>();
 			data.Triangles[submeshIndex] = tris;
-			if(data.VoxelMapping != null)
+			if (data.VoxelMapping != null)
 			{
 				data.VoxelMapping[submeshIndex] = new TriangleVoxelMapping.InnerMapping();
 			}
@@ -253,7 +263,7 @@ public class VoxelMesh : ScriptableObject
 			var endTri = tris.Count / 3;
 			for (var j = startTri; j < endTri; ++j)
 			{
-				if(data.VoxelMapping != null)
+				if (data.VoxelMapping != null)
 				{
 					data.VoxelMapping[submeshIndex][j] =
 						new VoxelCoordinateTriangleMapping { Coordinate = vox.Coordinate, Direction = dir };

@@ -83,7 +83,12 @@ public class VoxelRenderer : MonoBehaviour
 	[ContextMenu("Force Redraw")]
 	public void ForceRedraw()
 	{
+		Mesh.Invalidate();
 		Invalidate(false);
+#if UNITY_EDITOR
+		UnityEditor.EditorUtility.SetDirty(gameObject);
+		UnityEditor.EditorUtility.SetDirty(Mesh);
+#endif
 	}
 
 	public void Invalidate(bool forceCollider)	
@@ -99,7 +104,7 @@ public class VoxelRenderer : MonoBehaviour
 		{
 			MinLayer = MaxLayer;
 		}
-		m_filter.sharedMesh = Mesh.GenerateMeshInstance(null, MinLayer, MaxLayer);
+		m_filter.sharedMesh = Mesh.GenerateMeshInstance(MinLayer, MaxLayer);
 		if(GenerateCollider)
 		{
 			m_collider.sharedMesh = m_filter.sharedMesh;
