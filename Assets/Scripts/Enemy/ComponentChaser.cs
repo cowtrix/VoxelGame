@@ -8,7 +8,7 @@ public class ComponentChaser : MonoBehaviour
     public float Distance = 1;
 	public float ChaseSpeed = 1f;
 
-	private Vector3 ChasePosition => Chaser.transform.position + 
+	private Vector3 ChasePosition => !Chaser ? transform.position : Chaser.transform.position + 
 		Chaser.transform.forward * Distance;
 
 	private void Update()

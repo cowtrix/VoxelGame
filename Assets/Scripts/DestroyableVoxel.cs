@@ -19,6 +19,7 @@ public class DestroyableVoxel : MonoBehaviour
 	private void Start()
 	{
 		Renderer.Mesh = Instantiate(Renderer.Mesh);
+		Mesh.Mesh = null; // To make sure we make our own
 		Health = Mesh.Voxels.Values.Count(IsHealthBlock);
 	}
 

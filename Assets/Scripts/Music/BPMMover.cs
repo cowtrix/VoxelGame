@@ -9,6 +9,6 @@ public class BPMMover : MonoBehaviour
 
 	private void Update()
 	{
-		transform.localPosition = Offset + BeatManager.Instance.BPMSawtooth * Magnitude;
+		transform.localPosition = Offset + (float)BeatManager.Instance.BPMSawtooth * Magnitude;
 	}
 }

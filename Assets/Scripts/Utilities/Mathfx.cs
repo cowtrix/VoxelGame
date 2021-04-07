@@ -293,15 +293,19 @@ namespace Common
             return true;
         }
 
+        public static float MakeSafe(this float f)
+		{
+            if(float.IsNaN(f) || float.IsInfinity(f))
+			{
+                return 0;
+			}
+            return f;
+		}
 
         public static Vector3 CalculateInterceptCourse(Vector3 aTargetPos, Vector3 aTargetSpeed, Vector3 aInterceptorPos, float aInterceptorSpeed, float maxLead = 9999f)
         {
             Vector3 targetDir = aTargetPos - aInterceptorPos;
 
-            if (aTargetSpeed.sqrMagnitude < 0.0001f)
-            {
-                //return aTargetPos;
-            }
             float iSpeed2 = aInterceptorSpeed * aInterceptorSpeed;
             float tSpeed2 = aTargetSpeed.sqrMagnitude;
             float fDot1 = Vector3.Dot(targetDir, aTargetSpeed);
@@ -335,11 +339,6 @@ namespace Common
 
             result.Normalize();
             return FindClosestPointOfApproach(aTargetPos, aTargetSpeed, aInterceptorPos, result * aInterceptorSpeed) * aTargetSpeed;
-            //var interceptionDistance = result.magnitude;
-            //length = Mathf.Min(interceptionDistance, maxLead);
-            //return (result / interceptionDistance) * length;
-
-
         }
 
         public static float FindClosestPointOfApproach(Vector3 aPos1, Vector3 aSpeed1, Vector3 aPos2, Vector3 aSpeed2)

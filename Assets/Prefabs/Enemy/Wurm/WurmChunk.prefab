@@ -55,7 +55,7 @@ MonoBehaviour:
   MinLayer: -128
   MaxLayer: 127
   MeshRenderer: {fileID: 8855555358888890486}
-  m_lastMeshHash: e2128039-036c-4ff8-ae49-aed2b72f08b3
+  m_lastMeshHash: a681eb88-7f3b-4b62-8ca0-291431f0ee5c
 --- !u!33 &529953250492956368
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 962356967019673690}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 6154911547192486212, guid: 249d5dcec89b7dc41b584f113f6b2d60, type: 2}
 --- !u!23 &8855555358888890486
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 6154911547192486212, guid: 249d5dcec89b7dc41b584f113f6b2d60, type: 2}
 --- !u!114 &7226434777002031739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +144,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8645782556194412426}
+  - component: {fileID: 4324972357397202850}
+  - component: {fileID: 7746954169649459397}
   m_Layer: 0
   m_Name: WurmChunk
   m_TagString: Untagged
@@ -166,3 +168,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4324972357397202850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953238551923455727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e51cf41d623769419d7d438b76ef68b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Chaser: {fileID: 0}
+  Distance: -1.4
+  ChaseSpeed: 1
+--- !u!114 &7746954169649459397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953238551923455727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e77c72e4ebb324fa2202514d8edc07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnObject: {fileID: 8765889132135942586, guid: 7d229223238787f458a530f67011cc1c, type: 3}
+  SpawnPosition: {x: 0, y: 0, z: 0}
+  ParentObject: 0
+  InheritRotation: 1
+  SpawnInterval: {x: 4, y: 4}
+  DestroyableVoxel: {fileID: 7226434777002031739}

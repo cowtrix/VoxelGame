@@ -59,7 +59,7 @@ public class Wurm : Monster
             // Something in front forward
             var vacantDirection = GetVacantDirection((Head.forward + hit.normal) / 2f);
             m_targetPosition = transform.position + vacantDirection * ObstacleCastDistance;
-            Debug.Log("Steered");
+            //Debug.Log("Steered");
             return;
         }
 		else

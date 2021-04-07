@@ -103,7 +103,11 @@ public class VoxelMesh : ScriptableObject
 
 	public Mesh GenerateMeshInstance(sbyte minLayer = sbyte.MinValue, sbyte maxLayer = sbyte.MaxValue)
 	{
-		if (!Mesh)
+		if (!Mesh
+#if UNITY_EDITOR
+			|| (Mesh && UnityEditor.AssetDatabase.Contains(this) && !UnityEditor.AssetDatabase.Contains(Mesh))
+#endif
+			)
 		{
 			Mesh = new Mesh();
 #if UNITY_EDITOR
