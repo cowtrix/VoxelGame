@@ -1,49 +1,97 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 [Serializable]
 public class RaycastHitEvent : UnityEvent<RaycastHit> { }
 
-public abstract class Weapon : MonoBehaviour
+namespace Weapons
 {
-	public GameObject ImpactEffect;
-	protected CameraController CameraController;
-	public float CastDistance = 1000;
-	public LayerMask LayerMask;
-
-	public UnityEvent OnWeaponFire;
-	public RaycastHitEvent OnWeaponHit;
-
-	private void Start()
+	[Serializable]
+	public struct ImpactEffect
 	{
-		CameraController = CameraController.Instance;
+		public enum ESpawnMode
+		{
+			Always,
+			DestroyableOnly,
+			NonDestroyableOnly,
+		}
+
+		public GameObject Object;
+		public ESpawnMode SpawnMode;
+		public bool AlignToNormal, Flip;
+		public Vector3 HitOffset;
+
+		public void Hit(RaycastHit hit)
+		{
+			if (!Object)
+			{
+				return;
+			}
+			switch(SpawnMode)
+			{
+				case ESpawnMode.NonDestroyableOnly:
+					if (hit.collider.GetComponent<DestroyableVoxel>())
+						return;
+					break;
+				case ESpawnMode.DestroyableOnly:
+					if (!hit.collider.GetComponent<DestroyableVoxel>())
+						return;
+					break;
+			}
+			var eff = UnityEngine.Object.Instantiate(Object);
+			eff.SetActive(true);
+			eff.transform.position = hit.point;
+			if(AlignToNormal)
+			{
+				eff.transform.LookAt(hit.point + hit.normal * (Flip ? 1 : -1));
+			}
+			eff.transform.position += eff.transform.localToWorldMatrix.MultiplyVector(HitOffset);
+		}
 	}
 
-	public virtual void Fire()
+	public abstract class Weapon : MonoBehaviour
 	{
-		var ray = new Ray(CameraController.transform.position, CameraController.transform.forward);
-		if (Physics.Raycast(ray, out var hit, CastDistance, LayerMask, QueryTriggerInteraction.Ignore))
+		public List<ImpactEffect> ImpactEffects;
+		protected CameraController CameraController;
+		public float CastDistance = 1000;
+		public LayerMask LayerMask;
+
+		public UnityEvent OnWeaponFire;
+		public RaycastHitEvent OnWeaponHit;
+
+		private void Start()
 		{
-			Debug.DrawLine(ray.origin, hit.point, Color.green);
-			OnHit(hit);
-			OnWeaponHit.Invoke(hit);
-			if(ImpactEffect)
+			CameraController = CameraController.Instance;
+			foreach(var eff in ImpactEffects)
 			{
-				var eff = Instantiate(ImpactEffect);
-				eff.SetActive(true);
-				eff.transform.position = hit.point;
-				eff.transform.LookAt(hit.point + hit.normal);
+				eff.Object?.SetActive(false);
 			}
 		}
-		else
+
+		public virtual void Fire()
 		{
-			Debug.DrawRay(ray.origin, ray.direction * CastDistance, Color.red);
+			var ray = new Ray(CameraController.transform.position, CameraController.transform.forward);
+			if (Physics.Raycast(ray, out var hit, CastDistance, LayerMask, QueryTriggerInteraction.Ignore))
+			{
+				Debug.DrawLine(ray.origin, hit.point, Color.green);
+				OnHit(hit);
+				OnWeaponHit.Invoke(hit);
+				foreach(var eff in ImpactEffects)
+				{
+					eff.Hit(hit);
+				}
+			}
+			else
+			{
+				Debug.DrawRay(ray.origin, ray.direction * CastDistance, Color.red);
+			}
+			OnWeaponFire.Invoke();
 		}
-		OnWeaponFire.Invoke();
+
+		protected abstract void OnHit(RaycastHit hit);
+
 	}
-
-	protected abstract void OnHit(RaycastHit hit);
-
 }

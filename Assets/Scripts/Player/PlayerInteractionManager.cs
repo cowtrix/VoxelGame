@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Weapons;
 
 public class PlayerInteractionManager : MonoBehaviour
 {

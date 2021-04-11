@@ -1,16 +1,20 @@
 ﻿using Common;
 using UnityEngine;
 
-public class GravityGun : Weapon
+
+namespace Weapons
 {
-	protected override void OnHit(RaycastHit hit)
+	public class GravityGun : Weapon
 	{
-		var gs = hit.collider.transform.GetComponentInAncestors<GravitySource>();
-		if(!gs || !hit.normal.IsOnAxis())
+		protected override void OnHit(RaycastHit hit)
 		{
+			var gs = hit.collider.transform.GetComponentInAncestors<GravitySource>();
+			if (!gs || !hit.normal.IsOnAxis())
+			{
+				return;
+			}
+			gs.SetGravity(-hit.normal);
 			return;
 		}
-		gs.SetGravity(-hit.normal);
-		return;
 	}
 }
