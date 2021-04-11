@@ -53,7 +53,7 @@ public class MovementController : MonoBehaviour
 		var gravityVec = GravityManager.GetGravityForce(transform.position);
 
 		IsGrounded = Physics.Raycast(transform.position, gravityVec, out var groundHit, GroundingDistance, CollisionMask, QueryTriggerInteraction.Ignore);
-		Debug.DrawLine(transform.position, transform.position + gravityVec, Color.green);
+		Debug.DrawLine(transform.position, transform.position + gravityVec * dt, Color.green);
 		if(IsGrounded)
 		{
 			m_jumpCount = 2;
@@ -62,7 +62,7 @@ public class MovementController : MonoBehaviour
 		{
 			// Straighten up
 			var straightenQuat = Quaternion.FromToRotation(Vector3.up, -gravityVec.normalized);
-			var straightenLerp = RotateTowardGravitySpeed * dt;
+			var straightenLerp = RotateTowardGravitySpeed * dt * (gravityVec.magnitude / 1000f);
 			Rigidbody.rotation = Quaternion.Lerp(Rigidbody.rotation, straightenQuat, straightenLerp);
 			//Rigidbody.rotation = straightenQuat;
 			Debug.DrawLine(transform.position, transform.position + straightenQuat * transform.forward, Color.yellow);

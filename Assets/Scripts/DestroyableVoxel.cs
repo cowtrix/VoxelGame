@@ -8,24 +8,41 @@ using Common;
 [RequireComponent(typeof(VoxelRenderer))]
 public class DestroyableVoxel : MonoBehaviour
 {
+	public bool ReadyToDestroy => m_gibSpawnCount < 0;
+	private int m_gibSpawnCount;
+
+	const int GibLayer = 11;
+
+	[Tooltip("Voxels above this layer will subdivide themselves")]
+	public sbyte SegmentationLayer;
+	[Range(1, 10)]
+	public int MaxChunkSize = 5;
 	public GameObject HealthEffect;
 	public float ExplosionForce = 400;
 	public float ExplosionDistance = 10;
-	public int Health;
+	public bool WholeObject
+	{
+		get
+		{
+			var mc = GetComponent<MeshCollider>();
+			return !mc || mc.convex;
+		}
+	}
+	public int Health { get; set; }
 
-	private VoxelRenderer Renderer => GetComponent<VoxelRenderer>();
-	private VoxelMesh Mesh => Renderer.Mesh;
+	public VoxelRenderer Renderer => GetComponent<VoxelRenderer>();
+	public VoxelMesh Mesh => Renderer.Mesh;
 
 	private void Start()
 	{
 		Renderer.Mesh = Instantiate(Renderer.Mesh);
 		Mesh.Mesh = null; // To make sure we make our own
-		Health = Mesh.Voxels.Values.Count(IsHealthBlock);
+		Health = Math.Max(1, Mesh.Voxels.Values.Count(IsHealthBlock));
 	}
 
 	public static bool IsHealthBlock(Voxel v)
 	{
-		if(v.Coordinate.Layer > 1)
+		if (v.Coordinate.Layer > 1)
 		{
 			return false;
 		}
@@ -34,78 +51,66 @@ public class DestroyableVoxel : MonoBehaviour
 		return total > 1;
 	}
 
-	public void Hit(int triindex, float force)
+	public bool DestroyVoxel(Voxel v, float force, Vector3 hitPoint)
 	{
-		var voxel = Renderer.GetVoxel(triindex);
-		if (!voxel.HasValue)
-		{
-			Debug.Log($"No voxel found.");
-			return;
-		}
-
-		DestroyVoxel(voxel.Value, force, transform.position);
-
-		Mesh.Invalidate();
-		Renderer.Invalidate(false);
-	}
-
-	public void Hit(Vector3 hitPoint, Vector3 normal, float force, float radius)
-	{
-		StartCoroutine(HitInternal(hitPoint, normal, force, radius));
-	}
-
-	public IEnumerator HitInternal(Vector3 hitPoint, Vector3 normal, float force, float radius)
-	{
-		var localPos = Renderer.transform.worldToLocalMatrix.MultiplyPoint3x4(hitPoint);
-		var voxels = Mesh.GetVoxels(localPos, radius).ToList();
-		if (!voxels.Any())
-		{
-			Debug.Log($"No voxel found.");
-			yield break;
-		}
-
-		foreach (var v in voxels)
-		{
-			DestroyVoxel(v, force, hitPoint);
-			yield return null;
-		}
-
-		Mesh.Invalidate();
-		Renderer.Invalidate(false);
-	}
-
-	private void DestroyVoxel(Voxel v, float force, Vector3 hitPoint)
-	{
-		Debug.Log($"Destroying a voxel: {v.Coordinate}");
+		//Debug.Log($"Destroying a voxel: {v.Coordinate}");
 		if (!Mesh.Voxels.Remove(v.Coordinate))
 		{
-			return;
+			return false;
 		}
-
 		// Hit
-		if(IsHealthBlock(v) && Health > 0)
+		if (IsHealthBlock(v))
 		{
-			Health--;
-			if(HealthEffect)
+			if (Health > 0)
 			{
-				Instantiate(HealthEffect).transform.position = transform.position;
-			}			
-			return;
+				Health--;
+				if (HealthEffect)
+				{
+					Instantiate(HealthEffect).transform.position = 
+						transform.localToWorldMatrix.MultiplyPoint3x4(v.Coordinate.ToVector3());
+				}
+			}
+			return false;
 		}
+		return true;
+	}
 
-		// Setup the single gib
+	public void Gib(float force, Vector3 normal, IEnumerable<Voxel> voxels)
+	{
+		m_gibSpawnCount++;
 		var gib = new GameObject("gib");
 		gib.transform.position = transform.position;
-		var r = gib.AddComponent<SingleVoxelRenderer>();
-		r.Voxel = v;
-		r.Invalidate();
-		var bc = gib.AddComponent<BoxCollider>();
-		bc.size *= .95f;
+		gib.layer = GibLayer;
+		if (voxels.Count() == 1)
+		{
+			var v = voxels.Single();
+			var r = gib.AddComponent<SingleVoxelRenderer>();
+			r.Voxel = v;
+			r.Invalidate();
+			var bc = gib.AddComponent<BoxCollider>();
+			bc.size *= .95f;
+		}
+		else
+		{
+			var r = gib.AddComponent<VoxelRenderer>();
+			r.GenerateCollider = true;
+			r.Mesh = ScriptableObject.CreateInstance<VoxelMesh>();			
+			foreach (var v in voxels)
+			{
+				r.Mesh.Voxels.Add(v.Coordinate, v);
+			}
+			r.Mesh.Invalidate();
+			r.Invalidate(false);
+			gib.GetComponent<MeshCollider>().convex = true;
+		}
 		gib.AddComponent<DestroyInTime>();
-		var rb = r.gameObject.AddComponent<Rigidbody>();
+		var rb = gib.AddComponent<Rigidbody>();
 		rb.gameObject.AddComponent<GravityRigidbody>();
-		rb.AddExplosionForce(ExplosionForce * force, hitPoint, ExplosionDistance);
+		rb.drag = 1;
+		rb.angularDrag = .8f;	
+		rb.AddForce(ExplosionForce * force * normal, ForceMode.Force);
 		rb.AddTorque(Vector3.one * UnityEngine.Random.value * force);
+		m_gibSpawnCount--;
 	}
 
 	private void OnDisable()

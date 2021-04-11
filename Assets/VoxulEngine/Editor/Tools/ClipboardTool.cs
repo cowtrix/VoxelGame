@@ -45,6 +45,11 @@ namespace VoxulEngine.Painter
 			}
 		}
 
+		public enum ERotationAxis
+		{
+			X, Y, Z
+		}
+		public ERotationAxis RotationAxis = ERotationAxis.Y;
 		public ePasteMode PasteMode;
 		public Snippet CurrentClipboard;
 		public Bounds SelectionBounds;
@@ -87,14 +92,29 @@ namespace VoxulEngine.Painter
 			}
 			else
 			{
+				RotationAxis = (ERotationAxis)EditorGUILayout.EnumPopup("Rotation Axis", RotationAxis);
 				CurrentClipboard.DrawGUI();
+
+				Vector3 axisFactor(ERotationAxis axis, float angle)
+				{
+					switch (axis)
+					{
+						case ERotationAxis.X:
+							return new Vector3(angle, 0, 0);
+						case ERotationAxis.Y:
+							return new Vector3(0, angle, 0);
+						case ERotationAxis.Z:
+							return new Vector3(0, 0, angle);
+					}
+					throw new Exception($"Bad axis: {axis}");
+				}
 
 				var snappedBoundsCenter = CurrentClipboard.Bounds.center.RoundToIncrement(VoxelCoordinate.LayerToScale(CurrentClipboard.SnapLayer));
 				EditorGUILayout.BeginHorizontal();
 				if (GUILayout.Button("↶ 90°"))
 				{
 					CurrentClipboard.Data = CurrentClipboard.Data.Values
-						.Rotate(Quaternion.Euler(0, 90, 0), snappedBoundsCenter)
+						.Rotate(Quaternion.Euler(axisFactor(RotationAxis, 90)), snappedBoundsCenter)
 						.Finalise();
 					Cursor.SetData(voxelPainter.Renderer.transform.localToWorldMatrix, CurrentClipboard.Data.Values);
 				}
@@ -102,7 +122,7 @@ namespace VoxulEngine.Painter
 				{
 					CurrentClipboard.Data =
 						CurrentClipboard.Data.Values
-						.Rotate(Quaternion.Euler(0, -90, 0), snappedBoundsCenter)
+						.Rotate(Quaternion.Euler(axisFactor(RotationAxis, -90)), snappedBoundsCenter)
 						.Finalise();
 					Cursor.SetData(voxelPainter.Renderer.transform.localToWorldMatrix, CurrentClipboard.Data.Values);
 				}
@@ -110,7 +130,7 @@ namespace VoxulEngine.Painter
 				{
 					CurrentClipboard.Data =
 						CurrentClipboard.Data.Values
-						.Rotate(Quaternion.Euler(0, 180, 0), snappedBoundsCenter)
+						.Rotate(Quaternion.Euler(axisFactor(RotationAxis, 180)), snappedBoundsCenter)
 						.Finalise();
 					Cursor.SetData(voxelPainter.Renderer.transform.localToWorldMatrix, CurrentClipboard.Data.Values);
 				}

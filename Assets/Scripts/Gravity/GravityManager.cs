@@ -6,8 +6,7 @@ using System.Linq;
 [ExecuteAlways]
 public class GravityManager : Singleton<GravityManager>
 {
-	public Vector3 DefaultGravity = Vector3.down;
-    public List<GravitySource> GravitySources;
+    public List<GravitySource> GravitySources { get; private set; }
 	public Material LevelVoxelMaterial;
 
 	private void Start()
@@ -19,18 +18,19 @@ public class GravityManager : Singleton<GravityManager>
 	{
 		if(GravitySources.Count == 0)
 		{
-			return DefaultGravity * 1000;
+			return Vector3.zero;
 		}
 		var f = Vector3.zero;
 		for (int i = 0; i < GravitySources.Count; i++) 
 		{
-			f += GravitySources[i].GetGravityForce(worldPos);
+			var gs = GravitySources[i];
+			var gf = gs.GetGravityForce(worldPos);
+			if (gf.sqrMagnitude > 0 && gs.Exclusive)
+			{
+				return gf;
+			}
+			f += gf;
 		}
 		return f;
-	}
-
-	private void Update()
-	{
-		LevelVoxelMaterial.SetVector("Vector3_d6516d54003a46448fffec6056b370a9", GetGravityForce(CameraController.Instance.transform.position).normalized);
 	}
 }

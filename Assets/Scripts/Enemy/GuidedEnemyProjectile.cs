@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class GuidedEnemyProjectile : MonoBehaviour
 {
+    public float GuideTime = 5;
     public float Velocity = 20;
     protected Rigidbody Rigidbody => GetComponent<Rigidbody>();
 
@@ -20,10 +21,18 @@ public class GuidedEnemyProjectile : MonoBehaviour
 
         var diffVector = m_targetPosition - transform.position;
 
-        Rigidbody.AddForce(diffVector.normalized * Rigidbody.mass * Velocity * dt, ForceMode.Impulse);
+        Rigidbody.AddForce(diffVector.normalized * Rigidbody.mass * Velocity * dt, ForceMode.Acceleration);
 
         Debug.DrawLine(transform.position, m_targetPosition, Color.green);
     }
 
+	private void Update()
+	{
+        GuideTime -= Time.deltaTime;
+        if(GuideTime < 0)
+		{
+            this.enabled = false;
+		}
+    }
 
 }

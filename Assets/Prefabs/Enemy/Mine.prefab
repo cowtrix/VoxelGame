@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1397271699}
   - component: {fileID: 1397271701}
   - component: {fileID: 1397271700}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4815,7 +4815,7 @@ GameObject:
   - component: {fileID: 2131214295}
   - component: {fileID: 2131214296}
   - component: {fileID: 2131214297}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: PlayerCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4908,7 +4908,9 @@ GameObject:
   - component: {fileID: 7697860423017810591}
   - component: {fileID: -2990655546195565003}
   - component: {fileID: 1795164286}
-  m_Layer: 0
+  - component: {fileID: -7549298077251395263}
+  - component: {fileID: -7337164027377861737}
+  m_Layer: 10
   m_Name: Mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5024,7 +5026,7 @@ Rigidbody:
   m_GameObject: {fileID: 8765889132135942586}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 1
+  m_Drag: 0
   m_AngularDrag: 0.5
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -5043,7 +5045,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a25278e6d22ef7478e9874e603b008d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocity: 20
+  GuideTime: 8
+  Velocity: 40
 --- !u!114 &-2990655546195565003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5068,5 +5071,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55a804aa7cfdad241a1ed89501f069ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Explosion: {fileID: 1715195713476047576, guid: 4efb9747d5cc42e4c9334d7d34e1f914, type: 3}
+  ExplosionDamage: 3
+  ExplosionRadius: 1
+  ExplosionForce: 3
+--- !u!114 &-7549298077251395263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8765889132135942586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f79e6ac72028e04288fc8c3f23312c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SegmentationLayer: 0
+  MaxChunkSize: 5
+  HealthEffect: {fileID: 0}
+  ExplosionForce: 400
+  ExplosionDistance: 10
+--- !u!114 &-7337164027377861737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8765889132135942586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65685fe280df24f4891b6f93a39e3092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

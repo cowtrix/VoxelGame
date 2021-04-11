@@ -94,7 +94,6 @@ public class VoxelRenderer : MonoBehaviour
 	public void Invalidate(bool forceCollider)	
 	{
 		m_isDirty = false;
-		Debug.Log($"Invalidated {this}", gameObject);
 		SetupComponents(forceCollider);
 		if(!Mesh)
 		{

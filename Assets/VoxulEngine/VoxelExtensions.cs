@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Common;
 
 public static class VoxelExtensions
 {
@@ -107,5 +108,36 @@ public static class VoxelExtensions
 		};
 		collision = default;
 		return false;
+	}
+
+	public static IEnumerable<IEnumerable<Voxel>> Chunk(this IEnumerable<Voxel> inVoxels, int chunkSize)
+	{
+		List<List<Voxel>> result = new List<List<Voxel>>();
+		foreach(var v in inVoxels)
+		{
+			List<Voxel> bestList = result
+				.Where(l => l.Count < chunkSize && l.Select(s => s.Coordinate).IsConnected(v.Coordinate))
+				.FirstOrDefault();
+			if(bestList == null)
+			{
+				bestList = new List<Voxel>();
+				result.Add(bestList);
+			}
+			bestList.Add(v);
+		}
+		return result;
+	}
+
+	public static bool IsConnected(this IEnumerable<VoxelCoordinate> inVoxels, VoxelCoordinate coord) =>
+		inVoxels.Any(v => coord.IsNeighbour(v));
+
+	public static bool IsNeighbour(this VoxelCoordinate coord1, VoxelCoordinate coord)
+	{
+		return ManhattenDistance(coord1, coord) <= VoxelCoordinate.LayerToScale(Math.Max(coord1.Layer, coord.Layer));
+	}
+
+	public static float ManhattenDistance(this VoxelCoordinate coord1, VoxelCoordinate coord)
+	{
+		return coord.ToVector3().ManhattenDistance(coord1.ToVector3());
 	}
 }

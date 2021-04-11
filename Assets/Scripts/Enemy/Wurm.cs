@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wurm : Monster
+public class Wurm : EnemyObject
 {
     public float WanderDistance = 20;
 

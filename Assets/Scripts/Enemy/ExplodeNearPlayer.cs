@@ -16,13 +16,17 @@ public class ExplodeNearPlayer : MonoBehaviour
 		{
 			return;
 		}
-		if(Explosion)
+		mc.Rigidbody.AddExplosionForce(ExplosionForce, transform.position, ExplosionRadius);
+		Destroy(gameObject);
+	}
+
+	private void OnDisable()
+	{
+		if (Explosion)
 		{
 			Instantiate(Explosion)
 				.transform.position = transform.position;
-		}		
-		mc.Rigidbody.AddExplosionForce(ExplosionForce, transform.position, ExplosionRadius);
-		Destroy(gameObject);
+		}
 	}
 
 	private void OnDrawGizmosSelected()

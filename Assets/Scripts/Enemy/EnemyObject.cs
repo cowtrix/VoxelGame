@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class EnemyObject : MonoBehaviour
 {
 	public int TotalHealth => Components.Sum(x => x.Health);
 	protected IEnumerable<DestroyableVoxel> Components => GetComponentsInChildren<DestroyableVoxel>();

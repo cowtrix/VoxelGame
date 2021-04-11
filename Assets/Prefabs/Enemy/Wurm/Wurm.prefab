@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8953238552606438754}
   - component: {fileID: 5676622060709779948}
   - component: {fileID: 5676622060709779949}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Wurm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4426d14d63583d459710ce46ddee29d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BarLength: 0
 --- !u!1 &4872212137723716158
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +182,7 @@ GameObject:
   - component: {fileID: 3756610248449395218}
   - component: {fileID: 36213668273432657}
   - component: {fileID: 3066420919769899039}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: HeadMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,6 +299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f79e6ac72028e04288fc8c3f23312c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxChunkSize: 5
+  SegmentationLayer: 0
   HealthEffect: {fileID: 2586668370085006635, guid: 2125588166928524883702605841d3b8, type: 3}
   ExplosionForce: 400
   ExplosionDistance: 10
@@ -309,6 +312,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4124335037656501742}
     m_Modifications:
+    - target: {fileID: 962356967019673690, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4324972357397202850, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: Chaser
       value: 
@@ -316,6 +323,14 @@ PrefabInstance:
     - target: {fileID: 4324972357397202850, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: ChaseSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746954169649459397, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: SpawnInterval.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746954169649459397, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: SpawnPosition.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8645782556194412426, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: m_RootOrder
@@ -365,6 +380,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WurmChunk (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8953238551923455727, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
 --- !u!4 &7135788559855536017 stripped
@@ -379,6 +398,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4124335037656501742}
     m_Modifications:
+    - target: {fileID: 962356967019673690, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4324972357397202850, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: Chaser
       value: 
@@ -390,6 +413,14 @@ PrefabInstance:
     - target: {fileID: 4324972357397202850, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: ChaseSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746954169649459397, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: SpawnInterval.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746954169649459397, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: SpawnPosition.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8645782556194412426, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: m_RootOrder
@@ -439,6 +470,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WurmChunk (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8953238551923455727, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
 --- !u!4 &4124335037766609437 stripped
@@ -453,6 +488,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4124335037656501742}
     m_Modifications:
+    - target: {fileID: 962356967019673690, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4324972357397202850, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: Chaser
       value: 
@@ -460,6 +499,14 @@ PrefabInstance:
     - target: {fileID: 4324972357397202850, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: ChaseSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746954169649459397, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: SpawnInterval.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746954169649459397, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: SpawnPosition.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8645782556194412426, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: m_RootOrder
@@ -509,6 +556,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WurmChunk (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8953238551923455727, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
 --- !u!4 &4124335036528702450 stripped
@@ -523,6 +574,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4124335037656501742}
     m_Modifications:
+    - target: {fileID: 962356967019673690, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4324972357397202850, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: Chaser
       value: 
@@ -530,6 +585,14 @@ PrefabInstance:
     - target: {fileID: 4324972357397202850, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: ChaseSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746954169649459397, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: SpawnInterval.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746954169649459397, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: SpawnPosition.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8645782556194412426, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: m_RootOrder
@@ -579,6 +642,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WurmChunk (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8953238551923455727, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
 --- !u!4 &4124335036379379166 stripped
@@ -593,6 +660,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4124335037656501742}
     m_Modifications:
+    - target: {fileID: 962356967019673690, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4324972357397202850, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: Chaser
       value: 
@@ -600,6 +671,14 @@ PrefabInstance:
     - target: {fileID: 4324972357397202850, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: ChaseSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746954169649459397, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: SpawnInterval.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746954169649459397, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: SpawnPosition.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7759523132021702314, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: m_lastMeshHash
@@ -652,6 +731,10 @@ PrefabInstance:
     - target: {fileID: 8953238551923455727, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
       propertyPath: m_Name
       value: WurmChunk (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953238551923455727, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 217f61c817d07734c831ca8c48d03dc1, type: 3}

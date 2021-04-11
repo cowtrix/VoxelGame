@@ -6,6 +6,15 @@ using System.Linq;
 
 public static class ListExtensions
 {
+	public static IEnumerable<IEnumerable<T>> Chunk<T>(this IEnumerable<T> source, int chunksize)
+	{
+		while (source.Any())
+		{
+			yield return source.Take(chunksize);
+			source = source.Skip(chunksize);
+		}
+	}
+
 	public static bool IsNullOrEmpty(this IList list)
 	{
 		if (list == null || list.Count == 0)
