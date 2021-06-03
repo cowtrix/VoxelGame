@@ -11,11 +11,11 @@ public abstract class PeripheralInteraction : MonoBehaviour
 	{
 		Interactable.OnEnterInteractionZone.AddListener(p =>
 		{
-			p.AddSecondaryInteractable(Interactable, () => transform.position);
+			//p.AddSecondaryInteractable(Interactable, () => transform.position);
 		});
 		Interactable.OnExitInteractionZone.AddListener(p =>
 		{
-			p.RemoveSecondaryInteractable(Interactable);
+			//p.RemoveSecondaryInteractable(Interactable);
 		});
 	}
 }

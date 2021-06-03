@@ -19,7 +19,7 @@ public class HUDManager : Singleton<HUDManager>
 
 	private void Update()
 	{
-		if(InteractionManager.FocusedInteractable)
+		/*if(InteractionManager.FocusedInteractable)
 		{
 			FocusTransform.position = Camera.WorldToScreenPoint(InteractionManager.FocusedInteractable.transform.position);
 			FocusTransform.sizeDelta = Vector2.one * ObjectScale;
@@ -32,6 +32,6 @@ public class HUDManager : Singleton<HUDManager>
 			FocusTransform.sizeDelta = Vector2.one * NoObjectScale;
 			Icon.sprite = null;
 		}
-		Icon.enabled = Icon.sprite;
+		Icon.enabled = Icon.sprite;*/
 	}
 }

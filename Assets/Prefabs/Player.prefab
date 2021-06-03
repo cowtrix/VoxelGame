@@ -135,6 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LookSensitivity: 10
   LookAngle: {x: 0, y: 0}
+  LastDelta: {x: 0, y: 0}
 --- !u!114 &5007959944412504149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,8 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b734cda1e3b2d5b4796609b294fd48c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentWeapon: {fileID: 6882105737064624161}
-  FocusedInteractable: {fileID: 0}
+  AllWeapons: []
 --- !u!114 &452728394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,22 +586,6 @@ MonoBehaviour:
     m_ActionId: 21e5030b-9125-4739-abca-8fe20f3e1abe
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5007959944412504149}
-        m_TargetAssemblyTypeName: PlayerInteractionManager, Assembly-CSharp
-        m_MethodName: OnGravity
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 5d6f76f1-ebc7-47fd-873b-d2ca628d9f1c
-    m_ActionName: Player/Gravity[/Keyboard/q]
-  - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 3a839e89-669a-46f2-b7d5-def5715904de
     m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
@@ -641,6 +625,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f9a357ef-37ce-432d-847e-d1acf2a70713
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8d0fc885-cd35-42d6-8908-72dd7fd254d7
+    m_ActionName: Player/SelectWeapon[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -668,10 +656,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 316969783}
     m_Modifications:
-    - target: {fileID: 3082192185012311961, guid: 7d152201cb1b19c44aeeeaa8820503f3, type: 3}
-      propertyPath: ImpactEffects.Array.data[1].HitOffset.z
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 8449882934522404894, guid: 7d152201cb1b19c44aeeeaa8820503f3, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -727,17 +711,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8449882934522404894, guid: 7d152201cb1b19c44aeeeaa8820503f3, type: 3}
   m_PrefabInstance: {fileID: 8449882933573904312}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6882105737064624161 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3082192185012311961, guid: 7d152201cb1b19c44aeeeaa8820503f3, type: 3}
-  m_PrefabInstance: {fileID: 8449882933573904312}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c6c7e0ca05fbac4784e4168c9108af3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!20 &685357966 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 8449882932907564086, guid: 7d152201cb1b19c44aeeeaa8820503f3, type: 3}

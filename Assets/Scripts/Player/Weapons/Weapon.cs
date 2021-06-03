@@ -55,7 +55,7 @@ namespace Weapons
 	public abstract class Weapon : MonoBehaviour
 	{
 		public List<ImpactEffect> ImpactEffects;
-		protected CameraController CameraController;
+		protected CameraController CameraController => CameraController.Instance;
 		public float CastDistance = 1000;
 		public LayerMask LayerMask;
 
@@ -64,7 +64,6 @@ namespace Weapons
 
 		private void Start()
 		{
-			CameraController = CameraController.Instance;
 			foreach(var eff in ImpactEffects)
 			{
 				eff.Object?.SetActive(false);
@@ -93,5 +92,14 @@ namespace Weapons
 
 		protected abstract void OnHit(RaycastHit hit);
 
+		public void OnUnequip()
+		{
+			
+		}
+
+		public void OnEquip()
+		{
+			
+		}
 	}
 }

@@ -60,7 +60,7 @@ namespace VoxulEngine.Painter
 			{
 				if (__cursor == null)
 				{
-					__cursor = new VoxelCursor();
+					__cursor = new VoxelCursor(null);
 				}
 				return __cursor;
 			}

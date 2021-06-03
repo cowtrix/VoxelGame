@@ -115,10 +115,15 @@ public class DestroyableVoxel : MonoBehaviour
 
 	private void OnDisable()
 	{
-		if (Application.isPlaying && HealthEffect)
+		if (!HealthEffect || !!Application.isPlaying
+#if UNITY_EDITOR
+			|| !UnityEditor.EditorApplication.isPlaying
+#endif
+			)
 		{
-			Instantiate(HealthEffect).transform.position = transform.position;
+			return;
 		}
+		Instantiate(HealthEffect).transform.position = transform.position;
 	}
 }
 

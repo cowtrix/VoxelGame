@@ -66,25 +66,21 @@ namespace VoxulEngine.Painter
 
 		public void DrawSceneGUI(VoxelPainter voxelPainter, VoxelRenderer renderer, Event currentEvent, sbyte painterLayer)
 		{
-			if(renderer.Mesh == null)
+			if(!renderer.Mesh|| !renderer.Collider)
 			{
+				Debug.LogWarning("Editor is enabled, but either the mesh is null or the collider is null", voxelPainter);
 				return;
 			}
 
-			var collider = renderer.GetComponent<MeshCollider>();
 			Ray worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-			//worldRay = new Ray(collider.transform.worldToLocalMatrix.MultiplyPoint3x4(worldRay.origin), collider.transform.worldToLocalMatrix.MultiplyVector(worldRay.direction));
 			var hitPoint = Vector3.zero;
 			var hitNorm = Vector3.up;
 			var triIndex = -1;
-			if (Physics.Raycast(worldRay, out var hitInfo, 10000))
+			if (renderer.Collider.Raycast(worldRay, out var hitInfo, 10000))
 			{
 				hitPoint = hitInfo.point;
 				hitNorm = hitInfo.normal;
-				if (hitInfo.collider == collider)
-				{
-					triIndex = hitInfo.triangleIndex;
-				}
+				triIndex = hitInfo.triangleIndex;
 			}
 			else
 			{
@@ -111,7 +107,7 @@ namespace VoxulEngine.Painter
 					var layerScale = VoxelCoordinate.LayerToScale(brushCoord.Layer);
 					var voxelWorldPos = brushCoord.ToVector3(); // renderer.transform.localToWorldMatrix.MultiplyPoint3x4();
 					var voxelScale = layerScale * Vector3.one * .51f;
-					voxelScale.Scale(renderer.transform.localToWorldMatrix.GetScale());
+					//voxelScale.Scale(renderer.transform.localToWorldMatrix.GetScale());
 
 					Handles.matrix = renderer.transform.localToWorldMatrix;
 					HandleExtensions.DrawWireCube(voxelWorldPos, voxelScale, Quaternion.identity, Color.cyan);

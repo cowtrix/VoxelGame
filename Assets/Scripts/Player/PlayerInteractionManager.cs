@@ -8,33 +8,54 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Weapons;
 
-public class PlayerInteractionManager : MonoBehaviour
+public class PlayerInteractionManager : Singleton<PlayerInteractionManager>
 {
-	public Weapon CurrentWeapon;
-
-	private Dictionary<Interactable, Func<Vector3>> m_secondaryInteractables
-		= new Dictionary<Interactable, Func<Vector3>>();
-
-	public void AddSecondaryInteractable(Interactable interactable, Func<Vector3> position)
+	public Weapon CurrentWeapon
 	{
-		m_secondaryInteractables[interactable] = position;
+		get
+		{
+			if (!__weapon)
+			{
+				CurrentWeapon = AllWeapons.First();
+			}
+			return __weapon;
+		}
+		set
+		{
+			if(__weapon)
+			{
+				__weapon.OnUnequip();
+			}
+			__weapon = value;
+			__weapon?.OnEquip();
+		}
 	}
-
-	public void RemoveSecondaryInteractable(Interactable interactable)
-	{
-		m_secondaryInteractables.Remove(interactable);
-	}
+	public Weapon[] AllWeapons;
+	private Weapon __weapon;
 
 	public CameraController CameraController => CameraController.Instance;
-	public Interactable FocusedInteractable;
-	private RaycastHit? m_currentHit;
+
+	public override void Awake()
+	{
+		base.Awake();
+		AllWeapons = GetComponentsInChildren<Weapon>();
+	}
+
+	private void Update()
+	{
+		foreach (var w in AllWeapons)
+		{
+			w.gameObject.SetActive(w == CurrentWeapon);
+		}
+	}
 
 	public void OnFire(InputAction.CallbackContext cntxt)
 	{
-		if (!cntxt.started)
+		if (!cntxt.started || !WeaponWheel.Instance.KeyReleased)
 		{
 			return;
 		}
-		CurrentWeapon?.Fire();
+		Debug.Log("PlayerInteractionManager:Fire");
+		CurrentWeapon.Fire();
 	}
 }

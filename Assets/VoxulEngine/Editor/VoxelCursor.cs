@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace VoxulEngine
 {
@@ -12,11 +13,13 @@ namespace VoxulEngine
 		private VoxelMesh m_tempVoxelData;
 		private Mesh m_cursorMesh;
 		private VoxelRenderer m_cursorRenderer;
+		private VoxelRenderer m_parentRenderer;
 		private AutoDestroyer m_keepAlive;
 		private bool m_dirty;
 
-		public VoxelCursor()
+		public VoxelCursor(VoxelRenderer parent)
 		{
+			m_parentRenderer = parent;
 			m_tempVoxelData = ScriptableObject.CreateInstance<VoxelMesh>();
 		}
 
@@ -51,6 +54,10 @@ namespace VoxulEngine
 			if (!m_cursorRenderer)
 			{
 				var go = new GameObject("__cursorRenderer");
+				if(m_parentRenderer)
+				{
+					SceneManager.MoveGameObjectToScene(go, m_parentRenderer.gameObject.scene);
+				}
 				go.hideFlags = HideFlags.HideAndDontSave;
 				m_keepAlive = go.AddComponent<AutoDestroyer>();
 				m_cursorRenderer = go.AddComponent<VoxelRenderer>();

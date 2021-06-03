@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MovementController : MonoBehaviour
+public class MovementController : Singleton<MovementController>
 {
 	private GravityManager GravityManager => GravityManager.Instance;
 	private CameraController CameraController => CameraController.Instance;
@@ -32,7 +32,6 @@ public class MovementController : MonoBehaviour
 	private void Start()
 	{
 		Rigidbody.useGravity = false;
-		Cursor.lockState = CursorLockMode.Locked;
 		SmoothPosition = new SmoothPositionVector3(10, transform.position);
 	}
 
@@ -43,8 +42,9 @@ public class MovementController : MonoBehaviour
 
 	public void OnJump(InputAction.CallbackContext context)
 	{
-		Debug.Log("Received jump");
-		m_inputJump = context.canceled;
+		var val = context.ReadValue<float>();
+		Debug.Log($"OnJump: {val}");
+		m_inputJump = val > .5f && context.canceled;
 	}
 
 	private void FixedUpdate()

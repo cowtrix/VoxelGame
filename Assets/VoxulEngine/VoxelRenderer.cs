@@ -26,7 +26,7 @@ public class VoxelRenderer : MonoBehaviour
 
 	private MeshFilter m_filter;
 	public MeshRenderer MeshRenderer;
-	private MeshCollider m_collider;
+	public MeshCollider Collider;
 	private bool m_isDirty;
 
 	[SerializeField]
@@ -37,7 +37,7 @@ public class VoxelRenderer : MonoBehaviour
 
 	private void Update()
 	{
-		if(SnapToGrid)
+		if (SnapToGrid)
 		{
 			var scale = VoxelCoordinate.LayerToScale(SnapLayer);
 			transform.localPosition = transform.localPosition.RoundToIncrement(scale / (float)VoxelCoordinate.LayerRatio);
@@ -62,14 +62,14 @@ public class VoxelRenderer : MonoBehaviour
 			MeshRenderer = gameObject.GetOrAddComponent<MeshRenderer>();
 		}
 		//m_renderer.hideFlags = HideFlags.HideAndDontSave;
-		if(GenerateCollider || forceCollider)
+		if (GenerateCollider || forceCollider)
 		{
-			if (!m_collider)
+			if (!Collider)
 			{
-				m_collider = gameObject.GetOrAddComponent<MeshCollider>();
+				Collider = gameObject.GetOrAddComponent<MeshCollider>();
 			}
 			//m_collider.hideFlags = HideFlags.HideAndDontSave;
-			m_collider.convex = false;
+			Collider.convex = false;
 		}
 	}
 
@@ -91,24 +91,24 @@ public class VoxelRenderer : MonoBehaviour
 #endif
 	}
 
-	public void Invalidate(bool forceCollider)	
+	public void Invalidate(bool forceCollider)
 	{
 		m_isDirty = false;
 		SetupComponents(forceCollider);
-		if(!Mesh)
+		if (!Mesh)
 		{
 			return;
 		}
-		if(MinLayer > MaxLayer)
+		if (MinLayer > MaxLayer)
 		{
 			MinLayer = MaxLayer;
 		}
 		m_filter.sharedMesh = Mesh.GenerateMeshInstance(MinLayer, MaxLayer);
-		if(GenerateCollider)
+		if (GenerateCollider)
 		{
-			m_collider.sharedMesh = m_filter.sharedMesh;
+			Collider.sharedMesh = m_filter.sharedMesh;
 		}
-		if(!CustomMaterials)
+		if (!CustomMaterials)
 		{
 			if (Mesh.Voxels.Any(v => v.Value.Material.MaterialMode == EMaterialMode.Transparent))
 			{
@@ -125,7 +125,7 @@ public class VoxelRenderer : MonoBehaviour
 	public Voxel? GetVoxel(int triangleIndex)
 	{
 		SetupComponents(false);
-		if(triangleIndex < 0 || !m_filter || !m_filter.sharedMesh)
+		if (triangleIndex < 0 || !m_filter || !m_filter.sharedMesh)
 		{
 			SetDirty();
 			return null;
@@ -136,21 +136,21 @@ public class VoxelRenderer : MonoBehaviour
 		for (submesh = 0; submesh < m_filter.sharedMesh.subMeshCount; submesh++)
 		{
 			int numIndices = m_filter.sharedMesh.GetTriangles(submesh).Length;
-			
+
 			if (numIndices > limit)
 				break;
 			triangleIndex -= numIndices / 3;
 			limit -= numIndices;
 		}
 
-		if(!Mesh.VoxelMapping.TryGetValue(submesh, out var innermap))
+		if (!Mesh.VoxelMapping.TryGetValue(submesh, out var innermap))
 		{
 			throw new Exception($"Couldn't find submesh mapping for {submesh}");
 		}
 
 		var triMapping = innermap[triangleIndex];
 		var vox = Mesh.Voxels.Where(v => v.Key == triMapping.Coordinate);
-		if(!vox.Any())
+		if (!vox.Any())
 		{
 			return null;
 		}

@@ -118,24 +118,12 @@ namespace VoxulEngine.Painter
 			{
 				if (__selectionCursor == null)
 				{
-					__selectionCursor = new VoxelCursor();
+					__selectionCursor = new VoxelCursor(Renderer);
 				}
 				return __selectionCursor;
 			}
 		}
 		private VoxelCursor __selectionCursor;
-
-		public static int LayerMask
-		{
-			get
-			{
-				return EditorPrefs.GetInt("VoxelPainter_LayerMask", ~0);
-			}
-			set
-			{
-				EditorPrefs.SetInt("VoxelPainter_LayerMask", value);
-			}
-		}
 
 		public static int Tab
 		{
@@ -191,7 +179,6 @@ namespace VoxulEngine.Painter
 				EditorGUILayout.HelpBox("Mesh (Voxel Mesh) asset cannot be null", MessageType.Info);
 				return;
 			}
-			LayerMask = EditorGUILayout.LayerField(LayerMask);
 			EditorGUILayout.LabelField("Painter", EditorStyles.whiteLargeLabel);
 			EditorGUILayout.BeginVertical("Box");
 			Enabled = EditorGUILayout.Toggle("Enabled", Enabled);
