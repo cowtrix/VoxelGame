@@ -16,14 +16,6 @@ namespace Common
 #endif
 		}
 
-		public static void DrawCube(VoxelCoordinate coord, Matrix4x4 trs, Color color, float duration)
-		{
-			var pos = trs.MultiplyPoint3x4(coord.ToVector3());
-			var bounds = coord.ToBounds();
-			var rot = trs.GetRotation();
-			DrawCube(pos, bounds.extents, rot, color, duration);
-		}
-
 		public static void DrawCube(Vector3 origin, Vector3 extents, Quaternion rotation, Color color, float duration)
 		{
 #if !UNITY_EDITOR

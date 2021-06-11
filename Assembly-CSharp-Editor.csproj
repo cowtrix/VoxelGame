@@ -56,42 +56,43 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\VoxulEngine\Editor\Tools\PaintTool.cs" />
-    <Compile Include="Assets\VoxulEngine\Editor\TextureIndexInspect.cs" />
+    <Compile Include="Assets\voxul\Editor\Tools\PaintTool.cs" />
+    <Compile Include="Assets\voxul\Editor\TextureIndexInspect.cs" />
     <Compile Include="Assets\Scripts\Player\Editor\FaceControllerEditor.cs" />
-    <Compile Include="Assets\VoxulEngine\Editor\VoxelPainter.cs" />
+    <Compile Include="Assets\voxul\Editor\VoxelPainter.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\RangeSliderEditor.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\uGUITools.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\Editor\SerializedPropertyExtension.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\AccordionElementEditor.cs" />
-    <Compile Include="Assets\VoxulEngine\Editor\VoxelCursor.cs" />
+    <Compile Include="Assets\voxul\Editor\VoxelCursor.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\CUIBezierCurveEditor.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\Editor\SerializableDictionaryDrawer.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\FancyScrollView\ScrollerEditor.cs" />
-    <Compile Include="Assets\VoxulEngine\Editor\Tools\AddTool.cs" />
-    <Compile Include="Assets\VoxulEngine\Editor\MeshVoxelizer.cs" />
-    <Compile Include="Assets\VoxulEngine\Editor\EditorPrefUtility.cs" />
+    <Compile Include="Assets\voxul\Editor\Tools\AddTool.cs" />
+    <Compile Include="Assets\voxul\Editor\MeshVoxelizer.cs" />
+    <Compile Include="Assets\voxul\Editor\EditorPrefUtility.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\CUITextEditor.cs" />
-    <Compile Include="Assets\VoxulEngine\Editor\VoxelPainterTool.cs" />
+    <Compile Include="Assets\voxul\Editor\VoxelPainterTool.cs" />
+    <Compile Include="Assets\voxul\Editor\HandleExtensions.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\UIExtensionsMenuOptions.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\ColorPickerPresetsEditor.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\TextPicIconListCopier.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\CanvasGroupActivator.cs" />
-    <Compile Include="Assets\VoxulEngine\Editor\Tools\SubdivideTool.cs" />
+    <Compile Include="Assets\voxul\Editor\Tools\SubdivideTool.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\ScrollPositionControllerEditor.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\BoxSliderEditor.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\CUIGraphicEditor.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\TextPicIconEditor.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\BezierLineRendererEditor.cs" />
-    <Compile Include="Assets\VoxulEngine\Editor\Tools\ClipboardTool.cs" />
+    <Compile Include="Assets\voxul\Editor\Tools\ClipboardTool.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\NonDrawingGraphicEditor.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\Editor\SerializableDictionaryDrawerImplementations.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\TextPicRenameEditor.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\TextPicEditor.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\ReadOnlyDrawer.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Editor\CUIImageEditor.cs" />
-    <Compile Include="Assets\VoxulEngine\Editor\Tools\RemoveTool.cs" />
-    <Compile Include="Assets\VoxulEngine\Editor\Tools\SelectTool.cs" />
+    <Compile Include="Assets\voxul\Editor\Tools\RemoveTool.cs" />
+    <Compile Include="Assets\voxul\Editor\Tools\SelectTool.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -768,6 +769,10 @@
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{24147965-48E0-17B4-6E29-46F02954FD57}</Project>
       <Name>Assembly-CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Texture2DArrayImportPipeline.Editor.csproj">
+      <Project>{DC6E7677-EEB0-B168-0A6B-271D4A090B36}</Project>
+      <Name>Unity.Texture2DArrayImportPipeline.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

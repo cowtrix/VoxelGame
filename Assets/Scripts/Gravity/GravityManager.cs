@@ -7,7 +7,6 @@ using System.Linq;
 public class GravityManager : Singleton<GravityManager>
 {
     public List<GravitySource> GravitySources { get; private set; }
-	public Material LevelVoxelMaterial;
 
 	private void Start()
 	{

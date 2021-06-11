@@ -65,7 +65,6 @@
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Primitives\UILineRendererList.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ReorderableList\ReorderableListContent.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Effects\CurvedText.cs" />
-    <Compile Include="Assets\VoxulEngine\MeshUtility.cs" />
     <Compile Include="Assets\Scripts\Utilities\TrackedObject.cs" />
     <Compile Include="Assets\Scripts\Utilities\LightScale.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\ScrollRectEx.cs" />
@@ -77,17 +76,18 @@
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\SetPropertyUtility.cs" />
     <Compile Include="Assets\Scripts\Player\UI\HUDManager.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\UI_MagneticInfiniteScroll.cs" />
-    <Compile Include="Assets\VoxulEngine\VoxelExtensions.cs" />
+    <Compile Include="Assets\voxul\VoxelExtensions.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\CurvedLayout.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\IScrollSnap.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\FancyScrollView\GridView\FancyGridViewContext.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Effects\MonoSpacing.cs" />
-    <Compile Include="Assets\VoxulEngine\VoxelMaterialAsset.cs" />
+    <Compile Include="Assets\voxul\VoxelMaterialAsset.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ReorderableList\ReorderableListElement.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Effects\Gradient.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ReorderableList\ReorderableList.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\NonDrawingGraphic.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Effects\SoftMaskScript.cs" />
+    <Compile Include="Assets\voxul\Utilities\VectorExtensions.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyObject.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\CardUI\2D Cards\CardStack2D.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\ToolTips\TooltipTrigger.cs" />
@@ -98,7 +98,7 @@
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\MenuSystem\Menu.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\UIScrollToSelection.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Primitives\UILineRenderer.cs" />
-    <Compile Include="Assets\VoxelTester.cs" />
+    <Compile Include="Assets\Unsorted\VoxelTester.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\RescalingPanels\RescalePanel.cs" />
     <Compile Include="Assets\Scripts\Utilities\Geometry2D.cs" />
     <Compile Include="Assets\Scripts\Utilities\CompositionDictionary.cs" />
@@ -109,12 +109,14 @@
     <Compile Include="Assets\Scripts\Player\Weapons\Pistol.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\PPIViewer.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\UIVerticalScroller.cs" />
-    <Compile Include="Assets\VoxulEngine\VoxelLODManager.cs" />
+    <Compile Include="Assets\voxul\LOD\VoxelLODManager.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Effects\UIFlippable.cs" />
+    <Compile Include="Assets\voxul\Utilities\SerializableDictionary.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ColorPicker\ColorSampler.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInteractionManager.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ColorPicker\TiltWindow.cs" />
     <Compile Include="Assets\Scripts\Utilities\Mathfx.cs" />
+    <Compile Include="Assets\voxul\Utilities\Util.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ColorPicker\HSVUtil.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\UI_Knob.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\StepperSide.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Effects\CurlyUI\CUIImage.cs" />
     <Compile Include="Assets\Scripts\Utilities\DestroyInTime.cs" />
     <Compile Include="Assets\Scripts\Player\UI\UIResources.cs" />
+    <Compile Include="Assets\voxul\Utilities\LazyReference.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\Shotgun.cs" />
     <Compile Include="Assets\Scripts\Utilities\Geometry3D.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\CardUI\2D Cards\CardPopup2D.cs" />
@@ -147,7 +150,7 @@
     <Compile Include="Assets\Scripts\Enemy\ExplodeNearPlayer.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\switchToRectTransform.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\SelectableScaler.cs" />
-    <Compile Include="Assets\VoxulEngine\VoxelRenderer.cs" />
+    <Compile Include="Assets\voxul\VoxelRenderer.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\CooldownButton.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Effects\ShineEffector.cs" />
     <Compile Include="Assets\Scripts\Animation\TransformAnimationController.cs" />
@@ -156,6 +159,7 @@
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ReorderableList\ReorderableListDebug.cs" />
     <Compile Include="Assets\Scripts\Interaction\Interactable.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\ScrollPositionController.cs" />
+    <Compile Include="Assets\voxul\Utilities\AutoDestroyer.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\FlowLayoutGroup.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\CardUI\Superellipse Creation\MeshCreator.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ComboBox\AutoCompleteComboBox.cs" />
@@ -166,7 +170,7 @@
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\RescalingPanels\ResizePanel.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\TileSizeFitter.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\BoxSlider.cs" />
-    <Compile Include="Assets\VoxulEngine\VoxelLOD.cs" />
+    <Compile Include="Assets\voxul\LOD\VoxelLOD.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\CableCurve.cs" />
     <Compile Include="Assets\Scripts\Utilities\DragRect.cs" />
     <Compile Include="Assets\Scripts\Utilities\UIExtensions.cs" />
@@ -186,6 +190,7 @@
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\ToolTips\ToolTip.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\MenuSystem\MenuManager.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\VerticalScrollSnap.cs" />
+    <Compile Include="Assets\voxul\VoxelCoordinateTriangleMapping.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ColorPicker\Events\HSVChangedEvent.cs" />
     <Compile Include="Assets\Scripts\Player\InteractionColliderEvent.cs" />
     <Compile Include="Assets\Scripts\Enemy\Wurm.cs" />
@@ -198,11 +203,11 @@
     <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\Stepper.cs" />
     <Compile Include="Assets\Scripts\Enemy\ComponentChaser.cs" />
-    <Compile Include="Assets\VoxulEngine\TextureArrayCollection.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\Accordion\Tweening\ITweenValue.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\ShaderLibrary.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Effects\ShaderEffects\UIScreenEffect.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ColorPicker\SVBoxSlider.cs" />
+    <Compile Include="Assets\voxul\Meshing\IntermediateVoxelMeshData.cs" />
     <Compile Include="Assets\Scripts\Music\BPMMover.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\Accordion\Tweening\FloatTween.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ColorPicker\Events\ColorChangedEvent.cs" />
@@ -218,13 +223,14 @@
     <Compile Include="Assets\Scripts\DestroyableVoxel.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\TextPic.cs" />
     <Compile Include="Assets\Scripts\Music\BeatManager.cs" />
-    <Compile Include="Assets\Scripts\SingleVoxelRenderer.cs" />
+    <Compile Include="Assets\voxul\Utilities\SingleVoxelRenderer.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\CardUI\3D Cards\CardExpanding3D.cs" />
+    <Compile Include="Assets\voxul\Meshing\TriangleVoxelMapping.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\UIHighlightable.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\ContentScrollSnapHorizontal.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\ScrollSnapBase.cs" />
     <Compile Include="Assets\Scripts\Utilities\DelegateExtensions.cs" />
-    <Compile Include="Assets\VoxulEngine\VoxelManager.cs" />
+    <Compile Include="Assets\voxul\VoxelManager.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\FancyScrollView\Scroller\MovementType.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Effects\ShaderEffects\UISoftAdditiveEffect.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\MultiTouchScrollRect.cs" />
@@ -237,7 +243,7 @@
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\MenuSystem\SimpleMenu.cs" />
     <Compile Include="Assets\Scripts\Utilities\CurveExtensions.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\ScrollRectExtensions.cs" />
-    <Compile Include="Assets\VoxulEngine\VoxelMeshUtility.cs" />
+    <Compile Include="Assets\voxul\Meshing\VoxelMeshUtility.cs" />
     <Compile Include="Assets\Scripts\Utilities\Singleton.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\UIScrollToSelectionXY.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\ReadOnlyAttribute.cs" />
@@ -250,12 +256,12 @@
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\TestCompression.cs" />
     <Compile Include="Assets\Scripts\Utilities\RectExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\VectorExtensions.cs" />
-    <Compile Include="Assets\VoxulEngine\VoxelCoordinate.cs" />
+    <Compile Include="Assets\voxul\VoxelCoordinate.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Effects\CurlyUI\CUIBezierCurve.cs" />
     <Compile Include="Assets\Scripts\Enemy\OnTriggerForwarder.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ColorPicker\ColorPickerControl.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\SelectionBox\ExampleSelectable.cs" />
-    <Compile Include="Assets\VoxulEngine\Voxel.cs" />
+    <Compile Include="Assets\voxul\Voxel.cs" />
     <Compile Include="Assets\Scripts\Utilities\TransformExtensions.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\FancyScrollView\GridView\IFancyGridViewContext.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\UISelectableExtension.cs" />
@@ -264,7 +270,6 @@
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ColorPicker\ColorValues.cs" />
     <Compile Include="Assets\Scripts\Utilities\LayerMaskFieldUtility.cs" />
     <Compile Include="Assets\Scripts\Utilities\MiscUtilities.cs" />
-    <Compile Include="Assets\VoxulEngine\AutoDestroyer.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Effects\CylinderText.cs" />
     <Compile Include="Assets\Scripts\Utilities\ColorUtility.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\FancyScrollView\GridView\FancyGridView.cs" />
@@ -286,19 +291,23 @@
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Primitives\UIGridRenderer.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\UILineConnector.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\ExtentionMethods.cs" />
+    <Compile Include="Assets\voxul\Utilities\TransformExtensions.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerChaser.cs" />
-    <Compile Include="Assets\VoxulEngine\VoxelMesh.cs" />
+    <Compile Include="Assets\voxul\Meshing\VoxelMesh.cs" />
     <Compile Include="Assets\Scripts\Utilities\TypeExtensions.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ComboBox\DropDownListButton.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ColorPicker\ColorSlider.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\SerializableDictionaryImplementations.cs" />
+    <Compile Include="Assets\voxul\Utilities\QuaternionExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\Interaction\WeaponWheel.cs" />
     <Compile Include="Assets\Scripts\Utilities\GizmoExtensions.cs" />
+    <Compile Include="Assets\voxul\DebugHelper.cs" />
     <Compile Include="Assets\Scripts\Utilities\AssetCreationHelper.cs" />
     <Compile Include="Assets\Scripts\Enemy\ComponentSpawner.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\ExtensionsToggle.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Effects\ShaderEffects\UIAdditiveEffect.cs" />
+    <Compile Include="Assets\voxul\Meshing\VoxelMapping.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\UIWindowBase.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ColorPicker\HexColorField.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\UIExtensionsInputManager.cs" />
@@ -316,14 +325,16 @@
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\UI_InfiniteScroll.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\Accordion\AccordionElement.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Layout\FancyScrollView\Scroller\ScrollDirection.cs" />
-    <Compile Include="Assets\VoxulEngine\MeshVoxelLOD.cs" />
-    <Compile Include="Assets\VoxulEngine\CamCubeVoxelLOD.cs" />
+    <Compile Include="Assets\voxul\LOD\MeshVoxelLOD.cs" />
     <Compile Include="Assets\Scripts\Gravity\GravityRigidbody.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\ColorPicker\ColorImage.cs" />
+    <Compile Include="Assets\voxul\Utilities\AssetCreationHelper.cs" />
+    <Compile Include="Assets\Scripts\Gravity\Player.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UIAdditive.shader" />
      <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UI Particle Add.shader" />
+     <None Include="Assets\voxul\DebugGrid.shader" />
      <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UIScreen.shader" />
      <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UI Particle Multiply.shader" />
      <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UIMultiply.shader" />
@@ -333,9 +344,10 @@
      <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UI Particle Premultiply Blend.shader" />
      <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UI Particle VertexLit Blended.shader" />
      <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UI Particle MultiplyDouble.shader" />
-     <None Include="Assets\GeneratedFromGraph-ItemOutline.shader" />
+     <None Include="Assets\Unsorted\GeneratedFromGraph-ItemOutline.shader" />
      <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UI Particle AddMultiply.shader" />
      <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UI Particle Blend.shader" />
+     <None Include="Assets\voxul\UnityTexture2DArrayImportPipeline\Shaders\Unlit-Texture2DArray.shader" />
      <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UISoftAdditive.shader" />
      <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UI Particle AddSmooth.shader" />
      <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UIImageCrop.shader" />
@@ -988,6 +1000,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Unity.Texture2DArrayImportPipeline.Editor.csproj">
+      <Project>{DC6E7677-EEB0-B168-0A6B-271D4A090B36}</Project>
+      <Name>Unity.Texture2DArrayImportPipeline.Editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
