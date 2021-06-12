@@ -1,10 +1,13 @@
 ﻿using Common;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Voxul;
 
-public class Player : MonoBehaviour
+
+
+public class Player : Singleton<Player>
 {
 	public byte SnapLayer = 1;
 	public bool IsMoving =>
@@ -77,6 +80,7 @@ public class Player : MonoBehaviour
 			lastLocalRot = localLerpRot;
 		}
 		TargetRotation *= rot;
+		GMTKGameManager.Instance.CheckWin();
 		return true;
 	}
 
@@ -98,15 +102,18 @@ public class Player : MonoBehaviour
 			var scale = VoxelCoordinate.LayerToScale(vox.Key.Layer);
 			if (Physics.Raycast(pos, dir, out var hit, scale, CollisionMask))
 			{
-				Debug.Log($"Hit {hit.collider}", hit.collider);
 				var pickup = hit.collider.GetComponent<Pickup>();
 				if (pickup)
 				{
 					Debug.Log($"Maybe pickup {pickup}", pickup);
-					DoPickup(pickup, hit);
+					DoPickup(pickup, hit, scale);
 				}
-				DebugHelper.DrawSphere(hit.point, Quaternion.identity, .02f, Color.cyan, 2);
-				colliding = true;
+				if (hit.distance < scale)
+				{
+					Debug.Log($"Can't move because of {hit.collider}", hit.collider);
+					DebugHelper.DrawSphere(hit.point, Quaternion.identity, .02f, Color.cyan, 2);
+					colliding = true;
+				}
 			}
 			var col = colliding ? Color.red : Color.white;
 			Debug.DrawLine(rootPos, pos, col, 1);
@@ -116,9 +123,10 @@ public class Player : MonoBehaviour
 		{
 			TargetPosition += dir;
 		}
+		GMTKGameManager.Instance.CheckWin();
 	}
 
-	void DoPickup(Pickup pickup, RaycastHit hit)
+	void DoPickup(Pickup pickup, RaycastHit hit, float dist)
 	{
 		var pickupRenderer = pickup.GetComponent<VoxelRenderer>();
 		var localDir = pickup.transform.worldToLocalMatrix.MultiplyVector(hit.normal);
@@ -132,31 +140,40 @@ public class Player : MonoBehaviour
 			return;
 		}
 		var surface = hitVox.Value.Material.GetSurface(voxelHitDir);
-		if(surface != m_mat.Default)
-		{
-			Debug.Log($"Pickup had wrong surface. Direction was {voxelHitDir}", pickup);
-			return;
-		}
 
-		foreach (var pickupVox in pickupRenderer.Mesh.Voxels)
+		if(hit.distance < dist)
 		{
-			var relVec = Renderer.transform.worldToLocalMatrix.MultiplyPoint3x4(
-				pickup.transform.localToWorldMatrix.MultiplyPoint3x4(pickupVox.Key.ToVector3()));
-			var newVox = VoxelCoordinate.FromVector3(relVec, pickupVox.Key.Layer);
-			Debug.Log("New vox: " + newVox);
-			Renderer.Mesh.Voxels.AddSafe(new Voxel
+			if (surface != m_mat.Default)
 			{
-				Coordinate = newVox,
-				Material = m_mat
-			});
+				Debug.Log($"Pickup had wrong surface. Direction was {voxelHitDir}", pickup);
+				return;
+			}
+
+			foreach (var pickupVox in pickupRenderer.Mesh.Voxels)
+			{
+				var relVec = Renderer.transform.worldToLocalMatrix.MultiplyPoint3x4(
+					pickup.transform.localToWorldMatrix.MultiplyPoint3x4(pickupVox.Key.ToVector3()));
+				var newVox = VoxelCoordinate.FromVector3(relVec, pickupVox.Key.Layer);
+				Debug.Log("New vox: " + newVox);
+				Renderer.Mesh.Voxels.AddSafe(new Voxel
+				{
+					Coordinate = newVox,
+					Material = m_mat
+				});
+			}
+			pickup.gameObject.SetActive(false);
+			Renderer.Mesh.Invalidate();
+			Renderer.Invalidate(false);
 		}
-		Destroy(pickup.gameObject);
-		Renderer.Mesh.Invalidate();
-		Renderer.Invalidate(false);
 	}
 
 	public void Update()
 	{
+		if (Help.Instance.ToggleContainer.activeInHierarchy)
+		{
+			return;
+		}
+
 		TargetPosition = TargetPosition.RoundToIncrement(SnapLayer / (float)VoxelCoordinate.LayerRatio);
 
 		VoxelManager.Instance.DefaultMaterial.SetVector("PlayerPosition", transform.position);

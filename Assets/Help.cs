@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Help : MonoBehaviour
+public class Help : Singleton<Help>
 {
     public bool Dismissed, DismissedOnce;
     public GameObject ToggleContainer;
     public GameObject NonToggleContainer;
+    public GameObject Close;
     public Camera Camera;
     public Vector3 ButtonDist = new Vector3(1, 1, 1);
 
@@ -16,6 +17,7 @@ public class Help : MonoBehaviour
         transform.position = Camera.ViewportToWorldPoint(ButtonDist);
         NonToggleContainer.SetActive(Dismissed);
         ToggleContainer.SetActive(!Dismissed || !DismissedOnce);
+        Close.SetActive(!NonToggleContainer.activeInHierarchy);
     }
 
     public void OnHelp(InputAction.CallbackContext context)

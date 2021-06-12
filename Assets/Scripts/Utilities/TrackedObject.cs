@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace Common
 {
-	public class TrackedObject<T> : MonoBehaviour where T: TrackedObject<T>
+	public abstract class TrackedObject<T> : MonoBehaviour where T : TrackedObject<T>
 	{
+		public virtual bool TrackDisabled => false;
 		private static HashSet<T> m_instances = new HashSet<T>();
 
 		protected virtual void OnEnable()
@@ -13,6 +14,15 @@ namespace Common
 		}
 
 		protected virtual void OnDisable()
+		{
+			if (TrackDisabled)
+			{
+				return;
+			}
+			m_instances.Remove(this as T);
+		}
+
+		protected virtual void OnDestroy()
 		{
 			m_instances.Remove(this as T);
 		}
