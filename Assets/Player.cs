@@ -123,7 +123,7 @@ public class Player : Singleton<Player>
 		{
 			TargetPosition += dir;
 		}
-		GMTKGameManager.Instance.CheckWin();
+		
 	}
 
 	void DoPickup(Pickup pickup, RaycastHit hit, float dist)
@@ -173,6 +173,8 @@ public class Player : Singleton<Player>
 		{
 			return;
 		}
+
+		GMTKGameManager.Instance.CheckWin();
 
 		TargetPosition = TargetPosition.RoundToIncrement(SnapLayer / (float)VoxelCoordinate.LayerRatio);
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class GMTKGameManager : Singleton<GMTKGameManager>
 {
@@ -8,19 +9,37 @@ public class GMTKGameManager : Singleton<GMTKGameManager>
 		Debug.Log("Reset Game");
 		foreach(var pickup in Pickup.Instances)
 		{
-			pickup.gameObject.SetActive(pickup.Level >= CurrentCheckpoint.Level);
+			pickup.gameObject.SetActive(pickup.Level >= CurrentCheckpoint?.Level);
 		}
 		var player = Player.Instance;
 		player.transform.position = CurrentCheckpoint.transform.position;
 		player.TargetPosition = CurrentCheckpoint.transform.position;
 		player.transform.rotation = Quaternion.identity;
 		player.TargetRotation = CurrentCheckpoint.transform.rotation;
+
+		ResetPlayer(player);
 	}
+
+	private void ResetPlayer(Player player)
+	{
+		var root = player.Renderer.Mesh.Voxels.First();
+		player.Renderer.Mesh.Voxels.Clear();
+		player.Renderer.Mesh.Voxels.AddSafe(root.Value);
+		player.Renderer.Mesh.Invalidate();
+		player.Renderer.Invalidate(false);
+	}
+
 	public void CheckWin()
 	{
-		if (CurrentCheckpoint.Win.CheckWin(Player.Instance))
+		var player = Player.Instance;
+		if (CurrentCheckpoint && CurrentCheckpoint.Win.CheckWin(player))
 		{
+			Debug.Log($"Moving to level {CurrentCheckpoint.Win.NextCheckpoint?.Level}");
+			CurrentCheckpoint.Win.gameObject.SetActive(false);
 			CurrentCheckpoint = CurrentCheckpoint.Win.NextCheckpoint;
+			CurrentCheckpoint?.Win?.gameObject.SetActive(true);
+
+			ResetPlayer(player);
 		}
 	}
 }

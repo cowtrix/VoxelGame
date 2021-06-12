@@ -10,8 +10,6 @@ public class LevelWin : TrackedObject<LevelWin>
 	public Checkpoint NextCheckpoint;
 	public LayerMask LayerMask;
 	protected VoxelRenderer Renderer => GetComponent<VoxelRenderer>();
-	
-
 
     public bool CheckWin(Player p)
 	{
@@ -24,7 +22,8 @@ public class LevelWin : TrackedObject<LevelWin>
 		foreach(var targetVox in Renderer.Mesh.Voxels)
 		{
 			var worldPos = transform.localToWorldMatrix.MultiplyPoint3x4(targetVox.Key.ToVector3());
-			if(!Physics.CheckBox(worldPos, targetVox.Key.GetScale() * Vector3.one, Quaternion.identity, LayerMask))
+			var localPos = VoxelCoordinate.FromVector3(p.transform.worldToLocalMatrix.MultiplyPoint3x4(worldPos), targetVox.Key.Layer);
+			if (!p.Renderer.Mesh.Voxels.ContainsKey(localPos))
 			{
 				return false;
 			}

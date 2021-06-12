@@ -3,13 +3,21 @@ using UnityEngine.Events;
 
 public class ResetLevel : MonoBehaviour
 {
-	private void OnTriggerEnter(Collider other)
+	public Bounds Bounds;
+	public int Level;
+
+	private void Update()
 	{
-		var p = other.GetComponentInParent<Player>();
-		if (!p)
+		var p = transform.worldToLocalMatrix.MultiplyPoint3x4(Player.Instance.transform.position);
+		if (Bounds.Contains(p))
 		{
-			return;
+			GMTKGameManager.Instance.ResetGame();
 		}
-		GMTKGameManager.Instance.ResetGame();
+	}
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.matrix = transform.localToWorldMatrix;
+		Gizmos.DrawWireCube(Bounds.center, Bounds.size);
 	}
 }

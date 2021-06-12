@@ -9,6 +9,7 @@ public class Pickup : TrackedObject<Pickup>
 {
     private VoxelRenderer Renderer => GetComponent<VoxelRenderer>();
 	public List<(Vector3, Vector3)> m_attachmentPoints = new List<(Vector3, Vector3)>();
+	public List<(Vector3, Vector3)> m_activeAttachmentPoints = new List<(Vector3, Vector3)>();
 
 	public LayerMask LayerMask;
 	public ParticleSystem Connector;
@@ -35,6 +36,7 @@ public class Pickup : TrackedObject<Pickup>
 	{
 		while (true)
 		{
+			m_activeAttachmentPoints.Clear();
 			foreach (var attachmentPoint in m_attachmentPoints)
 			{
 				var origin = transform.localToWorldMatrix.MultiplyPoint3x4(attachmentPoint.Item1);
@@ -46,14 +48,24 @@ public class Pickup : TrackedObject<Pickup>
 					LayerMask))
 				{
 					Debug.DrawLine(origin, hit.point, Color.magenta, 0);
-					Connector.transform.position = origin;
-					Connector.transform.rotation = Quaternion.LookRotation(dir.normalized);
-					Connector.Emit(EmissionSpeed);
+					m_activeAttachmentPoints.Add(attachmentPoint);
 				}
 				Debug.DrawLine(origin, origin + dir, Color.cyan, 0);
-				yield return null;
 			}
 			yield return new WaitForSeconds(1);
+		}
+		
+	}
+
+	private void Update()
+	{
+		foreach (var attachmentPoint in m_activeAttachmentPoints)
+		{
+			var origin = transform.localToWorldMatrix.MultiplyPoint3x4(attachmentPoint.Item1);
+			var dir = transform.localToWorldMatrix.MultiplyVector(attachmentPoint.Item2);
+			Connector.transform.position = origin;
+			Connector.transform.rotation = Quaternion.LookRotation(dir.normalized);
+			Connector.Emit(EmissionSpeed);
 		}
 		
 	}
