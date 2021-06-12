@@ -8,9 +8,10 @@ public class Player : MonoBehaviour
 {
 	public bool IsMoving =>
 		(transform.localPosition - TargetPosition).sqrMagnitude > Threshold ||
-		Quaternion.Angle(transform.localRotation, TargetRotation) > Threshold;
+		Quaternion.Angle(Renderer.transform.localRotation, TargetRotation) > Threshold;
 	public float MovementDistance = 1 / 3f;
 	public float MovementSpeed = 1;
+	public float RotationSpeed = 1;
 	public float Threshold = 0.1f;
 	public Vector3 TargetPosition;
 	public Quaternion TargetRotation;
@@ -24,6 +25,27 @@ public class Player : MonoBehaviour
 		TargetPosition = transform.localPosition;
 		TargetRotation = transform.localRotation;
 		m_mat = Renderer.Mesh.Voxels.First().Value.Material;
+	}
+
+	public void OnRotate(InputAction.CallbackContext cntxt)
+	{
+		if (cntxt.started || cntxt.canceled || IsMoving)
+		{
+			return;
+		}
+		if (cntxt.action.name == "RotateClockwise")
+		{
+			TryRotate(new Vector3(0, -90, 0));
+		}
+		else
+		{
+			TryRotate(new Vector3(0, 90, 0));
+		}
+	}
+
+	private void TryRotate(Vector3 rot)
+	{
+		TargetRotation *= Quaternion.Euler(rot);
 	}
 
 	public void OnMove(InputAction.CallbackContext cntxt)
@@ -83,7 +105,8 @@ public class Player : MonoBehaviour
 
 		foreach (var pickupVox in pickupRenderer.Mesh.Voxels)
 		{
-			var relVec = transform.worldToLocalMatrix.MultiplyPoint3x4(pickup.transform.localToWorldMatrix.MultiplyPoint3x4(pickupVox.Key.ToVector3()));
+			var relVec = Renderer.transform.worldToLocalMatrix.MultiplyPoint3x4(
+				pickup.transform.localToWorldMatrix.MultiplyPoint3x4(pickupVox.Key.ToVector3()));
 			var newVox = VoxelCoordinate.FromVector3(relVec, pickupVox.Key.Layer);
 			Debug.Log("New vox: " + newVox);
 			Renderer.Mesh.Voxels.AddSafe(new Voxel
@@ -102,7 +125,7 @@ public class Player : MonoBehaviour
 		VoxelManager.Instance.DefaultMaterial.SetVector("PlayerPosition", transform.position);
 		VoxelManager.Instance.DefaultMaterialTransparent.SetVector("PlayerPosition", transform.position);
 		var dt = Time.deltaTime;
-		transform.localRotation = Quaternion.RotateTowards(transform.localRotation, TargetRotation, MovementSpeed * dt);
+		Renderer.transform.localRotation = Quaternion.RotateTowards(Renderer.transform.localRotation, TargetRotation, RotationSpeed * dt);
 		transform.localPosition = Vector3.MoveTowards(transform.localPosition, TargetPosition, MovementSpeed * dt);
 	}
 }
