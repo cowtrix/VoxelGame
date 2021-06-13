@@ -18,6 +18,11 @@ public class Help : Singleton<Help>
         NonToggleContainer.SetActive(Dismissed);
         ToggleContainer.SetActive(!Dismissed || !DismissedOnce);
         Close.SetActive(!NonToggleContainer.activeInHierarchy);
+
+        if(Time.time > 10)
+		{
+            DismissedOnce = true;
+        }
     }
 
     public void OnHelp(InputAction.CallbackContext context)

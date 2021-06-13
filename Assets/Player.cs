@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Voxul;
 
-
-
 public class Player : Singleton<Player>
 {
 	public AudioSource AudioSource => GetComponent<AudioSource>();
@@ -73,6 +71,7 @@ public class Player : Singleton<Player>
 			{
 				var pos =  Renderer.transform.localToWorldMatrix.MultiplyPoint3x4(localLerpRot * vox.Key.ToVector3());
 				var lastPos = Renderer.transform.localToWorldMatrix.MultiplyPoint3x4(lastLocalRot * vox.Key.ToVector3());
+
 				var dir = (pos - lastPos).normalized;
 				var scale = VoxelCoordinate.LayerToScale(vox.Key.Layer);
 				var col = Color.white;
@@ -143,7 +142,7 @@ public class Player : Singleton<Player>
 		if (!colliding)
 		{
 			TargetPosition += dir;
-			AudioSource.PlayOneShot(MoveScrape, .1f);
+			AudioSource.PlayOneShot(MoveScrape, .05f);
 		}
 		else
 		{
@@ -198,7 +197,7 @@ public class Player : Singleton<Player>
 		{
 			return;
 		}
-		WindLoop.volume = Mathf.MoveTowards(WindLoop.volume, IsMoving ? .1f : 0f, Time.deltaTime * .5f);
+		WindLoop.volume = Mathf.MoveTowards(WindLoop.volume, GMTKGameManager.Instance.CurrentCheckpoint && IsMoving ? .1f : 0f, Time.deltaTime * .5f);
 		var activePickups = Pickup.Instances.Where(f => f.gameObject.activeInHierarchy && f.Enabled).ToList();
 		foreach(var p in activePickups)
 		{

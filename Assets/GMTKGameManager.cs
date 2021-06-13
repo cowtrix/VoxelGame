@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GMTKGameManager : Singleton<GMTKGameManager>
 {
+	public GameObject Credits;
 	public Checkpoint CurrentCheckpoint;
 	public void ResetGame()
 	{
@@ -35,10 +36,11 @@ public class GMTKGameManager : Singleton<GMTKGameManager>
 		if (!CurrentCheckpoint)
 		{
 			player.TargetPosition = new Vector3(player.TargetPosition.x, 10_000, player.TargetPosition.z);
-			player.TargetRotation *= Quaternion.Euler(0, Time.deltaTime, 0);
+			player.Renderer.transform.rotation *= Quaternion.Euler(0, Time.deltaTime * 100, 0);
+			Credits.gameObject.SetActive(true);
 			return;
 		}
-
+		Credits.gameObject.SetActive(false);
 		if (CurrentCheckpoint.Win && CurrentCheckpoint.Win.CheckWin(player))
 		{
 			Debug.Log($"Moving to level {CurrentCheckpoint.Win.NextCheckpoint?.Level}");
