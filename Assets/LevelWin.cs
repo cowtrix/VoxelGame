@@ -9,6 +9,7 @@ public class LevelWin : TrackedObject<LevelWin>
 {
 	public Checkpoint NextCheckpoint;
 	public LayerMask LayerMask;
+	public ParticleSystem ParticleSystem;
 	protected VoxelRenderer Renderer => GetComponent<VoxelRenderer>();
 
     public bool CheckWin(Player p)

@@ -14,8 +14,8 @@ public class GMTKGameManager : Singleton<GMTKGameManager>
 		var player = Player.Instance;
 		player.transform.position = CurrentCheckpoint.transform.position;
 		player.TargetPosition = CurrentCheckpoint.transform.position;
-		player.transform.rotation = Quaternion.identity;
-		player.TargetRotation = CurrentCheckpoint.transform.rotation;
+		//player.transform.rotation = Quaternion.identity;
+		//player.TargetRotation = CurrentCheckpoint.transform.rotation;
 
 		ResetPlayer(player);
 	}
@@ -36,6 +36,14 @@ public class GMTKGameManager : Singleton<GMTKGameManager>
 		{
 			Debug.Log($"Moving to level {CurrentCheckpoint.Win.NextCheckpoint?.Level}");
 			CurrentCheckpoint.Win.gameObject.SetActive(false);
+
+			if(CurrentCheckpoint && CurrentCheckpoint.Win)
+			{
+				var ps = Instantiate(CurrentCheckpoint.Win.ParticleSystem.gameObject).GetComponent<ParticleSystem>();
+				ps.gameObject.SetActive(true);
+				ps.transform.position = transform.position;
+			}
+			
 			CurrentCheckpoint = CurrentCheckpoint.Win.NextCheckpoint;
 			CurrentCheckpoint?.Win?.gameObject.SetActive(true);
 

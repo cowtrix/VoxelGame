@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class Checkpoint : TrackedObject<Checkpoint>
 {
+	public bool IsMoving => (transform.parent.position - StartPosition).magnitude > .1f;
+
 	public int Level;
 	public LevelWin Win;
-	
+
 	public float MoveSpeed = 1;
 	private Vector3 StartPosition;
 

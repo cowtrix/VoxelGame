@@ -12,7 +12,8 @@ public class Player : Singleton<Player>
 	public byte SnapLayer = 1;
 	public bool IsMoving =>
 		(transform.localPosition - TargetPosition).magnitude > MovementThreshold ||
-		Quaternion.Angle(transform.rotation, TargetRotation) > RotationThreshold;
+		Quaternion.Angle(transform.rotation, TargetRotation) > RotationThreshold ||
+		(GMTKGameManager.Instance.CurrentCheckpoint && GMTKGameManager.Instance.CurrentCheckpoint.IsMoving);
 	public float MovementDistance => SnapLayer / (float)VoxelCoordinate.LayerRatio;
 	public float MovementSpeed = 1;
 	public float MovementThreshold = 0.01f;

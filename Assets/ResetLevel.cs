@@ -15,7 +15,7 @@ public class ResetLevel : MonoBehaviour
 		}
 	}
 
-	private void OnDrawGizmos()
+	private void OnDrawGizmosSelected()
 	{
 		Gizmos.matrix = transform.localToWorldMatrix;
 		Gizmos.DrawWireCube(Bounds.center, Bounds.size);
