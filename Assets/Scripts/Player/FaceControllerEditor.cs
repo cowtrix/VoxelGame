@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
 
 [CustomEditor(typeof(TransformAnimationController))]
@@ -58,3 +59,4 @@ public class FaceControllerEditor : Editor
 		}
 	}
 }
+#endif

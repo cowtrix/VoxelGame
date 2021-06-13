@@ -11,6 +11,8 @@ public class Pickup : TrackedObject<Pickup>
 	public List<(Vector3, Vector3)> m_attachmentPoints = new List<(Vector3, Vector3)>();
 	public List<(Vector3, Vector3)> m_activeAttachmentPoints = new List<(Vector3, Vector3)>();
 
+	public bool Enabled => m_activeAttachmentPoints.Any();
+
 	public LayerMask LayerMask;
 	public ParticleSystem Connector;
 	public int EmissionSpeed = 1;

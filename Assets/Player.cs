@@ -9,6 +9,10 @@ using Voxul;
 
 public class Player : Singleton<Player>
 {
+	public AudioSource AudioSource => GetComponent<AudioSource>();
+	public AudioSource WindLoop, Tinkle;
+	public AudioClip CantMove, Land, MoveScrape;
+
 	public byte SnapLayer = 1;
 	public bool IsMoving =>
 		(transform.localPosition - TargetPosition).magnitude > MovementThreshold ||
@@ -26,6 +30,7 @@ public class Player : Singleton<Player>
 	public LayerMask CollisionMask;
 	public VoxelMaterialAsset PlayerPickup;
 	private VoxelMaterial m_mat => PlayerPickup.Data;
+	private bool m_isFalling;
 
 	private void Start()
 	{
@@ -39,6 +44,13 @@ public class Player : Singleton<Player>
 		{
 			return;
 		}
+
+		if (!Help.Instance.Dismissed)
+		{
+			Help.Instance.Dismissed = true;
+			Help.Instance.DismissedOnce = true;
+		}
+
 		if (cntxt.action.name == "RotateClockwise")
 		{
 			TryRotate(Quaternion.Euler(new Vector3(0, -90, 0)));
@@ -69,6 +81,7 @@ public class Player : Singleton<Player>
 					col = Color.red;
 					Debug.Log($"Hit {hit.collider}", hit.collider);
 					DebugHelper.DrawSphere(hit.point, Quaternion.identity, .02f, Color.cyan, 20);
+					AudioSource.PlayOneShot(CantMove, .5f);
 					return false;
 				}
 				else
@@ -91,6 +104,13 @@ public class Player : Singleton<Player>
 		{
 			return;
 		}
+
+		if (!Help.Instance.Dismissed)
+		{
+			Help.Instance.Dismissed = true;
+			Help.Instance.DismissedOnce = true;
+		}
+
 		var move = transform.localToWorldMatrix.MultiplyVector(cntxt.ReadValue<Vector2>().x0z());
 		var dir = move.ClosestAxisNormal() * MovementDistance;
 		Debug.Log($"Moved {dir}");
@@ -123,8 +143,12 @@ public class Player : Singleton<Player>
 		if (!colliding)
 		{
 			TargetPosition += dir;
+			AudioSource.PlayOneShot(MoveScrape, .1f);
 		}
-		
+		else
+		{
+			AudioSource.PlayOneShot(CantMove, .2f);
+		}
 	}
 
 	void DoPickup(Pickup pickup, RaycastHit hit, float dist)
@@ -174,7 +198,13 @@ public class Player : Singleton<Player>
 		{
 			return;
 		}
-
+		WindLoop.volume = Mathf.MoveTowards(WindLoop.volume, IsMoving ? .1f : 0f, Time.deltaTime * .5f);
+		var activePickups = Pickup.Instances.Where(f => f.gameObject.activeInHierarchy && f.Enabled).ToList();
+		foreach(var p in activePickups)
+		{
+			Debug.Log($"Pickup active: {p}", p);
+		}
+		Tinkle.volume = Mathf.MoveTowards(Tinkle.volume, activePickups.Any() ? .3f : 0f, Time.deltaTime * .5f);
 		GMTKGameManager.Instance.CheckWin();
 
 		TargetPosition = TargetPosition.RoundToIncrement(SnapLayer / (float)VoxelCoordinate.LayerRatio);
@@ -189,6 +219,7 @@ public class Player : Singleton<Player>
 		{
 			return;
 		}
+
 		bool shouldFall = true;
 		foreach (var vox in Renderer.Mesh.Voxels.Keys)
 		{
@@ -202,7 +233,13 @@ public class Player : Singleton<Player>
 		if (shouldFall)
 		{
 			Debug.Log("Fell down a block");
+			m_isFalling = true;
 			TargetPosition -= Vector3.up * MovementDistance;
+		}
+		else if(m_isFalling)
+		{
+			m_isFalling = false;
+			AudioSource.PlayOneShot(Land, .4f);
 		}
 	}
 

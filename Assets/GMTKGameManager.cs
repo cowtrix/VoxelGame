@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Common;
+using System.Linq;
 using UnityEngine;
 
 public class GMTKGameManager : Singleton<GMTKGameManager>
@@ -7,20 +8,18 @@ public class GMTKGameManager : Singleton<GMTKGameManager>
 	public void ResetGame()
 	{
 		Debug.Log("Reset Game");
-		foreach(var pickup in Pickup.Instances)
+		foreach (var pickup in Pickup.Instances)
 		{
 			pickup.gameObject.SetActive(pickup.Level >= CurrentCheckpoint?.Level);
 		}
 		var player = Player.Instance;
 		player.transform.position = CurrentCheckpoint.transform.position;
 		player.TargetPosition = CurrentCheckpoint.transform.position;
-		//player.transform.rotation = Quaternion.identity;
-		//player.TargetRotation = CurrentCheckpoint.transform.rotation;
 
-		ResetPlayer(player);
+		ResetPlayerMeshState(player);
 	}
 
-	private void ResetPlayer(Player player)
+	private void ResetPlayerMeshState(Player player)
 	{
 		var root = player.Renderer.Mesh.Voxels.First();
 		player.Renderer.Mesh.Voxels.Clear();
@@ -32,22 +31,30 @@ public class GMTKGameManager : Singleton<GMTKGameManager>
 	public void CheckWin()
 	{
 		var player = Player.Instance;
-		if (CurrentCheckpoint && CurrentCheckpoint.Win.CheckWin(player))
+
+		if (!CurrentCheckpoint)
+		{
+			player.TargetPosition = new Vector3(player.TargetPosition.x, 10_000, player.TargetPosition.z);
+			player.TargetRotation *= Quaternion.Euler(0, Time.deltaTime, 0);
+			return;
+		}
+
+		if (CurrentCheckpoint.Win && CurrentCheckpoint.Win.CheckWin(player))
 		{
 			Debug.Log($"Moving to level {CurrentCheckpoint.Win.NextCheckpoint?.Level}");
 			CurrentCheckpoint.Win.gameObject.SetActive(false);
 
-			if(CurrentCheckpoint && CurrentCheckpoint.Win)
+			if (CurrentCheckpoint && CurrentCheckpoint.Win)
 			{
 				var ps = Instantiate(CurrentCheckpoint.Win.ParticleSystem.gameObject).GetComponent<ParticleSystem>();
 				ps.gameObject.SetActive(true);
 				ps.transform.position = transform.position;
 			}
-			
+
 			CurrentCheckpoint = CurrentCheckpoint.Win.NextCheckpoint;
 			CurrentCheckpoint?.Win?.gameObject.SetActive(true);
 
-			ResetPlayer(player);
+			ResetPlayerMeshState(player);
 		}
 	}
 }

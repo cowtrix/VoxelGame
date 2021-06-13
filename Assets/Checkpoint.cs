@@ -14,7 +14,7 @@ public class Checkpoint : TrackedObject<Checkpoint>
 	private void Start()
 	{
 		StartPosition = transform.parent.position;
-		if (Level == 0)
+		if (Level == -1)
 		{
 			return;
 		}

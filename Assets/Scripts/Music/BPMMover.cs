@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class BPMMover : MonoBehaviour
 {
-	[Range(0,1)]
-	public double TimeOffset;
+	public float TimeOffset;
     public Vector3 Magnitude;
     public Vector3 Offset;
 
+	public float Frequency = 1;
+
+	private void Start()
+	{
+		Offset = transform.localPosition;
+	}
+
 	private void Update()
 	{
-		transform.localPosition = Offset + (float)BeatManager.Instance.BPMSawtooth(TimeOffset) * Magnitude;
+		transform.localPosition = Offset + Mathf.Sin((Time.time + TimeOffset) * Frequency) * Magnitude;
 	}
 }
