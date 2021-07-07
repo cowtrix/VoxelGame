@@ -158,7 +158,7 @@ public class Player : Singleton<Player>
 		{
 			return;
 		}
-		var hitVox = pickupRenderer.GetVoxel(hit.triangleIndex);
+		var hitVox = pickupRenderer.GetVoxel(hit.collider, hit.triangleIndex);
 		if (!hitVox.HasValue)
 		{
 			return;
@@ -187,7 +187,7 @@ public class Player : Singleton<Player>
 			}
 			pickup.gameObject.SetActive(false);
 			Renderer.Mesh.Invalidate();
-			Renderer.Invalidate(false);
+			Renderer.Invalidate(true, false);
 		}
 	}
 

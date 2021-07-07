@@ -40,7 +40,7 @@ namespace Voxul
 		private void Start()
 		{
 			Renderer.Mesh = Instantiate(Renderer.Mesh);
-			Mesh.Mesh = null; // To make sure we make our own
+			Mesh.UnityMeshInstances.Clear(); // To make sure we make our own
 			Health = Math.Max(1, Mesh.Voxels.Values.Count(IsHealthBlock));
 		}
 
@@ -85,28 +85,16 @@ namespace Voxul
 			var gib = new GameObject("gib");
 			gib.transform.position = transform.position;
 			gib.layer = GibLayer;
-			if (voxels.Count() == 1)
+			var r = gib.AddComponent<VoxelRenderer>();
+			r.GenerateCollider = true;
+			r.Mesh = ScriptableObject.CreateInstance<VoxelMesh>();
+			foreach (var v in voxels)
 			{
-				var v = voxels.Single();
-				var r = gib.AddComponent<SingleVoxelRenderer>();
-				r.Voxel = v;
-				r.Invalidate();
-				var bc = gib.AddComponent<BoxCollider>();
-				bc.size *= .95f;
+				r.Mesh.Voxels.Add(v.Coordinate, v);
 			}
-			else
-			{
-				var r = gib.AddComponent<VoxelRenderer>();
-				r.GenerateCollider = true;
-				r.Mesh = ScriptableObject.CreateInstance<VoxelMesh>();
-				foreach (var v in voxels)
-				{
-					r.Mesh.Voxels.Add(v.Coordinate, v);
-				}
-				r.Mesh.Invalidate();
-				r.Invalidate(false);
-				gib.GetComponent<MeshCollider>().convex = true;
-			}
+			r.Mesh.Invalidate();
+			r.Invalidate(true, false);
+			gib.GetComponent<MeshCollider>().convex = true;
 			gib.AddComponent<DestroyInTime>();
 			var rb = gib.AddComponent<Rigidbody>();
 			rb.gameObject.AddComponent<GravityRigidbody>();

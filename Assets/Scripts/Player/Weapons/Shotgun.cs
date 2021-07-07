@@ -38,7 +38,7 @@ namespace Weapons
 			}
 
 			destroyable.Mesh.Invalidate();
-			destroyable.Renderer.Invalidate(false);
+			destroyable.Renderer.Invalidate(true, false);
 		}
 	}
 }

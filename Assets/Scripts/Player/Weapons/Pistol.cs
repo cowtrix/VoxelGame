@@ -18,7 +18,7 @@ namespace Weapons
 				destroyable.Health--;
 				return;
 			}
-			var voxel = destroyable.Renderer.GetVoxel(hit.triangleIndex);
+			var voxel = destroyable.Renderer.GetVoxel(hit.collider, hit.triangleIndex);
 			if (!voxel.HasValue)
 			{
 				return;
@@ -28,7 +28,7 @@ namespace Weapons
 				destroyable.Gib(ExplosionForce, hit.normal, new[] { voxel.Value });
 			}
 			destroyable.Mesh.Invalidate();
-			destroyable.Renderer.Invalidate(false);
+			destroyable.Renderer.Invalidate(true, false);
 		}
 	}
 }

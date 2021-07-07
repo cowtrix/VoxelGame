@@ -26,7 +26,7 @@ public class GMTKGameManager : Singleton<GMTKGameManager>
 		player.Renderer.Mesh.Voxels.Clear();
 		player.Renderer.Mesh.Voxels.AddSafe(root.Value);
 		player.Renderer.Mesh.Invalidate();
-		player.Renderer.Invalidate(false);
+		player.Renderer.Invalidate(true, false);
 	}
 
 	public void CheckWin()
