@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d889bbf6644426b48b65a87dc0762757, type: 3}
   m_Name: VoxelManager
   m_EditorClassIdentifier: 
-  SpriteResolution: 32
-  DefaultMaterial: {fileID: 2100000, guid: 4e4fd6ec9145a3440873deb1b231bb30, type: 2}
-  DefaultMaterialTransparent: {fileID: 2100000, guid: 89618a3c5cc4391429c8dcb314b8eb09, type: 2}
+  LogLevel: 0
+  DefaultThreadingMode: 1
+  DefaultMaxCoroutineUpdateTime: 0.016666668
+  DefaultMaterial: {fileID: 0}
+  DefaultMaterialTransparent: {fileID: 0}
   BaseTextureArray: {fileID: 18700000, guid: ca1794e6ad9b24c429b65b65996c7ef6, type: 2}
+  LayerRatio: 3
+  SpriteResolution: 32
   Sprites:
   - {fileID: 2800000, guid: f052a0cdfa382e846853d5f7404f63e0, type: 3}
   - {fileID: 2800000, guid: 5d8ba0626ebc53146bb45344d5410b1d, type: 3}
@@ -35,5 +39,5 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 3c26e6bf4b4085b41a444a3adc030ecb, type: 3}
   - {fileID: 2800000, guid: acdc2799e8160e24489654d5f84ef296, type: 3}
   - {fileID: 2800000, guid: 4e5a26357404193428a87aac1d5ce7a9, type: 3}
-  CubeMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  LODMaterial: {fileID: 0}
+  DefaultOptimisers:
+  - {fileID: 11400000, guid: d09037b445ca875478b0bbce80657d20, type: 2}

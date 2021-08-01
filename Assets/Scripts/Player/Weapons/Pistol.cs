@@ -18,7 +18,7 @@ namespace Weapons
 				destroyable.Health--;
 				return;
 			}
-			var voxel = destroyable.Renderer.GetVoxel(hit.collider, hit.triangleIndex);
+			var voxel = destroyable.Renderer.GetVoxel(hit.point, hit.normal);
 			if (!voxel.HasValue)
 			{
 				return;
