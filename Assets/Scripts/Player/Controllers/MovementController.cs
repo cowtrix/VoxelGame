@@ -8,14 +8,12 @@ public class MovementController : Singleton<MovementController>
 {
 	private GravityManager GravityManager => GravityManager.Instance;
 	private CameraController CameraController => CameraController.Instance;
-
-	[Header("References")]
-	public PlayerInput Input;
-	public Rigidbody Rigidbody;
+	private PlayerInput Input => GetComponent<PlayerInput>();
+	public Rigidbody Rigidbody => GetComponent<Rigidbody>();
 
 	[Header("Parameters")]
 	public float MovementSpeed = 100f;
-	public float StrafeSpeed = 100f;
+	public float ThrusterSpeed = 100f;
 	public Vector3 JumpStrength = new Vector3(0, 500, 0);
 	public LayerMask CollisionMask;
 	public float RotateTowardGravitySpeed = 1f;
@@ -53,8 +51,9 @@ public class MovementController : Singleton<MovementController>
 		var gravityVec = GravityManager.GetGravityForce(transform.position);
 
 		IsGrounded = Physics.Raycast(transform.position, gravityVec, out var groundHit, GroundingDistance, CollisionMask, QueryTriggerInteraction.Ignore);
+		var isGroundedForward = Physics.Raycast(transform.position + CameraController.transform.forward, gravityVec, out var forwardHit, GroundingDistance, CollisionMask, QueryTriggerInteraction.Ignore);
 		Debug.DrawLine(transform.position, transform.position + gravityVec * dt, Color.green);
-		if(IsGrounded)
+		if (IsGrounded)
 		{
 			m_jumpCount = 2;
 		}
@@ -66,6 +65,14 @@ public class MovementController : Singleton<MovementController>
 			Rigidbody.rotation = Quaternion.Lerp(Rigidbody.rotation, straightenQuat, straightenLerp);
 			//Rigidbody.rotation = straightenQuat;
 			Debug.DrawLine(transform.position, transform.position + straightenQuat * transform.forward, Color.yellow);
+		}
+
+		{
+			// Push out
+			if (groundHit.distance < GroundingDistance)
+			{
+				Rigidbody.MovePosition(Rigidbody.position + groundHit.normal * (GroundingDistance - groundHit.distance));
+			}
 		}
 
 		{
@@ -83,16 +90,17 @@ public class MovementController : Singleton<MovementController>
 			var worldVelocityDirection = CameraController.transform.localToWorldMatrix.MultiplyVector(localVelocityDirection);
 			if (IsGrounded)
 			{
-				Debug.DrawLine(transform.position, groundHit.point, Color.white, 5);
-				Debug.DrawLine(transform.position, transform.position + worldVelocityDirection, Color.magenta, 5);
-				worldVelocityDirection -= groundHit.normal * Vector3.Dot(worldVelocityDirection, groundHit.normal);
+				//Debug.DrawLine(transform.position, groundHit.point, Color.white, 5);
+				//Debug.DrawLine(transform.position, transform.position + worldVelocityDirection, Color.magenta, 5);
+				var normal = isGroundedForward ? forwardHit.normal : groundHit.normal;
+				worldVelocityDirection -= normal * Vector3.Dot(worldVelocityDirection, normal);
 			}
 			else
 			{
 				Rigidbody.AddForce(gravityVec * dt * Rigidbody.mass);
 			}
 			Debug.DrawLine(transform.position, transform.position + worldVelocityDirection, Color.cyan, 5);
-			Rigidbody.velocity += worldVelocityDirection.normalized * MovementSpeed * dt;
+			Rigidbody.velocity += worldVelocityDirection.normalized * (IsGrounded ? MovementSpeed : ThrusterSpeed) * dt;
 		}
 		SmoothPosition.Push(Rigidbody.position);
 	}

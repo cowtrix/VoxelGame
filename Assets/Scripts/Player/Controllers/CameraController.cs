@@ -5,7 +5,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[ExecuteAlways]
 public class CameraController : Singleton<CameraController>
 {
 	[Header("Camera")]

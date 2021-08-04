@@ -60,6 +60,8 @@
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\Editor\SerializedPropertyExtension.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\Editor\SerializableDictionaryDrawer.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\Editor\SerializableDictionaryDrawerImplementations.cs" />
+    <Compile Include="Assets\Scripts_2\Editor\LanguageWizard.cs" />
+    <Compile Include="Assets\Scripts_2\Editor\CableEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -758,6 +760,10 @@
     <ProjectReference Include="Voxul.csproj">
       <Project>{22DBF450-3546-2F76-DC57-2CB6396A7251}</Project>
       <Name>Voxul</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnitySceneReference.csproj">
+      <Project>{6AE5C9F5-A9EF-3FDA-F477-46CFC445B7DF}</Project>
+      <Name>UnitySceneReference</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

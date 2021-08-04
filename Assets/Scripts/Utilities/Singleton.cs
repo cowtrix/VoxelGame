@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Voxul;
 
 /// <summary>
 /// Be aware this will not prevent a non singleton constructor
@@ -8,7 +9,7 @@ using UnityEngine;
 /// 
 /// As a note, this is made as MonoBehaviour because we need Coroutines.
 /// </summary>
-public class Singleton<T> : MonoBehaviour where T : Singleton<T>
+public class Singleton<T> : ExtendedMonoBehaviour where T : Singleton<T>
 {
 
 	public Singleton()

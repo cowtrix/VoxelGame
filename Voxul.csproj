@@ -63,6 +63,7 @@
     <Compile Include="Assets\voxul\Scripts\Optimisers\InternalFaceOptimiser.cs" />
     <Compile Include="Assets\voxul\Scripts\VoxelExtensions.cs" />
     <Compile Include="Assets\voxul\Scripts\Optimisers\FaceMerger.cs" />
+    <Compile Include="Assets\voxul\Scripts\Utilities\VoxelRendererPropertyModifier.cs" />
     <Compile Include="Assets\voxul\Scripts\VoxelMaterialAsset.cs" />
     <Compile Include="Assets\voxul\Scripts\Utilities\TextureIndex.cs" />
     <Compile Include="Assets\voxul\Scripts\Editor\VoxelPainter.cs" />
@@ -70,15 +71,19 @@
     <Compile Include="Assets\voxul\Lib\CsharpVoxReader\Chunks\GroupNode.cs" />
     <Compile Include="Assets\voxul\Scripts\Utilities\Extensions\VectorExtensions.cs" />
     <Compile Include="Assets\voxul\Lib\CsharpVoxReader\Chunks\Layer.cs" />
+    <Compile Include="Assets\voxul\Scripts\Utilities\ExtendedMonoBehaviour.cs" />
     <Compile Include="Assets\voxul\Scripts\Editor\VoxelMeshInfoWindow.cs" />
     <Compile Include="Assets\voxul\Lib\CsharpVoxReader\GenericsReader.cs" />
     <Compile Include="Assets\voxul\Scripts\Utilities\Data Structures\SerializableGradient.cs" />
+    <Compile Include="Assets\voxul\Scripts\Utilities\Data Structures\PolyList.cs" />
     <Compile Include="Assets\voxul\Scripts\Utilities\Data Structures\SerializableDictionary.cs" />
+    <Compile Include="Assets\voxul\Scripts\LOD\Editor\RenderPlaneVoxeLODEditor.cs" />
     <Compile Include="Assets\voxul\Scripts\Utilities\Util.cs" />
     <Compile Include="Assets\voxul\Lib\CsharpVoxReader\Chunks\Palette.cs" />
     <Compile Include="Assets\voxul\Lib\CsharpVoxReader\Chunks\Main.cs" />
     <Compile Include="Assets\voxul\Scripts\Editor\VoxelCursor.cs" />
     <Compile Include="Assets\voxul\Scripts\Utilities\LazyReference.cs" />
+    <Compile Include="Assets\voxul\Scripts\LOD\Editor\RenderPlaneDrawer.cs" />
     <Compile Include="Assets\voxul\Scripts\SurfaceData.cs" />
     <Compile Include="Assets\voxul\Lib\CsharpVoxReader\Extensions.cs" />
     <Compile Include="Assets\voxul\Scripts\VoxelRenderer.cs" />
@@ -86,6 +91,8 @@
     <Compile Include="Assets\voxul\Lib\CsharpVoxReader\IVoxLoader.cs" />
     <Compile Include="Assets\voxul\Scripts\Utilities\AutoDestroyer.cs" />
     <Compile Include="Assets\voxul\Scripts\VoxelTextWorker.cs" />
+    <Compile Include="Assets\voxul\Scripts\Editor\PolyListDrawer.cs" />
+    <Compile Include="Assets\voxul\Scripts\LOD\Editor\LODGeneratorWindow.cs" />
     <Compile Include="Assets\voxul\Scripts\Editor\Tools\AddTool.cs" />
     <Compile Include="Assets\voxul\Scripts\Editor\VoxelMeshFieldEditor.cs" />
     <Compile Include="Assets\voxul\Scripts\Editor\MeshVoxelizer.cs" />
@@ -106,6 +113,7 @@
     <Compile Include="Assets\voxul\Scripts\Utilities\FontExtensions.cs" />
     <Compile Include="Assets\voxul\Tests\TestUtil.cs" />
     <Compile Include="Assets\voxul\Lib\CsharpVoxReader\Chunk.cs" />
+    <Compile Include="Assets\voxul\Scripts\Utilities\VoxelColorTint.cs" />
     <Compile Include="Assets\voxul\Scripts\Editor\Tools\SubdivideTool.cs" />
     <Compile Include="Assets\voxul\Lib\CsharpVoxReader\Chunks\Unknown.cs" />
     <Compile Include="Assets\voxul\Scripts\Meshing\VoxelFaceCoordinate.cs" />
@@ -124,12 +132,17 @@
     <Compile Include="Assets\voxul\Scripts\Voxel.cs" />
     <Compile Include="Assets\voxul\Scripts\Utilities\Pathfinding\VoxelMeshTester.cs" />
     <Compile Include="Assets\voxul\Scripts\Editor\Interop\MagicaVoxelImporterWindow.cs" />
+    <Compile Include="Assets\voxul\Scripts\LOD\LevelOfDetailBuilder.cs" />
     <Compile Include="Assets\voxul\Scripts\Editor\NativeEditorWrapper.cs" />
     <Compile Include="Assets\voxul\Scripts\Utilities\Extensions\TransformExtensions.cs" />
     <Compile Include="Assets\voxul\Scripts\Meshing\VoxelMesh.cs" />
+    <Compile Include="Assets\voxul\Scripts\Editor\ExtendedMonobehaviourEditor.cs" />
     <Compile Include="Assets\voxul\Examples\Benchmarks\BoxBenchmark.cs" />
     <Compile Include="Assets\voxul\Lib\CsharpVoxReader\Chunks\Size.cs" />
+    <Compile Include="Assets\voxul\Scripts\LOD\RenderPlaneVoxelLOD.cs" />
+    <Compile Include="Assets\voxul\Scripts\Editor\TreeGenerator.cs" />
     <Compile Include="Assets\voxul\Scripts\Utilities\Extensions\QuaternionExtensions.cs" />
+    <Compile Include="Assets\voxul\Scripts\Editor\Tools\PrimitiveTool.cs" />
     <Compile Include="Assets\voxul\Scripts\Editor\Tools\RemoveTool.cs" />
     <Compile Include="Assets\voxul\Scripts\Utilities\DebugHelper.cs" />
     <Compile Include="Assets\voxul\Scripts\Meshing\VoxelMapping.cs" />
@@ -139,19 +152,6 @@
     <Compile Include="Assets\voxul\Lib\CsharpVoxReader\Chunks\Pack.cs" />
     <Compile Include="Assets\voxul\Scripts\Utilities\Pathfinding\VoxelTree.cs" />
     <Compile Include="Assets\voxul\Scripts\Editor\VoxelObjectEditorBase.cs" />
-    <Compile Include="Assets\voxul\Scripts\Utilities\Data Structures\PolyList.cs" />
-    <Compile Include="Assets\voxul\Scripts\LOD\Editor\RenderPlaneVoxeLODEditor.cs" />
-    <Compile Include="Assets\voxul\Scripts\Editor\Tools\PrimitiveTool.cs" />
-    <Compile Include="Assets\voxul\Scripts\Utilities\ExtendedMonoBehaviour.cs" />
-    <Compile Include="Assets\voxul\Scripts\Utilities\VoxelColorTint.cs" />
-    <Compile Include="Assets\voxul\Scripts\LOD\LevelOfDetailBuilder.cs" />
-    <Compile Include="Assets\voxul\Scripts\LOD\Editor\LODGeneratorWindow.cs" />
-    <Compile Include="Assets\voxul\Scripts\Utilities\VoxelRendererPropertyModifier.cs" />
-    <Compile Include="Assets\voxul\Scripts\LOD\RenderPlaneVoxelLOD.cs" />
-    <Compile Include="Assets\voxul\Scripts\LOD\Editor\RenderPlaneDrawer.cs" />
-    <Compile Include="Assets\voxul\Scripts\Editor\ExtendedMonobehaviourEditor.cs" />
-    <Compile Include="Assets\voxul\Scripts\Editor\TreeGenerator.cs" />
-    <Compile Include="Assets\voxul\Scripts\Editor\PolyListDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\voxul\Shaders\DebugGrid.shader" />
