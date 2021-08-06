@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6440489353111139915}
   - component: {fileID: 6440489353111139914}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crane_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6440489353111139915
 Transform:
@@ -40,7 +40,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6440489353111139917}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e3a57cdce1fab4408533db885df689b, type: 3}
   m_Name: 
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 3e7965609b4da9242a9b16c9a3a77824, type: 2}
   m_lastMeshHash: 08647c54-d897-4a73-a2d6-71ae4aaa9c69
-  Renderers:
+  Submeshes:
   - {fileID: 6440489353500633216}
 --- !u!1 &6440489353415020698
 GameObject:
@@ -68,12 +68,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6440489353415020699}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CounterweightAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6440489353415020699
 Transform:
@@ -102,12 +102,12 @@ GameObject:
   - component: {fileID: 6440489353500633231}
   - component: {fileID: 6440489353500633230}
   - component: {fileID: 6440489353500633217}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crane_Top_submesh_hidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6440489353500633228
 Transform:
@@ -135,6 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 6440489353111139914}
   MeshFilter: {fileID: 6440489353500633231}
   MeshRenderer: {fileID: 6440489353500633230}
@@ -166,7 +169,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -212,12 +215,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6440489353727184354}
   - component: {fileID: 6440489353727184355}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crane_Cockpit_submesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6440489353727184354
 Transform:
@@ -241,7 +244,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6440489353727184357}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e3a57cdce1fab4408533db885df689b, type: 3}
   m_Name: 
@@ -258,7 +261,7 @@ MonoBehaviour:
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: a14a7f37fb3162d44ab615a1cf843de0, type: 2}
   m_lastMeshHash: 52fe02bd-ef4c-4e76-abbf-93499234ea2c
-  Renderers:
+  Submeshes:
   - {fileID: 6440489354050679883}
 --- !u!1 &6440489353741995239
 GameObject:
@@ -272,12 +275,12 @@ GameObject:
   - component: {fileID: 6440489353741995234}
   - component: {fileID: 6440489353741995237}
   - component: {fileID: 6440489353741995236}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CraneCounterweight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6440489353741995235
 Transform:
@@ -301,7 +304,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6440489353741995239}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e3a57cdce1fab4408533db885df689b, type: 3}
   m_Name: 
@@ -318,7 +321,7 @@ MonoBehaviour:
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: cb968f139962a3b4992f40873982fdd8, type: 2}
   m_lastMeshHash: 6f8ffbd9-7ee7-4b4b-a66e-e517423146cc
-  Renderers:
+  Submeshes:
   - {fileID: 6440489354997838535}
 --- !u!120 &6440489353741995237
 LineRenderer:
@@ -361,8 +364,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -1, y: 4, z: 0}
-  - {x: -1, y: 24.98, z: 0}
+  - {x: -0.99999905, y: 4, z: 0}
+  - {x: -1.000001, y: 24.979996, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.3
@@ -476,12 +479,12 @@ GameObject:
   - component: {fileID: 6440489354050679882}
   - component: {fileID: 6440489354050679885}
   - component: {fileID: 6440489354050679884}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crane_Cockpit_submesh_submesh_hidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6440489354050679887
 Transform:
@@ -509,6 +512,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 6440489353727184355}
   MeshFilter: {fileID: 6440489354050679882}
   MeshRenderer: {fileID: 6440489354050679885}
@@ -540,8 +546,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
+  - {fileID: -6313843239515315372, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -587,12 +593,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6440489354065757806}
   - component: {fileID: 6440489354065757793}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crane_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6440489354065757806
 Transform:
@@ -629,7 +635,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6440489354065757792}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e3a57cdce1fab4408533db885df689b, type: 3}
   m_Name: 
@@ -640,13 +646,13 @@ MonoBehaviour:
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
   SnapToGrid: 1
-  SnapLayer: 0
+  SnapLayer: -1
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 76ce601d21f8f1d42babf372b7dda740, type: 2}
   m_lastMeshHash: f28cf543-4add-4958-a06f-c89da5803bae
-  Renderers:
+  Submeshes:
   - {fileID: 6440489354199511945}
 --- !u!1 &6440489354199511944
 GameObject:
@@ -661,12 +667,12 @@ GameObject:
   - component: {fileID: 6440489354199511956}
   - component: {fileID: 6440489354199511959}
   - component: {fileID: 6440489354199511958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: New VoxelRenderer_submesh_hidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6440489354199511957
 Transform:
@@ -694,6 +700,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 6440489354065757793}
   MeshFilter: {fileID: 6440489354199511956}
   MeshRenderer: {fileID: 6440489354199511959}
@@ -705,7 +714,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6440489354199511944}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -2228942658551489845, guid: 76ce601d21f8f1d42babf372b7dda740, type: 2}
 --- !u!23 &6440489354199511959
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -725,7 +734,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -760,7 +769,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -2228942658551489845, guid: 76ce601d21f8f1d42babf372b7dda740, type: 2}
 --- !u!1 &6440489354997838534
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,12 +783,12 @@ GameObject:
   - component: {fileID: 6440489354997838530}
   - component: {fileID: 6440489354997838533}
   - component: {fileID: 6440489354997838532}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CraneCounterweight_submesh_hidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6440489354997838531
 Transform:
@@ -807,6 +816,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 6440489353741995234}
   MeshFilter: {fileID: 6440489354997838530}
   MeshRenderer: {fileID: 6440489354997838533}
@@ -838,7 +850,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -926,8 +938,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_lastMeshHash
       value: 46500b9f-22f4-43c8-aa3e-34140992db34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8822648277361647081, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Mesh
@@ -940,10 +964,18 @@ PrefabInstance:
     - target: {fileID: 8918454836649004373, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
     - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Name
       value: Crane_Stack_01 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
@@ -1004,8 +1036,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_lastMeshHash
       value: 46500b9f-22f4-43c8-aa3e-34140992db34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8822648277361647081, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Mesh
@@ -1018,10 +1062,18 @@ PrefabInstance:
     - target: {fileID: 8918454836649004373, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
     - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Name
       value: Crane_Stack_01 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
@@ -1082,8 +1134,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_lastMeshHash
       value: 46500b9f-22f4-43c8-aa3e-34140992db34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8822648277361647081, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Mesh
@@ -1096,10 +1160,18 @@ PrefabInstance:
     - target: {fileID: 8918454836649004373, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
     - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Name
       value: Crane_Stack_01 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
@@ -1160,8 +1232,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_lastMeshHash
       value: 46500b9f-22f4-43c8-aa3e-34140992db34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8822648277361647081, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Mesh
@@ -1174,10 +1258,18 @@ PrefabInstance:
     - target: {fileID: 8918454836649004373, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
     - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Name
       value: Crane_Stack_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
@@ -1238,8 +1330,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_lastMeshHash
       value: 46500b9f-22f4-43c8-aa3e-34140992db34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8822648277361647081, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Mesh
@@ -1252,10 +1356,18 @@ PrefabInstance:
     - target: {fileID: 8918454836649004373, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
     - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Name
       value: Crane_Stack_01 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
@@ -1316,8 +1428,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_lastMeshHash
       value: 46500b9f-22f4-43c8-aa3e-34140992db34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8822648277361647081, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Mesh
@@ -1330,10 +1454,18 @@ PrefabInstance:
     - target: {fileID: 8918454836649004373, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
     - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Name
       value: Crane_Stack_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
@@ -1394,8 +1526,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_lastMeshHash
       value: 46500b9f-22f4-43c8-aa3e-34140992db34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8822648277361647081, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Mesh
@@ -1408,10 +1552,18 @@ PrefabInstance:
     - target: {fileID: 8918454836649004373, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
     - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Name
       value: Crane_Stack_01 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
@@ -1472,8 +1624,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_lastMeshHash
       value: 46500b9f-22f4-43c8-aa3e-34140992db34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8822648277361647081, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Mesh
@@ -1486,10 +1650,18 @@ PrefabInstance:
     - target: {fileID: 8918454836649004373, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
     - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Name
       value: Crane_Stack_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
@@ -1550,8 +1722,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_lastMeshHash
       value: 46500b9f-22f4-43c8-aa3e-34140992db34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8822648277361647081, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Mesh
@@ -1564,10 +1748,18 @@ PrefabInstance:
     - target: {fileID: 8918454836649004373, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
     - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Name
       value: Crane_Stack_01 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
@@ -1628,8 +1820,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122583277224415262, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_lastMeshHash
       value: 46500b9f-22f4-43c8-aa3e-34140992db34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761379694828790352, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8822648277361647081, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Mesh
@@ -1642,10 +1846,18 @@ PrefabInstance:
     - target: {fileID: 8918454836649004373, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
     - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
       propertyPath: m_Name
       value: Crane_Stack_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056924091588510938, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd52d08cb91d60242a7d96f198edb98a, type: 3}

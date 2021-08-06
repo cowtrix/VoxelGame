@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 119350134222565721}
   - component: {fileID: 119350134222565720}
   - component: {fileID: 119350134222565727}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shelves_01_submesh_hidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 119350134707250150}
   MeshFilter: {fileID: 119350134222565721}
   MeshRenderer: {fileID: 119350134222565720}
@@ -57,7 +60,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119350134222565725}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -2101528452012690044, guid: 8e4c56008fbe89a4991ab647554f5616, type: 2}
 --- !u!23 &119350134222565720
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -77,7 +80,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8501025348146561166, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,7 +115,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -2101528452012690044, guid: 8e4c56008fbe89a4991ab647554f5616, type: 2}
 --- !u!1 &119350134309186758
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +129,7 @@ GameObject:
   - component: {fileID: 119350134309186754}
   - component: {fileID: 119350134309186753}
   - component: {fileID: 119350134309186752}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FoodTruck_SoulFood_submesh_submesh_hidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,6 +162,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 119350135670877087}
   MeshFilter: {fileID: 119350134309186754}
   MeshRenderer: {fileID: 119350134309186753}
@@ -170,7 +176,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119350134309186758}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -1205780172678269336, guid: 72c234ac4a1b334408cfc0a0712d0ef2, type: 2}
 --- !u!23 &119350134309186753
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -190,7 +196,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8501025348146561166, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -225,7 +231,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -1205780172678269336, guid: 72c234ac4a1b334408cfc0a0712d0ef2, type: 2}
 --- !u!1 &119350134401265672
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 119350134401265673}
   - component: {fileID: 119350134401265674}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +271,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119350134401265672}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2340c816118dcf849931b73c6bd6f45b, type: 3}
   m_Name: 
@@ -282,7 +288,7 @@ MonoBehaviour:
   m_voxWorker:
     VoxelMesh: {fileID: 0}
   m_lastMeshHash: 
-  Renderers:
+  Submeshes:
   - {fileID: 119350135458541736}
   Configuration:
     Resolution: 0
@@ -814,7 +820,7 @@ GameObject:
   m_Component:
   - component: {fileID: 119350134707250149}
   - component: {fileID: 119350134707250150}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shelves_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -843,7 +849,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119350134707250148}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e3a57cdce1fab4408533db885df689b, type: 3}
   m_Name: 
@@ -860,7 +866,7 @@ MonoBehaviour:
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 8e4c56008fbe89a4991ab647554f5616, type: 2}
   m_lastMeshHash: 3015aa9d-4417-4554-a145-9efc4636db83
-  Renderers:
+  Submeshes:
   - {fileID: 119350134222565722}
 --- !u!1 &119350134711297094
 GameObject:
@@ -873,7 +879,7 @@ GameObject:
   - component: {fileID: 119350134711297095}
   - component: {fileID: 119350134711297089}
   - component: {fileID: 119350134711297088}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Steam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5676,7 +5682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 119350134881638411}
   - component: {fileID: 119350134881638410}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FoodTruck_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5712,7 +5718,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119350134881638409}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e3a57cdce1fab4408533db885df689b, type: 3}
   m_Name: 
@@ -5722,14 +5728,14 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 0
+  SnapToGrid: 1
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 06a8e50d55c886d4ebee0637cf13fa84, type: 2}
-  m_lastMeshHash: 2da6a44b-d719-4ae2-9f68-12f45fa9c8a3
-  Renderers:
+  m_lastMeshHash: 48d4bea5-5788-4ce3-877d-b774471c3417
+  Submeshes:
   - {fileID: 119350135401823339}
 --- !u!1 &119350134978786763
 GameObject:
@@ -5744,7 +5750,7 @@ GameObject:
   - component: {fileID: 119350134978786759}
   - component: {fileID: 119350134978786758}
   - component: {fileID: 119350134978786757}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: New VoxelText_submesh_hidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5777,6 +5783,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 119350135624948490}
   MeshFilter: {fileID: 119350134978786759}
   MeshRenderer: {fileID: 119350134978786758}
@@ -5788,7 +5797,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119350134978786763}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -1635174831127770165, guid: cd4bfb61a5af2d549981cdeb3991afe0, type: 2}
 --- !u!23 &119350134978786758
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5808,7 +5817,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8501025348146561166, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5843,7 +5852,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -1635174831127770165, guid: cd4bfb61a5af2d549981cdeb3991afe0, type: 2}
 --- !u!1 &119350135401823338
 GameObject:
   m_ObjectHideFlags: 0
@@ -5857,7 +5866,7 @@ GameObject:
   - component: {fileID: 119350135401823334}
   - component: {fileID: 119350135401823333}
   - component: {fileID: 119350135401823332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FoodTruck_SoulFood_submesh_hidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5890,6 +5899,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 119350134881638410}
   MeshFilter: {fileID: 119350135401823334}
   MeshRenderer: {fileID: 119350135401823333}
@@ -5901,7 +5913,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119350135401823338}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 8935189688535748371, guid: 06a8e50d55c886d4ebee0637cf13fa84, type: 2}
 --- !u!23 &119350135401823333
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5921,7 +5933,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8501025348146561166, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5956,7 +5968,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 8935189688535748371, guid: 06a8e50d55c886d4ebee0637cf13fa84, type: 2}
 --- !u!1 &119350135458541747
 GameObject:
   m_ObjectHideFlags: 0
@@ -5970,7 +5982,7 @@ GameObject:
   - component: {fileID: 119350135458541743}
   - component: {fileID: 119350135458541742}
   - component: {fileID: 119350135458541741}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: New VoxelText_submesh_hidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6003,6 +6015,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 119350134401265674}
   MeshFilter: {fileID: 119350135458541743}
   MeshRenderer: {fileID: 119350135458541742}
@@ -6014,7 +6029,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119350135458541747}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -1635174831127770165, guid: cd4bfb61a5af2d549981cdeb3991afe0, type: 2}
 --- !u!23 &119350135458541742
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6034,7 +6049,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8501025348146561166, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6069,7 +6084,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -1635174831127770165, guid: cd4bfb61a5af2d549981cdeb3991afe0, type: 2}
 --- !u!1 &119350135624948488
 GameObject:
   m_ObjectHideFlags: 0
@@ -6080,7 +6095,7 @@ GameObject:
   m_Component:
   - component: {fileID: 119350135624948489}
   - component: {fileID: 119350135624948490}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sign (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6109,7 +6124,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119350135624948488}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2340c816118dcf849931b73c6bd6f45b, type: 3}
   m_Name: 
@@ -6126,7 +6141,7 @@ MonoBehaviour:
   m_voxWorker:
     VoxelMesh: {fileID: 0}
   m_lastMeshHash: 
-  Renderers:
+  Submeshes:
   - {fileID: 119350134978786752}
   Configuration:
     Resolution: 0
@@ -6659,7 +6674,7 @@ GameObject:
   - component: {fileID: 119350135670877086}
   - component: {fileID: 119350135670877087}
   - component: {fileID: 119350135670877080}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FoodTruck_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6688,7 +6703,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119350135670877085}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e3a57cdce1fab4408533db885df689b, type: 3}
   m_Name: 
@@ -6705,7 +6720,7 @@ MonoBehaviour:
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 72c234ac4a1b334408cfc0a0712d0ef2, type: 2}
   m_lastMeshHash: d9ba5a51-4b1d-4097-aa1e-d7baee04b507
-  Renderers:
+  Submeshes:
   - {fileID: 119350134309186755}
 --- !u!114 &119350135670877080
 MonoBehaviour:
@@ -6736,24 +6751,44 @@ PrefabInstance:
       value: Hoverpad (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1868929848988773876, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868929848988773876, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4051898880968865129, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1111007381966712667, guid: c239fe9acbd589c4399a962815b788b0, type: 2}
     - target: {fileID: 4869080788411797497, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 1111007381966712667, guid: c239fe9acbd589c4399a962815b788b0, type: 2}
+    - target: {fileID: 6606628554711645578, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6606628554711645578, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6769530449127977974, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769530449127977974, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267153093349618106, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
+    - target: {fileID: 8559026583905738869, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8995514405670198078, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
       propertyPath: m_RootOrder
@@ -6818,24 +6853,44 @@ PrefabInstance:
       value: Hoverpad
       objectReference: {fileID: 0}
     - target: {fileID: 1868929848988773876, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868929848988773876, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4051898880968865129, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1111007381966712667, guid: c239fe9acbd589c4399a962815b788b0, type: 2}
     - target: {fileID: 4869080788411797497, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 1111007381966712667, guid: c239fe9acbd589c4399a962815b788b0, type: 2}
+    - target: {fileID: 6606628554711645578, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6606628554711645578, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6769530449127977974, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769530449127977974, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267153093349618106, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
+    - target: {fileID: 8559026583905738869, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8995514405670198078, guid: e9a5f8e179407e148b1c1523316bb63f, type: 3}
       propertyPath: m_RootOrder

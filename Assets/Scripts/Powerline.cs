@@ -7,6 +7,7 @@ using Voxul.Utilities;
 public class Powerline : MonoBehaviour
 {
 	public Vector2 Sag = new Vector2(-3, -4);
+	public float Resolution = 1;
 	public Powerline Next;
 	public BezierConnectorLineRenderer[] ConnectorPoints;
 
@@ -16,11 +17,17 @@ public class Powerline : MonoBehaviour
 		DisconnectAll();
 		if (!Next)
 		{
+			foreach(var l in ConnectorPoints)
+			{
+				l.End.Transform = null;
+			}
+			UpdateSplines();
 			return;
 		}
 		for (int i = 0; i < ConnectorPoints.Length; i++)
 		{
 			var r = ConnectorPoints[i];
+			r.Resolution = Resolution;
 			var nextEmpty = Next.ConnectorPoints
 				.Where(nextPoint => !ConnectorPoints.Any(thisPoint => nextPoint.transform == thisPoint.End.Transform))
 				.OrderBy(_ => Random.value)
@@ -40,6 +47,7 @@ public class Powerline : MonoBehaviour
 			var r = ConnectorPoints[i];
 			if (!r.End.Transform)
 			{
+				r.Invalidate();	
 				continue;
 			}
 			var diff = (r.transform.worldToLocalMatrix.MultiplyVector(r.transform.position - r.End.Transform.position)

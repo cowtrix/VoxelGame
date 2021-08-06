@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Voxul;
 
-public class MovementController : Singleton<MovementController>
+public class MovementController : ExtendedMonoBehaviour
 {
+	public bool IsGrounded { get; private set; }
+
 	private GravityManager GravityManager => GravityManager.Instance;
 	private CameraController CameraController => CameraController.Instance;
 	private PlayerInput Input => GetComponent<PlayerInput>();
@@ -19,7 +22,7 @@ public class MovementController : Singleton<MovementController>
 	public float RotateTowardGravitySpeed = 1f;
 
 	public float GroundingDistance = 1;
-	public bool IsGrounded;
+	public float PushOutSpeed = 1;
 
 	private Vector2 m_inputLook;
 	private bool m_inputJump;
@@ -71,7 +74,7 @@ public class MovementController : Singleton<MovementController>
 			// Push out
 			if (groundHit.distance < GroundingDistance)
 			{
-				Rigidbody.MovePosition(Rigidbody.position + groundHit.normal * (GroundingDistance - groundHit.distance));
+				Rigidbody.MovePosition(Rigidbody.position + groundHit.normal * (GroundingDistance - groundHit.distance) * dt * PushOutSpeed);
 			}
 		}
 

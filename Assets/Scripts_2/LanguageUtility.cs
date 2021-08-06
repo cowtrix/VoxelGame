@@ -18,4 +18,11 @@ public static class LanguageUtility
 		}
 		return sb.ToString();
 	}
+
+	public static string Translate(string str)
+	{
+		UnityEngine.Random.InitState(str.GetHashCode());
+		var length = UnityEngine.Random.Range(3, str.Length);
+		return Generate(length);
+	}
 }

@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7057885127288908471}
   - component: {fileID: 7057885127288908470}
-  m_Layer: 0
+  - component: {fileID: 1689496402}
+  m_Layer: 8
   m_Name: Machine_Container_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7057885127288908468}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3, y: -1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -40,7 +41,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7057885127288908468}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e3a57cdce1fab4408533db885df689b, type: 3}
   m_Name: 
@@ -57,8 +58,104 @@ MonoBehaviour:
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 1ec6246093e7eb14dab7893b073ffd33, type: 2}
   m_lastMeshHash: bcfbea06-38ce-41d3-8f7f-f4389c8183e6
-  Renderers:
+  Submeshes:
   - {fileID: 7057885128541630838}
+--- !u!82 &1689496402
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7057885127288908468}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 4477ad27bc6cdc5478de0aaee80f76a6, type: 2}
+  m_audioClip: {fileID: 8300000, guid: cd61c2fbf064fde439155dba2aa43a8b, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7057885128541630835
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,7 +169,7 @@ GameObject:
   - component: {fileID: 7057885128541630839}
   - component: {fileID: 7057885128541630836}
   - component: {fileID: 7057885128541630837}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MechanicalGizmo_01_submesh_submesh_hidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,6 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 7057885127288908470}
   MeshFilter: {fileID: 7057885128541630839}
   MeshRenderer: {fileID: 7057885128541630836}
@@ -136,8 +236,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8501025348146561166, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
-  - {fileID: -512295203845761396, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
+  - {fileID: -6313843239515315372, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -184,7 +284,7 @@ GameObject:
   - component: {fileID: 9165477096741280281}
   - component: {fileID: 7079775397215902520}
   - component: {fileID: 4991029044306351643}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bubbles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

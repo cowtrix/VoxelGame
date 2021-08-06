@@ -1,7 +1,28 @@
+using UnityEngine;
+
 namespace Common
 {
     public static class StringExtensions
     {
+        public static string SafeSubstring(this string str, int index, int length = -1)
+		{
+			if (string.IsNullOrEmpty(str))
+			{
+                return str;
+			}
+            if(length < 0)
+			{
+                length = str.Length - index;
+			}
+            if(length == 0)
+			{
+                return "";
+			}
+            length = Mathf.Min(length, str.Length - index);
+            index = Mathf.Clamp(index, 0, str.Length - 1);
+            return str.Substring(index, length);
+		}
+
         public static string Truncate(this string value, int maxLength, string trailingString = null)
         {
             if (string.IsNullOrEmpty(value)) return value;

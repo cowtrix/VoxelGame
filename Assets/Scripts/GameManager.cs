@@ -4,8 +4,10 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
+	[Range(0,1)]
+	public float TimeOfDay;
     public SceneReference CurrentScene;
 
 	public IEnumerable<Scene> AllScenes()
@@ -17,7 +19,7 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private void Awake()
+	private void Start()
 	{
 		if(AllScenes().Any(s => s.path == CurrentScene.ScenePath))
 		{

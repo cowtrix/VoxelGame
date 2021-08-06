@@ -22,7 +22,7 @@ public class BezierConnectorLineRenderer : MonoBehaviour
 	}
 
 	public TransformAnchor Start = new TransformAnchor(), End = new TransformAnchor();
-	public int Resolution = 10;
+	public float Resolution = 10;
 	private LineRenderer Renderer => GetComponent<LineRenderer>();
 
 	[HideInInspector]
