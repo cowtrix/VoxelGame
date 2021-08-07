@@ -1,27 +1,88 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using Voxul;
 
 [Serializable]
-public class PlayerEvent : UnityEvent<PlayerInteractionManager> { }
+public class ActorEvent : UnityEvent<Actor> { }
 
 [Serializable]
 public class SpriteEvent : UnityEvent<Sprite> { }
 
-public class Interactable : MonoBehaviour
+public abstract class Interactable : ExtendedMonoBehaviour
 {
-	public float MinimumDistance = 0;
-	public float MaximumDistance = 10;
-	public PlayerEvent OnFocusStart;
-	public PlayerEvent OnFocus;
-	public PlayerEvent OnFocusEnd;
-	public PlayerEvent OnUsed;
-	public PlayerEvent OnEnterInteractionZone;
-	public PlayerEvent OnExitInteractionZone;
+	[Serializable]
+	public class InteractableSettings
+	{
+		public ActorEvent OnFocusEnter;
+		public ActorEvent OnFocusExit;
+		public ActorEvent OnUsed;
+		public ActorEvent OnEnterAttention;
+		public ActorEvent OnExitAttention;
 
-	public Func<Sprite> Icon;
+		public Func<Sprite> Icon;
 
-	public Bounds Bounds => GetComponent<Collider>().bounds;
+		public string[] Verbs;
+	}
+
+	public InteractableSettings InteractionSettings = new InteractableSettings();
+
+	public Collider[] Colliders => GetComponentsInChildren<Collider>();
+	public Bounds Bounds
+	{
+		get
+		{
+			if(Colliders.Length == 0)
+			{
+				return default;
+			}
+			var bounds = Colliders[0].bounds;
+			for (int i = 1; i < Colliders.Length; i++)
+			{
+				bounds.Encapsulate(Colliders[i].bounds);
+			}
+			return bounds;
+		}
+	}
+
+	public Mesh GetInteractionMesh()
+	{
+		var voxelRenderer = GetComponent<VoxelRenderer>();
+		if (voxelRenderer)
+		{
+			return voxelRenderer.Submeshes.FirstOrDefault()?.MeshFilter?.sharedMesh;
+		}
+		var thisFilter = GetComponent<MeshFilter>() ?? GetComponentInChildren<MeshFilter>();
+		if (thisFilter)
+		{
+			return thisFilter.sharedMesh;
+		}
+		return null;
+	}
+
+	public virtual IEnumerable<string> Actions() { yield return "Use"; }
+
+	public virtual void ExitFocus(Actor actor)
+	{
+	}
+
+	public virtual void EnterFocus(Actor actor)
+	{
+	}
+
+	public virtual void Use(Actor actor, string action)
+	{
+	}
+
+	public virtual void ExitAttention(Actor actor)
+	{
+	}
+
+	public virtual void EnterAttention(Actor actor)
+	{
+	}
+
 }

@@ -297,7 +297,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 5698024185c731049994406737c37ea7, type: 2}
   m_lastMeshHash: c5740163-7c21-4c84-91d5-b0cfd6fa3d25
-  Renderers:
+  Submeshes:
   - {fileID: 9147225180389305664}
 --- !u!1 &9147225180389305669
 GameObject:
@@ -415,6 +415,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 9147225180213383566}
   MeshFilter: {fileID: 9147225180389305665}
   MeshRenderer: {fileID: 9147225180389305666}
@@ -446,7 +449,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8501025348146561166, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

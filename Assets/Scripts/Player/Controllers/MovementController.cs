@@ -13,11 +13,11 @@ public class MovementController : ExtendedMonoBehaviour
 	private CameraController CameraController => CameraController.Instance;
 	private PlayerInput Input => GetComponent<PlayerInput>();
 	public Rigidbody Rigidbody => GetComponent<Rigidbody>();
+	public ActorState State => GetComponent<ActorState>();
 
 	[Header("Parameters")]
 	public float MovementSpeed = 100f;
 	public float ThrusterSpeed = 100f;
-	public Vector3 JumpStrength = new Vector3(0, 500, 0);
 	public LayerMask CollisionMask;
 	public float RotateTowardGravitySpeed = 1f;
 
@@ -26,7 +26,6 @@ public class MovementController : ExtendedMonoBehaviour
 
 	private Vector2 m_inputLook;
 	private bool m_inputJump;
-	private int m_jumpCount;
 
 	public SmoothPositionVector3 SmoothPosition { get; private set; }
 
@@ -44,8 +43,15 @@ public class MovementController : ExtendedMonoBehaviour
 	public void OnJump(InputAction.CallbackContext context)
 	{
 		var val = context.ReadValue<float>();
-		Debug.Log($"OnJump: {val}");
-		m_inputJump = val > .5f && context.canceled;
+		if(val > .5f)
+		{
+			m_inputJump = true;
+		}
+		if (context.canceled)
+		{
+			m_inputJump = false;
+		}
+		Debug.Log($"Jump: {m_inputJump}");
 	}
 
 	private void FixedUpdate()
@@ -56,10 +62,6 @@ public class MovementController : ExtendedMonoBehaviour
 		IsGrounded = Physics.Raycast(transform.position, gravityVec, out var groundHit, GroundingDistance, CollisionMask, QueryTriggerInteraction.Ignore);
 		var isGroundedForward = Physics.Raycast(transform.position + CameraController.transform.forward, gravityVec, out var forwardHit, GroundingDistance, CollisionMask, QueryTriggerInteraction.Ignore);
 		Debug.DrawLine(transform.position, transform.position + gravityVec * dt, Color.green);
-		if (IsGrounded)
-		{
-			m_jumpCount = 2;
-		}
 
 		{
 			// Straighten up
@@ -80,12 +82,14 @@ public class MovementController : ExtendedMonoBehaviour
 
 		{
 			// Move from input
-			if (m_jumpCount > 0 && m_inputJump)
+			if (m_inputJump)
 			{
-				Debug.Log($"Jumping");
-				Rigidbody.AddForce(transform.localToWorldMatrix.MultiplyVector(JumpStrength) * Rigidbody.mass);
-				m_jumpCount--;
-				m_inputJump = false;
+				// Do jump
+				if(!State.TryGetValue<float>(nameof(PlayerState.ThrusterFuel), out var thrusterFuel) || thrusterFuel > .1f)
+				{
+					Rigidbody.AddForce(transform.localToWorldMatrix.MultiplyVector(ThrusterSpeed * transform.up) * Rigidbody.mass);
+					State.TryAdd(nameof(PlayerState.ThrusterFuel), nameof(PlayerState.ThrusterEfficiency));
+				}				
 			}
 
 			var movement = m_inputLook;

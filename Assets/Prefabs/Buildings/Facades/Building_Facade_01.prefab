@@ -55,8 +55,8 @@ MonoBehaviour:
   MaxCoroutineUpdateTime: 0.016666668
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: cd573a69528487c469c8acb4d1dbf448, type: 2}
-  m_lastMeshHash: bff122bd-cbc5-4e56-a17c-137ea2a1fddc
-  Renderers:
+  m_lastMeshHash: 464a4c2b-a9b2-47e2-875b-3c102c16833f
+  Submeshes:
   - {fileID: 1621447870342678167}
 --- !u!1 &9057039012712602491
 GameObject:
@@ -104,6 +104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 7216843167484644105}
   MeshFilter: {fileID: 3203122454713797289}
   MeshRenderer: {fileID: 5154566917839746901}
@@ -135,7 +138,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

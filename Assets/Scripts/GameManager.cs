@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
 {
 	[Range(0,1)]
 	public float TimeOfDay;
+
     public SceneReference CurrentScene;
 
 	public IEnumerable<Scene> AllScenes()
@@ -26,5 +27,10 @@ public class GameManager : Singleton<GameManager>
 			return;
 		}
 		SceneManager.LoadScene(CurrentScene.ScenePath, LoadSceneMode.Additive);
+	}
+
+	private void Update()
+	{
+		TimeOfDay += Time.deltaTime / 1000;
 	}
 }

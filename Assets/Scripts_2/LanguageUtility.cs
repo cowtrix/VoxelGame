@@ -6,8 +6,13 @@ using UnityEngine;
 
 public static class LanguageUtility
 {
-	public const string CharacterSet = "เปิดکليلክፈትखोलनाдעפענעןکھلا" + // open
+	public static string CharacterSet = "เปิดکليلክፈትखोलनाдעפענעןکھلا" + // open
 		"愛ପ୍ରେମمحبت사랑காதல்माया"; // Love
+
+	static LanguageUtility()
+	{
+		CharacterSet = Resources.Load<TextAsset>("AlienCharacters").text;
+	}
 
 	public static string Generate(int length)
 	{
@@ -21,6 +26,10 @@ public static class LanguageUtility
 
 	public static string Translate(string str)
 	{
+		if (string.IsNullOrEmpty(str))
+		{
+			return str;
+		}
 		UnityEngine.Random.InitState(str.GetHashCode());
 		var length = UnityEngine.Random.Range(3, str.Length);
 		return Generate(length);

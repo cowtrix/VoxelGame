@@ -3,28 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Interactable))]
-public class Label : MonoBehaviour
+public class Label : Interactable
 {
-	[SerializeField]
-    protected string m_text;
+	public string PlainText;
+    protected string AlienText => LanguageUtility.Translate(PlainText);
 
-	private void Awake()
+	public virtual string GetText() => PlainText;
+
+	public override void EnterFocus(Actor actor)
 	{
-		var interactable = GetComponent<Interactable>();
-		interactable.OnFocusStart.AddListener(OnFocusStart);
-		interactable.OnFocusEnd.AddListener(OnFocusEnd);
+		HUDManager.Instance.ActionLabel.text = PlainText;
+		base.EnterFocus(actor);
 	}
 
-	public virtual string GetText() => m_text;
-
-	private void OnFocusEnd(PlayerInteractionManager arg0)
+	public override void ExitFocus(Actor actor)
 	{
-		HUDManager.Instance.Label.text = "";
-	}
-
-	private void OnFocusStart(PlayerInteractionManager arg0)
-	{
-		HUDManager.Instance.Label.text = m_text;
+		HUDManager.Instance.ActionLabel.text = "";
+		base.ExitFocus(actor);
 	}
 }

@@ -1,16 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerState : MonoBehaviour
+public class PlayerState : ActorState
 {
-	[Serializable]
-	public class State
-	{
-		public uint Credits = 100;
-		public bool HeadlightOn;
-	}
+	public uint Credits = 100;
+	public bool HeadlightOn;
+	public float ThrusterFuel = 100;
+	public float ThrusterEfficiency = -1;
+	public float ThrusterRecharge = .1f;
 
-	public State CurrentState;
+	protected override void Update()
+	{
+		ThrusterFuel = Mathf.Clamp(ThrusterFuel, 0, 100);
+		if (ThrusterFuel < 100)
+		{
+			ThrusterFuel += ThrusterRecharge * Time.deltaTime;
+		}
+		base.Update();
+	}
 }

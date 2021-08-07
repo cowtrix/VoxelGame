@@ -12,7 +12,7 @@ public class InteractionColliderEvent : MonoBehaviour
 		{
 			return;
 		}
-		interactable.OnEnterInteractionZone.Invoke(Player);
+		interactable.InteractionSettings.OnEnterAttention.Invoke(Player);
 	}
 
 	private void OnTriggerExit(Collider other)
@@ -22,6 +22,6 @@ public class InteractionColliderEvent : MonoBehaviour
 		{
 			return;
 		}
-		interactable.OnExitInteractionZone.Invoke(Player);
+		interactable.InteractionSettings.OnExitAttention.Invoke(Player);
 	}
 }

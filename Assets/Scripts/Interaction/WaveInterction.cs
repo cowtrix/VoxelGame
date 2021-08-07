@@ -5,10 +5,10 @@ public class WaveInterction : PeripheralInteraction
 	protected override void Awake()
 	{
 		base.Awake();
-		Interactable.OnUsed.AddListener(p =>
+		Interactable.InteractionSettings.OnUsed.AddListener(p =>
 		{
 			Debug.Log($"Waved at {name}");
 		});
-		Interactable.Icon = () => UIResources.Instance.WaveIcon;
+		Interactable.InteractionSettings.Icon = () => UIResources.Instance.WaveIcon;
 	}
 }

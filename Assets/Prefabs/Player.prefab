@@ -149,7 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b734cda1e3b2d5b4796609b294fd48c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FocusedInteractable: {fileID: 0}
+  ActorConfiguration:
+    MinimumDistance: 0
+    MaximumDistance: 10
+  Interactables: []
 --- !u!114 &452728394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9898,7 +9901,7 @@ MonoBehaviour:
     m_Bits: 1280
   RotateTowardGravitySpeed: 10
   GroundingDistance: 1.2
-  IsGrounded: 0
+  PushOutSpeed: 1
 --- !u!136 &1737012672823703275
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10046,22 +10049,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f9a357ef-37ce-432d-847e-d1acf2a70713
     m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8d0fc885-cd35-42d6-8908-72dd7fd254d7
-    m_ActionName: Player/SelectWeapon[/Keyboard/q]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ebb9a816-e723-43b3-aca8-a551105c6e0c
-    m_ActionName: Player/RotateClockwise[/Keyboard/q,/DualShock4GamepadHID/leftTrigger]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b16522b9-01b1-4959-ada8-e50b857421c8
-    m_ActionName: Player/RotateCounterclockwise[/Keyboard/e,/DualShock4GamepadHID/rightTrigger]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2c5e070c-6264-4113-9c51-960ffd744868
-    m_ActionName: Player/Help[/Keyboard/h,/DualShock4GamepadHID/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player

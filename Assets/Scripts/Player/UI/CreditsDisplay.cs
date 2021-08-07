@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class CreditsDisplay : MonoBehaviour
 {
-    public PlayerState State;
+    public ActorState State;
     public Text Text;
 
     // Update is called once per frame
     void Update()
     {
-        Text.text = State.CurrentState.Credits.ToString();
+        //Text.text = State.CurrentState.Credits.ToString();
     }
 }

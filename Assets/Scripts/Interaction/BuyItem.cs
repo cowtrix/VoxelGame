@@ -9,16 +9,6 @@ public class BuyItem : Label
 
 	public override string GetText()
 	{
-		return $"Buy {m_text} [{Cost}c]";
-	}
-
-	public void OnInteract(PlayerInteractionManager player)
-	{
-		var state = player.GetComponent<PlayerState>();
-		if(state.CurrentState.Credits < Cost)
-		{
-			return;
-		}
-		state.CurrentState.Credits -= Cost;
+		return $"Buy {this.PlainText} [{Cost}c]";
 	}
 }

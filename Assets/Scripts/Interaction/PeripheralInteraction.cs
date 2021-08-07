@@ -9,11 +9,11 @@ public abstract class PeripheralInteraction : MonoBehaviour
 
 	protected virtual void Awake()
 	{
-		Interactable.OnEnterInteractionZone.AddListener(p =>
+		Interactable.InteractionSettings.OnEnterAttention.AddListener(p =>
 		{
 			//p.AddSecondaryInteractable(Interactable, () => transform.position);
 		});
-		Interactable.OnExitInteractionZone.AddListener(p =>
+		Interactable.InteractionSettings.OnExitAttention.AddListener(p =>
 		{
 			//p.RemoveSecondaryInteractable(Interactable);
 		});

@@ -1,37 +1,47 @@
-using Common;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Voxul.Utilities;
 
 public class HUDManager : Singleton<HUDManager>
 {
 	public Image Icon;
-    public Text Label;
-    public RectTransform FocusTransform;
-	public float NoObjectScale = 32;
-	public float ObjectScale = 64;
+    public Text ActionLabel;
 
 	private Camera Camera => CameraController.GetComponent<Camera>();
 	public CameraController CameraController => CameraController.Instance;
-	public PlayerInteractionManager InteractionManager => PlayerInteractionManager.Instance;
+	public PlayerInteractionManager InteractionManager;
+	public Material InteractionMaterial;
+
+	public MeshRenderer InteractionObjectRenderer;
+	public MeshFilter InteractionObjectFilter;
+
+	private void Awake()
+	{
+		InteractionObjectRenderer = new GameObject("InteractionRenderer")
+			.AddComponent<MeshRenderer>();
+		InteractionObjectRenderer.sharedMaterial = InteractionMaterial;
+		InteractionObjectFilter = InteractionObjectRenderer.gameObject.AddComponent<MeshFilter>();
+	}
 
 	private void Update()
 	{
-		if(InteractionManager.FocusedInteractable)
+		var interactable = InteractionManager.FocusedInteractable;
+		if (interactable)
 		{
-			FocusTransform.position = Camera.WorldToScreenPoint(InteractionManager.FocusedInteractable.transform.position);
-			FocusTransform.sizeDelta = Vector2.one * ObjectScale;
-			Icon.enabled = true;
-			Icon.sprite = InteractionManager.FocusedInteractable.Icon?.Invoke();
+			InteractionObjectFilter.gameObject.SetActive(true);
+			InteractionObjectFilter.sharedMesh = interactable.GetInteractionMesh();
+			InteractionObjectFilter.transform.position = interactable.transform.position;
+			InteractionObjectFilter.transform.rotation = interactable.transform.rotation;
+			InteractionObjectFilter.transform.localScale = interactable.transform.lossyScale;
+			Icon.sprite = InteractionManager.FocusedInteractable.InteractionSettings.Icon?.Invoke();
 		}
 		else
 		{
-			FocusTransform.position = Vector3.one;
-			FocusTransform.sizeDelta = Vector2.one * NoObjectScale;
 			Icon.sprite = null;
+			ActionLabel.gameObject.SetActive(false);
+			InteractionObjectFilter.gameObject.SetActive(false);
 		}
-		Icon.enabled = Icon.sprite;
+		Icon.enabled = Icon.sprite;		
 	}
 }
