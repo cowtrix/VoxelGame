@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Common;
+using UnityEngine;
 
 
-public abstract class GravitySource : MonoBehaviour
+public abstract class GravitySource : TrackedObject<GravitySource>
 {
 	public bool Exclusive = true;
 	public abstract Vector3 GetGravityForce(Vector3 position);

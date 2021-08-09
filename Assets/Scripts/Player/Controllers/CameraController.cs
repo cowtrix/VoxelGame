@@ -7,10 +7,11 @@ using UnityEngine.InputSystem;
 
 public class CameraController : Singleton<CameraController>
 {
+	public bool LockView { get; set; }
+
 	[Header("Camera")]
 	public float LookSensitivity = 1;
 	public Vector2 LookAngle, LastDelta;
-	public bool LockView { get; set; }
 	private InputAction m_look;
 
 	private void Start()

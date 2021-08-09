@@ -7,8 +7,8 @@ public class BuyItem : Label
 {
     public uint Cost = 10;
 
-	public override string GetText()
+	public override IEnumerable<string> GetActions()
 	{
-		return $"Buy {this.PlainText} [{Cost}c]";
+		yield return $"Buy {this.PlainText} [{Cost}c]";
 	}
 }

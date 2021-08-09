@@ -13,6 +13,18 @@ public class Door : Interactable
 	public float Speed = 1;
 	private float m_targetOpen;
 
+	public override IEnumerable<string> GetActions()
+	{
+		if(m_targetOpen > 0)
+		{
+			yield return "Close";
+		}
+		else
+		{
+			yield return "Open";
+		}
+	}
+
 	private void Reset()
 	{
 		OpenPosition = transform.localPosition;

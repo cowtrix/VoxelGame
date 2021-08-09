@@ -25,10 +25,18 @@ public abstract class Interactable : ExtendedMonoBehaviour
 
 		public Func<Sprite> Icon;
 
+		public float MaxFocusDistance = 5;
+		public float MaxUseDistance = 2;
+
 		public string[] Verbs;
 	}
 
 	public InteractableSettings InteractionSettings = new InteractableSettings();
+
+	public virtual IEnumerable<string> GetActions()
+	{
+		yield return "Use";
+	}
 
 	public Collider[] Colliders => GetComponentsInChildren<Collider>();
 	public Bounds Bounds
@@ -62,8 +70,6 @@ public abstract class Interactable : ExtendedMonoBehaviour
 		}
 		return null;
 	}
-
-	public virtual IEnumerable<string> Actions() { yield return "Use"; }
 
 	public virtual void ExitFocus(Actor actor)
 	{

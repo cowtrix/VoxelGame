@@ -56,8 +56,8 @@ MonoBehaviour:
   MaxCoroutineUpdateTime: 0.016666668
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: c870ef15e062e1c428da678e7a000e76, type: 2}
-  m_lastMeshHash: 7ef40ccd-cc6c-43b5-9895-ee7ee4e93943
-  Renderers:
+  m_lastMeshHash: a452d5a3-79e8-4060-87fc-2446e655d29e
+  Submeshes:
   - {fileID: 7627555515160837312}
 --- !u!114 &1050990140409348180
 MonoBehaviour:
@@ -71,11 +71,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d629c46dc07d1b94a8bf56f703b1b1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionSettings:
+    OnFocusEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    OnFocusExit:
+      m_PersistentCalls:
+        m_Calls: []
+    OnUsed:
+      m_PersistentCalls:
+        m_Calls: []
+    OnEnterAttention:
+      m_PersistentCalls:
+        m_Calls: []
+    OnExitAttention:
+      m_PersistentCalls:
+        m_Calls: []
+    MaxFocusDistance: 5
+    MaxUseDistance: 2
+    Verbs: []
   OpenAmount: 0
   OpenPosition: {x: 0, y: 2.1111112, z: -0.5}
   OpenRotation: {x: 0, y: 0, z: 0}
   ClosedPosition: {x: 0, y: 2.1111112, z: 0}
   ClosedRotation: {x: 0, y: 0, z: 0}
+  Speed: 1
 --- !u!1 &3543850550166386058
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,6 +142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 8971761104210756576}
   MeshFilter: {fileID: 1826089597533530665}
   MeshRenderer: {fileID: 6937923835082672525}
@@ -153,7 +176,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8501025348146561166, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

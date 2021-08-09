@@ -6,7 +6,7 @@ using Voxul.Utilities;
 public class HUDManager : Singleton<HUDManager>
 {
 	public Image Icon;
-    public Text ActionLabel;
+	public Text ActionLabel;
 
 	private Camera Camera => CameraController.GetComponent<Camera>();
 	public CameraController CameraController => CameraController.Instance;
@@ -16,7 +16,7 @@ public class HUDManager : Singleton<HUDManager>
 	public MeshRenderer InteractionObjectRenderer;
 	public MeshFilter InteractionObjectFilter;
 
-	private void Awake()
+	private void Start()
 	{
 		InteractionObjectRenderer = new GameObject("InteractionRenderer")
 			.AddComponent<MeshRenderer>();
@@ -35,6 +35,9 @@ public class HUDManager : Singleton<HUDManager>
 			InteractionObjectFilter.transform.rotation = interactable.transform.rotation;
 			InteractionObjectFilter.transform.localScale = interactable.transform.lossyScale;
 			Icon.sprite = InteractionManager.FocusedInteractable.InteractionSettings.Icon?.Invoke();
+
+			ActionLabel.gameObject.SetActive(true);
+			ActionLabel.text = interactable.GetActions().FirstOrDefault();
 		}
 		else
 		{
@@ -42,6 +45,6 @@ public class HUDManager : Singleton<HUDManager>
 			ActionLabel.gameObject.SetActive(false);
 			InteractionObjectFilter.gameObject.SetActive(false);
 		}
-		Icon.enabled = Icon.sprite;		
+		Icon.gameObject.SetActive(Icon.sprite);
 	}
 }

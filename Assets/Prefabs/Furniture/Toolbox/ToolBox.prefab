@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1976612428960384039}
   - component: {fileID: 3364294793111744134}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ToolBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,8 +60,8 @@ MonoBehaviour:
   MaxCoroutineUpdateTime: 0.016666668
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: e3e2ca0a73ab38a4ebca53b030be9115, type: 2}
-  m_lastMeshHash: d003e19a-cc4e-4ad2-9d49-3630f8d1c362
-  Renderers:
+  m_lastMeshHash: 391a1aa4-c622-4b44-a02e-416801a88c7f
+  Submeshes:
   - {fileID: 5226163213676709489}
 --- !u!1 &8551458260927347829
 GameObject:
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 1857986305568869632}
   - component: {fileID: 2085437451686916657}
   - component: {fileID: 8334938457358873637}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ToolBox_submesh_hidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,6 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 3364294793111744134}
   MeshFilter: {fileID: 1857986305568869632}
   MeshRenderer: {fileID: 2085437451686916657}
@@ -140,7 +143,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8501025348146561166, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -235,6 +238,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drawer
       objectReference: {fileID: 0}
+    - target: {fileID: 3104107351271997319, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543850550166386058, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
 --- !u!4 &3437355098263652261 stripped
@@ -312,6 +323,14 @@ PrefabInstance:
     - target: {fileID: 3104107351271997319, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_Name
       value: Drawer (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104107351271997319, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543850550166386058, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8971761104210756576, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: SnapToGrid
@@ -395,6 +414,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drawer (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3104107351271997319, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543850550166386058, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8971761104210756576, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: SnapToGrid
       value: 0
@@ -476,6 +503,14 @@ PrefabInstance:
     - target: {fileID: 3104107351271997319, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_Name
       value: Drawer (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104107351271997319, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543850550166386058, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8971761104210756576, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: SnapToGrid
@@ -562,6 +597,14 @@ PrefabInstance:
     - target: {fileID: 3104107351271997319, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_Name
       value: Drawer (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104107351271997319, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543850550166386058, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8971761104210756576, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: SnapToGrid

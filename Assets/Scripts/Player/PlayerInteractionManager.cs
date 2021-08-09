@@ -9,22 +9,38 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteractionManager : Actor
 {
+	public LayerMask InteractionMask;
 	public CameraController CameraController => CameraController.Instance;
 	public Interactable FocusedInteractable { get; private set; }
 
 	private void Update()
 	{
-		/*var newFocused = Interactables
-			.Select(f => (, f))
-			.Where(f => f.Item1 > 0)
-			.OrderBy(f => f.Item1)
-			.FirstOrDefault().Item2;*/
 		var cameraForward = CameraController.transform.forward;
 		var cameraPos = CameraController.transform.position;
-		var bestAngle = float.MaxValue;
+
+		if (Physics.Raycast(cameraPos, cameraForward, out var interactionHit, 1000, InteractionMask, QueryTriggerInteraction.Collide))
+		{
+			Debug.DrawLine(cameraPos, interactionHit.point, Color.yellow);
+			var interactable = interactionHit.collider.GetComponent<Interactable>() ?? interactionHit.collider.GetComponentInParent<Interactable>();
+			if (interactable && interactionHit.distance < interactable.InteractionSettings.MaxFocusDistance)
+			{
+				if(interactable != FocusedInteractable)
+				{
+					FocusedInteractable?.ExitFocus(this);
+					FocusedInteractable = interactable;
+					FocusedInteractable.EnterFocus(this);
+				}
+				return;
+			}			
+		}
+		FocusedInteractable?.ExitFocus(this);
+		FocusedInteractable = null;
+		Debug.DrawLine(cameraPos, cameraPos + cameraForward * 1000, Color.magenta);
+
+		/*var bestAngle = float.MaxValue;
 		var bestDistance = float.MaxValue;
 		Interactable newFocused = null;
-		foreach(var interactable in Interactables)
+		foreach (var interactable in Interactables)
 		{
 			var diffVec = interactable.transform.position - cameraPos;
 			var distance = diffVec.magnitude;
@@ -36,13 +52,13 @@ public class PlayerInteractionManager : Actor
 				newFocused = interactable;
 			}
 		}
-		if(newFocused == FocusedInteractable)
+		if (newFocused == FocusedInteractable)
 		{
 			return;
 		}
 		FocusedInteractable?.ExitFocus(this);
 		FocusedInteractable = newFocused;
-		FocusedInteractable?.EnterFocus(this);
+		FocusedInteractable?.EnterFocus(this);*/
 	}
 
 	public void OnFire(InputAction.CallbackContext cntxt)
@@ -51,6 +67,7 @@ public class PlayerInteractionManager : Actor
 		{
 			return;
 		}
+		Debug.Log("OnUse: " + FocusedInteractable);
 		FocusedInteractable?.Use(this, "");
 	}
 }

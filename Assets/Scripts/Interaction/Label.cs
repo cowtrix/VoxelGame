@@ -8,17 +8,8 @@ public class Label : Interactable
 	public string PlainText;
     protected string AlienText => LanguageUtility.Translate(PlainText);
 
-	public virtual string GetText() => PlainText;
-
-	public override void EnterFocus(Actor actor)
+	public override IEnumerable<string> GetActions()
 	{
-		HUDManager.Instance.ActionLabel.text = PlainText;
-		base.EnterFocus(actor);
-	}
-
-	public override void ExitFocus(Actor actor)
-	{
-		HUDManager.Instance.ActionLabel.text = "";
-		base.ExitFocus(actor);
+		yield return $"\"{PlainText}\"";
 	}
 }
