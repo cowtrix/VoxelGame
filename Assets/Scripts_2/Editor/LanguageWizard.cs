@@ -6,7 +6,8 @@ using UnityEngine;
 public class LanguageWizard : EditorWindow
 {
     public int CharacterLength = 10;
-    public string Output;
+    public string Input, Output;
+
 
     [MenuItem("Tools/Generate Random Text")]
     static void CreateWizard()
@@ -23,6 +24,11 @@ public class LanguageWizard : EditorWindow
 			Output = LanguageUtility.Generate(CharacterLength);
 		}
 
+		Input = EditorGUILayout.TextField("Input", Input);
+		if (GUILayout.Button("Translate"))
+		{
+			Output = LanguageUtility.Translate(Input);
+		}
 		EditorGUILayout.SelectableLabel(Output);
 	}
 }

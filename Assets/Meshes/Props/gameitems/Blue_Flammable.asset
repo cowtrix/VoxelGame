@@ -12,228 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7658a02d94aca5c4a85699d224076d82, type: 3}
   m_Name: Blue_Flammable
   m_EditorClassIdentifier: 
+  CurrentWorker:
+    VoxelMesh: {fileID: 0}
+  UnityMeshInstances: []
+  PointMapping:
+    keys: []
+    values: []
   Hash: d7752f69-8a69-4d41-a12e-5ad1423dff20
-  VoxelMapping:
-    keys: 00000000
-    values:
-    - keys: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f00000020000000210000002200000023000000
-      values:
-      - Coordinate:
-          Layer: 1
-          X: 1
-          Y: 0
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 1
-          Y: 0
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 1
-          Y: 0
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 1
-          Y: 0
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 1
-          Y: 0
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 1
-          Y: 0
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 1
-          Y: 0
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 1
-          Y: 0
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 1
-          Y: 0
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 1
-          Y: 0
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 0
-        Direction: 3
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 0
-        Direction: 3
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 0
-        Direction: 3
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 0
-        Direction: 3
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 0
-        Direction: 3
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 0
-        Direction: 3
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 1
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 1
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 1
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 1
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 1
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 1
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 1
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 1
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 1
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 1
-          Z: 0
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 1
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 1
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 1
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 1
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 1
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 1
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 1
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 1
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 1
-        Direction: 5
-      - Coordinate:
-          Layer: 1
-          X: 0
-          Y: 0
-          Z: 1
-        Direction: 5
   Voxels:
     keys:
     - Layer: 1
@@ -267,7 +52,7 @@ MonoBehaviour:
           TextureFade: 0.558
         Overrides:
         - Direction: 2
-          Data:
+          Surface:
             Albedo: {r: 0.46724817, g: 0.49125952, b: 0.5660378, a: 0.24705882}
             Metallic: 0.044
             Smoothness: 0.374
@@ -312,7 +97,7 @@ MonoBehaviour:
           TextureFade: 0.558
         Overrides:
         - Direction: 2
-          Data:
+          Surface:
             Albedo: {r: 0.022183742, g: 0.16083212, b: 0.58786917, a: 0.24705882}
             Metallic: 0.044
             Smoothness: 0.374
@@ -321,7 +106,7 @@ MonoBehaviour:
             UVMode: 0
             TextureFade: 0.996
         - Direction: 4
-          Data:
+          Surface:
             Albedo: {r: 0.022183742, g: 0.16083212, b: 0.58786917, a: 0.24705882}
             Metallic: 0.044
             Smoothness: 0.374
@@ -348,7 +133,7 @@ MonoBehaviour:
           TextureFade: 0.558
         Overrides:
         - Direction: 4
-          Data:
+          Surface:
             Albedo: {r: 0.46724817, g: 0.49125952, b: 0.5660378, a: 0.24705882}
             Metallic: 0.044
             Smoothness: 0.374
@@ -361,3 +146,8 @@ MonoBehaviour:
         X: 0
         Y: 0
         Z: 1
+  OverrideOptimisers: 0
+  OptimiserOverrides:
+    Data: []
+  references:
+    version: 1

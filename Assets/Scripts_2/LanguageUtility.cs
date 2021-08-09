@@ -6,8 +6,7 @@ using UnityEngine;
 
 public static class LanguageUtility
 {
-	public static string CharacterSet = "เปิดکليلክፈትखोलनाдעפענעןکھلا" + // open
-		"愛ପ୍ରେମمحبت사랑காதல்माया"; // Love
+	public static string CharacterSet;
 
 	static LanguageUtility()
 	{

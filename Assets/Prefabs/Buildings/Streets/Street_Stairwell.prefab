@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7043211832258284210}
   - component: {fileID: 7043211832258284209}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Street_Stairwell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7043211832258284208}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -19, y: -5, z: 33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -44,18 +44,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3a57cdce1fab4408533db885df689b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mesh: {fileID: 11400000, guid: abda9d17fc91e8c4ca492d3b30356913, type: 2}
+  Mesh: {fileID: 11400000, guid: 551d6531b4167194ba73c4dc5f3fcdfa, type: 2}
   CustomMaterials: 0
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
   SnapToGrid: 1
-  SnapLayer: -1
+  SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
   m_voxWorker:
-    VoxelMesh: {fileID: 11400000, guid: abda9d17fc91e8c4ca492d3b30356913, type: 2}
-  m_lastMeshHash: 0e696157-ea1a-452e-9ff9-d2a59eac6bf0
+    VoxelMesh: {fileID: 11400000, guid: 551d6531b4167194ba73c4dc5f3fcdfa, type: 2}
+  m_lastMeshHash: 4b024522-03e6-4544-8d47-84a910214247
   Submeshes:
   - {fileID: 7043211833002952635}
 --- !u!1 &7043211833002952634
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 7043211833002952638}
   - component: {fileID: 7043211833002952637}
   - component: {fileID: 7043211833002952636}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Street_Stairwell_submesh_hidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7043211833002952634}
-  m_Mesh: {fileID: -7906358387727058269, guid: abda9d17fc91e8c4ca492d3b30356913, type: 2}
+  m_Mesh: {fileID: 3285838664257618991, guid: 551d6531b4167194ba73c4dc5f3fcdfa, type: 2}
 --- !u!23 &7043211833002952637
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -139,6 +139,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
+  - {fileID: -6313843239515315372, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -173,4 +174,4 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -7906358387727058269, guid: abda9d17fc91e8c4ca492d3b30356913, type: 2}
+  m_Mesh: {fileID: 3285838664257618991, guid: 551d6531b4167194ba73c4dc5f3fcdfa, type: 2}
