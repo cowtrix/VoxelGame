@@ -27,23 +27,25 @@ public abstract class Interactable : ExtendedMonoBehaviour
 
 		public float MaxFocusDistance = 5;
 		public float MaxUseDistance = 2;
-
-		public string[] Verbs;
 	}
 
 	public InteractableSettings InteractionSettings = new InteractableSettings();
 
-	public virtual IEnumerable<string> GetActions()
+	public virtual IEnumerable<string> GetActions(Actor context)
 	{
+		if (!CanUse(context))
+			yield break;
 		yield return "Use";
 	}
+
+	protected virtual bool CanUse(Actor context) => true;
 
 	public Collider[] Colliders => GetComponentsInChildren<Collider>();
 	public Bounds Bounds
 	{
 		get
 		{
-			if(Colliders.Length == 0)
+			if (Colliders.Length == 0)
 			{
 				return default;
 			}
@@ -55,6 +57,8 @@ public abstract class Interactable : ExtendedMonoBehaviour
 			return bounds;
 		}
 	}
+
+	public abstract string DisplayName { get; }
 
 	public Mesh GetInteractionMesh()
 	{
@@ -73,22 +77,37 @@ public abstract class Interactable : ExtendedMonoBehaviour
 
 	public virtual void ExitFocus(Actor actor)
 	{
+		InteractionSettings.OnFocusExit.Invoke(actor);
 	}
 
 	public virtual void EnterFocus(Actor actor)
 	{
+		InteractionSettings.OnFocusEnter.Invoke(actor);
 	}
 
 	public virtual void Use(Actor actor, string action)
 	{
+		InteractionSettings.OnUsed.Invoke(actor);
 	}
 
 	public virtual void ExitAttention(Actor actor)
 	{
+		InteractionSettings.OnExitAttention.Invoke(actor);
 	}
 
 	public virtual void EnterAttention(Actor actor)
 	{
+		InteractionSettings.OnEnterAttention.Invoke(actor);
 	}
 
+	public string GetAction(Actor actor, int actionIndex)
+	{
+		var allActions = GetActions(actor).ToList();
+		if (!allActions.Any())
+		{
+			return null;
+		}
+		actionIndex = actionIndex % allActions.Count;
+		return allActions.ElementAtOrDefault(actionIndex);
+	}
 }

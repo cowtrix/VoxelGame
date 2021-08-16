@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractionColliderEvent : MonoBehaviour
 {
-	public PlayerInteractionManager Player;
+	public PlayerActor Player;
 	private void OnTriggerEnter(Collider other)
 	{
 		var interactable = other.GetComponent<Interactable>();

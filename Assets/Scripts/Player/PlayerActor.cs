@@ -7,11 +7,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerInteractionManager : Actor
+public class PlayerActor : Actor
 {
 	public LayerMask InteractionMask;
 	public CameraController CameraController => CameraController.Instance;
 	public Interactable FocusedInteractable { get; private set; }
+	public int ActionIndex = 0;
 
 	private void Update()
 	{
@@ -22,7 +23,7 @@ public class PlayerInteractionManager : Actor
 		{
 			Debug.DrawLine(cameraPos, interactionHit.point, Color.yellow);
 			var interactable = interactionHit.collider.GetComponent<Interactable>() ?? interactionHit.collider.GetComponentInParent<Interactable>();
-			if (interactable && interactionHit.distance < interactable.InteractionSettings.MaxFocusDistance)
+			if (interactable && interactable.enabled && interactionHit.distance < interactable.InteractionSettings.MaxFocusDistance)
 			{
 				if(interactable != FocusedInteractable)
 				{
@@ -67,7 +68,14 @@ public class PlayerInteractionManager : Actor
 		{
 			return;
 		}
+
+		if (State.EquippedItem)
+		{
+			State.EquippedItem.UseOn(this, FocusedInteractable);
+			return;
+		}
+
 		Debug.Log("OnUse: " + FocusedInteractable);
-		FocusedInteractable?.Use(this, "");
+		FocusedInteractable?.Use(this, FocusedInteractable.GetAction(this, ActionIndex));
 	}
 }

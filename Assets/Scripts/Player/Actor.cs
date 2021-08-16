@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Voxul;
 
+[RequireComponent(typeof(ActorState))]
 public class Actor : ExtendedMonoBehaviour
 {
 	[Serializable]
@@ -12,8 +13,19 @@ public class Actor : ExtendedMonoBehaviour
 		public float MaximumDistance = 10;
 	}
 
+	public int EquippedLayer = 1;
+	public ActorState State => GetComponent<ActorState>();
+	public Transform EquippedItemTransform;
 	public ActorSettings ActorConfiguration = new ActorSettings();
 	public List<Interactable> Interactables = new List<Interactable>();
+
+	public Transform InventoryContainer { get; private set; }
+
+	private void Start()
+	{
+		InventoryContainer = new GameObject("Inventory").transform;
+		InventoryContainer.SetParent(transform);
+	}
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -35,5 +47,43 @@ public class Actor : ExtendedMonoBehaviour
 		}
 		Interactables.Remove(interactable);
 		interactable.ExitAttention(this);
+	}
+
+	public void PickupItem(Item item)
+	{
+		State.Inventory.Add(item);
+		item.OnPickup(this);
+
+		if (!State.EquippedItem)
+		{
+			item.gameObject.layer = EquippedLayer;
+			State.EquippedItem = item;
+			State.EquippedItem.transform.SetParent(EquippedItemTransform);
+		}
+		else
+		{
+			item.gameObject.layer = 3;
+			item.transform.SetParent(transform);
+		}
+
+		item.transform.localPosition = item.EquippedOffset;
+		item.transform.localRotation = Quaternion.Euler(item.EquippedRotation);
+
+		State.OnInventoryUpdate.Invoke(this, Item.PICK_UP, item);
+	}
+
+	public void DropItem(Item item, Vector3 position, Quaternion rotation)
+	{
+		State.Inventory.Remove(item);
+		if (item == State.EquippedItem)
+		{
+			item.OnUnequip(this);
+			State.EquippedItem = null;
+		}
+		item.transform.position = position;
+		item.transform.rotation = rotation;
+		item.OnDrop(this);
+
+		State.OnInventoryUpdate.Invoke(this, Item.DROP, item);
 	}
 }

@@ -9850,8 +9850,8 @@ ReflectionProbe:
   m_Type: 0
   m_Mode: 1
   m_RefreshMode: 1
-  m_TimeSlicingMode: 1
-  m_Resolution: 64
+  m_TimeSlicingMode: 0
+  m_Resolution: 32
   m_UpdateFrequency: 0
   m_BoxSize: {x: 10, y: 10, z: 10}
   m_BoxOffset: {x: 0, y: 0, z: 0}
@@ -10096,6 +10096,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b734cda1e3b2d5b4796609b294fd48c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Inventory: []
+  EquippedItem: {fileID: 0}
+  EquippedItemTransform: {fileID: 8449882934255358499}
   ActorConfiguration:
     MinimumDistance: 0
     MaximumDistance: 10
@@ -10259,14 +10262,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 316969783}
     m_Modifications:
-    - target: {fileID: 8449882932907564086, guid: 7d152201cb1b19c44aeeeaa8820503f3, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8449882932907564086, guid: 7d152201cb1b19c44aeeeaa8820503f3, type: 3}
-      propertyPath: m_OcclusionCulling
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8449882934522404894, guid: 7d152201cb1b19c44aeeeaa8820503f3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -10325,5 +10320,10 @@ Transform:
 --- !u!20 &685357966 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 8449882932907564086, guid: 7d152201cb1b19c44aeeeaa8820503f3, type: 3}
+  m_PrefabInstance: {fileID: 8449882933573904312}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8449882934255358499 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1487140251, guid: 7d152201cb1b19c44aeeeaa8820503f3, type: 3}
   m_PrefabInstance: {fileID: 8449882933573904312}
   m_PrefabAsset: {fileID: 0}

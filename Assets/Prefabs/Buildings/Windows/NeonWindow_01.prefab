@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 3058895392910047183}
   MeshFilter: {fileID: 3058895392749245525}
   MeshRenderer: {fileID: 3058895392749245514}
@@ -77,8 +80,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8501025348146561166, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
-  - {fileID: -512295203845761396, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
+  - {fileID: -6313843239515315372, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,7 +127,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3058895392910047180}
   - component: {fileID: 3058895392910047183}
-  - component: {fileID: 3058895392910047177}
   - component: {fileID: 3058895392910047182}
   m_Layer: 0
   m_Name: NeonWindow_01
@@ -171,22 +173,9 @@ MonoBehaviour:
   MaxCoroutineUpdateTime: 0.016666668
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 3d62f2d031b2a4449b9acaec27573161, type: 2}
-  m_lastMeshHash: 0520b157-61ab-4a6b-a3d9-8a0832b33241
-  Renderers:
+  m_lastMeshHash: 8bb98278-2733-41a7-ab5a-28fd324c6a06
+  Submeshes:
   - {fileID: 3058895392749245524}
---- !u!114 &3058895392910047177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3058895392910047181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59d14e37f201c474a974e19390a16894, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &3058895392910047182
 MonoBehaviour:
   m_ObjectHideFlags: 0

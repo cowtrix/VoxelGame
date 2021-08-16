@@ -10,11 +10,13 @@ public class HUDManager : Singleton<HUDManager>
 
 	private Camera Camera => CameraController.GetComponent<Camera>();
 	public CameraController CameraController => CameraController.Instance;
-	public PlayerInteractionManager InteractionManager;
+	public PlayerActor PlayerActor;
 	public Material InteractionMaterial;
 
 	public MeshRenderer InteractionObjectRenderer;
 	public MeshFilter InteractionObjectFilter;
+
+	public StringEvent FocuseInteractableDisplayName;
 
 	private void Start()
 	{
@@ -26,7 +28,7 @@ public class HUDManager : Singleton<HUDManager>
 
 	private void Update()
 	{
-		var interactable = InteractionManager.FocusedInteractable;
+		var interactable = PlayerActor.FocusedInteractable;
 		if (interactable)
 		{
 			InteractionObjectFilter.gameObject.SetActive(true);
@@ -34,16 +36,19 @@ public class HUDManager : Singleton<HUDManager>
 			InteractionObjectFilter.transform.position = interactable.transform.position;
 			InteractionObjectFilter.transform.rotation = interactable.transform.rotation;
 			InteractionObjectFilter.transform.localScale = interactable.transform.lossyScale;
-			Icon.sprite = InteractionManager.FocusedInteractable.InteractionSettings.Icon?.Invoke();
+			Icon.sprite = PlayerActor.FocusedInteractable.InteractionSettings.Icon?.Invoke();
 
 			ActionLabel.gameObject.SetActive(true);
-			ActionLabel.text = interactable.GetActions().FirstOrDefault();
+			ActionLabel.text = interactable.GetActions(PlayerActor).FirstOrDefault();
+
+			FocuseInteractableDisplayName.Invoke(interactable.DisplayName);
 		}
 		else
 		{
 			Icon.sprite = null;
 			ActionLabel.gameObject.SetActive(false);
 			InteractionObjectFilter.gameObject.SetActive(false);
+			FocuseInteractableDisplayName.Invoke("");
 		}
 		Icon.gameObject.SetActive(Icon.sprite);
 	}

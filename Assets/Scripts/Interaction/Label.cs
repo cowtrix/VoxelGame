@@ -6,10 +6,13 @@ using UnityEngine;
 public class Label : Interactable
 {
 	public string PlainText;
-    protected string AlienText => LanguageUtility.Translate(PlainText);
 
-	public override IEnumerable<string> GetActions()
+	public override string DisplayName => PlainText;
+
+	protected string AlienText => LanguageUtility.Translate(PlainText);
+
+	public override IEnumerable<string> GetActions(Actor context)
 	{
-		yield return $"\"{PlainText}\"";
+		yield break;			   
 	}
 }

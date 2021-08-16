@@ -56,7 +56,7 @@ MonoBehaviour:
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 223dc2948746d2a41a13076b20cd5af7, type: 2}
   m_lastMeshHash: 62f375f3-d66e-46a4-bbb6-3a7784471cd5
-  Renderers:
+  Submeshes:
   - {fileID: 6451784707447619288}
 --- !u!1 &874715364609725130
 GameObject:
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 223dc2948746d2a41a13076b20cd5af7, type: 2}
   m_lastMeshHash: 62f375f3-d66e-46a4-bbb6-3a7784471cd5
-  Renderers:
+  Submeshes:
   - {fileID: 4705097002021796085}
 --- !u!1 &1847882471210791629
 GameObject:
@@ -162,6 +162,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 409927027907509707}
   MeshFilter: {fileID: 7109941875694394240}
   MeshRenderer: {fileID: 6720068291407443404}
@@ -193,7 +196,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8501025348146561166, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -285,7 +288,7 @@ MonoBehaviour:
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 223dc2948746d2a41a13076b20cd5af7, type: 2}
   m_lastMeshHash: 62f375f3-d66e-46a4-bbb6-3a7784471cd5
-  Renderers:
+  Submeshes:
   - {fileID: 2172015561520103290}
 --- !u!1 &3264520001185786800
 GameObject:
@@ -333,6 +336,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 1852536880050710846}
   MeshFilter: {fileID: 3937939192492809229}
   MeshRenderer: {fileID: 7017912787365739590}
@@ -364,7 +370,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8501025348146561166, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -446,6 +452,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 9116657472488624628}
   MeshFilter: {fileID: 1059202832790158134}
   MeshRenderer: {fileID: 4778724157099906657}
@@ -477,7 +486,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8501025348146561166, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -559,6 +568,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 5547852703257339551}
   MeshFilter: {fileID: 5547852702720139949}
   MeshRenderer: {fileID: 5547852702720139948}
@@ -570,7 +582,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5547852702720139945}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 3143760293754196707, guid: eb2846e03b3e4eb4483456b9e6e73a1b, type: 2}
 --- !u!23 &5547852702720139948
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -590,8 +602,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8501025348146561166, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
-  - {fileID: -512295203845761396, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
+  - {fileID: -6313843239515315372, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -626,7 +638,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 3143760293754196707, guid: eb2846e03b3e4eb4483456b9e6e73a1b, type: 2}
 --- !u!1 &5547852703257339549
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,6 +697,6 @@ MonoBehaviour:
   MaxCoroutineUpdateTime: 0.016666668
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: eb2846e03b3e4eb4483456b9e6e73a1b, type: 2}
-  m_lastMeshHash: cca00b07-cdc9-4165-8cfd-5976ca594589
-  Renderers:
+  m_lastMeshHash: 0cc7b18b-c388-45f9-91ee-f3ef510207b3
+  Submeshes:
   - {fileID: 5547852702720139950}

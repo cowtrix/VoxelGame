@@ -1,54 +1,23 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
+using Voxul;
 
-[Serializable]
-public class FloatEvent : UnityEvent<float> { }
-
-[Serializable]
-public class StringEvent : UnityEvent<string> { }
-
-public class StatusUpdateEntry : MonoBehaviour
+public abstract class UIStateUpdateEntry : ExtendedMonoBehaviour
 {
-    public string StateName;
-	public StatusUpdate Parent;
+	public UIStatusUpdate Parent;
 	public PlayerState PlayerState { get; private set; }
-    public FloatEvent Delta, Value;
-	public StringEvent DeltaString, ValueString;
 
 	public float MoveSpeed = 1;
 	public float ActiveTimeout = 5;
-	private float m_lastUpdate;
-	private bool m_active;
-	private void Awake()
+	protected float m_lastUpdate;
+	protected bool m_active;
+
+	protected virtual void Awake()
 	{
 		PlayerState = CameraController.Instance.GetComponentInParent<PlayerState>();
-		PlayerState.OnStateUpdate.AddListener(StateUpdate);
-
+		transform.SetParent(Parent.InactiveContainer);
+		transform .localPosition = new Vector3(0, 0);
 		StartCoroutine(Think());
-	}
-
-	private void StateUpdate(Actor actor, string fieldName, float value, float delta)
-	{
-		if(fieldName != StateName)
-		{
-			return;
-		}
-		Delta.Invoke(delta);
-		if(delta == 0)
-		{
-			DeltaString.Invoke("");
-		}
-		else
-		{
-			DeltaString.Invoke($"({delta})");
-		}
-		Value.Invoke(value);
-		ValueString.Invoke(value.ToString());
-		m_lastUpdate = Time.time;
-		m_active = true;
 	}
 
 	private IEnumerator Think()
@@ -64,7 +33,7 @@ public class StatusUpdateEntry : MonoBehaviour
 					continue;
 				}
 				var parentRectTransform = Parent.GetComponent<RectTransform>();
-				if(transform.parent != parentRectTransform)
+				if (transform.parent != parentRectTransform)
 				{
 					Vector3 targetPos;
 					do
@@ -86,6 +55,5 @@ public class StatusUpdateEntry : MonoBehaviour
 			}
 			yield return null;
 		}
-		
 	}
 }

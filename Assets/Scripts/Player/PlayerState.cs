@@ -1,12 +1,23 @@
 ﻿using UnityEngine;
 
-public class PlayerState : ActorState
+public interface IFueledActor
 {
-	public int Credits = 100;
-	public bool HeadlightOn;
-	public float ThrusterFuel = 100;
-	public float ThrusterEfficiency = -1;
-	public float ThrusterRecharge = .1f;
+	public float ThrusterFuel { get; }
+}
+
+public interface ICreditedActor
+{
+	public int Credits { get; }
+}
+
+public class PlayerState : ActorState, IFueledActor, ICreditedActor
+{
+	public float ThrusterEfficiency { get; private set; } = -.05f;
+	public float ThrusterRecharge { get; private set; } = .1f;
+	[StateMin(0)]
+	public float ThrusterFuel { get; private set; } = 100;
+	[StateMin(0)]
+	public int Credits { get; private set; } = 150;
 
 	protected override void Update()
 	{

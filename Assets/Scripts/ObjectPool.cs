@@ -12,7 +12,7 @@ public static class ObjectPool<T> where T:class
 			if (typeof(UnityEngine.Component).IsAssignableFrom(typeof(T)))
 			{
 				var newObj = new GameObject($"ObjectPool_{typeof(T)}");
-				newObj.hideFlags = HideFlags.DontSave;
+				newObj.hideFlags = HideFlags.HideAndDontSave;
 				m_pool.Enqueue(newObj.AddComponent(typeof(T)) as T);
 			}
 			else

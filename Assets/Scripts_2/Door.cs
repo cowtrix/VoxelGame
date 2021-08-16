@@ -9,11 +9,13 @@ public class Door : Interactable
 	public float OpenAmount;
     public Vector3 OpenPosition, OpenRotation;
     public Vector3 ClosedPosition, ClosedRotation;
-
+	public string DoorName = "Door";
 	public float Speed = 1;
 	private float m_targetOpen;
 
-	public override IEnumerable<string> GetActions()
+	public override string DisplayName => DoorName;
+
+	public override IEnumerable<string> GetActions(Actor actor)
 	{
 		if(m_targetOpen > 0)
 		{
