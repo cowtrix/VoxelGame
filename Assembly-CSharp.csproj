@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,6 +53,9 @@
     <UnityVersion>2020.3.15f2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\Utilities\DebugHelper.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\SerializableDictionary.cs" />
     <Compile Include="Assets\Scripts\Utilities\TrackedObject.cs" />
@@ -63,6 +66,7 @@
     <Compile Include="Assets\Scripts_2\Door.cs" />
     <Compile Include="Assets\Scripts_2\Rotator.cs" />
     <Compile Include="Assets\Scripts\FollowCamera.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Instruments\InstrumentKey.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyObject.cs" />
     <Compile Include="Assets\Scripts_2\SinMover.cs" />
     <Compile Include="Assets\Unsorted\VoxelTester.cs" />
@@ -136,9 +140,11 @@
     <Compile Include="Assets\Scripts\Utilities\VectorExtensions.cs" />
     <Compile Include="Assets\Scripts\Enemy\OnTriggerForwarder.cs" />
     <Compile Include="Assets\Scripts\Utilities\TransformExtensions.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Instruments\InstrumentCollection.cs" />
     <Compile Include="Assets\Scripts\Utilities\LayerMaskFieldUtility.cs" />
     <Compile Include="Assets\Scripts\Utilities\MiscUtilities.cs" />
     <Compile Include="Assets\Scripts\Utilities\ColorUtility.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Instruments\Instrument.cs" />
     <Compile Include="Assets\Scripts_2\DynamicTextureSetter.cs" />
     <Compile Include="Assets\Scripts\Interaction\Label.cs" />
     <Compile Include="Assets\Scripts\Utilities\Triangle.cs" />
@@ -159,245 +165,10 @@
     <Compile Include="Assets\Scripts\Utilities\ListExtensions.cs" />
     <Compile Include="Assets\Scripts\LookAtPlayer.cs" />
     <Compile Include="Assets\Scripts\Gravity\GravityRigidbody.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\DemoScripts\Demo.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\Mods\DuplicateInstrumentMod.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\DisplayEditor.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\InstrumentListUIObject.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\ConfigurationData.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\Tooltip.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\NoteGenerator_Melody.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIEditorFXSettings.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\Mods\PlayNoteOverrideBaseMod.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\MeasureInstrumentEditor.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\PercussionEditorController.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\LeitmotifController.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\AddressableManagement\AddressableSpawnWasDestroyed.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIEditorSettings.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\InstrumentVariant.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIDisplayEditor.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\LineFader.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\PercussionEditor.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\Mods\GroupBehaviorMod.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\MeasureEditorController.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIKey.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\ClipMeasure.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\SingleClip.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\NotePlayedArgs.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIInstrumentDragElement.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\SpectrumVisualizers\OutputVisualizer.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\DemoScripts\DemoParameters.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\SpectrumVisualizers\SpectrumVisualizer.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIIntScrollElement.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\GeneralMenuPanel.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIPanel.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\LightFader.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\MusicGenerator.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIManager.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\ForcedPercussionNotes.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\DemoScripts\DemoOnClick.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\MusicConstants.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIController.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIScrollElement.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIModsEditor.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\PanelToggle.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\MeasurePercussionEditor.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\MusicGeneratorUIPanel.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\PlayerController.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\ImageFader.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\SpectrumVisualizers\AudioVisualizer.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\LeitmotifEditor.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\Mods\ExampleMod.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\PercussionEditorInstrument.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\NoteGenerator.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\Instrument.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\PMGSlider.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\NoteGenerator_Lead.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\TooltipManager.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\PercussionEditorBase.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\Leitmotif.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\Fader.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\AddressableManagement\AddressableDictionary.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\MeasureTimeSignature.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\LeitmotifPercussionEditorInstrument.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\ClipNotesMeasure.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\AddressableManagement\AddressableSpawnRequest.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIIntScroller.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIKeybinds.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\PercussionInstrumentDisplayOverlay.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIWorldDragElement.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\LeitmotifNote.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIToggle.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\MeasureDisplay.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UILeitmotifEditor.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\EditorInstrumentDisplay.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIFallingNote.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\SpriteFade.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\AddressableManagement\AddressableManager.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIColorScroller.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UISlider.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\LeitmotifInstrumentEditor.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\DemoScripts\DemoLightObject.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\InstrumentAudio.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\ColorPalette.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\ModUIObject.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UITMPDropdown.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\ListArray.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\LeitmotifPercussionEditor.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\PanelActivator.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\RepeatMeasure.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\Measure.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UITooltipObject.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\MeasureEditor.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\Mods\GuaranteedGroupMod.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIKeyboard.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\MeshFader.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIPercussionEditor.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\PanelOption.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\TimeSignature.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\KeyboardPercussionInstrument.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\Mods\GeneratorMod.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\MeasureEditorPercussionEditorInstrument.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\IKeyboardNoteDisplay.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UITMPDropdownWrapper.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\SpectrumVisualizers\DBVisualizer.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\ChordProgressions.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIColorScrollElement.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\AdvancedSettingsPanel.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\InstrumentSet.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\InstrumentListPanelUI.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIInstrumentListScrollView.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\EditorHintDisplay.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\NoteGenerator_Rhythm.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\DemoScripts\DemoSpawn.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\MeasureEditorNoteData.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIHorizontalScrollBar.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\GlobalEffectsPanel.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\UIMeasureEditor.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\NotesGeneratedArgs.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\InstrumentPanelUI.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\EditorDisplayOverlay.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\LeitmotifHintDisplay.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\UIEditorScripts\MeasureEditorNote.cs" />
-    <Compile Include="Assets\MusicGenerator\Assets\Scripts\RegularMeasure.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\OO_ShoppingForSimulations.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\Ominous.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\W_WistfulContemplation.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\SeriousMarch.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\GeneratorDemo.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\Tragic.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\Winter.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\OO_SimdayMorningHijinx.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationModData\NightCarnival_GroupBehaviorMod.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationModData\Winter_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationModData\LegendOfWind_GroupBehaviorMod.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\W_BoleroTango.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\W_WistfulContemplation.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationModData\LegendOfWind_GroupBehaviorMod.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationModData\SillyMarch_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\New.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\InstrumentClips\New.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\W_LateNightExpress.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationModData\Ambient_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\ThreeBodyProblem.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\ChiptuneDefault.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationModData\Magical_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\W_AndanteGroove.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\SpaceLair.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\W_Shangri-La-La.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationModData\SpaceLair_GroupBehaviorMod.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\W_BoleroTango.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\UpToNoGood.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\DungeonBoss.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationModData\LegendOfWind_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\Moonlight.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationModData\Adversity_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\SillyMarch.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationModData\NightCarnival_DuplicateInstrumentMod.txt" />
     <None Include="Assets\Resources\AlienCharacters.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\Sneaky.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\GeneratorDemo.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationModData\UpToNoGood_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\Default.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\Dramatic.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\NightCarnival.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\Magical.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\W_AndanteGroove.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationModData\Ambient_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\NightCarnival.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\W_HouseOfUsher.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\LegendOfWind.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\DungeonBoss.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationModData\Default_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationModData\Adversity_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\W_WindWitches.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\Ambient.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\W_LateNightExpress.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
-    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationModData\Default_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationModData\Lullaby_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\Lullaby.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\MusicGenerator\Assets\Scenes\PleaseReadSetupStepsInDocumentationFirst.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\ThreeBodyProblem.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationModData\NightCarnival_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\Ominous.txt" />
     <None Include="Assets\Lib\unity-scene-reference\unity-scene-reference\ProjectSettings\ProjectVersion.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationModData\Lullaby_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\OO_ShoppingForSimulations.txt" />
-    <None Include="Assets\MusicGenerator\Documentation\Contact.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\InstrumentClips\Default.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\Winter.txt" />
-    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\Adversity.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\Adversity.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\W_WindWitches.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\W_HouseOfUsher.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationModData\NightCarnival_GroupBehaviorMod.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationModData\SpaceLair_GroupBehaviorMod.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\Lullaby.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationModData\Magical_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\SpaceLair.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\ChiptuneDefault.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationModData\LegendOfWind_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentClips\New.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationModData\Winter_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\Ambient.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationModData\UpToNoGood_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\LegendOfWind.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\Tragic.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationModData\SillyMarch_DuplicateInstrumentMod.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\OO_SimdayMorningHijinx.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\New.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\Dramatic.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\InstrumentClips\Default.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\SillyMarch.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\Sneaky.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\SeriousMarch.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\Magical.txt" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\W_Shangri-La-La.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\Default.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
-    <None Include="Assets\MusicGenerator\Assets\PMGBaseConfigFiles\ConfigurationData\Moonlight.txt" />
-    <None Include="Assets\StreamingAssets\MusicGenerator\ConfigurationData\UpToNoGood.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -622,17 +393,17 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.15f2\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>Library\PackageCache\com.unity.analytics@3.5.3\Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
       <HintPath>Library\PackageCache\com.unity.analytics@3.5.3\AnalyticsStandardEvents\Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>Library\PackageCache\com.unity.analytics@3.5.3\Unity.Analytics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.Tracker">
+      <HintPath>Library\PackageCache\com.unity.analytics@3.5.3\Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.15f2\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
@@ -982,35 +753,35 @@
     <Reference Include="System.Xml.XPath.XDocument">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.15f2\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
+    <Reference Include="Purchasing.Common">
+      <HintPath>Library\ScriptAssemblies\Purchasing.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    <Reference Include="UnityEngine.Purchasing">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.CacheServer">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.CacheServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualStudio.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+    <Reference Include="UnityEngine.Purchasing.SecurityStub">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.SecurityStub.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Searcher.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
@@ -1024,23 +795,89 @@
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="Analytics">
+      <HintPath>Library\ScriptAssemblies\Analytics.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Mathematics">
-      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>Library\ScriptAssemblies\Unity.Analytics.DataPrivacy.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.multiplayer-hlapi.Runtime">
+      <HintPath>Library\ScriptAssemblies\com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    <Reference Include="UnityEngine.Purchasing.Codeless">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.Codeless.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Monetization">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Monetization.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.multiplayer-hlapi.Editor">
+      <HintPath>Library\ScriptAssemblies\com.unity.multiplayer-hlapi.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualStudio.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PlasticSCM.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.multiplayer-weaver.Editor">
+      <HintPath>Library\ScriptAssemblies\com.unity.multiplayer-weaver.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing.SecurityCore">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.SecurityCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XR.LegacyInputHelpers">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
@@ -1048,105 +885,39 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Addressables">
-      <HintPath>Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SpatialTracking">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.SpatialTracking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing.SecurityStub">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.SecurityStub.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ResourceManager">
-      <HintPath>Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ScriptableBuildPipeline">
-      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing.Codeless">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.Codeless.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Addressables.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
+    <Reference Include="UnityEngine.Purchasing.Stores">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.Stores.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
       <HintPath>Library\ScriptAssemblies\UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.CacheServer">
-      <HintPath>Library\ScriptAssemblies\UnityEditor.CacheServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>Library\ScriptAssemblies\Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing.Stores">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.Stores.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.multiplayer-weaver.Editor">
-      <HintPath>Library\ScriptAssemblies\com.unity.multiplayer-weaver.Editor.dll</HintPath>
+    <Reference Include="Unity.ScriptableBuildPipeline">
+      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>Library\ScriptAssemblies\UnityEditor.Purchasing.dll</HintPath>
     </Reference>
-    <Reference Include="Purchasing.Common">
-      <HintPath>Library\ScriptAssemblies\Purchasing.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Advertisements.Editor">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.multiplayer-hlapi.Runtime">
-      <HintPath>Library\ScriptAssemblies\com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Monetization">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Monetization.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.multiplayer-hlapi.Editor">
-      <HintPath>Library\ScriptAssemblies\com.unity.multiplayer-hlapi.Editor.dll</HintPath>
+    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
       <HintPath>Library\ScriptAssemblies\UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
+    <Reference Include="UnityEngine.Advertisements.Editor">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Purchasing.SecurityCore">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.SecurityCore.dll</HintPath>
-    </Reference>
-    <Reference Include="Analytics">
-      <HintPath>Library\ScriptAssemblies\Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.XR.LegacyInputHelpers">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.Core.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Voxul.csproj">
-      <Project>{22DBF450-3546-2F76-DC57-2CB6396A7251}</Project>
-      <Name>Voxul</Name>
-    </ProjectReference>
     <ProjectReference Include="UnitySceneReference.csproj">
       <Project>{6AE5C9F5-A9EF-3FDA-F477-46CFC445B7DF}</Project>
       <Name>UnitySceneReference</Name>
+    </ProjectReference>
+    <ProjectReference Include="Voxul.csproj">
+      <Project>{22DBF450-3546-2F76-DC57-2CB6396A7251}</Project>
+      <Name>Voxul</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

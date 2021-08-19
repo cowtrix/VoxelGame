@@ -12,6 +12,8 @@ public class DynamicTextureSetter : MonoBehaviour
 
 	public Color AlbedoTint = Color.white;
     public Texture2D Albedo;
+	public float Smoothness;
+	public float Metallic;
 
 	private void OnWillRenderObject()
 	{
@@ -26,6 +28,8 @@ public class DynamicTextureSetter : MonoBehaviour
 		Renderer.GetPropertyBlock(m_materialPropertyBlock);
 		m_materialPropertyBlock.SetColor("_BaseColor", AlbedoTint);
 		m_materialPropertyBlock.SetTexture("_BaseMap", Albedo);
+		m_materialPropertyBlock.SetFloat("_Smoothness", Smoothness);
+		m_materialPropertyBlock.SetFloat("_Metallic", Metallic);
 		Renderer.SetPropertyBlock(m_materialPropertyBlock);
 	}
 }

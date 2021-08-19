@@ -61,6 +61,9 @@ public class FuelBuddy : Interactable
 	{
 		FuelGauge.localScale = new Vector3(FuelGauge.localScale.x, Mathf.Lerp(0.1f, 1f, m_visibleCapacity / 100f), FuelGauge.localScale.z);
 		m_visibleCapacity = Mathf.MoveTowards(m_visibleCapacity, CurrentCapacity, Time.deltaTime * 50);
-		CurrentCapacity += Time.deltaTime * RechargeSpeed;
+		if(CurrentCapacity > 100)
+		{
+			CurrentCapacity += Time.deltaTime * RechargeSpeed;
+		}
 	}
 }

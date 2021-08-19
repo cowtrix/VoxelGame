@@ -10,6 +10,23 @@ namespace Common
 {
     public static class EditorExtensions
     {
+        [MenuItem("CONTEXT/Transform/Randomise Y Rotation")]
+        public static void RandomiseYRot(MenuCommand command)
+		{
+            UnityEngine.Random.InitState(command.GetHashCode());
+            var t = command.context as Transform;
+            var eul = t.localRotation.eulerAngles;
+            t.localRotation = Quaternion.Euler(eul.x, UnityEngine.Random.Range(0, 360), eul.y);
+		}
+
+        [MenuItem("CONTEXT/Transform/Randomise Y Rotation (Snap 90)")]
+        public static void RandomiseYRot90(MenuCommand command)
+        {
+            var t = command.context as Transform;
+            var eul = t.localRotation.eulerAngles;
+            t.localRotation = Quaternion.Euler(new Vector3(eul.x, UnityEngine.Random.Range(0, 360), eul.y).ClosestAxisNormal());
+        }
+
         public static void HelpButton(string url, float size = 20)
         {
             var content = EditorGUIUtility.IconContent("_Help");

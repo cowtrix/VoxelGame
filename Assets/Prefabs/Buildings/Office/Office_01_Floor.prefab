@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2279475474679054692}
   - component: {fileID: 3767888005952154133}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Office_01_Inside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 5053820620231613950}
   - component: {fileID: 1318932151099811051}
   - component: {fileID: 9074528961899285165}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plaza_submesh_submesh_submesh_hidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9116586336385832736}
   - component: {fileID: 7064232767643878887}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Office_01_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,6 +204,7 @@ Transform:
   m_Children:
   - {fileID: 5713922136392884315}
   - {fileID: 2279475474679054692}
+  - {fileID: 1395439320049648136}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -230,7 +231,7 @@ MonoBehaviour:
   MaxCoroutineUpdateTime: 0.016666668
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: a4cea0251428a3b489d48e411b86851b, type: 2}
-  m_lastMeshHash: daa8dab2-9fce-4a99-a752-3e6cd374f8f5
+  m_lastMeshHash: 78e6eecb-425a-4619-a1e5-4336d4a9371e
   Submeshes:
   - {fileID: 6641125895722456326}
 --- !u!1 &7836173758145194019
@@ -246,7 +247,7 @@ GameObject:
   - component: {fileID: 8294434411356066982}
   - component: {fileID: 3541812030048169729}
   - component: {fileID: 364247105479222899}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plaza_submesh_submesh_hidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,3 +350,65 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6126063311975245265, guid: a4cea0251428a3b489d48e411b86851b, type: 2}
+--- !u!1001 &5615460073490442477
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 9116586336385832736}
+    m_Modifications:
+    - target: {fileID: 6823946862540974821, guid: 5e1bc58d86359ee478e7c78c4982a79b, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823946862540974821, guid: 5e1bc58d86359ee478e7c78c4982a79b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823946862540974821, guid: 5e1bc58d86359ee478e7c78c4982a79b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823946862540974821, guid: 5e1bc58d86359ee478e7c78c4982a79b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823946862540974821, guid: 5e1bc58d86359ee478e7c78c4982a79b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823946862540974821, guid: 5e1bc58d86359ee478e7c78c4982a79b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823946862540974821, guid: 5e1bc58d86359ee478e7c78c4982a79b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823946862540974821, guid: 5e1bc58d86359ee478e7c78c4982a79b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823946862540974821, guid: 5e1bc58d86359ee478e7c78c4982a79b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823946862540974821, guid: 5e1bc58d86359ee478e7c78c4982a79b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823946862540974821, guid: 5e1bc58d86359ee478e7c78c4982a79b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174549492972261556, guid: 5e1bc58d86359ee478e7c78c4982a79b, type: 3}
+      propertyPath: m_Name
+      value: LiftTube_Door_01 (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5e1bc58d86359ee478e7c78c4982a79b, type: 3}
+--- !u!4 &1395439320049648136 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6823946862540974821, guid: 5e1bc58d86359ee478e7c78c4982a79b, type: 3}
+  m_PrefabInstance: {fileID: 5615460073490442477}
+  m_PrefabAsset: {fileID: 0}
