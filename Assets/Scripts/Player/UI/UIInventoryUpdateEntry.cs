@@ -16,13 +16,13 @@ public class UIInventoryUpdateEntry : UIStateUpdateEntry
 	{
 		if(action == Item.PICK_UP)
 		{
-			Text.text = $"Picked up {item.DisplayName}";
+			Text.text = $"Picked up {item.DisplayName}".ToUpper();
 		}
 		else if(action == Item.DROP)
 		{
-			Text.text = $"Dropped {item.DisplayName}";
+			Text.text = $"Dropped {item.DisplayName}".ToUpper();
 		}
 		m_lastUpdate = Time.time;
-		m_active = true;
+		Active = true;
 	}
 }

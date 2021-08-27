@@ -34,6 +34,7 @@ public class UIStatusUpdateEntry : UIStateUpdateEntry
 		}
 		Value.Invoke(value);
 		ValueString.Invoke(value.ToString());
+		Active = true;
 	}
 
 	protected bool ShouldActivate(Actor actor, string fieldName, float value, float delta) => fieldName == StateName;
@@ -41,7 +42,6 @@ public class UIStatusUpdateEntry : UIStateUpdateEntry
 	private void StateUpdate(Actor actor, string fieldName, float value, float delta)
 	{
 		m_lastUpdate = Time.time;
-		m_active = true;
 		if (ShouldActivate(actor, fieldName, value, delta))
 		{
 			OnDelta(actor, fieldName, value, delta);

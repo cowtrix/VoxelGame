@@ -57,8 +57,9 @@ public class StateContainer : ExtendedMonoBehaviour
 		dynamic a = fieldInfoA.GetValue(this);
 		dynamic b = fieldInfoB.GetValue(this);
 		var newVal = a + b;
-		fieldInfoA.SetValue(this, a + b);
+		fieldInfoA.SetValue(this, newVal);
 		OnStateUpdate.Invoke(Actor, fieldA, newVal, b);
+		//Debug.Log($"State update: {fieldA}: {newVal} ({b})");
 		return true;
 	}
 
@@ -80,6 +81,7 @@ public class StateContainer : ExtendedMonoBehaviour
 
 		fieldInfo.SetValue(this, newVal);
 		OnStateUpdate.Invoke(Actor, field, newVal, delta);
+		//Debug.Log($"State update: {field}: {newVal} ({delta})");
 		return true;
 	}
 
@@ -101,6 +103,7 @@ public class StateContainer : ExtendedMonoBehaviour
 
 		fieldInfo.SetValue(this, newVal);
 		OnStateUpdate.Invoke(Actor, field, newVal, delta);
+		//Debug.Log($"State update: {field}: {newVal} ({delta})");
 		return true;
 	}
 }
