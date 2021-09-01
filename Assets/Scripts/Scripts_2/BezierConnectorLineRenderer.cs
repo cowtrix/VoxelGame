@@ -19,6 +19,7 @@ public class BezierConnectorLineRenderer : ExtendedMonoBehaviour
 		{
 			point.Position = parent.worldToLocalMatrix.MultiplyPoint(Transform.localToWorldMatrix.MultiplyPoint(Offset));
 			point.Control = Transform.localRotation * Normal;
+			point.UpVector = Transform.up;
 		}
 	}
 
@@ -28,13 +29,17 @@ public class BezierConnectorLineRenderer : ExtendedMonoBehaviour
 
 	[HideInInspector]
 	public SplineSegment Spline;
+	public void Clear()
+	{
+		Renderer.enabled = false;
+	}
 
 	[ContextMenu("Invalidate")]
 	public void Invalidate()
 	{
 		if(!Start.Transform || !End.Transform)
 		{
-			Renderer.enabled = false;
+			Clear();
 			return;
 		}
 		Renderer.enabled = true;

@@ -16,6 +16,7 @@ public class SplineSegment
 	public ControlPoint FirstControlPoint;
 	public ControlPoint SecondControlPoint;
 
+	public float Length;
 	// Calculated data
 	[HideInInspector]
 	public List<SplinePoint> Points;
@@ -49,7 +50,6 @@ public class SplineSegment
 		Recalculate();
 	}
 
-	public float Length { get; private set; }
 
 	public void Recalculate(bool force = false)
 	{
