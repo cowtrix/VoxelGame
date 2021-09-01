@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Voxul;
 
 [RequireComponent(typeof(LineRenderer))]
-public class BezierConnectorLineRenderer : MonoBehaviour
+public class BezierConnectorLineRenderer : ExtendedMonoBehaviour
 {
 	[Serializable]
 	public struct TransformAnchor
