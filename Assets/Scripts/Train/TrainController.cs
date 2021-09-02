@@ -19,14 +19,16 @@ public class TrainController : ExtendedMonoBehaviour
 	private void Update()
 	{
 		var p = Trainline.GetPointOnLine(Time);
-		Rigidbody.position = p.Item1;
-		Rigidbody.rotation = Quaternion.LookRotation((transform.position - p.Item2).normalized) * Quaternion.Euler(Rotation);
-		//Rigidbody.LookAt(p.Item2);
-		//transform.localRotation *= Quaternion.Euler(Rotation);
-
+		var n = Trainline.GetPointOnLine(Time + .01f);
+		Rigidbody.position = p;
+		Rigidbody.rotation = Quaternion.LookRotation((transform.position - n).normalized) * Quaternion.Euler(Rotation);
 		for (int i = 0; i < Carriages.Count; i++)
 		{
 			var carriage = Carriages[i];
+			if (!carriage)
+			{
+				continue;
+			}
 			carriage.Time = Time - (i + 1) * Space;
 		}
 	}

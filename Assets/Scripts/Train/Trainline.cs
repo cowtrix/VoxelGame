@@ -50,7 +50,7 @@ public class Trainline : ExtendedMonoBehaviour
 		}
 	}
 
-	public (Vector3, Vector3) GetPointOnLine(float time)
+	public Vector3 GetPointOnLine(float time)
 	{
 		var targetDistance = time * m_totalDistance;
 		var currentDistance = 0f;
@@ -60,13 +60,12 @@ public class Trainline : ExtendedMonoBehaviour
 			{
 				var adjustedTime = (targetDistance - currentDistance) / n.Length;
 				var position = n.GetUniformPointOnSpline(adjustedTime);
-				var next = n.GetUniformPointOnSpline(adjustedTime + .01f);
-				return (position, next);
+				return position;
 			}	
 			currentDistance += n.Length;
 		}
 		var last = Splines.Last();
-		return (last.SecondControlPoint.Position, last.SecondControlPoint.UpVector);
+		return last.SecondControlPoint.Position;
 	}
 
 	private void OnDrawGizmosSelected()
