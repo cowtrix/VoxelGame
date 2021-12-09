@@ -1,4 +1,5 @@
 using Common;
+using NodeCanvas.DialogueTrees;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ public class PlayerActor : Actor
 {
 	public LayerMask InteractionMask;
 	public CameraController CameraController => CameraController.Instance;
+	public DialogueTreeController DialogueController => GetComponent<DialogueTreeController>();
 	public Interactable FocusedInteractable { get; private set; }
 	public int ActionIndex = 0;
 

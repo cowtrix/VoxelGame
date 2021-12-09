@@ -10,6 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1976612428960384039}
   - component: {fileID: 3364294793111744134}
+  - component: {fileID: 8432543965482509384}
+  - component: {fileID: 8997189929163781403}
+  - component: {fileID: 1015341908250058040}
+  - component: {fileID: 1839832131607782420}
   m_Layer: 8
   m_Name: ToolBox
   m_TagString: Untagged
@@ -28,7 +32,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4591697222801133092}
   - {fileID: 3437355098263652261}
   - {fileID: 4300733389300931825}
   - {fileID: 128368108031597247}
@@ -60,50 +63,16 @@ MonoBehaviour:
   MaxCoroutineUpdateTime: 0.016666668
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: e3e2ca0a73ab38a4ebca53b030be9115, type: 2}
-  m_lastMeshHash: 391a1aa4-c622-4b44-a02e-416801a88c7f
+  m_lastMeshHash: 7891323c-961a-4590-a3d8-0d72367df758
   Submeshes:
-  - {fileID: 5226163213676709489}
---- !u!1 &8551458260927347829
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4591697222801133092}
-  - component: {fileID: 5226163213676709489}
-  - component: {fileID: 1857986305568869632}
-  - component: {fileID: 2085437451686916657}
-  - component: {fileID: 8334938457358873637}
-  m_Layer: 8
-  m_Name: ToolBox_submesh_hidden
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4591697222801133092
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8551458260927347829}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1976612428960384039}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5226163213676709489
+  - {fileID: 8432543965482509384}
+--- !u!114 &8432543965482509384
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8551458260927347829}
+  m_GameObject: {fileID: 1928737270294429023}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
@@ -113,24 +82,24 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Parent: {fileID: 3364294793111744134}
-  MeshFilter: {fileID: 1857986305568869632}
-  MeshRenderer: {fileID: 2085437451686916657}
-  MeshCollider: {fileID: 8334938457358873637}
---- !u!33 &1857986305568869632
+  MeshFilter: {fileID: 8997189929163781403}
+  MeshRenderer: {fileID: 1015341908250058040}
+  MeshCollider: {fileID: 1839832131607782420}
+--- !u!33 &8997189929163781403
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8551458260927347829}
+  m_GameObject: {fileID: 1928737270294429023}
   m_Mesh: {fileID: -6804803083906651742, guid: e3e2ca0a73ab38a4ebca53b030be9115, type: 2}
---- !u!23 &2085437451686916657
+--- !u!23 &1015341908250058040
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8551458260927347829}
+  m_GameObject: {fileID: 1928737270294429023}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -165,13 +134,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8334938457358873637
+--- !u!64 &1839832131607782420
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8551458260927347829}
+  m_GameObject: {fileID: 1928737270294429023}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -192,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -278,7 +247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -368,7 +337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -458,7 +427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -552,7 +521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_LocalPosition.x

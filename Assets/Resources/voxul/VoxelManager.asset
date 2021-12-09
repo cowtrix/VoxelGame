@@ -35,7 +35,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Ints: []
     m_Floats:
     - Occlusion: 0.5
     - SPRITESHEET: 0
@@ -80,7 +79,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Ints: []
     m_Floats:
     - Occlusion: 0.5
     - SPRITESHEET: 0
@@ -101,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d889bbf6644426b48b65a87dc0762757, type: 3}
   m_Name: VoxelManager
   m_EditorClassIdentifier: 
-  LogLevel: 0
+  LogLevel: 2
   DefaultThreadingMode: 1
   DefaultMaxCoroutineUpdateTime: 0.016666668
   DefaultMaterial: {fileID: -7435874483709053190}
@@ -149,16 +147,15 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 4e5a26357404193428a87aac1d5ce7a9, type: 3}
   DefaultOptimisers:
     Data:
-    - rid: 1219859353470500864
-    - rid: 1219859353470500865
+    - id: 0
+    - id: 1
   references:
-    version: 2
-    RefIds:
-    - rid: 1219859353470500864
+    version: 1
+    00000000:
       type: {class: InternalFaceOptimiser, ns: Voxul.Meshing, asm: Voxul}
       data:
         Enabled: 1
-    - rid: 1219859353470500865
+    00000001:
       type: {class: FaceMerger, ns: Voxul.Meshing, asm: Voxul}
       data:
         Enabled: 1

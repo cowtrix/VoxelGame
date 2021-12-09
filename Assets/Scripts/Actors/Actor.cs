@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NodeCanvas.DialogueTrees;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Voxul;
@@ -14,12 +15,14 @@ public class Actor : ExtendedMonoBehaviour
 	}
 
 	public int EquippedLayer = 1;
-	public ActorState State => GetComponent<ActorState>();
 	public Transform EquippedItemTransform;
 	public ActorSettings ActorConfiguration = new ActorSettings();
 	public List<Interactable> Interactables = new List<Interactable>();
 
 	public Transform InventoryContainer { get; private set; }
+
+	public DialogueActor DialogActor => GetComponent<DialogueActor>();
+	public ActorState State => GetComponent<ActorState>();
 
 	private void Start()
 	{
