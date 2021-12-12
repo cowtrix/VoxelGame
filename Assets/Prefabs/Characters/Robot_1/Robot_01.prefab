@@ -1552,7 +1552,6 @@ GameObject:
   - component: {fileID: 1458871601}
   - component: {fileID: 4632838832655758327}
   - component: {fileID: 7126635372355583821}
-  - component: {fileID: 5592417762357713756}
   m_Layer: 0
   m_Name: Robot_01
   m_TagString: Untagged
@@ -1592,13 +1591,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ef1a627263ecf448ba431f0ce3862d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EquippedLayer: 1
-  EquippedItemTransform: {fileID: 5701552052811349884}
-  ActorConfiguration:
-    MinimumDistance: 0
-    MaximumDistance: 10
-  Interactables: []
-  Name: Sparkie
+  Settings:
+    InteractDistance: {x: 0, y: 10}
+    EquippedItemTransform: {fileID: 0}
+    EquippedLayer: 1
+  DialogueOffset: {x: 1, y: 2, z: 2}
 --- !u!114 &1458871601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,7 +1638,7 @@ MonoBehaviour:
     _zoomFactor: 1
   _firstActivation: 0
   _enableAction: 1
-  _disableAction: 2
+  _disableAction: 0
   _lockBoundGraphPrefabOverrides: 1
   _preInitializeSubGraphs: 0
   _updateMode: 0
@@ -1663,22 +1660,6 @@ MonoBehaviour:
   _serializedBlackboard: '{"_variables":{}}'
   _objectReferences: []
   _serializedVariables: []
---- !u!114 &5592417762357713756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5367674876522919313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d71fb7c52372e244baf2e69a9d0d116, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _name: Robot_01
-  _portrait: {fileID: 0}
-  _dialogueColor: {r: 1, g: 1, b: 1, a: 1}
-  _dialogueOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &6791020824311694714
 GameObject:
   m_ObjectHideFlags: 0
@@ -2596,7 +2577,7 @@ MonoBehaviour:
         m_Calls: []
     MaxFocusDistance: 5
     MaxUseDistance: 2
-  Actor: {fileID: 1458871600}
+  Self: {fileID: 1458871600}
 --- !u!65 &5218846708792766678
 BoxCollider:
   m_ObjectHideFlags: 0

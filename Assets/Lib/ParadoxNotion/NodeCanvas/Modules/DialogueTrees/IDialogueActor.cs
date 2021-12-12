@@ -3,18 +3,14 @@
 
 namespace NodeCanvas.DialogueTrees
 {
-
     ///<summary> An interface to use for DialogueActors within a DialogueTree.</summary>
 	public interface IDialogueActor
     {
-        string name { get; }
-        Texture2D portrait { get; }
-        Sprite portraitSprite { get; }
-        Color dialogueColor { get; }
-        Vector3 dialoguePosition { get; }
+        string DisplayName { get; }
         Transform transform { get; }
+        Vector3 GetDialogueOffset();
     }
-
+    /*
     ///<summary>A basic rather limited implementation of IDialogueActor</summary>
     [System.Serializable]
     public class ProxyDialogueActor : IDialogueActor
@@ -23,7 +19,7 @@ namespace NodeCanvas.DialogueTrees
         private string _name;
         private Transform _transform;
 
-        public string name {
+        public string DisplayName {
             get { return _name; }
         }
 
@@ -51,5 +47,5 @@ namespace NodeCanvas.DialogueTrees
             this._name = name;
             this._transform = transform;
         }
-    }
+    }*/
 }

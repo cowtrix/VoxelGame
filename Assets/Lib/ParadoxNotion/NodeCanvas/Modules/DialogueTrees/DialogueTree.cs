@@ -145,18 +145,7 @@ namespace NodeCanvas.DialogueTrees
 
             //Check for INSTIGATOR selection
             if ( paramName == INSTIGATOR_NAME ) {
-
-                //return it directly if it implements IDialogueActor
-                if ( agent is IDialogueActor ) {
-                    return (IDialogueActor)agent;
-                }
-
-                //Otherwise use the default actor and set name and transform from agent
-                if ( agent != null ) {
-                    return new ProxyDialogueActor(agent.gameObject.name, agent.transform);
-                }
-
-                return new ProxyDialogueActor("Null Instigator", null);
+                return agent as IDialogueActor;
             }
 
             //Check for non INSTIGATOR selection. If there IS an actor reference return it
@@ -164,10 +153,7 @@ namespace NodeCanvas.DialogueTrees
             if ( refData != null && refData.actor != null ) {
                 return refData.actor;
             }
-
-            //Otherwise use the default actor and set the name to the key and null transform
-            Logger.Log(string.Format("An actor entry '{0}' on DialogueTree has no reference. A dummy Actor will be used with the entry Key for name", paramName), "Dialogue Tree", this);
-            return new ProxyDialogueActor(paramName, null);
+            return null;
         }
 
 

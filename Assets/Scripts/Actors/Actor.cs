@@ -5,28 +5,30 @@ using UnityEngine;
 using Voxul;
 
 [RequireComponent(typeof(ActorState))]
-public class Actor : ExtendedMonoBehaviour
+public class Actor : ExtendedMonoBehaviour, IDialogueActor
 {
 	[Serializable]
 	public class ActorSettings
 	{
-		public float MinimumDistance = 0;
-		public float MaximumDistance = 10;
+		[Header("Interaction")]
+		public Vector2 InteractDistance = new Vector2(0, 10);
+
+		[Header("Inventory")]
+		public Transform EquippedItemTransform;
+		public int EquippedLayer = 1;
 	}
-
-	public int EquippedLayer = 1;
-	public Transform EquippedItemTransform;
-	public ActorSettings ActorConfiguration = new ActorSettings();
-	public List<Interactable> Interactables = new List<Interactable>();
-
+	
+	public ActorSettings Settings = new ActorSettings();
+	public List<Interactable> Interactables { get; private set; } = new List<Interactable>();
 	public Transform InventoryContainer { get; private set; }
-
-	public DialogueActor DialogActor => GetComponent<DialogueActor>();
 	public ActorState State => GetComponent<ActorState>();
+	public virtual string DisplayName => name;
+	public Vector3 GetDialogueOffset() => DialogueOffset;
+	public Vector3 DialogueOffset;
 
 	private void Start()
 	{
-		InventoryContainer = new GameObject("Inventory").transform;
+		InventoryContainer = new GameObject($"{name}_Inventory").transform;
 		InventoryContainer.SetParent(transform);
 	}
 
@@ -59,9 +61,9 @@ public class Actor : ExtendedMonoBehaviour
 
 		if (!State.EquippedItem)
 		{
-			item.gameObject.layer = EquippedLayer;
+			item.gameObject.layer = Settings.EquippedLayer;
 			State.EquippedItem = item;
-			State.EquippedItem.transform.SetParent(EquippedItemTransform);
+			State.EquippedItem.transform.SetParent(Settings.EquippedItemTransform);
 		}
 		else
 		{

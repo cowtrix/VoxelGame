@@ -3,12 +3,10 @@
 
 namespace NodeCanvas.DialogueTrees
 {
-
     ///<summary> A DialogueActor Component.</summary>
-    [AddComponentMenu("NodeCanvas/Dialogue Actor")]
+    /*[AddComponentMenu("NodeCanvas/Dialogue Actor")]
     public class DialogueActor : MonoBehaviour, IDialogueActor
     {
-
         [SerializeField]
         protected string _name;
         [SerializeField]
@@ -20,7 +18,7 @@ namespace NodeCanvas.DialogueTrees
 
         private Sprite _portraitSprite;
 
-        new public string name {
+        new public string DisplayName {
             get { return _name; }
         }
 
@@ -61,5 +59,5 @@ namespace NodeCanvas.DialogueTrees
         }
 
 #endif
-    }
+    }*/
 }

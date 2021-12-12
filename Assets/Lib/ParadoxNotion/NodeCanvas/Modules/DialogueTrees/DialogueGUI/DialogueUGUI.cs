@@ -28,7 +28,6 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
         public RectTransform subtitlesGroup;
         public Text actorSpeech;
         public Text actorName;
-        public Image actorPortrait;
         public RectTransform waitInputIndicator;
         public SubtitleDelays subtitleDelays = new SubtitleDelays();
         public List<AudioClip> typingSounds;
@@ -72,12 +71,12 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
             optionsGroup.gameObject.SetActive(false);
             optionButton.gameObject.SetActive(false);
             waitInputIndicator.gameObject.SetActive(false);
-            originalSubsPosition = subtitlesGroup.transform.position;
         }
 
         void OnDialogueStarted(DialogueTree dlg) {
-            
-            transform.SetParent(dlg.agent.transform);
+            var actor = dlg.GetActorReferenceByName("SELF");
+            transform.parent.SetParent(actor.transform);
+            transform.parent.localPosition = actor.GetDialogueOffset(); 
             transform.localPosition = Vector3.zero;
         }
 
@@ -89,18 +88,27 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
         }
 
         void OnDialogueFinished(DialogueTree dlg) {
+            StartCoroutine(FinishDialogDelayed(dlg));
+        }
+
+        IEnumerator FinishDialogDelayed(DialogueTree dlg)
+		{
+            yield return new WaitForSeconds(subtitleDelays.finalDelay);
             subtitlesGroup.gameObject.SetActive(false);
             optionsGroup.gameObject.SetActive(false);
-            if ( cachedButtons != null ) {
-                foreach ( var tempBtn in cachedButtons.Keys ) {
-                    if ( tempBtn != null ) {
+            if (cachedButtons != null)
+            {
+                foreach (var tempBtn in cachedButtons.Keys)
+                {
+                    if (tempBtn != null)
+                    {
                         Destroy(tempBtn.gameObject);
                     }
                 }
                 cachedButtons = null;
             }
             StopAllCoroutines();
-            if ( playSource != null ) playSource.Stop();
+            if (playSource != null) playSource.Stop();
         }
 
 
@@ -117,12 +125,7 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
             subtitlesGroup.gameObject.SetActive(true);
             actorSpeech.text = "";
 
-            actorName.text = actor.name;
-            actorSpeech.color = actor.dialogueColor;
-
-            actorPortrait.gameObject.SetActive(actor.portraitSprite != null);
-            actorPortrait.sprite = actor.portraitSprite;
-
+            actorName.text = actor.DisplayName;
             if ( audio != null ) {
                 var actorSource = actor.transform != null ? actor.transform.GetComponent<AudioSource>() : null;
                 playSource = actorSource != null ? actorSource : localSource;
@@ -163,6 +166,7 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
                     tempText += c;
                     yield return StartCoroutine(DelayPrint(subtitleDelays.characterDelay));
                     PlayTypeSound();
+                    actorSpeech.text = tempText;
                     if ( c == '.' || c == '!' || c == '?' ) {
                         yield return StartCoroutine(DelayPrint(subtitleDelays.sentenceDelay));
                         PlayTypeSound();
@@ -171,8 +175,6 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
                         yield return StartCoroutine(DelayPrint(subtitleDelays.commaDelay));
                         PlayTypeSound();
                     }
-
-                    actorSpeech.text = tempText;
                 }
 
                 if ( !waitForInput ) {
@@ -180,16 +182,16 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
                 }
             }
 
-            if ( waitForInput ) {
+            /*if ( waitForInput ) {
                 waitInputIndicator.gameObject.SetActive(true);
                 while (waitForInput) {
                     yield return null;
                 }
                 waitInputIndicator.gameObject.SetActive(false);
-            }
+            }*/
 
             yield return null;
-            subtitlesGroup.gameObject.SetActive(false);
+            //subtitlesGroup.gameObject.SetActive(false);
             info.Continue();
         }
 
@@ -217,9 +219,6 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
             }
         }
 
-
-
-
         void OnMultipleChoiceRequest(MultipleChoiceRequestInfo info) {
 
             optionsGroup.gameObject.SetActive(true);
@@ -242,10 +241,7 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 
             if ( info.showLastStatement ) {
                 subtitlesGroup.gameObject.SetActive(true);
-                var newY = optionsGroup.position.y + optionsGroup.sizeDelta.y + 1;
-                subtitlesGroup.position = new Vector3(subtitlesGroup.position.x, newY, subtitlesGroup.position.z);
             }
-
             if ( info.availableTime > 0 ) {
                 StartCoroutine(CountDown(info));
             }
@@ -274,7 +270,6 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
             optionsGroup.gameObject.SetActive(false);
             if ( info.showLastStatement ) {
                 subtitlesGroup.gameObject.SetActive(false);
-                subtitlesGroup.transform.position = originalSubsPosition;
             }
             foreach ( var tempBtn in cachedButtons.Keys ) {
                 Destroy(tempBtn.gameObject);

@@ -44,5 +44,12 @@ namespace Common
 		{
             return 0.2126f * c.r + 0.7152f * c.g + 0.0722f * c.b;
         }
+
+        public static Color Saturate(this Color c, float saturationFactor)
+		{
+            Color.RGBToHSV(c, out var h, out var s, out var v);
+            s = Mathf.Min(1, s * saturationFactor);
+            return Color.HSVToRGB(h, s, v);
+		}
     }
 }

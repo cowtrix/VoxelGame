@@ -34,7 +34,7 @@ namespace NodeCanvas.DialogueTrees
         ///<summary>The available time for a choice</summary>
         public float availableTime;
         ///<summary>Should the previous statement be shown along the options?</summary>
-        public bool showLastStatement;
+        public bool showLastStatement = true;
         ///<summary>Call this with to select the option to continue with in the DialogueTree</summary>
         public Action<int> SelectOption;
 

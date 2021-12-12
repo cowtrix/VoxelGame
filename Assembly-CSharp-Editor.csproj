@@ -59,6 +59,8 @@
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\Editor\SerializableDictionaryDrawerImplementations.cs" />
     <Compile Include="Assets\Scripts\Scripts_2\Editor\LanguageWizard.cs" />
     <Compile Include="Assets\Scripts\Scripts_2\Editor\CableEditor.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Input_Test\Editor\ISXProcessorAutoWorldSpaceWindow.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Input_Test\Editor\ImportInputManagerAsset.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -312,6 +314,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>Assets\Lib\InputSystem\Assets\Tests\InputSystem\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
@@ -700,9 +705,6 @@
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.InputSystem">
-      <HintPath>Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
@@ -745,6 +747,10 @@
       <Project>{FF89EDEA-489A-1333-F920-ED75C1DA6A3C}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
+    <ProjectReference Include="Voxul.csproj">
+      <Project>{F8D4B84A-4778-35EA-5079-79023E4E16FB}</Project>
+      <Name>Voxul</Name>
+    </ProjectReference>
     <ProjectReference Include="UnitySceneReference.csproj">
       <Project>{9F48DDDA-51B5-5C90-DB85-E10F7A0A1A99}</Project>
       <Name>UnitySceneReference</Name>
@@ -753,9 +759,29 @@
       <Project>{D5816890-3FE2-09E4-34B5-94591A584CA1}</Project>
       <Name>ParadoxNotion</Name>
     </ProjectReference>
-    <ProjectReference Include="Voxul.csproj">
-      <Project>{F8D4B84A-4778-35EA-5079-79023E4E16FB}</Project>
-      <Name>Voxul</Name>
+    <ProjectReference Include="Unity.InputSystem.InGameHints.csproj">
+      <Project>{C1B1AC3F-6B01-4955-76FD-4873DF892D82}</Project>
+      <Name>Unity.InputSystem.InGameHints</Name>
+    </ProjectReference>
+    <ProjectReference Include="XRDeviceActions.csproj">
+      <Project>{A59596FB-3921-9434-5298-ECCABB273C47}</Project>
+      <Name>XRDeviceActions</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.InputSystem.Recorder.csproj">
+      <Project>{D2976A94-F3B7-89FD-4B12-F651026A1773}</Project>
+      <Name>Unity.InputSystem.Recorder</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.InputSystem.Samples.UIvsGameInput.csproj">
+      <Project>{729C25E2-6B54-9B4A-5E8E-202D44F580D5}</Project>
+      <Name>UnityEngine.InputSystem.Samples.UIvsGameInput</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.InputSystem.csproj">
+      <Project>{76C768DD-A657-AFE0-3591-1D9E10DEB1A8}</Project>
+      <Name>Unity.InputSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="InputSystem.Samples.Visualizers.csproj">
+      <Project>{C80C96CB-8D69-293C-CBD6-3117EEA10687}</Project>
+      <Name>InputSystem.Samples.Visualizers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

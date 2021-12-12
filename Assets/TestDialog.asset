@@ -14,16 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _serializedGraph: '{"type":"NodeCanvas.DialogueTrees.DialogueTree","nodes":[{"statement":{"_text":"Hey
     buddy! You wanna never worry about making rent ever again? I got a way to make
-    you MILLIONS!"},"_position":{"x":104.0,"y":416.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"0"},{"availableChoices":[{"statement":{"_text":"Uh...
-    sure?"}},{"statement":{"_text":"No thanks..."}}],"_position":{"x":159.0,"y":511.0},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"1"},{"statement":{"_text":"Now
-    that''s the kind of GRINDSET I''m looking for! Tell me, have you heard of SauceCoin?"},"_position":{"x":13.0,"y":699.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"2"},{"statement":{"_text":"You''re
-    missing out, buddy! Come back when you get some ambition."},"_position":{"x":232.0,"y":703.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"3"},{"finishState":0,"_position":{"x":278.0,"y":796.0},"$type":"NodeCanvas.DialogueTrees.FinishNode","$id":"4"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.DialogueTrees.DTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}},"derivedData":{"actorParameters":[],"$type":"NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"}}'
-  _objectReferences: []
+    you MILLIONS!"},"_actorName":"SELF","_actorParameterID":"1b8219e3-0d15-4f51-9343-60056a7c7a28","_position":{"x":104.0,"y":416.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"0"},{"availableChoices":[{"isUnfolded":false,"statement":{"_text":"Uh...
+    sure?"}},{"isUnfolded":false,"statement":{"_text":"No thanks..."}}],"_position":{"x":159.0,"y":511.0},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"1"},{"statement":{"_text":"Now
+    that''s the kind of GRINDSET I''m looking for! Tell me, have you heard of ScamCoin?"},"_actorName":"SELF","_actorParameterID":"1b8219e3-0d15-4f51-9343-60056a7c7a28","_position":{"x":13.0,"y":699.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"2"},{"availableChoices":[{"statement":{"_text":"No,
+    what''s that?"}},{"statement":{"_text":"Cut to the chase."}}],"_position":{"x":49.0,"y":789.0},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"3"},{"statement":{"_text":"It''s
+    the latest in high-leveraged financial instruments. For a one time payment, you
+    get in on the ground floor of a rapidly growing business."},"_position":{"x":-116.0,"y":1010.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"4"},{"statement":{"_text":"Be
+    your own boss, make your own hours! The only limit iis how much you''re willing
+    to sacrifice."},"_position":{"x":-136.0,"y":1133.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"5"},{"statement":{"_text":"This
+    is a dialogue text"},"_position":{"x":185.0,"y":1012.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"6"},{"statement":{"_text":"You''re
+    missing out, buddy! Come back when you get some ambition."},"_actorName":"SELF","_actorParameterID":"1b8219e3-0d15-4f51-9343-60056a7c7a28","_position":{"x":232.0,"y":703.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"7"},{"finishState":0,"_position":{"x":278.0,"y":796.0},"$type":"NodeCanvas.DialogueTrees.FinishNode","$id":"8"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"8"},"$type":"NodeCanvas.DialogueTrees.DTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}},"derivedData":{"actorParameters":[{"_keyName":"SELF","_id":"1b8219e3-0d15-4f51-9343-60056a7c7a28","_actorObject":1}],"$type":"NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"}}'
+  _objectReferences:
+  - {fileID: 0}
+  - {fileID: 0}
   _graphSource:
     _version: 3.21
     _category: 
     _comments: 
-    _translation: {x: 424, y: -296}
+    _translation: {x: 543, y: -545}
     _zoomFactor: 1
   _haltSerialization: 0
-  actorParameters: []
+  actorParameters:
+  - _keyName: SELF
+    _id: 1b8219e3-0d15-4f51-9343-60056a7c7a28
+    _actorObject: {fileID: 0}

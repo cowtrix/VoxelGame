@@ -1,21 +1,24 @@
 using NodeCanvas.DialogueTrees;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(DialogueTreeController))]
 public class NPCActor : Actor, IDialogueActor
 {
-	public string Name = "Untitled NPC";
-	public Texture2D portrait => null;
-	public Sprite portraitSprite => null;
-	public Color dialogueColor => Color.white;
-	public Vector3 dialoguePosition => Vector3.zero;
+	public static string SelfID = "SELF";
+	public DialogueTreeController Controller => GetComponent<DialogueTreeController>();
 
-	public void InteractWithActor(Actor actor, string action)
+	public void InteractWithActor(Actor instigator, string action)
 	{
-		if(actor is PlayerActor player)
-		{
-			player.DialogueController.StartDialogue(this);
-		}
+		Controller.SetActorReference(SelfID, this);
+		Controller.StartDialogue(instigator);
+	}
+
+	private void OnDrawGizmosSelected()
+	{
+		Gizmos.matrix = transform.localToWorldMatrix;
+		Gizmos.DrawCube(GetDialogueOffset(), Vector3.one * .05f);
 	}
 }

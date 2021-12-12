@@ -6,27 +6,20 @@ using ParadoxNotion;
 
 namespace NodeCanvas.DialogueTrees
 {
-
     [AddComponentMenu("NodeCanvas/Dialogue Tree Controller")]
-    public class DialogueTreeController : GraphOwner<DialogueTree>, IDialogueActor
+    public class DialogueTreeController : GraphOwner<DialogueTree>
     {
+        public virtual string DisplayName => name;
+        public IDialogueActor Actor => gameObject.GetComponent(typeof(IDialogueActor)) as IDialogueActor;
 
-        string IDialogueActor.name => name;
-        Texture2D IDialogueActor.portrait => null;
-        Sprite IDialogueActor.portraitSprite => null;
-        Color IDialogueActor.dialogueColor => Color.white;
-        Vector3 IDialogueActor.dialoguePosition => Vector3.zero;
-        Transform IDialogueActor.transform => transform;
-
-
-        ///<summary>Start the DialogueTree without an Instigator</summary>
-        public void StartDialogue() {
-            StartDialogue(this, null);
+		///<summary>Start the DialogueTree without an Instigator</summary>
+		public void StartDialogue() {
+            StartDialogue(Actor, null);
         }
 
         ///<summary>Start the DialogueTree with a callback for when its finished</summary>
         public void StartDialogue(Action<bool> callback) {
-            StartDialogue(this, callback);
+            StartDialogue(Actor, callback);
         }
 
         ///<summary>Start the DialogueTree with provided actor as Instigator</summary>
@@ -42,6 +35,10 @@ namespace NodeCanvas.DialogueTrees
 
         ///<summary>Start the already assgined DialogueTree with provided actor as instigator and callback</summary>
         public void StartDialogue(IDialogueActor instigator, Action<bool> callback) {
+            if (graph == null)
+			{
+                return;
+			}
             graph = GetInstance(graph);
             graph.StartGraph(instigator is Component ? (Component)instigator : instigator.transform, blackboard, updateMode, callback);
         }
@@ -79,6 +76,11 @@ namespace NodeCanvas.DialogueTrees
         ///---------------------------------------UNITY EDITOR-------------------------------------------
 #if UNITY_EDITOR
         new void Reset() {
+            behaviour.actorParameters.Add(new DialogueTree.ActorParameter
+            {
+                actor = Actor,
+                name = "SELF",
+            });
             base.enableAction = EnableAction.DoNothing;
             base.disableAction = DisableAction.DoNothing;
             blackboard = gameObject.GetAddComponent<Blackboard>();

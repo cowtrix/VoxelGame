@@ -72,7 +72,7 @@
     <Compile Include="Assets\Scripts\Utilities\Geometry2D.cs" />
     <Compile Include="Assets\Scripts\Scripts_2\SplineSegment.cs" />
     <Compile Include="Assets\Scripts\Utilities\CompositionDictionary.cs" />
-    <Compile Include="Assets\Scripts\Actors\NPC\NPCInteract.cs" />
+    <Compile Include="Assets\Scripts\Actors\NPC\NPCInteractable.cs" />
     <Compile Include="Assets\Scripts\Utilities\RotationalBounds.cs" />
     <Compile Include="Assets\Scripts\Actors\Actor.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\PlayerActor.cs" />
@@ -169,13 +169,136 @@
     <Compile Include="Assets\Scripts\Utilities\ListExtensions.cs" />
     <Compile Include="Assets\Scripts\LookAtPlayer.cs" />
     <Compile Include="Assets\Scripts\Gravity\GravityRigidbody.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\TapTarget.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\Samples\SimpleDemo\SimpleController_UsingPlayerInput.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\GamepadISX.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Gestures\SwipeInput.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Drawing\PointerInputManager.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingTool.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\DualShockOldInput.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Controller\GamepadInputManager.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\XboxOldInput.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\KeyboardMouseBasic\Scripts\KeyboardPress.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\Samples\SimpleDemo\SimpleControls.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\Samples\SimpleDemo\SimpleController_UsingActions.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorISX.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Input_Test\LegacyIMETest.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\DualShockISX.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\InputDebugInfo.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\ArrowHighlight.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingController.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Swiping\SpawnController.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\Samples\CustomDevice\CustomDevice.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\KeyboardMouseOldInput.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\UI\ColorSwatch.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\KeyboardMouseISX.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\KeyboardMouseBasic\Scripts\MouseOutputs.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Common\VersionLabel.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\LegacyInputManager\Scripts\RedImageOnButtonHeld.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\TouchDebugInfo.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\EditMode\TestMouseDelta.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\LegacyInputManager\Scripts\MustUseLegacyInputManager.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\KeyboardMouseBasic\Scripts\ButtonStateHex.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\GamepadOldInput.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\Xbox Controller Basic\Scripts\GamepadButtonState.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\PenISX.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\ControlMaps\GamepadControls.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\EditMode\EditModeGhostCam.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\LegacyInputManager\Scripts\SetPositionFromMouse.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\KeyboardMouseBasic\Scripts\ProblematicKeysDebugLog.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\EventsystemPicker.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\InteractionISX.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\LegacyInputManager\Scripts\ImageRedIfTouchEnabled.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\DeviceList\DeviceList.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Gestures\GestureController.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Gestures\ActiveGesture.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingRenderer.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\LegacyInputManager\Scripts\ShowInertialData.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\XboxISX.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorFloatISX.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\XRHaptics\XRHaptics.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Input_Test\IMETest.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Menu\LevelSelectItem.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\KeyboardMouseBasic\Scripts\KeyboardLastKey.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\Effects.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Swiping\Trash.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\TouchOldInput.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\LegacyInputManager\Scripts\SliderFromInputManagerAxis.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Swiping\Bin.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\ControlMaps\PointerControls.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\ExternalSamplesUtility.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ControllerDiagramISX.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Common\Helpers.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\Samples\SimpleDemo\SimpleController_UsingActionAsset.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\Samples\SimpleMultiplayer\SimpleMultiplayerPlayer.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\Samples\SimpleDemo\SimpleController_UsingState.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Common\Singleton.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\TextHighlight.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\TappingController.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorVector3ISX.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Drawing\PointerInput.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Swiping\TrashType.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Common\SceneLoadButton.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\Touch\Scripts\TouchscreenTouchVisualizer.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Swiping\SwipingController.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\Samples\CustomComposite\CustomComposite.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ControllerDiagramOldInput.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Input_Test\GUITest.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Menu\LevelSelectScreen.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorVector2ISX.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\LegacyInputManager\Scripts\NumberOfTouches.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\InputUIPicker.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Gestures\TapInput.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\JoystickISX.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\Touch\Scripts\TouchReporter.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\LegacyInputManager\Scripts\ImageRedIfMultiTouchEnabled.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Common\ScoringController.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorQuaternionISX.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingLine.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\SpawnController.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Swiping\Gutter.cs" />
+    <Compile Include="Assets\Lib\InputSystem\Assets\Samples\CustomDeviceUsages\CustomDeviceUsages.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\TouchISX.cs" />
+    <Compile Include="Assets\Scripts\Actors\NPC\NPCMeshManager.cs" />
+    <Compile Include="Assets\Scripts\Actors\NPC\NPCMeshSegment.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\README.txt" />
+    <None Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Shaders\WorldCoord Diffuse.shader" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\Lib\InputSystem\ProjectSettings\ProjectVersion.txt" />
+    <None Include="Assets\Lib\InputSystem\projectlist.txt" />
     <None Include="Assets\Lib\unity-scene-reference\unity-scene-reference\ProjectSettings\ProjectVersion.txt" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\Books\The Dark Plane of Orit.txt" />
+    <None Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\ProjectSettings\ProjectVersion.txt" />
+    <None Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Shaders\Drawing\Background.shader" />
+    <None Include="Assets\Lib\InputSystem\Assets\steam_appid.txt" />
+    <None Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Shaders\Drawing\Capture.shader" />
+    <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\Assets\csc.rsp" />
     <None Include="Assets\Resources\AlienCharacters.txt" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Fonts\License.txt" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\Lib\InputSystem\Assets\link.xml" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Materials\ClipText.shader" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Shaders\Drawing\Tool.shader" />
     <None Include="Assets\Books\The First Chronicle Of Azerioth.txt" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\ProjectSettings\ProjectVersion.txt" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\Lib\InputSystem\steam_appid.txt" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -402,6 +525,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>Assets\Lib\InputSystem\Assets\Tests\InputSystem\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.22f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
@@ -781,9 +907,6 @@
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.InputSystem">
-      <HintPath>Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
@@ -820,8 +943,15 @@
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Voxul.csproj">
+      <Project>{F8D4B84A-4778-35EA-5079-79023E4E16FB}</Project>
+      <Name>Voxul</Name>
+    </ProjectReference>
     <ProjectReference Include="UnitySceneReference.csproj">
       <Project>{9F48DDDA-51B5-5C90-DB85-E10F7A0A1A99}</Project>
       <Name>UnitySceneReference</Name>
@@ -830,9 +960,29 @@
       <Project>{D5816890-3FE2-09E4-34B5-94591A584CA1}</Project>
       <Name>ParadoxNotion</Name>
     </ProjectReference>
-    <ProjectReference Include="Voxul.csproj">
-      <Project>{F8D4B84A-4778-35EA-5079-79023E4E16FB}</Project>
-      <Name>Voxul</Name>
+    <ProjectReference Include="Unity.InputSystem.InGameHints.csproj">
+      <Project>{C1B1AC3F-6B01-4955-76FD-4873DF892D82}</Project>
+      <Name>Unity.InputSystem.InGameHints</Name>
+    </ProjectReference>
+    <ProjectReference Include="XRDeviceActions.csproj">
+      <Project>{A59596FB-3921-9434-5298-ECCABB273C47}</Project>
+      <Name>XRDeviceActions</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.InputSystem.Recorder.csproj">
+      <Project>{D2976A94-F3B7-89FD-4B12-F651026A1773}</Project>
+      <Name>Unity.InputSystem.Recorder</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.InputSystem.Samples.UIvsGameInput.csproj">
+      <Project>{729C25E2-6B54-9B4A-5E8E-202D44F580D5}</Project>
+      <Name>UnityEngine.InputSystem.Samples.UIvsGameInput</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.InputSystem.csproj">
+      <Project>{76C768DD-A657-AFE0-3591-1D9E10DEB1A8}</Project>
+      <Name>Unity.InputSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="InputSystem.Samples.Visualizers.csproj">
+      <Project>{C80C96CB-8D69-293C-CBD6-3117EEA10687}</Project>
+      <Name>InputSystem.Samples.Visualizers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

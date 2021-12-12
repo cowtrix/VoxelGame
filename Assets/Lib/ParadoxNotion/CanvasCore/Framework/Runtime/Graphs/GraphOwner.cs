@@ -536,7 +536,6 @@ namespace NodeCanvas.Framework
     ///<summary>The class where GraphOwners derive from</summary>
     abstract public class GraphOwner<T> : GraphOwner where T : Graph
     {
-
         [SerializeField] private T _graph;
         [SerializeField] private Object _blackboard;
 
