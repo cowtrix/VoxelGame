@@ -4972,6 +4972,7 @@ GameObject:
   - component: {fileID: 316969784}
   - component: {fileID: 452728394}
   - component: {fileID: 806598836}
+  - component: {fileID: 488162579100196419}
   m_Layer: 0
   m_Name: WorldCamera
   m_TagString: MainCamera
@@ -5026,7 +5027,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3863
+    m_Bits: 4023
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -5061,9 +5062,8 @@ MonoBehaviour:
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 1
-  m_Cameras:
-  - {fileID: 0}
+  m_CameraType: 0
+  m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -5071,7 +5071,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 1
+  m_Antialiasing: 0
   m_AntialiasingQuality: 1
   m_StopNaN: 1
   m_Dithering: 1
@@ -5125,6 +5125,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &488162579100196419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316969782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15efea61c0a2a1247b6b39ccb9366601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttentionDistance: 10
+  AttentionPriority: 0
 --- !u!1 &562659076
 GameObject:
   m_ObjectHideFlags: 0
@@ -16094,6 +16108,7 @@ MonoBehaviour:
     InteractDistance: {x: 0, y: 10}
     EquippedItemTransform: {fileID: 8449882934255358499}
     EquippedLayer: 1
+  DialogueOffset: {x: 0, y: 0, z: 0}
   InteractionMask:
     serializedVersion: 2
     m_Bits: 768

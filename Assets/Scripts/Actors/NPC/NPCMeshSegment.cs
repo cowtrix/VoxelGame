@@ -12,6 +12,7 @@ public class NPCMeshSegment : MonoBehaviour
 	public TriColorSet.eColorMode ColorMode;
 	[Range(0, 2)]
 	public float Saturation = 1f;
+	public Vector2 Scale = new Vector2(1, 1);
 	public ObjectSet Collection;
 	public VoxelRenderer Renderer => GetComponent<VoxelRenderer>();
 	public NPCMeshManager NPCManager => transform.GetComponentInAncestors<NPCMeshManager>();

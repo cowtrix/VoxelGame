@@ -24,6 +24,8 @@ public class TriColorSet
 		h += amount;
 		while (h > 1)
 			h--;
+		while (h < 0)
+			h++;
 		return Color.HSVToRGB(h, s, v);
 	}
 
@@ -42,7 +44,7 @@ public class TriColorSet
 	}
 }
 
-public class NPCMeshManager : MonoBehaviour
+public class NPCMeshManager : ExtendedMonoBehaviour
 {
 	public int Seed;
 	public TriColorSet Colors;
@@ -59,19 +61,30 @@ public class NPCMeshManager : MonoBehaviour
 	{
 		Random.InitState(Seed);
 		Colors.BaseColor = Random.ColorHSV(0, 1, 1, 1, 1, 1);
+		var scaleFactor = Random.value;
 		foreach (var r in Children)
 		{
+			// Pick random mesh
 			if (r.Collection && r.Collection.Data.Any())
 			{
 				r.Renderer.Mesh = r.Collection.GetWeightedRandom<VoxelMesh>();
-				var color = r.GetComponent<VoxelColorTint>();
-				if (color)
-				{
-					color.Color = Colors.GetColor(r.ColorMode)
-						.Saturate(r.Saturation);
-					color.Invalidate();
-				}
+				r.Renderer.Invalidate(true, false);
 			}
+
+			// Set color tint
+			var color = r.GetComponent<VoxelColorTint>();
+			if (color)
+			{
+				color.Color = Colors.GetColor(r.ColorMode)
+					.Saturate(r.Saturation);
+				color.Invalidate();
+			}
+
+			// Random scale
+			r.transform.localScale = Vector3.one * Mathf.Lerp(r.Scale.x, r.Scale.y, scaleFactor);
+#if UNITY_EDITOR
+			UnityEditor.EditorUtility.SetDirty(r.gameObject);
+#endif
 		}
 	}
 }
