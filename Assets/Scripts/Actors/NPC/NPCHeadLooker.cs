@@ -5,6 +5,10 @@ using Voxul;
 
 public class NPCHeadLooker : ExtendedMonoBehaviour
 {
+	public Vector2 SpinLimits = new Vector2(-45, 45);
+	public Vector2 YawLimits = new Vector2(-15, 20);
+	public Vector2 TiltLimits = new Vector2(-10, 10);
+
 	public float LookSpeed = 1;
 	public float LookRotationLimit;
 	public Vector3 AdditionalRotation;
@@ -41,23 +45,30 @@ public class NPCHeadLooker : ExtendedMonoBehaviour
 			yield return null;
 		}
 	}
+
 	private void Update()
 	{
 		Vector3 dir;
-		var forward = Quaternion.Euler(AdditionalRotation) * (transform.position + transform.parent.forward).normalized;
+		var forward = transform.parent.forward;
 		if (CurrentTarget)
 		{
 			dir = Quaternion.Euler(AdditionalRotation) * (CurrentTarget.transform.position - transform.position).normalized;
-			var angle = Vector3.Angle(forward, dir);
-			if (angle < LookRotationLimit)
-			{
-				dir = -forward;
-			}
 		}
 		else
 		{
 			dir = forward;
 		}
+		Debug.DrawLine(transform.position, transform.position + forward, Color.blue);
+		Debug.DrawLine(transform.position, transform.position + dir, Color.blue);
 		transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, dir, LookSpeed * Time.deltaTime, 0), transform.parent.up);
+	}
+
+	private void OnDrawGizmosSelected()
+	{
+		if (CurrentTarget)
+		{
+			Gizmos.color = Color.green;
+			Gizmos.DrawLine(transform.position, CurrentTarget.transform.position);
+		}
 	}
 }

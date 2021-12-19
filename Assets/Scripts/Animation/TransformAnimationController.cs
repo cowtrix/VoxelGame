@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Voxul;
 
-public class TransformAnimationController : MonoBehaviour
+public class TransformAnimationController : ExtendedMonoBehaviour
 {
 	public float LerpThreshold = .001f;
 	public float TransitionSpeed = 1;
 
-	[HideInInspector]
-	public string CurrentExpression;
+	public string TargetExpression { get; set; }
 	public Transform[] RecordedObjects;
 	[HideInInspector]
 	public List<Expression> Expressions = new List<Expression>();
@@ -69,16 +69,16 @@ public class TransformAnimationController : MonoBehaviour
 
 	private void Update()
 	{
-		if(string.IsNullOrEmpty(CurrentExpression) && ExpressionQueue.Any())
+		if(string.IsNullOrEmpty(TargetExpression) && ExpressionQueue.Any())
 		{
-			CurrentExpression = ExpressionQueue.Dequeue();
+			TargetExpression = ExpressionQueue.Dequeue();
 		}
-		var currentExp = Expressions.SingleOrDefault(e => e.Name == CurrentExpression);
+		var currentExp = Expressions.SingleOrDefault(e => e.Name == TargetExpression);
 		if (currentExp != null)
 		{
 			if(SetExpression(currentExp, TransitionSpeed * Time.deltaTime))
 			{
-				CurrentExpression = null;
+				TargetExpression = null;
 			}
 		}
 	}

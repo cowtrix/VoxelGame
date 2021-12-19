@@ -7,8 +7,8 @@ namespace NodeCanvas.DialogueTrees
 	public interface IDialogueActor
     {
         string DisplayName { get; }
+        Transform GetDialogueContainer();
         Transform transform { get; }
-        Vector3 GetDialogueOffset();
     }
     /*
     ///<summary>A basic rather limited implementation of IDialogueActor</summary>

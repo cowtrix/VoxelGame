@@ -23,8 +23,9 @@ public class Actor : ExtendedMonoBehaviour, IDialogueActor
 	public Transform InventoryContainer { get; private set; }
 	public ActorState State => GetComponent<ActorState>();
 	public virtual string DisplayName => name;
-	public Vector3 GetDialogueOffset() => DialogueOffset;
-	public Vector3 DialogueOffset;
+
+	public Transform GetDialogueContainer() => DialogueContainer;
+	public Transform DialogueContainer;
 
 	private void Start()
 	{

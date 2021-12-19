@@ -76,15 +76,15 @@ namespace NodeCanvas.DialogueTrees
         ///---------------------------------------UNITY EDITOR-------------------------------------------
 #if UNITY_EDITOR
         new void Reset() {
+            base.enableAction = EnableAction.DoNothing;
+            base.disableAction = DisableAction.DoNothing;
+            blackboard = gameObject.GetAddComponent<Blackboard>();
+            SetBoundGraphReference(ScriptableObject.CreateInstance<DialogueTree>());
             behaviour.actorParameters.Add(new DialogueTree.ActorParameter
             {
                 actor = Actor,
                 name = "SELF",
             });
-            base.enableAction = EnableAction.DoNothing;
-            base.disableAction = DisableAction.DoNothing;
-            blackboard = gameObject.GetAddComponent<Blackboard>();
-            SetBoundGraphReference(ScriptableObject.CreateInstance<DialogueTree>());
         }
 #endif
 

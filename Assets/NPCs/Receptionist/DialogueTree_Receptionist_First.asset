@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3f478ef69fbe04fa9ed3664a8a443e, type: 3}
+  m_Name: DialogueTree_Receptionist_First
+  m_EditorClassIdentifier: 
+  _serializedGraph: '{"type":"NodeCanvas.DialogueTrees.DialogueTree","nodes":[{"statement":{"_text":"First
+    time?"},"_actorName":"SELF","_actorParameterID":"9e967a25-5816-46ea-9a4a-5ea72c0be3bd","_position":{"x":812.0,"y":347.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"0"},{"availableChoices":[{"statement":{"_text":"I
+    guess? Where am I?"}},{"statement":{"_text":"No, I''ve done this before."}}],"_position":{"x":780.0,"y":457.0},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"1"},{"statement":{"_text":"Ok,
+    here we go... thank you for choosing the Coil as your plane of existence. We
+    understand there are many possible manifestations of ego and we appreciate your
+    decision."},"_actorName":"SELF","_actorParameterID":"9e967a25-5816-46ea-9a4a-5ea72c0be3bd","_position":{"x":655.0,"y":640.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"2"},{"availableChoices":[{"statement":{"_text":"Why
+    am I here?"}},{"statement":{"_text":"What do you mean, rent?"},"condition":{"valueA":{"_name":"RentDiscussed","_targetVariableID":"f40841a9-ed64-4edf-a399-67a962594c64"},"valueB":{"_value":true},"$type":"NodeCanvas.Tasks.Conditions.CheckBoolean"}},{"statement":{"_text":"Who
+    are you?"}}],"_position":{"x":671.3652,"y":781.941},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"3"},{"statement":{"_text":"Your
+    reasons for choosing to exist are your own. However I must remind you that existence
+    is not free and rent payments have recently increased."},"_position":{"x":482.0029,"y":950.689},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"4"},{"_action":{"boolVariable":{"_name":"RentDiscussed","_targetVariableID":"f40841a9-ed64-4edf-a399-67a962594c64"},"$type":"NodeCanvas.Tasks.Actions.SetBoolean"},"_position":{"x":519.8687,"y":1030.599},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"5"},{"statement":{"_text":"Rent.
+    Moolah. Cold hard cash. Being ain''t free, you''re not here to gather dust. Get
+    a job!"},"_position":{"x":581.1967,"y":1364.306},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"6"},{"statement":{"_text":"You''re
+    entitled to one free dPhone. You can use it to get around the Coil, find work,
+    a place to stay, whatever you need. Don''t lose it or you''ll need to fill out
+    a form."},"_position":{"x":1288.924,"y":1234.662},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"7"},{"_action":{"parent":{},"clonePosition":{},"cloneRotation":{},"saveCloneAs":{"_name":""},"overrideAgent":{"_type":"UnityEngine.Transform"},"$type":"NodeCanvas.Tasks.Actions.InstantiateGameObject"},"_position":{"x":1216.041,"y":1336.045},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"8"},{"statement":{"_text":"Name''s
+    Miri. I''m just a rent-paying constituent of the coil like yourself."},"_position":{"x":839.7098,"y":988.9686},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"9"},{"_action":{"boolVariable":{"_name":"RentDiscussed","_targetVariableID":"f40841a9-ed64-4edf-a399-67a962594c64"},"$type":"NodeCanvas.Tasks.Actions.SetBoolean"},"_position":{"x":809.2488,"y":1078.322},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"10"},{"statement":{"_text":"Well,
+    you''re not in my files. But that''s not all that uncommon. Well, we can skip
+    the induction then."},"_actorName":"SELF","_actorParameterID":"9e967a25-5816-46ea-9a4a-5ea72c0be3bd","_position":{"x":885.0,"y":637.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"11"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"11"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"9"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"6"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"8"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"9"},"_targetNode":{"$ref":"10"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"10"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"11"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.DialogueTrees.DTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{"RentDiscussed":{"_name":"RentDiscussed","_id":"f40841a9-ed64-4edf-a399-67a962594c64","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}},"derivedData":{"actorParameters":[{"_keyName":"SELF","_id":"9e967a25-5816-46ea-9a4a-5ea72c0be3bd","_actorObject":1}],"$type":"NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"}}'
+  _objectReferences:
+  - {fileID: 0}
+  - {fileID: 0}
+  _graphSource:
+    _version: 3.21
+    _category: 
+    _comments: 
+    _translation: {x: -55, y: -879}
+    _zoomFactor: 0.9999666
+  _haltSerialization: 0
+  actorParameters:
+  - _keyName: SELF
+    _id: 9e967a25-5816-46ea-9a4a-5ea72c0be3bd
+    _actorObject: {fileID: 0}

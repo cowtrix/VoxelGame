@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using Voxul;
 using Voxul.Meshing;
+using Voxul.Utilities;
 
 [System.Serializable]
 public class TriColorSet
@@ -82,9 +83,7 @@ public class NPCMeshManager : ExtendedMonoBehaviour
 
 			// Random scale
 			r.transform.localScale = Vector3.one * Mathf.Lerp(r.Scale.x, r.Scale.y, scaleFactor);
-#if UNITY_EDITOR
-			UnityEditor.EditorUtility.SetDirty(r.gameObject);
-#endif
+			r.gameObject.TrySetDirty();
 		}
 	}
 }

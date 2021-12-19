@@ -950,6 +950,7 @@ GameObject:
   - component: {fileID: 4751136115277557671}
   - component: {fileID: 3500358934857777058}
   - component: {fileID: 5803347087960010367}
+  - component: {fileID: 895005056495950752}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -1108,6 +1109,71 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Color: {r: 1, g: 0.51699996, b: 0.92606974, a: 1}
+--- !u!114 &895005056495950752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2627125410133247020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c2d8de6bf5946f44a92802a4470742a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LerpThreshold: 0.001
+  TransitionSpeed: 1
+  RecordedObjects:
+  - {fileID: 3842725740871730783}
+  - {fileID: 6287745323156638514}
+  - {fileID: 4924270809710362774}
+  - {fileID: 4941799099988501667}
+  - {fileID: 2627125410133247026}
+  Expressions:
+  - Name: Idle_0
+    State:
+    - Transform: {fileID: 3842725740871730783}
+      Position: {x: -0.01, y: -0.65, z: -0.7}
+      Size: {x: 1.1094809, y: 1.1094809, z: 1.1094809}
+      Rotation: {x: -0.35355383, y: 0.35355288, z: -0.6123716, w: 0.6123733}
+    - Transform: {fileID: 6287745323156638514}
+      Position: {x: -0.00999999, y: -0.65, z: 0.7}
+      Size: {x: 1.1094809, y: 1.1094809, z: 1.1094809}
+      Rotation: {x: 0.34539863, y: -0.3547026, z: -0.614363, w: 0.6143646}
+    - Transform: {fileID: 4924270809710362774}
+      Position: {x: 0, y: -1.75, z: -0.25}
+      Size: {x: 1.1094809, y: 1.1094809, z: 1.1094809}
+      Rotation: {x: -0, y: 0.2925479, z: -0, w: 0.95625085}
+    - Transform: {fileID: 4941799099988501667}
+      Position: {x: 0, y: -1.75, z: 0.25}
+      Size: {x: 1.1094809, y: 1.1094809, z: 1.1094809}
+      Rotation: {x: -0, y: -0.258819, z: -0, w: 0.9659259}
+    - Transform: {fileID: 2627125410133247026}
+      Position: {x: 0, y: 0, z: 0}
+      Size: {x: 1.1094809, y: 1.1094809, z: 1.1094809}
+      Rotation: {x: -0, y: -0, z: -0, w: 1}
+  - Name: Idle_1
+    State:
+    - Transform: {fileID: 3842725740871730783}
+      Position: {x: -0.08440494, y: -0.65000004, z: -0.6567157}
+      Size: {x: 1.1094809, y: 1.1094809, z: 1.1094809}
+      Rotation: {x: -0.476879, y: 0.47687876, z: -0.5220973, w: 0.5220992}
+    - Transform: {fileID: 6287745323156638514}
+      Position: {x: -0.031356808, y: -0.65000004, z: 0.7016836}
+      Size: {x: 1.1094809, y: 1.1094809, z: 1.1094809}
+      Rotation: {x: 0.38704032, y: -0.39632195, z: -0.589018, w: 0.5883762}
+    - Transform: {fileID: 4924270809710362774}
+      Position: {x: -0.024468102, y: -1.7500001, z: -0.2931814}
+      Size: {x: 1.1094809, y: 1.1094809, z: 1.1094809}
+      Rotation: {x: -0, y: 0.2147227, z: -0, w: 0.97667503}
+    - Transform: {fileID: 4941799099988501667}
+      Position: {x: 0, y: -1.75, z: 0.25}
+      Size: {x: 1.1094809, y: 1.1094809, z: 1.1094809}
+      Rotation: {x: -0, y: -0.258819, z: -0, w: 0.9659259}
+    - Transform: {fileID: 2627125410133247026}
+      Position: {x: 0, y: 0, z: 0}
+      Size: {x: 1.1094809, y: 1.1094809, z: 1.1094809}
+      Rotation: {x: -0, y: -0, z: -0, w: 1}
 --- !u!1 &2627125410384999694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,6 +1347,7 @@ Transform:
   - {fileID: 6798835024283338467}
   - {fileID: 771371456}
   - {fileID: 3770543352201386128}
+  - {fileID: 5113471201490309525}
   m_Father: {fileID: 5271032473471835561}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1433,6 +1500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d69c3ed8371f874fb2a3b0321c0cfd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpinLimits: {x: -45, y: 45}
+  YawLimits: {x: -15, y: 20}
+  TiltLimits: {x: -10, y: 10}
   LookSpeed: 3
   LookRotationLimit: 100
   AdditionalRotation: {x: 0, y: -90, z: 0}
@@ -1589,7 +1659,7 @@ MonoBehaviour:
     InteractDistance: {x: 0, y: 10}
     EquippedItemTransform: {fileID: 0}
     EquippedLayer: 1
-  DialogueOffset: {x: 1, y: 2, z: 2}
+  DialogueContainer: {fileID: 5113471201490309525}
 --- !u!114 &8812385386851755026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2438,6 +2508,36 @@ MonoBehaviour:
   Saturation: 0.2
   Scale: {x: 0.8, y: 1.2}
   Collection: {fileID: 11400000, guid: 731f5e9e2cb7a754ab1b33973ce75a12, type: 2}
+--- !u!1 &6981012231580808744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5113471201490309525}
+  m_Layer: 0
+  m_Name: DialogueContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5113471201490309525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981012231580808744}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2627125410716768634}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7455128902142605732
 GameObject:
   m_ObjectHideFlags: 0

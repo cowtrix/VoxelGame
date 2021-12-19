@@ -15,10 +15,4 @@ public class NPCActor : Actor, IDialogueActor
 		Controller.SetActorReference(SelfID, this);
 		Controller.StartDialogue(instigator);
 	}
-
-	private void OnDrawGizmosSelected()
-	{
-		Gizmos.matrix = transform.localToWorldMatrix;
-		Gizmos.DrawCube(GetDialogueOffset(), Vector3.one * .05f);
-	}
 }

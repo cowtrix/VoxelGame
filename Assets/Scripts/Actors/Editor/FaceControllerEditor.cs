@@ -13,13 +13,13 @@ public class FaceControllerEditor : Editor
 		
 		foreach (var exp in fc.Expressions)
 		{
-			bool isSelected = exp.Name == fc.CurrentExpression;
+			bool isSelected = exp.Name == fc.TargetExpression;
 			EditorGUILayout.BeginHorizontal();
 			GUI.color = isSelected ? Color.green : Color.white;
 			EditorGUILayout.LabelField(exp.Name);
 			if(GUILayout.Button("Set"))
 			{
-				fc.CurrentExpression = exp.Name;
+				fc.TargetExpression = exp.Name;
 				if (!EditorApplication.isPlaying)
 				{
 					fc.SetExpression(exp, 1);
@@ -52,9 +52,9 @@ public class FaceControllerEditor : Editor
 		GUI.enabled = true;
 		EditorGUILayout.EndHorizontal();
 
-		if (!string.IsNullOrEmpty(fc.CurrentExpression))
+		if (!string.IsNullOrEmpty(fc.TargetExpression))
 		{
-			EditorGUILayout.HelpBox($"Transitioning to {fc.CurrentExpression}", MessageType.Info);
+			EditorGUILayout.HelpBox($"Transitioning to {fc.TargetExpression}", MessageType.Info);
 		}
 	}
 }

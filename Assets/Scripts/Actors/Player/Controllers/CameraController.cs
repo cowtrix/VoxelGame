@@ -7,7 +7,8 @@ using UnityEngine.InputSystem;
 
 public class CameraController : Singleton<CameraController>
 {
-	public bool LockView { get; set; }
+	public bool LockCameraLook { get; set; }
+	public bool LockCursor { get; set; } = true;
 
 	[Header("Camera")]
 	public float LookSensitivity = 1;
@@ -21,8 +22,9 @@ public class CameraController : Singleton<CameraController>
 
 	private void Update()
 	{
+		Cursor.lockState = LockCursor ? CursorLockMode.Locked : CursorLockMode.Confined;
 		LastDelta = m_look.ReadValue<Vector2>() * LookSensitivity;
-		if(LockView)
+		if(LockCameraLook)
 		{
 			return;
 		}
@@ -31,10 +33,5 @@ public class CameraController : Singleton<CameraController>
 		while (LookAngle.x > 180) LookAngle.x -= 360;
 		LookAngle.y = Mathf.Clamp(LookAngle.y, -89, 89);
 		transform.localRotation = Quaternion.Euler(-LookAngle.y, LookAngle.x, 0);
-	}
-
-	private void OnEnable()
-	{
-		Cursor.lockState = CursorLockMode.Locked;
 	}
 }

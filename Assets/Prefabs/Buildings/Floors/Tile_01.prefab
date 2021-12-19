@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 917868906175244989}
-  - component: {fileID: 917868906175244990}
-  - component: {fileID: 917868906175244985}
-  - component: {fileID: 917868906175244986}
-  - component: {fileID: 917868906175244987}
-  - component: {fileID: 8835071234594457381}
+  - component: {fileID: 1607122292448828119}
+  - component: {fileID: 2529627201504924045}
+  - component: {fileID: 3550662611219686234}
+  - component: {fileID: 5779996224309316035}
+  - component: {fileID: 2902017158875533451}
   m_Layer: 8
   m_Name: Tile_01
   m_TagString: Untagged
@@ -35,16 +35,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &917868906175244990
+--- !u!114 &1607122292448828119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917868906175244991}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 365809b91410c0749b41bc3bdd706121, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e3a57cdce1fab4408533db885df689b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Mesh: {fileID: 11400000, guid: 9a0d152b27d4ac44fb11c65a090bf2f6, type: 2}
@@ -58,14 +58,10 @@ MonoBehaviour:
   MaxCoroutineUpdateTime: 0.016666668
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 9a0d152b27d4ac44fb11c65a090bf2f6, type: 2}
-  m_lastMeshHash: 736872e9-9652-4d71-9f95-174160fde9ac
+  m_lastMeshHash: 8103a41a-8088-4a10-8e87-bd3a758a9081
   Submeshes:
-  - {fileID: 917868906175244985}
-  MaterialMode: 0
-  AlphaCuttoff: 0.5
-  Sprite: {fileID: 21300000, guid: 33b9429e3d5e9064aa087256f5276f31, type: 3}
-  Layer: 1
---- !u!114 &917868906175244985
+  - {fileID: 2529627201504924045}
+--- !u!114 &2529627201504924045
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,11 +76,11 @@ MonoBehaviour:
   OnRender:
     m_PersistentCalls:
       m_Calls: []
-  Parent: {fileID: 917868906175244990}
-  MeshFilter: {fileID: 917868906175244986}
-  MeshRenderer: {fileID: 917868906175244987}
+  Parent: {fileID: 1607122292448828119}
+  MeshFilter: {fileID: 3550662611219686234}
+  MeshRenderer: {fileID: 5779996224309316035}
   MeshCollider: {fileID: 0}
---- !u!33 &917868906175244986
+--- !u!33 &3550662611219686234
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,7 +88,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917868906175244991}
   m_Mesh: {fileID: 8795932927019375336, guid: 9a0d152b27d4ac44fb11c65a090bf2f6, type: 2}
---- !u!23 &917868906175244987
+--- !u!23 &5779996224309316035
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,7 +129,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8835071234594457381
+--- !u!65 &2902017158875533451
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,5 +140,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.666668, y: 10.666671, z: 0.3333338}
-  m_Center: {x: 5.166667, y: 5.1666684, z: 0}
+  m_Size: {x: 10.666671, y: 10.666673, z: 0.3333338}
+  m_Center: {x: 5.166668, y: 5.1666617, z: -1.4684552e-13}
