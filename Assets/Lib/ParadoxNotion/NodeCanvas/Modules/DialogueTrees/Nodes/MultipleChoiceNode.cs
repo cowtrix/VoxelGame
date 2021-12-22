@@ -64,7 +64,7 @@ namespace NodeCanvas.DialogueTrees
 
             var optionsInfo = new MultipleChoiceRequestInfo(finalActor, finalOptions, availableTime, OnOptionSelected);
             optionsInfo.showLastStatement = inConnections.Count > 0 && inConnections[0].sourceNode is StatementNode;
-            DialogueTree.RequestMultipleChoices(optionsInfo);
+            DLGTree.RequestMultipleChoices(optionsInfo);
             return Status.Running;
         }
 
@@ -77,7 +77,7 @@ namespace NodeCanvas.DialogueTrees
             if ( saySelection ) {
                 var tempStatement = availableChoices[index].statement.BlackboardReplace(graphBlackboard);
                 var speechInfo = new SubtitlesRequestInfo(finalActor, tempStatement, Finalize);
-                DialogueTree.RequestSubtitles(speechInfo);
+                DLGTree.RequestSubtitles(speechInfo);
             } else {
                 Finalize();
             }

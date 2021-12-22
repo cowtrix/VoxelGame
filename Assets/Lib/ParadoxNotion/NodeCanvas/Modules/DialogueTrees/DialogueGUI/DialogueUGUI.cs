@@ -3,10 +3,10 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 namespace NodeCanvas.DialogueTrees.UI.Examples
 {
-
 	public class DialogueUGUI : MonoBehaviour
 	{
 		[System.Serializable]
@@ -32,15 +32,17 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 		public List<AudioClip> typingSounds;
 		private AudioSource playSource;
 
+		private HashSet<string> m_history = new HashSet<string>();
+
 		public Vector3 Offset;
 
 		//Group...
 		[Header("Multiple Choice")]
 		public RectTransform optionsGroup;
 		public Button optionButton;
-		private Dictionary<Button, int> cachedButtons;
+		private List<Button> m_cachedButtons = new List<Button>();
 		private bool isWaitingChoice;
-		private Coroutine m_subtitlesCoroutine;
+		private bool m_printingSubtitles;
 		private bool m_waitingForSkip;
 
 		public GameObject SkipText;
@@ -51,35 +53,39 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 			get { return _localSource != null ? _localSource : _localSource = gameObject.AddComponent<AudioSource>(); }
 		}
 
-		void Awake() { Subscribe(); Hide(); }
-		void OnEnable() { UnSubscribe(); Subscribe(); }
-		void OnDisable() { UnSubscribe(); }
+		void Awake() { Hide(); }
+
+		public void OnDialogueStarted(DialogueTree dlg)
+		{
+			var actor = dlg.GetActorReferenceByName(DialogueTree.SELF_NAME);
+			transform.parent.SetParent(actor.GetDialogueContainer());
+			transform.parent.localPosition = Vector3.zero;
+			transform.parent.localRotation = Quaternion.identity;
+		}
+
+		public void OnDialoguePaused(DialogueTree dlg)
+		{
+			subtitlesGroup.gameObject.SetActive(false);
+			optionsGroup.gameObject.SetActive(false);
+			StopAllCoroutines();
+			if (playSource != null) playSource.Stop();
+		}
+
+		public void OnDialogueFinished(DialogueTree dlg)
+		{
+			if (gameObject.activeInHierarchy)
+			{
+				StartCoroutine(FinishDialogDelayed(dlg));
+			}
+		}
 
 		private void Update()
 		{
 			transform.localPosition = Offset;
-			SkipText.SetActive(m_subtitlesCoroutine != null && !m_waitingForSkip);
+			SkipText.SetActive(m_printingSubtitles && !m_waitingForSkip);
 		}
 
-		void Subscribe()
-		{
-			DialogueTree.OnDialogueStarted += OnDialogueStarted;
-			DialogueTree.OnDialoguePaused += OnDialoguePaused;
-			DialogueTree.OnDialogueFinished += OnDialogueFinished;
-			DialogueTree.OnSubtitlesRequest += OnSubtitlesRequest;
-			DialogueTree.OnMultipleChoiceRequest += OnMultipleChoiceRequest;
-		}
-
-		void UnSubscribe()
-		{
-			DialogueTree.OnDialogueStarted -= OnDialogueStarted;
-			DialogueTree.OnDialoguePaused -= OnDialoguePaused;
-			DialogueTree.OnDialogueFinished -= OnDialogueFinished;
-			DialogueTree.OnSubtitlesRequest -= OnSubtitlesRequest;
-			DialogueTree.OnMultipleChoiceRequest -= OnMultipleChoiceRequest;
-		}
-
-		void Hide()
+		public void Hide()
 		{
 			subtitlesGroup.gameObject.SetActive(false);
 			optionsGroup.gameObject.SetActive(false);
@@ -87,42 +93,14 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 			waitInputIndicator.gameObject.SetActive(false);
 		}
 
-		void OnDialogueStarted(DialogueTree dlg)
-		{
-			var actor = dlg.GetActorReferenceByName("SELF");
-			transform.parent.SetParent(actor.GetDialogueContainer());
-			transform.parent.localPosition = Vector3.zero;
-			transform.parent.localRotation = Quaternion.identity;
-		}
-
-		void OnDialoguePaused(DialogueTree dlg)
-		{
-			subtitlesGroup.gameObject.SetActive(false);
-			optionsGroup.gameObject.SetActive(false);
-			StopAllCoroutines();
-			if (playSource != null) playSource.Stop();
-		}
-
-		void OnDialogueFinished(DialogueTree dlg)
-		{
-			StartCoroutine(FinishDialogDelayed(dlg));
-		}
-
 		IEnumerator FinishDialogDelayed(DialogueTree dlg)
 		{
 			yield return new WaitForSeconds(subtitleDelays.finalDelay);
 			subtitlesGroup.gameObject.SetActive(false);
 			optionsGroup.gameObject.SetActive(false);
-			if (cachedButtons != null)
+			foreach (var button in m_cachedButtons)
 			{
-				foreach (var tempBtn in cachedButtons.Keys)
-				{
-					if (tempBtn != null)
-					{
-						Destroy(tempBtn.gameObject);
-					}
-				}
-				cachedButtons = null;
+				button.gameObject.SetActive(false);
 			}
 			StopAllCoroutines();
 			if (playSource != null) playSource.Stop();
@@ -130,21 +108,22 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 
 		public void Skip()
 		{
-			if(m_subtitlesCoroutine == null)
+			if (!m_printingSubtitles)
 			{
 				return;
 			}
 			m_waitingForSkip = true;
 		}
 
-		void OnSubtitlesRequest(SubtitlesRequestInfo info)
+		public void OnSubtitlesRequest(SubtitlesRequestInfo info)
 		{
-			m_subtitlesCoroutine = StartCoroutine(Internal_OnSubtitlesRequestInfo(info));
+			m_printingSubtitles = true;
+			StartCoroutine(Internal_OnSubtitlesRequestInfo(info));
 		}
 
 		IEnumerator Internal_OnSubtitlesRequestInfo(SubtitlesRequestInfo info)
 		{
-
+			optionsGroup.gameObject.SetActive(false);
 			var text = info.statement.text;
 			var audio = info.statement.audio;
 			var actor = info.actor;
@@ -210,15 +189,8 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 				yield return StartCoroutine(DelayPrint(subtitleDelays.finalDelay));
 			}
 
-			/*if ( waitForInput ) {
-                waitInputIndicator.gameObject.SetActive(true);
-                while (waitForInput) {
-                    yield return null;
-                }
-                waitInputIndicator.gameObject.SetActive(false);
-            }*/
 			m_waitingForSkip = false;
-			m_subtitlesCoroutine = null;
+			m_printingSubtitles = false;
 			yield return null;
 			info.Continue();
 		}
@@ -235,15 +207,6 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 			}
 		}
 
-		IEnumerator CheckInput(System.Action Do)
-		{
-			while (!Input.anyKeyDown)
-			{
-				yield return null;
-			}
-			Do();
-		}
-
 		IEnumerator DelayPrint(float time)
 		{
 			var timer = 0f;
@@ -254,28 +217,52 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 			}
 		}
 
-		void OnMultipleChoiceRequest(MultipleChoiceRequestInfo info)
+		public void OnMultipleChoiceRequest(MultipleChoiceRequestInfo info)
 		{
+			StartCoroutine(MultipleChoiceRequest(info));
+		}
 
+		IEnumerator MultipleChoiceRequest(MultipleChoiceRequestInfo info)
+		{
+			var ev = EventSystem.current;
+			while (m_printingSubtitles)
+			{
+				yield return null;
+			}
 			optionsGroup.gameObject.SetActive(true);
-			var buttonHeight = optionButton.GetComponent<RectTransform>().rect.height;
-			optionsGroup.sizeDelta = new Vector2(optionsGroup.sizeDelta.x, (info.options.Values.Count * buttonHeight) + 20);
-
-			cachedButtons = new Dictionary<Button, int>();
 			int i = 0;
-
 			foreach (KeyValuePair<IStatement, int> pair in info.options)
 			{
-				var btn = (Button)Instantiate(optionButton);
+				Button btn;
+				if (i < m_cachedButtons.Count)
+				{
+					btn = m_cachedButtons[i];
+				}
+				else
+				{
+					btn = (Button)Instantiate(optionButton);
+					m_cachedButtons.Add(btn);
+				}
 				btn.gameObject.SetActive(true);
 				btn.transform.SetParent(optionsGroup.transform, false);
-				btn.transform.localPosition = (Vector3)optionButton.transform.localPosition - new Vector3(0, buttonHeight * i, 0);
 				btn.GetComponentInChildren<Text>().text = pair.Key.text;
-				cachedButtons.Add(btn, pair.Value);
-				btn.onClick.AddListener(() => { Finalize(info, cachedButtons[btn]); });
+
+				btn.onClick.RemoveAllListeners();
+				btn.onClick.AddListener(() => { Finalize(info, pair.Key, pair.Value); });
+
+				if (ev.currentSelectedGameObject == btn.gameObject)
+				{
+					ev.SetSelectedGameObject(null);
+				}
+
+				var cg = btn.GetComponent<CanvasGroup>();
+				cg.alpha = m_history.Contains($"{info.actor.transform.GetInstanceID()}_{pair.Key}") ? .5f : 1f;
 				i++;
 			}
-
+			for (var j = m_cachedButtons.Count; j > i; j--)
+			{
+				m_cachedButtons[i].gameObject.SetActive(false);
+			}
 			if (info.showLastStatement)
 			{
 				subtitlesGroup.gameObject.SetActive(true);
@@ -303,23 +290,23 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 
 			if (isWaitingChoice)
 			{
-				Finalize(info, info.options.Values.Last());
+				var last = info.options.Last();
+				Finalize(info, last.Key, last.Value);
 			}
 		}
 
-		void Finalize(MultipleChoiceRequestInfo info, int index)
+		void Finalize(MultipleChoiceRequestInfo info, IStatement statement, int index)
 		{
 			isWaitingChoice = false;
 			SetMassAlpha(optionsGroup, 1f);
 			optionsGroup.gameObject.SetActive(false);
-			if (info.showLastStatement)
+			subtitlesGroup.gameObject.SetActive(false);
+			m_printingSubtitles = false;
+			foreach (var btn in m_cachedButtons)
 			{
-				subtitlesGroup.gameObject.SetActive(false);
+				btn.gameObject.SetActive(false);
 			}
-			foreach (var tempBtn in cachedButtons.Keys)
-			{
-				Destroy(tempBtn.gameObject);
-			}
+			m_history.Add($"{info.actor.transform.GetInstanceID()}_{statement}");
 			info.SelectOption(index);
 		}
 

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -52,9 +52,6 @@
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2020.3.23f1</UnityVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Utilities\DebugHelper.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\SerializableDictionary.cs" />
@@ -149,12 +146,14 @@
     <Compile Include="Assets\Scripts\Utilities\DragRect.cs" />
     <Compile Include="Assets\Scripts\Utilities\UIExtensions.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Menu\LevelSelectScreen.cs" />
+    <Compile Include="Assets\Scripts\Actors\Player\Controllers\PhoneController.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\InputUIPicker.cs" />
     <Compile Include="Assets\Scripts\Utilities\EditorExtensions.cs" />
     <Compile Include="Assets\Scripts\Actors\NPC\NPCHeadLooker.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\Touch\Scripts\TouchReporter.cs" />
     <Compile Include="Assets\Scripts\Utilities\HandleExtensions.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\LegacyInputManager\Scripts\ImageRedIfMultiTouchEnabled.cs" />
+    <Compile Include="Assets\Scripts\Interaction\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Scripts_2\SplineTools.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorQuaternionISX.cs" />
     <Compile Include="Assets\Scripts\Utilities\ArrayExtensions.cs" />
@@ -268,7 +267,7 @@
     <Compile Include="Assets\Scripts\Gravity\GravityRigidbody.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingLine.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\TouchISX.cs" />
-    <Compile Include="Assets\Scripts\Actors\Player\Controllers\PhoneController.cs" />
+    <Compile Include="Assets\Scripts\Actors\NPC\LookTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\README.txt" />

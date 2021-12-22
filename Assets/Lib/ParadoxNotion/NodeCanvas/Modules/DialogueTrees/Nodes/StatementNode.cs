@@ -18,7 +18,7 @@ namespace NodeCanvas.DialogueTrees
 
         protected override Status OnExecute(Component agent, IBlackboard bb) {
             var tempStatement = statement.BlackboardReplace(bb);
-            DialogueTree.RequestSubtitles(new SubtitlesRequestInfo(finalActor, tempStatement, OnStatementFinish));
+            DLGTree.RequestSubtitles(new SubtitlesRequestInfo(finalActor, tempStatement, OnStatementFinish));
             return Status.Running;
         }
 

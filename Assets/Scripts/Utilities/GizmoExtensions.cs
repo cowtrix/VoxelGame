@@ -91,6 +91,25 @@ public static class GizmoExtensions
 #endif
     }
 
+    public static void DrawCone(Vector3 origin, Vector3 normal, float angle, float distance, Color color)
+	{
+        var radius = Mathf.Tan(angle) * distance;
+        var rotation = Quaternion.LookRotation(normal);
+        DrawCircle(origin + normal * distance, radius, rotation, color);
+        Gizmos.color = color;
+        float resolution = 24;
+        for (var i = 0; i <= resolution; ++i)
+        {
+            float a = (i / resolution) * Mathf.PI * 2;
+            float x = Mathf.Cos(a);
+            float y = Mathf.Sin(a);
+            var thisPoint = new Vector3(x, y, 0);
+            thisPoint = origin + normal * distance + rotation * (thisPoint * radius);
+            Gizmos.DrawLine(origin, thisPoint);
+        }
+        Gizmos.color = Color.white;
+    }
+
     public static void DrawCircle(Vector3 origin, float radius, Quaternion rotation, float startAngle, float endAngle, Color color)
     {
 #if !UNITY_EDITOR

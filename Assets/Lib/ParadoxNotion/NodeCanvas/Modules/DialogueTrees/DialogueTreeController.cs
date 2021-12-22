@@ -83,7 +83,7 @@ namespace NodeCanvas.DialogueTrees
             behaviour.actorParameters.Add(new DialogueTree.ActorParameter
             {
                 actor = Actor,
-                name = "SELF",
+                name = DialogueTree.SELF_NAME,
             });
         }
 #endif

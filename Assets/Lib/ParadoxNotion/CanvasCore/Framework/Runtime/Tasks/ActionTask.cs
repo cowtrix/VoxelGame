@@ -26,7 +26,6 @@ namespace NodeCanvas.Framework
     ///<summary>Base class for all actions. Extend this to create your own.</summary>
     abstract public class ActionTask : Task
     {
-
         private Status status = Status.Resting;
         private float timeStarted;
         private bool latch;

@@ -13,6 +13,7 @@ public class PlayerActor : Actor
 	public LayerMask InteractionMask;
 	public CameraController CameraController => CameraController.Instance;
 	public Interactable FocusedInteractable { get; private set; }
+	public PhoneController Phone => GetComponentInChildren<PhoneController>(true);
 	public int ActionIndex = 0;
 
 	private void Update()
@@ -65,7 +66,7 @@ public class PlayerActor : Actor
 
 	public void OnFire(InputAction.CallbackContext cntxt)
 	{
-		if (!cntxt.started)
+		if (!cntxt.started || CameraController.LockCameraLook)
 		{
 			return;
 		}
@@ -78,5 +79,10 @@ public class PlayerActor : Actor
 
 		Debug.Log("OnUse: " + FocusedInteractable);
 		FocusedInteractable?.Use(this, FocusedInteractable.GetAction(this, ActionIndex));
+	}
+
+	public void EnablePhone()
+	{
+		Phone.gameObject.SetActive(true);
 	}
 }

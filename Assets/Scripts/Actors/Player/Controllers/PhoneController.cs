@@ -17,16 +17,17 @@ public class PhoneController : ExtendedMonoBehaviour
 	public float MoveSpeed = 1;
 	public bool IsOpen { get; private set; }
 
-	public RectTransform Cursor, Container;
+	public RectTransform Cursor, CursorClick, Container;
 	public float CursorSensitivity = 1;
 
-	private InputAction m_togglePhoneAction, m_lookAction;
+	private InputAction m_togglePhoneAction, m_lookAction, m_clickAction;
 	private CameraController CameraController => CameraController.Instance;
 
 	private void Start()
 	{
 		m_togglePhoneAction = Input.actions.Single(a => a.name == "TogglePhone");
 		m_lookAction = Input.actions.Single(a => a.name == "Look");
+		m_clickAction = Input.actions.Single(a => a.name == "Fire");
 		m_togglePhoneAction.performed += OnTogglePhone;
 	}
 
@@ -34,7 +35,6 @@ public class PhoneController : ExtendedMonoBehaviour
 	{
 		IsOpen = !IsOpen;
 		CameraController.LockCameraLook = IsOpen;
-		//CameraController.LockCursor = !IsOpen;
 	}
 
 	private void Update()
@@ -60,10 +60,6 @@ public class PhoneController : ExtendedMonoBehaviour
 		var debugPoint = Camera.ScreenToWorldPoint(screenPoint.xy0(5));
 		DebugHelper.DrawPoint(debugPoint, .1f, Color.cyan, 0);
 
-		/*var screenPoint = Camera.WorldToViewportPoint(Cursor.position).xy();
-		InputModule.ExplicitMousePosition = new Vector2(Screen.width * screenPoint.x, Screen.height * screenPoint.y);
-
-		var debugPoint = Camera.ViewportToWorldPoint(screenPoint.xy0(5));
-		DebugHelper.DrawPoint(debugPoint, .1f, Color.cyan, 0);*/
+		CursorClick.gameObject.SetActive(m_clickAction.IsPressed());
 	}
 }

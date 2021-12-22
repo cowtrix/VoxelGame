@@ -103,6 +103,14 @@ namespace Common
             return lineStart + (closestPoint * lineDirection);
         }
 
+        public static bool PointIsInCone(Vector3 point, Vector3 coneTip, Vector3 coneNormal, float coneAngle)
+		{
+            var projectedDistance = Vector3.Dot(point - coneTip, coneNormal.normalized);
+            var coneRadius = projectedDistance * Mathf.Tan(coneAngle);
+            var orthoganalDistance = ((point - coneTip) - (projectedDistance * coneNormal)).magnitude;
+            return orthoganalDistance < coneRadius;
+        }
+
         public static Vector3 NearestPointStrict(Vector3 lineStart, Vector3 lineEnd, Vector3 point)
         {
             Vector3 fullDirection = lineEnd - lineStart;

@@ -20,7 +20,9 @@ namespace NodeCanvas.Tasks.Actions
             var statement = statements[index];
             var tempStatement = statement.BlackboardReplace(blackboard);
             var info = new SubtitlesRequestInfo(agent, tempStatement, EndAction);
-            DialogueTree.RequestSubtitles(info);
+            var graph = agent.transform.GetComponent<GraphOwner<DialogueTree>>().behaviour;
+            graph.RequestSubtitles(info);
+            throw new System.NotImplementedException();
         }
 
 
