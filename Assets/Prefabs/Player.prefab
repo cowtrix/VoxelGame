@@ -140,6 +140,7 @@ MonoBehaviour:
   LookSensitivity: 10
   LookAngle: {x: 0, y: 0}
   LastDelta: {x: 0, y: 0}
+  LookOffset: {x: 0, y: 0.5, z: 0}
 --- !u!114 &452728394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9971,7 +9972,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1737012672823703273}
-  - component: {fileID: 1737012672823703274}
   - component: {fileID: 1737012672823703275}
   - component: {fileID: 1737012672823703276}
   - component: {fileID: 1737012672823703277}
@@ -9979,6 +9979,7 @@ GameObject:
   - component: {fileID: 66144037203230265}
   - component: {fileID: 1814919611}
   - component: {fileID: 5441782203837868711}
+  - component: {fileID: 8181245211958629110}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -10003,27 +10004,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1737012672823703274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737012672823703278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7457f08b7496654b8608e9e53083af1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MovementSpeed: 30
-  ThrusterSpeed: 60
-  CollisionMask:
-    serializedVersion: 2
-    m_Bits: 1280
-  RotateTowardGravitySpeed: 10
-  FreeFloatTime: 0.5
-  GroundingDistance: 1.2
-  PushOutSpeed: 10
 --- !u!136 &1737012672823703275
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10081,7 +10061,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1737012672823703274}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MovementController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -10117,7 +10097,7 @@ MonoBehaviour:
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1737012672823703274}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MovementController, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
@@ -10171,6 +10151,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f9a357ef-37ce-432d-847e-d1acf2a70713
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 25c16df6-b2b2-4007-9560-e917e7cc49ea
+    m_ActionName: Player/TogglePhone[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7812470021605113652}
+        m_TargetAssemblyTypeName: PlayerActor, Assembly-CSharp
+        m_MethodName: OnUse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5ec2eb04-3e0a-4992-9fa0-7d097e7ae18c
+    m_ActionName: Player/Use[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -10250,6 +10250,27 @@ MonoBehaviour:
   _serializedBlackboard: '{"_variables":{}}'
   _objectReferences: []
   _serializedVariables: []
+--- !u!114 &8181245211958629110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737012672823703278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4f9588db6215c45a1efee8849987ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementSpeed: 30
+  ThrusterSpeed: 60
+  CollisionMask:
+    serializedVersion: 2
+    m_Bits: 1280
+  RotateTowardGravitySpeed: 10
+  FreeFloatTime: 0.5
+  GroundingDistance: 1.2
+  PushOutSpeed: 10
 --- !u!1 &8449882934255358498
 GameObject:
   m_ObjectHideFlags: 0
@@ -10289,51 +10310,51 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 253826777, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 253826777, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 253826777, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100.78333
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 253826777, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 19.533333
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 253826777, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 56.391666
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 253826777, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1734553361, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1734553361, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1734553361, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 96.21667
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1734553361, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 19.533333
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1734553361, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 155.89166
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1734553361, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1779460798, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_AnchorMax.y

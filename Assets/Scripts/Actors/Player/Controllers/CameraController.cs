@@ -5,26 +5,36 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CameraController : Singleton<CameraController>
+public interface ICameraControllerProxy
 {
+	public Quaternion? LookDirectionOverride { get; }
+	public Vector3? LookPositionOverride { get; }
+}
+
+public class CameraController : Singleton<CameraController>, ILookAdapter
+{
+	public ICameraControllerProxy Proxy { get; set; }
 	public bool LockCameraLook { get; set; }
 	public bool LockCursor { get; set; } = true;
 
 	[Header("Camera")]
 	public float LookSensitivity = 1;
 	public Vector2 LookAngle, LastDelta;
+	public Vector3 LookOffset = new Vector3(0, .5f, 0);
 	private InputAction m_look;
+
+	public PlayerInput Input => transform.parent.GetComponent<PlayerInput>();
 
 	private void Start()
 	{
-		m_look = transform.parent.GetComponent<PlayerInput>().actions.Single(a => a.name == "Look");
+		m_look = Input.actions.Single(a => a.name == "Look");
 	}
 
 	private void Update()
 	{
 		Cursor.lockState = LockCursor ? CursorLockMode.Locked : CursorLockMode.Confined;
 		LastDelta = m_look.ReadValue<Vector2>() * LookSensitivity;
-		if(LockCameraLook)
+		if (LockCameraLook)
 		{
 			return;
 		}
@@ -32,6 +42,22 @@ public class CameraController : Singleton<CameraController>
 		while (LookAngle.x < -180) LookAngle.x += 360;
 		while (LookAngle.x > 180) LookAngle.x -= 360;
 		LookAngle.y = Mathf.Clamp(LookAngle.y, -89, 89);
-		transform.localRotation = Quaternion.Euler(-LookAngle.y, LookAngle.x, 0);
+
+		if (Proxy != null)
+		{
+			if (Proxy.LookDirectionOverride.HasValue)
+			{
+				transform.rotation = Proxy.LookDirectionOverride.Value;
+			}
+			if (Proxy.LookPositionOverride.HasValue)
+			{
+				transform.position = Proxy.LookPositionOverride.Value;
+			}
+		}
+		else
+		{
+			transform.localRotation = Quaternion.Euler(-LookAngle.y, LookAngle.x, 0);
+			transform.localPosition = LookOffset;
+		}
 	}
 }

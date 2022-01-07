@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,7 +53,11 @@
     <UnityVersion>2020.3.23f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\Utilities\DebugHelper.cs" />
+    <Compile Include="Assets\Scripts\Actors\Player\UI\UIActionLabel.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\SerializableDictionary.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\DualShockOldInput.cs" />
     <Compile Include="Assets\Scripts\Utilities\TrackedObject.cs" />
@@ -66,6 +70,7 @@
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\ArrowHighlight.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\Samples\CustomDevice\CustomDevice.cs" />
     <Compile Include="Assets\Scripts\Scripts_2\Door.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\FocusableInteractable.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\GamepadOldInput.cs" />
     <Compile Include="Assets\Scripts\Scripts_2\Rotator.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\ControlMaps\GamepadControls.cs" />
@@ -77,6 +82,7 @@
     <Compile Include="Assets\Scripts\Enemy\EnemyObject.cs" />
     <Compile Include="Assets\Scripts\Actors\NPC\NPCActor.cs" />
     <Compile Include="Assets\Scripts\Train\Trainline.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\ClawMachine.cs" />
     <Compile Include="Assets\Scripts\Scripts_2\SinMover.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Input_Test\IMETest.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\ControlMaps\PointerControls.cs" />
@@ -84,6 +90,7 @@
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Common\Singleton.cs" />
     <Compile Include="Assets\Scripts\Utilities\Geometry2D.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\TextHighlight.cs" />
+    <Compile Include="Assets\Scripts\Actors\Player\Controllers\PlayerMovementController.cs" />
     <Compile Include="Assets\Scripts\Scripts_2\SplineSegment.cs" />
     <Compile Include="Assets\Scripts\Utilities\CompositionDictionary.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorVector3ISX.cs" />
@@ -189,6 +196,7 @@
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorFloatISX.cs" />
     <Compile Include="Assets\Scripts\DestroyableVoxel.cs" />
     <Compile Include="Assets\Scripts\Actors\StateMinAttribute.cs" />
+    <Compile Include="Assets\Scripts\Actors\NPC\LookTester.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\FuelBuddy.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Menu\LevelSelectItem.cs" />
     <Compile Include="Assets\Scripts\Transporter.cs" />
@@ -267,7 +275,6 @@
     <Compile Include="Assets\Scripts\Gravity\GravityRigidbody.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingLine.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\TouchISX.cs" />
-    <Compile Include="Assets\Scripts\Actors\NPC\LookTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\README.txt" />

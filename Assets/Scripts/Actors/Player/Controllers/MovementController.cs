@@ -1,9 +1,13 @@
-
+using Common;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Voxul;
+
+public interface ILookAdapter
+{
+	Transform transform { get; }
+}
 
 public class MovementController : ExtendedMonoBehaviour
 {
@@ -11,10 +15,10 @@ public class MovementController : ExtendedMonoBehaviour
 	public float TimeUngrounded { get; private set; }
 
 	private GravityManager GravityManager => GravityManager.Instance;
-	private CameraController CameraController => CameraController.Instance;
-	private PlayerInput Input => GetComponent<PlayerInput>();
+	public ILookAdapter LookAdapter { get; protected set; }
 	public Rigidbody Rigidbody => GetComponent<Rigidbody>();
 	public ActorState State => GetComponent<ActorState>();
+	public Actor Actor => GetComponent<Actor>();
 
 	[Header("Parameters")]
 	public float MovementSpeed = 100f;
@@ -25,34 +29,16 @@ public class MovementController : ExtendedMonoBehaviour
 	public float GroundingDistance = 1;
 	public float PushOutSpeed = 1;
 
-	private Vector2 m_inputLook;
-	private bool m_inputJump;
+	protected Vector2 m_moveDirection;
+	protected bool m_inputJump;
 
 	public SmoothPositionVector3 SmoothPosition { get; private set; }
 
-	private void Start()
+	protected virtual void Start()
 	{
+		LookAdapter = gameObject.GetComponentByInterfaceInChildren<ILookAdapter>();
 		Rigidbody.useGravity = false;
 		SmoothPosition = new SmoothPositionVector3(10, transform.position);
-	}
-
-	public void OnMove(InputAction.CallbackContext context)
-	{
-		m_inputLook = context.ReadValue<Vector2>();
-	}
-
-	public void OnJump(InputAction.CallbackContext context)
-	{
-		var val = context.ReadValue<float>();
-		if (val > .5f)
-		{
-			m_inputJump = true;
-		}
-		if (context.canceled)
-		{
-			m_inputJump = false;
-		}
-		Debug.Log($"Jump: {m_inputJump}");
 	}
 
 	private void FixedUpdate()
@@ -61,7 +47,7 @@ public class MovementController : ExtendedMonoBehaviour
 		var gravityVec = GravityManager.GetGravityForce(transform.position);
 
 		IsGrounded = Physics.Raycast(transform.position, gravityVec, out var groundHit, GroundingDistance, CollisionMask, QueryTriggerInteraction.Ignore);
-		var isGroundedForward = Physics.Raycast(transform.position + CameraController.transform.forward, gravityVec, out var forwardHit, GroundingDistance, CollisionMask, QueryTriggerInteraction.Ignore);
+		var isGroundedForward = Physics.Raycast(transform.position + LookAdapter.transform.forward, gravityVec, out var forwardHit, GroundingDistance, CollisionMask, QueryTriggerInteraction.Ignore);
 		Debug.DrawLine(transform.position, transform.position + gravityVec * dt, Color.green);
 
 		if (!IsGrounded)
@@ -92,6 +78,12 @@ public class MovementController : ExtendedMonoBehaviour
 		}
 
 		{
+			if(Actor.FocusedInteractable is FocusableInteractable focusable && focusable.Actor == Actor)
+			{
+				focusable.Move(Actor, m_moveDirection);
+				return;
+			}
+
 			// Move from input
 			if (m_inputJump)
 			{
@@ -103,11 +95,11 @@ public class MovementController : ExtendedMonoBehaviour
 				}
 			}
 
-			var movement = m_inputLook;
+			var movement = m_moveDirection;
 			if(movement.magnitude > 0)
 			{
 				var localVelocityDirection = new Vector3(movement.x, 0, movement.y);
-				var worldVelocityDirection = CameraController.transform.localToWorldMatrix.MultiplyVector(localVelocityDirection);
+				var worldVelocityDirection = LookAdapter.transform.localToWorldMatrix.MultiplyVector(localVelocityDirection);
 
 				if (IsGrounded)
 				{

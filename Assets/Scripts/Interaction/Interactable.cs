@@ -14,6 +14,9 @@ public class SpriteEvent : UnityEvent<Sprite> { }
 
 public abstract class Interactable : ExtendedMonoBehaviour
 {
+	public const string USE = "[$Use] Use";
+	public const string STOP_USE = "[$Use] Stop Using";
+
 	[Serializable]
 	public class InteractableSettings
 	{
@@ -35,7 +38,7 @@ public abstract class Interactable : ExtendedMonoBehaviour
 	{
 		if (!CanUse(context))
 			yield break;
-		yield return "Use";
+		yield return USE;
 	}
 
 	protected virtual bool CanUse(Actor context) => true;

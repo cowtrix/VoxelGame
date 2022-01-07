@@ -10,58 +10,19 @@ using UnityEngine.InputSystem;
 
 public class PlayerActor : Actor
 {
-	public LayerMask InteractionMask;
 	public CameraController CameraController => CameraController.Instance;
-	public Interactable FocusedInteractable { get; private set; }
 	public PhoneController Phone => GetComponentInChildren<PhoneController>(true);
 	public int ActionIndex = 0;
 
-	private void Update()
+	protected override void Update()
 	{
-		var cameraForward = CameraController.transform.forward;
-		var cameraPos = CameraController.transform.position;
-
-		if (Physics.Raycast(cameraPos, cameraForward, out var interactionHit, 1000, InteractionMask, QueryTriggerInteraction.Collide))
-		{
-			Debug.DrawLine(cameraPos, interactionHit.point, Color.yellow);
-			var interactable = interactionHit.collider.GetComponent<Interactable>() ?? interactionHit.collider.GetComponentInParent<Interactable>();
-			if (interactable && interactable.enabled && interactionHit.distance < interactable.InteractionSettings.MaxFocusDistance)
-			{
-				if(interactable != FocusedInteractable)
-				{
-					FocusedInteractable?.ExitFocus(this);
-					FocusedInteractable = interactable;
-					FocusedInteractable.EnterFocus(this);
-				}
-				return;
-			}			
-		}
-		FocusedInteractable?.ExitFocus(this);
-		FocusedInteractable = null;
-		Debug.DrawLine(cameraPos, cameraPos + cameraForward * 1000, Color.magenta);
-
-		/*var bestAngle = float.MaxValue;
-		var bestDistance = float.MaxValue;
-		Interactable newFocused = null;
-		foreach (var interactable in Interactables)
-		{
-			var diffVec = interactable.transform.position - cameraPos;
-			var distance = diffVec.magnitude;
-			var angle = Vector3.Angle(diffVec.normalized, cameraForward);
-			if (angle < bestAngle && distance < bestDistance)
-			{
-				bestAngle = angle;
-				bestDistance = distance;
-				newFocused = interactable;
-			}
-		}
-		if (newFocused == FocusedInteractable)
+		if (FocusedInteractable != null
+			&& FocusedInteractable is FocusableInteractable
+			&& CameraController.Proxy == FocusedInteractable as ICameraControllerProxy)
 		{
 			return;
 		}
-		FocusedInteractable?.ExitFocus(this);
-		FocusedInteractable = newFocused;
-		FocusedInteractable?.EnterFocus(this);*/
+		base.Update();
 	}
 
 	public void OnFire(InputAction.CallbackContext cntxt)
@@ -73,7 +34,27 @@ public class PlayerActor : Actor
 
 		if (State.EquippedItem)
 		{
+			Debug.Log("OnFire: " + FocusedInteractable);
 			State.EquippedItem.UseOn(this, FocusedInteractable);
+			return;
+		}
+		else if(FocusedInteractable is FocusableInteractable focusable && focusable.Actor == this)
+		{
+			focusable.Fire(this);
+		}
+	}
+
+	public void OnUse(InputAction.CallbackContext cntxt)
+	{
+		if (!cntxt.started || CameraController.LockCameraLook)
+		{
+			return;
+		}
+
+		if (FocusedInteractable is FocusableInteractable focusable && focusable.Actor == this)
+		{
+			Debug.Log("OnStopUse: " + FocusedInteractable);
+			focusable.Use(this, Interactable.STOP_USE);
 			return;
 		}
 

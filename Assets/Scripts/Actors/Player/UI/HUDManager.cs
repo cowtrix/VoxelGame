@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,7 @@ using Voxul.Utilities;
 public class HUDManager : Singleton<HUDManager>
 {
 	public Image Icon;
-	public Text ActionLabel;
+	public UIActionLabel ActionLabel;
 
 	private Camera Camera => CameraController.GetComponent<Camera>();
 	public CameraController CameraController => CameraController.Instance;
@@ -16,7 +17,9 @@ public class HUDManager : Singleton<HUDManager>
 	public MeshRenderer InteractionObjectRenderer;
 	public MeshFilter InteractionObjectFilter;
 
-	public StringEvent FocuseInteractableDisplayName;
+	public StringEvent FocusedInteractableDisplayName;
+
+	private List<UIActionLabel> m_labels = new List<UIActionLabel>();
 
 	private void Start()
 	{
@@ -24,6 +27,8 @@ public class HUDManager : Singleton<HUDManager>
 			.AddComponent<MeshRenderer>();
 		InteractionObjectRenderer.sharedMaterial = InteractionMaterial;
 		InteractionObjectFilter = InteractionObjectRenderer.gameObject.AddComponent<MeshFilter>();
+
+		ActionLabel.gameObject.SetActive(false);
 	}
 
 	private void Update()
@@ -31,25 +36,63 @@ public class HUDManager : Singleton<HUDManager>
 		var interactable = PlayerActor.FocusedInteractable;
 		if (interactable)
 		{
-			InteractionObjectFilter.gameObject.SetActive(true);
-			InteractionObjectFilter.sharedMesh = interactable.GetInteractionMesh();
-			InteractionObjectFilter.transform.position = interactable.transform.position;
-			InteractionObjectFilter.transform.rotation = interactable.transform.rotation;
-			InteractionObjectFilter.transform.localScale = interactable.transform.lossyScale;
-			Icon.sprite = PlayerActor.FocusedInteractable.InteractionSettings.Icon?.Invoke();
+			if(interactable != CameraController.Proxy)
+			{
+				ShowHoverObect(interactable);
+			}
+			else
+			{
+				HideHoverObject();
+			}
 
-			ActionLabel.gameObject.SetActive(true);
-			ActionLabel.text = interactable.GetActions(PlayerActor).FirstOrDefault();
+			int actionIndex = 0;
+			foreach(var action in interactable.GetActions(PlayerActor))
+			{
+				UIActionLabel label;
+				if(m_labels.Count <= actionIndex)
+				{
+					label = Instantiate(ActionLabel.gameObject).GetComponent<UIActionLabel>();
+					label.transform.SetParent(ActionLabel.transform.parent);
+					m_labels.Add(label);
+				}
+				else
+				{
+					label = m_labels[actionIndex];
+				}
+				label.gameObject.SetActive(true);
+				label.ActionIcon.sprite = null;
+				label.ActionName.text = action;
+				actionIndex++;
+			}
+			for(var i = actionIndex + 1; i < m_labels.Count; ++i)
+			{
+				m_labels[i].gameObject.SetActive(false);
+			}
 
-			FocuseInteractableDisplayName.Invoke(interactable.DisplayName);
+			FocusedInteractableDisplayName.Invoke(interactable.DisplayName);
 		}
 		else
 		{
 			Icon.sprite = null;
 			ActionLabel.gameObject.SetActive(false);
-			InteractionObjectFilter.gameObject.SetActive(false);
-			FocuseInteractableDisplayName.Invoke("");
+			HideHoverObject();
+			FocusedInteractableDisplayName.Invoke("");
 		}
 		Icon.gameObject.SetActive(Icon.sprite);
+	}
+
+	private void ShowHoverObect(Interactable interactable)
+	{
+		InteractionObjectFilter.gameObject.SetActive(true);
+		InteractionObjectFilter.sharedMesh = interactable.GetInteractionMesh();
+		InteractionObjectFilter.transform.position = interactable.transform.position;
+		InteractionObjectFilter.transform.rotation = interactable.transform.rotation;
+		InteractionObjectFilter.transform.localScale = interactable.transform.lossyScale;
+		Icon.sprite = PlayerActor.FocusedInteractable.InteractionSettings.Icon?.Invoke();
+	}
+
+	private void HideHoverObject()
+	{
+		InteractionObjectFilter.gameObject.SetActive(false);
 	}
 }
