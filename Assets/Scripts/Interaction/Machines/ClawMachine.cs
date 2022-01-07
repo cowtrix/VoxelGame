@@ -9,6 +9,7 @@ public class ClawMachine : FocusableInteractable
 {
 	public override string DisplayName => name;
 	public float MovementSpeed = .01f;
+	public float ChaseSpeed = 1;
 	public Transform Claw, ClawOrigin;
 
 	[Range(0, 1)]
@@ -33,7 +34,8 @@ public class ClawMachine : FocusableInteractable
 		{
 			return;
 		}
-		Claw.localPosition = targetPosition;
+		Claw.localPosition = Vector3.Lerp(Claw.localPosition, targetPosition, Time.deltaTime * ChaseSpeed);
+		//Claw.up = Claw.localToWorldMatrix.MultiplyVector((ClawOrigin.localPosition - Claw.localPosition).normalized);
 		ClawOrigin.localPosition = targetPosition.xz().x0z(ClawOrigin.localPosition.y);
 		LineRenderer.Invalidate();
 	}
