@@ -93,6 +93,13 @@ public class Actor : ExtendedMonoBehaviour, IDialogueActor
 		State.Inventory.Add(item);
 		item.OnPickup(this);
 
+		var rb = item.GetComponent<Rigidbody>();
+		if (rb)
+		{
+			rb.Sleep();
+			rb.interpolation = RigidbodyInterpolation.None;
+		}
+
 		if (!State.EquippedItem)
 		{
 			item.gameObject.layer = Settings.EquippedLayer;
@@ -122,6 +129,12 @@ public class Actor : ExtendedMonoBehaviour, IDialogueActor
 		item.transform.position = position;
 		item.transform.rotation = rotation;
 		item.OnDrop(this);
+
+		var rb = item.GetComponent<Rigidbody>();
+		if (rb)
+		{
+			rb.WakeUp();
+		}
 
 		State.OnInventoryUpdate.Invoke(this, Item.DROP, item);
 	}

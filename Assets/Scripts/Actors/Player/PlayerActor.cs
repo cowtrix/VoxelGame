@@ -32,15 +32,15 @@ public class PlayerActor : Actor
 			return;
 		}
 
-		if (State.EquippedItem)
+		if(FocusedInteractable is FocusableInteractable focusable && focusable.Actor == this)
+		{
+			focusable.Fire(this);
+		}
+		else if (State.EquippedItem)
 		{
 			Debug.Log("OnFire: " + FocusedInteractable);
 			State.EquippedItem.UseOn(this, FocusedInteractable);
 			return;
-		}
-		else if(FocusedInteractable is FocusableInteractable focusable && focusable.Actor == this)
-		{
-			focusable.Fire(this);
 		}
 	}
 

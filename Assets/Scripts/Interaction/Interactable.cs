@@ -42,23 +42,40 @@ public abstract class Interactable : ExtendedMonoBehaviour
 	}
 
 	protected virtual bool CanUse(Actor context) => true;
+	public List<Collider> Colliders;
 
-	public Collider[] Colliders => GetComponentsInChildren<Collider>();
+	private void Awake()
+	{
+		CalculateColliders();
+	}
+
+	private void OnValidate()
+	{
+		CalculateColliders();
+	}
+
 	public Bounds Bounds
 	{
 		get
 		{
-			if (Colliders.Length == 0)
+			if (Colliders == null || Colliders.Count== 0)
 			{
 				return default;
 			}
 			var bounds = Colliders[0].bounds;
-			for (int i = 1; i < Colliders.Length; i++)
+			for (int i = 1; i < Colliders.Count; i++)
 			{
 				bounds.Encapsulate(Colliders[i].bounds);
 			}
 			return bounds;
 		}
+	}
+
+	private void CalculateColliders()
+	{
+		Colliders =  GetComponentsInChildren<Collider>()
+		.Where(c => c.gameObject.layer == 9)
+		.ToList();
 	}
 
 	public abstract string DisplayName { get; }

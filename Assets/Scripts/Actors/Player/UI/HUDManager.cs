@@ -64,7 +64,7 @@ public class HUDManager : Singleton<HUDManager>
 				label.ActionName.text = action;
 				actionIndex++;
 			}
-			for(var i = actionIndex + 1; i < m_labels.Count; ++i)
+			for(var i = actionIndex; i < m_labels.Count; ++i)
 			{
 				m_labels[i].gameObject.SetActive(false);
 			}

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -52,9 +52,6 @@
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2020.3.23f1</UnityVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Utilities\DebugHelper.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\UI\UIActionLabel.cs" />
@@ -147,6 +144,7 @@
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\Effects.cs" />
     <Compile Include="Assets\Scripts\Interaction\Item.cs" />
     <Compile Include="Assets\Scripts\Lightning.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\ClawMachineClaw.cs" />
     <Compile Include="Assets\Scripts\Actors\NPC\NPCMeshManager.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\TappingController.cs" />
     <Compile Include="Assets\Scripts\Animation\ProceduralAd.cs" />
@@ -275,6 +273,7 @@
     <Compile Include="Assets\Scripts\Gravity\GravityRigidbody.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingLine.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\TouchISX.cs" />
+    <Compile Include="Assets\Scripts\Interaction\ConsumableItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\README.txt" />

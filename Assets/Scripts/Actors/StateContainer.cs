@@ -11,6 +11,9 @@ using Voxul;
 public class FloatStateUpdateEvent : UnityEvent<Actor, string, float, float> { }
 
 [Serializable]
+public class FloatStateFailureUpdateEvent : UnityEvent<Actor, string, float> { }
+
+[Serializable]
 public class InventoryStateUpdateEvent : UnityEvent<Actor, string, Item> { }
 
 [RequireComponent(typeof(Actor))]
@@ -19,6 +22,7 @@ public class StateContainer : ExtendedMonoBehaviour
 	private Dictionary<string, PropertyInfo> m_fieldLookup;
 	public Actor Actor => GetComponent<Actor>();
 	public FloatStateUpdateEvent OnStateUpdate = new FloatStateUpdateEvent();
+	FloatStateFailureUpdateEvent OnStateFailedUpdate = new FloatStateFailureUpdateEvent();
 
 	private IEnumerator Start()
 	{
@@ -65,17 +69,22 @@ public class StateContainer : ExtendedMonoBehaviour
 
 	public bool TryAdd(string field, float delta)
 	{
-		if (!m_fieldLookup.TryGetValue(field, out var fieldInfo)
-			|| fieldInfo.PropertyType != typeof(float))
+		if (!m_fieldLookup.TryGetValue(field, out var fieldInfo))
 		{
+			Debug.LogWarning($"Tried to delta {field} but it did not exist on actor {Actor}", this);
 			return false;
 		}
+		/*if(fieldInfo.PropertyType != typeof(float))
+		{
+			throw new Exception($"State delta type mismatch for {field}, expected float but got {fieldInfo.PropertyType}");
+		}*/
 		var val = (float)fieldInfo.GetValue(this);
 		var newVal = val + delta;
 
 		var minAttr = fieldInfo.GetCustomAttribute<StateMinAttribute>();
 		if (minAttr != null && newVal < minAttr.Min)
 		{
+			OnStateFailedUpdate.Invoke(Actor, field, delta);
 			return false;
 		}
 
@@ -87,11 +96,15 @@ public class StateContainer : ExtendedMonoBehaviour
 
 	public bool TryAdd(string field, int delta)
 	{
-		if (!m_fieldLookup.TryGetValue(field, out var fieldInfo)
-			|| fieldInfo.PropertyType != typeof(int))
+		if (!m_fieldLookup.TryGetValue(field, out var fieldInfo))
 		{
+			Debug.LogWarning($"Tried to delta {field} but it did not exist on actor {Actor}", this);
 			return false;
 		}
+		/*if (fieldInfo.PropertyType != typeof(int))
+		{
+			throw new Exception($"State delta type mismatch for {field}, expected int but got {fieldInfo.PropertyType}");
+		}*/
 		var val = (int)fieldInfo.GetValue(this);
 		var newVal = val + delta;
 
