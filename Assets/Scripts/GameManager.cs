@@ -1,13 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
 	[Range(0,1)]
 	public float TimeOfDay;
+	public int DayCount;
 
     public SceneReference CurrentScene;
 	public PlayerActor Player;
@@ -50,5 +53,14 @@ public class GameManager : Singleton<GameManager>
 	private void Update()
 	{
 		TimeOfDay += Time.deltaTime / 1000;
+	}
+
+	public string GetTimeString()
+	{
+		var time = TimeOfDay * 24;
+		var hr = Mathf.FloorToInt(time);
+		var min = Mathf.FloorToInt((time - hr) * 10);
+		return new TimeSpan(hr, min, 0)
+			.ToString(@"hh\:mm");
 	}
 }

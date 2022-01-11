@@ -38,7 +38,7 @@ public abstract class UIStateUpdateEntry : ExtendedMonoBehaviour
 			}
 
 			var rect = GetRect();
-			Vector3 targetPos = new Vector2(0, -(index * rect.height + 2));
+			Vector3 targetPos = new Vector2(0, (index * rect.height + 2));
 			if(Vector3.Distance(transform.position, targetPos) > 0.01f)
 			{
 				transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, MoveSpeed * Time.deltaTime);

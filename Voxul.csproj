@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,6 @@
     <UnityVersion>2020.3.23f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Lib\voxul\Scripts\VoxelText.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\Tools\PaintTool.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\TextureIndexInspect.cs" />
@@ -64,7 +61,7 @@
     <Compile Include="Assets\Lib\voxul\Scripts\VoxelExtensions.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Optimisers\FaceMerger.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Utilities\VoxelRendererPropertyModifier.cs" />
-    <Compile Include="Assets\Lib\voxul\Scripts\VoxelMaterialAsset.cs" />
+    <Compile Include="Assets\Lib\voxul\Scripts\VoxelBrushAsset.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Utilities\TextureIndex.cs" />
     <Compile Include="Assets\Lib\voxul\Lib\CsharpVoxReader\Chunks\Layer.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\VoxelPainter.cs" />
@@ -154,6 +151,7 @@
     <Compile Include="Assets\Lib\voxul\Lib\CsharpVoxReader\Chunks\GroupNode.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Utilities\Pathfinding\VoxelTree.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\VoxelObjectEditorBase.cs" />
+    <Compile Include="Assets\Lib\voxul\Scripts\VoxelBrush.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Lib\voxul\Shaders\DebugGrid.shader" />
