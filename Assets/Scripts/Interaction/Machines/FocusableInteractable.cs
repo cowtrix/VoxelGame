@@ -13,6 +13,8 @@ public abstract class FocusableInteractable : Interactable, ICameraControllerPro
 
 	public Actor Actor { get; protected set; }
 
+	public ActorEvent OnActivate, OnDeactivate;
+
 	public override IEnumerable<string> GetActions(Actor context)
 	{
 		if (!CanUse(context))
@@ -37,10 +39,12 @@ public abstract class FocusableInteractable : Interactable, ICameraControllerPro
 				}
 				Actor = actor;
 				CameraController.Instance.Proxy = this;
+				OnActivate?.Invoke(actor);
 				base.Use(actor, action);
 				break;
 			case STOP_USE:
 				Actor = null;
+				OnDeactivate?.Invoke(actor);
 				if (CameraController.Instance.Proxy != this as ICameraControllerProxy)
 				{
 					return;
@@ -53,6 +57,8 @@ public abstract class FocusableInteractable : Interactable, ICameraControllerPro
 	public virtual void Fire(PlayerActor playerActor) { }
 
 	public virtual void Move(Actor actor, Vector2 direction) { }
+
+	public virtual void Look(Actor actor, Vector2 direction) { }
 
 	protected virtual void OnActiveUse(Actor actor, string action) { }
 

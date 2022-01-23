@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,6 +53,9 @@
     <UnityVersion>2020.3.23f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\Utilities\DebugHelper.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\UI\UIActionLabel.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\SerializableDictionary.cs" />
@@ -64,6 +67,7 @@
     <Compile Include="Assets\Lib\InputSystem\Assets\Samples\SimpleDemo\SimpleController_UsingActions.cs" />
     <Compile Include="Assets\Scripts\Utilities\DiffMatchPatch.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\UI\HUDManager.cs" />
+    <Compile Include="Assets\Scripts\Interaction\CardGame\Card.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\ArrowHighlight.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\Samples\CustomDevice\CustomDevice.cs" />
     <Compile Include="Assets\Scripts\Interaction\Door.cs" />
@@ -75,6 +79,7 @@
     <Compile Include="Assets\Scripts\Interaction\Instruments\InstrumentKey.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\LegacyInputManager\Scripts\SetPositionFromMouse.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\LegacyInputManager\Scripts\ImageRedIfTouchEnabled.cs" />
+    <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\PhoneAppUpdate.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Gestures\ActiveGesture.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyObject.cs" />
     <Compile Include="Assets\Scripts\Actors\NPC\NPCActor.cs" />
@@ -82,8 +87,10 @@
     <Compile Include="Assets\Scripts\Interaction\Machines\ClawMachine.cs" />
     <Compile Include="Assets\Scripts\Utilities\SinMover.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Input_Test\IMETest.cs" />
+    <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\PhoneAppMessage.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\ControlMaps\PointerControls.cs" />
     <Compile Include="Assets\Unsorted\VoxelTester.cs" />
+    <Compile Include="Assets\Scripts\Interaction\CardGame\CardGame.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Common\Singleton.cs" />
     <Compile Include="Assets\Scripts\Utilities\Geometry2D.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\TextHighlight.cs" />
@@ -96,6 +103,7 @@
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Swiping\TrashType.cs" />
     <Compile Include="Assets\Scripts\Actors\Actor.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Common\SceneLoadButton.cs" />
+    <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\PhoneAppLaunchButton.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\Samples\CustomComposite\CustomComposite.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ControllerDiagramOldInput.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Input_Test\GUITest.cs" />
@@ -112,6 +120,7 @@
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Swiping\Gutter.cs" />
     <Compile Include="Assets\Scripts\Utilities\BestFitSprite.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\GamepadISX.cs" />
+    <Compile Include="Assets\Scripts\GameDateTime.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Gestures\SwipeInput.cs" />
     <Compile Include="Assets\Scripts\Interaction\BuyItem.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\UI\UIStateUpdateEntry.cs" />
@@ -130,10 +139,13 @@
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\EditMode\TestMouseDelta.cs" />
     <Compile Include="Assets\Scripts\Utilities\StringExtensions.cs" />
     <Compile Include="Assets\Scripts\Enemy\GuidedEnemyProjectile.cs" />
+    <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\MessagesApp.cs" />
     <Compile Include="Assets\Scripts\Enemy\ExplodeNearPlayer.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\UI\UIStatusUpdateEntry.cs" />
     <Compile Include="Assets\Scripts\Interaction\SushiTableMinigame.cs" />
+    <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\PhoneApp.cs" />
     <Compile Include="Assets\Scripts\Animation\TransformAnimationController.cs" />
+    <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\PhoneNotificationManager.cs" />
     <Compile Include="Assets\Lib\unity-scene-reference\unity-scene-reference\Assets\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\Interaction\ConsumableItem.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\DeviceList\DeviceList.cs" />
@@ -142,6 +154,7 @@
     <Compile Include="Assets\Scripts\Interaction\Interactable.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\XboxISX.cs" />
     <Compile Include="Assets\Scripts\Utilities\MovingPlatform.cs" />
+    <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\PhoneAppMessageChatGroup.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\Effects.cs" />
     <Compile Include="Assets\Scripts\Interaction\Item.cs" />
     <Compile Include="Assets\Scripts\Lightning.cs" />
@@ -167,6 +180,7 @@
     <Compile Include="Assets\Scripts\Gravity\GravityManager.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\UI\UIInventoryUpdateEntry.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\TapTarget.cs" />
+    <Compile Include="Assets\Scripts\Interaction\CardGame\BaboPlayer.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingTool.cs" />
     <Compile Include="Assets\Scripts\Actors\InteractionColliderEvent.cs" />
     <Compile Include="Assets\Scripts\Enemy\Wurm.cs" />
@@ -196,6 +210,7 @@
     <Compile Include="Assets\Scripts\DestroyableVoxel.cs" />
     <Compile Include="Assets\Scripts\Actors\StateMinAttribute.cs" />
     <Compile Include="Assets\Scripts\Actors\NPC\LookTester.cs" />
+    <Compile Include="Assets\Scripts\Interaction\SimpleInteractable.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\FuelBuddy.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Menu\LevelSelectItem.cs" />
     <Compile Include="Assets\Scripts\Transporter.cs" />
@@ -276,9 +291,6 @@
     <Compile Include="Assets\Scripts\Gravity\GravityRigidbody.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingLine.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\TouchISX.cs" />
-    <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\PhoneApp.cs" />
-    <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\PhoneAppLaunchButton.cs" />
-    <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\MessagesApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\README.txt" />

@@ -9,10 +9,13 @@ public interface ICameraControllerProxy
 {
 	public Quaternion? LookDirectionOverride { get; }
 	public Vector3? LookPositionOverride { get; }
+
+	void Look(Actor actor, Vector2 lastDelta);
 }
 
 public class CameraController : Singleton<CameraController>, ILookAdapter
 {
+	public Actor Actor;
 	public ICameraControllerProxy Proxy { get; set; }
 	public bool LockCameraLook { get; set; }
 	public bool LockCursor { get; set; } = true;
@@ -45,6 +48,7 @@ public class CameraController : Singleton<CameraController>, ILookAdapter
 
 		if (Proxy != null)
 		{
+			Proxy.Look(Actor, LastDelta);
 			if (Proxy.LookDirectionOverride.HasValue)
 			{
 				transform.rotation = Proxy.LookDirectionOverride.Value;

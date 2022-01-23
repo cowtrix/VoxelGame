@@ -32,7 +32,7 @@ public class PhoneController : ExtendedMonoBehaviour
 
 	private InputAction m_togglePhoneAction, m_lookAction, m_clickAction;
 	private CameraController CameraController => CameraController.Instance;
-
+	public PhoneNotificationManager NotificationManager;
 	public PhoneApp CurrentApp { get; private set; }
 	public List<PhoneApp> Apps;
 	public PhoneAppLaunchButton LaunchButtonPrefab;
@@ -60,6 +60,25 @@ public class PhoneController : ExtendedMonoBehaviour
 		}
 
 		OnHome?.Invoke();
+
+		StartCoroutine(Test());
+	}
+
+	IEnumerator Test()
+	{
+		/*var msgApp = Apps[1] as MessagesApp;
+		while (true)
+		{
+			yield return new WaitForSeconds(2);
+			msgApp.ReceiveMessage(new MessagesApp.Conversation.Message
+			{
+				Content = "Hey buddy! I've got your results. It's... not good. You're gonna keep living! Haha. Syke.",
+				Sender = "545792",
+				TimeReceived = GameManager.Instance.CurrentTime,
+				ConversationID = null,
+			});
+		}*/
+		yield break;
 	}
 
 	public void OpenApp(PhoneApp app)
@@ -110,6 +129,6 @@ public class PhoneController : ExtendedMonoBehaviour
 
 		m_actor.State.TryGetValue<int>(nameof(ICreditedActor.Credits), out var credits);
 		CreditsText.text = $"¢{credits}";
-		TimeText.text = GameManager.Instance.GetTimeString();
+		TimeText.text = GameManager.Instance.CurrentTime.GetTimeString();
 	}
 }

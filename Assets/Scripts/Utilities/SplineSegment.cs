@@ -19,7 +19,7 @@ public class SplineSegment
 	public float Length;
 	// Calculated data
 	[HideInInspector]
-	public List<SplinePoint> Points;
+	public List<SplinePoint> Points = new List<SplinePoint>();
 	[HideInInspector]
 	public Bounds Bounds;
 

@@ -44,16 +44,6 @@ public abstract class Interactable : ExtendedMonoBehaviour
 	protected virtual bool CanUse(Actor context) => true;
 	public List<Collider> Colliders;
 
-	private void Awake()
-	{
-		CalculateColliders();
-	}
-
-	private void OnValidate()
-	{
-		CalculateColliders();
-	}
-
 	public Bounds Bounds
 	{
 		get
@@ -69,13 +59,6 @@ public abstract class Interactable : ExtendedMonoBehaviour
 			}
 			return bounds;
 		}
-	}
-
-	private void CalculateColliders()
-	{
-		Colliders =  GetComponentsInChildren<Collider>()
-		.Where(c => c.gameObject.layer == 9)
-		.ToList();
 	}
 
 	public abstract string DisplayName { get; }

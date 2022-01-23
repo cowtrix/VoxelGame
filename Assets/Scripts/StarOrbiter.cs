@@ -8,6 +8,6 @@ public class StarOrbiter : ExtendedMonoBehaviour
 
 	private void Update()
 	{
-		transform.localRotation = Quaternion.Euler(0, GameManager.TimeOfDay * 360, 0);
+		transform.localRotation = Quaternion.Euler(0, GameManager.NormalizedTimeOfDay * 360, 0);
 	}
 }

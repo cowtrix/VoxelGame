@@ -14,17 +14,6 @@ public class PlayerActor : Actor
 	public PhoneController Phone => GetComponentInChildren<PhoneController>(true);
 	public int ActionIndex = 0;
 
-	protected override void Update()
-	{
-		if (FocusedInteractable != null
-			&& FocusedInteractable is FocusableInteractable
-			&& CameraController.Proxy == FocusedInteractable as ICameraControllerProxy)
-		{
-			return;
-		}
-		base.Update();
-	}
-
 	public void OnFire(InputAction.CallbackContext cntxt)
 	{
 		if (!cntxt.started || CameraController.LockCameraLook)

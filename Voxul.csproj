@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -52,6 +52,9 @@
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2020.3.23f1</UnityVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Lib\voxul\Scripts\VoxelText.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\Tools\PaintTool.cs" />
@@ -143,6 +146,7 @@
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\Tools\RemoveTool.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Utilities\DebugHelper.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Meshing\VoxelMapping.cs" />
+    <Compile Include="Assets\Lib\voxul\Scripts\VoxelBrush.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\VoxelMaterial.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\Tools\SelectTool.cs" />
     <Compile Include="Assets\Lib\voxul\Lib\CsharpVoxReader\Extensions.cs" />
@@ -151,7 +155,6 @@
     <Compile Include="Assets\Lib\voxul\Lib\CsharpVoxReader\Chunks\GroupNode.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Utilities\Pathfinding\VoxelTree.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\VoxelObjectEditorBase.cs" />
-    <Compile Include="Assets\Lib\voxul\Scripts\VoxelBrush.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Lib\voxul\Shaders\DebugGrid.shader" />
