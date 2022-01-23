@@ -1,70 +1,74 @@
+using Actors;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteAlways]
-public class Door : Interactable
+namespace Interaction
 {
-	[Range(0, 1)]
-	public float OpenAmount;
-    public Vector3 OpenPosition, OpenRotation;
-    public Vector3 ClosedPosition, ClosedRotation;
-	public string DoorName = "Door";
-	public float Speed = 1;
-	private float m_targetOpen;
-
-	public override string DisplayName => DoorName;
-
-	public override IEnumerable<string> GetActions(Actor actor)
+	[ExecuteAlways]
+	public class Door : Interactable
 	{
-		if (!CanUse(actor))
+		[Range(0, 1)]
+		public float OpenAmount;
+		public Vector3 OpenPosition, OpenRotation;
+		public Vector3 ClosedPosition, ClosedRotation;
+		public string DoorName = "Door";
+		public float Speed = 1;
+		private float m_targetOpen;
+
+		public override string DisplayName => DoorName;
+
+		public override IEnumerable<string> GetActions(Actor actor)
 		{
-			yield break;
+			if (!CanUse(actor))
+			{
+				yield break;
+			}
+			if (m_targetOpen > 0)
+			{
+				yield return "Close";
+			}
+			else
+			{
+				yield return "Open";
+			}
 		}
-		if (m_targetOpen > 0)
+
+		private void Reset()
 		{
-			yield return "Close";
+			OpenPosition = transform.localPosition;
+			ClosedPosition = transform.localPosition;
 		}
-		else
+
+		private void OnValidate()
 		{
-			yield return "Open";
+			m_targetOpen = OpenAmount;
 		}
-	}
 
-	private void Reset()
-	{
-		OpenPosition = transform.localPosition;
-		ClosedPosition = transform.localPosition;
-	}
-
-	private void OnValidate()
-	{
-		m_targetOpen = OpenAmount;
-	}
-
-	private void Start()
-	{
-		m_targetOpen = OpenAmount;
-	}
-
-	private void Update()
-	{
-		transform.localPosition = Vector3.Lerp(ClosedPosition, OpenPosition, OpenAmount);
-		transform.localRotation = Quaternion.Lerp(Quaternion.Euler(ClosedRotation), Quaternion.Euler(OpenRotation), OpenAmount);
-
-		OpenAmount = Mathf.MoveTowards(OpenAmount, m_targetOpen, Speed * Time.deltaTime);
-	}
-
-	public override void Use(Actor actor, string action)
-	{
-		if(m_targetOpen <= 0)
+		private void Start()
 		{
-			m_targetOpen = 1;
+			m_targetOpen = OpenAmount;
 		}
-		else
+
+		private void Update()
 		{
-			m_targetOpen = 0;
+			transform.localPosition = Vector3.Lerp(ClosedPosition, OpenPosition, OpenAmount);
+			transform.localRotation = Quaternion.Lerp(Quaternion.Euler(ClosedRotation), Quaternion.Euler(OpenRotation), OpenAmount);
+
+			OpenAmount = Mathf.MoveTowards(OpenAmount, m_targetOpen, Speed * Time.deltaTime);
 		}
-		base.Use(actor, action);
+
+		public override void Use(Actor actor, string action)
+		{
+			if (m_targetOpen <= 0)
+			{
+				m_targetOpen = 1;
+			}
+			else
+			{
+				m_targetOpen = 0;
+			}
+			base.Use(actor, action);
+		}
 	}
 }

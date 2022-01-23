@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Actors;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
-namespace Items
+namespace Interaction.Items
 {
 	public class DistanceLockedItem : Item, IEquippableItem
 	{

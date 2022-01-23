@@ -1,25 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using Actors;
+using System.Collections.Generic;
 
-public class SimpleInteractable : Interactable
+namespace Interaction
 {
-	public override string DisplayName => Name;
-
-	public string Name;
-	public string[] Actions = new string[1];
-
-	public override IEnumerable<string> GetActions(Actor context)
+	public class SimpleInteractable : Interactable
 	{
-		if (!CanUse(context))
-		{
-			yield break;
-		}
-		foreach (var a in Actions)
-		{
-			yield return a;
-		}
-	}
+		public override string DisplayName => Name;
 
-	private void Update()
-	{
+		public string Name;
+		public string[] Actions = new string[1];
+
+		public override IEnumerable<string> GetActions(Actor context)
+		{
+			if (!CanUse(context))
+			{
+				yield break;
+			}
+			foreach (var a in Actions)
+			{
+				yield return a;
+			}
+		}
+
+		private void Update()
+		{
+		}
 	}
 }

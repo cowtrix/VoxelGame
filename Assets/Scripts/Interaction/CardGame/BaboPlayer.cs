@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Actors;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 using Voxul;
 using Voxul.Utilities;
 
-namespace CardGame_Babo
+namespace Interaction.Activities.CardGame_Babo
 {
 	public class BaboPlayer : ExtendedMonoBehaviour
 	{

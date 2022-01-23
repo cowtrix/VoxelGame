@@ -1,24 +1,27 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovementController : MovementController
+namespace Actors
 {
-	public void OnMove(InputAction.CallbackContext context)
+	public class PlayerMovementController : MovementController
 	{
-		m_moveDirection = context.ReadValue<Vector2>();
-	}
+		public void OnMove(InputAction.CallbackContext context)
+		{
+			m_moveDirection = context.ReadValue<Vector2>();
+		}
 
-	public void OnJump(InputAction.CallbackContext context)
-	{
-		var val = context.ReadValue<float>();
-		if (val > .5f)
+		public void OnJump(InputAction.CallbackContext context)
 		{
-			m_inputJump = true;
+			var val = context.ReadValue<float>();
+			if (val > .5f)
+			{
+				m_inputJump = true;
+			}
+			if (context.canceled)
+			{
+				m_inputJump = false;
+			}
+			Debug.Log($"Jump: {m_inputJump}");
 		}
-		if (context.canceled)
-		{
-			m_inputJump = false;
-		}
-		Debug.Log($"Jump: {m_inputJump}");
 	}
 }

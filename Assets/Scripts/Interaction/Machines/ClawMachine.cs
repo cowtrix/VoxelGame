@@ -1,185 +1,189 @@
+using Actors;
 using Common;
-using Items;
+using Interaction.Items;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Voxul;
 
-public class ClawMachine : FocusableInteractable
+namespace Interaction.Activities
 {
-	public int PlayCost = 1;
-
-	public override string DisplayName => name;
-	public float MovementSpeed = .01f;
-	public float AutoMoveSpeed = .5f;
-	public float ChaseSpeed = 1;
-	public float ClawSpeed = 1;
-
-	public VoxelColorTint ButtonTint;
-	[ColorUsage(false, true)]
-	public Color TintColor;
-	public float m_buttonTintAmount;
-
-	public float JoystickRotationAmount = 20;
-	public float JoystickReturnSpeed = 1;
-	public Transform Claw, ClawOrigin, JoyStick;
-
-	public Item[] Prizes;
-	public int PrizeCount = 20;
-
-	[Range(0, 1)]
-	public float X;
-	[Range(0, 1)]
-	public float Y;
-	[Range(0, 1)]
-	public float Z;
-	[Range(0, 1)]
-	public float ClawOpen;
-	public Bounds ClawBounds;
-	public BezierConnectorLineRenderer LineRenderer;
-
-	public bool IsGrabbing { get; private set; }
-	private bool m_hasInitialized = false;
-	private ClawMachineClaw[] m_claws;
-
-	private void OnDrawGizmosSelected()
+	public class ClawMachine : FocusableInteractable
 	{
-		Gizmos.matrix = transform.localToWorldMatrix;
-		Gizmos.DrawWireCube(ClawBounds.center, ClawBounds.size);
-	}
+		public int PlayCost = 1;
 
-	private void Start()
-	{
-		m_claws = GetComponentsInChildren<ClawMachineClaw>();
-		for (var i = 0; i < PrizeCount; ++i)
+		public override string DisplayName => name;
+		public float MovementSpeed = .01f;
+		public float AutoMoveSpeed = .5f;
+		public float ChaseSpeed = 1;
+		public float ClawSpeed = 1;
+
+		public VoxelColorTint ButtonTint;
+		[ColorUsage(false, true)]
+		public Color TintColor;
+		public float m_buttonTintAmount;
+
+		public float JoystickRotationAmount = 20;
+		public float JoystickReturnSpeed = 1;
+		public Transform Claw, ClawOrigin, JoyStick;
+
+		public Item[] Prizes;
+		public int PrizeCount = 20;
+
+		[Range(0, 1)]
+		public float X;
+		[Range(0, 1)]
+		public float Y;
+		[Range(0, 1)]
+		public float Z;
+		[Range(0, 1)]
+		public float ClawOpen;
+		public Bounds ClawBounds;
+		public BezierConnectorLineRenderer LineRenderer;
+
+		public bool IsGrabbing { get; private set; }
+		private bool m_hasInitialized = false;
+		private ClawMachineClaw[] m_claws;
+
+		private void OnDrawGizmosSelected()
 		{
-			var newPrize = Instantiate(Prizes.Random().gameObject);
-			newPrize.transform.SetParent(transform);
-			newPrize.transform.localPosition = GetPoint(new Vector3(.5f, .5f, .5f));
-		}
-	}
-
-	private Vector3 GetPoint(Vector3 normalizedPoint)
-	{
-		return ClawBounds.min + new Vector3(ClawBounds.size.x * normalizedPoint.x, ClawBounds.size.y * normalizedPoint.y, ClawBounds.size.z * normalizedPoint.z);
-	}
-
-	private void Update()
-	{
-		foreach (var claw in m_claws)
-		{
-			claw.TargetOpenAmount = ClawOpen;
-		}
-
-		m_buttonTintAmount = Mathf.Clamp01(m_buttonTintAmount - Time.deltaTime);
-		ButtonTint.Color = Color.Lerp(Color.white, TintColor, m_buttonTintAmount);
-		ButtonTint.Invalidate();
-
-		var targetPosition = GetPoint(new Vector3(X, Y, Z));
-		if (targetPosition == Claw.localPosition && m_hasInitialized)
-		{
-			return;
-		}
-		m_hasInitialized = true;
-		Claw.localPosition = Vector3.Lerp(Claw.localPosition, targetPosition, Time.deltaTime * ChaseSpeed);
-
-		{
-			var offset = (Claw.localPosition - ClawOrigin.localPosition).normalized;
-			var angle = new Vector3(Mathf.Atan(offset.z / offset.y) * Mathf.Rad2Deg, 0, Mathf.Atan(-offset.x / offset.y) * Mathf.Rad2Deg);
-			Claw.localRotation = Quaternion.Euler(angle);
-		}
-		{
-			JoyStick.localRotation = Quaternion.RotateTowards(JoyStick.localRotation, Quaternion.identity, JoystickReturnSpeed * Time.deltaTime);
+			Gizmos.matrix = transform.localToWorldMatrix;
+			Gizmos.DrawWireCube(ClawBounds.center, ClawBounds.size);
 		}
 
-		ClawOrigin.localPosition = targetPosition.xz().x0z(ClawOrigin.localPosition.y);
-		LineRenderer.Invalidate();
-	}
+		private void Start()
+		{
+			m_claws = GetComponentsInChildren<ClawMachineClaw>();
+			for (var i = 0; i < PrizeCount; ++i)
+			{
+				var newPrize = Instantiate(Prizes.Random().gameObject);
+				newPrize.transform.SetParent(transform);
+				newPrize.transform.localPosition = GetPoint(new Vector3(.5f, .5f, .5f));
+			}
+		}
 
-	public override IEnumerable<string> GetActions(Actor context)
-	{
-		if (!CanUse(context))
-			yield break;
-		if (Actor == context)
+		private Vector3 GetPoint(Vector3 normalizedPoint)
 		{
-			yield return "[${Move}] Move Claw";
-			yield return "[${Fire}] Pick";
-			yield return STOP_USE;
-			yield break;
+			return ClawBounds.min + new Vector3(ClawBounds.size.x * normalizedPoint.x, ClawBounds.size.y * normalizedPoint.y, ClawBounds.size.z * normalizedPoint.z);
 		}
-		else
-		{
-			yield return USE;
-		}
-	}
 
-	public override void Fire(PlayerActor playerActor)
-	{
-		if (IsGrabbing)
+		private void Update()
 		{
-			return;
-		}
-		if (!playerActor.State.TryAdd(nameof(ICreditConsumerActor.Credits), -PlayCost))
-		{
-			return;
-		}
-		StartCoroutine(GrabItem());
-	}
+			foreach (var claw in m_claws)
+			{
+				claw.TargetOpenAmount = ClawOpen;
+			}
 
-	IEnumerator GrabItem()
-	{
-		IsGrabbing = true;
-		m_buttonTintAmount = 1;
-		while (Y > 0)
-		{
-			Y = Mathf.Clamp01(Y - AutoMoveSpeed * Time.deltaTime);
-			yield return null;
-		}
-		foreach (var c in m_claws)
-		{
-			c.CheckCollision = true;
-		}
-		while (ClawOpen < 1)
-		{
-			ClawOpen = Mathf.Clamp01(ClawOpen + ClawSpeed * Time.deltaTime);
-			yield return null;
-		}
-		while (Y < 1)
-		{
-			Y = Mathf.Clamp01(Y + AutoMoveSpeed * Time.deltaTime);
-			yield return null;
-		}
-		while (X < 1 || Z > 0)
-		{
-			X = Mathf.Clamp01(X + AutoMoveSpeed * Time.deltaTime);
-			Z = Mathf.Clamp01(Z - AutoMoveSpeed * Time.deltaTime);
-			yield return null;
-		}
-		foreach (var c in m_claws)
-		{
-			c.CheckCollision = false;
-		}
-		while (ClawOpen > 0)
-		{
-			ClawOpen = Mathf.Clamp01(ClawOpen - ClawSpeed * Time.deltaTime);
-			yield return null;
-		}
-		IsGrabbing = false;
-	}
+			m_buttonTintAmount = Mathf.Clamp01(m_buttonTintAmount - Time.deltaTime);
+			ButtonTint.Color = Color.Lerp(Color.white, TintColor, m_buttonTintAmount);
+			ButtonTint.Invalidate();
 
-	public override void Move(Actor actor, Vector2 direction)
-	{
-		if (IsGrabbing)
-		{
-			return;
-		}
-		direction *= MovementSpeed;
-		X = Mathf.Clamp01(X - direction.y);
-		Z = Mathf.Clamp01(Z + direction.x);
+			var targetPosition = GetPoint(new Vector3(X, Y, Z));
+			if (targetPosition == Claw.localPosition && m_hasInitialized)
+			{
+				return;
+			}
+			m_hasInitialized = true;
+			Claw.localPosition = Vector3.Lerp(Claw.localPosition, targetPosition, Time.deltaTime * ChaseSpeed);
 
-		var offset = direction;
-		var angle = new Vector3(Mathf.Atan(offset.x / 1) * Mathf.Rad2Deg, 0, Mathf.Atan(offset.y / 1) * Mathf.Rad2Deg) * JoystickRotationAmount;
-		JoyStick.localRotation = Quaternion.Euler(angle);
+			{
+				var offset = (Claw.localPosition - ClawOrigin.localPosition).normalized;
+				var angle = new Vector3(Mathf.Atan(offset.z / offset.y) * Mathf.Rad2Deg, 0, Mathf.Atan(-offset.x / offset.y) * Mathf.Rad2Deg);
+				Claw.localRotation = Quaternion.Euler(angle);
+			}
+			{
+				JoyStick.localRotation = Quaternion.RotateTowards(JoyStick.localRotation, Quaternion.identity, JoystickReturnSpeed * Time.deltaTime);
+			}
+
+			ClawOrigin.localPosition = targetPosition.xz().x0z(ClawOrigin.localPosition.y);
+			LineRenderer.Invalidate();
+		}
+
+		public override IEnumerable<string> GetActions(Actor context)
+		{
+			if (!CanUse(context))
+				yield break;
+			if (Actor == context)
+			{
+				yield return "[${Move}] Move Claw";
+				yield return "[${Fire}] Pick";
+				yield return STOP_USE;
+				yield break;
+			}
+			else
+			{
+				yield return USE;
+			}
+		}
+
+		public override void Fire(PlayerActor playerActor)
+		{
+			if (IsGrabbing)
+			{
+				return;
+			}
+			if (!playerActor.State.TryAdd(nameof(ICreditConsumerActor.Credits), -PlayCost))
+			{
+				return;
+			}
+			StartCoroutine(GrabItem());
+		}
+
+		IEnumerator GrabItem()
+		{
+			IsGrabbing = true;
+			m_buttonTintAmount = 1;
+			while (Y > 0)
+			{
+				Y = Mathf.Clamp01(Y - AutoMoveSpeed * Time.deltaTime);
+				yield return null;
+			}
+			foreach (var c in m_claws)
+			{
+				c.CheckCollision = true;
+			}
+			while (ClawOpen < 1)
+			{
+				ClawOpen = Mathf.Clamp01(ClawOpen + ClawSpeed * Time.deltaTime);
+				yield return null;
+			}
+			while (Y < 1)
+			{
+				Y = Mathf.Clamp01(Y + AutoMoveSpeed * Time.deltaTime);
+				yield return null;
+			}
+			while (X < 1 || Z > 0)
+			{
+				X = Mathf.Clamp01(X + AutoMoveSpeed * Time.deltaTime);
+				Z = Mathf.Clamp01(Z - AutoMoveSpeed * Time.deltaTime);
+				yield return null;
+			}
+			foreach (var c in m_claws)
+			{
+				c.CheckCollision = false;
+			}
+			while (ClawOpen > 0)
+			{
+				ClawOpen = Mathf.Clamp01(ClawOpen - ClawSpeed * Time.deltaTime);
+				yield return null;
+			}
+			IsGrabbing = false;
+		}
+
+		public override void Move(Actor actor, Vector2 direction)
+		{
+			if (IsGrabbing)
+			{
+				return;
+			}
+			direction *= MovementSpeed;
+			X = Mathf.Clamp01(X - direction.y);
+			Z = Mathf.Clamp01(Z + direction.x);
+
+			var offset = direction;
+			var angle = new Vector3(Mathf.Atan(offset.x / 1) * Mathf.Rad2Deg, 0, Mathf.Atan(offset.y / 1) * Mathf.Rad2Deg) * JoystickRotationAmount;
+			JoyStick.localRotation = Quaternion.Euler(angle);
+		}
 	}
 }

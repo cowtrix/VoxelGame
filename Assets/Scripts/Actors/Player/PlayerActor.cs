@@ -1,4 +1,6 @@
 using Common;
+using Interaction;
+using Interaction.Activities;
 using NodeCanvas.DialogueTrees;
 using Phone;
 using System;
@@ -9,51 +11,54 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerActor : Actor
+namespace Actors
 {
-	public CameraController CameraController => CameraController.Instance;
-	public PhoneController Phone => GetComponentInChildren<PhoneController>(true);
-	public int ActionIndex = 0;
-
-	public void OnFire(InputAction.CallbackContext cntxt)
+	public class PlayerActor : Actor
 	{
-		if (!cntxt.started || CameraController.LockCameraLook)
+		public CameraController CameraController => CameraController.Instance;
+		public PhoneController Phone => GetComponentInChildren<PhoneController>(true);
+		public int ActionIndex = 0;
+
+		public void OnFire(InputAction.CallbackContext cntxt)
 		{
-			return;
+			if (!cntxt.started || CameraController.LockCameraLook)
+			{
+				return;
+			}
+
+			if (FocusedInteractable is FocusableInteractable focusable && focusable.Actor == this)
+			{
+				focusable.Fire(this);
+			}
+			else if (State.EquippedItem != null)
+			{
+				Debug.Log("OnFire: " + FocusedInteractable);
+				State.EquippedItem.UseOn(this, FocusedInteractable.gameObject);
+				return;
+			}
 		}
 
-		if (FocusedInteractable is FocusableInteractable focusable && focusable.Actor == this)
+		public void OnUse(InputAction.CallbackContext cntxt)
 		{
-			focusable.Fire(this);
-		}
-		else if (State.EquippedItem != null)
-		{
-			Debug.Log("OnFire: " + FocusedInteractable);
-			State.EquippedItem.UseOn(this, FocusedInteractable.gameObject);
-			return;
-		}
-	}
+			if (!cntxt.started || CameraController.LockCameraLook)
+			{
+				return;
+			}
 
-	public void OnUse(InputAction.CallbackContext cntxt)
-	{
-		if (!cntxt.started || CameraController.LockCameraLook)
-		{
-			return;
-		}
+			if (FocusedInteractable is FocusableInteractable focusable && focusable.Actor == this)
+			{
+				Debug.Log("OnStopUse: " + FocusedInteractable);
+				focusable.Use(this, Interactable.STOP_USE);
+				return;
+			}
 
-		if (FocusedInteractable is FocusableInteractable focusable && focusable.Actor == this)
-		{
-			Debug.Log("OnStopUse: " + FocusedInteractable);
-			focusable.Use(this, Interactable.STOP_USE);
-			return;
+			Debug.Log("OnUse: " + FocusedInteractable);
+			FocusedInteractable?.Use(this, FocusedInteractable.GetAction(this, ActionIndex));
 		}
 
-		Debug.Log("OnUse: " + FocusedInteractable);
-		FocusedInteractable?.Use(this, FocusedInteractable.GetAction(this, ActionIndex));
-	}
-
-	public void EnablePhone()
-	{
-		Phone.gameObject.SetActive(true);
+		public void EnablePhone()
+		{
+			Phone.gameObject.SetActive(true);
+		}
 	}
 }

@@ -1,9 +1,10 @@
+using Actors;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Voxul;
 
-namespace SushiTable
+namespace Interaction.Activities.SushiTable
 {
 	public class SushiTableMinigame : Interactable
 	{

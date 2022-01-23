@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Voxul;
 using Voxul.Utilities;
 
-namespace CardGame_Babo
+namespace Interaction.Activities.CardGame_Babo
 {
 	public class Card : ExtendedMonoBehaviour
 	{

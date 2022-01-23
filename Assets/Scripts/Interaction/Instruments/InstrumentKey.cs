@@ -1,23 +1,27 @@
-﻿using UnityEngine;
+﻿using Actors;
+using UnityEngine;
 
-public class InstrumentKey : Interactable
+namespace Interaction.Activities
 {
-	public Instrument Parent => GetComponentInParent<Instrument>();
-	public string Note;
-	public override string DisplayName => Note;
-
-	public AudioClip Sound;
-
-	public override void Use(Actor actor, string action)
+	public class InstrumentKey : Interactable
 	{
-		if (Sound)
+		public Instrument Parent => GetComponentInParent<Instrument>();
+		public string Note;
+		public override string DisplayName => Note;
+
+		public AudioClip Sound;
+
+		public override void Use(Actor actor, string action)
 		{
-			var source = ObjectPool<AudioSource>.Get();
-			source.spatialBlend = 1;
-			source.transform.position = transform.position;
-			source.PlayOneShot(Sound);
-			ObjectPool<AudioSource>.Release(source);
+			if (Sound)
+			{
+				var source = ObjectPool<AudioSource>.Get();
+				source.spatialBlend = 1;
+				source.transform.position = transform.position;
+				source.PlayOneShot(Sound);
+				ObjectPool<AudioSource>.Release(source);
+			}
+			base.Use(actor, action);
 		}
-		base.Use(actor, action);
 	}
 }

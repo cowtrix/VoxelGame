@@ -1,27 +1,31 @@
+using Actors;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionColliderEvent : MonoBehaviour
+namespace Interaction
 {
-	public PlayerActor Player;
-	private void OnTriggerEnter(Collider other)
+	public class InteractionColliderEvent : MonoBehaviour
 	{
-		var interactable = other.GetComponent<Interactable>();
-		if(!interactable)
+		public PlayerActor Player;
+		private void OnTriggerEnter(Collider other)
 		{
-			return;
+			var interactable = other.GetComponent<Interactable>();
+			if (!interactable)
+			{
+				return;
+			}
+			interactable.InteractionSettings.OnEnterAttention.Invoke(Player);
 		}
-		interactable.InteractionSettings.OnEnterAttention.Invoke(Player);
-	}
 
-	private void OnTriggerExit(Collider other)
-	{
-		var interactable = other.GetComponent<Interactable>();
-		if (!interactable)
+		private void OnTriggerExit(Collider other)
 		{
-			return;
+			var interactable = other.GetComponent<Interactable>();
+			if (!interactable)
+			{
+				return;
+			}
+			interactable.InteractionSettings.OnExitAttention.Invoke(Player);
 		}
-		interactable.InteractionSettings.OnExitAttention.Invoke(Player);
 	}
 }

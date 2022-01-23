@@ -1,33 +1,37 @@
-﻿using System;
+﻿using Actors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Voxul;
 
-public class Instrument : ExtendedMonoBehaviour
+namespace Interaction.Activities
 {
-	public InstrumentCollection Collection;
-	public List<InstrumentKey> Keys { get; private set; }
-
-	private void Awake()
+	public class Instrument : ExtendedMonoBehaviour
 	{
-		Keys = new List<InstrumentKey>(GetComponentsInChildren<InstrumentKey>()
-			.OrderBy(x => transform.worldToLocalMatrix.MultiplyPoint3x4(x.transform.position).z));
-		for (int i = 0; i < Keys.Count; i++)
+		public InstrumentCollection Collection;
+		public List<InstrumentKey> Keys { get; private set; }
+
+		private void Awake()
 		{
-			var key = Keys[i];
-			var index = i;
-			key.InteractionSettings.OnUsed.AddListener(a => OnNotePlayed(a, index));
+			Keys = new List<InstrumentKey>(GetComponentsInChildren<InstrumentKey>()
+				.OrderBy(x => transform.worldToLocalMatrix.MultiplyPoint3x4(x.transform.position).z));
+			for (int i = 0; i < Keys.Count; i++)
+			{
+				var key = Keys[i];
+				var index = i;
+				key.InteractionSettings.OnUsed.AddListener(a => OnNotePlayed(a, index));
+			}
 		}
-	}
 
-	private void OnNotePlayed(Actor a, int i)
-	{
-		Debug.Log($"Attempting to play note {i}");
-		var source = ObjectPool<AudioSource>.Get();
-		source.spatialBlend = 1;
-		source.transform.position = transform.position;
-		source.PlayOneShot(Collection.Notes[i]);
-		ObjectPool<AudioSource>.Release(source);
+		private void OnNotePlayed(Actor a, int i)
+		{
+			Debug.Log($"Attempting to play note {i}");
+			var source = ObjectPool<AudioSource>.Get();
+			source.spatialBlend = 1;
+			source.transform.position = transform.position;
+			source.PlayOneShot(Collection.Notes[i]);
+			ObjectPool<AudioSource>.Release(source);
+		}
 	}
 }

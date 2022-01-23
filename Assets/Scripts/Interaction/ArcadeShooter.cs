@@ -5,7 +5,7 @@ using UnityEngine;
 using Voxul;
 using Voxul.Utilities;
 
-namespace Arcade
+namespace Interaction.Activities.AsteroidDefense
 {
 	public class ArcadeShooter : FocusableInteractable
 	{

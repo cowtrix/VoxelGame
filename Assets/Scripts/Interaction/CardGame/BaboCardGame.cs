@@ -1,3 +1,4 @@
+using Actors;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Voxul.Utilities;
 
-namespace CardGame_Babo
+namespace Interaction.Activities.CardGame_Babo
 {
 	public enum ECardType
 	{
@@ -17,14 +18,6 @@ namespace CardGame_Babo
 		LookSwap,
 	}
 
-	[Serializable]
-	public struct RotationLimits
-	{
-		public Vector2 X, Y, Z;
-
-		public Quaternion ClampRotation(Quaternion rot) =>
-			Quaternion.Euler(Mathf.Clamp(rot.eulerAngles.x, X.x, X.y), Mathf.Clamp(rot.eulerAngles.y, Y.x, Y.y), Mathf.Clamp(rot.eulerAngles.z, Z.x, Z.y));
-	}
 
 	public class BaboCardGame : FocusableInteractable
 	{

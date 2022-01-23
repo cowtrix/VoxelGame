@@ -1,8 +1,9 @@
 ﻿
+using Actors;
 using System;
 using System.Collections.Generic;
 
-namespace Items
+namespace Interaction.Items
 {
 	[Serializable]
 	public class IntResourceDelta

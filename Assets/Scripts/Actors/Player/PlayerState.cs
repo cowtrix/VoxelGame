@@ -1,52 +1,51 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Interaction.Items;
+using Newtonsoft.Json.Linq;
 using Phone;
 using System;
 using UnityEngine;
 
-public interface IFueledActor
+namespace Actors
 {
-	public float ThrusterFuel { get; }
-}
-
-public interface IPurchaseable
-{
-	public int Cost { get; }
-}
-
-public interface ICreditConsumerActor
-{
-	public int Credits { get; }
-	public bool TryPurchase(IPurchaseable purchaseable);
-}
-
-public class PlayerState : ActorState, IFueledActor
-{
-	public float ThrusterEfficiency { get; private set; } = -.05f;
-	public float ThrusterRecharge { get; private set; } = .1f;
-	[StateMin(0)]
-	public float ThrusterFuel { get; private set; } = 100;
-
-	public override int Credits
+	public interface IFueledActor
 	{
-		get
-		{
-			return (Actor as PlayerActor).Phone.GetApp<PhoneAppBank>().Credits;
-		}
-		protected set
-		{
-			(Actor as PlayerActor).Phone.GetApp<PhoneAppBank>().Credits = value;
-		}
+		public float ThrusterFuel { get; }
 	}
 
-	protected override void Update()
+	public interface ICreditConsumerActor
 	{
-		ThrusterFuel = Mathf.Clamp(ThrusterFuel, 0, 100);
-		if (ThrusterFuel < 100)
+		public int Credits { get; }
+		public bool TryPurchase(IPurchaseableItem purchaseable);
+	}
+
+	public class PlayerState : ActorState, IFueledActor
+	{
+		public float ThrusterEfficiency { get; private set; } = -.05f;
+		public float ThrusterRecharge { get; private set; } = .1f;
+		[StateMin(0)]
+		public float ThrusterFuel { get; private set; } = 100;
+
+		public override int Credits
 		{
-			var delta = ThrusterRecharge * Time.deltaTime;
-			ThrusterFuel += delta;
-			OnStateUpdate.Invoke(Actor, nameof(ThrusterFuel), ThrusterFuel, delta);
+			get
+			{
+				return (Actor as PlayerActor).Phone.GetApp<PhoneAppBank>().Credits;
+			}
+			protected set
+			{
+				(Actor as PlayerActor).Phone.GetApp<PhoneAppBank>().Credits = value;
+			}
 		}
-		base.Update();
+
+		protected override void Update()
+		{
+			ThrusterFuel = Mathf.Clamp(ThrusterFuel, 0, 100);
+			if (ThrusterFuel < 100)
+			{
+				var delta = ThrusterRecharge * Time.deltaTime;
+				ThrusterFuel += delta;
+				OnStateUpdate.Invoke(Actor, nameof(ThrusterFuel), ThrusterFuel, delta);
+			}
+			base.Update();
+		}
 	}
 }

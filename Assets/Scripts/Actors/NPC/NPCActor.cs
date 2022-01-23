@@ -4,14 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(DialogueTreeController))]
-public class NPCActor : Actor, IDialogueActor
+namespace Actors
 {
-	public DialogueTreeController Controller => GetComponent<DialogueTreeController>();
-
-	public void InteractWithActor(Actor instigator, string action)
+	[RequireComponent(typeof(DialogueTreeController))]
+	public class NPCActor : Actor, IDialogueActor
 	{
-		Controller.SetActorReference(DialogueTree.SELF_NAME, this);
-		Controller.StartDialogue(instigator);
+		public DialogueTreeController Controller => GetComponent<DialogueTreeController>();
+
+		public void InteractWithActor(Actor instigator, string action)
+		{
+			Controller.SetActorReference(DialogueTree.SELF_NAME, this);
+			Controller.StartDialogue(instigator);
+		}
 	}
 }

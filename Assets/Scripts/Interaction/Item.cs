@@ -1,19 +1,31 @@
+using Actors;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using Voxul.Utilities;
 
-namespace Items
+namespace Interaction.Items
 {
-	public interface IEquippableItem
+	public interface IItem
+	{
+		Transform transform { get; }
+		GameObject gameObject { get; }
+	}
+
+	public interface IEquippableItem : IItem
 	{
 		void OnEquip(Actor actor);
 		void OnUnequip(Actor actor);
 		void UseOn(Actor playerInteractionManager, GameObject target);
 	}
 
-	public class Item : Interactable
+	public interface IPurchaseableItem : IItem
+	{
+		public int Cost { get; }
+	}
+
+	public class Item : Interactable, IItem
 	{
 		[Serializable]
 		public struct IconParameters
