@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,13 @@ using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
+	public class GameState
+	{
+		public float NormalizedTimeOfDay;
+		public int DayCount;
+		public List<JObject> EntityData;
+	}
+
 	[Range(0,1)]
 	public float NormalizedTimeOfDay;
 	public int DayCount;
@@ -54,5 +62,34 @@ public class GameManager : Singleton<GameManager>
 	private void Update()
 	{
 		NormalizedTimeOfDay += Time.deltaTime / 1000;
+	}
+
+	[ContextMenu("Save Game")]
+	public void SaveGame()
+	{
+		var state = new GameState
+		{
+			NormalizedTimeOfDay = NormalizedTimeOfDay,
+			DayCount = DayCount,
+			EntityData = StateContainer.Instances.Select(c => c.GetSaveData()).ToList()
+		};
+	}
+
+	[ContextMenu("Load Game")]
+	public void LoadGame(GameState saveData)
+	{
+		NormalizedTimeOfDay = saveData.NormalizedTimeOfDay;
+		DayCount = saveData.DayCount;
+		foreach(var entityData in saveData.EntityData)
+		{
+			var guid = entityData[nameof(StateContainer.GUID)].Value<string>();
+			var statecontainer = StateContainer.Instances.FirstOrDefault(a => a.GUID == guid);
+			if(statecontainer == null)
+			{
+				Debug.LogWarning($"Failed to load state for entity {guid}");
+				continue;
+			}
+			statecontainer.LoadSaveData(entityData);
+		}
 	}
 }

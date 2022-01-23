@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +8,8 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
 using Voxul;
+using Common;
+using Items;
 
 [Serializable]
 public class FloatStateUpdateEvent : UnityEvent<Actor, string, float, float> { }
@@ -16,32 +20,42 @@ public class FloatStateFailureUpdateEvent : UnityEvent<Actor, string, float> { }
 [Serializable]
 public class InventoryStateUpdateEvent : UnityEvent<Actor, string, Item> { }
 
+public interface IStateProvider
+{
+	string GUID { get; }
+	string GetSaveData();
+	void LoadSaveData(string data);
+}
+
 [RequireComponent(typeof(Actor))]
-public class StateContainer : ExtendedMonoBehaviour
+public abstract class StateContainer : TrackedObject<StateContainer>
 {
 	private Dictionary<string, PropertyInfo> m_fieldLookup;
 	public Actor Actor => GetComponent<Actor>();
 	public FloatStateUpdateEvent OnStateUpdate = new FloatStateUpdateEvent();
-	FloatStateFailureUpdateEvent OnStateFailedUpdate = new FloatStateFailureUpdateEvent();
+	public FloatStateFailureUpdateEvent OnStateFailedUpdate = new FloatStateFailureUpdateEvent();
 
-	private IEnumerator Start()
+	public IStateProvider[] StateProviders { get; private set; }
+
+	protected virtual void Awake()
 	{
+		StateProviders = gameObject.GetComponentsByInterfaceInChildren<IStateProvider>(true);
+
 		m_fieldLookup = GetType()
 			.GetProperties()
-			.Where(p => !p.DeclaringType.Assembly.FullName.Contains("UnityEngine.CoreModule"))
+			.Where(p => p.CanWrite && p.CanRead && p.GetCustomAttribute<NonSerializedAttribute>() == null && !p.DeclaringType.Assembly.FullName.Contains("UnityEngine.CoreModule"))
 			.ToDictionary(f => f.Name, f => f);
-		yield return new WaitForSeconds(1);
-		foreach(var field in m_fieldLookup
+
+		foreach (var field in m_fieldLookup
 			.Where(f => f.Value.PropertyType == typeof(float) || f.Value.PropertyType == typeof(int)))
 		{
 			OnStateUpdate.Invoke(Actor, field.Key, (float)Convert.ChangeType(field.Value.GetValue(this), typeof(float)), 0);
-			yield return new WaitForSeconds(.2f);
 		}
 	}
 
 	public bool TryGetValue<T>(string name, out T result)
 	{
-		if(!m_fieldLookup.TryGetValue(name, out var fieldInfo))
+		if (!m_fieldLookup.TryGetValue(name, out var fieldInfo))
 		{
 			result = default;
 			return false;
@@ -53,7 +67,7 @@ public class StateContainer : ExtendedMonoBehaviour
 
 	public bool TryAdd(string fieldA, string fieldB)
 	{
-		if(!m_fieldLookup.TryGetValue(fieldA, out var fieldInfoA) || !m_fieldLookup.TryGetValue(fieldB, out var fieldInfoB))
+		if (!m_fieldLookup.TryGetValue(fieldA, out var fieldInfoA) || !m_fieldLookup.TryGetValue(fieldB, out var fieldInfoB))
 		{
 			return false;
 		}
@@ -109,7 +123,7 @@ public class StateContainer : ExtendedMonoBehaviour
 		var newVal = val + delta;
 
 		var minAttr = fieldInfo.GetCustomAttribute<StateMinAttribute>();
-		if(minAttr != null && newVal < minAttr.Min)
+		if (minAttr != null && newVal < minAttr.Min)
 		{
 			return false;
 		}
@@ -119,4 +133,55 @@ public class StateContainer : ExtendedMonoBehaviour
 		//Debug.Log($"State update: {field}: {newVal} ({delta})");
 		return true;
 	}
+
+	public JObject GetSaveData()
+	{
+		var data = new JObject();
+		data[nameof(GUID)] = GUID;
+		foreach (var f in m_fieldLookup)
+		{
+			data[f.Key] = JsonUtility.ToJson(f.Value.GetValue(this));
+		}
+		foreach (var provider in StateProviders)
+		{
+			var providerSaveData = provider.GetSaveData();
+			data[provider.GUID] = providerSaveData;
+			Debug.Log($"Provider {provider} loaded save data {providerSaveData}");
+		}
+		Debug.Log($"State container {this} saved data {data}");
+		return data;
+	}
+
+	public void LoadSaveData(JObject data)
+	{
+		Debug.Log($"State container {this} loaded save data {data}");
+		foreach (var token in data.Children())
+		{
+			if (!(token is JObject jObj))
+			{
+				Debug.LogError($"Unexpected token in save data: {token}", this);
+				return;
+			}
+
+			var target = jObj.Path;
+			if (m_fieldLookup.TryGetValue(target, out var prop))
+			{
+				var obj = JsonUtility.FromJson(jObj.ToString(), prop.PropertyType);
+				prop.SetValue(this, obj);
+				return;
+			}
+
+			var provider = StateProviders.FirstOrDefault(s => s.GUID == target);
+			if(provider != null)
+			{
+				Debug.Log($"Provider {provider} loaded save data {jObj}");
+				provider.LoadSaveData(jObj.ToString());
+			}
+
+			Debug.LogError($"Failed to find property with name: {target}", this);
+		}
+		OnSaveDataLoaded();
+	}
+
+	protected virtual void OnSaveDataLoaded() { }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Voxul;
 using Voxul.Utilities;
 
@@ -9,12 +10,15 @@ namespace CardGame_Babo
 {
 	public class BaboPlayer : ExtendedMonoBehaviour
 	{
-		public int CurrentScore => Cards.Sum(c => Card.GetCost(c.CardType));
+		public int CurrentScore => Cards.Sum(c => c != null ? Card.GetCost(c.CardType) : 0);
 
-		public CardGame Game;
+		public Text ScoreText;
+		public BaboCardGame Game;
 		public Transform Card1Anchor, Card2Anchor, Card3Anchor, Card4Anchor;
-		public Transform PreviewTransform;
+		public Transform PreviewTransform, PeekTransform;
 		public Actor Owner;
+
+		public ParticleSystem WinParticles;
 
 		private Transform IndexToAnchor(int index)
 		{
@@ -45,9 +49,9 @@ namespace CardGame_Babo
 		public int GetCardIndex(Card card)
 		{
 			var index = 0;
-			foreach(var c in Cards)
+			foreach (var c in Cards)
 			{
-				if(c == card)
+				if (c == card)
 				{
 					return index;
 				}
@@ -65,10 +69,10 @@ namespace CardGame_Babo
 		{
 			get
 			{
-				for(var i = 0; i < 4; ++i)
+				for (var i = 0; i < 4; ++i)
 				{
 					yield return GetCardAtIndex(i);
-				} 
+				}
 			}
 		}
 
@@ -89,7 +93,7 @@ namespace CardGame_Babo
 			card.TargetNormal = Vector3.up;
 			card.TargetRotation = Quaternion.identity;
 
-			while((card.TargetPosition - card.transform.localPosition).magnitude < .01f)
+			while ((card.TargetPosition - card.transform.localPosition).magnitude < .01f)
 			{
 				yield return null;
 			}
@@ -108,8 +112,6 @@ namespace CardGame_Babo
 			card.TargetPosition = Vector3.zero;
 			card.TargetNormal = Vector3.up;
 			card.TargetRotation = Quaternion.identity;
-
-			card.GetComponent<Interactable>().enabled = true;
 		}
 
 		public Card TakeFromList(List<Card> list)
@@ -127,6 +129,7 @@ namespace CardGame_Babo
 			newCard.TargetPosition = Vector3.zero;
 			newCard.TargetNormal = Vector3.up;
 			newCard.TargetRotation = Quaternion.identity;
+
 			return newCard;
 		}
 
@@ -134,9 +137,64 @@ namespace CardGame_Babo
 		{
 			Game.DiscardPile.Add(card);
 			card.transform.SetParent(Game.transform, true);
-			card.TargetPosition = Game.DiscardPosition.transform.localPosition + Vector3.up * (Game.DiscardPile.Count + 1) * Game.CardStackHeight;
-			card.TargetNormal = Game.DiscardPosition.transform.LocalUp();
-			card.TargetRotation = Quaternion.Euler(180, -90, 0) * Game.DiscardPosition.localRotation;
+			card.TargetPosition = Game.DiscardInteractive.transform.localPosition + Vector3.up * (Game.DiscardPile.Count + 1) * Game.CardStackHeight;
+			card.TargetNormal = Game.DiscardInteractive.transform.LocalUp();
+			card.TargetRotation = Game.DiscardInteractive.transform.localRotation * Quaternion.Euler(0, 0, 0);
+
+			card.Interactable.enabled = false;
+			card.CardText.gameObject.SetActive(false);
+			card.Activated = false;
+
+			foreach (var c in Cards)
+			{
+				if (c == null)
+				{
+					continue;
+				}
+				c.Interactable.enabled = false;
+			}
+		}
+
+		public IEnumerator ShowCardAsync(int handIndex)
+		{
+			var card = GetCardAtIndex(handIndex);
+			card.TargetPosition = new Vector3(0, 0, -0.12f);
+			card.TargetNormal = Vector3.up;
+			card.TargetRotation = Quaternion.Euler(-90, 0, 0);
+
+			while ((card.TargetPosition - card.transform.localPosition).magnitude < .01f)
+			{
+				yield return null;
+			}
+
+			yield return new WaitForSeconds(3);
+
+			card.TargetPosition = Vector3.zero;
+			card.TargetNormal = Vector3.up;
+			card.TargetRotation = Quaternion.identity;
+		}
+
+		public IEnumerator PeekCardAsync(Card card)
+		{
+			card.TargetPosition = card.transform.parent.worldToLocalMatrix.MultiplyPoint3x4(PeekTransform.transform.localToWorldMatrix.MultiplyPoint3x4(new Vector3(0, 0, -0.12f)));
+			card.TargetNormal = card.transform.parent.worldToLocalMatrix.MultiplyVector(PeekTransform.transform.localToWorldMatrix.MultiplyVector(Vector3.up));
+			card.TargetRotation = card.transform.parent.worldToLocalMatrix.rotation * PeekTransform.rotation;
+
+			while ((card.TargetPosition - card.transform.localPosition).magnitude < .01f)
+			{
+				yield return null;
+			}
+
+			yield return new WaitForSeconds(3);
+
+			card.TargetPosition = Vector3.zero;
+			card.TargetNormal = Vector3.up;
+			card.TargetRotation = Quaternion.identity;
+		}
+
+		private void Update()
+		{
+			ScoreText.text = CurrentScore.ToString();
 		}
 	}
 }

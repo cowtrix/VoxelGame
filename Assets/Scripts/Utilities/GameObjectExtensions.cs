@@ -232,8 +232,6 @@ namespace Common
             return self;
         }
 
-
-
         public static T GetComponentInChildrenDisabled<T>(this Transform transform) where T : Component
         {
             var ret = new List<T>();

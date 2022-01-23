@@ -1,4 +1,5 @@
 using Common;
+using Items;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -119,7 +120,7 @@ public class ClawMachine : FocusableInteractable
 		{
 			return;
 		}
-		if (!playerActor.State.TryAdd(nameof(ICreditedActor.Credits), -PlayCost))
+		if (!playerActor.State.TryAdd(nameof(ICreditConsumerActor.Credits), -PlayCost))
 		{
 			return;
 		}

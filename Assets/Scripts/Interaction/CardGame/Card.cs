@@ -10,14 +10,14 @@ namespace CardGame_Babo
 {
 	public class Card : ExtendedMonoBehaviour
 	{
-		public CardGame Game;
+		public BaboCardGame Game;
 		public ECardType CardType;
-		public Canvas CardCanvas;
 		public Text CardText;
 
 		public float Curviness = .5f;
 
 		public DynamicTextureSetter FaceTextureSetter;
+		public SimpleInteractable Interactable => GetComponent<SimpleInteractable>();
 
 		public Vector3 TargetNormal { get; set; }
 		public Vector3 TargetPosition { get; set; }
@@ -28,12 +28,10 @@ namespace CardGame_Babo
 		public Quaternion TargetRotation { get; set; }
 		public float RotationSpeed = 1;
 
-		public int Cost => GetCost(CardType);
+		public bool Activated { get; set; }
+		public GameObject ActivatedContainer;
 
-		private void Start()
-		{
-			CardCanvas.enabled = false;
-		}
+		public int Cost => GetCost(CardType);
 
 		public void Invalidate()
 		{
@@ -63,6 +61,7 @@ namespace CardGame_Babo
 
 		public static string GetLabel(ECardType type)
 		{
+			var cost = GetCost(type);
 			switch (type)
 			{
 				case ECardType.Num_1:
@@ -71,21 +70,22 @@ namespace CardGame_Babo
 				case ECardType.Num_4:
 				case ECardType.Num_5:
 				case ECardType.Num_6:
-					return ((int)type + 1).ToString();
+					return cost.ToString();
 				case ECardType.LookSelf:
-					return "Look Self";
+					return $"Look Self ({cost})";
 				case ECardType.LookOther:
-					return "Look Other";
+					return $"Look Other ({cost})";
 				case ECardType.Swap:
-					return "Swap";
+					return $"Swap ({cost})";
 				case ECardType.LookSwap:
-					return "Look & Swap";
+					return $"Look & Swap ({cost})";
 			}
 			return "";
 		}
 
 		private void Update()
 		{
+			Interactable.Name = "";
 			CardText.text = GetLabel(CardType);
 			if ((transform.localPosition - TargetPosition).magnitude > 0)
 			{
@@ -102,6 +102,10 @@ namespace CardGame_Babo
 			m_splineTime = Mathf.Clamp01(m_splineTime + Time.deltaTime * MoveSpeed);
 			transform.localPosition = m_moveSpline.GetNaturalPointOnSpline(m_splineTime);
 			transform.localRotation = Quaternion.Lerp(transform.localRotation, TargetRotation, Time.deltaTime * RotationSpeed);
+
+			ActivatedContainer.SetActive(Activated && Interactable.enabled);
 		}
+
+		public override string ToString() => GetLabel(CardType);
 	}
 }

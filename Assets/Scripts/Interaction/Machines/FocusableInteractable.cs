@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CardGame_Babo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,10 +7,14 @@ using UnityEngine.InputSystem;
 
 public abstract class FocusableInteractable : Interactable, ICameraControllerProxy
 {
-	public Quaternion? LookDirectionOverride => transform.localToWorldMatrix.rotation * Quaternion.Euler(LookRotation);
+	public Quaternion? LookDirectionOverride => transform.localToWorldMatrix.rotation * Quaternion.Euler(LookRotation + m_additionalRotation);
 	public Vector3? LookPositionOverride => transform.localToWorldMatrix.MultiplyPoint(LookOffset);
 
+	public RotationLimits CameraRotationLimits;
+	public float LookSpeed = 1;
 	public Vector3 LookOffset, LookRotation;
+
+	protected Vector3 m_additionalRotation;
 
 	public Actor Actor { get; protected set; }
 
@@ -58,7 +63,15 @@ public abstract class FocusableInteractable : Interactable, ICameraControllerPro
 
 	public virtual void Move(Actor actor, Vector2 direction) { }
 
-	public virtual void Look(Actor actor, Vector2 direction) { }
+	public virtual void Look(Actor actor, Vector2 direction)
+	{
+		direction *= Time.deltaTime * LookSpeed;
+		var currentRot = LookRotation + m_additionalRotation;
+		var newRot = new Vector3(Mathf.Clamp(currentRot.x - direction.y, CameraRotationLimits.X.x, CameraRotationLimits.X.y),
+			Mathf.Clamp(currentRot.y + direction.x, CameraRotationLimits.Y.x, CameraRotationLimits.Y.y),
+			Mathf.Clamp(currentRot.z, CameraRotationLimits.Z.x, CameraRotationLimits.Z.y));
+		m_additionalRotation = newRot - LookRotation;
+	}
 
 	protected virtual void OnActiveUse(Actor actor, string action) { }
 

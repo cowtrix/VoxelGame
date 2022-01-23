@@ -1,5 +1,6 @@
 using Common;
 using NodeCanvas.DialogueTrees;
+using Phone;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,14 +22,14 @@ public class PlayerActor : Actor
 			return;
 		}
 
-		if(FocusedInteractable is FocusableInteractable focusable && focusable.Actor == this)
+		if (FocusedInteractable is FocusableInteractable focusable && focusable.Actor == this)
 		{
 			focusable.Fire(this);
 		}
-		else if (State.EquippedItem)
+		else if (State.EquippedItem != null)
 		{
 			Debug.Log("OnFire: " + FocusedInteractable);
-			State.EquippedItem.UseOn(this, FocusedInteractable);
+			State.EquippedItem.UseOn(this, FocusedInteractable.gameObject);
 			return;
 		}
 	}

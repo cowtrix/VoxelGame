@@ -16,7 +16,11 @@ public class FuelBuddy : Interactable
 
 	public override IEnumerable<string> GetActions(Actor context)
 	{
-		if(GetCostForActor(context, out var refuelAmount, out var refuelCount) && refuelAmount > 0)
+		if (!CanUse(context))
+		{
+			yield break;
+		}
+		if (GetCostForActor(context, out var refuelAmount, out var refuelCount) && refuelAmount > 0)
 		{
 			yield return $"Refuel {refuelAmount} Units ({refuelCount}c)";
 		}
@@ -25,7 +29,7 @@ public class FuelBuddy : Interactable
 	private bool GetCostForActor(Actor actor, out float refuelAmount, out int refuelCost)
 	{
 		if (!actor.State.TryGetValue<float>(nameof(IFueledActor.ThrusterFuel), out var currentFuel) ||
-			!actor.State.TryGetValue<int>(nameof(ICreditedActor.Credits), out var currentCredits))
+			!actor.State.TryGetValue<int>(nameof(ICreditConsumerActor.Credits), out var currentCredits))
 		{
 			refuelAmount = 0;
 			refuelCost = 0;
@@ -44,7 +48,7 @@ public class FuelBuddy : Interactable
 	public override void Use(Actor actor, string action)
 	{
 		if(GetCostForActor(actor, out var refuelAmount, out var refuelCost)
-			&& actor.State.TryAdd(nameof(ICreditedActor.Credits), -refuelCost))
+			&& actor.State.TryAdd(nameof(ICreditConsumerActor.Credits), -refuelCost))
 		{
 			actor.State.TryAdd(nameof(IFueledActor.ThrusterFuel), refuelAmount);
 			CurrentCapacity -= refuelAmount;

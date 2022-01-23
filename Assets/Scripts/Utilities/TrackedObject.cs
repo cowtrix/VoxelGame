@@ -1,16 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Voxul;
+using Voxul.Utilities;
 
 namespace Common
 {
-	public abstract class TrackedObject<T> : MonoBehaviour where T : TrackedObject<T>
+	public abstract class TrackedObject<T> : ExtendedMonoBehaviour where T : TrackedObject<T>
 	{
 		public virtual bool TrackDisabled => false;
-		private static HashSet<T> m_instances = new HashSet<T>();
+		private static Dictionary<string, T> m_instances = new Dictionary<string, T>();
 
 		protected virtual void OnEnable()
 		{
-			m_instances.Add(this as T);
+			m_instances.Add(GUID, this as T);
 		}
 
 		protected virtual void OnDisable()
@@ -19,14 +22,40 @@ namespace Common
 			{
 				return;
 			}
-			m_instances.Remove(this as T);
+			m_instances.Remove(GUID);
 		}
 
 		protected virtual void OnDestroy()
 		{
-			m_instances.Remove(this as T);
+			m_instances.Remove(GUID);
 		}
 
-		public static IReadOnlyCollection<T> Instances => m_instances;
+		public static IReadOnlyCollection<T> Instances => m_instances.Values;
+
+		public static bool TryGetValue(string guid, out T val)
+		{
+			if (!m_instances.TryGetValue(guid, out val))
+			{
+				return false;
+			}
+			return true;
+		}
+
+		[HideInInspector]
+		[SerializeField]
+		private string m_guid;
+
+		public string GUID
+		{
+			get
+			{
+				while (string.IsNullOrEmpty(m_guid) || m_instances.ContainsKey(m_guid))
+				{
+					m_guid = Guid.NewGuid().ToString();
+					this.TrySetDirty();
+				}
+				return m_guid;
+			}
+		}
 	}
 }

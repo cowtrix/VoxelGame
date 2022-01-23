@@ -1,23 +1,42 @@
-﻿using UnityEngine;
+﻿using Newtonsoft.Json.Linq;
+using Phone;
+using System;
+using UnityEngine;
 
 public interface IFueledActor
 {
 	public float ThrusterFuel { get; }
 }
 
-public interface ICreditedActor
+public interface IPurchaseable
 {
-	public int Credits { get; }
+	public int Cost { get; }
 }
 
-public class PlayerState : ActorState, IFueledActor, ICreditedActor
+public interface ICreditConsumerActor
+{
+	public int Credits { get; }
+	public bool TryPurchase(IPurchaseable purchaseable);
+}
+
+public class PlayerState : ActorState, IFueledActor
 {
 	public float ThrusterEfficiency { get; private set; } = -.05f;
 	public float ThrusterRecharge { get; private set; } = .1f;
 	[StateMin(0)]
 	public float ThrusterFuel { get; private set; } = 100;
-	[StateMin(0)]
-	public int Credits { get; private set; } = 150;
+
+	public override int Credits
+	{
+		get
+		{
+			return (Actor as PlayerActor).Phone.GetApp<PhoneAppBank>().Credits;
+		}
+		protected set
+		{
+			(Actor as PlayerActor).Phone.GetApp<PhoneAppBank>().Credits = value;
+		}
+	}
 
 	protected override void Update()
 	{

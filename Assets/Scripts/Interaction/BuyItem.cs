@@ -9,6 +9,10 @@ public class BuyItem : Label
 
 	public override IEnumerable<string> GetActions(Actor actor)
 	{
+		if (!CanUse(actor))
+		{
+			yield break;
+		}
 		yield return $"Buy {this.PlainText} [{Cost}c]";
 	}
 }

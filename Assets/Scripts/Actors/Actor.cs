@@ -1,9 +1,11 @@
 ﻿using Common;
+using Items;
 using NodeCanvas.DialogueTrees;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Voxul;
+using Voxul.Utilities;
 
 [RequireComponent(typeof(ActorState))]
 public class Actor : ExtendedMonoBehaviour, IDialogueActor
@@ -22,19 +24,17 @@ public class Actor : ExtendedMonoBehaviour, IDialogueActor
 	public ActorSettings Settings = new ActorSettings();
 	public Interactable FocusedInteractable { get; protected set; }
 	public List<Interactable> Interactables { get; private set; } = new List<Interactable>();
-	public Transform InventoryContainer { get; private set; }
+
 	public ActorState State => GetComponent<ActorState>();
 	public virtual string DisplayName => name;
 	public ILookAdapter LookAdapter { get; protected set; }
 	public Transform GetDialogueContainer() => DialogueContainer;
 	public Transform DialogueContainer;
 	public LayerMask InteractionMask;
-
+	
 	private void Start()
 	{
 		LookAdapter = gameObject.GetComponentByInterfaceInChildren<ILookAdapter>();
-		InventoryContainer = new GameObject($"{name}_Inventory").transform;
-		InventoryContainer.SetParent(transform);
 	}
 
 	protected virtual void Update()
@@ -86,56 +86,5 @@ public class Actor : ExtendedMonoBehaviour, IDialogueActor
 		}
 		Interactables.Remove(interactable);
 		interactable.ExitAttention(this);
-	}
-
-	public void PickupItem(Item item)
-	{
-		State.Inventory.Add(item);
-		item.OnPickup(this);
-
-		var rb = item.GetComponent<Rigidbody>();
-		if (rb)
-		{
-			rb.Sleep();
-			rb.interpolation = RigidbodyInterpolation.None;
-		}
-
-		if (!State.EquippedItem)
-		{
-			item.gameObject.layer = Settings.EquippedLayer;
-			State.EquippedItem = item;
-			State.EquippedItem.transform.SetParent(Settings.EquippedItemTransform);
-		}
-		else
-		{
-			item.gameObject.layer = 3;
-			item.transform.SetParent(transform);
-		}
-
-		item.transform.localPosition = item.EquippedOffset;
-		item.transform.localRotation = Quaternion.Euler(item.EquippedRotation);
-
-		State.OnInventoryUpdate.Invoke(this, Item.PICK_UP, item);
-	}
-
-	public void DropItem(Item item, Vector3 position, Quaternion rotation)
-	{
-		State.Inventory.Remove(item);
-		if (item == State.EquippedItem)
-		{
-			item.OnUnequip(this);
-			State.EquippedItem = null;
-		}
-		item.transform.position = position;
-		item.transform.rotation = rotation;
-		item.OnDrop(this);
-
-		var rb = item.GetComponent<Rigidbody>();
-		if (rb)
-		{
-			rb.WakeUp();
-		}
-
-		State.OnInventoryUpdate.Invoke(this, Item.DROP, item);
 	}
 }

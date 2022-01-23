@@ -1,33 +1,80 @@
 ﻿using Common;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using Voxul;
 
-public class PhoneApp : ExtendedMonoBehaviour
+namespace Phone
 {
-	public PhoneController Phone { get; private set; }
-	public Sprite Icon;
-	public string AppName;
-
-	public int NotificationCount { get; internal set; }
-
-	private void Awake()
+	public abstract class PhoneApp : TrackedObject<PhoneApp>, IStateProvider
 	{
-		Phone = transform.GetComponentInAncestors<PhoneController>();
-	}
+		private const float MoveSpeed = 8;
+		private static Vector2 ClosedPosition = new Vector2(0, -290);
+		private static Vector2 OpenPosition = new Vector2(0, -16);
 
-	public virtual void OnOpen(PhoneController phoneController)
-	{
-		gameObject.SetActive(true);
-	}
+		public Sprite Icon;
+		public string AppName;
 
-	public virtual void OnClose(PhoneController phoneController)
-	{
-		gameObject.SetActive(false);
-	}
+		public int NotificationCount { get; internal set; }
+		public PhoneController Phone { get; private set; }
+		protected RectTransform RectTransform => GetComponent<RectTransform>();
+		private Coroutine m_moveCoroutine;
 
-	protected void SendNotification(string string1, string string2 = null)
-	{
-		Phone.NotificationManager.CreateNotification(this, string1, string2);
+		public virtual void Initialise(PhoneController controller)
+		{
+			Phone = controller;
+		}
+
+		public virtual void OnOpen(PhoneController phoneController)
+		{
+			if (m_moveCoroutine != null) {
+				Phone.StopCoroutine(m_moveCoroutine);
+			}
+			RectTransform.anchoredPosition = ClosedPosition;
+			m_moveCoroutine = Phone.StartCoroutine(MoveAndSetEnabled(RectTransform, OpenPosition, true));
+			NotificationCount = 0;
+		}
+
+		public virtual void OnClose(PhoneController phoneController)
+		{
+			if (m_moveCoroutine != null)
+			{
+				Phone.StopCoroutine(m_moveCoroutine);
+			}
+			m_moveCoroutine = Phone.StartCoroutine(MoveAndSetEnabled(RectTransform, ClosedPosition, false));
+			NotificationCount = 0;
+		}
+
+		IEnumerator MoveAndSetEnabled(RectTransform rt, Vector2 targetPos, bool enabled)
+		{
+			if (enabled)
+			{
+				gameObject.SetActive(enabled);
+			}
+			while((rt.anchoredPosition - targetPos).magnitude > 0.1f)
+			{
+				rt.anchoredPosition = Vector2.Lerp(rt.anchoredPosition, targetPos, Time.deltaTime * MoveSpeed);
+				yield return null;
+			}
+			gameObject.SetActive(enabled);
+			m_moveCoroutine = null;
+		}
+
+		protected void SendNotification(string string1, string string2 = null)
+		{
+			Phone.NotificationManager.CreateNotification(this, string1, string2);
+			NotificationCount++;
+		}
+
+		public virtual string GetSaveData()
+		{
+			return null;
+		}
+
+		public virtual void LoadSaveData(string data)
+		{
+		}
 	}
 }

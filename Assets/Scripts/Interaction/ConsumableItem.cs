@@ -2,33 +2,41 @@
 using System;
 using System.Collections.Generic;
 
-[Serializable]
-public class IntResourceDelta
+namespace Items
 {
-	public string ResourceName;
-	public int Amount;
-}
-
-public class ConsumableItem : Item
-{
-	public List<IntResourceDelta> Deltas;
-	public bool ConsumeOnPickup;
-
-	public override void OnPickup(Actor actor)
+	[Serializable]
+	public class IntResourceDelta
 	{
-		base.OnPickup(actor);
-		if (ConsumeOnPickup)
-		{
-			Consume(actor);
-		}
+		public string ResourceName;
+		public int Amount;
 	}
 
-	public void Consume(Actor actor)
+	public interface IConsumableItem
 	{
-		foreach (var delta in Deltas)
+		void Consume(Actor actor);
+	}
+
+	public class ConsumableItem : Item, IConsumableItem
+	{
+		public List<IntResourceDelta> Deltas;
+		public bool ConsumeOnPickup;
+
+		public override void OnPickup(Actor actor)
 		{
-			actor.State.TryAdd(delta.ResourceName, delta.Amount);
+			base.OnPickup(actor);
+			if (ConsumeOnPickup)
+			{
+				Consume(actor);
+			}
 		}
-		Destroy(gameObject);
+
+		public void Consume(Actor actor)
+		{
+			foreach (var delta in Deltas)
+			{
+				actor.State.TryAdd(delta.ResourceName, delta.Amount);
+			}
+			Destroy(gameObject);
+		}
 	}
 }

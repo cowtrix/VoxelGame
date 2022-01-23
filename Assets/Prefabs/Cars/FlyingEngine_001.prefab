@@ -4816,7 +4816,8 @@ GameObject:
   - component: {fileID: 4850149842131723302}
   - component: {fileID: 609014881964397932}
   - component: {fileID: 5517843772718534797}
-  - component: {fileID: 3367807727374351915}
+  - component: {fileID: 7557256479530464911}
+  - component: {fileID: 3356263764540489427}
   m_Layer: 0
   m_Name: FlyingEngine_001
   m_TagString: Untagged
@@ -4846,7 +4847,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7458948070370887011}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 7340503017011909607, guid: 8a1f4df7e8987f449ad217680864b396, type: 2}
 --- !u!23 &609014881964397932
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4866,7 +4867,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 94a3f69f175f81c458a0afa4ff6409ab, type: 2}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4901,8 +4902,8 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
---- !u!114 &3367807727374351915
+  m_Mesh: {fileID: 7340503017011909607, guid: 8a1f4df7e8987f449ad217680864b396, type: 2}
+--- !u!114 &7557256479530464911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4911,8 +4912,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 7458948070370887011}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96876c3cd07fe474da8fd0a1b4b808d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e3a57cdce1fab4408533db885df689b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdleAngle: {x: 5, y: 0, z: 0}
-  EmissionRange: {x: 25, y: 64}
+  Mesh: {fileID: 11400000, guid: 8a1f4df7e8987f449ad217680864b396, type: 2}
+  CustomMaterials: 0
+  OpaqueMaterial: {fileID: 0}
+  TransparentMaterial: {fileID: 0}
+  GenerateCollider: 1
+  SnapToGrid: 0
+  SnapLayer: 0
+  ThreadingMode: 1
+  MaxCoroutineUpdateTime: 0.016666668
+  m_voxWorker:
+    VoxelMesh: {fileID: 11400000, guid: 8a1f4df7e8987f449ad217680864b396, type: 2}
+  m_lastMeshHash: b1607a40-5ec5-4768-a763-13f1f6c428ce
+  Submeshes:
+  - {fileID: 3356263764540489427}
+--- !u!114 &3356263764540489427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7458948070370887011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
+  Parent: {fileID: 7557256479530464911}
+  MeshFilter: {fileID: 4850149842131723302}
+  MeshRenderer: {fileID: 609014881964397932}
+  MeshCollider: {fileID: 5517843772718534797}

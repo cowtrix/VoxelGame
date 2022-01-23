@@ -17,7 +17,11 @@ public class Door : Interactable
 
 	public override IEnumerable<string> GetActions(Actor actor)
 	{
-		if(m_targetOpen > 0)
+		if (!CanUse(actor))
+		{
+			yield break;
+		}
+		if (m_targetOpen > 0)
 		{
 			yield return "Close";
 		}

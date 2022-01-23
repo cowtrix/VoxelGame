@@ -1,6 +1,7 @@
 using Common;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Voxul;
 
@@ -26,8 +27,12 @@ public class NPCHeadLooker : ExtendedMonoBehaviour
 		{
 			var closestScaledDistance = float.MaxValue;
 			NPCObservable closestObservable = null;
-			foreach (var lookTarget in NPCObservable.Instances)
+			foreach (var lookTarget in NPCObservable.Instances.ToList())
 			{
+				if (lookTarget.enabled)
+				{
+					continue;
+				}
 				var distance = Vector3.Distance(transform.position, lookTarget.transform.position);
 				if (distance > lookTarget.AttentionDistance || distance > MaxLookDistance ||
 					!Mathfx.PointIsInCone(lookTarget.transform.position, transform.position, Quaternion.Euler(LookRotation) * transform.parent.forward, Mathf.Deg2Rad * LookAngle))

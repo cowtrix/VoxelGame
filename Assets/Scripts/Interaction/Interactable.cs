@@ -7,7 +7,13 @@ using UnityEngine.Events;
 using Voxul;
 
 [Serializable]
-public class ActorEvent : UnityEvent<Actor> { }
+public class ActorEvent : UnityEvent<Actor>
+{
+	internal void AddListener(ActorEvent onActivate)
+	{
+		throw new NotImplementedException();
+	}
+}
 
 [Serializable]
 public class SpriteEvent : UnityEvent<Sprite> { }
@@ -37,11 +43,17 @@ public abstract class Interactable : ExtendedMonoBehaviour
 	public virtual IEnumerable<string> GetActions(Actor context)
 	{
 		if (!CanUse(context))
+		{
 			yield break;
+		}
 		yield return USE;
 	}
 
-	protected virtual bool CanUse(Actor context) => true;
+	protected virtual bool CanUse(Actor context)
+	{
+		var distance = Vector3.Distance(context.transform.position, transform.position);
+		return distance <= InteractionSettings.MaxUseDistance;
+	}
 	public List<Collider> Colliders;
 
 	public Bounds Bounds

@@ -1,82 +1,144 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using Voxul.Utilities;
 
-public class Item : Interactable
+namespace Items
 {
-	public const string PICK_UP = "Pick Up";
-	public const string DROP = "Drop";
-
-	public Vector3 EquippedOffset, EquippedRotation;
-
-	private int m_layer;
-	private bool m_isKinematic;
-	public string ItemName = "Unknown Item";
-
-	protected Rigidbody Rigidbody => GetComponent<Rigidbody>();
-
-	public override string DisplayName => ItemName;
-
-	private void Start()
+	public interface IEquippableItem
 	{
-		m_layer = gameObject.layer;
-		var rb = Rigidbody;
-		if (rb)
+		void OnEquip(Actor actor);
+		void OnUnequip(Actor actor);
+		void UseOn(Actor playerInteractionManager, GameObject target);
+	}
+
+	public class Item : Interactable
+	{
+		[Serializable]
+		public struct IconParameters
 		{
-			m_isKinematic = rb.isKinematic;
+			public Texture2D Texture;
+			public Vector3 Offset, FocusOffset;
 		}
-	}
 
-	public override IEnumerable<string> GetActions(Actor actor)
-	{
-		yield return PICK_UP;
-	}
+		public const int IconSize = 64;
+		public const string PICK_UP = "Pick Up";
+		public const string DROP = "Drop";
 
-	public override void Use(Actor actor, string action)
-	{
-		if(action == PICK_UP)
+		public string ItemName = "Unknown Item";
+		public string Description = "An object of mysterious origins.";
+		public Vector3 EquippedOffset, EquippedRotation;
+		public IconParameters Icon;
+		public bool EquipOnPickup;
+
+		private int m_layer;
+		private bool m_isKinematic;
+
+		protected Rigidbody Rigidbody => GetComponent<Rigidbody>();
+
+		public override string DisplayName => ItemName;
+
+		private void Start()
 		{
-			actor.PickupItem(this);
+			m_layer = gameObject.layer;
+			var rb = Rigidbody;
+			if (rb)
+			{
+				m_isKinematic = rb.isKinematic;
+			}
 		}
-		base.Use(actor, action);
-	}
 
-	public virtual void OnUnequip(Actor actor)
-	{
-
-	}
-
-	public virtual void OnEquip(Actor actor)
-	{
-
-	}
-
-	public virtual void OnPickup(Actor actor)
-	{
-		var rb = Rigidbody;
-		if (rb)
+		[ContextMenu("Generate Icon")]
+		public void GenerateIcon()
 		{
-			rb.isKinematic = true;
-			rb.detectCollisions = false;
-		}
-	}
+			var layer = gameObject.layer;
+			gameObject.layer = 31;
+			var rt = RenderTexture.GetTemporary(IconSize, IconSize, 16, RenderTextureFormat.ARGB32);
+			var cam = new GameObject().AddComponent<Camera>();
+			cam.targetTexture = rt;
+			cam.transform.position = transform.position + transform.localToWorldMatrix.MultiplyVector(Icon.Offset);
+			cam.transform.LookAt(transform.position + transform.localToWorldMatrix.MultiplyVector(Icon.FocusOffset));
+			cam.cullingMask = 1 << 31;
+			cam.clearFlags = CameraClearFlags.SolidColor;
+			cam.backgroundColor = Color.clear;
+			cam.nearClipPlane = .01f;
+			var ambientSettings = AmbientLightingSettings.Current;
+			new AmbientLightingSettings
+			{
+				ambientMode = UnityEngine.Rendering.AmbientMode.Flat,
+				ambientSkyColor = new Color(.8f, .8f, .8f),
+			}.Apply();
 
-	public virtual void OnDrop(Actor actor)
-	{
-		var rb = Rigidbody;
-		if (rb)
+			cam.Render();
+			RenderTexture.active = rt;
+			var tex = new Texture2D(IconSize, IconSize);
+			tex.ReadPixels(new Rect(0, 0, IconSize, IconSize), 0, 0);
+			tex.Apply();
+			RenderTexture.active = null;
+
+			File.WriteAllBytes($"Assets/Prefabs/Items/Resources/Icons/{name}_icon.png", tex.EncodeToPNG());
+#if UNITY_EDITOR
+			UnityEditor.AssetDatabase.Refresh();
+#endif
+			Icon.Texture = Resources.Load<Texture2D>($"Icons/{name}_icon");
+
+			cam.targetTexture = null;
+			cam.gameObject.SafeDestroy();
+			gameObject.layer = layer;
+			RenderTexture.ReleaseTemporary(rt);
+			this.TrySetDirty();
+			ambientSettings.Apply();
+		}
+
+		public override IEnumerable<string> GetActions(Actor actor)
 		{
-			rb.position = transform.position;
-			rb.rotation = transform.rotation;
-			rb.isKinematic = m_isKinematic;
-			rb.detectCollisions = true;
+			if (!CanUse(actor))
+			{
+				yield break;
+			}
+			yield return PICK_UP;
 		}
-		gameObject.layer = m_layer;
-		transform.SetParent(null, true);
-	}
 
-	public virtual void UseOn(Actor playerInteractionManager, Interactable focusedInteractable)
-	{
-		
+		public override void Use(Actor actor, string action)
+		{
+			if (action == PICK_UP)
+			{
+				actor.State.PickupItem(this);
+			}
+			base.Use(actor, action);
+		}
+
+		public virtual void OnPickup(Actor actor)
+		{
+			var rb = Rigidbody;
+			if (rb)
+			{
+				rb.isKinematic = true;
+				rb.detectCollisions = false;
+			}
+		}
+
+		public virtual void OnDrop(Actor actor)
+		{
+			var rb = Rigidbody;
+			if (rb)
+			{
+				rb.position = transform.position;
+				rb.rotation = transform.rotation;
+				rb.isKinematic = m_isKinematic;
+				rb.detectCollisions = true;
+			}
+			gameObject.layer = m_layer;
+			transform.SetParent(null, true);
+		}
+
+		private void OnDrawGizmosSelected()
+		{
+			Gizmos.matrix = transform.localToWorldMatrix;
+			var origin = Icon.Offset;
+			Gizmos.DrawCube(origin, Vector3.one * .1f);
+			Gizmos.DrawLine(origin, Icon.FocusOffset);
+		}
 	}
 }

@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 488162579100196419}
   - component: {fileID: 7742336}
   - component: {fileID: 7742342}
+  - component: {fileID: 232958418}
   m_Layer: 0
   m_Name: WorldCamera
   m_TagString: MainCamera
@@ -406,6 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b0bb5d475b14e45b80cd5af4a1598d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Actor: {fileID: 0}
   LookSensitivity: 10
   LookAngle: {x: 0, y: 0}
   LastDelta: {x: 0, y: 0}
@@ -452,6 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15efea61c0a2a1247b6b39ccb9366601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: d4a18049-a4f8-40d0-b7e5-daff6c348b75
   AttentionDistance: 10
   AttentionPriority: 0
 --- !u!114 &7742336
@@ -497,6 +500,51 @@ MonoBehaviour:
   m_TrackedDeviceOrientationAction: {fileID: 0}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
+--- !u!114 &232958418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316969782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6efe2e2d05411408b1272a52e75675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Delay: 0
+  OffTime: 5
+  OnTime: 3
+  OnPulse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 488162579100196419}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnPulseEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 488162579100196419}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &481876028
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,7 +573,7 @@ RectTransform:
   m_GameObject: {fileID: 481876028}
   m_LocalRotation: {x: 0.10096674, y: -0.25740117, z: 0.02705395, w: 0.9606344}
   m_LocalPosition: {x: 0, y: 0, z: 0.4578006}
-  m_LocalScale: {x: 0.00080000004, y: 0.00079999975, z: 0.0003000001}
+  m_LocalScale: {x: 0.001152, y: 0.0011519996, z: 0.00043200012}
   m_Children:
   - {fileID: 2040362218}
   m_Father: {fileID: 1217988518}
@@ -11163,13 +11211,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcc03b386351584fa58c3f451f7e9f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 0b3ecd89-c1bb-4355-a95f-daf1333c7e12
   OnStateUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateFailedUpdate:
     m_PersistentCalls:
       m_Calls: []
   OnInventoryUpdate:
     m_PersistentCalls:
       m_Calls: []
-  Inventory: []
 --- !u!114 &1814919611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11328,6 +11379,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
+--- !u!4 &7307544400302716121 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9134038096904677927, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
+  m_PrefabInstance: {fileID: 1993691293059079934}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1993691295073622571 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2016773333, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
@@ -11339,8 +11395,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8150f1dfde7f734aa34f24213e1c17e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &7307544400302716121 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9134038096904677927, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
-  m_PrefabInstance: {fileID: 1993691293059079934}
-  m_PrefabAsset: {fileID: 0}

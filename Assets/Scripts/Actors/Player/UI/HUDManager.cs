@@ -74,7 +74,10 @@ public class HUDManager : Singleton<HUDManager>
 		else
 		{
 			Icon.sprite = null;
-			ActionLabel.gameObject.SetActive(false);
+			foreach(var label in m_labels)
+			{
+				label.gameObject.SetActive(false);
+			}
 			HideHoverObject();
 			FocusedInteractableDisplayName.Invoke("");
 		}

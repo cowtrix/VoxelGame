@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Voxul;
 
-[ExecuteAlways]
 public class LookAtPlayer : ExtendedMonoBehaviour
 {
 	public Vector3 AdditionalRotation;

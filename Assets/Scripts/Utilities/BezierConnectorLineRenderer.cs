@@ -18,7 +18,7 @@ public class BezierConnectorLineRenderer : ExtendedMonoBehaviour
 		public void ApplyToSplinePoint(Transform parent, SplineSegment.ControlPoint point)
 		{
 			point.Position = parent.worldToLocalMatrix.MultiplyPoint(Transform.localToWorldMatrix.MultiplyPoint(Offset));
-			point.Control = Transform.localRotation * Normal;
+			point.Control = parent.worldToLocalMatrix.MultiplyVector(Transform.localToWorldMatrix.MultiplyVector(Normal));
 			point.UpVector = Transform.up;
 		}
 	}
