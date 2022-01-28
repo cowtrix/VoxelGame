@@ -44,7 +44,7 @@ namespace Interaction
 
 		public override string DisplayName => $"{m_currentAd?.ProductName}\n{m_currentAd?.Tagline}";
 
-		public override IEnumerable<string> GetActions(Actor context)
+		public override IEnumerable<ActorAction> GetActions(Actor context)
 		{
 			yield break;
 		}

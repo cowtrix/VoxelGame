@@ -287,7 +287,6 @@ GameObject:
   - component: {fileID: 488162579100196419}
   - component: {fileID: 7742336}
   - component: {fileID: 7742342}
-  - component: {fileID: 232958418}
   m_Layer: 0
   m_Name: WorldCamera
   m_TagString: MainCamera
@@ -454,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15efea61c0a2a1247b6b39ccb9366601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: d4a18049-a4f8-40d0-b7e5-daff6c348b75
+  m_guid: 384a52fd-c714-4513-80e2-86d00626f779
   AttentionDistance: 10
   AttentionPriority: 0
 --- !u!114 &7742336
@@ -500,51 +499,6 @@ MonoBehaviour:
   m_TrackedDeviceOrientationAction: {fileID: 0}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
---- !u!114 &232958418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 316969782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc6efe2e2d05411408b1272a52e75675, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Delay: 0
-  OffTime: 5
-  OnTime: 3
-  OnPulse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 488162579100196419}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  OnPulseEnd:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 488162579100196419}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &481876028
 GameObject:
   m_ObjectHideFlags: 0
@@ -11084,8 +11038,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7812470021605113652}
-        m_TargetAssemblyTypeName: PlayerInteractionManager, Assembly-CSharp
-        m_MethodName: OnFire
+        m_TargetAssemblyTypeName: Actors.PlayerActor, Assembly-CSharp
+        m_MethodName: OnActionExecuted
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11160,8 +11114,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7812470021605113652}
-        m_TargetAssemblyTypeName: PlayerActor, Assembly-CSharp
-        m_MethodName: OnUse
+        m_TargetAssemblyTypeName: Actors.PlayerActor, Assembly-CSharp
+        m_MethodName: OnActionExecuted
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11173,6 +11127,70 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5ec2eb04-3e0a-4992-9fa0-7d097e7ae18c
     m_ActionName: Player/Use[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7812470021605113652}
+        m_TargetAssemblyTypeName: Actors.PlayerActor, Assembly-CSharp
+        m_MethodName: OnActionExecuted
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5434f3b2-189b-4bf4-9889-b6191e4086c3
+    m_ActionName: Player/Escape[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7812470021605113652}
+        m_TargetAssemblyTypeName: Actors.PlayerActor, Assembly-CSharp
+        m_MethodName: OnActionExecuted
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: af215a77-c187-42b6-ada6-a166ba95062a
+    m_ActionName: Player/Equip[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7812470021605113652}
+        m_TargetAssemblyTypeName: Actors.PlayerActor, Assembly-CSharp
+        m_MethodName: OnActionExecuted
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 01508a9c-8ba8-4bb3-8fa2-38f5c1501544
+    m_ActionName: Player/Next[/Keyboard/leftArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7812470021605113652}
+        m_TargetAssemblyTypeName: Actors.PlayerActor, Assembly-CSharp
+        m_MethodName: OnActionExecuted
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 984dcea6-5014-4a6c-a4e5-37c9852e9ebc
+    m_ActionName: Player/Prev[/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -11193,12 +11211,10 @@ MonoBehaviour:
   Settings:
     InteractDistance: {x: 0, y: 10}
     EquippedItemTransform: {fileID: 8449882934255358499}
-    EquippedLayer: 1
   DialogueContainer: {fileID: 0}
   InteractionMask:
     serializedVersion: 2
     m_Bits: 768
-  ActionIndex: 0
 --- !u!114 &66144037203230265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11211,7 +11227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcc03b386351584fa58c3f451f7e9f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: 0b3ecd89-c1bb-4355-a95f-daf1333c7e12
+  m_guid: b035d67e-bf14-44d3-a67d-eac710f5825a
   OnStateUpdate:
     m_PersistentCalls:
       m_Calls: []
@@ -11333,6 +11349,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: dPhone
       objectReference: {fileID: 0}
+    - target: {fileID: 7619671906851776669, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
+      propertyPath: m_guid
+      value: e5864101-547c-442d-b92e-1b3c2f978637
+      objectReference: {fileID: 0}
     - target: {fileID: 9134038096904677927, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -11379,11 +11399,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
---- !u!4 &7307544400302716121 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9134038096904677927, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
-  m_PrefabInstance: {fileID: 1993691293059079934}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1993691295073622571 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2016773333, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
@@ -11395,3 +11410,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8150f1dfde7f734aa34f24213e1c17e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &7307544400302716121 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9134038096904677927, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
+  m_PrefabInstance: {fileID: 1993691293059079934}
+  m_PrefabAsset: {fileID: 0}

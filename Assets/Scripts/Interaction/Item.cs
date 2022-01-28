@@ -11,6 +11,7 @@ namespace Interaction.Items
 	{
 		Transform transform { get; }
 		GameObject gameObject { get; }
+		void ExecuteAction(Actor actor, ActorAction action);
 	}
 
 	public interface IEquippableItem : IItem
@@ -35,8 +36,6 @@ namespace Interaction.Items
 		}
 
 		public const int IconSize = 64;
-		public const string PICK_UP = "Pick Up";
-		public const string DROP = "Drop";
 
 		public string ItemName = "Unknown Item";
 		public string Description = "An object of mysterious origins.";
@@ -51,7 +50,7 @@ namespace Interaction.Items
 
 		public override string DisplayName => ItemName;
 
-		private void Start()
+		protected virtual void Start()
 		{
 			m_layer = gameObject.layer;
 			var rb = Rigidbody;
@@ -65,7 +64,7 @@ namespace Interaction.Items
 		public void GenerateIcon()
 		{
 			var layer = gameObject.layer;
-			gameObject.layer = 31;
+			transform.SetLayerRecursive(31);
 			var rt = RenderTexture.GetTemporary(IconSize, IconSize, 16, RenderTextureFormat.ARGB32);
 			var cam = new GameObject().AddComponent<Camera>();
 			cam.targetTexture = rt;
@@ -97,28 +96,28 @@ namespace Interaction.Items
 
 			cam.targetTexture = null;
 			cam.gameObject.SafeDestroy();
-			gameObject.layer = layer;
+			transform.SetLayerRecursive(layer);
 			RenderTexture.ReleaseTemporary(rt);
 			this.TrySetDirty();
 			ambientSettings.Apply();
 		}
 
-		public override IEnumerable<string> GetActions(Actor actor)
+		public override IEnumerable<ActorAction> GetActions(Actor actor)
 		{
 			if (!CanUse(actor))
 			{
 				yield break;
 			}
-			yield return PICK_UP;
+			yield return new ActorAction { Key = eActionKey.USE, Description = "Pick Up" };
 		}
 
-		public override void Use(Actor actor, string action)
+		public override void ExecuteAction(Actor actor, ActorAction action)
 		{
-			if (action == PICK_UP)
+			if (action.Key == eActionKey.USE)
 			{
 				actor.State.PickupItem(this);
 			}
-			base.Use(actor, action);
+			base.ExecuteAction(actor, action);
 		}
 
 		public virtual void OnPickup(Actor actor)

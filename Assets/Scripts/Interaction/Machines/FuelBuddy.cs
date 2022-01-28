@@ -17,7 +17,7 @@ namespace Interaction
 
 		public override string DisplayName => "Fuel Buddy";
 
-		public override IEnumerable<string> GetActions(Actor context)
+		public override IEnumerable<ActorAction> GetActions(Actor context)
 		{
 			if (!CanUse(context))
 			{
@@ -25,7 +25,7 @@ namespace Interaction
 			}
 			if (GetCostForActor(context, out var refuelAmount, out var refuelCount) && refuelAmount > 0)
 			{
-				yield return $"Refuel {refuelAmount} Units ({refuelCount}c)";
+				yield return new ActorAction { Key = eActionKey.USE, Description = $"Refuel {refuelAmount} Units ({refuelCount}c)" };
 			}
 		}
 
@@ -48,15 +48,18 @@ namespace Interaction
 			return true;
 		}
 
-		public override void Use(Actor actor, string action)
+		public override void ExecuteAction(Actor actor, ActorAction action)
 		{
-			if (GetCostForActor(actor, out var refuelAmount, out var refuelCost)
-				&& actor.State.TryAdd(nameof(ICreditConsumerActor.Credits), -refuelCost))
+			if(action.Key == eActionKey.USE)
 			{
-				actor.State.TryAdd(nameof(IFueledActor.ThrusterFuel), refuelAmount);
-				CurrentCapacity -= refuelAmount;
+				if (GetCostForActor(actor, out var refuelAmount, out var refuelCost)
+				&& actor.State.TryAdd(nameof(ICreditConsumerActor.Credits), -refuelCost))
+				{
+					actor.State.TryAdd(nameof(IFueledActor.ThrusterFuel), refuelAmount);
+					CurrentCapacity -= refuelAmount;
+				}
 			}
-			base.Use(actor, action);
+			base.ExecuteAction(actor, action);
 		}
 
 		private void Start()

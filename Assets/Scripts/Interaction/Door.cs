@@ -18,7 +18,7 @@ namespace Interaction
 
 		public override string DisplayName => DoorName;
 
-		public override IEnumerable<string> GetActions(Actor actor)
+		public override IEnumerable<ActorAction> GetActions(Actor actor)
 		{
 			if (!CanUse(actor))
 			{
@@ -26,11 +26,11 @@ namespace Interaction
 			}
 			if (m_targetOpen > 0)
 			{
-				yield return "Close";
+				yield return new ActorAction { Key = eActionKey.USE, Description = "Close Door" };
 			}
 			else
 			{
-				yield return "Open";
+				yield return new ActorAction { Key = eActionKey.USE, Description = "Open Door" };
 			}
 		}
 
@@ -58,8 +58,13 @@ namespace Interaction
 			OpenAmount = Mathf.MoveTowards(OpenAmount, m_targetOpen, Speed * Time.deltaTime);
 		}
 
-		public override void Use(Actor actor, string action)
+		public override void ExecuteAction(Actor actor, ActorAction action)
 		{
+			if(action.Key != eActionKey.USE)
+			{
+				base.ExecuteAction(actor, action);
+				return;
+			}
 			if (m_targetOpen <= 0)
 			{
 				m_targetOpen = 1;
@@ -68,7 +73,6 @@ namespace Interaction
 			{
 				m_targetOpen = 0;
 			}
-			base.Use(actor, action);
 		}
 	}
 }

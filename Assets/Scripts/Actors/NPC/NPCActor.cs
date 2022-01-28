@@ -11,7 +11,12 @@ namespace Actors
 	{
 		public DialogueTreeController Controller => GetComponent<DialogueTreeController>();
 
-		public void InteractWithActor(Actor instigator, string action)
+		public bool CanTalkTo(Actor context)
+		{
+			return !Controller.isRunning;
+		}
+
+		public void InteractWithActor(Actor instigator, ActorAction action)
 		{
 			Controller.SetActorReference(DialogueTree.SELF_NAME, this);
 			Controller.StartDialogue(instigator);

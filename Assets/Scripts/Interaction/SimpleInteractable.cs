@@ -8,9 +8,9 @@ namespace Interaction
 		public override string DisplayName => Name;
 
 		public string Name;
-		public string[] Actions = new string[1];
+		public List<ActorAction> Actions = new List<ActorAction>();
 
-		public override IEnumerable<string> GetActions(Actor context)
+		public override IEnumerable<ActorAction> GetActions(Actor context)
 		{
 			if (!CanUse(context))
 			{

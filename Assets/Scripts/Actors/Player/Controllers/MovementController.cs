@@ -83,7 +83,7 @@ namespace Actors
 			{
 				if (Actor.FocusedInteractable is FocusableInteractable focusable && focusable.Actor == Actor)
 				{
-					focusable.Move(Actor, m_moveDirection);
+					focusable.ExecuteAction(Actor, new ActorAction { Key = eActionKey.MOVE, });
 					return;
 				}
 

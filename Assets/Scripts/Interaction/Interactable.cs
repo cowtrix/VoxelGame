@@ -12,10 +12,11 @@ namespace Interaction
 	[Serializable]
 	public class ActorEvent : UnityEvent<Actor>
 	{
-		internal void AddListener(ActorEvent onActivate)
-		{
-			throw new NotImplementedException();
-		}
+	}
+
+	[Serializable]
+	public class ActorActionEvent : UnityEvent<Actor, ActorAction>
+	{
 	}
 
 	[Serializable]
@@ -23,15 +24,12 @@ namespace Interaction
 
 	public abstract class Interactable : ExtendedMonoBehaviour
 	{
-		public const string USE = "[$Use] Use";
-		public const string STOP_USE = "[$Use] Stop Using";
-
 		[Serializable]
 		public class InteractableSettings
 		{
 			public ActorEvent OnFocusEnter;
 			public ActorEvent OnFocusExit;
-			public ActorEvent OnUsed;
+			public ActorActionEvent OnUsed;
 			public ActorEvent OnEnterAttention;
 			public ActorEvent OnExitAttention;
 
@@ -43,13 +41,13 @@ namespace Interaction
 
 		public InteractableSettings InteractionSettings = new InteractableSettings();
 
-		public virtual IEnumerable<string> GetActions(Actor context)
+		public virtual IEnumerable<ActorAction> GetActions(Actor context)
 		{
 			if (!CanUse(context))
 			{
 				yield break;
 			}
-			yield return USE;
+			yield return new ActorAction { Key = eActionKey.USE, Description = "Use" };
 		}
 
 		protected virtual bool CanUse(Actor context)
@@ -103,9 +101,9 @@ namespace Interaction
 			InteractionSettings.OnFocusEnter.Invoke(actor);
 		}
 
-		public virtual void Use(Actor actor, string action)
+		public virtual void ExecuteAction(Actor actor, ActorAction action)
 		{
-			InteractionSettings.OnUsed.Invoke(actor);
+			InteractionSettings.OnUsed.Invoke(actor, action);
 		}
 
 		public virtual void ExitAttention(Actor actor)
@@ -116,17 +114,6 @@ namespace Interaction
 		public virtual void EnterAttention(Actor actor)
 		{
 			InteractionSettings.OnEnterAttention.Invoke(actor);
-		}
-
-		public string GetAction(Actor actor, int actionIndex)
-		{
-			var allActions = GetActions(actor).ToList();
-			if (!allActions.Any())
-			{
-				return null;
-			}
-			actionIndex = actionIndex % allActions.Count;
-			return allActions.ElementAtOrDefault(actionIndex);
 		}
 	}
 }

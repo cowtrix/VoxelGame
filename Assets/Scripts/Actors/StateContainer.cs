@@ -20,7 +20,7 @@ namespace Actors
 	public class FloatStateFailureUpdateEvent : UnityEvent<Actor, string, float> { }
 
 	[Serializable]
-	public class InventoryStateUpdateEvent : UnityEvent<Actor, string, Item> { }
+	public class InventoryStateUpdateEvent : UnityEvent<Actor, ActorState.eInventoryAction, Item> { }
 
 	public interface IStateProvider
 	{

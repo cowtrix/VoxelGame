@@ -63,6 +63,10 @@ public class GameManager : Singleton<GameManager>
 	private void Update()
 	{
 		NormalizedTimeOfDay += Time.deltaTime / 1000;
+		while(NormalizedTimeOfDay > 1)
+		{
+			NormalizedTimeOfDay--;
+		}
 	}
 
 	[ContextMenu("Save Game")]

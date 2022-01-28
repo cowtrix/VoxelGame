@@ -37,17 +37,17 @@ namespace UI
 
 		private void Update()
 		{
-			var interactable = PlayerActor.FocusedInteractable;
+			var interactable = PlayerActor.FocusedInteractable ?? PlayerActor.State.EquippedItem as Interactable;
 			if (interactable)
 			{
-				if (interactable != CameraController.Proxy)
+				/*if (interactable != CameraController.Proxy)
 				{
 					ShowHoverObect(interactable);
 				}
 				else
 				{
 					HideHoverObject();
-				}
+				}*/
 
 				int actionIndex = 0;
 				foreach (var action in interactable.GetActions(PlayerActor))
@@ -65,7 +65,7 @@ namespace UI
 					}
 					label.gameObject.SetActive(true);
 					label.ActionIcon.sprite = null;
-					label.ActionName.text = action;
+					label.ActionName.text = action.ToString();
 					actionIndex++;
 				}
 				for (var i = actionIndex; i < m_labels.Count; ++i)
@@ -82,13 +82,13 @@ namespace UI
 				{
 					label.gameObject.SetActive(false);
 				}
-				HideHoverObject();
+				//HideHoverObject();
 				FocusedInteractableDisplayName.Invoke("");
 			}
 			Icon.gameObject.SetActive(Icon.sprite);
 		}
 
-		private void ShowHoverObect(Interactable interactable)
+		/*private void ShowHoverObect(Interactable interactable)
 		{
 			InteractionObjectFilter.gameObject.SetActive(true);
 			InteractionObjectFilter.sharedMesh = interactable.GetInteractionMesh();
@@ -101,6 +101,6 @@ namespace UI
 		private void HideHoverObject()
 		{
 			InteractionObjectFilter.gameObject.SetActive(false);
-		}
+		}*/
 	}
 }

@@ -14,7 +14,7 @@ namespace Interaction
 
 		protected string AlienText => LanguageUtility.Translate(PlainText);
 
-		public override IEnumerable<string> GetActions(Actor context)
+		public override IEnumerable<ActorAction> GetActions(Actor context)
 		{
 			yield break;
 		}

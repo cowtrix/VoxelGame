@@ -10,10 +10,10 @@ namespace Interaction.Items
 		public float MaxUseDistance = 3;
 		public Transform Home;
 
-		public override void Use(Actor actor, string action)
+		public override void ExecuteAction(Actor actor, ActorAction action)
 		{
-			base.Use(actor, action);
-			if (action == PICK_UP)
+			base.ExecuteAction(actor, action);
+			if (action.Key == eActionKey.USE)
 			{
 				StartCoroutine(ThinkEquipped(actor));
 			}

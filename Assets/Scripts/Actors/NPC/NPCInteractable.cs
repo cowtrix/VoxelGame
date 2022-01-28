@@ -1,4 +1,5 @@
 ﻿using Actors;
+using System.Collections.Generic;
 
 namespace Interaction
 {
@@ -7,10 +8,18 @@ namespace Interaction
 		public NPCActor Self;
 		public override string DisplayName => Self.DisplayName;
 
-		public override void Use(Actor instigator, string action)
+		public override IEnumerable<ActorAction> GetActions(Actor context)
+		{
+			if (Self.CanTalkTo(context))
+			{
+				yield return new ActorAction { Key = eActionKey.USE, Description = "Talk" };
+			}
+		}
+
+		public override void ExecuteAction(Actor instigator, ActorAction action)
 		{
 			Self.InteractWithActor(instigator, action);
-			base.Use(instigator, action);
+			base.ExecuteAction(instigator, action);
 		}
 	}
 }

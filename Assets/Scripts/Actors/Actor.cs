@@ -4,10 +4,53 @@ using NodeCanvas.DialogueTrees;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Voxul;
 
 namespace Actors
 {
+	public enum eActionKey
+	{
+		USE,
+		EXIT,
+		FIRE,
+		NEXT,
+		PREV,
+		EQUIP,
+		MOVE,
+	}
+
+	[Serializable]
+	public struct ActorAction
+	{
+		public eActionKey Key;
+		public string Description;
+		public Vector2 Context;
+
+		public override bool Equals(object obj)
+		{
+			return obj is ActorAction action &&
+				   Key == action.Key;
+		}
+
+		public override int GetHashCode()
+		{
+			return 990326508 + Key.GetHashCode();
+		}
+
+		public static bool operator ==(ActorAction left, ActorAction right)
+		{
+			return left.Equals(right);
+		}
+
+		public static bool operator !=(ActorAction left, ActorAction right)
+		{
+			return !(left == right);
+		}
+
+		public override string ToString() => $"[{CameraController.Instance.Input.GetControlNameForAction(Key)}] {Description}";
+	}
+
 	[RequireComponent(typeof(ActorState))]
 	public class Actor : ExtendedMonoBehaviour, IDialogueActor
 	{
@@ -19,7 +62,6 @@ namespace Actors
 
 			[Header("Inventory")]
 			public Transform EquippedItemTransform;
-			public int EquippedLayer = 1;
 		}
 
 		public ActorSettings Settings = new ActorSettings();

@@ -32,34 +32,33 @@ namespace Interaction.Activities
 
 		public ActorEvent OnActivate, OnDeactivate;
 
-		public override IEnumerable<string> GetActions(Actor context)
+		public override IEnumerable<ActorAction> GetActions(Actor context)
 		{
 			if (!CanUse(context))
 				yield break;
 			if (CameraController.Instance.Proxy == this as ICameraControllerProxy)
 			{
-				yield return STOP_USE;
+				yield return new ActorAction { Key = eActionKey.EXIT, Description = "Stop Using" };
 				yield break;
 			}
-			yield return USE;
+			yield return new ActorAction { Key = eActionKey.USE, Description = "Start Using" };
 		}
 
-		public override void Use(Actor actor, string action)
+		public override void ExecuteAction(Actor actor, ActorAction action)
 		{
-			switch (action)
+			switch (action.Key)
 			{
-				case USE:
-					if (Actor)
+				case eActionKey.USE:
+					if (!Actor)
 					{
-						Debug.LogWarning($"Interactable was already occupied by {Actor}", Actor);
-						return;
+						Actor = actor;
+						CameraController.Instance.Proxy = this;
+						OnActivate?.Invoke(actor);
+						break;
 					}
-					Actor = actor;
-					CameraController.Instance.Proxy = this;
-					OnActivate?.Invoke(actor);
-					base.Use(actor, action);
+					base.ExecuteAction(actor, action);
 					break;
-				case STOP_USE:
+				case eActionKey.EXIT:
 					Actor = null;
 					OnDeactivate?.Invoke(actor);
 					if (CameraController.Instance.Proxy != this as ICameraControllerProxy)
@@ -71,27 +70,13 @@ namespace Interaction.Activities
 			}
 		}
 
-		public virtual void Fire(PlayerActor playerActor) { }
-
-		public virtual void Move(Actor actor, Vector2 direction) { }
-
-		public virtual void Look(Actor actor, Vector2 direction)
-		{
-			direction *= Time.deltaTime * LookSpeed;
-			var currentRot = LookRotation + m_additionalRotation;
-			var newRot = new Vector3(Mathf.Clamp(currentRot.x - direction.y, CameraRotationLimits.X.x, CameraRotationLimits.X.y),
-				Mathf.Clamp(currentRot.y + direction.x, CameraRotationLimits.Y.x, CameraRotationLimits.Y.y),
-				Mathf.Clamp(currentRot.z, CameraRotationLimits.Z.x, CameraRotationLimits.Z.y));
-			m_additionalRotation = newRot - LookRotation;
-		}
-
-		protected virtual void OnActiveUse(Actor actor, string action) { }
-
 		private void OnDrawGizmosSelected()
 		{
 			Gizmos.matrix = transform.localToWorldMatrix;
 			Gizmos.DrawCube(LookOffset, Vector3.one * .1f);
 			Gizmos.DrawLine(LookOffset, LookOffset + Quaternion.Euler(LookRotation) * Vector3.forward);
 		}
+
+		public virtual void Look(Actor actor, Vector2 lastDelta) { }
 	}
 }

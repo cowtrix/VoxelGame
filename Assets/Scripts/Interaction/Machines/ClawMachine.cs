@@ -100,24 +100,39 @@ namespace Interaction.Activities
 			LineRenderer.Invalidate();
 		}
 
-		public override IEnumerable<string> GetActions(Actor context)
+		public override IEnumerable<ActorAction> GetActions(Actor context)
 		{
 			if (!CanUse(context))
 				yield break;
 			if (Actor == context)
 			{
-				yield return "[${Move}] Move Claw";
-				yield return "[${Fire}] Pick";
-				yield return STOP_USE;
+				yield return new ActorAction { Key = eActionKey.MOVE, Description = "Move Claw" };
+				yield return new ActorAction { Key = eActionKey.EQUIP, Description = "Pick With Claw" };
+				yield return new ActorAction { Key = eActionKey.EXIT, Description = "Stop Playing" };
 				yield break;
 			}
 			else
 			{
-				yield return USE;
+				yield return new ActorAction { Key = eActionKey.USE, Description = "Start Playing" };
 			}
 		}
 
-		public override void Fire(PlayerActor playerActor)
+		public override void ExecuteAction(Actor actor, ActorAction action)
+		{
+			switch(action.Key)
+			{
+				case eActionKey.MOVE:
+					var delta = action.Context;
+					Move(actor, delta);
+					return;
+				case eActionKey.USE:
+					Fire(actor);
+					return;
+			}
+			base.ExecuteAction(actor, action);
+		}
+
+		public void Fire(Actor playerActor)
 		{
 			if (IsGrabbing)
 			{
@@ -171,7 +186,7 @@ namespace Interaction.Activities
 			IsGrabbing = false;
 		}
 
-		public override void Move(Actor actor, Vector2 direction)
+		public void Move(Actor actor, Vector2 direction)
 		{
 			if (IsGrabbing)
 			{

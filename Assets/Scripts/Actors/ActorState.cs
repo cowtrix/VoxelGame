@@ -9,6 +9,12 @@ namespace Actors
 {
 	public class ActorState : StateContainer, ICreditConsumerActor
 	{
+		public enum eInventoryAction
+		{
+			DROP, PICKUP, EQUIP,
+			UNEQUIP
+		}
+
 		public InventoryStateUpdateEvent OnInventoryUpdate = new InventoryStateUpdateEvent();
 		public IEquippableItem EquippedItem
 		{
@@ -16,15 +22,27 @@ namespace Actors
 			{
 				return __equippedItem;
 			}
-			set
+			private set
 			{
-				__equippedItem?.OnUnequip(Actor);
+				if(value == __equippedItem)
+				{
+					return;
+				}
+				if (__equippedItem != null)
+				{
+					__equippedItem?.OnUnequip(Actor);
+					OnInventoryUpdate.Invoke(Actor, eInventoryAction.UNEQUIP, __equippedItem as Item);
+				}
 				__equippedItem = value;
-				__equippedItem?.OnEquip(Actor);
+				if(__equippedItem != null)
+				{
+					__equippedItem?.OnEquip(Actor);
+					OnInventoryUpdate.Invoke(Actor, eInventoryAction.EQUIP, __equippedItem as Item);
+				}
 			}
 		}
 		private IEquippableItem __equippedItem;
-		public IReadOnlyCollection<Item> Inventory => GetComponentsInChildren<Item>();
+		public IReadOnlyCollection<Item> Inventory => GetComponentsInChildren<Item>(true);
 		public Vector3 Position { get; private set; }
 		public Quaternion Rotation { get; private set; }
 		[StateMin(0)]
@@ -56,6 +74,11 @@ namespace Actors
 			return TryAdd(nameof(Credits), -cost);
 		}
 
+		public void EquipItem(IEquippableItem equippableItem)
+		{
+			EquippedItem = equippableItem;
+		}
+
 		public void PickupItem(Item item)
 		{
 			item.OnPickup(Actor);
@@ -64,7 +87,7 @@ namespace Actors
 			if (rb)
 			{
 				rb.Sleep();
-				rb.interpolation = RigidbodyInterpolation.None;
+				rb.detectCollisions = false;
 			}
 
 			if (EquippedItem == null && item.EquipOnPickup && item is IEquippableItem equippable)
@@ -73,11 +96,10 @@ namespace Actors
 			}
 			else
 			{
-				item.gameObject.layer = 3;
 				item.transform.SetParent(transform);
 			}
-
-			OnInventoryUpdate.Invoke(Actor, Item.PICK_UP, item);
+			item.gameObject.SetActive(false);
+			OnInventoryUpdate.Invoke(Actor, eInventoryAction.PICKUP, item);
 		}
 
 		public void DropItem(Item item)
@@ -92,6 +114,8 @@ namespace Actors
 				equippable.OnUnequip(Actor);
 				EquippedItem = null;
 			}
+
+			item.gameObject.SetActive(true);
 			item.transform.position = position;
 			item.transform.rotation = rotation;
 			item.transform.SetParent(null);
@@ -101,9 +125,10 @@ namespace Actors
 			if (rb)
 			{
 				rb.WakeUp();
+				rb.detectCollisions = true;
 			}
 
-			OnInventoryUpdate.Invoke(Actor, Item.DROP, item);
+			OnInventoryUpdate.Invoke(Actor, eInventoryAction.DROP, item);
 		}
 	}
 }

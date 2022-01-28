@@ -13,47 +13,68 @@ using UnityEngine.InputSystem;
 
 namespace Actors
 {
+	public static class ActorExtensions
+	{
+		static eActionKey[] m_keys = Enum.GetValues(typeof(eActionKey)).Cast<eActionKey>().ToArray();
+		public static eActionKey GetActionKey(this InputAction.CallbackContext cntxt)
+		{
+			foreach(var k in m_keys)
+			{
+				if(string.Equals(k.ToString(), cntxt.action.name, StringComparison.OrdinalIgnoreCase))
+				{
+					return k;
+				}
+			}
+			throw new Exception($"Input action with no key: {cntxt.action.name}");
+		}
+
+		public static string GetControlNameForAction(this PlayerInput input, eActionKey key)
+		{
+			foreach(var action in input.actions)
+			{
+				if(string.Equals(action.name, key.ToString(), StringComparison.OrdinalIgnoreCase))
+				{
+					return action.GetBindingDisplayString();
+				}
+			}
+			throw new Exception($"Couldn't find a control name for {key}");
+		}
+	}
+
 	public class PlayerActor : Actor
 	{
 		public CameraController CameraController => CameraController.Instance;
 		public PhoneController Phone => GetComponentInChildren<PhoneController>(true);
-		public int ActionIndex = 0;
 
-		public void OnFire(InputAction.CallbackContext cntxt)
+		public void OnActionExecuted(InputAction.CallbackContext cntxt)
 		{
 			if (!cntxt.started || CameraController.LockCameraLook)
 			{
 				return;
 			}
-
+			var action = new ActorAction { Key = cntxt.GetActionKey(), Context = cntxt.valueType == typeof(Vector2) ? cntxt.ReadValue<Vector2>() : default };
+				if(State.EquippedItem != null)
+			{
+				State.EquippedItem.ExecuteAction(this, action);
+				return;
+			}
 			if (FocusedInteractable is FocusableInteractable focusable && focusable.Actor == this)
 			{
-				focusable.Fire(this);
-			}
-			else if (State.EquippedItem != null)
-			{
-				Debug.Log("OnFire: " + FocusedInteractable);
-				State.EquippedItem.UseOn(this, FocusedInteractable.gameObject);
+				focusable.ExecuteAction(this, action);
 				return;
 			}
-		}
-
-		public void OnUse(InputAction.CallbackContext cntxt)
-		{
-			if (!cntxt.started || CameraController.LockCameraLook)
+			if (FocusedInteractable && State.EquippedItem == null)
 			{
+				if(State.EquippedItem == null)
+				{
+					FocusedInteractable.ExecuteAction(this, action);
+				}
+				else
+				{
+					State.EquippedItem.UseOn(this, FocusedInteractable.gameObject);
+				}
 				return;
 			}
-
-			if (FocusedInteractable is FocusableInteractable focusable && focusable.Actor == this)
-			{
-				Debug.Log("OnStopUse: " + FocusedInteractable);
-				focusable.Use(this, Interactable.STOP_USE);
-				return;
-			}
-
-			Debug.Log("OnUse: " + FocusedInteractable);
-			FocusedInteractable?.Use(this, FocusedInteractable.GetAction(this, ActionIndex));
 		}
 
 		public void EnablePhone()

@@ -14,7 +14,7 @@ namespace Phone
 		public InventoryAppItem AppItemPrefab;
 		public RectTransform ItemContainer, DetailsTransform;
 		public Text DetailsText;
-		public Button DropButton, EquipButton, ConsumeButton;
+		public GameObject DropButton, EquipButton, ConsumeButton;
 		public ToggleGroup ToggleGroup => ItemContainer.GetComponent<ToggleGroup>();
 		public Item FocusedItem { get; private set; }
 
@@ -23,11 +23,11 @@ namespace Phone
 		public override void Initialise(PhoneController controller)
 		{
 			base.Initialise(controller);
-			controller.Actor.State.OnInventoryUpdate.AddListener(OnItemPickup);
+			controller.Actor.State.OnInventoryUpdate.AddListener(OnInventoryUpdate);
 			Invalidate();
 		}
 
-		private void OnItemPickup(Actor actor, string action, Item item)
+		private void OnInventoryUpdate(Actor actor, ActorState.eInventoryAction action, Item item)
 		{
 			Phone.NotificationManager.CreateNotification(this, GetActionString(action, item));
 			Invalidate();
@@ -69,25 +69,32 @@ namespace Phone
 
 		private void Update()
 		{
+			if (!Phone.Actor.State.Inventory.Contains(FocusedItem))
+			{
+				FocusedItem = null;
+			}
+			ConsumeButton.SetActive(FocusedItem is IConsumableItem);
+			EquipButton.SetActive(FocusedItem is IEquippableItem);
 			var targetScale = Vector3.one;
 			if (!FocusedItem)
 			{
 				targetScale = targetScale.Flatten();
 			}
 			DetailsTransform.localScale = Vector3.MoveTowards(DetailsTransform.localScale, targetScale, Time.deltaTime * 5);
-
-			ConsumeButton.gameObject.SetActive(FocusedItem is IConsumableItem);
-			EquipButton.gameObject.SetActive(FocusedItem is IEquippableItem);
 		}
 
-		private string GetActionString(string action, Item item)
+		private string GetActionString(ActorState.eInventoryAction action, Item item)
 		{
 			switch (action)
 			{
-				case Item.DROP:
+				case ActorState.eInventoryAction.DROP:
 					return $"Dropped {item.DisplayName}";
-				case Item.PICK_UP:
+				case ActorState.eInventoryAction.PICKUP:
 					return $"Picked up {item.DisplayName}";
+				case ActorState.eInventoryAction.EQUIP:
+					return $"Equipped {item.DisplayName}";
+				case ActorState.eInventoryAction.UNEQUIP:
+					return $"Unequipped {item.DisplayName}";
 				default:
 					return $"Did a thing to {item.DisplayName}";
 			}
@@ -121,11 +128,11 @@ namespace Phone
 
 		public void Equip()
 		{
-			if(!FocusedItem || !(FocusedItem is IEquippableItem equippable))
+			if (!FocusedItem || !(FocusedItem is IEquippableItem equippable))
 			{
 				return;
 			}
-			equippable.OnEquip(Phone.Actor);
+			Phone.Actor.State.EquipItem(equippable);
 			Invalidate();
 		}
 	}
