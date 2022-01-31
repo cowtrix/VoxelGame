@@ -1,11 +1,12 @@
 using Actors;
-using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -57,6 +58,8 @@ public class GameManager : Singleton<GameManager>
 			var rb = Player.GetComponent<Rigidbody>();
 			rb.velocity = Vector3.zero;
 			rb.angularVelocity = Vector3.zero;
+
+			Player.CameraController.LookAt(spawn.transform.forward);
 		}
 	}
 

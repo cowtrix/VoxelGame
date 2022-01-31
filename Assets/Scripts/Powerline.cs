@@ -19,7 +19,7 @@ public class Powerline : MonoBehaviour
 		{
 			foreach(var l in ConnectorPoints)
 			{
-				l.End.Transform = null;
+				l.EndTransform.Transform = null;
 			}
 			UpdateSplines();
 			return;
@@ -29,12 +29,12 @@ public class Powerline : MonoBehaviour
 			var r = ConnectorPoints[i];
 			r.Resolution = Resolution;
 			var nextEmpty = Next.ConnectorPoints
-				.Where(nextPoint => !ConnectorPoints.Any(thisPoint => nextPoint.transform == thisPoint.End.Transform))
+				.Where(nextPoint => !ConnectorPoints.Any(thisPoint => nextPoint.transform == thisPoint.EndTransform.Transform))
 				.OrderBy(_ => Random.value)
 				.FirstOrDefault();
 			if (nextEmpty)
 			{
-				r.End.Transform = nextEmpty.transform;
+				r.EndTransform.Transform = nextEmpty.transform;
 			}
 		}
 		UpdateSplines();
@@ -45,17 +45,17 @@ public class Powerline : MonoBehaviour
 		for (int i = 0; i < ConnectorPoints.Length; i++)
 		{
 			var r = ConnectorPoints[i];
-			if (!r.End.Transform)
+			if (!r.EndTransform.Transform)
 			{
 				r.Invalidate();	
 				continue;
 			}
-			var diff = (r.transform.worldToLocalMatrix.MultiplyVector(r.transform.position - r.End.Transform.position)
+			var diff = (r.transform.worldToLocalMatrix.MultiplyVector(r.transform.position - r.EndTransform.Transform.position)
 				.normalized * (Sag.y - Sag.x))
 				.xz().x0z();
 			var sag = r.transform.worldToLocalMatrix.MultiplyVector(Vector3.down * Random.Range(Sag.x, Sag.y));
-			r.Start.Normal = diff - sag;
-			r.End.Normal = diff - sag;
+			r.StartTransform.Normal = diff - sag;
+			r.EndTransform.Normal = diff - sag;
 			r.Invalidate();
 		}
 	}
@@ -65,7 +65,7 @@ public class Powerline : MonoBehaviour
 		for (int i = 0; i < ConnectorPoints.Length; i++)
 		{
 			var r = ConnectorPoints[i];
-			r.End.Transform = null;
+			r.EndTransform.Transform = null;
 		}
 	}
 }

@@ -24,15 +24,15 @@ namespace Actors
 		public Actor Actor => GetComponent<Actor>();
 
 		[Header("Parameters")]
-		public float MovementSpeed = 100f;
-		public float ThrusterSpeed = 100f;
-		public LayerMask CollisionMask;
-		public float RotateTowardGravitySpeed = 1f;
+		public float MovementSpeed = 30;
+		public float ThrusterSpeed = 60;
+		public LayerMask CollisionMask = 1 << 8;
+		public float RotateTowardGravitySpeed = 10;
 		public float FreeFloatTime = .2f;
-		public float GroundingDistance = 1;
-		public float PushOutSpeed = 1;
+		public Transform GroundingPoint;
+		public float PushOutSpeed = 10;
 
-		protected Vector2 m_moveDirection;
+		public Vector2 m_moveDirection;
 		protected bool m_inputJump;
 
 		public SmoothPositionVector3 SmoothPosition { get; private set; }
@@ -49,8 +49,9 @@ namespace Actors
 			var dt = Time.fixedDeltaTime;
 			var gravityVec = GravityManager.GetGravityForce(transform.position);
 
-			IsGrounded = Physics.Raycast(transform.position, gravityVec, out var groundHit, GroundingDistance, CollisionMask, QueryTriggerInteraction.Ignore);
-			var isGroundedForward = Physics.Raycast(transform.position + LookAdapter.transform.forward, gravityVec, out var forwardHit, GroundingDistance, CollisionMask, QueryTriggerInteraction.Ignore);
+			var groundingDistance = Vector3.Distance(GroundingPoint.position, transform.position);
+			IsGrounded = Physics.Raycast(transform.position, gravityVec, out var groundHit, groundingDistance * 1.01f, CollisionMask, QueryTriggerInteraction.Ignore);
+			var isGroundedForward = Physics.Raycast(transform.position + LookAdapter.transform.forward, gravityVec, out var forwardHit, groundingDistance, CollisionMask, QueryTriggerInteraction.Ignore);
 			Debug.DrawLine(transform.position, transform.position + gravityVec * dt, Color.green);
 
 			if (!IsGrounded)
@@ -65,7 +66,8 @@ namespace Actors
 
 			{
 				// Straighten up
-				var straightenQuat = Quaternion.FromToRotation(Vector3.up, -gravityVec.normalized);
+				var straightenQuat = Quaternion.Euler(Quaternion.FromToRotation(Vector3.up, -gravityVec.normalized)
+					.eulerAngles.xy().x0z(Rigidbody.rotation.eulerAngles.y));
 				var straightenLerp = RotateTowardGravitySpeed * dt * (gravityVec.magnitude / 1000f);
 				Rigidbody.rotation = Quaternion.Lerp(Rigidbody.rotation, straightenQuat, straightenLerp);
 				//Rigidbody.rotation = straightenQuat;
@@ -74,9 +76,9 @@ namespace Actors
 
 			{
 				// Push out
-				if (groundHit.distance < GroundingDistance)
+				if (groundHit.distance < groundingDistance)
 				{
-					Rigidbody.MovePosition(Rigidbody.position + groundHit.normal * (GroundingDistance - groundHit.distance) * dt * PushOutSpeed);
+					Rigidbody.MovePosition(Rigidbody.position + groundHit.normal * (groundingDistance - groundHit.distance) * dt * PushOutSpeed);
 				}
 			}
 
@@ -127,6 +129,19 @@ namespace Actors
 				}
 			}
 			SmoothPosition.Push(Rigidbody.position);
+			if (Actor.Animator)
+			{
+				Actor.Animator.SetFloat("VelocityX", Rigidbody.velocity.x);
+				Actor.Animator.SetFloat("VelocityY", Rigidbody.velocity.y);
+				Actor.Animator.SetFloat("VelocityZ", Rigidbody.velocity.z);
+			}
+		}
+
+		private void OnDrawGizmosSelected()
+		{
+			var gravityVec = GravityManager.GetGravityForce(transform.position);
+			Gizmos.DrawLine(transform.position, GroundingPoint.position);
+			Gizmos.DrawWireCube(GroundingPoint.position, Vector3.one * .05f);
 		}
 	}
 }

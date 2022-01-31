@@ -7,11 +7,10 @@ using Voxul.Utilities;
 
 namespace Interaction.Items
 {
-	public interface IItem
+	public interface IItem : IInteractable
 	{
-		Transform transform { get; }
-		GameObject gameObject { get; }
-		void ExecuteAction(Actor actor, ActorAction action);
+		void OnPickup(Actor actor);
+		void OnDrop(Actor actor);
 	}
 
 	public interface IEquippableItem : IItem
@@ -19,6 +18,7 @@ namespace Interaction.Items
 		void OnEquip(Actor actor);
 		void OnUnequip(Actor actor);
 		void UseOn(Actor playerInteractionManager, GameObject target);
+		void OnEquipThink(Actor actorState);
 	}
 
 	public interface IPurchaseableItem : IItem
@@ -39,7 +39,6 @@ namespace Interaction.Items
 
 		public string ItemName = "Unknown Item";
 		public string Description = "An object of mysterious origins.";
-		public Vector3 EquippedOffset, EquippedRotation;
 		public IconParameters Icon;
 		public bool EquipOnPickup;
 
@@ -47,7 +46,6 @@ namespace Interaction.Items
 		private bool m_isKinematic;
 
 		protected Rigidbody Rigidbody => GetComponent<Rigidbody>();
-
 		public override string DisplayName => ItemName;
 
 		protected virtual void Start()

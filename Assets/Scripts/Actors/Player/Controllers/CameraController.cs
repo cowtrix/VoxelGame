@@ -1,5 +1,6 @@
 using Actors;
 using Common;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,5 +65,14 @@ public class CameraController : Singleton<CameraController>, ILookAdapter
 			transform.localRotation = Quaternion.Euler(-LookAngle.y, LookAngle.x, 0);
 			transform.localPosition = LookOffset;
 		}
+	}
+
+	public void LookAt(Vector3 forward)
+	{
+		// Change to parent local
+		forward = transform.parent.worldToLocalMatrix.MultiplyVector(forward);
+		LookAngle.x = Vector2.Angle(forward.Flatten(), transform.forward.Flatten());
+		
+
 	}
 }

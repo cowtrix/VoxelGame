@@ -40,12 +40,14 @@ namespace Phone
 		public PhoneAppLaunchButton LaunchButtonPrefab;
 		public Transform LaunchContainer;
 		public Text TimeText, CreditsText;
+		public AudioClip PingAudio;
 
 		private void Start()
 		{
 			m_togglePhoneAction = Input.actions.Single(a => a.name == "TogglePhone");
 			m_lookAction = Input.actions.Single(a => a.name == "Look");
 			m_clickAction = Input.actions.Single(a => a.name == "Fire");
+			m_clickAction.performed += ClickActionPerformed;
 			m_togglePhoneAction.performed += OnTogglePhone;
 			Actor = Input.GetComponent<PlayerActor>();
 
@@ -64,60 +66,11 @@ namespace Phone
 			}
 
 			OnHome?.Invoke();
-
-			StartCoroutine(Test());
 		}
 
-		IEnumerator Test()
+		private void ClickActionPerformed(InputAction.CallbackContext obj)
 		{
-			yield return new WaitForSeconds(30);
-			var msgApp = Apps[1] as MessagesApp;
-
-			msgApp.Conversations.Add(new MessagesApp.Conversation
-			{
-				Contacts = new List<MessagesApp.Conversation.Contact>
-			{
-				new MessagesApp.Conversation.Contact
-				{
-					ID = "545792",
-					Name = "Zeek (landlord)",
-				},
-			},
-				Icon = msgApp.DefaultIcon,
-				ID = "545792",
-			});
-
-			msgApp.ReceiveMessage(new MessagesApp.Conversation.Message
-			{
-				Content = "Where's my credits! u woe me big time",
-				Sender = "545792",
-				TimeReceived = GameManager.Instance.CurrentTime,
-				ConversationID = null,
-			});
-			yield return new WaitForSeconds(2);
-			msgApp.ReceiveMessage(new MessagesApp.Conversation.Message
-			{
-				Content = "*woe",
-				Sender = "545792",
-				TimeReceived = GameManager.Instance.CurrentTime,
-				ConversationID = null,
-			});
-			yield return new WaitForSeconds(2);
-			msgApp.ReceiveMessage(new MessagesApp.Conversation.Message
-			{
-				Content = "OWE",
-				Sender = "545792",
-				TimeReceived = GameManager.Instance.CurrentTime,
-				ConversationID = null,
-			});
-			yield return new WaitForSeconds(5);
-			msgApp.ReceiveMessage(new MessagesApp.Conversation.Message
-			{
-				Content = "pay up",
-				Sender = "545792",
-				TimeReceived = GameManager.Instance.CurrentTime,
-				ConversationID = null,
-			});
+			Ping();
 		}
 
 		public void OpenApp(PhoneApp app)
@@ -141,7 +94,7 @@ namespace Phone
 			CameraController.LockCameraLook = IsOpen;
 		}
 
-		public T GetApp<T>() where T:PhoneApp
+		public T GetApp<T>() where T : PhoneApp
 		{
 			return Apps.FirstOrDefault(a => a is T) as T;
 		}
@@ -174,6 +127,15 @@ namespace Phone
 			Actor.State.TryGetValue<int>(nameof(ICreditConsumerActor.Credits), out var credits);
 			CreditsText.text = $"¢{credits}";
 			TimeText.text = GameManager.Instance.CurrentTime.GetTimeString();
+		}
+
+		public void Ping()
+		{
+			if (!IsOpen)
+			{
+				return;
+			}
+			AudioSource.PlayClipAtPoint(PingAudio, transform.position, .5f);
 		}
 	}
 }

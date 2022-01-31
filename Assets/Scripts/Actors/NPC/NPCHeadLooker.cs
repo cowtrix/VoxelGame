@@ -1,3 +1,4 @@
+using Actors;
 using Common;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,7 +6,7 @@ using System.Linq;
 using UnityEngine;
 using Voxul;
 
-public class NPCHeadLooker : ExtendedMonoBehaviour
+public class NPCHeadLooker : ExtendedMonoBehaviour, ILookAdapter
 {
 	public float MaxLookDistance = 10;
 	[Range(0, 90)]
@@ -54,7 +55,7 @@ public class NPCHeadLooker : ExtendedMonoBehaviour
 
 	private void Update()
 	{
-		Vector3 dir;
+		/*Vector3 dir;
 		var extraLookRotation = Quaternion.Euler(LookRotation);
 		var forward = extraLookRotation * transform.parent.forward;
 		if (CurrentTarget)
@@ -69,16 +70,16 @@ public class NPCHeadLooker : ExtendedMonoBehaviour
 		Debug.DrawLine(transform.position, transform.position + dir, Color.blue);
 
 		var inverseRot = Quaternion.Inverse(extraLookRotation);
-		transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, inverseRot * dir, LookSpeed * Time.deltaTime, 0), transform.parent.up);
+		transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, inverseRot * dir, LookSpeed * Time.deltaTime, 0), transform.parent.up);*/
 	}
 
 	private void OnDrawGizmosSelected()
 	{
-		GizmoExtensions.DrawCone(transform.position, Quaternion.Euler(LookRotation) * transform.parent.forward, Mathf.Deg2Rad * LookAngle, MaxLookDistance, CurrentTarget ? Color.white : Color.gray);
+		/*GizmoExtensions.DrawCone(transform.position, Quaternion.Euler(LookRotation) * transform.parent.forward, Mathf.Deg2Rad * LookAngle, MaxLookDistance, CurrentTarget ? Color.white : Color.gray);
 		if (CurrentTarget)
 		{
 			Gizmos.color = Color.green;
 			Gizmos.DrawLine(transform.position, CurrentTarget.transform.position);
-		}
+		}*/
 	}
 }

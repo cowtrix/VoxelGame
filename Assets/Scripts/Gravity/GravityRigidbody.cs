@@ -16,7 +16,7 @@ public class GravityRigidbody : MonoBehaviour
 	void FixedUpdate()
     {
 		m_lastGravity = GravityManager.Instance.GetGravityForce(transform.position);
-		Rigidbody.AddForce(m_lastGravity * Time.fixedDeltaTime);
+		Rigidbody.AddForce(m_lastGravity * Time.fixedDeltaTime, ForceMode.Force);
     }
 
 	private void OnDrawGizmosSelected()

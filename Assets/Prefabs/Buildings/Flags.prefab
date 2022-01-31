@@ -2240,15 +2240,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa6548054ee48b4099c6fe1eac035c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Start:
+  StartTransform:
     Transform: {fileID: 2817466426713846324}
     Offset: {x: 0, y: 0, z: 0}
     Normal: {x: 0, y: -1, z: 3}
-  End:
+  EndTransform:
     Transform: {fileID: 4737531155391151920}
     Offset: {x: 0, y: 0, z: 0}
     Normal: {x: 0, y: -1, z: -3}
+  MidPoint:
+    Transform: {fileID: 0}
+    Offset: {x: 0, y: 0, z: 0}
+    Normal: {x: 0, y: 0, z: 0}
   Resolution: 1
+  Tolerance: 0.01
+  Dynamic: 0
+  DynamicChainCount: 3
+  DynamicChainSize: {x: 0.1, y: 0.1, z: 0.1}
   Spline:
     Resolution: 1
     FirstControlPoint:
@@ -2310,6 +2318,23 @@ MonoBehaviour:
     Bounds:
       m_Center: {x: 0.00000060021875, y: -0.37096325, z: 4.529997}
       m_Extent: {x: 0.00000027000897, y: 0.37096325, z: 4.529999}
+  Spline2:
+    Resolution: 0.1
+    FirstControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    SecondControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    Length: 0
+    Points: []
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1 &7364565702314519512
 GameObject:
   m_ObjectHideFlags: 0

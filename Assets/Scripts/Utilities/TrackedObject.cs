@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Voxul;
 using Voxul.Utilities;
@@ -30,7 +31,7 @@ namespace Common
 			m_instances.Remove(GUID);
 		}
 
-		public static IReadOnlyCollection<T> Instances => m_instances.Values;
+		public static IEnumerable<T> Instances => m_instances.Values.Where(i => i);
 
 		public static bool TryGetValue(string guid, out T val)
 		{

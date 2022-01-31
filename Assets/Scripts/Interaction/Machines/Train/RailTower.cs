@@ -21,17 +21,17 @@ public class RailTower : ExtendedMonoBehaviour
 			RightOut.Clear();
 			return;
 		}
-		LeftOut.Start.Transform = LeftOut.transform;
-		LeftOut.End.Transform = NextTower.LeftIn;
+		LeftOut.StartTransform.Transform = LeftOut.transform;
+		LeftOut.EndTransform.Transform = NextTower.LeftIn;
 
-		RightOut.Start.Transform = RightOut.transform;
-		RightOut.End.Transform = NextTower.RightIn;
+		RightOut.StartTransform.Transform = RightOut.transform;
+		RightOut.EndTransform.Transform = NextTower.RightIn;
 
-		LeftOut.Start.Normal = Curviness * transform.worldToLocalMatrix.MultiplyVector(LeftOut.Start.Transform.right);
-		RightOut.Start.Normal = Curviness * transform.worldToLocalMatrix.MultiplyVector(RightOut.Start.Transform.right);
+		LeftOut.StartTransform.Normal = Curviness * transform.worldToLocalMatrix.MultiplyVector(LeftOut.StartTransform.Transform.right);
+		RightOut.StartTransform.Normal = Curviness * transform.worldToLocalMatrix.MultiplyVector(RightOut.StartTransform.Transform.right);
 
-		LeftOut.End.Normal = Curviness * transform.worldToLocalMatrix.MultiplyVector(-NextTower.LeftIn.right);
-		RightOut.End.Normal = Curviness * transform.worldToLocalMatrix.MultiplyVector(-NextTower.RightIn.right);
+		LeftOut.EndTransform.Normal = Curviness * transform.worldToLocalMatrix.MultiplyVector(-NextTower.LeftIn.right);
+		RightOut.EndTransform.Normal = Curviness * transform.worldToLocalMatrix.MultiplyVector(-NextTower.RightIn.right);
 
 		LeftOut.Invalidate();
 		RightOut.Invalidate();

@@ -57,6 +57,14 @@ public class NPCMeshManager : ExtendedMonoBehaviour
 		Seed = Random.Range(int.MinValue, int.MaxValue);
 	}
 
+	private void Start()
+	{
+		foreach(var c in Children)
+		{
+			c.GetComponent<VoxelColorTint>()?.Invalidate();
+		}
+	}
+
 	[ContextMenu("Generate")]
 	public void Generate()
 	{
@@ -66,7 +74,7 @@ public class NPCMeshManager : ExtendedMonoBehaviour
 		foreach (var r in Children)
 		{
 			// Pick random mesh
-			if (r.Collection && r.Collection.Data.Any())
+			if (r.Collection && r.Collection.Data.Any() && r.Renderer)
 			{
 				r.Renderer.Mesh = r.Collection.GetWeightedRandom<VoxelMesh>();
 				r.Renderer.Invalidate(true, false);
@@ -79,11 +87,16 @@ public class NPCMeshManager : ExtendedMonoBehaviour
 				color.Color = Colors.GetColor(r.ColorMode)
 					.Saturate(r.Saturation);
 				color.Invalidate();
+				color.TrySetDirty();
 			}
 
 			// Random scale
 			r.transform.localScale = Vector3.one * Mathf.Lerp(r.Scale.x, r.Scale.y, scaleFactor);
 			r.gameObject.TrySetDirty();
+		}
+		foreach(var line in GetComponentsInChildren<BezierConnectorLineRenderer>(true))
+		{
+			line.Invalidate();
 		}
 	}
 }

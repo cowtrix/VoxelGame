@@ -10,7 +10,7 @@ namespace Interaction
 	{
 		public string PlainText;
 
-		public override string DisplayName => PlainText;
+		public override string DisplayName => $"\"{PlainText}\"";
 
 		protected string AlienText => LanguageUtility.Translate(PlainText);
 

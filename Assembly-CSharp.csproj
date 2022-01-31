@@ -47,7 +47,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.12</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.14</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2020.3.23f1</UnityVersion>
@@ -181,6 +181,7 @@
     <Compile Include="Assets\Scripts\Gravity\GravityManager.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\UI\UIInventoryUpdateEntry.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\TapTarget.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\TicketMachine.cs" />
     <Compile Include="Assets\Scripts\Interaction\Activities\CardGame\BaboPlayer.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingTool.cs" />
     <Compile Include="Assets\Scripts\Actors\InteractionColliderEvent.cs" />
@@ -291,6 +292,20 @@
     <Compile Include="Assets\Scripts\Gravity\GravityRigidbody.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingLine.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\TouchISX.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorUtilities.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\LineManager.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\CapInfo.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorLine.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VisibilityControl.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorManager.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\BrightnessControl.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\IVectorObject.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorObject3D.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\RefInt.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorChar.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorObject2D.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VisibilityControlAlways.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VisibilityControlStatic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\README.txt" />
@@ -323,6 +338,7 @@
     <None Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Shaders\Drawing\Tool.shader" />
     <None Include="Assets\Books\The First Chronicle Of Azerioth.txt" />
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\api-analyzers\Unity.dictionary.xml" />
+    <None Include="Assets\Vectrosity\Vectrosity Documentation\Vectrosity changelog.txt" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
@@ -330,6 +346,7 @@
     <None Include="Assets\Lib\InputSystem\steam_appid.txt" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\Vectrosity\Vectrosity Documentation\Vectrosity5 Upgrade Guide.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -558,7 +575,7 @@
       <HintPath>Assets\Lib\InputSystem\Assets\Tests\InputSystem\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
+      <HintPath>Library\PackageCache\jillejr.newtonsoft.json-for-unity@f2c6cb0981\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.23f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>

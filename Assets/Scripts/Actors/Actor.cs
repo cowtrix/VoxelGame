@@ -48,7 +48,7 @@ namespace Actors
 			return !(left == right);
 		}
 
-		public override string ToString() => $"[{CameraController.Instance.Input.GetControlNameForAction(Key)}] {Description}";
+		public override string ToString() => $"{Description} [{CameraController.Instance.Input.GetControlNameForAction(Key)}]";
 	}
 
 	[RequireComponent(typeof(ActorState))]
@@ -67,17 +67,20 @@ namespace Actors
 		public ActorSettings Settings = new ActorSettings();
 		public Interactable FocusedInteractable { get; protected set; }
 		public List<Interactable> Interactables { get; private set; } = new List<Interactable>();
-
-		public ActorState State => GetComponent<ActorState>();
-		public virtual string DisplayName => name;
+		public Animator Animator { get; private set; }
+		public ActorState State { get; private set; }
+		public virtual string DisplayName => ActorName;
 		public ILookAdapter LookAdapter { get; protected set; }
 		public Transform GetDialogueContainer() => DialogueContainer;
 		public Transform DialogueContainer;
 		public LayerMask InteractionMask;
+		public string ActorName = "Unnamed Entity";
 
-		private void Start()
+		private void Awake()
 		{
 			LookAdapter = gameObject.GetComponentByInterfaceInChildren<ILookAdapter>();
+			Animator = GetComponentInChildren<Animator>();
+			State = GetComponent<ActorState>();
 		}
 
 		protected virtual void Update()

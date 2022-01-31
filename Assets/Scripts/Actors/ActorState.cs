@@ -1,5 +1,4 @@
 using Interaction.Items;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -60,6 +59,11 @@ namespace Actors
 		{
 			Position = transform.position;
 			Rotation = transform.rotation;
+
+			if(EquippedItem != null)
+			{
+				EquippedItem.OnEquipThink(Actor);
+			}
 		}
 
 		protected override void OnSaveDataLoaded()

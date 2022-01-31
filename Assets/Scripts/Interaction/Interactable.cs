@@ -19,10 +19,18 @@ namespace Interaction
 	{
 	}
 
+	public interface IInteractable
+	{
+		void ExecuteAction(Actor actor, ActorAction action);
+		IEnumerable<ActorAction> GetActions(Actor context);
+		Transform transform { get; }
+		GameObject gameObject { get; }
+	}
+
 	[Serializable]
 	public class SpriteEvent : UnityEvent<Sprite> { }
 
-	public abstract class Interactable : ExtendedMonoBehaviour
+	public abstract class Interactable : ExtendedMonoBehaviour, IInteractable
 	{
 		[Serializable]
 		public class InteractableSettings

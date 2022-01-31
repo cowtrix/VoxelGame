@@ -40,8 +40,8 @@ namespace Interaction.Items
 
 		public void OnEquip(Actor actor)
 		{
-			transform.localPosition = EquippedOffset;
-			transform.localRotation = Quaternion.Euler(EquippedRotation);
+			//transform.localPosition = EquippedOffset;
+			//transform.localRotation = Quaternion.Euler(EquippedRotation);
 		}
 
 		public void OnUnequip(Actor actor)
@@ -49,6 +49,10 @@ namespace Interaction.Items
 		}
 
 		public void UseOn(Actor playerInteractionManager, GameObject target)
+		{
+		}
+
+		public void OnEquipThink(Actor actorState)
 		{
 		}
 	}

@@ -6,7 +6,6 @@ using Voxul;
 using Voxul.Meshing;
 using Common;
 
-[RequireComponent(typeof(VoxelRenderer))]
 public class NPCMeshSegment : MonoBehaviour
 {
 	public TriColorSet.eColorMode ColorMode;
