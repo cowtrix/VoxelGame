@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using Voxul.Utilities;
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -10,6 +11,16 @@ namespace Common
 {
 	public static class EditorExtensions
 	{
+		[MenuItem("CONTEXT/Transform/Randomise Flip")]
+		public static void RandomiseFlip (MenuCommand command)
+		{
+			UnityEngine.Random.InitState(command.GetHashCode());
+			var t = command.context as Transform;
+			float flip() => UnityEngine.Random.value > .5f ? -1 : 1;
+			t.localScale = new Vector3(t.localScale.x * flip(), t.localScale.y * flip(), t.localScale.z * flip());
+			t.TrySetDirty();
+		}
+
 		[MenuItem("CONTEXT/Transform/Randomise Rotation")]
 		public static void RandomiseRot(MenuCommand command)
 		{

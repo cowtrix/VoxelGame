@@ -52,6 +52,7 @@ MonoBehaviour:
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
   SnapToGrid: 0
+  SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
@@ -180,6 +181,7 @@ MonoBehaviour:
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
   SnapToGrid: 0
+  SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
@@ -310,6 +312,7 @@ MonoBehaviour:
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
   SnapToGrid: 0
+  SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
@@ -478,6 +481,7 @@ MonoBehaviour:
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
   SnapToGrid: 0
+  SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
@@ -570,13 +574,13 @@ MonoBehaviour:
   Colliders: []
   ItemName: Unknown Item
   Description: An object of mysterious origins.
-  EquippedOffset: {x: 0, y: 0, z: 0}
-  EquippedRotation: {x: 0, y: 90, z: -90}
   Icon:
     Texture: {fileID: 2800000, guid: 3b08797a390903647bea79456acc956b, type: 3}
     Offset: {x: 0.3, y: 0.3, z: 0.3}
     FocusOffset: {x: 0, y: 0, z: 0.05}
   EquipOnPickup: 0
+  EquippedOffset: {x: 0, y: 0, z: 0}
+  EquippedRotation: {x: 0, y: 90, z: -90}
   FrontCover:
     OpenRotation: {x: 0, y: 112, z: -90}
     CloseRotation: {x: 0, y: 90, z: -90}
@@ -753,7 +757,8 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 1
+  SnapToGrid: 0
+  SnapMode: 1
   SnapLayer: 3
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668

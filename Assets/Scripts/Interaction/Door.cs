@@ -1,6 +1,8 @@
 using Actors;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Interaction
@@ -8,10 +10,17 @@ namespace Interaction
 	[ExecuteAlways]
 	public class Door : Interactable
 	{
+		[Serializable]
+		public class DoorTransform
+		{
+			public Transform Transform;
+			public Vector3 OpenPosition, OpenRotation;
+			public Vector3 ClosedPosition, ClosedRotation;
+		}
+
 		[Range(0, 1)]
 		public float OpenAmount;
-		public Vector3 OpenPosition, OpenRotation;
-		public Vector3 ClosedPosition, ClosedRotation;
+		public List<DoorTransform> Transforms;
 		public string DoorName = "Door";
 		public float Speed = 1;
 		private float m_targetOpen;
@@ -34,12 +43,6 @@ namespace Interaction
 			}
 		}
 
-		private void Reset()
-		{
-			OpenPosition = transform.localPosition;
-			ClosedPosition = transform.localPosition;
-		}
-
 		private void OnValidate()
 		{
 			m_targetOpen = OpenAmount;
@@ -52,9 +55,11 @@ namespace Interaction
 
 		private void Update()
 		{
-			transform.localPosition = Vector3.Lerp(ClosedPosition, OpenPosition, OpenAmount);
-			transform.localRotation = Quaternion.Lerp(Quaternion.Euler(ClosedRotation), Quaternion.Euler(OpenRotation), OpenAmount);
-
+			foreach(var t in Transforms.Where(t => t.Transform))
+			{
+				t.Transform.localPosition = Vector3.Lerp(t.ClosedPosition, t.OpenPosition, OpenAmount);
+				t.Transform.localRotation = Quaternion.Euler(Vector3.Lerp(t.ClosedRotation, t.OpenRotation, OpenAmount));
+			}			
 			OpenAmount = Mathf.MoveTowards(OpenAmount, m_targetOpen, Speed * Time.deltaTime);
 		}
 

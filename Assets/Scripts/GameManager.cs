@@ -19,6 +19,7 @@ public class GameManager : Singleton<GameManager>
 
 	[Range(0,1)]
 	public float NormalizedTimeOfDay;
+	public float DayLength = 60 * 60;
 	public int DayCount;
 
 	public GameDateTime CurrentTime => new GameDateTime(DayCount, NormalizedTimeOfDay);
@@ -65,7 +66,7 @@ public class GameManager : Singleton<GameManager>
 
 	private void Update()
 	{
-		NormalizedTimeOfDay += Time.deltaTime / 1000;
+		NormalizedTimeOfDay += Time.deltaTime / DayLength;
 		while(NormalizedTimeOfDay > 1)
 		{
 			NormalizedTimeOfDay--;

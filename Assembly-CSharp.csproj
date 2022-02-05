@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Utilities\Helpers\DebugHelper.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\RefInt.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\UI\UIActionLabel.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\SerializableDictionary.cs" />
     <Compile Include="Assets\Scripts\Interaction\EquippableItemBase.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\PhoneAppUpdate.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Gestures\ActiveGesture.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\InventoryApp.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\CapInfo.cs" />
     <Compile Include="Assets\Scripts\Actors\NPC\NPCActor.cs" />
     <Compile Include="Assets\Scripts\Interaction\Activities\ArcadeShooter.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\Train\Trainline.cs" />
@@ -103,8 +105,9 @@
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorVector3ISX.cs" />
     <Compile Include="Assets\Scripts\Actors\NPC\NPCInteractable.cs" />
     <Compile Include="Assets\Scripts\Utilities\Maths\RotationalBounds.cs" />
-    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Swiping\TrashType.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorChar.cs" />
     <Compile Include="Assets\Scripts\Actors\Actor.cs" />
+    <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Swiping\TrashType.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Common\SceneLoadButton.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\PhoneAppLaunchButton.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\Samples\CustomComposite\CustomComposite.cs" />
@@ -142,6 +145,7 @@
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\EditMode\TestMouseDelta.cs" />
     <Compile Include="Assets\Scripts\Utilities\StringExtensions.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\Messages\MessagesApp.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\IVectorObject.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\UI\UIStatusUpdateEntry.cs" />
     <Compile Include="Assets\Scripts\Interaction\Activities\SushiTableMinigame.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\PhoneApp.cs" />
@@ -149,6 +153,7 @@
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\PhoneNotificationManager.cs" />
     <Compile Include="Assets\Lib\unity-scene-reference\unity-scene-reference\Assets\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\Interaction\ConsumableItem.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\LineManager.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\DeviceList\DeviceList.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Gestures\GestureController.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingRenderer.cs" />
@@ -161,15 +166,18 @@
     <Compile Include="Assets\Scripts\Lightning.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\ClawMachineClaw.cs" />
     <Compile Include="Assets\Scripts\Actors\NPC\NPCMeshManager.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VisibilityControlStatic.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\TappingController.cs" />
     <Compile Include="Assets\Scripts\Animation\ProceduralAd.cs" />
     <Compile Include="Assets\Scripts\Utilities\UI\DragRect.cs" />
     <Compile Include="Assets\Scripts\Utilities\UIExtensions.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Menu\LevelSelectScreen.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\PhoneController.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorLine.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\InputUIPicker.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\EditorExtensions.cs" />
     <Compile Include="Assets\Scripts\Actors\NPC\NPCHeadLooker.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VisibilityControlAlways.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\Touch\Scripts\TouchReporter.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\HandleExtensions.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\LegacyInputManager\Scripts\ImageRedIfMultiTouchEnabled.cs" />
@@ -182,6 +190,7 @@
     <Compile Include="Assets\Scripts\Actors\Player\UI\UIInventoryUpdateEntry.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\TapTarget.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\TicketMachine.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorObject2D.cs" />
     <Compile Include="Assets\Scripts\Interaction\Activities\CardGame\BaboPlayer.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingTool.cs" />
     <Compile Include="Assets\Scripts\Actors\InteractionColliderEvent.cs" />
@@ -225,10 +234,12 @@
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Common\Helpers.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\Samples\SimpleDemo\SimpleController_UsingActionAsset.cs" />
     <Compile Include="Assets\Scripts\ColliderFoley.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorUtilities.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\Camera\PhoneAppCamera.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Drawing\PointerInput.cs" />
     <Compile Include="Assets\Scripts\Utilities\NeonSign.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\Touch\Scripts\TouchscreenTouchVisualizer.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorObject3D.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Swiping\SwipingController.cs" />
     <Compile Include="Assets\Scripts\Utilities\EditorCoroutineManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\ObjectGenerator.cs" />
@@ -245,6 +256,7 @@
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Drawing\PointerInputManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\Maths\RectExtensions.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Controller\GamepadInputManager.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\BrightnessControl.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\VectorExtensions.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorISX.cs" />
     <Compile Include="Assets\Scripts\Animation\EventPulse.cs" />
@@ -285,27 +297,15 @@
     <Compile Include="Assets\Scripts\Utilities\Extensions\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\GizmoExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\Helpers\AssetCreationHelper.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorManager.cs" />
     <Compile Include="Assets\Scripts\SpawnPosition.cs" />
+    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VisibilityControl.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\ListExtensions.cs" />
     <Compile Include="Assets\Scripts\LookAtPlayer.cs" />
     <Compile Include="Assets\Scripts\AsteroidGenerator.cs" />
     <Compile Include="Assets\Scripts\Gravity\GravityRigidbody.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingLine.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\TouchISX.cs" />
-    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorUtilities.cs" />
-    <Compile Include="Assets\Vectrosity\Plugins\Scripts\LineManager.cs" />
-    <Compile Include="Assets\Vectrosity\Plugins\Scripts\CapInfo.cs" />
-    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorLine.cs" />
-    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VisibilityControl.cs" />
-    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorManager.cs" />
-    <Compile Include="Assets\Vectrosity\Plugins\Scripts\BrightnessControl.cs" />
-    <Compile Include="Assets\Vectrosity\Plugins\Scripts\IVectorObject.cs" />
-    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorObject3D.cs" />
-    <Compile Include="Assets\Vectrosity\Plugins\Scripts\RefInt.cs" />
-    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorChar.cs" />
-    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorObject2D.cs" />
-    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VisibilityControlAlways.cs" />
-    <Compile Include="Assets\Vectrosity\Plugins\Scripts\VisibilityControlStatic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\README.txt" />

@@ -50,7 +50,15 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 		private AudioSource _localSource;
 		private AudioSource localSource
 		{
-			get { return _localSource != null ? _localSource : _localSource = gameObject.AddComponent<AudioSource>(); }
+			get 
+			{
+				if (!_localSource)
+				{
+					_localSource = gameObject.AddComponent<AudioSource>();
+					_localSource.spatialBlend = 1;
+				}
+				return _localSource;
+			}
 		}
 
 		void Awake() { Hide(); }
