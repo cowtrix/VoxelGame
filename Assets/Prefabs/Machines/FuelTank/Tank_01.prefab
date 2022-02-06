@@ -57,7 +57,8 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 1
+  SnapToGrid: 0
+  SnapMode: 2
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
@@ -339,15 +340,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa6548054ee48b4099c6fe1eac035c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Start:
+  StartTransform:
     Transform: {fileID: 43942833508082028}
     Offset: {x: 1.77, y: -0.4, z: -1.03}
     Normal: {x: -10, y: 0, z: 0}
-  End:
+  EndTransform:
     Transform: {fileID: 43942834144937267}
     Offset: {x: 0, y: -0.1, z: -1}
     Normal: {x: 0, y: 0, z: 5}
+  MidPoint:
+    Transform: {fileID: 0}
+    Offset: {x: 0, y: 0, z: 0}
+    Normal: {x: 0, y: 0, z: 0}
   Resolution: 10
+  Tolerance: 0.01
+  Curviness: 1
+  Dynamic: 0
+  DynamicChainCount: 3
+  DynamicChainSize: {x: 0.1, y: 0.1, z: 0.1}
   Spline:
     Resolution: 10
     FirstControlPoint:
@@ -1025,6 +1035,23 @@ MonoBehaviour:
     Bounds:
       m_Center: {x: 8.289999, y: -0.35499954, z: -5.935001}
       m_Extent: {x: 6.5200014, y: 0.045001984, z: 4.905001}
+  Spline2:
+    Resolution: 0.1
+    FirstControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    SecondControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    Length: 0
+    Points: []
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
 --- !u!114 &43942833508082021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1213,6 +1240,7 @@ MonoBehaviour:
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
   SnapToGrid: 0
+  SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 
@@ -28,6 +29,19 @@ namespace Common
 		public static bool BetweenPlanes(Vector3 worldPos, Plane startPlane, Plane endPlane)
 		{
 			return startPlane.GetSide(worldPos) && endPlane.GetSide(worldPos);
+		}
+
+		public static IEnumerable<Vector3> AllPoints(this Bounds b)
+		{
+			yield return new Vector3(b.min.x, b.min.y, b.min.z);
+			yield return new Vector3(b.min.x, b.min.y, b.max.z);
+			yield return new Vector3(b.min.x, b.max.y, b.min.z);
+			yield return new Vector3(b.min.x, b.max.y, b.max.z);
+
+			yield return new Vector3(b.max.x, b.min.y, b.min.z);
+			yield return new Vector3(b.max.x, b.min.y, b.max.z);
+			yield return new Vector3(b.max.x, b.max.y, b.min.z);
+			yield return new Vector3(b.max.x, b.max.y, b.max.z);
 		}
 	}
 
@@ -195,7 +209,7 @@ namespace Common
 		{
 			var sign = new Vector3(Mathf.Sign(vec.x), Mathf.Sign(vec.y), Mathf.Sign(vec.z));
 			vec = vec.Abs();
-			return vec.x > vec.y ? (vec.x > vec.z ? Vector3.right * sign.x : Vector3.forward * sign.z) 
+			return vec.x > vec.y ? (vec.x > vec.z ? Vector3.right * sign.x : Vector3.forward * sign.z)
 				: (vec.y > vec.z ? Vector3.up * sign.y : Vector3.forward * sign.z);
 		}
 	}

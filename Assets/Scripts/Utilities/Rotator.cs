@@ -6,8 +6,21 @@ public class Rotator : MonoBehaviour
 {
     public Vector3 Rotation;
 
-    void Update()
+    private Rigidbody m_rigidBody;
+
+	private void Awake()
+	{
+		m_rigidBody = GetComponent<Rigidbody>();
+	}
+
+	void Update()
     {
-        transform.localRotation *= Quaternion.Euler(Rotation * Time.deltaTime);  
+		var scaledRot = Rotation * Time.deltaTime;
+		if (!m_rigidBody)
+		{
+			transform.localRotation *= Quaternion.Euler(scaledRot);
+			return;
+		}
+		m_rigidBody.AddTorque(scaledRot);
     }
 }

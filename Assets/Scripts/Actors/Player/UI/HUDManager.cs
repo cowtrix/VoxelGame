@@ -1,4 +1,5 @@
 using Actors;
+using Common;
 using Interaction;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace UI
 	{
 		public Image Icon;
 		public UIActionLabel ActionLabel;
+		public RectTransform FocusSprite;
 
 		private Camera Camera => CameraController.GetComponent<Camera>();
 		public CameraController CameraController => CameraController.Instance;
@@ -40,6 +42,16 @@ namespace UI
 			var interactable = PlayerActor.FocusedInteractable ?? PlayerActor.State.EquippedItem as Interactable;
 			if (interactable)
 			{
+				FocusSprite.gameObject.SetActive(true);
+
+				var screenRect = new Rect(Camera.WorldToScreenPoint(interactable.transform.position), Vector2.zero);
+				var objBounds = interactable.Bounds;
+				foreach(var p in objBounds.AllPoints())
+				{
+					screenRect = screenRect.Encapsulate(Camera.WorldToScreenPoint(p));
+				}
+				FocusSprite.position = screenRect.center;
+				FocusSprite.sizeDelta = screenRect.size;
 				/*if (interactable != CameraController.Proxy)
 				{
 					ShowHoverObect(interactable);
@@ -77,6 +89,8 @@ namespace UI
 			}
 			else
 			{
+				FocusSprite.gameObject.SetActive(false);
+
 				Icon.sprite = null;
 				foreach (var label in m_labels)
 				{

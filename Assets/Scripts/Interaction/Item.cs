@@ -48,7 +48,7 @@ namespace Interaction.Items
 		protected Rigidbody Rigidbody => GetComponent<Rigidbody>();
 		public override string DisplayName => ItemName;
 
-		protected virtual void Start()
+		protected override void Start()
 		{
 			m_layer = gameObject.layer;
 			var rb = Rigidbody;
@@ -56,6 +56,7 @@ namespace Interaction.Items
 			{
 				m_isKinematic = rb.isKinematic;
 			}
+			base.Start();
 		}
 
 		[ContextMenu("Generate Icon")]
@@ -142,8 +143,9 @@ namespace Interaction.Items
 			transform.SetParent(null, true);
 		}
 
-		private void OnDrawGizmosSelected()
+		protected override void OnDrawGizmosSelected()
 		{
+			base.OnDrawGizmosSelected();
 			Gizmos.matrix = transform.localToWorldMatrix;
 			var origin = Icon.Offset;
 			Gizmos.DrawCube(origin, Vector3.one * .1f);

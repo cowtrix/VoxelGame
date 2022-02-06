@@ -5,6 +5,7 @@ using UnityEngine;
 using Voxul;
 using Voxul.Meshing;
 using Common;
+using Generation;
 
 public class NPCMeshSegment : MonoBehaviour
 {

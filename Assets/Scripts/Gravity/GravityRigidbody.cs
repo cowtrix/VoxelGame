@@ -21,7 +21,7 @@ public class GravityRigidbody : MonoBehaviour
 
 	private void OnDrawGizmosSelected()
 	{
-		Gizmos.DrawLine(transform.position, transform.position + m_lastGravity);
-		GizmoExtensions.Label(transform.position + m_lastGravity, $"g={m_lastGravity}");
+		//Gizmos.DrawLine(transform.position, transform.position + m_lastGravity);
+		//GizmoExtensions.Label(transform.position + m_lastGravity, $"g={m_lastGravity}");
 	}
 }

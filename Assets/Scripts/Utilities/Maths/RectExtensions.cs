@@ -1,10 +1,8 @@
-using JetBrains.Annotations;
 using UnityEngine;
 
 public static class RectExtensions
 {
-    [Pure]
-    public static Rect Encapsulate(Rect rect, Vector2 point)
+    public static Rect Encapsulate(this Rect rect, Vector2 point)
     {
         if (rect.Contains(point))
         {

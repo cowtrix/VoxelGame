@@ -18,18 +18,6 @@ namespace Common
             return c;
         }
 
-        public static void SafeDestroy(this Object obj)
-        {
-            if (Application.isPlaying)
-            {
-                Object.Destroy(obj);
-            }
-            else
-            {
-                Object.DestroyImmediate(obj);
-            }
-        }
-
         public static void OptimizeAndFlattenHierarchy(Transform root)
         {
             FlattenHierarchyRecursive(root, root);

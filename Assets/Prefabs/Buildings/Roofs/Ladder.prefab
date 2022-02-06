@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
   Parent: {fileID: 7825951699834010856}
   MeshFilter: {fileID: 7825951698573870813}
   MeshRenderer: {fileID: 7825951698573870810}
@@ -77,7 +80,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8501025348146561166, guid: 96def0a132db5cc4ca3134c77ec0947d, type: 2}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -162,12 +165,13 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 1
+  SnapToGrid: 0
+  SnapMode: 1
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 6032e80514dcb86459b5034ce7ca72d3, type: 2}
-  m_lastMeshHash: 363baed7-be6e-4005-9ab2-5e00d6eabae2
-  Renderers:
+  m_lastMeshHash: 307e0626-6c9f-44fb-b95e-8072e4af0461
+  Submeshes:
   - {fileID: 7825951698573870812}

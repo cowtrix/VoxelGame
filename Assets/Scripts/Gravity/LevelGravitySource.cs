@@ -43,7 +43,7 @@ public class LevelGravitySource : GravitySource
 
 	private void Update()
 	{
-		var playerPos = CameraController.Instance.transform.position;
+		/*var playerPos = CameraController.Instance.transform.position;
 		playerPos = transform.worldToLocalMatrix.MultiplyPoint3x4(playerPos);
 		if (!AxisGravityBounds.Contains(playerPos))
 		{
@@ -51,7 +51,7 @@ public class LevelGravitySource : GravitySource
 		}
 		m_targetGravityDirection = m_targetGravityDirection.ClosestAxisNormal();
 		GravityDirection = Vector3.RotateTowards(GravityDirection, m_targetGravityDirection,
-			GravityTransitionSpeed * Time.deltaTime, 1);
+			GravityTransitionSpeed * Time.deltaTime, 1);*/
 	}
 
 	private void OnDrawGizmos()

@@ -47,6 +47,7 @@ namespace Interaction
 			public float MaxUseDistance = 2;
 		}
 
+		public const int INTERACTION_LAYER = 9;
 		public InteractableSettings InteractionSettings = new InteractableSettings();
 
 		public virtual IEnumerable<ActorAction> GetActions(Actor context)
@@ -64,6 +65,19 @@ namespace Interaction
 			return distance <= InteractionSettings.MaxUseDistance;
 		}
 		public List<Collider> Colliders;
+
+		protected virtual void Start()
+		{
+			CollectColliders();
+		}
+
+		protected void CollectColliders()
+		{
+			if (Colliders == null || !Colliders.Any())
+			{
+				Colliders = new List<Collider>(GetComponentsInChildren<Collider>().Where(c => c.enabled && c.gameObject.layer == INTERACTION_LAYER));
+			}
+		}
 
 		public Bounds Bounds
 		{
@@ -122,6 +136,13 @@ namespace Interaction
 		public virtual void EnterAttention(Actor actor)
 		{
 			InteractionSettings.OnEnterAttention.Invoke(actor);
+		}
+
+		protected virtual void OnDrawGizmosSelected()
+		{
+			CollectColliders();
+			var b = Bounds;
+			Gizmos.DrawWireCube(b.center, b.size);
 		}
 	}
 }

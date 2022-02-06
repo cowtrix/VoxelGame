@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 
 namespace Interaction.Activities
 {
-
 	[Serializable]
 	public struct RotationLimits
 	{
