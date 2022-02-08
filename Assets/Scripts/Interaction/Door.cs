@@ -23,9 +23,12 @@ namespace Interaction
 		public List<DoorTransform> Transforms;
 		public string DoorName = "Door";
 		public float Speed = 1;
+		public bool Usable;
 		private float m_targetOpen;
 
 		public override string DisplayName => DoorName;
+
+		public override bool CanUse(Actor context) => Usable && base.CanUse(context);
 
 		public override IEnumerable<ActorAction> GetActions(Actor actor)
 		{
@@ -79,5 +82,9 @@ namespace Interaction
 				m_targetOpen = 0;
 			}
 		}
+
+		public void Open() => m_targetOpen = 1;
+
+		public void Close() => m_targetOpen = 0;
 	}
 }

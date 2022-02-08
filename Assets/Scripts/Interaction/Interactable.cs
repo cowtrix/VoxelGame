@@ -59,7 +59,7 @@ namespace Interaction
 			yield return new ActorAction { Key = eActionKey.USE, Description = "Use" };
 		}
 
-		protected virtual bool CanUse(Actor context)
+		public virtual bool CanUse(Actor context)
 		{
 			var distance = Vector3.Distance(context.transform.position, transform.position);
 			return distance <= InteractionSettings.MaxUseDistance;

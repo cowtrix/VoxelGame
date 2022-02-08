@@ -6,8 +6,8 @@ using Voxul;
 [RequireComponent(typeof(Collider))]
 public class MovingPlatform : ExtendedMonoBehaviour
 {
-	private Rigidbody Rigidbody => GetComponentInParent<Rigidbody>();
-	private List<Rigidbody> m_rigidBodies = new List<Rigidbody>();
+	public Rigidbody Rigidbody;
+	private List<Rigidbody> m_trackedRigidBodies = new List<Rigidbody>();
 	private Vector3 m_lastPosition;
 
 	private void Start()
@@ -21,7 +21,7 @@ public class MovingPlatform : ExtendedMonoBehaviour
 		if (rb && !rb.isKinematic)
 		{
 			Debug.Log("Added rigidbody");
-			m_rigidBodies.Add(rb);
+			m_trackedRigidBodies.Add(rb);
 		}
 	}
 
@@ -31,7 +31,7 @@ public class MovingPlatform : ExtendedMonoBehaviour
 		if (rb && !rb.isKinematic)
 		{
 			Debug.Log("Remove rigidbody");
-			m_rigidBodies.Remove(rb);
+			m_trackedRigidBodies.Remove(rb);
 		}
 	}
 
@@ -39,7 +39,7 @@ public class MovingPlatform : ExtendedMonoBehaviour
 	{
 		var vel = Rigidbody.position - m_lastPosition;
 		m_lastPosition = Rigidbody.position;
-		foreach (var rb in m_rigidBodies)
+		foreach (var rb in m_trackedRigidBodies)
 		{
 			Debug.Log($"Adding velocity {vel} to {rb}", rb);
 			Debug.DrawLine(rb.position, rb.position + vel, Color.green);

@@ -94,7 +94,7 @@ namespace Interaction.Activities
 			}
 		}
 
-		protected override bool CanUse(Actor context)
+		public override bool CanUse(Actor context)
 		{
 			if (EquippedActor)
 			{
