@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7948869187827490302}
   - component: {fileID: 7620999420215228243}
   - component: {fileID: 893371499}
+  - component: {fileID: 4181049888669772279}
   m_Layer: 9
   m_Name: Capacitor
   m_TagString: Untagged
@@ -34,6 +35,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.803, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,6 +58,7 @@ MonoBehaviour:
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
   SnapToGrid: 0
+  SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
@@ -102,6 +105,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -203,13 +207,31 @@ MonoBehaviour:
         m_Calls: []
     MaxFocusDistance: 5
     MaxUseDistance: 2
-  Colliders: []
+  Colliders:
+  - {fileID: 8887858412258247600}
   ItemName: Capacitor
-  Description: An object of mysterious origins.
-  EquippedOffset: {x: 0, y: 0, z: 0}
-  EquippedRotation: {x: 0, y: 0, z: 0}
+  Description: Has the capacity to capacitate.
   Icon:
     Texture: {fileID: 2800000, guid: 87dcd7281e57d144884fd02b1d23d617, type: 3}
     Offset: {x: 0.8, y: 0.8, z: 0.6}
     FocusOffset: {x: 0, y: 0, z: 0.15}
   EquipOnPickup: 0
+--- !u!205 &4181049888669772279
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657418460642169225}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: -0.000000029802322, z: 0}
+  m_Size: 1.4444447
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.00435605
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7956767906116335026}
+  m_Enabled: 1

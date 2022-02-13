@@ -3,11 +3,13 @@ using Voxul;
 
 namespace Interaction.Activities
 {
-	public class BasicMachine : ExtendedMonoBehaviour
+	public class BasicMachine : SlowUpdater
 	{
 		public bool IsPoweredOn;
 
-		private void Update()
+		public void SetPower(bool power) => IsPoweredOn = power;
+
+		protected override void Tick(float dt)
 		{
 			if (IsPoweredOn)
 			{

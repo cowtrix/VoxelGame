@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 14.353, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8573826589274104030}
   m_RootOrder: 1
@@ -43,6 +44,7 @@ LineRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -73,20 +75,52 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0.000005722045, y: 0, z: -0.0000121593475}
-  - {x: -0.9668365, y: -0.67670494, z: -0.000012159346}
-  - {x: -3.2263122, y: -1.1414815, z: -0.0000121593475}
-  - {x: -6.52808, y: -1.410721, z: -0.000012159348}
-  - {x: -10.6217985, y: -1.5008146, z: -0.000012159347}
-  - {x: -15.257127, y: -1.4281535, z: -0.000012159347}
-  - {x: -20.183725, y: -1.2091298, z: -0.0000121593475}
-  - {x: -25.151253, y: -0.8601344, z: -0.0000121593475}
-  - {x: -29.90937, y: -0.39755833, z: -0.000012159348}
-  - {x: -34.207733, y: 0.16220683, z: -0.0000121593475}
-  - {x: -37.796005, y: 0.80276966, z: -0.0000121593475}
-  - {x: -40.42384, y: 1.5077387, z: -0.0000121593475}
-  - {x: -41.840897, y: 2.2607229, z: -0.0000121593475}
-  - {x: -42.000008, y: 2.75, z: -0.0000121593475}
+  - {x: 0, y: 0, z: 0}
+  - {x: -0.13326547, y: -0.25837964, z: 0}
+  - {x: -0.39312068, y: -0.4964671, z: 0}
+  - {x: -0.7734035, y: -0.7146476, z: 0}
+  - {x: -1.2679515, y: -0.913306, z: 0}
+  - {x: -1.8706026, y: -1.0928277, z: 0}
+  - {x: -2.5751946, y: -1.2535977, z: 0}
+  - {x: -3.375565, y: -1.3960013, z: 0}
+  - {x: -4.2655525, y: -1.5204235, z: 0}
+  - {x: -5.2389936, y: -1.6272495, z: 0}
+  - {x: -6.289727, y: -1.7168641, z: 0}
+  - {x: -7.4115906, y: -1.7896531, z: 0}
+  - {x: -8.598422, y: -1.846001, z: 0}
+  - {x: -9.844059, y: -1.8862934, z: 0}
+  - {x: -11.14234, y: -1.9109153, z: 0}
+  - {x: -12.4871025, y: -1.9202516, z: 0}
+  - {x: -13.872183, y: -1.9146879, z: 0}
+  - {x: -15.29142, y: -1.8946087, z: 0}
+  - {x: -16.738651, y: -1.8603998, z: 0}
+  - {x: -18.207716, y: -1.812446, z: 0}
+  - {x: -19.69245, y: -1.7511322, z: 0}
+  - {x: -21.186691, y: -1.6768441, z: 0}
+  - {x: -22.68428, y: -1.5899665, z: 0}
+  - {x: -24.179047, y: -1.4908849, z: 0}
+  - {x: -25.66484, y: -1.3799838, z: 0}
+  - {x: -27.135492, y: -1.2576487, z: 0}
+  - {x: -28.58484, y: -1.1242645, z: 0}
+  - {x: -30.006725, y: -0.9802167, z: 0}
+  - {x: -31.394978, y: -0.8258903, z: 0}
+  - {x: -32.74344, y: -0.6616704, z: 0}
+  - {x: -34.04595, y: -0.4879421, z: 0}
+  - {x: -35.296352, y: -0.3050905, z: 0}
+  - {x: -36.488472, y: -0.11350107, z: 0}
+  - {x: -37.616158, y: 0.08644152, z: 0}
+  - {x: -38.67324, y: 0.2943517, z: 0}
+  - {x: -39.653557, y: 0.50984454, z: 0}
+  - {x: -40.55095, y: 0.732535, z: 0}
+  - {x: -41.35926, y: 0.9620379, z: 0}
+  - {x: -42.072315, y: 1.197968, z: 0}
+  - {x: -42.683956, y: 1.43994, z: 0}
+  - {x: -43.188026, y: 1.6875691, z: 0}
+  - {x: -43.578358, y: 1.94047, z: 0}
+  - {x: -43.848793, y: 2.1982577, z: 0}
+  - {x: -43.993168, y: 2.460547, z: 0}
+  - {x: -44.00532, y: 2.7269526, z: 0}
+  - {x: -44, y: 2.75, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.15
@@ -154,179 +188,250 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa6548054ee48b4099c6fe1eac035c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Start:
+  StartTransform:
     Transform: {fileID: 8497060148741370062}
     Offset: {x: 0, y: 0, z: 0}
-    Normal: {x: 0, y: -3, z: 3}
-  End:
+    Normal: {x: -0.9980526, y: -3.947949, z: -0}
+  EndTransform:
     Transform: {fileID: 0}
     Offset: {x: 0, y: 0, z: 0}
-    Normal: {x: 0, y: -3, z: -3}
+    Normal: {x: -0.9980526, y: -3.947949, z: -0}
+  MidPoint:
+    Transform: {fileID: 0}
+    Offset: {x: 0, y: 0, z: 0}
+    Normal: {x: 0, y: 0, z: 0}
   Resolution: 1
+  Tolerance: 0.01
+  Curviness: 1
+  Dynamic: 0
+  DynamicChainCount: 3
+  DynamicChainSize: {x: 0.1, y: 0.1, z: 0.1}
   Spline:
     Resolution: 1
     FirstControlPoint:
       _upVector: {x: 0, y: 1, z: 0}
-      Control: {x: 0, y: -3, z: 3}
+      Control: {x: -0.9980526, y: -3.947949, z: -0}
       Position: {x: 0, y: 0, z: 0}
       Rotation: {x: 0, y: 0, z: 0}
     SecondControlPoint:
       _upVector: {x: 0, y: 1, z: 0}
-      Control: {x: 0, y: -3, z: -3}
-      Position: {x: 0, y: 0, z: 35.33333}
+      Control: {x: -0.9980526, y: -3.947949, z: -0}
+      Position: {x: -44, y: 2.75, z: 0}
       Rotation: {x: 0, y: 0, z: 0}
+    Length: 45.396454
     Points:
     - AccumLength: 0
       Position: {x: 0, y: 0, z: 0}
       NaturalTime: 0
       UniformTime: 0
-    - AccumLength: 0.40202442
-      Position: {x: 0, y: -0.24750805, z: 0.31680182}
-      NaturalTime: 0.028301891
-      UniformTime: 0.011181937
-    - AccumLength: 0.8965926
-      Position: {x: 0, y: -0.48059815, z: 0.7529975}
-      NaturalTime: 0.056603782
-      UniformTime: 0.024937892
-    - AccumLength: 1.4870064
-      Position: {x: 0, y: -0.69927025, z: 1.3014234}
-      NaturalTime: 0.08490567
-      UniformTime: 0.041359708
-    - AccumLength: 2.171676
-      Position: {x: 0, y: -0.90352446, z: 1.954916}
-      NaturalTime: 0.113207564
-      UniformTime: 0.060403153
-    - AccumLength: 2.9466813
-      Position: {x: 0, y: -1.0933608, z: 2.7063117}
-      NaturalTime: 0.14150946
-      UniformTime: 0.08195921
-    - AccumLength: 3.806892
-      Position: {x: 0, y: -1.2687792, z: 3.5484464}
-      NaturalTime: 0.16981135
-      UniformTime: 0.10588517
-    - AccumLength: 4.746499
-      Position: {x: 0, y: -1.4297794, z: 4.4741573}
-      NaturalTime: 0.19811325
-      UniformTime: 0.13201948
-    - AccumLength: 5.759286
-      Position: {x: 0, y: -1.5763619, z: 5.47628}
-      NaturalTime: 0.22641514
-      UniformTime: 0.1601892
-    - AccumLength: 6.8387775
-      Position: {x: 0, y: -1.7085264, z: 6.547651}
-      NaturalTime: 0.25471702
-      UniformTime: 0.19021426
-    - AccumLength: 7.9783325
-      Position: {x: 0, y: -1.8262727, z: 7.6811066}
-      NaturalTime: 0.28301892
-      UniformTime: 0.22190993
-    - AccumLength: 9.171194
-      Position: {x: 0, y: -1.9296017, z: 8.869484}
-      NaturalTime: 0.3113208
-      UniformTime: 0.25508827
-    - AccumLength: 10.410522
-      Position: {x: 0, y: -2.018512, z: 10.1056185}
-      NaturalTime: 0.3396227
-      UniformTime: 0.28955904
-    - AccumLength: 11.689424
-      Position: {x: 0, y: -2.093005, z: 11.382348}
-      NaturalTime: 0.3679246
-      UniformTime: 0.3251305
-    - AccumLength: 13.0009575
-      Position: {x: 0, y: -2.1530793, z: 12.692506}
-      NaturalTime: 0.3962265
-      UniformTime: 0.36160958
-    - AccumLength: 14.338163
-      Position: {x: 0, y: -2.1987367, z: 14.028933}
-      NaturalTime: 0.4245284
-      UniformTime: 0.39880273
-    - AccumLength: 15.694051
-      Position: {x: 0, y: -2.2299747, z: 15.38446}
-      NaturalTime: 0.45283028
-      UniformTime: 0.43651548
-    - AccumLength: 17.061625
-      Position: {x: 0, y: -2.2467961, z: 16.75193}
-      NaturalTime: 0.48113218
-      UniformTime: 0.4745533
-    - AccumLength: 18.433867
-      Position: {x: 0, y: -2.249199, z: 18.12417}
-      NaturalTime: 0.50943404
-      UniformTime: 0.51272094
-    - AccumLength: 19.803778
-      Position: {x: 0, y: -2.237184, z: 19.494028}
-      NaturalTime: 0.53773594
-      UniformTime: 0.55082375
-    - AccumLength: 21.164337
-      Position: {x: 0, y: -2.210751, z: 20.85433}
-      NaturalTime: 0.56603783
-      UniformTime: 0.58866644
-    - AccumLength: 22.508549
-      Position: {x: 0, y: -2.1699002, z: 22.19792}
-      NaturalTime: 0.5943397
-      UniformTime: 0.6260544
-    - AccumLength: 23.829414
-      Position: {x: 0, y: -2.1146312, z: 23.51763}
-      NaturalTime: 0.6226416
-      UniformTime: 0.6627931
-    - AccumLength: 25.119967
-      Position: {x: 0, y: -2.0449445, z: 24.8063}
-      NaturalTime: 0.6509435
-      UniformTime: 0.6986886
-    - AccumLength: 26.373253
-      Position: {x: 0, y: -1.9608397, z: 26.05676}
-      NaturalTime: 0.6792454
-      UniformTime: 0.73354757
-    - AccumLength: 27.582365
-      Position: {x: 0, y: -1.862317, z: 27.261852}
-      NaturalTime: 0.7075473
-      UniformTime: 0.76717794
-    - AccumLength: 28.740442
-      Position: {x: 0, y: -1.7493763, z: 28.41441}
-      NaturalTime: 0.7358492
-      UniformTime: 0.79938877
-    - AccumLength: 29.840704
-      Position: {x: 0, y: -1.6220177, z: 29.507275}
-      NaturalTime: 0.7641511
-      UniformTime: 0.8299915
-    - AccumLength: 30.876451
-      Position: {x: 0, y: -1.4802412, z: 30.533274}
-      NaturalTime: 0.792453
-      UniformTime: 0.8587999
-    - AccumLength: 31.841156
-      Position: {x: 0, y: -1.3240467, z: 31.48525}
-      NaturalTime: 0.8207549
-      UniformTime: 0.8856323
-    - AccumLength: 32.728504
-      Position: {x: 0, y: -1.1534343, z: 32.35604}
-      NaturalTime: 0.8490568
-      UniformTime: 0.910313
-    - AccumLength: 33.53252
-      Position: {x: 0, y: -0.9684038, z: 33.138477}
-      NaturalTime: 0.8773587
-      UniformTime: 0.93267596
-    - AccumLength: 34.24781
-      Position: {x: 0, y: -0.7689555, z: 33.825397}
-      NaturalTime: 0.90566057
-      UniformTime: 0.9525711
-    - AccumLength: 34.869972
-      Position: {x: 0, y: -0.55508924, z: 34.409645}
-      NaturalTime: 0.93396246
-      UniformTime: 0.969876
-    - AccumLength: 35.39644
-      Position: {x: 0, y: -0.32680497, z: 34.88404}
-      NaturalTime: 0.96226436
-      UniformTime: 0.9845191
-    - AccumLength: 35.828453
-      Position: {x: 0, y: -0.08410276, z: 35.241436}
-      NaturalTime: 0.99056625
-      UniformTime: 0.99653524
-    - AccumLength: 35.953022
-      Position: {x: 0, y: 0, z: 35.33333}
+    - AccumLength: 0.29072276
+      Position: {x: -0.13326547, y: -0.25837964, z: 0}
+      NaturalTime: 0.022683013
+      UniformTime: 0.006404085
+    - AccumLength: 0.6431577
+      Position: {x: -0.39312068, y: -0.4964671, z: 0}
+      NaturalTime: 0.045366026
+      UniformTime: 0.014167576
+    - AccumLength: 1.0815842
+      Position: {x: -0.7734035, y: -0.7146476, z: 0}
+      NaturalTime: 0.06804904
+      UniformTime: 0.023825303
+    - AccumLength: 1.6145409
+      Position: {x: -1.2679515, y: -0.913306, z: 0}
+      NaturalTime: 0.09073205
+      UniformTime: 0.035565354
+    - AccumLength: 2.2433624
+      Position: {x: -1.8706026, y: -1.0928277, z: 0}
+      NaturalTime: 0.11341506
+      UniformTime: 0.04941713
+    - AccumLength: 2.9660635
+      Position: {x: -2.5751946, y: -1.2535977, z: 0}
+      NaturalTime: 0.13609807
+      UniformTime: 0.0653369
+    - AccumLength: 3.7790036
+      Position: {x: -3.375565, y: -1.3960013, z: 0}
+      NaturalTime: 0.15878108
+      UniformTime: 0.083244465
+    - AccumLength: 4.677646
+      Position: {x: -4.2655525, y: -1.5204235, z: 0}
+      NaturalTime: 0.18146409
+      UniformTime: 0.103039905
+    - AccumLength: 5.6569314
+      Position: {x: -5.2389936, y: -1.6272495, z: 0}
+      NaturalTime: 0.2041471
+      UniformTime: 0.12461174
+    - AccumLength: 6.7114797
+      Position: {x: -6.289727, y: -1.7168641, z: 0}
+      NaturalTime: 0.22683011
+      UniformTime: 0.1478415
+    - AccumLength: 7.835702
+      Position: {x: -7.4115906, y: -1.7896531, z: 0}
+      NaturalTime: 0.24951312
+      UniformTime: 0.17260604
+    - AccumLength: 9.02387
+      Position: {x: -8.598422, y: -1.846001, z: 0}
+      NaturalTime: 0.27219614
+      UniformTime: 0.1987792
+    - AccumLength: 10.270159
+      Position: {x: -9.844059, y: -1.8862934, z: 0}
+      NaturalTime: 0.29487917
+      UniformTime: 0.22623262
+    - AccumLength: 11.568673
+      Position: {x: -11.14234, y: -1.9109153, z: 0}
+      NaturalTime: 0.3175622
+      UniformTime: 0.2548365
+    - AccumLength: 12.913468
+      Position: {x: -12.4871025, y: -1.9202516, z: 0}
+      NaturalTime: 0.34024522
+      UniformTime: 0.28445986
+    - AccumLength: 14.29856
+      Position: {x: -13.872183, y: -1.9146879, z: 0}
+      NaturalTime: 0.36292824
+      UniformTime: 0.31497085
+    - AccumLength: 15.717939
+      Position: {x: -15.29142, y: -1.8946087, z: 0}
+      NaturalTime: 0.38561127
+      UniformTime: 0.34623715
+    - AccumLength: 17.165575
+      Position: {x: -16.738651, y: -1.8603998, z: 0}
+      NaturalTime: 0.4082943
+      UniformTime: 0.3781259
+    - AccumLength: 18.635422
+      Position: {x: -18.207716, y: -1.812446, z: 0}
+      NaturalTime: 0.4309773
+      UniformTime: 0.4105039
+    - AccumLength: 20.121422
+      Position: {x: -19.69245, y: -1.7511322, z: 0}
+      NaturalTime: 0.45366034
+      UniformTime: 0.44323775
+    - AccumLength: 21.61751
+      Position: {x: -21.186691, y: -1.6768441, z: 0}
+      NaturalTime: 0.47634336
+      UniformTime: 0.4761938
+    - AccumLength: 23.117617
+      Position: {x: -22.68428, y: -1.5899665, z: 0}
+      NaturalTime: 0.4990264
+      UniformTime: 0.50923836
+    - AccumLength: 24.615664
+      Position: {x: -24.179047, y: -1.4908849, z: 0}
+      NaturalTime: 0.5217094
+      UniformTime: 0.5422376
+    - AccumLength: 26.10559
+      Position: {x: -25.66484, y: -1.3799838, z: 0}
+      NaturalTime: 0.5443924
+      UniformTime: 0.5750579
+    - AccumLength: 27.581322
+      Position: {x: -27.135492, y: -1.2576487, z: 0}
+      NaturalTime: 0.56707543
+      UniformTime: 0.6075656
+    - AccumLength: 29.036795
+      Position: {x: -28.58484, y: -1.1242645, z: 0}
+      NaturalTime: 0.58975846
+      UniformTime: 0.6396269
+    - AccumLength: 30.465958
+      Position: {x: -30.006725, y: -0.9802167, z: 0}
+      NaturalTime: 0.6124415
+      UniformTime: 0.6711088
+    - AccumLength: 31.862762
+      Position: {x: -31.394978, y: -0.8258903, z: 0}
+      NaturalTime: 0.6351245
+      UniformTime: 0.7018778
+    - AccumLength: 33.221188
+      Position: {x: -32.74344, y: -0.6616704, z: 0}
+      NaturalTime: 0.6578075
+      UniformTime: 0.7318014
+    - AccumLength: 34.535236
+      Position: {x: -34.04595, y: -0.4879421, z: 0}
+      NaturalTime: 0.68049055
+      UniformTime: 0.76074743
+    - AccumLength: 35.798935
+      Position: {x: -35.296352, y: -0.3050905, z: 0}
+      NaturalTime: 0.7031736
+      UniformTime: 0.7885844
+    - AccumLength: 37.00635
+      Position: {x: -36.488472, y: -0.11350107, z: 0}
+      NaturalTime: 0.7258566
+      UniformTime: 0.81518155
+    - AccumLength: 38.151627
+      Position: {x: -37.616158, y: 0.08644152, z: 0}
+      NaturalTime: 0.7485396
+      UniformTime: 0.8404098
+    - AccumLength: 39.228962
+      Position: {x: -38.67324, y: 0.2943517, z: 0}
+      NaturalTime: 0.77122265
+      UniformTime: 0.8641415
+    - AccumLength: 40.232685
+      Position: {x: -39.653557, y: 0.50984454, z: 0}
+      NaturalTime: 0.7939057
+      UniformTime: 0.8862517
+    - AccumLength: 41.157295
+      Position: {x: -40.55095, y: 0.732535, z: 0}
+      NaturalTime: 0.8165887
+      UniformTime: 0.9066192
+    - AccumLength: 41.997555
+      Position: {x: -41.35926, y: 0.9620379, z: 0}
+      NaturalTime: 0.8392717
+      UniformTime: 0.9251285
+    - AccumLength: 42.748627
+      Position: {x: -42.072315, y: 1.197968, z: 0}
+      NaturalTime: 0.86195475
+      UniformTime: 0.9416733
+    - AccumLength: 43.40639
+      Position: {x: -42.683956, y: 1.43994, z: 0}
+      NaturalTime: 0.8846378
+      UniformTime: 0.9561626
+    - AccumLength: 43.968002
+      Position: {x: -43.188026, y: 1.6875691, z: 0}
+      NaturalTime: 0.9073208
+      UniformTime: 0.9685339
+    - AccumLength: 44.4331
+      Position: {x: -43.578358, y: 1.94047, z: 0}
+      NaturalTime: 0.9300038
+      UniformTime: 0.97877914
+    - AccumLength: 44.806717
+      Position: {x: -43.848793, y: 2.1982577, z: 0}
+      NaturalTime: 0.95268685
+      UniformTime: 0.98700917
+    - AccumLength: 45.106117
+      Position: {x: -43.993168, y: 2.460547, z: 0}
+      NaturalTime: 0.9753699
+      UniformTime: 0.9936044
+    - AccumLength: 45.3728
+      Position: {x: -44.00532, y: 2.7269526, z: 0}
+      NaturalTime: 0.9980529
+      UniformTime: 0.99947894
+    - AccumLength: 45.396454
+      Position: {x: -44, y: 2.75, z: 0}
       NaturalTime: 1
       UniformTime: 1
     Bounds:
-      m_Center: {x: 0, y: -1.1245995, z: 17.666664}
-      m_Extent: {x: 0, y: 1.1245995, z: 17.666664}
+      m_Center: {x: -22.00266, y: 0.41487432, z: 0}
+      m_Extent: {x: 22.00266, y: 2.335126, z: 0}
+  Spline2:
+    Resolution: 1
+    FirstControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    SecondControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    Length: 0
+    Points:
+    - AccumLength: 0
+      Position: {x: 0, y: 0, z: 0}
+      NaturalTime: 0
+      UniformTime: NaN
+    - AccumLength: 0
+      Position: {x: 0, y: 0, z: 0}
+      NaturalTime: 1
+      UniformTime: NaN
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1 &865147594774067689
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +461,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 17.103, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8573826589274104030}
   m_RootOrder: 4
@@ -371,6 +477,7 @@ LineRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -401,20 +508,52 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0.000005722045, y: 0, z: -0.0000121593475}
-  - {x: -1.0080435, y: -0.7473283, z: -0.000012159348}
-  - {x: -3.3544302, y: -1.3862551, z: -0.0000121593475}
-  - {x: -6.76608, y: -1.9120684, z: -0.0000121593475}
-  - {x: -10.969918, y: -2.3200557, z: -0.0000121593475}
-  - {x: -15.692872, y: -2.6055055, z: -0.0000121593475}
-  - {x: -20.661865, y: -2.7637048, z: -0.000012159347}
-  - {x: -25.603825, y: -2.789942, z: -0.0000121593475}
-  - {x: -30.245678, y: -2.6795044, z: -0.0000121593475}
-  - {x: -34.31435, y: -2.4276807, z: -0.0000121593475}
-  - {x: -37.536766, y: -2.029758, z: -0.0000121593475}
-  - {x: -39.639847, y: -1.4810245, z: -0.0000121593475}
-  - {x: -40.35053, y: -0.77676785, z: -0.000012159348}
-  - {x: -40.334007, y: -0.69600296, z: -0.0000121593475}
+  - {x: 0, y: 0, z: 0}
+  - {x: -0.1337425, y: -0.261765, z: 0}
+  - {x: -0.39451557, y: -0.513628, z: 0}
+  - {x: -0.7761235, y: -0.75548345, z: 0}
+  - {x: -1.2723708, y: -0.9872256, z: 0}
+  - {x: -1.8770618, y: -1.2087489, z: 0}
+  - {x: -2.5840003, y: -1.4199479, z: 0}
+  - {x: -3.3869915, y: -1.6207168, z: 0}
+  - {x: -4.279839, y: -1.8109502, z: 0}
+  - {x: -5.256348, y: -1.990542, z: 0}
+  - {x: -6.3103228, y: -2.1593874, z: 0}
+  - {x: -7.4355664, y: -2.3173802, z: 0}
+  - {x: -8.625884, y: -2.4644146, z: 0}
+  - {x: -9.87508, y: -2.600386, z: 0}
+  - {x: -11.17696, y: -2.725187, z: 0}
+  - {x: -12.525327, y: -2.8387144, z: 0}
+  - {x: -13.913984, y: -2.9408603, z: 0}
+  - {x: -15.33674, y: -3.0315208, z: 0}
+  - {x: -16.787392, y: -3.1105888, z: 0}
+  - {x: -18.259752, y: -3.1779602, z: 0}
+  - {x: -19.74762, y: -3.2335281, z: 0}
+  - {x: -21.2448, y: -3.2771883, z: 0}
+  - {x: -22.745098, y: -3.3088334, z: 0}
+  - {x: -24.242317, y: -3.3283594, z: 0}
+  - {x: -25.730267, y: -3.3356597, z: 0}
+  - {x: -27.202744, y: -3.3306289, z: 0}
+  - {x: -28.653555, y: -3.313162, z: 0}
+  - {x: -30.076508, y: -3.2831523, z: 0}
+  - {x: -31.4654, y: -3.2404952, z: 0}
+  - {x: -32.814045, y: -3.1850848, z: 0}
+  - {x: -34.11624, y: -3.116815, z: 0}
+  - {x: -35.365795, y: -3.0355809, z: 0}
+  - {x: -36.55651, y: -2.9412763, z: 0}
+  - {x: -37.68219, y: -2.8337963, z: 0}
+  - {x: -38.73664, y: -2.7130346, z: 0}
+  - {x: -39.71366, y: -2.5788858, z: 0}
+  - {x: -40.607063, y: -2.4312444, z: 0}
+  - {x: -41.41065, y: -2.2700047, z: 0}
+  - {x: -42.11822, y: -2.095061, z: 0}
+  - {x: -42.723587, y: -1.906308, z: 0}
+  - {x: -43.22055, y: -1.70364, z: 0}
+  - {x: -43.602905, y: -1.4869511, z: 0}
+  - {x: -43.864468, y: -1.256136, z: 0}
+  - {x: -43.999043, y: -1.011089, z: 0}
+  - {x: -44.00043, y: -0.7517044, z: 0}
+  - {x: -44, y: -0.75, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
@@ -482,179 +621,250 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa6548054ee48b4099c6fe1eac035c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Start:
+  StartTransform:
     Transform: {fileID: 3924966018833417629}
     Offset: {x: 0, y: 0, z: 0}
-    Normal: {x: 0, y: -3, z: 3}
-  End:
+    Normal: {x: -0.99985474, y: -3.911887, z: -0}
+  EndTransform:
     Transform: {fileID: 0}
     Offset: {x: 0, y: 0, z: 0}
-    Normal: {x: 0, y: -3, z: -3}
+    Normal: {x: -0.99985474, y: -3.911887, z: -0}
+  MidPoint:
+    Transform: {fileID: 0}
+    Offset: {x: 0, y: 0, z: 0}
+    Normal: {x: 0, y: 0, z: 0}
   Resolution: 1
+  Tolerance: 0.01
+  Curviness: 1
+  Dynamic: 0
+  DynamicChainCount: 3
+  DynamicChainSize: {x: 0.1, y: 0.1, z: 0.1}
   Spline:
     Resolution: 1
     FirstControlPoint:
       _upVector: {x: 0, y: 1, z: 0}
-      Control: {x: 0, y: -3, z: 3}
+      Control: {x: -0.99985474, y: -3.911887, z: -0}
       Position: {x: 0, y: 0, z: 0}
       Rotation: {x: 0, y: 0, z: 0}
     SecondControlPoint:
       _upVector: {x: 0, y: 1, z: 0}
-      Control: {x: 0, y: -3, z: -3}
-      Position: {x: 0, y: 0, z: 35.33333}
+      Control: {x: -0.99985474, y: -3.911887, z: -0}
+      Position: {x: -44, y: -0.75, z: 0}
       Rotation: {x: 0, y: 0, z: 0}
+    Length: 45.278114
     Points:
     - AccumLength: 0
       Position: {x: 0, y: 0, z: 0}
       NaturalTime: 0
       UniformTime: 0
-    - AccumLength: 0.40202442
-      Position: {x: 0, y: -0.24750805, z: 0.31680182}
-      NaturalTime: 0.028301891
-      UniformTime: 0.011181937
-    - AccumLength: 0.8965926
-      Position: {x: 0, y: -0.48059815, z: 0.7529975}
-      NaturalTime: 0.056603782
-      UniformTime: 0.024937892
-    - AccumLength: 1.4870064
-      Position: {x: 0, y: -0.69927025, z: 1.3014234}
-      NaturalTime: 0.08490567
-      UniformTime: 0.041359708
-    - AccumLength: 2.171676
-      Position: {x: 0, y: -0.90352446, z: 1.954916}
-      NaturalTime: 0.113207564
-      UniformTime: 0.060403153
-    - AccumLength: 2.9466813
-      Position: {x: 0, y: -1.0933608, z: 2.7063117}
-      NaturalTime: 0.14150946
-      UniformTime: 0.08195921
-    - AccumLength: 3.806892
-      Position: {x: 0, y: -1.2687792, z: 3.5484464}
-      NaturalTime: 0.16981135
-      UniformTime: 0.10588517
-    - AccumLength: 4.746499
-      Position: {x: 0, y: -1.4297794, z: 4.4741573}
-      NaturalTime: 0.19811325
-      UniformTime: 0.13201948
-    - AccumLength: 5.759286
-      Position: {x: 0, y: -1.5763619, z: 5.47628}
-      NaturalTime: 0.22641514
-      UniformTime: 0.1601892
-    - AccumLength: 6.8387775
-      Position: {x: 0, y: -1.7085264, z: 6.547651}
-      NaturalTime: 0.25471702
-      UniformTime: 0.19021426
-    - AccumLength: 7.9783325
-      Position: {x: 0, y: -1.8262727, z: 7.6811066}
-      NaturalTime: 0.28301892
-      UniformTime: 0.22190993
-    - AccumLength: 9.171194
-      Position: {x: 0, y: -1.9296017, z: 8.869484}
-      NaturalTime: 0.3113208
-      UniformTime: 0.25508827
-    - AccumLength: 10.410522
-      Position: {x: 0, y: -2.018512, z: 10.1056185}
-      NaturalTime: 0.3396227
-      UniformTime: 0.28955904
-    - AccumLength: 11.689424
-      Position: {x: 0, y: -2.093005, z: 11.382348}
-      NaturalTime: 0.3679246
-      UniformTime: 0.3251305
-    - AccumLength: 13.0009575
-      Position: {x: 0, y: -2.1530793, z: 12.692506}
-      NaturalTime: 0.3962265
-      UniformTime: 0.36160958
-    - AccumLength: 14.338163
-      Position: {x: 0, y: -2.1987367, z: 14.028933}
-      NaturalTime: 0.4245284
-      UniformTime: 0.39880273
-    - AccumLength: 15.694051
-      Position: {x: 0, y: -2.2299747, z: 15.38446}
-      NaturalTime: 0.45283028
-      UniformTime: 0.43651548
-    - AccumLength: 17.061625
-      Position: {x: 0, y: -2.2467961, z: 16.75193}
-      NaturalTime: 0.48113218
-      UniformTime: 0.4745533
-    - AccumLength: 18.433867
-      Position: {x: 0, y: -2.249199, z: 18.12417}
-      NaturalTime: 0.50943404
-      UniformTime: 0.51272094
-    - AccumLength: 19.803778
-      Position: {x: 0, y: -2.237184, z: 19.494028}
-      NaturalTime: 0.53773594
-      UniformTime: 0.55082375
-    - AccumLength: 21.164337
-      Position: {x: 0, y: -2.210751, z: 20.85433}
-      NaturalTime: 0.56603783
-      UniformTime: 0.58866644
-    - AccumLength: 22.508549
-      Position: {x: 0, y: -2.1699002, z: 22.19792}
-      NaturalTime: 0.5943397
-      UniformTime: 0.6260544
-    - AccumLength: 23.829414
-      Position: {x: 0, y: -2.1146312, z: 23.51763}
-      NaturalTime: 0.6226416
-      UniformTime: 0.6627931
-    - AccumLength: 25.119967
-      Position: {x: 0, y: -2.0449445, z: 24.8063}
-      NaturalTime: 0.6509435
-      UniformTime: 0.6986886
-    - AccumLength: 26.373253
-      Position: {x: 0, y: -1.9608397, z: 26.05676}
-      NaturalTime: 0.6792454
-      UniformTime: 0.73354757
-    - AccumLength: 27.582365
-      Position: {x: 0, y: -1.862317, z: 27.261852}
-      NaturalTime: 0.7075473
-      UniformTime: 0.76717794
-    - AccumLength: 28.740442
-      Position: {x: 0, y: -1.7493763, z: 28.41441}
-      NaturalTime: 0.7358492
-      UniformTime: 0.79938877
-    - AccumLength: 29.840704
-      Position: {x: 0, y: -1.6220177, z: 29.507275}
-      NaturalTime: 0.7641511
-      UniformTime: 0.8299915
-    - AccumLength: 30.876451
-      Position: {x: 0, y: -1.4802412, z: 30.533274}
-      NaturalTime: 0.792453
-      UniformTime: 0.8587999
-    - AccumLength: 31.841156
-      Position: {x: 0, y: -1.3240467, z: 31.48525}
-      NaturalTime: 0.8207549
-      UniformTime: 0.8856323
-    - AccumLength: 32.728504
-      Position: {x: 0, y: -1.1534343, z: 32.35604}
-      NaturalTime: 0.8490568
-      UniformTime: 0.910313
-    - AccumLength: 33.53252
-      Position: {x: 0, y: -0.9684038, z: 33.138477}
-      NaturalTime: 0.8773587
-      UniformTime: 0.93267596
-    - AccumLength: 34.24781
-      Position: {x: 0, y: -0.7689555, z: 33.825397}
-      NaturalTime: 0.90566057
-      UniformTime: 0.9525711
-    - AccumLength: 34.869972
-      Position: {x: 0, y: -0.55508924, z: 34.409645}
-      NaturalTime: 0.93396246
-      UniformTime: 0.969876
-    - AccumLength: 35.39644
-      Position: {x: 0, y: -0.32680497, z: 34.88404}
-      NaturalTime: 0.96226436
-      UniformTime: 0.9845191
-    - AccumLength: 35.828453
-      Position: {x: 0, y: -0.08410276, z: 35.241436}
-      NaturalTime: 0.99056625
-      UniformTime: 0.99653524
-    - AccumLength: 35.953022
-      Position: {x: 0, y: 0, z: 35.33333}
+    - AccumLength: 0.29395232
+      Position: {x: -0.1337425, y: -0.261765, z: 0}
+      NaturalTime: 0.022723971
+      UniformTime: 0.00649215
+    - AccumLength: 0.6564955
+      Position: {x: -0.39451557, y: -0.513628, z: 0}
+      NaturalTime: 0.045447942
+      UniformTime: 0.01449918
+    - AccumLength: 1.1082904
+      Position: {x: -0.7761235, y: -0.75548345, z: 0}
+      NaturalTime: 0.06817191
+      UniformTime: 0.024477398
+    - AccumLength: 1.6559818
+      Position: {x: -1.2723708, y: -0.9872256, z: 0}
+      NaturalTime: 0.090895884
+      UniformTime: 0.03657356
+    - AccumLength: 2.2999723
+      Position: {x: -1.8770618, y: -1.2087489, z: 0}
+      NaturalTime: 0.11361986
+      UniformTime: 0.050796557
+    - AccumLength: 3.0377846
+      Position: {x: -2.5840003, y: -1.4199479, z: 0}
+      NaturalTime: 0.13634382
+      UniformTime: 0.06709167
+    - AccumLength: 3.865494
+      Position: {x: -3.3869915, y: -1.6207168, z: 0}
+      NaturalTime: 0.1590678
+      UniformTime: 0.08537224
+    - AccumLength: 4.7783823
+      Position: {x: -4.279839, y: -1.8109502, z: 0}
+      NaturalTime: 0.18179177
+      UniformTime: 0.10553404
+    - AccumLength: 5.771269
+      Position: {x: -5.256348, y: -1.990542, z: 0}
+      NaturalTime: 0.20451574
+      UniformTime: 0.12746266
+    - AccumLength: 6.838682
+      Position: {x: -6.3103228, y: -2.1593874, z: 0}
+      NaturalTime: 0.22723971
+      UniformTime: 0.15103726
+    - AccumLength: 7.974963
+      Position: {x: -7.4355664, y: -2.3173802, z: 0}
+      NaturalTime: 0.24996369
+      UniformTime: 0.17613284
+    - AccumLength: 9.174328
+      Position: {x: -8.625884, y: -2.4644146, z: 0}
+      NaturalTime: 0.27268764
+      UniformTime: 0.20262168
+    - AccumLength: 10.4309025
+      Position: {x: -9.87508, y: -2.600386, z: 0}
+      NaturalTime: 0.29541162
+      UniformTime: 0.23037405
+    - AccumLength: 11.73875
+      Position: {x: -11.17696, y: -2.725187, z: 0}
+      NaturalTime: 0.3181356
+      UniformTime: 0.2592588
+    - AccumLength: 13.091888
+      Position: {x: -12.525327, y: -2.8387144, z: 0}
+      NaturalTime: 0.34085956
+      UniformTime: 0.28914386
+    - AccumLength: 14.484298
+      Position: {x: -13.913984, y: -2.9408603, z: 0}
+      NaturalTime: 0.36358353
+      UniformTime: 0.31989622
+    - AccumLength: 15.909939
+      Position: {x: -15.33674, y: -3.0315208, z: 0}
+      NaturalTime: 0.3863075
+      UniformTime: 0.35138255
+    - AccumLength: 17.362743
+      Position: {x: -16.787392, y: -3.1105888, z: 0}
+      NaturalTime: 0.40903148
+      UniformTime: 0.38346878
+    - AccumLength: 18.836645
+      Position: {x: -18.259752, y: -3.1779602, z: 0}
+      NaturalTime: 0.43175545
+      UniformTime: 0.41602096
+    - AccumLength: 20.32555
+      Position: {x: -19.74762, y: -3.2335281, z: 0}
+      NaturalTime: 0.45447943
+      UniformTime: 0.4489045
+    - AccumLength: 21.823368
+      Position: {x: -21.2448, y: -3.2771883, z: 0}
+      NaturalTime: 0.4772034
+      UniformTime: 0.4819849
+    - AccumLength: 23.324
+      Position: {x: -22.745098, y: -3.3088334, z: 0}
+      NaturalTime: 0.49992737
+      UniformTime: 0.5151274
+    - AccumLength: 24.821346
+      Position: {x: -24.242317, y: -3.3283594, z: 0}
+      NaturalTime: 0.5226513
+      UniformTime: 0.54819745
+    - AccumLength: 26.309313
+      Position: {x: -25.730267, y: -3.3356597, z: 0}
+      NaturalTime: 0.5453753
+      UniformTime: 0.58106023
+    - AccumLength: 27.7818
+      Position: {x: -27.202744, y: -3.3306289, z: 0}
+      NaturalTime: 0.56809926
+      UniformTime: 0.6135812
+    - AccumLength: 29.232716
+      Position: {x: -28.653555, y: -3.313162, z: 0}
+      NaturalTime: 0.59082323
+      UniformTime: 0.6456257
+    - AccumLength: 30.655985
+      Position: {x: -30.076508, y: -3.2831523, z: 0}
+      NaturalTime: 0.6135472
+      UniformTime: 0.67705965
+    - AccumLength: 32.045532
+      Position: {x: -31.4654, y: -3.2404952, z: 0}
+      NaturalTime: 0.6362712
+      UniformTime: 0.70774883
+    - AccumLength: 33.395313
+      Position: {x: -32.814045, y: -3.1850848, z: 0}
+      NaturalTime: 0.65899515
+      UniformTime: 0.73755974
+    - AccumLength: 34.6993
+      Position: {x: -34.11624, y: -3.116815, z: 0}
+      NaturalTime: 0.6817191
+      UniformTime: 0.7663592
+    - AccumLength: 35.95149
+      Position: {x: -35.365795, y: -3.0355809, z: 0}
+      NaturalTime: 0.7044431
+      UniformTime: 0.7940147
+    - AccumLength: 37.14593
+      Position: {x: -36.55651, y: -2.9412763, z: 0}
+      NaturalTime: 0.72716707
+      UniformTime: 0.8203948
+    - AccumLength: 38.27673
+      Position: {x: -37.68219, y: -2.8337963, z: 0}
+      NaturalTime: 0.74989104
+      UniformTime: 0.84536934
+    - AccumLength: 39.338074
+      Position: {x: -38.73664, y: -2.7130346, z: 0}
+      NaturalTime: 0.772615
+      UniformTime: 0.8688099
+    - AccumLength: 40.32426
+      Position: {x: -39.71366, y: -2.5788858, z: 0}
+      NaturalTime: 0.795339
+      UniformTime: 0.89059055
+    - AccumLength: 41.22978
+      Position: {x: -40.607063, y: -2.4312444, z: 0}
+      NaturalTime: 0.81806296
+      UniformTime: 0.9105896
+    - AccumLength: 42.04938
+      Position: {x: -41.41065, y: -2.2700047, z: 0}
+      NaturalTime: 0.84078693
+      UniformTime: 0.9286911
+    - AccumLength: 42.77826
+      Position: {x: -42.11822, y: -2.095061, z: 0}
+      NaturalTime: 0.8635109
+      UniformTime: 0.9447889
+    - AccumLength: 43.41237
+      Position: {x: -42.723587, y: -1.906308, z: 0}
+      NaturalTime: 0.8862349
+      UniformTime: 0.95879364
+    - AccumLength: 43.94907
+      Position: {x: -43.22055, y: -1.70364, z: 0}
+      NaturalTime: 0.90895885
+      UniformTime: 0.9706471
+    - AccumLength: 44.388557
+      Position: {x: -43.602905, y: -1.4869511, z: 0}
+      NaturalTime: 0.9316828
+      UniformTime: 0.9803535
+    - AccumLength: 44.7374
+      Position: {x: -43.864468, y: -1.256136, z: 0}
+      NaturalTime: 0.9544068
+      UniformTime: 0.9880579
+    - AccumLength: 45.016968
+      Position: {x: -43.999043, y: -1.011089, z: 0}
+      NaturalTime: 0.9771308
+      UniformTime: 0.9942324
+    - AccumLength: 45.276356
+      Position: {x: -44.00043, y: -0.7517044, z: 0}
+      NaturalTime: 0.99985474
+      UniformTime: 0.99996114
+    - AccumLength: 45.278114
+      Position: {x: -44, y: -0.75, z: 0}
       NaturalTime: 1
       UniformTime: 1
     Bounds:
-      m_Center: {x: 0, y: -1.1245995, z: 17.666664}
-      m_Extent: {x: 0, y: 1.1245995, z: 17.666664}
+      m_Center: {x: -22.000216, y: -1.6678299, z: 0}
+      m_Extent: {x: 22.000216, y: 1.6678299, z: 0}
+  Spline2:
+    Resolution: 1
+    FirstControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    SecondControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    Length: 0
+    Points:
+    - AccumLength: 0
+      Position: {x: 0, y: 0, z: 0}
+      NaturalTime: 0
+      UniformTime: NaN
+    - AccumLength: 0
+      Position: {x: 0, y: 0, z: 0}
+      NaturalTime: 1
+      UniformTime: NaN
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
 --- !u!82 &1287059017
 AudioSource:
   m_ObjectHideFlags: 0
@@ -808,6 +1018,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8573826589274104030}
   m_RootOrder: 0
@@ -850,6 +1061,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -922,6 +1134,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.666, y: 16.407, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8573826589274104030}
   m_RootOrder: 5
@@ -937,6 +1150,7 @@ LineRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -967,20 +1181,50 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0.0000053248395, y: 0, z: -0.0000121593475}
-  - {x: -1.0083326, y: -0.71073145, z: -0.000012159348}
-  - {x: -3.3553581, y: -1.2954412, z: -0.0000121593475}
-  - {x: -6.7678747, y: -1.7537628, z: -0.000012159347}
-  - {x: -10.972688, y: -2.0853314, z: -0.000012159348}
-  - {x: -15.696601, y: -2.289781, z: -0.000012159347}
-  - {x: -20.666418, y: -2.366746, z: -0.000012159347}
-  - {x: -25.608948, y: -2.31586, z: -0.0000121593475}
-  - {x: -30.250988, y: -2.1367583, z: -0.0000121593475}
-  - {x: -34.31935, y: -1.8290741, z: -0.0000121593475}
-  - {x: -37.540833, y: -1.3924422, z: -0.0000121593475}
-  - {x: -39.642246, y: -0.8264971, z: -0.0000121593475}
-  - {x: -40.35039, y: -0.13087264, z: -0.0000121593475}
-  - {x: -40.334007, y: -0.05399704, z: -0.0000121593475}
+  - {x: 0, y: 0, z: 0}
+  - {x: -0.1386171, y: -0.27344614, z: 0}
+  - {x: -0.40862295, y: -0.540377, z: 0}
+  - {x: -0.80334556, y: -0.80046904, z: 0}
+  - {x: -1.3161125, y: -1.0533983, z: 0}
+  - {x: -1.9402515, y: -1.298841, z: 0}
+  - {x: -2.6690905, y: -1.5364734, z: 0}
+  - {x: -3.4959574, y: -1.7659723, z: 0}
+  - {x: -4.41418, y: -1.9870132, z: 0}
+  - {x: -5.4170847, y: -2.1992729, z: 0}
+  - {x: -6.4980006, y: -2.4024272, z: 0}
+  - {x: -7.6502566, y: -2.5961533, z: 0}
+  - {x: -8.867179, y: -2.780126, z: 0}
+  - {x: -10.142096, y: -2.9540234, z: 0}
+  - {x: -11.468334, y: -3.1175206, z: 0}
+  - {x: -12.839224, y: -3.2702937, z: 0}
+  - {x: -14.248089, y: -3.4120188, z: 0}
+  - {x: -15.688263, y: -3.542374, z: 0}
+  - {x: -17.153069, y: -3.6610339, z: 0}
+  - {x: -18.635836, y: -3.7676744, z: 0}
+  - {x: -20.129887, y: -3.8619726, z: 0}
+  - {x: -21.628561, y: -3.9436054, z: 0}
+  - {x: -23.125175, y: -4.012248, z: 0}
+  - {x: -24.61306, y: -4.067577, z: 0}
+  - {x: -26.085545, y: -4.1092687, z: 0}
+  - {x: -27.535957, y: -4.136999, z: 0}
+  - {x: -28.957626, y: -4.150445, z: 0}
+  - {x: -30.34388, y: -4.1492825, z: 0}
+  - {x: -31.688042, y: -4.133188, z: 0}
+  - {x: -32.983444, y: -4.101837, z: 0}
+  - {x: -34.22341, y: -4.054907, z: 0}
+  - {x: -35.401276, y: -3.9920733, z: 0}
+  - {x: -36.51036, y: -3.9130125, z: 0}
+  - {x: -37.54399, y: -3.817401, z: 0}
+  - {x: -38.495506, y: -3.704915, z: 0}
+  - {x: -39.358223, y: -3.5752304, z: 0}
+  - {x: -40.125473, y: -3.4280238, z: 0}
+  - {x: -40.79059, y: -3.2629719, z: 0}
+  - {x: -41.34689, y: -3.07975, z: 0}
+  - {x: -41.787704, y: -2.878035, z: 0}
+  - {x: -42.10637, y: -2.6575034, z: 0}
+  - {x: -42.2962, y: -2.417831, z: 0}
+  - {x: -42.350536, y: -2.158694, z: 0}
+  - {x: -42.334, y: -2.053997, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
@@ -1048,179 +1292,242 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa6548054ee48b4099c6fe1eac035c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Start:
+  StartTransform:
     Transform: {fileID: 6712059315681281737}
     Offset: {x: 0, y: 0, z: 0}
-    Normal: {x: 0, y: -3, z: 3}
-  End:
+    Normal: {x: -0.998825, y: -3.9077284, z: -0}
+  EndTransform:
     Transform: {fileID: 0}
     Offset: {x: 0, y: 0, z: 0}
-    Normal: {x: 0, y: -3, z: -3}
+    Normal: {x: -0.998825, y: -3.9077284, z: -0}
+  MidPoint:
+    Transform: {fileID: 0}
+    Offset: {x: 0, y: 0, z: 0}
+    Normal: {x: 0, y: 0, z: 0}
   Resolution: 1
+  Tolerance: 0.01
+  Curviness: 1
+  Dynamic: 0
+  DynamicChainCount: 3
+  DynamicChainSize: {x: 0.1, y: 0.1, z: 0.1}
   Spline:
     Resolution: 1
     FirstControlPoint:
       _upVector: {x: 0, y: 1, z: 0}
-      Control: {x: 0, y: -3, z: 3}
+      Control: {x: -0.998825, y: -3.9077284, z: -0}
       Position: {x: 0, y: 0, z: 0}
       Rotation: {x: 0, y: 0, z: 0}
     SecondControlPoint:
       _upVector: {x: 0, y: 1, z: 0}
-      Control: {x: 0, y: -3, z: -3}
-      Position: {x: 0, y: 0, z: 35.33333}
+      Control: {x: -0.998825, y: -3.9077284, z: -0}
+      Position: {x: -42.334, y: -2.053997, z: 0}
       Rotation: {x: 0, y: 0, z: 0}
+    Length: 43.674046
     Points:
     - AccumLength: 0
       Position: {x: 0, y: 0, z: 0}
       NaturalTime: 0
       UniformTime: 0
-    - AccumLength: 0.40202442
-      Position: {x: 0, y: -0.24750805, z: 0.31680182}
-      NaturalTime: 0.028301891
-      UniformTime: 0.011181937
-    - AccumLength: 0.8965926
-      Position: {x: 0, y: -0.48059815, z: 0.7529975}
-      NaturalTime: 0.056603782
-      UniformTime: 0.024937892
-    - AccumLength: 1.4870064
-      Position: {x: 0, y: -0.69927025, z: 1.3014234}
-      NaturalTime: 0.08490567
-      UniformTime: 0.041359708
-    - AccumLength: 2.171676
-      Position: {x: 0, y: -0.90352446, z: 1.954916}
-      NaturalTime: 0.113207564
-      UniformTime: 0.060403153
-    - AccumLength: 2.9466813
-      Position: {x: 0, y: -1.0933608, z: 2.7063117}
-      NaturalTime: 0.14150946
-      UniformTime: 0.08195921
-    - AccumLength: 3.806892
-      Position: {x: 0, y: -1.2687792, z: 3.5484464}
-      NaturalTime: 0.16981135
-      UniformTime: 0.10588517
-    - AccumLength: 4.746499
-      Position: {x: 0, y: -1.4297794, z: 4.4741573}
-      NaturalTime: 0.19811325
-      UniformTime: 0.13201948
-    - AccumLength: 5.759286
-      Position: {x: 0, y: -1.5763619, z: 5.47628}
-      NaturalTime: 0.22641514
-      UniformTime: 0.1601892
-    - AccumLength: 6.8387775
-      Position: {x: 0, y: -1.7085264, z: 6.547651}
-      NaturalTime: 0.25471702
-      UniformTime: 0.19021426
-    - AccumLength: 7.9783325
-      Position: {x: 0, y: -1.8262727, z: 7.6811066}
-      NaturalTime: 0.28301892
-      UniformTime: 0.22190993
-    - AccumLength: 9.171194
-      Position: {x: 0, y: -1.9296017, z: 8.869484}
-      NaturalTime: 0.3113208
-      UniformTime: 0.25508827
-    - AccumLength: 10.410522
-      Position: {x: 0, y: -2.018512, z: 10.1056185}
-      NaturalTime: 0.3396227
-      UniformTime: 0.28955904
-    - AccumLength: 11.689424
-      Position: {x: 0, y: -2.093005, z: 11.382348}
-      NaturalTime: 0.3679246
-      UniformTime: 0.3251305
-    - AccumLength: 13.0009575
-      Position: {x: 0, y: -2.1530793, z: 12.692506}
-      NaturalTime: 0.3962265
-      UniformTime: 0.36160958
-    - AccumLength: 14.338163
-      Position: {x: 0, y: -2.1987367, z: 14.028933}
-      NaturalTime: 0.4245284
-      UniformTime: 0.39880273
-    - AccumLength: 15.694051
-      Position: {x: 0, y: -2.2299747, z: 15.38446}
-      NaturalTime: 0.45283028
-      UniformTime: 0.43651548
-    - AccumLength: 17.061625
-      Position: {x: 0, y: -2.2467961, z: 16.75193}
-      NaturalTime: 0.48113218
-      UniformTime: 0.4745533
-    - AccumLength: 18.433867
-      Position: {x: 0, y: -2.249199, z: 18.12417}
-      NaturalTime: 0.50943404
-      UniformTime: 0.51272094
-    - AccumLength: 19.803778
-      Position: {x: 0, y: -2.237184, z: 19.494028}
-      NaturalTime: 0.53773594
-      UniformTime: 0.55082375
-    - AccumLength: 21.164337
-      Position: {x: 0, y: -2.210751, z: 20.85433}
-      NaturalTime: 0.56603783
-      UniformTime: 0.58866644
-    - AccumLength: 22.508549
-      Position: {x: 0, y: -2.1699002, z: 22.19792}
-      NaturalTime: 0.5943397
-      UniformTime: 0.6260544
-    - AccumLength: 23.829414
-      Position: {x: 0, y: -2.1146312, z: 23.51763}
-      NaturalTime: 0.6226416
-      UniformTime: 0.6627931
-    - AccumLength: 25.119967
-      Position: {x: 0, y: -2.0449445, z: 24.8063}
-      NaturalTime: 0.6509435
-      UniformTime: 0.6986886
-    - AccumLength: 26.373253
-      Position: {x: 0, y: -1.9608397, z: 26.05676}
-      NaturalTime: 0.6792454
-      UniformTime: 0.73354757
-    - AccumLength: 27.582365
-      Position: {x: 0, y: -1.862317, z: 27.261852}
-      NaturalTime: 0.7075473
-      UniformTime: 0.76717794
-    - AccumLength: 28.740442
-      Position: {x: 0, y: -1.7493763, z: 28.41441}
-      NaturalTime: 0.7358492
-      UniformTime: 0.79938877
-    - AccumLength: 29.840704
-      Position: {x: 0, y: -1.6220177, z: 29.507275}
-      NaturalTime: 0.7641511
-      UniformTime: 0.8299915
-    - AccumLength: 30.876451
-      Position: {x: 0, y: -1.4802412, z: 30.533274}
-      NaturalTime: 0.792453
-      UniformTime: 0.8587999
-    - AccumLength: 31.841156
-      Position: {x: 0, y: -1.3240467, z: 31.48525}
-      NaturalTime: 0.8207549
-      UniformTime: 0.8856323
-    - AccumLength: 32.728504
-      Position: {x: 0, y: -1.1534343, z: 32.35604}
-      NaturalTime: 0.8490568
-      UniformTime: 0.910313
-    - AccumLength: 33.53252
-      Position: {x: 0, y: -0.9684038, z: 33.138477}
-      NaturalTime: 0.8773587
-      UniformTime: 0.93267596
-    - AccumLength: 34.24781
-      Position: {x: 0, y: -0.7689555, z: 33.825397}
-      NaturalTime: 0.90566057
-      UniformTime: 0.9525711
-    - AccumLength: 34.869972
-      Position: {x: 0, y: -0.55508924, z: 34.409645}
-      NaturalTime: 0.93396246
-      UniformTime: 0.969876
-    - AccumLength: 35.39644
-      Position: {x: 0, y: -0.32680497, z: 34.88404}
-      NaturalTime: 0.96226436
-      UniformTime: 0.9845191
-    - AccumLength: 35.828453
-      Position: {x: 0, y: -0.08410276, z: 35.241436}
-      NaturalTime: 0.99056625
-      UniformTime: 0.99653524
-    - AccumLength: 35.953022
-      Position: {x: 0, y: 0, z: 35.33333}
+    - AccumLength: 0.3065738
+      Position: {x: -0.1386171, y: -0.27344614, z: 0}
+      NaturalTime: 0.02359392
+      UniformTime: 0.0070195883
+    - AccumLength: 0.68625164
+      Position: {x: -0.40862295, y: -0.540377, z: 0}
+      NaturalTime: 0.04718784
+      UniformTime: 0.01571303
+    - AccumLength: 1.1589606
+      Position: {x: -0.80334556, y: -0.80046904, z: 0}
+      NaturalTime: 0.07078176
+      UniformTime: 0.026536597
+    - AccumLength: 1.730715
+      Position: {x: -1.3161125, y: -1.0533983, z: 0}
+      NaturalTime: 0.09437568
+      UniformTime: 0.039628
+    - AccumLength: 2.40138
+      Position: {x: -1.9402515, y: -1.298841, z: 0}
+      NaturalTime: 0.117969595
+      UniformTime: 0.054984145
+    - AccumLength: 3.16798
+      Position: {x: -2.6690905, y: -1.5364734, z: 0}
+      NaturalTime: 0.14156352
+      UniformTime: 0.0725369
+    - AccumLength: 4.026105
+      Position: {x: -3.4959574, y: -1.7659723, z: 0}
+      NaturalTime: 0.16515744
+      UniformTime: 0.092185296
+    - AccumLength: 4.970558
+      Position: {x: -4.41418, y: -1.9870132, z: 0}
+      NaturalTime: 0.18875135
+      UniformTime: 0.113810346
+    - AccumLength: 5.995679
+      Position: {x: -5.4170847, y: -2.1992729, z: 0}
+      NaturalTime: 0.21234527
+      UniformTime: 0.13728243
+    - AccumLength: 7.09552
+      Position: {x: -6.4980006, y: -2.4024272, z: 0}
+      NaturalTime: 0.23593919
+      UniformTime: 0.16246536
+    - AccumLength: 8.2639475
+      Position: {x: -7.6502566, y: -2.5961533, z: 0}
+      NaturalTime: 0.2595331
+      UniformTime: 0.18921873
+    - AccumLength: 9.494698
+      Position: {x: -8.867179, y: -2.780126, z: 0}
+      NaturalTime: 0.28312704
+      UniformTime: 0.21739909
+    - AccumLength: 10.78142
+      Position: {x: -10.142096, y: -2.9540234, z: 0}
+      NaturalTime: 0.30672097
+      UniformTime: 0.24686103
+    - AccumLength: 12.117699
+      Position: {x: -11.468334, y: -3.1175206, z: 0}
+      NaturalTime: 0.3303149
+      UniformTime: 0.27745765
+    - AccumLength: 13.497074
+      Position: {x: -12.839224, y: -3.2702937, z: 0}
+      NaturalTime: 0.35390884
+      UniformTime: 0.30904108
+    - AccumLength: 14.91305
+      Position: {x: -14.248089, y: -3.4120188, z: 0}
+      NaturalTime: 0.37750277
+      UniformTime: 0.34146252
+    - AccumLength: 16.359112
+      Position: {x: -15.688263, y: -3.542374, z: 0}
+      NaturalTime: 0.4010967
+      UniformTime: 0.37457284
+    - AccumLength: 17.828716
+      Position: {x: -17.153069, y: -3.6610339, z: 0}
+      NaturalTime: 0.42469063
+      UniformTime: 0.40822223
+    - AccumLength: 19.315313
+      Position: {x: -18.635836, y: -3.7676744, z: 0}
+      NaturalTime: 0.44828457
+      UniformTime: 0.44226068
+    - AccumLength: 20.812338
+      Position: {x: -20.129887, y: -3.8619726, z: 0}
+      NaturalTime: 0.4718785
+      UniformTime: 0.47653788
+    - AccumLength: 22.313234
+      Position: {x: -21.628561, y: -3.9436054, z: 0}
+      NaturalTime: 0.49547243
+      UniformTime: 0.5109038
+    - AccumLength: 23.811422
+      Position: {x: -23.125175, y: -4.012248, z: 0}
+      NaturalTime: 0.51906633
+      UniformTime: 0.5452076
+    - AccumLength: 25.300335
+      Position: {x: -24.61306, y: -4.067577, z: 0}
+      NaturalTime: 0.54266024
+      UniformTime: 0.5792991
+    - AccumLength: 26.773409
+      Position: {x: -26.085545, y: -4.1092687, z: 0}
+      NaturalTime: 0.56625414
+      UniformTime: 0.61302793
+    - AccumLength: 28.224087
+      Position: {x: -27.535957, y: -4.136999, z: 0}
+      NaturalTime: 0.58984804
+      UniformTime: 0.64624393
+    - AccumLength: 29.645819
+      Position: {x: -28.957626, y: -4.150445, z: 0}
+      NaturalTime: 0.61344194
+      UniformTime: 0.6787972
+    - AccumLength: 31.032072
+      Position: {x: -30.34388, y: -4.1492825, z: 0}
+      NaturalTime: 0.63703585
+      UniformTime: 0.7105381
+    - AccumLength: 32.37633
+      Position: {x: -31.688042, y: -4.133188, z: 0}
+      NaturalTime: 0.66062975
+      UniformTime: 0.74131745
+    - AccumLength: 33.67211
+      Position: {x: -32.983444, y: -4.101837, z: 0}
+      NaturalTime: 0.68422365
+      UniformTime: 0.7709868
+    - AccumLength: 34.912968
+      Position: {x: -34.22341, y: -4.054907, z: 0}
+      NaturalTime: 0.70781755
+      UniformTime: 0.79939854
+    - AccumLength: 36.092506
+      Position: {x: -35.401276, y: -3.9920733, z: 0}
+      NaturalTime: 0.73141146
+      UniformTime: 0.8264063
+    - AccumLength: 37.204407
+      Position: {x: -36.51036, y: -3.9130125, z: 0}
+      NaturalTime: 0.75500536
+      UniformTime: 0.85186535
+    - AccumLength: 38.24245
+      Position: {x: -37.54399, y: -3.817401, z: 0}
+      NaturalTime: 0.77859926
+      UniformTime: 0.87563336
+    - AccumLength: 39.200592
+      Position: {x: -38.495506, y: -3.704915, z: 0}
+      NaturalTime: 0.80219316
+      UniformTime: 0.8975718
+    - AccumLength: 40.073
+      Position: {x: -39.358223, y: -3.5752304, z: 0}
+      NaturalTime: 0.82578707
+      UniformTime: 0.9175473
+    - AccumLength: 40.854244
+      Position: {x: -40.125473, y: -3.4280238, z: 0}
+      NaturalTime: 0.84938097
+      UniformTime: 0.9354353
+    - AccumLength: 41.53953
+      Position: {x: -40.79059, y: -3.2629719, z: 0}
+      NaturalTime: 0.8729749
+      UniformTime: 0.9511263
+    - AccumLength: 42.12523
+      Position: {x: -41.34689, y: -3.07975, z: 0}
+      NaturalTime: 0.8965688
+      UniformTime: 0.9645369
+    - AccumLength: 42.610004
+      Position: {x: -41.787704, y: -2.878035, z: 0}
+      NaturalTime: 0.9201627
+      UniformTime: 0.9756368
+    - AccumLength: 42.997536
+      Position: {x: -42.10637, y: -2.6575034, z: 0}
+      NaturalTime: 0.9437566
+      UniformTime: 0.98451
+    - AccumLength: 43.30328
+      Position: {x: -42.2962, y: -2.417831, z: 0}
+      NaturalTime: 0.9673505
+      UniformTime: 0.9915106
+    - AccumLength: 43.56805
+      Position: {x: -42.350536, y: -2.158694, z: 0}
+      NaturalTime: 0.9909444
+      UniformTime: 0.997573
+    - AccumLength: 43.674046
+      Position: {x: -42.334, y: -2.053997, z: 0}
       NaturalTime: 1
       UniformTime: 1
     Bounds:
-      m_Center: {x: 0, y: -1.1245995, z: 17.666664}
-      m_Extent: {x: 0, y: 1.1245995, z: 17.666664}
+      m_Center: {x: -21.175268, y: -2.0752225, z: 0}
+      m_Extent: {x: 21.175268, y: 2.0752225, z: 0}
+  Spline2:
+    Resolution: 1
+    FirstControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    SecondControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    Length: 0
+    Points:
+    - AccumLength: 0
+      Position: {x: 0, y: 0, z: 0}
+      NaturalTime: 0
+      UniformTime: NaN
+    - AccumLength: 0
+      Position: {x: 0, y: 0, z: 0}
+      NaturalTime: 1
+      UniformTime: NaN
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1 &4305295592848177187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,6 +1556,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -77.33, y: 5, z: -102.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8949988428061618854}
   - {fileID: 8497060148741370062}
@@ -1277,8 +1585,9 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 1
-  SnapLayer: -1
+  SnapToGrid: 0
+  SnapMode: 1
+  SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
   m_voxWorker:
@@ -1299,8 +1608,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sag: {x: -3, y: -4}
-  Resolution: 0.3
-  Next: {fileID: 0}
+  Resolution: 1
+  ConnectionDistance: 30
+  Next: {fileID: 7306798789217679693}
   ConnectorPoints:
   - {fileID: 588561160349200778}
   - {fileID: 3896143858452194442}
@@ -1336,6 +1646,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 15.353, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8573826589274104030}
   m_RootOrder: 2
@@ -1351,6 +1662,7 @@ LineRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -1381,20 +1693,52 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0.000005722045, y: 0, z: -0.0000121593475}
-  - {x: -0.9703187, y: -0.7827681, z: -0.000012159349}
-  - {x: -3.2375455, y: -1.4654783, z: -0.0000121593475}
-  - {x: -6.5499363, y: -2.042137, z: -0.000012159348}
-  - {x: -10.655754, y: -2.50675, z: -0.000012159347}
-  - {x: -15.303259, y: -2.853325, z: -0.000012159347}
-  - {x: -20.240713, y: -3.0758662, z: -0.000012159349}
-  - {x: -25.216375, y: -3.1683812, z: -0.0000121593475}
-  - {x: -29.978514, y: -3.1248758, z: -0.000012159347}
-  - {x: -34.275383, y: -2.9393563, z: -0.0000121593475}
-  - {x: -37.855247, y: -2.6058292, z: -0.0000121593475}
-  - {x: -40.466373, y: -2.1183002, z: -0.0000121593475}
-  - {x: -41.857018, y: -1.4707761, z: -0.0000121593475}
-  - {x: -42.000008, y: -1, z: -0.0000121593475}
+  - {x: 0, y: 0, z: 0}
+  - {x: -0.13366327, y: -0.21889691, z: -0.0051338812}
+  - {x: -0.39428183, y: -0.42759302, z: -0.015143998}
+  - {x: -0.7756637, y: -0.626089, z: -0.029792517}
+  - {x: -1.2716169, y: -0.81438607, z: -0.04884162}
+  - {x: -1.8759497, y: -0.9924853, z: -0.07205347}
+  - {x: -2.5824702, y: -1.1603874, z: -0.09919026}
+  - {x: -3.3849854, y: -1.3180937, z: -0.13001414}
+  - {x: -4.2773046, y: -1.4656048, z: -0.16428727}
+  - {x: -5.253236, y: -1.6029221, z: -0.20177189}
+  - {x: -6.3065863, y: -1.730046, z: -0.24223006}
+  - {x: -7.4311633, y: -1.8469778, z: -0.28542405}
+  - {x: -8.620777, y: -1.953719, z: -0.331116}
+  - {x: -9.869233, y: -2.0502696, z: -0.37906802}
+  - {x: -11.17034, y: -2.1366313, z: -0.42904228}
+  - {x: -12.517908, y: -2.212805, z: -0.4808011}
+  - {x: -13.905744, y: -2.2787917, z: -0.5341066}
+  - {x: -15.327654, y: -2.3345916, z: -0.58872086}
+  - {x: -16.777447, y: -2.3802066, z: -0.644406}
+  - {x: -18.248934, y: -2.4156377, z: -0.7009245}
+  - {x: -19.73592, y: -2.4408858, z: -0.75803816}
+  - {x: -21.232216, y: -2.455951, z: -0.8155095}
+  - {x: -22.731623, y: -2.4608355, z: -0.8731004}
+  - {x: -24.227959, y: -2.4555397, z: -0.9305732}
+  - {x: -25.715025, y: -2.440065, z: -0.9876901}
+  - {x: -27.186634, y: -2.4144115, z: -1.0442132}
+  - {x: -28.63659, y: -2.3785808, z: -1.0999047}
+  - {x: -30.058704, y: -2.332574, z: -1.1545266}
+  - {x: -31.446777, y: -2.2763917, z: -1.2078413}
+  - {x: -32.794624, y: -2.210035, z: -1.2596109}
+  - {x: -34.096054, y: -2.133505, z: -1.3095975}
+  - {x: -35.344868, y: -2.046803, z: -1.3575633}
+  - {x: -36.53488, y: -1.9499292, z: -1.4032707}
+  - {x: -37.659897, y: -1.842885, z: -1.4464813}
+  - {x: -38.713726, y: -1.7256716, z: -1.486958}
+  - {x: -39.69017, y: -1.5982897, z: -1.5244625}
+  - {x: -40.58305, y: -1.4607404, z: -1.558757}
+  - {x: -41.38616, y: -1.3130246, z: -1.5896037}
+  - {x: -42.09332, y: -1.1551435, z: -1.616765}
+  - {x: -42.698326, y: -0.9870976, z: -1.6400027}
+  - {x: -43.194996, y: -0.80888844, z: -1.6590793}
+  - {x: -43.577133, y: -0.6205167, z: -1.6737568}
+  - {x: -43.838547, y: -0.42198345, z: -1.6837975}
+  - {x: -43.973045, y: -0.21328968, z: -1.6889634}
+  - {x: -43.974434, y: 0.0055636354, z: -1.6890167}
+  - {x: -43.974, y: 0.0069999695, z: -1.6890001}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
@@ -1462,179 +1806,250 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa6548054ee48b4099c6fe1eac035c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Start:
+  StartTransform:
     Transform: {fileID: 3776306827542992709}
     Offset: {x: 0, y: 0, z: 0}
-    Normal: {x: 0, y: -3, z: 3}
-  End:
+    Normal: {x: -0.99926317, y: -3.28578, z: -0.038380764}
+  EndTransform:
     Transform: {fileID: 0}
     Offset: {x: 0, y: 0, z: 0}
-    Normal: {x: 0, y: -3, z: -3}
+    Normal: {x: -0.99926317, y: -3.28578, z: -0.038380764}
+  MidPoint:
+    Transform: {fileID: 0}
+    Offset: {x: 0, y: 0, z: 0}
+    Normal: {x: 0, y: 0, z: 0}
   Resolution: 1
+  Tolerance: 0.01
+  Curviness: 1
+  Dynamic: 0
+  DynamicChainCount: 3
+  DynamicChainSize: {x: 0.1, y: 0.1, z: 0.1}
   Spline:
     Resolution: 1
     FirstControlPoint:
       _upVector: {x: 0, y: 1, z: 0}
-      Control: {x: 0, y: -3, z: 3}
+      Control: {x: -0.99926317, y: -3.28578, z: -0.038380764}
       Position: {x: 0, y: 0, z: 0}
       Rotation: {x: 0, y: 0, z: 0}
     SecondControlPoint:
       _upVector: {x: 0, y: 1, z: 0}
-      Control: {x: 0, y: -3, z: -3}
-      Position: {x: 0, y: 0, z: 35.33333}
+      Control: {x: -0.99926317, y: -3.28578, z: -0.038380764}
+      Position: {x: -43.974, y: 0.0069999695, z: -1.6890001}
       Rotation: {x: 0, y: 0, z: 0}
+    Length: 44.971516
     Points:
     - AccumLength: 0
       Position: {x: 0, y: 0, z: 0}
       NaturalTime: 0
       UniformTime: 0
-    - AccumLength: 0.40202442
-      Position: {x: 0, y: -0.24750805, z: 0.31680182}
-      NaturalTime: 0.028301891
-      UniformTime: 0.011181937
-    - AccumLength: 0.8965926
-      Position: {x: 0, y: -0.48059815, z: 0.7529975}
-      NaturalTime: 0.056603782
-      UniformTime: 0.024937892
-    - AccumLength: 1.4870064
-      Position: {x: 0, y: -0.69927025, z: 1.3014234}
-      NaturalTime: 0.08490567
-      UniformTime: 0.041359708
-    - AccumLength: 2.171676
-      Position: {x: 0, y: -0.90352446, z: 1.954916}
-      NaturalTime: 0.113207564
-      UniformTime: 0.060403153
-    - AccumLength: 2.9466813
-      Position: {x: 0, y: -1.0933608, z: 2.7063117}
-      NaturalTime: 0.14150946
-      UniformTime: 0.08195921
-    - AccumLength: 3.806892
-      Position: {x: 0, y: -1.2687792, z: 3.5484464}
-      NaturalTime: 0.16981135
-      UniformTime: 0.10588517
-    - AccumLength: 4.746499
-      Position: {x: 0, y: -1.4297794, z: 4.4741573}
-      NaturalTime: 0.19811325
-      UniformTime: 0.13201948
-    - AccumLength: 5.759286
-      Position: {x: 0, y: -1.5763619, z: 5.47628}
-      NaturalTime: 0.22641514
-      UniformTime: 0.1601892
-    - AccumLength: 6.8387775
-      Position: {x: 0, y: -1.7085264, z: 6.547651}
-      NaturalTime: 0.25471702
-      UniformTime: 0.19021426
-    - AccumLength: 7.9783325
-      Position: {x: 0, y: -1.8262727, z: 7.6811066}
-      NaturalTime: 0.28301892
-      UniformTime: 0.22190993
-    - AccumLength: 9.171194
-      Position: {x: 0, y: -1.9296017, z: 8.869484}
-      NaturalTime: 0.3113208
-      UniformTime: 0.25508827
-    - AccumLength: 10.410522
-      Position: {x: 0, y: -2.018512, z: 10.1056185}
-      NaturalTime: 0.3396227
-      UniformTime: 0.28955904
-    - AccumLength: 11.689424
-      Position: {x: 0, y: -2.093005, z: 11.382348}
-      NaturalTime: 0.3679246
-      UniformTime: 0.3251305
-    - AccumLength: 13.0009575
-      Position: {x: 0, y: -2.1530793, z: 12.692506}
-      NaturalTime: 0.3962265
-      UniformTime: 0.36160958
-    - AccumLength: 14.338163
-      Position: {x: 0, y: -2.1987367, z: 14.028933}
-      NaturalTime: 0.4245284
-      UniformTime: 0.39880273
-    - AccumLength: 15.694051
-      Position: {x: 0, y: -2.2299747, z: 15.38446}
-      NaturalTime: 0.45283028
-      UniformTime: 0.43651548
-    - AccumLength: 17.061625
-      Position: {x: 0, y: -2.2467961, z: 16.75193}
-      NaturalTime: 0.48113218
-      UniformTime: 0.4745533
-    - AccumLength: 18.433867
-      Position: {x: 0, y: -2.249199, z: 18.12417}
-      NaturalTime: 0.50943404
-      UniformTime: 0.51272094
-    - AccumLength: 19.803778
-      Position: {x: 0, y: -2.237184, z: 19.494028}
-      NaturalTime: 0.53773594
-      UniformTime: 0.55082375
-    - AccumLength: 21.164337
-      Position: {x: 0, y: -2.210751, z: 20.85433}
-      NaturalTime: 0.56603783
-      UniformTime: 0.58866644
-    - AccumLength: 22.508549
-      Position: {x: 0, y: -2.1699002, z: 22.19792}
-      NaturalTime: 0.5943397
-      UniformTime: 0.6260544
-    - AccumLength: 23.829414
-      Position: {x: 0, y: -2.1146312, z: 23.51763}
-      NaturalTime: 0.6226416
-      UniformTime: 0.6627931
-    - AccumLength: 25.119967
-      Position: {x: 0, y: -2.0449445, z: 24.8063}
-      NaturalTime: 0.6509435
-      UniformTime: 0.6986886
-    - AccumLength: 26.373253
-      Position: {x: 0, y: -1.9608397, z: 26.05676}
-      NaturalTime: 0.6792454
-      UniformTime: 0.73354757
-    - AccumLength: 27.582365
-      Position: {x: 0, y: -1.862317, z: 27.261852}
-      NaturalTime: 0.7075473
-      UniformTime: 0.76717794
-    - AccumLength: 28.740442
-      Position: {x: 0, y: -1.7493763, z: 28.41441}
-      NaturalTime: 0.7358492
-      UniformTime: 0.79938877
-    - AccumLength: 29.840704
-      Position: {x: 0, y: -1.6220177, z: 29.507275}
-      NaturalTime: 0.7641511
-      UniformTime: 0.8299915
-    - AccumLength: 30.876451
-      Position: {x: 0, y: -1.4802412, z: 30.533274}
-      NaturalTime: 0.792453
-      UniformTime: 0.8587999
-    - AccumLength: 31.841156
-      Position: {x: 0, y: -1.3240467, z: 31.48525}
-      NaturalTime: 0.8207549
-      UniformTime: 0.8856323
-    - AccumLength: 32.728504
-      Position: {x: 0, y: -1.1534343, z: 32.35604}
-      NaturalTime: 0.8490568
-      UniformTime: 0.910313
-    - AccumLength: 33.53252
-      Position: {x: 0, y: -0.9684038, z: 33.138477}
-      NaturalTime: 0.8773587
-      UniformTime: 0.93267596
-    - AccumLength: 34.24781
-      Position: {x: 0, y: -0.7689555, z: 33.825397}
-      NaturalTime: 0.90566057
-      UniformTime: 0.9525711
-    - AccumLength: 34.869972
-      Position: {x: 0, y: -0.55508924, z: 34.409645}
-      NaturalTime: 0.93396246
-      UniformTime: 0.969876
-    - AccumLength: 35.39644
-      Position: {x: 0, y: -0.32680497, z: 34.88404}
-      NaturalTime: 0.96226436
-      UniformTime: 0.9845191
-    - AccumLength: 35.828453
-      Position: {x: 0, y: -0.08410276, z: 35.241436}
-      NaturalTime: 0.99056625
-      UniformTime: 0.99653524
-    - AccumLength: 35.953022
-      Position: {x: 0, y: 0, z: 35.33333}
+    - AccumLength: 0.25653085
+      Position: {x: -0.13366327, y: -0.21889691, z: -0.0051338812}
+      NaturalTime: 0.022723954
+      UniformTime: 0.0057042963
+    - AccumLength: 0.5905613
+      Position: {x: -0.39428183, y: -0.42759302, z: -0.015143998}
+      NaturalTime: 0.04544791
+      UniformTime: 0.013131896
+    - AccumLength: 1.0207558
+      Position: {x: -0.7756637, y: -0.626089, z: -0.029792517}
+      NaturalTime: 0.06817186
+      UniformTime: 0.022697829
+    - AccumLength: 1.5515931
+      Position: {x: -1.2716169, y: -0.81438607, z: -0.04884162}
+      NaturalTime: 0.09089582
+      UniformTime: 0.034501687
+    - AccumLength: 2.1820502
+      Position: {x: -1.8759497, y: -0.9924853, z: -0.07205347}
+      NaturalTime: 0.113619775
+      UniformTime: 0.048520718
+    - AccumLength: 2.908754
+      Position: {x: -2.5824702, y: -1.1603874, z: -0.09919026}
+      NaturalTime: 0.13634373
+      UniformTime: 0.06467992
+    - AccumLength: 3.727199
+      Position: {x: -3.3849854, y: -1.3180937, z: -0.13001414}
+      NaturalTime: 0.15906769
+      UniformTime: 0.0828791
+    - AccumLength: 4.632278
+      Position: {x: -4.2773046, y: -1.4656048, z: -0.16428727}
+      NaturalTime: 0.18179165
+      UniformTime: 0.10300471
+    - AccumLength: 5.618535
+      Position: {x: -5.253236, y: -1.6029221, z: -0.20177189}
+      NaturalTime: 0.2045156
+      UniformTime: 0.12493542
+    - AccumLength: 6.6802998
+      Position: {x: -6.3065863, y: -1.730046, z: -0.24223006}
+      NaturalTime: 0.22723956
+      UniformTime: 0.14854513
+    - AccumLength: 7.8117647
+      Position: {x: -7.4311633, y: -1.8469778, z: -0.28542405}
+      NaturalTime: 0.24996352
+      UniformTime: 0.17370473
+    - AccumLength: 9.007031
+      Position: {x: -8.620777, y: -1.953719, z: -0.331116}
+      NaturalTime: 0.27268746
+      UniformTime: 0.20028304
+    - AccumLength: 10.260133
+      Position: {x: -9.869233, y: -2.0502696, z: -0.37906802}
+      NaturalTime: 0.2954114
+      UniformTime: 0.22814736
+    - AccumLength: 11.56506
+      Position: {x: -11.17034, y: -2.1366313, z: -0.42904228}
+      NaturalTime: 0.31813535
+      UniformTime: 0.25716412
+    - AccumLength: 12.9157715
+      Position: {x: -12.517908, y: -2.212805, z: -0.4808011}
+      NaturalTime: 0.3408593
+      UniformTime: 0.28719893
+    - AccumLength: 14.306197
+      Position: {x: -13.905744, y: -2.2787917, z: -0.5341066}
+      NaturalTime: 0.36358324
+      UniformTime: 0.31811684
+    - AccumLength: 15.730249
+      Position: {x: -15.327654, y: -2.3345916, z: -0.58872086}
+      NaturalTime: 0.38630718
+      UniformTime: 0.3497825
+    - AccumLength: 17.181828
+      Position: {x: -16.777447, y: -2.3802066, z: -0.644406}
+      NaturalTime: 0.40903112
+      UniformTime: 0.38206023
+    - AccumLength: 18.654825
+      Position: {x: -18.248934, y: -2.4156377, z: -0.7009245}
+      NaturalTime: 0.43175507
+      UniformTime: 0.41481423
+    - AccumLength: 20.143122
+      Position: {x: -19.73592, y: -2.4408858, z: -0.75803816}
+      NaturalTime: 0.454479
+      UniformTime: 0.44790846
+    - AccumLength: 21.640596
+      Position: {x: -21.232216, y: -2.455951, z: -0.8155095}
+      NaturalTime: 0.47720295
+      UniformTime: 0.48120674
+    - AccumLength: 23.141117
+      Position: {x: -22.731623, y: -2.4608355, z: -0.8731004}
+      NaturalTime: 0.4999269
+      UniformTime: 0.51457274
+    - AccumLength: 24.638565
+      Position: {x: -24.227959, y: -2.4555397, z: -0.9305732}
+      NaturalTime: 0.52265084
+      UniformTime: 0.54787046
+    - AccumLength: 26.126808
+      Position: {x: -25.715025, y: -2.440065, z: -0.9876901}
+      NaturalTime: 0.5453748
+      UniformTime: 0.5809635
+    - AccumLength: 27.599726
+      Position: {x: -27.186634, y: -2.4144115, z: -1.0442132}
+      NaturalTime: 0.5680988
+      UniformTime: 0.6137157
+    - AccumLength: 29.051191
+      Position: {x: -28.63659, y: -2.3785808, z: -1.0999047}
+      NaturalTime: 0.59082276
+      UniformTime: 0.6459909
+    - AccumLength: 30.4751
+      Position: {x: -30.058704, y: -2.332574, z: -1.1545266}
+      NaturalTime: 0.6135467
+      UniformTime: 0.6776534
+    - AccumLength: 31.865332
+      Position: {x: -31.446777, y: -2.2763917, z: -1.2078413}
+      NaturalTime: 0.6362707
+      UniformTime: 0.708567
+    - AccumLength: 33.215805
+      Position: {x: -32.794624, y: -2.210035, z: -1.2596109}
+      NaturalTime: 0.6589947
+      UniformTime: 0.7385965
+    - AccumLength: 34.52044
+      Position: {x: -34.096054, y: -2.133505, z: -1.3095975}
+      NaturalTime: 0.68171865
+      UniformTime: 0.76760674
+    - AccumLength: 35.77318
+      Position: {x: -35.344868, y: -2.046803, z: -1.3575633}
+      NaturalTime: 0.7044426
+      UniformTime: 0.795463
+    - AccumLength: 36.968002
+      Position: {x: -36.53488, y: -1.9499292, z: -1.4032707}
+      NaturalTime: 0.7271666
+      UniformTime: 0.8220315
+    - AccumLength: 38.098923
+      Position: {x: -37.659897, y: -1.842885, z: -1.4464813}
+      NaturalTime: 0.74989057
+      UniformTime: 0.847179
+    - AccumLength: 39.160023
+      Position: {x: -38.713726, y: -1.7256716, z: -1.486958}
+      NaturalTime: 0.77261454
+      UniformTime: 0.8707739
+    - AccumLength: 40.145454
+      Position: {x: -39.69017, y: -1.5982897, z: -1.5244625}
+      NaturalTime: 0.7953385
+      UniformTime: 0.89268625
+    - AccumLength: 41.04952
+      Position: {x: -40.58305, y: -1.4607404, z: -1.558757}
+      NaturalTime: 0.8180625
+      UniformTime: 0.9127893
+    - AccumLength: 41.866684
+      Position: {x: -41.38616, y: -1.3130246, z: -1.5896037}
+      NaturalTime: 0.84078646
+      UniformTime: 0.93096006
+    - AccumLength: 42.59176
+      Position: {x: -42.09332, y: -1.1551435, z: -1.616765}
+      NaturalTime: 0.86351043
+      UniformTime: 0.947083
+    - AccumLength: 43.2201
+      Position: {x: -42.698326, y: -0.9870976, z: -1.6400027}
+      NaturalTime: 0.8862344
+      UniformTime: 0.961055
+    - AccumLength: 43.74812
+      Position: {x: -43.194996, y: -0.80888844, z: -1.6590793}
+      NaturalTime: 0.9089584
+      UniformTime: 0.9727962
+    - AccumLength: 44.174416
+      Position: {x: -43.577133, y: -0.6205167, z: -1.6737568}
+      NaturalTime: 0.93168235
+      UniformTime: 0.9822754
+    - AccumLength: 44.502827
+      Position: {x: -43.838547, y: -0.42198345, z: -1.6837975}
+      NaturalTime: 0.9544063
+      UniformTime: 0.98957807
+    - AccumLength: 44.75116
+      Position: {x: -43.973045, y: -0.21328968, z: -1.6889634}
+      NaturalTime: 0.9771303
+      UniformTime: 0.9951001
+    - AccumLength: 44.970016
+      Position: {x: -43.974434, y: 0.0055636354, z: -1.6890167}
+      NaturalTime: 0.99985427
+      UniformTime: 0.9999667
+    - AccumLength: 44.971516
+      Position: {x: -43.974, y: 0.0069999695, z: -1.6890001}
       NaturalTime: 1
       UniformTime: 1
     Bounds:
-      m_Center: {x: 0, y: -1.1245995, z: 17.666664}
-      m_Extent: {x: 0, y: 1.1245995, z: 17.666664}
+      m_Center: {x: -21.987217, y: -1.2269177, z: -0.84450835}
+      m_Extent: {x: 21.987217, y: 1.2339177, z: 0.84450835}
+  Spline2:
+    Resolution: 1
+    FirstControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    SecondControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    Length: 0
+    Points:
+    - AccumLength: 0
+      Position: {x: 0, y: 0, z: 0}
+      NaturalTime: 0
+      UniformTime: NaN
+    - AccumLength: 0
+      Position: {x: 0, y: 0, z: 0}
+      NaturalTime: 1
+      UniformTime: NaN
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1 &4580017857603065724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,6 +2078,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.026, y: 15.36, z: -1.689}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8573826589274104030}
   m_RootOrder: 6
@@ -1678,6 +2094,7 @@ LineRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -1708,20 +2125,53 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0.000005728244, y: 0, z: -0.000012562037}
-  - {x: -0.9687727, y: -0.8239657, z: 0.038922127}
-  - {x: -3.2326243, y: -1.5063317, z: 0.12990513}
-  - {x: -6.5405173, y: -2.0470564, z: 0.2628476}
-  - {x: -10.641419, y: -2.4460974, z: 0.4276607}
-  - {x: -15.284299, y: -2.7034137, z: 0.6142556}
-  - {x: -20.218122, y: -2.8189633, z: 0.8125434}
-  - {x: -25.191856, y: -2.7927036, z: 1.0124352}
-  - {x: -29.954472, y: -2.6245935, z: 1.2038422}
-  - {x: -34.254932, y: -2.3145912, z: 1.3766754}
-  - {x: -37.84221, y: -1.8626548, z: 1.5208461}
-  - {x: -40.46527, y: -1.2687426, z: 1.6262656}
-  - {x: -41.87308, y: -0.53281265, z: 1.6828448}
-  - {x: -42.02601, y: -0.0069999695, z: 1.6889908}
+  - {x: 0, y: 0, z: 0}
+  - {x: -0.12867795, y: -0.23075518, z: 0.0047565675}
+  - {x: -0.3798247, y: -0.44825572, z: 0.014040182}
+  - {x: -0.74770886, y: -0.652633, z: 0.02763898}
+  - {x: -1.2265986, y: -0.8440184, z: 0.045341093}
+  - {x: -1.8107626, y: -1.0225433, z: 0.06693465}
+  - {x: -2.4944694, y: -1.1883386, z: 0.092207804}
+  - {x: -3.2719874, y: -1.3415364, z: 0.12094868}
+  - {x: -4.1375847, y: -1.4822673, z: 0.1529454}
+  - {x: -5.0855303, y: -1.610663, z: 0.1879861}
+  - {x: -6.110092, y: -1.7268548, z: 0.22585893}
+  - {x: -7.2055397, y: -1.830974, z: 0.26635206}
+  - {x: -8.366141, y: -1.923152, z: 0.30925357}
+  - {x: -9.586165, y: -2.00352, z: 0.35435164}
+  - {x: -10.85988, y: -2.0722094, z: 0.40143433}
+  - {x: -12.181554, y: -2.1293519, z: 0.45028988}
+  - {x: -13.545454, y: -2.1750782, z: 0.5007064}
+  - {x: -14.945852, y: -2.2095196, z: 0.5524719}
+  - {x: -16.377014, y: -2.232808, z: 0.6053747}
+  - {x: -17.833208, y: -2.2450743, z: 0.6592027}
+  - {x: -19.308704, y: -2.2464504, z: 0.7137443}
+  - {x: -20.79777, y: -2.237067, z: 0.76878744}
+  - {x: -22.294676, y: -2.2170556, z: 0.82412034}
+  - {x: -23.793686, y: -2.1865478, z: 0.8795311}
+  - {x: -25.289072, y: -2.1456747, z: 0.93480796}
+  - {x: -26.775103, y: -2.0945673, z: 0.98973894}
+  - {x: -28.246044, y: -2.0333579, z: 1.0441122}
+  - {x: -29.69617, y: -1.9621769, z: 1.0977159}
+  - {x: -31.119743, y: -1.8811557, z: 1.1503382}
+  - {x: -32.511032, y: -1.7904263, z: 1.201767}
+  - {x: -33.86431, y: -1.6901193, z: 1.2517908}
+  - {x: -35.173843, y: -1.5803665, z: 1.3001976}
+  - {x: -36.4339, y: -1.4612991, z: 1.3467753}
+  - {x: -37.638744, y: -1.3330483, z: 1.3913122}
+  - {x: -38.782646, y: -1.1957458, z: 1.4335966}
+  - {x: -39.859882, y: -1.0495226, z: 1.4734166}
+  - {x: -40.864716, y: -0.8945103, z: 1.51056}
+  - {x: -41.791412, y: -0.7308398, z: 1.5448153}
+  - {x: -42.634247, y: -0.5586428, z: 1.5759704}
+  - {x: -43.387478, y: -0.37805057, z: 1.6038136}
+  - {x: -44.045383, y: -0.18919438, z: 1.628133}
+  - {x: -44.602226, y: 0.00779438, z: 1.6487167}
+  - {x: -45.052277, y: 0.21278441, z: 1.6653527}
+  - {x: -45.38981, y: 0.42564443, z: 1.6778295}
+  - {x: -45.60908, y: 0.6462431, z: 1.6859349}
+  - {x: -45.704365, y: 0.8744489, z: 1.6894572}
+  - {x: -45.692, y: 1.0469971, z: 1.6890001}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
@@ -1789,1519 +2239,254 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa6548054ee48b4099c6fe1eac035c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Start:
+  StartTransform:
     Transform: {fileID: 1302575182842564302}
     Offset: {x: 0, y: 0, z: 0}
-    Normal: {x: 0, y: -3, z: 3}
-  End:
+    Normal: {x: -0.99905556, y: -3.6195786, z: 0.036929987}
+  EndTransform:
     Transform: {fileID: 0}
     Offset: {x: 0, y: 0, z: 0}
-    Normal: {x: 0, y: -3, z: -3}
+    Normal: {x: -0.99905556, y: -3.6195786, z: 0.036929987}
+  MidPoint:
+    Transform: {fileID: 0}
+    Offset: {x: 0, y: 0, z: 0}
+    Normal: {x: 0, y: 0, z: 0}
   Resolution: 1
+  Tolerance: 0.01
+  Curviness: 1
+  Dynamic: 0
+  DynamicChainCount: 3
+  DynamicChainSize: {x: 0.1, y: 0.1, z: 0.1}
   Spline:
-    Resolution: 10
+    Resolution: 1
     FirstControlPoint:
       _upVector: {x: 0, y: 1, z: 0}
-      Control: {x: 0, y: -3, z: 3}
+      Control: {x: -0.99905556, y: -3.6195786, z: 0.036929987}
       Position: {x: 0, y: 0, z: 0}
       Rotation: {x: 0, y: 0, z: 0}
     SecondControlPoint:
       _upVector: {x: 0, y: 1, z: 0}
-      Control: {x: 0, y: -3, z: -3}
-      Position: {x: -0.026000977, y: 1.743, z: 37.02233}
+      Control: {x: -0.99905556, y: -3.6195786, z: 0.036929987}
+      Position: {x: -45.692, y: 1.0469971, z: 1.6890001}
       Rotation: {x: 0, y: 0, z: 0}
+    Length: 46.842434
     Points:
     - AccumLength: 0
       Position: {x: 0, y: 0, z: 0}
       NaturalTime: 0
       UniformTime: 0
-    - AccumLength: 0.03470343
-      Position: {x: -0.0000005668129, y: -0.024179235, z: 0.024893625}
-      NaturalTime: 0.0026980832
-      UniformTime: 0.00092127034
-    - AccumLength: 0.07015005
-      Position: {x: -0.000002263166, y: -0.048151713, z: 0.051004604}
-      NaturalTime: 0.0053961664
-      UniformTime: 0.0018622701
-    - AccumLength: 0.106362
-      Position: {x: -0.0000050829303, y: -0.07191785, z: 0.07832632}
-      NaturalTime: 0.008094249
-      UniformTime: 0.002823587
-    - AccumLength: 0.14335942
-      Position: {x: -0.000009019979, y: -0.095478065, z: 0.106852196}
-      NaturalTime: 0.010792333
-      UniformTime: 0.0038057559
-    - AccumLength: 0.18116051
-      Position: {x: -0.000014068185, y: -0.11883275, z: 0.13657561}
-      NaturalTime: 0.013490416
-      UniformTime: 0.0048092594
-    - AccumLength: 0.21978176
-      Position: {x: -0.000020221414, y: -0.14198233, z: 0.16748996}
-      NaturalTime: 0.016188499
-      UniformTime: 0.005834536
-    - AccumLength: 0.25923792
-      Position: {x: -0.000027473543, y: -0.16492718, z: 0.1995886}
-      NaturalTime: 0.018886581
-      UniformTime: 0.006881977
-    - AccumLength: 0.29954237
-      Position: {x: -0.00003581844, y: -0.18766776, z: 0.23286496}
-      NaturalTime: 0.021584664
-      UniformTime: 0.007951938
-    - AccumLength: 0.34070712
-      Position: {x: -0.000045249984, y: -0.21020447, z: 0.2673125}
-      NaturalTime: 0.024282746
-      UniformTime: 0.009044737
-    - AccumLength: 0.38274267
-      Position: {x: -0.000055762037, y: -0.23253772, z: 0.30292448}
-      NaturalTime: 0.026980828
-      UniformTime: 0.010160652
-    - AccumLength: 0.42565855
-      Position: {x: -0.000067348476, y: -0.25466788, z: 0.33969444}
-      NaturalTime: 0.029678911
-      UniformTime: 0.011299938
-    - AccumLength: 0.46946308
-      Position: {x: -0.00008000317, y: -0.2765954, z: 0.37761566}
-      NaturalTime: 0.032376993
-      UniformTime: 0.012462814
-    - AccumLength: 0.51416355
-      Position: {x: -0.000093719995, y: -0.29832068, z: 0.4166816}
-      NaturalTime: 0.035075076
-      UniformTime: 0.013649476
-    - AccumLength: 0.5597665
-      Position: {x: -0.00010849282, y: -0.31984422, z: 0.45688564}
-      NaturalTime: 0.03777316
-      UniformTime: 0.0148600945
-    - AccumLength: 0.6062772
-      Position: {x: -0.00012431551, y: -0.34116626, z: 0.49822113}
-      NaturalTime: 0.04047124
-      UniformTime: 0.016094813
-    - AccumLength: 0.65370077
-      Position: {x: -0.00014118195, y: -0.36228734, z: 0.5406816}
-      NaturalTime: 0.043169323
-      UniformTime: 0.017353764
-    - AccumLength: 0.70204085
-      Position: {x: -0.00015908602, y: -0.3832078, z: 0.5842602}
-      NaturalTime: 0.045867406
-      UniformTime: 0.018637046
-    - AccumLength: 0.751301
-      Position: {x: -0.00017802154, y: -0.40392807, z: 0.6289506}
-      NaturalTime: 0.04856549
-      UniformTime: 0.019944753
-    - AccumLength: 0.80148387
-      Position: {x: -0.00019798246, y: -0.4244486, z: 0.6747461}
-      NaturalTime: 0.05126357
-      UniformTime: 0.021276955
-    - AccumLength: 0.8525915
-      Position: {x: -0.00021896262, y: -0.4447698, z: 0.72164}
-      NaturalTime: 0.053961653
-      UniformTime: 0.022633707
-    - AccumLength: 0.9046254
-      Position: {x: -0.00024095585, y: -0.46489197, z: 0.76962566}
-      NaturalTime: 0.056659736
-      UniformTime: 0.024015049
-    - AccumLength: 0.95758694
-      Position: {x: -0.00026395606, y: -0.48481566, z: 0.81869674}
-      NaturalTime: 0.05935782
-      UniformTime: 0.025421016
-    - AccumLength: 1.0114766
-      Position: {x: -0.00028795714, y: -0.5045413, z: 0.86884654}
-      NaturalTime: 0.0620559
-      UniformTime: 0.026851624
-    - AccumLength: 1.0662944
-      Position: {x: -0.00031295294, y: -0.5240691, z: 0.9200682}
-      NaturalTime: 0.06475399
-      UniformTime: 0.02830687
-    - AccumLength: 1.1220405
-      Position: {x: -0.00033893733, y: -0.54339963, z: 0.9723555}
-      NaturalTime: 0.06745207
-      UniformTime: 0.029786758
-    - AccumLength: 1.1787143
-      Position: {x: -0.0003659042, y: -0.5625333, z: 1.0257016}
-      NaturalTime: 0.07015016
-      UniformTime: 0.031291272
-    - AccumLength: 1.2363144
-      Position: {x: -0.0003938474, y: -0.58147043, z: 1.0800998}
-      NaturalTime: 0.072848246
-      UniformTime: 0.03282038
-    - AccumLength: 1.2948403
-      Position: {x: -0.00042276082, y: -0.6002117, z: 1.135544}
-      NaturalTime: 0.07554633
-      UniformTime: 0.034374066
-    - AccumLength: 1.3542898
-      Position: {x: -0.0004526383, y: -0.61875695, z: 1.1920267}
-      NaturalTime: 0.07824442
-      UniformTime: 0.035952266
-    - AccumLength: 1.4146616
-      Position: {x: -0.00048347376, y: -0.6371072, z: 1.2495422}
-      NaturalTime: 0.080942504
-      UniformTime: 0.037554957
-    - AccumLength: 1.4759537
-      Position: {x: -0.000515261, y: -0.6552626, z: 1.3080837}
-      NaturalTime: 0.08364059
-      UniformTime: 0.039182074
-    - AccumLength: 1.5381631
-      Position: {x: -0.000547994, y: -0.67322344, z: 1.3676438}
-      NaturalTime: 0.08633868
-      UniformTime: 0.040833544
-    - AccumLength: 1.6012882
-      Position: {x: -0.00058166654, y: -0.6909904, z: 1.428217}
-      NaturalTime: 0.08903676
-      UniformTime: 0.042509325
-    - AccumLength: 1.6653258
-      Position: {x: -0.00061627256, y: -0.7085637, z: 1.4897962}
-      NaturalTime: 0.09173485
-      UniformTime: 0.044209328
-    - AccumLength: 1.7302729
-      Position: {x: -0.0006518058, y: -0.72594374, z: 1.5523746}
-      NaturalTime: 0.094432935
-      UniformTime: 0.045933474
-    - AccumLength: 1.7961265
-      Position: {x: -0.00068826025, y: -0.7431311, z: 1.6159457}
-      NaturalTime: 0.09713102
-      UniformTime: 0.047681686
-    - AccumLength: 1.8628837
-      Position: {x: -0.0007256298, y: -0.76012605, z: 1.6805034}
-      NaturalTime: 0.09982911
-      UniformTime: 0.049453888
-    - AccumLength: 1.9305404
-      Position: {x: -0.0007639082, y: -0.776929, z: 1.7460403}
-      NaturalTime: 0.10252719
-      UniformTime: 0.051249966
-    - AccumLength: 1.9990935
-      Position: {x: -0.00080308947, y: -0.7935405, z: 1.8125504}
-      NaturalTime: 0.10522528
-      UniformTime: 0.053069845
-    - AccumLength: 2.0685387
-      Position: {x: -0.00084316725, y: -0.80996066, z: 1.8800265}
-      NaturalTime: 0.107923366
-      UniformTime: 0.0549134
-    - AccumLength: 2.138873
-      Position: {x: -0.0008841357, y: -0.8261903, z: 1.9484628}
-      NaturalTime: 0.11062145
-      UniformTime: 0.056780566
-    - AccumLength: 2.2100918
-      Position: {x: -0.0009259886, y: -0.8422295, z: 2.017852}
-      NaturalTime: 0.11331954
-      UniformTime: 0.058671206
-    - AccumLength: 2.2821915
-      Position: {x: -0.0009687198, y: -0.8580788, z: 2.0881882}
-      NaturalTime: 0.116017625
-      UniformTime: 0.060585234
-    - AccumLength: 2.3551672
-      Position: {x: -0.0010123231, y: -0.8737386, z: 2.159464}
-      NaturalTime: 0.11871571
-      UniformTime: 0.062522516
-    - AccumLength: 2.429015
-      Position: {x: -0.0010567923, y: -0.8892092, z: 2.231673}
-      NaturalTime: 0.1214138
-      UniformTime: 0.06448295
-    - AccumLength: 2.5037305
-      Position: {x: -0.0011021215, y: -0.9044913, z: 2.304809}
-      NaturalTime: 0.12411188
-      UniformTime: 0.06646642
-    - AccumLength: 2.5793092
-      Position: {x: -0.0011483047, y: -0.9195851, z: 2.3788652}
-      NaturalTime: 0.12680997
-      UniformTime: 0.0684728
-    - AccumLength: 2.6557465
-      Position: {x: -0.0011953352, y: -0.93449104, z: 2.453835}
-      NaturalTime: 0.12950805
-      UniformTime: 0.070501976
-    - AccumLength: 2.7330368
-      Position: {x: -0.0012432071, y: -0.9492094, z: 2.529711}
-      NaturalTime: 0.13220613
-      UniformTime: 0.0725538
-    - AccumLength: 2.8111763
-      Position: {x: -0.0012919145, y: -0.9637408, z: 2.6064875}
-      NaturalTime: 0.1349042
-      UniformTime: 0.07462817
-    - AccumLength: 2.8901603
-      Position: {x: -0.0013414512, y: -0.9780856, z: 2.684158}
-      NaturalTime: 0.13760228
-      UniformTime: 0.076724954
-    - AccumLength: 2.9699836
-      Position: {x: -0.0013918107, y: -0.99224406, z: 2.7627156}
-      NaturalTime: 0.14030036
-      UniformTime: 0.07884402
-    - AccumLength: 3.0506413
-      Position: {x: -0.0014429876, y: -1.006217, z: 2.8421538}
-      NaturalTime: 0.14299844
-      UniformTime: 0.08098523
-    - AccumLength: 3.132128
-      Position: {x: -0.0014949752, y: -1.0200044, z: 2.9224656}
-      NaturalTime: 0.14569652
-      UniformTime: 0.08314846
-    - AccumLength: 3.2144392
-      Position: {x: -0.0015477675, y: -1.0336068, z: 3.003645}
-      NaturalTime: 0.1483946
-      UniformTime: 0.08533357
-    - AccumLength: 3.297569
-      Position: {x: -0.0016013586, y: -1.0470246, z: 3.0856848}
-      NaturalTime: 0.15109268
-      UniformTime: 0.08754041
-    - AccumLength: 3.3815129
-      Position: {x: -0.0016557422, y: -1.0602582, z: 3.1685789}
-      NaturalTime: 0.15379076
-      UniformTime: 0.089768864
-    - AccumLength: 3.4662652
-      Position: {x: -0.0017109121, y: -1.0733081, z: 3.2523205}
-      NaturalTime: 0.15648884
-      UniformTime: 0.09201878
-    - AccumLength: 3.5518203
-      Position: {x: -0.0017668619, y: -1.0861747, z: 3.3369026}
-      NaturalTime: 0.15918691
-      UniformTime: 0.09429001
-    - AccumLength: 3.6381733
-      Position: {x: -0.0018235861, y: -1.0988581, z: 3.4223192}
-      NaturalTime: 0.161885
-      UniformTime: 0.09658242
-    - AccumLength: 3.7253194
-      Position: {x: -0.0018810782, y: -1.1113595, z: 3.5085638}
-      NaturalTime: 0.16458307
-      UniformTime: 0.09889588
-    - AccumLength: 3.8132517
-      Position: {x: -0.0019393323, y: -1.1236786, z: 3.595629}
-      NaturalTime: 0.16728115
-      UniformTime: 0.10123022
-    - AccumLength: 3.901966
-      Position: {x: -0.001998342, y: -1.135816, z: 3.683509}
-      NaturalTime: 0.16997923
-      UniformTime: 0.10358531
-    - AccumLength: 3.9914563
-      Position: {x: -0.0020581014, y: -1.1477721, z: 3.772197}
-      NaturalTime: 0.17267731
-      UniformTime: 0.105961
-    - AccumLength: 4.081716
-      Position: {x: -0.0021186038, y: -1.159547, z: 3.8616855}
-      NaturalTime: 0.17537539
-      UniformTime: 0.108357124
-    - AccumLength: 4.172742
-      Position: {x: -0.0021798438, y: -1.1711419, z: 3.9519696}
-      NaturalTime: 0.17807347
-      UniformTime: 0.110773586
-    - AccumLength: 4.264526
-      Position: {x: -0.0022418152, y: -1.1825566, z: 4.043041}
-      NaturalTime: 0.18077154
-      UniformTime: 0.11321017
-    - AccumLength: 4.3570633
-      Position: {x: -0.0023045111, y: -1.1937915, z: 4.134894}
-      NaturalTime: 0.18346962
-      UniformTime: 0.115666755
-    - AccumLength: 4.4503493
-      Position: {x: -0.0023679265, y: -1.2048473, z: 4.2275224}
-      NaturalTime: 0.1861677
-      UniformTime: 0.118143216
-    - AccumLength: 4.5443764
-      Position: {x: -0.0024320548, y: -1.2157246, z: 4.320918}
-      NaturalTime: 0.18886578
-      UniformTime: 0.12063935
-    - AccumLength: 4.639141
-      Position: {x: -0.0024968896, y: -1.2264231, z: 4.4150767}
-      NaturalTime: 0.19156386
-      UniformTime: 0.123155065
-    - AccumLength: 4.734635
-      Position: {x: -0.002562425, y: -1.2369436, z: 4.5099893}
-      NaturalTime: 0.19426194
-      UniformTime: 0.12569013
-    - AccumLength: 4.830853
-      Position: {x: -0.0026286545, y: -1.2472866, z: 4.60565}
-      NaturalTime: 0.19696002
-      UniformTime: 0.12824443
-    - AccumLength: 4.9277916
-      Position: {x: -0.0026955728, y: -1.2574524, z: 4.702054}
-      NaturalTime: 0.1996581
-      UniformTime: 0.13081786
-    - AccumLength: 5.025442
-      Position: {x: -0.0027631733, y: -1.2674415, z: 4.7991924}
-      NaturalTime: 0.20235617
-      UniformTime: 0.13341019
-    - AccumLength: 5.123799
-      Position: {x: -0.0028314493, y: -1.2772541, z: 4.8970585}
-      NaturalTime: 0.20505425
-      UniformTime: 0.13602126
-    - AccumLength: 5.2228575
-      Position: {x: -0.0029003953, y: -1.2868909, z: 4.9956474}
-      NaturalTime: 0.20775233
-      UniformTime: 0.13865095
-    - AccumLength: 5.3226113
-      Position: {x: -0.0029700056, y: -1.2963521, z: 5.0949516}
-      NaturalTime: 0.21045041
-      UniformTime: 0.14129911
-    - AccumLength: 5.4230547
-      Position: {x: -0.0030402732, y: -1.3056384, z: 5.194965}
-      NaturalTime: 0.21314849
-      UniformTime: 0.14396559
-    - AccumLength: 5.524182
-      Position: {x: -0.0031111925, y: -1.3147497, z: 5.2956805}
-      NaturalTime: 0.21584657
-      UniformTime: 0.1466502
-    - AccumLength: 5.6259856
-      Position: {x: -0.0031827572, y: -1.3236867, z: 5.3970914}
-      NaturalTime: 0.21854465
-      UniformTime: 0.14935277
-    - AccumLength: 5.7284603
-      Position: {x: -0.003254961, y: -1.33245, z: 5.499191}
-      NaturalTime: 0.22124273
-      UniformTime: 0.15207317
-    - AccumLength: 5.831601
-      Position: {x: -0.0033277979, y: -1.3410399, z: 5.6019735}
-      NaturalTime: 0.2239408
-      UniformTime: 0.15481125
-    - AccumLength: 5.9354
-      Position: {x: -0.0034012618, y: -1.3494563, z: 5.7054305}
-      NaturalTime: 0.22663888
-      UniformTime: 0.15756679
-    - AccumLength: 6.039853
-      Position: {x: -0.003475347, y: -1.3577005, z: 5.809558}
-      NaturalTime: 0.22933696
-      UniformTime: 0.1603397
-    - AccumLength: 6.1449533
-      Position: {x: -0.0035500468, y: -1.3657724, z: 5.9143476}
-      NaturalTime: 0.23203504
-      UniformTime: 0.16312979
-    - AccumLength: 6.2506948
-      Position: {x: -0.0036253552, y: -1.3736722, z: 6.0197935}
-      NaturalTime: 0.23473312
-      UniformTime: 0.1659369
-    - AccumLength: 6.3570714
-      Position: {x: -0.003701266, y: -1.3814008, z: 6.125889}
-      NaturalTime: 0.2374312
-      UniformTime: 0.16876088
-    - AccumLength: 6.4640756
-      Position: {x: -0.003777773, y: -1.3889582, z: 6.232626}
-      NaturalTime: 0.24012928
-      UniformTime: 0.17160152
-    - AccumLength: 6.5717034
-      Position: {x: -0.0038548703, y: -1.3963453, z: 6.34}
-      NaturalTime: 0.24282736
-      UniformTime: 0.17445871
-    - AccumLength: 6.679948
-      Position: {x: -0.0039325524, y: -1.403562, z: 6.448004}
-      NaturalTime: 0.24552543
-      UniformTime: 0.17733227
-    - AccumLength: 6.788802
-      Position: {x: -0.004010812, y: -1.4106088, z: 6.5566297}
-      NaturalTime: 0.24822351
-      UniformTime: 0.18022202
-    - AccumLength: 6.8982625
-      Position: {x: -0.0040896437, y: -1.4174865, z: 6.6658735}
-      NaturalTime: 0.2509216
-      UniformTime: 0.18312785
-    - AccumLength: 7.00832
-      Position: {x: -0.0041690418, y: -1.4241953, z: 6.7757263}
-      NaturalTime: 0.2536197
-      UniformTime: 0.18604954
-    - AccumLength: 7.1189694
-      Position: {x: -0.004248998, y: -1.4307352, z: 6.8861823}
-      NaturalTime: 0.2563178
-      UniformTime: 0.18898696
-    - AccumLength: 7.2302046
-      Position: {x: -0.004329509, y: -1.4371071, z: 6.997235}
-      NaturalTime: 0.2590159
-      UniformTime: 0.1919399
-    - AccumLength: 7.342019
-      Position: {x: -0.0044105677, y: -1.4433115, z: 7.108877}
-      NaturalTime: 0.26171398
-      UniformTime: 0.19490825
-    - AccumLength: 7.4544077
-      Position: {x: -0.004492167, y: -1.4493483, z: 7.2211037}
-      NaturalTime: 0.26441208
-      UniformTime: 0.19789182
-    - AccumLength: 7.567363
-      Position: {x: -0.0045743007, y: -1.4552183, z: 7.333906}
-      NaturalTime: 0.26711017
-      UniformTime: 0.20089044
-    - AccumLength: 7.6808786
-      Position: {x: -0.004656965, y: -1.4609218, z: 7.4472785}
-      NaturalTime: 0.26980826
-      UniformTime: 0.20390393
-    - AccumLength: 7.794949
-      Position: {x: -0.0047401506, y: -1.4664592, z: 7.5612144}
-      NaturalTime: 0.27250636
-      UniformTime: 0.20693216
-    - AccumLength: 7.909569
-      Position: {x: -0.004823854, y: -1.4718311, z: 7.6757083}
-      NaturalTime: 0.27520445
-      UniformTime: 0.20997496
-    - AccumLength: 8.024729
-      Position: {x: -0.0049080676, y: -1.4770373, z: 7.7907505}
-      NaturalTime: 0.27790254
-      UniformTime: 0.2130321
-    - AccumLength: 8.140426
-      Position: {x: -0.004992785, y: -1.4820789, z: 7.9063373}
-      NaturalTime: 0.28060064
-      UniformTime: 0.21610351
-    - AccumLength: 8.256653
-      Position: {x: -0.005078002, y: -1.4869565, z: 8.022462}
-      NaturalTime: 0.28329873
-      UniformTime: 0.21918897
-    - AccumLength: 8.373403
-      Position: {x: -0.0051637106, y: -1.4916695, z: 8.139116}
-      NaturalTime: 0.28599682
-      UniformTime: 0.22228833
-    - AccumLength: 8.49067
-      Position: {x: -0.005249906, y: -1.496219, z: 8.256295}
-      NaturalTime: 0.28869492
-      UniformTime: 0.22540143
-    - AccumLength: 8.608447
-      Position: {x: -0.0053365794, y: -1.5006055, z: 8.37399}
-      NaturalTime: 0.291393
-      UniformTime: 0.22852805
-    - AccumLength: 8.726729
-      Position: {x: -0.0054237284, y: -1.5048289, z: 8.492197}
-      NaturalTime: 0.2940911
-      UniformTime: 0.23166808
-    - AccumLength: 8.84551
-      Position: {x: -0.005511345, y: -1.5088903, z: 8.610908}
-      NaturalTime: 0.2967892
-      UniformTime: 0.23482133
-    - AccumLength: 8.964781
-      Position: {x: -0.0055994224, y: -1.5127892, z: 8.730115}
-      NaturalTime: 0.2994873
-      UniformTime: 0.23798762
-    - AccumLength: 9.0845375
-      Position: {x: -0.0056879553, y: -1.5165268, z: 8.849813}
-      NaturalTime: 0.3021854
-      UniformTime: 0.2411668
-    - AccumLength: 9.204775
-      Position: {x: -0.0057769376, y: -1.5201033, z: 8.969997}
-      NaturalTime: 0.30488348
-      UniformTime: 0.24435873
-    - AccumLength: 9.325484
-      Position: {x: -0.005866363, y: -1.5235193, z: 9.090658}
-      NaturalTime: 0.30758157
-      UniformTime: 0.2475632
-    - AccumLength: 9.446659
-      Position: {x: -0.005956226, y: -1.5267746, z: 9.211789}
-      NaturalTime: 0.31027967
-      UniformTime: 0.25078002
-    - AccumLength: 9.568294
-      Position: {x: -0.006046519, y: -1.5298698, z: 9.3333845}
-      NaturalTime: 0.31297776
-      UniformTime: 0.25400904
-    - AccumLength: 9.690384
-      Position: {x: -0.0061372383, y: -1.5328059, z: 9.45544}
-      NaturalTime: 0.31567585
-      UniformTime: 0.25725016
-    - AccumLength: 9.81292
-      Position: {x: -0.0062283752, y: -1.5355829, z: 9.577944}
-      NaturalTime: 0.31837395
-      UniformTime: 0.2605031
-    - AccumLength: 9.935897
-      Position: {x: -0.0063199247, y: -1.5382009, z: 9.700893}
-      NaturalTime: 0.32107204
-      UniformTime: 0.2637678
-    - AccumLength: 10.059308
-      Position: {x: -0.0064118803, y: -1.5406606, z: 9.82428}
-      NaturalTime: 0.32377014
-      UniformTime: 0.26704398
-    - AccumLength: 10.183149
-      Position: {x: -0.0065042367, y: -1.5429629, z: 9.9481}
-      NaturalTime: 0.32646823
-      UniformTime: 0.2703316
-    - AccumLength: 10.307412
-      Position: {x: -0.006596988, y: -1.5451076, z: 10.072345}
-      NaturalTime: 0.32916632
-      UniformTime: 0.27363038
-    - AccumLength: 10.432089
-      Position: {x: -0.0066901254, y: -1.5470951, z: 10.197005}
-      NaturalTime: 0.33186442
-      UniformTime: 0.27694017
-    - AccumLength: 10.557177
-      Position: {x: -0.006783646, y: -1.5489258, z: 10.32208}
-      NaturalTime: 0.3345625
-      UniformTime: 0.2802609
-    - AccumLength: 10.682666
-      Position: {x: -0.0068775425, y: -1.5506005, z: 10.447557}
-      NaturalTime: 0.3372606
-      UniformTime: 0.28359222
-    - AccumLength: 10.808553
-      Position: {x: -0.0069718086, y: -1.5521195, z: 10.573435}
-      NaturalTime: 0.3399587
-      UniformTime: 0.28693414
-    - AccumLength: 10.934831
-      Position: {x: -0.007066437, y: -1.5534827, z: 10.699705}
-      NaturalTime: 0.3426568
-      UniformTime: 0.29028645
-    - AccumLength: 11.061488
-      Position: {x: -0.0071614236, y: -1.5546912, z: 10.826357}
-      NaturalTime: 0.34535488
-      UniformTime: 0.2936488
-    - AccumLength: 11.188526
-      Position: {x: -0.0072567617, y: -1.5557451, z: 10.95339}
-      NaturalTime: 0.34805298
-      UniformTime: 0.2970213
-    - AccumLength: 11.315934
-      Position: {x: -0.007352445, y: -1.5566449, z: 11.080795}
-      NaturalTime: 0.35075107
-      UniformTime: 0.3004036
-    - AccumLength: 11.443705
-      Position: {x: -0.0074484674, y: -1.5573906, z: 11.208564}
-      NaturalTime: 0.35344917
-      UniformTime: 0.3037955
-    - AccumLength: 11.571835
-      Position: {x: -0.007544822, y: -1.557983, z: 11.336693}
-      NaturalTime: 0.35614726
-      UniformTime: 0.30719694
-    - AccumLength: 11.700316
-      Position: {x: -0.0076415036, y: -1.5584229, z: 11.465174}
-      NaturalTime: 0.35884535
-      UniformTime: 0.31060776
-    - AccumLength: 11.829143
-      Position: {x: -0.0077385055, y: -1.5587102, z: 11.594}
-      NaturalTime: 0.36154345
-      UniformTime: 0.3140277
-    - AccumLength: 11.958307
-      Position: {x: -0.007835822, y: -1.558845, z: 11.723165}
-      NaturalTime: 0.36424154
-      UniformTime: 0.31745663
-    - AccumLength: 12.087804
-      Position: {x: -0.007933447, y: -1.5588282, z: 11.852661}
-      NaturalTime: 0.36693963
-      UniformTime: 0.32089436
-    - AccumLength: 12.2176285
-      Position: {x: -0.008031375, y: -1.5586603, z: 11.982486}
-      NaturalTime: 0.36963773
-      UniformTime: 0.32434082
-    - AccumLength: 12.347772
-      Position: {x: -0.008129599, y: -1.5583416, z: 12.112629}
-      NaturalTime: 0.37233582
-      UniformTime: 0.3277957
-    - AccumLength: 12.478226
-      Position: {x: -0.008228112, y: -1.557872, z: 12.243082}
-      NaturalTime: 0.37503392
-      UniformTime: 0.3312589
-    - AccumLength: 12.608988
-      Position: {x: -0.008326909, y: -1.5572524, z: 12.373842}
-      NaturalTime: 0.377732
-      UniformTime: 0.3347302
-    - AccumLength: 12.740051
-      Position: {x: -0.008425984, y: -1.5564835, z: 12.504904}
-      NaturalTime: 0.3804301
-      UniformTime: 0.33820954
-    - AccumLength: 12.8714075
-      Position: {x: -0.008525331, y: -1.5555654, z: 12.636257}
-      NaturalTime: 0.3831282
-      UniformTime: 0.34169665
-    - AccumLength: 13.00305
-      Position: {x: -0.008624942, y: -1.5544981, z: 12.767895}
-      NaturalTime: 0.3858263
-      UniformTime: 0.34519136
-    - AccumLength: 13.134972
-      Position: {x: -0.008724813, y: -1.5532823, z: 12.899811}
-      NaturalTime: 0.38852438
-      UniformTime: 0.3486935
-    - AccumLength: 13.267173
-      Position: {x: -0.008824938, y: -1.551919, z: 13.032005}
-      NaturalTime: 0.39122248
-      UniformTime: 0.352203
-    - AccumLength: 13.399639
-      Position: {x: -0.00892531, y: -1.5504079, z: 13.164463}
-      NaturalTime: 0.39392057
-      UniformTime: 0.3557196
-    - AccumLength: 13.532365
-      Position: {x: -0.009025922, y: -1.5487494, z: 13.297178}
-      NaturalTime: 0.39661866
-      UniformTime: 0.35924307
-    - AccumLength: 13.665347
-      Position: {x: -0.009126769, y: -1.5469443, z: 13.430148}
-      NaturalTime: 0.39931676
-      UniformTime: 0.36277333
-    - AccumLength: 13.798579
-      Position: {x: -0.009227846, y: -1.5449928, z: 13.563366}
-      NaturalTime: 0.40201485
-      UniformTime: 0.36631024
-    - AccumLength: 13.932053
-      Position: {x: -0.009329145, y: -1.5428956, z: 13.696823}
-      NaturalTime: 0.40471295
-      UniformTime: 0.36985356
-    - AccumLength: 14.065761
-      Position: {x: -0.009430659, y: -1.5406525, z: 13.830512}
-      NaturalTime: 0.40741104
-      UniformTime: 0.3734031
-    - AccumLength: 14.199697
-      Position: {x: -0.009532384, y: -1.5382643, z: 13.964427}
-      NaturalTime: 0.41010913
-      UniformTime: 0.3769587
-    - AccumLength: 14.333858
-      Position: {x: -0.009634313, y: -1.5357314, z: 14.098564}
-      NaturalTime: 0.41280723
-      UniformTime: 0.38052025
-    - AccumLength: 14.468236
-      Position: {x: -0.009736443, y: -1.5330544, z: 14.232916}
-      NaturalTime: 0.41550532
-      UniformTime: 0.3840876
-    - AccumLength: 14.602821
-      Position: {x: -0.009838761, y: -1.5302333, z: 14.367472}
-      NaturalTime: 0.4182034
-      UniformTime: 0.3876604
-    - AccumLength: 14.737609
-      Position: {x: -0.009941265, y: -1.5272686, z: 14.502227}
-      NaturalTime: 0.4209015
-      UniformTime: 0.39123863
-    - AccumLength: 14.872597
-      Position: {x: -0.010043952, y: -1.5241611, z: 14.637178}
-      NaturalTime: 0.4235996
-      UniformTime: 0.39482215
-    - AccumLength: 15.007774
-      Position: {x: -0.01014681, y: -1.520911, z: 14.772317}
-      NaturalTime: 0.4262977
-      UniformTime: 0.39841068
-    - AccumLength: 15.143135
-      Position: {x: -0.010249835, y: -1.5175183, z: 14.907635}
-      NaturalTime: 0.4289958
-      UniformTime: 0.4020041
-    - AccumLength: 15.278672
-      Position: {x: -0.010353021, y: -1.5139837, z: 15.043126}
-      NaturalTime: 0.43169388
-      UniformTime: 0.40560222
-    - AccumLength: 15.414382
-      Position: {x: -0.010456365, y: -1.510308, z: 15.178786}
-      NaturalTime: 0.43439198
-      UniformTime: 0.40920487
-    - AccumLength: 15.550255
-      Position: {x: -0.010559857, y: -1.5064912, z: 15.314606}
-      NaturalTime: 0.43709007
-      UniformTime: 0.4128119
-    - AccumLength: 15.686286
-      Position: {x: -0.010663491, y: -1.5025337, z: 15.45058}
-      NaturalTime: 0.43978816
-      UniformTime: 0.4164231
-    - AccumLength: 15.822468
-      Position: {x: -0.010767261, y: -1.4984357, z: 15.5866995}
-      NaturalTime: 0.44248626
-      UniformTime: 0.4200383
-    - AccumLength: 15.958797
-      Position: {x: -0.010871163, y: -1.4941986, z: 15.722963}
-      NaturalTime: 0.44518435
-      UniformTime: 0.42365745
-    - AccumLength: 16.095263
-      Position: {x: -0.0109751895, y: -1.4898219, z: 15.859359}
-      NaturalTime: 0.44788244
-      UniformTime: 0.4272802
-    - AccumLength: 16.231861
-      Position: {x: -0.011079334, y: -1.4853058, z: 15.995882}
-      NaturalTime: 0.45058054
-      UniformTime: 0.43090647
-    - AccumLength: 16.368586
-      Position: {x: -0.01118359, y: -1.4806513, z: 16.132526}
-      NaturalTime: 0.45327863
-      UniformTime: 0.43453607
-    - AccumLength: 16.505428
-      Position: {x: -0.011287952, y: -1.4758589, z: 16.269285}
-      NaturalTime: 0.45597672
-      UniformTime: 0.43816885
-    - AccumLength: 16.642387
-      Position: {x: -0.011392416, y: -1.4709288, z: 16.406155}
-      NaturalTime: 0.45867482
-      UniformTime: 0.44180468
-    - AccumLength: 16.779446
-      Position: {x: -0.011496972, y: -1.4658612, z: 16.54312}
-      NaturalTime: 0.4613729
-      UniformTime: 0.44544315
-    - AccumLength: 16.916607
-      Position: {x: -0.011601616, y: -1.4606564, z: 16.680182}
-      NaturalTime: 0.464071
-      UniformTime: 0.44908437
-    - AccumLength: 17.053864
-      Position: {x: -0.011706343, y: -1.4553156, z: 16.817333}
-      NaturalTime: 0.4667691
-      UniformTime: 0.45272812
-    - AccumLength: 17.191204
-      Position: {x: -0.011811145, y: -1.4498386, z: 16.954565}
-      NaturalTime: 0.4694672
-      UniformTime: 0.4563741
-    - AccumLength: 17.328625
-      Position: {x: -0.011916014, y: -1.4442258, z: 17.091871}
-      NaturalTime: 0.4721653
-      UniformTime: 0.4600222
-    - AccumLength: 17.46612
-      Position: {x: -0.012020949, y: -1.4384775, z: 17.229246}
-      NaturalTime: 0.47486338
-      UniformTime: 0.46367228
-    - AccumLength: 17.603682
-      Position: {x: -0.012125941, y: -1.4325948, z: 17.366682}
-      NaturalTime: 0.47756147
-      UniformTime: 0.4673241
-    - AccumLength: 17.741304
-      Position: {x: -0.012230983, y: -1.4265776, z: 17.504173}
-      NaturalTime: 0.48025957
-      UniformTime: 0.47097757
-    - AccumLength: 17.87898
-      Position: {x: -0.01233607, y: -1.420426, z: 17.641712}
-      NaturalTime: 0.48295766
-      UniformTime: 0.47463247
-    - AccumLength: 18.016705
-      Position: {x: -0.012441194, y: -1.4141407, z: 17.779293}
-      NaturalTime: 0.48565575
-      UniformTime: 0.47828862
-    - AccumLength: 18.15447
-      Position: {x: -0.012546353, y: -1.4077226, z: 17.91691}
-      NaturalTime: 0.48835385
-      UniformTime: 0.48194587
-    - AccumLength: 18.292273
-      Position: {x: -0.0126515385, y: -1.4011718, z: 18.054556}
-      NaturalTime: 0.49105194
-      UniformTime: 0.4856041
-    - AccumLength: 18.430101
-      Position: {x: -0.012756743, y: -1.3944881, z: 18.192223}
-      NaturalTime: 0.49375004
-      UniformTime: 0.48926306
-    - AccumLength: 18.567951
-      Position: {x: -0.0128619615, y: -1.3876724, z: 18.329905}
-      NaturalTime: 0.49644813
-      UniformTime: 0.49292254
-    - AccumLength: 18.705816
-      Position: {x: -0.01296719, y: -1.3807254, z: 18.467594}
-      NaturalTime: 0.49914622
-      UniformTime: 0.49658245
-    - AccumLength: 18.843689
-      Position: {x: -0.013072418, y: -1.3736475, z: 18.605286}
-      NaturalTime: 0.5018443
-      UniformTime: 0.50024253
-    - AccumLength: 18.981565
-      Position: {x: -0.013177642, y: -1.3664386, z: 18.742973}
-      NaturalTime: 0.50454235
-      UniformTime: 0.50390273
-    - AccumLength: 19.119438
-      Position: {x: -0.013282856, y: -1.3590994, z: 18.88065}
-      NaturalTime: 0.5072404
-      UniformTime: 0.5075628
-    - AccumLength: 19.257296
-      Position: {x: -0.013388053, y: -1.3516303, z: 19.018305}
-      NaturalTime: 0.5099385
-      UniformTime: 0.51122254
-    - AccumLength: 19.395142
-      Position: {x: -0.013493228, y: -1.3440316, z: 19.155941}
-      NaturalTime: 0.51263654
-      UniformTime: 0.5148819
-    - AccumLength: 19.532959
-      Position: {x: -0.013598372, y: -1.336304, z: 19.293541}
-      NaturalTime: 0.5153346
-      UniformTime: 0.51854056
-    - AccumLength: 19.67075
-      Position: {x: -0.013703483, y: -1.3284473, z: 19.431107}
-      NaturalTime: 0.51803267
-      UniformTime: 0.5221985
-    - AccumLength: 19.8085
-      Position: {x: -0.013808553, y: -1.3204627, z: 19.568626}
-      NaturalTime: 0.52073073
-      UniformTime: 0.52585536
-    - AccumLength: 19.946209
-      Position: {x: -0.0139135765, y: -1.3123499, z: 19.706097}
-      NaturalTime: 0.5234288
-      UniformTime: 0.5295111
-    - AccumLength: 20.08387
-      Position: {x: -0.014018547, y: -1.30411, z: 19.843512}
-      NaturalTime: 0.52612686
-      UniformTime: 0.5331656
-    - AccumLength: 20.221476
-      Position: {x: -0.0141234575, y: -1.2957429, z: 19.980862}
-      NaturalTime: 0.5288249
-      UniformTime: 0.53681856
-    - AccumLength: 20.359015
-      Position: {x: -0.014228302, y: -1.2872491, z: 20.118137}
-      NaturalTime: 0.531523
-      UniformTime: 0.5404698
-    - AccumLength: 20.496489
-      Position: {x: -0.014333076, y: -1.2786291, z: 20.25534}
-      NaturalTime: 0.53422105
-      UniformTime: 0.54411936
-    - AccumLength: 20.633883
-      Position: {x: -0.0144377705, y: -1.2698832, z: 20.392456}
-      NaturalTime: 0.5369191
-      UniformTime: 0.54776675
-    - AccumLength: 20.771196
-      Position: {x: -0.014542383, y: -1.261012, z: 20.529484}
-      NaturalTime: 0.5396172
-      UniformTime: 0.551412
-    - AccumLength: 20.908422
-      Position: {x: -0.0146469055, y: -1.2520157, z: 20.666414}
-      NaturalTime: 0.54231524
-      UniformTime: 0.5550549
-    - AccumLength: 21.045553
-      Position: {x: -0.01475133, y: -1.2428949, z: 20.803242}
-      NaturalTime: 0.5450133
-      UniformTime: 0.5586953
-    - AccumLength: 21.18258
-      Position: {x: -0.014855653, y: -1.2336498, z: 20.939957}
-      NaturalTime: 0.5477114
-      UniformTime: 0.562333
-    - AccumLength: 21.319504
-      Position: {x: -0.01495987, y: -1.2242811, z: 21.07656}
-      NaturalTime: 0.55040944
-      UniformTime: 0.56596786
-    - AccumLength: 21.456306
-      Position: {x: -0.015063969, y: -1.2147889, z: 21.213032}
-      NaturalTime: 0.5531075
-      UniformTime: 0.56959957
-    - AccumLength: 21.59299
-      Position: {x: -0.01516795, y: -1.2051737, z: 21.349377}
-      NaturalTime: 0.55580556
-      UniformTime: 0.5732281
-    - AccumLength: 21.72955
-      Position: {x: -0.015271803, y: -1.1954364, z: 21.485588}
-      NaturalTime: 0.5585036
-      UniformTime: 0.57685333
-    - AccumLength: 21.865973
-      Position: {x: -0.015375523, y: -1.1855764, z: 21.621655}
-      NaturalTime: 0.5612017
-      UniformTime: 0.580475
-    - AccumLength: 22.002256
-      Position: {x: -0.015479105, y: -1.175595, z: 21.757572}
-      NaturalTime: 0.56389976
-      UniformTime: 0.58409286
-    - AccumLength: 22.13839
-      Position: {x: -0.015582541, y: -1.1654924, z: 21.89333}
-      NaturalTime: 0.5665978
-      UniformTime: 0.5877068
-    - AccumLength: 22.274374
-      Position: {x: -0.015685827, y: -1.1552685, z: 22.028929}
-      NaturalTime: 0.5692959
-      UniformTime: 0.59131676
-    - AccumLength: 22.410194
-      Position: {x: -0.015788954, y: -1.1449245, z: 22.164354}
-      NaturalTime: 0.57199395
-      UniformTime: 0.59492236
-    - AccumLength: 22.54585
-      Position: {x: -0.015891919, y: -1.1344602, z: 22.299606}
-      NaturalTime: 0.574692
-      UniformTime: 0.5985237
-    - AccumLength: 22.681332
-      Position: {x: -0.01599471, y: -1.1238765, z: 22.434673}
-      NaturalTime: 0.5773901
-      UniformTime: 0.6021203
-    - AccumLength: 22.816637
-      Position: {x: -0.01609733, y: -1.1131735, z: 22.569555}
-      NaturalTime: 0.58008814
-      UniformTime: 0.60571223
-    - AccumLength: 22.951754
-      Position: {x: -0.016199768, y: -1.1023514, z: 22.704237}
-      NaturalTime: 0.5827862
-      UniformTime: 0.6092991
-    - AccumLength: 23.08668
-      Position: {x: -0.016302016, y: -1.0914109, z: 22.838718}
-      NaturalTime: 0.58548427
-      UniformTime: 0.612881
-    - AccumLength: 23.221403
-      Position: {x: -0.01640407, y: -1.0803527, z: 22.972988}
-      NaturalTime: 0.58818233
-      UniformTime: 0.6164575
-    - AccumLength: 23.35592
-      Position: {x: -0.016505923, y: -1.0691767, z: 23.10704}
-      NaturalTime: 0.5908804
-      UniformTime: 0.62002856
-    - AccumLength: 23.49023
-      Position: {x: -0.016607571, y: -1.0578834, z: 23.240875}
-      NaturalTime: 0.59357846
-      UniformTime: 0.62359405
-    - AccumLength: 23.624321
-      Position: {x: -0.016709007, y: -1.0464734, z: 23.37448}
-      NaturalTime: 0.5962765
-      UniformTime: 0.62715375
-    - AccumLength: 23.758184
-      Position: {x: -0.016810223, y: -1.0349469, z: 23.507845}
-      NaturalTime: 0.5989746
-      UniformTime: 0.63070744
-    - AccumLength: 23.891819
-      Position: {x: -0.016911214, y: -1.0233047, z: 23.640972}
-      NaturalTime: 0.60167265
-      UniformTime: 0.634255
-    - AccumLength: 24.025215
-      Position: {x: -0.017011978, y: -1.0115469, z: 23.77385}
-      NaturalTime: 0.6043707
-      UniformTime: 0.6377963
-    - AccumLength: 24.158367
-      Position: {x: -0.017112501, y: -0.99967384, z: 23.906471}
-      NaturalTime: 0.6070688
-      UniformTime: 0.6413311
-    - AccumLength: 24.291267
-      Position: {x: -0.01721278, y: -0.98768616, z: 24.03883}
-      NaturalTime: 0.60976684
-      UniformTime: 0.64485914
-    - AccumLength: 24.42391
-      Position: {x: -0.01731281, y: -0.97558403, z: 24.17092}
-      NaturalTime: 0.6124649
-      UniformTime: 0.6483804
-    - AccumLength: 24.55629
-      Position: {x: -0.017412588, y: -0.96336824, z: 24.302734}
-      NaturalTime: 0.61516297
-      UniformTime: 0.6518947
-    - AccumLength: 24.6884
-      Position: {x: -0.017512102, y: -0.9510387, z: 24.434269}
-      NaturalTime: 0.61786103
-      UniformTime: 0.6554018
-    - AccumLength: 24.820234
-      Position: {x: -0.017611349, y: -0.9385961, z: 24.565514}
-      NaturalTime: 0.6205591
-      UniformTime: 0.65890163
-    - AccumLength: 24.951784
-      Position: {x: -0.01771032, y: -0.9260409, z: 24.696463}
-      NaturalTime: 0.62325716
-      UniformTime: 0.66239387
-    - AccumLength: 25.083044
-      Position: {x: -0.017809015, y: -0.9133735, z: 24.82711}
-      NaturalTime: 0.6259552
-      UniformTime: 0.6658784
-    - AccumLength: 25.214008
-      Position: {x: -0.01790742, y: -0.9005943, z: 24.957449}
-      NaturalTime: 0.6286533
-      UniformTime: 0.6693551
-    - AccumLength: 25.344671
-      Position: {x: -0.018005535, y: -0.8877034, z: 25.087475}
-      NaturalTime: 0.63135135
-      UniformTime: 0.6728238
-    - AccumLength: 25.475025
-      Position: {x: -0.018103352, y: -0.8747015, z: 25.217178}
-      NaturalTime: 0.6340494
-      UniformTime: 0.6762843
-    - AccumLength: 25.605064
-      Position: {x: -0.018200863, y: -0.8615891, z: 25.346554}
-      NaturalTime: 0.6367475
-      UniformTime: 0.67973644
-    - AccumLength: 25.73478
-      Position: {x: -0.018298063, y: -0.8483664, z: 25.475594}
-      NaturalTime: 0.63944554
-      UniformTime: 0.68318
-    - AccumLength: 25.864164
-      Position: {x: -0.018394949, y: -0.83503413, z: 25.60429}
-      NaturalTime: 0.6421436
-      UniformTime: 0.68661475
-    - AccumLength: 25.99322
-      Position: {x: -0.01849151, y: -0.8215922, z: 25.732643}
-      NaturalTime: 0.6448417
-      UniformTime: 0.69004077
-    - AccumLength: 26.121931
-      Position: {x: -0.018587742, y: -0.80804133, z: 25.86064}
-      NaturalTime: 0.64753973
-      UniformTime: 0.6934577
-    - AccumLength: 26.250294
-      Position: {x: -0.018683638, y: -0.7943821, z: 25.988274}
-      NaturalTime: 0.6502378
-      UniformTime: 0.6968653
-    - AccumLength: 26.378304
-      Position: {x: -0.018779196, y: -0.78061444, z: 26.115541}
-      NaturalTime: 0.65293586
-      UniformTime: 0.7002636
-    - AccumLength: 26.505955
-      Position: {x: -0.018874407, y: -0.76673925, z: 26.242435}
-      NaturalTime: 0.6556339
-      UniformTime: 0.7036524
-    - AccumLength: 26.633238
-      Position: {x: -0.01896926, y: -0.7527567, z: 26.368948}
-      NaturalTime: 0.658332
-      UniformTime: 0.7070313
-    - AccumLength: 26.760145
-      Position: {x: -0.019063756, y: -0.738667, z: 26.495071}
-      NaturalTime: 0.66103005
-      UniformTime: 0.71040034
-    - AccumLength: 26.886675
-      Position: {x: -0.019157887, y: -0.724471, z: 26.620802}
-      NaturalTime: 0.6637281
-      UniformTime: 0.7137593
-    - AccumLength: 27.012817
-      Position: {x: -0.019251645, y: -0.71016866, z: 26.746132}
-      NaturalTime: 0.6664262
-      UniformTime: 0.717108
-    - AccumLength: 27.138565
-      Position: {x: -0.019345025, y: -0.695761, z: 26.871052}
-      NaturalTime: 0.66912425
-      UniformTime: 0.7204462
-    - AccumLength: 27.263916
-      Position: {x: -0.01943802, y: -0.6812478, z: 26.99556}
-      NaturalTime: 0.6718223
-      UniformTime: 0.7237739
-    - AccumLength: 27.388863
-      Position: {x: -0.019530624, y: -0.66662985, z: 27.119648}
-      NaturalTime: 0.6745204
-      UniformTime: 0.7270909
-    - AccumLength: 27.513397
-      Position: {x: -0.019622834, y: -0.6519073, z: 27.243309}
-      NaturalTime: 0.67721844
-      UniformTime: 0.73039687
-    - AccumLength: 27.637512
-      Position: {x: -0.019714642, y: -0.6370808, z: 27.366535}
-      NaturalTime: 0.6799165
-      UniformTime: 0.73369175
-    - AccumLength: 27.761204
-      Position: {x: -0.01980604, y: -0.62215066, z: 27.489323}
-      NaturalTime: 0.68261456
-      UniformTime: 0.7369754
-    - AccumLength: 27.884462
-      Position: {x: -0.019897023, y: -0.60711724, z: 27.611662}
-      NaturalTime: 0.6853126
-      UniformTime: 0.74024755
-    - AccumLength: 28.007284
-      Position: {x: -0.019987587, y: -0.59198105, z: 27.733547}
-      NaturalTime: 0.6880107
-      UniformTime: 0.7435081
-    - AccumLength: 28.129662
-      Position: {x: -0.02007772, y: -0.5767424, z: 27.854973}
-      NaturalTime: 0.69070876
-      UniformTime: 0.74675685
-    - AccumLength: 28.251589
-      Position: {x: -0.020167423, y: -0.56140196, z: 27.975931}
-      NaturalTime: 0.6934068
-      UniformTime: 0.7499936
-    - AccumLength: 28.37306
-      Position: {x: -0.020256687, y: -0.54595983, z: 28.096416}
-      NaturalTime: 0.6961049
-      UniformTime: 0.7532183
-    - AccumLength: 28.494068
-      Position: {x: -0.020345505, y: -0.5304164, z: 28.216421}
-      NaturalTime: 0.69880295
-      UniformTime: 0.7564307
-    - AccumLength: 28.614605
-      Position: {x: -0.02043387, y: -0.5147723, z: 28.335938}
-      NaturalTime: 0.701501
-      UniformTime: 0.7596306
-    - AccumLength: 28.734669
-      Position: {x: -0.020521779, y: -0.49902773, z: 28.454964}
-      NaturalTime: 0.7041991
-      UniformTime: 0.7628179
-    - AccumLength: 28.854248
-      Position: {x: -0.020609222, y: -0.4831835, z: 28.573488}
-      NaturalTime: 0.70689714
-      UniformTime: 0.7659924
-    - AccumLength: 28.973341
-      Position: {x: -0.020696199, y: -0.46723962, z: 28.69151}
-      NaturalTime: 0.7095952
-      UniformTime: 0.76915395
-    - AccumLength: 29.091936
-      Position: {x: -0.020782696, y: -0.45119643, z: 28.809013}
-      NaturalTime: 0.71229327
-      UniformTime: 0.77230227
-    - AccumLength: 29.21003
-      Position: {x: -0.020868713, y: -0.43505466, z: 28.925999}
-      NaturalTime: 0.71499133
-      UniformTime: 0.7754373
-    - AccumLength: 29.327618
-      Position: {x: -0.02095424, y: -0.41881454, z: 29.04246}
-      NaturalTime: 0.7176894
-      UniformTime: 0.7785589
-    - AccumLength: 29.44469
-      Position: {x: -0.021039274, y: -0.40247667, z: 29.158386}
-      NaturalTime: 0.72038746
-      UniformTime: 0.7816668
-    - AccumLength: 29.561243
-      Position: {x: -0.021123808, y: -0.38604134, z: 29.273773}
-      NaturalTime: 0.7230855
-      UniformTime: 0.78476095
-    - AccumLength: 29.67727
-      Position: {x: -0.021207836, y: -0.36950868, z: 29.388617}
-      NaturalTime: 0.7257836
-      UniformTime: 0.78784114
-    - AccumLength: 29.792765
-      Position: {x: -0.02129135, y: -0.35287952, z: 29.502907}
-      NaturalTime: 0.72848165
-      UniformTime: 0.79090714
-    - AccumLength: 29.907715
-      Position: {x: -0.021374343, y: -0.33615422, z: 29.616634}
-      NaturalTime: 0.7311797
-      UniformTime: 0.7939587
-    - AccumLength: 30.02212
-      Position: {x: -0.021456812, y: -0.31933302, z: 29.729795}
-      NaturalTime: 0.7338778
-      UniformTime: 0.7969958
-    - AccumLength: 30.135973
-      Position: {x: -0.02153875, y: -0.30241638, z: 29.842384}
-      NaturalTime: 0.73657584
-      UniformTime: 0.80001825
-    - AccumLength: 30.24927
-      Position: {x: -0.02162015, y: -0.28540474, z: 29.954397}
-      NaturalTime: 0.7392739
-      UniformTime: 0.80302596
-    - AccumLength: 30.362
-      Position: {x: -0.021701008, y: -0.26829845, z: 30.065823}
-      NaturalTime: 0.74197197
-      UniformTime: 0.8060186
-    - AccumLength: 30.474165
-      Position: {x: -0.021781318, y: -0.25109804, z: 30.17666}
-      NaturalTime: 0.74467003
-      UniformTime: 0.80899626
-    - AccumLength: 30.585747
-      Position: {x: -0.021861069, y: -0.23380375, z: 30.286894}
-      NaturalTime: 0.7473681
-      UniformTime: 0.81195843
-    - AccumLength: 30.696745
-      Position: {x: -0.021940257, y: -0.21641624, z: 30.396523}
-      NaturalTime: 0.75006616
-      UniformTime: 0.81490505
-    - AccumLength: 30.807154
-      Position: {x: -0.02201888, y: -0.19893575, z: 30.505539}
-      NaturalTime: 0.7527642
-      UniformTime: 0.8178361
-    - AccumLength: 30.91697
-      Position: {x: -0.02209693, y: -0.18136257, z: 30.61394}
-      NaturalTime: 0.7554623
-      UniformTime: 0.82075137
-    - AccumLength: 31.026178
-      Position: {x: -0.022174397, y: -0.16369742, z: 30.72171}
-      NaturalTime: 0.75816035
-      UniformTime: 0.82365054
-    - AccumLength: 31.134783
-      Position: {x: -0.02225128, y: -0.14594036, z: 30.828854}
-      NaturalTime: 0.7608584
-      UniformTime: 0.8265336
-    - AccumLength: 31.24277
-      Position: {x: -0.022327568, y: -0.12809217, z: 30.935354}
-      NaturalTime: 0.7635565
-      UniformTime: 0.82940036
-    - AccumLength: 31.350138
-      Position: {x: -0.022403259, y: -0.11015302, z: 31.041214}
-      NaturalTime: 0.76625454
-      UniformTime: 0.83225065
-    - AccumLength: 31.456875
-      Position: {x: -0.022478344, y: -0.09212333, z: 31.146418}
-      NaturalTime: 0.7689526
-      UniformTime: 0.8350842
-    - AccumLength: 31.56298
-      Position: {x: -0.02255282, y: -0.07400358, z: 31.250965}
-      NaturalTime: 0.7716507
-      UniformTime: 0.837901
-    - AccumLength: 31.66845
-      Position: {x: -0.02262668, y: -0.05579412, z: 31.35485}
-      NaturalTime: 0.77434874
-      UniformTime: 0.84070086
-    - AccumLength: 31.773266
-      Position: {x: -0.022699913, y: -0.037495494, z: 31.458057}
-      NaturalTime: 0.7770468
-      UniformTime: 0.8434834
-    - AccumLength: 31.877438
-      Position: {x: -0.022772519, y: -0.019107997, z: 31.560593}
-      NaturalTime: 0.77974486
-      UniformTime: 0.84624887
-    - AccumLength: 31.98095
-      Position: {x: -0.02284449, y: -0.00063198805, z: 31.662441}
-      NaturalTime: 0.7824429
-      UniformTime: 0.84899676
-    - AccumLength: 32.083794
-      Position: {x: -0.022915818, y: 0.017931938, z: 31.763596}
-      NaturalTime: 0.785141
-      UniformTime: 0.851727
-    - AccumLength: 32.18597
-      Position: {x: -0.0229865, y: 0.036583543, z: 31.864056}
-      NaturalTime: 0.78783906
-      UniformTime: 0.85443944
-    - AccumLength: 32.287464
-      Position: {x: -0.023056526, y: 0.05532235, z: 31.963806}
-      NaturalTime: 0.7905371
-      UniformTime: 0.8571338
-    - AccumLength: 32.388283
-      Position: {x: -0.023125893, y: 0.07414794, z: 32.06285}
-      NaturalTime: 0.7932352
-      UniformTime: 0.85981023
-    - AccumLength: 32.48841
-      Position: {x: -0.023194594, y: 0.0930599, z: 32.16118}
-      NaturalTime: 0.79593325
-      UniformTime: 0.86246836
-    - AccumLength: 32.587837
-      Position: {x: -0.023262624, y: 0.112057865, z: 32.258774}
-      NaturalTime: 0.7986313
-      UniformTime: 0.86510783
-    - AccumLength: 32.686573
-      Position: {x: -0.023329973, y: 0.13114136, z: 32.355648}
-      NaturalTime: 0.8013294
-      UniformTime: 0.86772895
-    - AccumLength: 32.784595
-      Position: {x: -0.023396641, y: 0.15031016, z: 32.45178}
-      NaturalTime: 0.80402744
-      UniformTime: 0.8703311
-    - AccumLength: 32.881905
-      Position: {x: -0.023462616, y: 0.16956341, z: 32.547165}
-      NaturalTime: 0.8067255
-      UniformTime: 0.8729144
-    - AccumLength: 32.978497
-      Position: {x: -0.023527898, y: 0.1889013, z: 32.6418}
-      NaturalTime: 0.80942357
-      UniformTime: 0.8754786
-    - AccumLength: 33.074368
-      Position: {x: -0.023592472, y: 0.20832294, z: 32.735683}
-      NaturalTime: 0.8121216
-      UniformTime: 0.8780237
-    - AccumLength: 33.169502
-      Position: {x: -0.023656338, y: 0.22782809, z: 32.828796}
-      NaturalTime: 0.8148197
-      UniformTime: 0.88054925
-    - AccumLength: 33.263905
-      Position: {x: -0.023719493, y: 0.24741632, z: 32.921143}
-      NaturalTime: 0.81751776
-      UniformTime: 0.8830553
-    - AccumLength: 33.357563
-      Position: {x: -0.023781925, y: 0.26708734, z: 33.01271}
-      NaturalTime: 0.8202158
-      UniformTime: 0.8855417
-    - AccumLength: 33.45047
-      Position: {x: -0.02384363, y: 0.28684056, z: 33.103493}
-      NaturalTime: 0.8229139
-      UniformTime: 0.88800806
-    - AccumLength: 33.54262
-      Position: {x: -0.0239046, y: 0.30667567, z: 33.193485}
-      NaturalTime: 0.82561195
-      UniformTime: 0.8904544
-    - AccumLength: 33.634018
-      Position: {x: -0.023964832, y: 0.32659227, z: 33.282684}
-      NaturalTime: 0.82831
-      UniformTime: 0.89288074
-    - AccumLength: 33.72464
-      Position: {x: -0.024024315, y: 0.34658974, z: 33.37107}
-      NaturalTime: 0.8310081
-      UniformTime: 0.89528644
-    - AccumLength: 33.814495
-      Position: {x: -0.024083048, y: 0.366668, z: 33.458652}
-      NaturalTime: 0.83370614
-      UniformTime: 0.8976718
-    - AccumLength: 33.903572
-      Position: {x: -0.024141023, y: 0.38682646, z: 33.545418}
-      NaturalTime: 0.8364042
-      UniformTime: 0.9000366
-    - AccumLength: 33.991867
-      Position: {x: -0.024198236, y: 0.4070648, z: 33.631363}
-      NaturalTime: 0.83910227
-      UniformTime: 0.9023805
-    - AccumLength: 34.079372
-      Position: {x: -0.024254678, y: 0.42738247, z: 33.716476}
-      NaturalTime: 0.84180033
-      UniformTime: 0.9047035
-    - AccumLength: 34.16608
-      Position: {x: -0.024310343, y: 0.447779, z: 33.80075}
-      NaturalTime: 0.8444984
-      UniformTime: 0.90700537
-    - AccumLength: 34.251987
-      Position: {x: -0.024365224, y: 0.46825427, z: 33.884182}
-      NaturalTime: 0.84719646
-      UniformTime: 0.9092859
-    - AccumLength: 34.337086
-      Position: {x: -0.024419319, y: 0.48880762, z: 33.966763}
-      NaturalTime: 0.8498945
-      UniformTime: 0.91154504
-    - AccumLength: 34.421375
-      Position: {x: -0.024472617, y: 0.5094388, z: 34.04849}
-      NaturalTime: 0.8525926
-      UniformTime: 0.91378266
-    - AccumLength: 34.504845
-      Position: {x: -0.024525117, y: 0.53014743, z: 34.12935}
-      NaturalTime: 0.85529065
-      UniformTime: 0.9159985
-    - AccumLength: 34.587498
-      Position: {x: -0.02457681, y: 0.5509329, z: 34.209347}
-      NaturalTime: 0.8579887
-      UniformTime: 0.9181927
-    - AccumLength: 34.669315
-      Position: {x: -0.024627686, y: 0.5717948, z: 34.28846}
-      NaturalTime: 0.8606868
-      UniformTime: 0.92036474
-    - AccumLength: 34.7503
-      Position: {x: -0.024677746, y: 0.59273285, z: 34.36669}
-      NaturalTime: 0.86338484
-      UniformTime: 0.9225146
-    - AccumLength: 34.83045
-      Position: {x: -0.02472698, y: 0.6137466, z: 34.444035}
-      NaturalTime: 0.8660829
-      UniformTime: 0.92464226
-    - AccumLength: 34.909756
-      Position: {x: -0.02477538, y: 0.6348357, z: 34.520485}
-      NaturalTime: 0.868781
-      UniformTime: 0.9267477
-    - AccumLength: 34.988205
-      Position: {x: -0.024822945, y: 0.6559996, z: 34.596027}
-      NaturalTime: 0.87147903
-      UniformTime: 0.92883027
-    - AccumLength: 35.065804
-      Position: {x: -0.024869666, y: 0.677238, z: 34.670662}
-      NaturalTime: 0.8741771
-      UniformTime: 0.93089026
-    - AccumLength: 35.142544
-      Position: {x: -0.024915539, y: 0.6985506, z: 34.744385}
-      NaturalTime: 0.87687516
-      UniformTime: 0.9329275
-    - AccumLength: 35.218414
-      Position: {x: -0.024960551, y: 0.7199366, z: 34.81718}
-      NaturalTime: 0.8795732
-      UniformTime: 0.9349416
-    - AccumLength: 35.29342
-      Position: {x: -0.025004704, y: 0.741396, z: 34.88905}
-      NaturalTime: 0.8822713
-      UniformTime: 0.93693274
-    - AccumLength: 35.36755
-      Position: {x: -0.025047988, y: 0.76292825, z: 34.959984}
-      NaturalTime: 0.88496935
-      UniformTime: 0.9389007
-    - AccumLength: 35.440796
-      Position: {x: -0.0250904, y: 0.78453296, z: 35.029972}
-      NaturalTime: 0.8876674
-      UniformTime: 0.9408452
-    - AccumLength: 35.51316
-      Position: {x: -0.02513193, y: 0.8062095, z: 35.099014}
-      NaturalTime: 0.8903655
-      UniformTime: 0.94276625
-    - AccumLength: 35.584633
-      Position: {x: -0.025172573, y: 0.82795775, z: 35.1671}
-      NaturalTime: 0.89306355
-      UniformTime: 0.9446636
-    - AccumLength: 35.65521
-      Position: {x: -0.025212323, y: 0.8497771, z: 35.23422}
-      NaturalTime: 0.8957616
-      UniformTime: 0.9465372
-    - AccumLength: 35.72489
-      Position: {x: -0.025251172, y: 0.87166727, z: 35.300373}
-      NaturalTime: 0.8984597
-      UniformTime: 0.948387
-    - AccumLength: 35.793674
-      Position: {x: -0.025289122, y: 0.8936279, z: 35.365555}
-      NaturalTime: 0.90115774
-      UniformTime: 0.950213
-    - AccumLength: 35.861546
-      Position: {x: -0.025326157, y: 0.9156584, z: 35.429752}
-      NaturalTime: 0.9038558
-      UniformTime: 0.9520148
-    - AccumLength: 35.928505
-      Position: {x: -0.025362274, y: 0.93775845, z: 35.492958}
-      NaturalTime: 0.90655386
-      UniformTime: 0.95379233
-    - AccumLength: 35.994553
-      Position: {x: -0.02539747, y: 0.9599276, z: 35.555176}
-      NaturalTime: 0.9092519
-      UniformTime: 0.9555457
-    - AccumLength: 36.059673
-      Position: {x: -0.025431732, y: 0.98216534, z: 35.616383}
-      NaturalTime: 0.91195
-      UniformTime: 0.9572745
-    - AccumLength: 36.123875
-      Position: {x: -0.025465064, y: 1.0044717, z: 35.676586}
-      NaturalTime: 0.91464806
-      UniformTime: 0.95897883
-    - AccumLength: 36.187153
-      Position: {x: -0.02549745, y: 1.0268457, z: 35.735775}
-      NaturalTime: 0.9173461
-      UniformTime: 0.96065867
-    - AccumLength: 36.2495
-      Position: {x: -0.025528891, y: 1.0492872, z: 35.79394}
-      NaturalTime: 0.9200442
-      UniformTime: 0.96231383
-    - AccumLength: 36.31091
-      Position: {x: -0.025559375, y: 1.071796, z: 35.851078}
-      NaturalTime: 0.92274225
-      UniformTime: 0.963944
-    - AccumLength: 36.371387
-      Position: {x: -0.025588902, y: 1.0943713, z: 35.907185}
-      NaturalTime: 0.9254403
-      UniformTime: 0.9655495
-    - AccumLength: 36.43092
-      Position: {x: -0.025617458, y: 1.1170127, z: 35.962242}
-      NaturalTime: 0.9281384
-      UniformTime: 0.96712995
-    - AccumLength: 36.489513
-      Position: {x: -0.025645046, y: 1.1397202, z: 36.01626}
-      NaturalTime: 0.93083644
-      UniformTime: 0.96868545
-    - AccumLength: 36.54716
-      Position: {x: -0.025671655, y: 1.1624932, z: 36.069218}
-      NaturalTime: 0.9335345
-      UniformTime: 0.9702158
-    - AccumLength: 36.603863
-      Position: {x: -0.02569728, y: 1.1853311, z: 36.121117}
-      NaturalTime: 0.93623257
-      UniformTime: 0.97172105
-    - AccumLength: 36.659615
-      Position: {x: -0.025721911, y: 1.2082334, z: 36.171947}
-      NaturalTime: 0.93893063
-      UniformTime: 0.9732011
-    - AccumLength: 36.714413
-      Position: {x: -0.025745545, y: 1.2312002, z: 36.2217}
-      NaturalTime: 0.9416287
-      UniformTime: 0.9746558
-    - AccumLength: 36.76826
-      Position: {x: -0.025768178, y: 1.2542306, z: 36.270374}
-      NaturalTime: 0.94432676
-      UniformTime: 0.9760853
-    - AccumLength: 36.821156
-      Position: {x: -0.025789803, y: 1.2773244, z: 36.317963}
-      NaturalTime: 0.9470248
-      UniformTime: 0.97748953
-    - AccumLength: 36.873096
-      Position: {x: -0.02581041, y: 1.3004812, z: 36.364456}
-      NaturalTime: 0.9497229
-      UniformTime: 0.97886837
-    - AccumLength: 36.92408
-      Position: {x: -0.025829997, y: 1.3237007, z: 36.409847}
-      NaturalTime: 0.95242095
-      UniformTime: 0.98022187
-    - AccumLength: 36.97411
-      Position: {x: -0.025848556, y: 1.3469821, z: 36.45413}
-      NaturalTime: 0.955119
-      UniformTime: 0.98155
-    - AccumLength: 37.023186
-      Position: {x: -0.02586608, y: 1.3703253, z: 36.4973}
-      NaturalTime: 0.9578171
-      UniformTime: 0.9828528
-    - AccumLength: 37.071312
-      Position: {x: -0.025882568, y: 1.39373, z: 36.539352}
-      NaturalTime: 0.96051514
-      UniformTime: 0.9841304
-    - AccumLength: 37.118484
-      Position: {x: -0.025898006, y: 1.4171956, z: 36.580273}
-      NaturalTime: 0.9632132
-      UniformTime: 0.9853827
-    - AccumLength: 37.16471
-      Position: {x: -0.025912395, y: 1.4407216, z: 36.620064}
-      NaturalTime: 0.96591127
-      UniformTime: 0.9866099
-    - AccumLength: 37.209988
-      Position: {x: -0.025925724, y: 1.4643077, z: 36.65871}
-      NaturalTime: 0.96860933
-      UniformTime: 0.9878118
-    - AccumLength: 37.254322
-      Position: {x: -0.025937987, y: 1.4879534, z: 36.696213}
-      NaturalTime: 0.9713074
-      UniformTime: 0.98898876
-    - AccumLength: 37.297718
-      Position: {x: -0.025949182, y: 1.5116585, z: 36.732563}
-      NaturalTime: 0.97400546
-      UniformTime: 0.9901408
-    - AccumLength: 37.340176
-      Position: {x: -0.0259593, y: 1.5354224, z: 36.767746}
-      NaturalTime: 0.9767035
-      UniformTime: 0.9912679
-    - AccumLength: 37.381702
-      Position: {x: -0.025968334, y: 1.5592446, z: 36.80176}
-      NaturalTime: 0.9794016
-      UniformTime: 0.9923703
-    - AccumLength: 37.422314
-      Position: {x: -0.02597628, y: 1.5831252, z: 36.83461}
-      NaturalTime: 0.98209965
-      UniformTime: 0.99344844
-    - AccumLength: 37.462013
-      Position: {x: -0.02598313, y: 1.6070632, z: 36.86628}
-      NaturalTime: 0.9847977
-      UniformTime: 0.9945023
-    - AccumLength: 37.500805
-      Position: {x: -0.025988882, y: 1.6310585, z: 36.89676}
-      NaturalTime: 0.9874958
-      UniformTime: 0.99553216
-    - AccumLength: 37.5387
-      Position: {x: -0.025993524, y: 1.6551106, z: 36.926044}
-      NaturalTime: 0.99019384
-      UniformTime: 0.99653816
-    - AccumLength: 37.575714
-      Position: {x: -0.025997054, y: 1.6792189, z: 36.954132}
-      NaturalTime: 0.9928919
-      UniformTime: 0.99752074
-    - AccumLength: 37.61186
-      Position: {x: -0.025999464, y: 1.7033834, z: 36.98101}
-      NaturalTime: 0.99559
-      UniformTime: 0.99848026
-    - AccumLength: 37.64715
-      Position: {x: -0.02600075, y: 1.7276033, z: 37.006676}
-      NaturalTime: 0.99828804
-      UniformTime: 0.9994171
-    - AccumLength: 37.669106
-      Position: {x: -0.026000977, y: 1.743, z: 37.02233}
+    - AccumLength: 0.264251
+      Position: {x: -0.12867795, y: -0.23075518, z: 0.0047565675}
+      NaturalTime: 0.021865
+      UniformTime: 0.0056412737
+    - AccumLength: 0.5966173
+      Position: {x: -0.3798247, y: -0.44825572, z: 0.014040182}
+      NaturalTime: 0.04373
+      UniformTime: 0.012736684
+    - AccumLength: 1.0176799
+      Position: {x: -0.74770886, y: -0.652633, z: 0.02763898}
+      NaturalTime: 0.065595
+      UniformTime: 0.021725599
+    - AccumLength: 1.5337005
+      Position: {x: -1.2265986, y: -0.8440184, z: 0.045341093}
+      NaturalTime: 0.08746
+      UniformTime: 0.032741692
+    - AccumLength: 2.1449165
+      Position: {x: -1.8107626, y: -1.0225433, z: 0.06693465}
+      NaturalTime: 0.10932499
+      UniformTime: 0.04579003
+    - AccumLength: 2.8488922
+      Position: {x: -2.4944694, y: -1.1883386, z: 0.092207804}
+      NaturalTime: 0.13118999
+      UniformTime: 0.06081862
+    - AccumLength: 3.64188
+      Position: {x: -3.2719874, y: -1.3415364, z: 0.12094868}
+      NaturalTime: 0.15305498
+      UniformTime: 0.07774746
+    - AccumLength: 4.5194263
+      Position: {x: -4.1375847, y: -1.4822673, z: 0.1529454}
+      NaturalTime: 0.17491998
+      UniformTime: 0.09648146
+    - AccumLength: 5.4766693
+      Position: {x: -5.0855303, y: -1.610663, z: 0.1879861}
+      NaturalTime: 0.19678497
+      UniformTime: 0.11691684
+    - AccumLength: 6.508494
+      Position: {x: -6.110092, y: -1.7268548, z: 0.22585893}
+      NaturalTime: 0.21864997
+      UniformTime: 0.1389444
+    - AccumLength: 7.609623
+      Position: {x: -7.2055397, y: -1.830974, z: 0.26635206}
+      NaturalTime: 0.24051496
+      UniformTime: 0.16245149
+    - AccumLength: 8.77467
+      Position: {x: -8.366141, y: -1.923152, z: 0.30925357}
+      NaturalTime: 0.26237997
+      UniformTime: 0.1873231
+    - AccumLength: 9.998169
+      Position: {x: -9.586165, y: -2.00352, z: 0.35435164}
+      NaturalTime: 0.28424498
+      UniformTime: 0.21344256
+    - AccumLength: 11.274603
+      Position: {x: -10.85988, y: -2.0722094, z: 0.40143433}
+      NaturalTime: 0.30611
+      UniformTime: 0.24069208
+    - AccumLength: 12.5984125
+      Position: {x: -12.181554, y: -2.1293519, z: 0.45028988}
+      NaturalTime: 0.327975
+      UniformTime: 0.268953
+    - AccumLength: 13.96401
+      Position: {x: -13.545454, y: -2.1750782, z: 0.5007064}
+      NaturalTime: 0.34984002
+      UniformTime: 0.29810598
+    - AccumLength: 15.365788
+      Position: {x: -14.945852, y: -2.2095196, z: 0.5524719}
+      NaturalTime: 0.37170503
+      UniformTime: 0.3280314
+    - AccumLength: 16.798117
+      Position: {x: -16.377014, y: -2.232808, z: 0.6053747}
+      NaturalTime: 0.39357004
+      UniformTime: 0.35860896
+    - AccumLength: 18.255356
+      Position: {x: -17.833208, y: -2.2450743, z: 0.6592027}
+      NaturalTime: 0.41543505
+      UniformTime: 0.38971835
+    - AccumLength: 19.731861
+      Position: {x: -19.308704, y: -2.2464504, z: 0.7137443}
+      NaturalTime: 0.43730006
+      UniformTime: 0.42123902
+    - AccumLength: 21.221973
+      Position: {x: -20.79777, y: -2.237067, z: 0.76878744}
+      NaturalTime: 0.45916507
+      UniformTime: 0.4530502
+    - AccumLength: 22.720036
+      Position: {x: -22.294676, y: -2.2170556, z: 0.82412034}
+      NaturalTime: 0.48103008
+      UniformTime: 0.48503107
+    - AccumLength: 24.220379
+      Position: {x: -23.793686, y: -2.1865478, z: 0.8795311}
+      NaturalTime: 0.50289506
+      UniformTime: 0.51706064
+    - AccumLength: 25.717344
+      Position: {x: -25.289072, y: -2.1456747, z: 0.93480796}
+      NaturalTime: 0.52476007
+      UniformTime: 0.5490181
+    - AccumLength: 27.205267
+      Position: {x: -26.775103, y: -2.0945673, z: 0.98973894}
+      NaturalTime: 0.5466251
+      UniformTime: 0.58078253
+    - AccumLength: 28.678486
+      Position: {x: -28.246044, y: -2.0333579, z: 1.0441122}
+      NaturalTime: 0.5684901
+      UniformTime: 0.61223304
+    - AccumLength: 30.131348
+      Position: {x: -29.69617, y: -1.9621769, z: 1.0977159}
+      NaturalTime: 0.5903551
+      UniformTime: 0.643249
+    - AccumLength: 31.558195
+      Position: {x: -31.119743, y: -1.8811557, z: 1.1503382}
+      NaturalTime: 0.6122201
+      UniformTime: 0.6737096
+    - AccumLength: 32.95339
+      Position: {x: -32.511032, y: -1.7904263, z: 1.201767}
+      NaturalTime: 0.6340851
+      UniformTime: 0.70349437
+    - AccumLength: 34.311302
+      Position: {x: -33.86431, y: -1.6901193, z: 1.2517908}
+      NaturalTime: 0.6559501
+      UniformTime: 0.7324833
+    - AccumLength: 35.626316
+      Position: {x: -35.173843, y: -1.5803665, z: 1.3001976}
+      NaturalTime: 0.67781514
+      UniformTime: 0.76055646
+    - AccumLength: 36.89284
+      Position: {x: -36.4339, y: -1.4612991, z: 1.3467753}
+      NaturalTime: 0.69968015
+      UniformTime: 0.78759444
+    - AccumLength: 38.105312
+      Position: {x: -37.638744, y: -1.3330483, z: 1.3913122}
+      NaturalTime: 0.72154516
+      UniformTime: 0.81347847
+    - AccumLength: 39.2582
+      Position: {x: -38.782646, y: -1.1957458, z: 1.4335966}
+      NaturalTime: 0.74341017
+      UniformTime: 0.83809054
+    - AccumLength: 40.346046
+      Position: {x: -39.859882, y: -1.0495226, z: 1.4734166}
+      NaturalTime: 0.7652752
+      UniformTime: 0.86131406
+    - AccumLength: 41.363445
+      Position: {x: -40.864716, y: -0.8945103, z: 1.51056}
+      NaturalTime: 0.7871402
+      UniformTime: 0.88303363
+    - AccumLength: 42.305107
+      Position: {x: -41.791412, y: -0.7308398, z: 1.5448153}
+      NaturalTime: 0.8090052
+      UniformTime: 0.9031364
+    - AccumLength: 43.165916
+      Position: {x: -42.634247, y: -0.5586428, z: 1.5759704}
+      NaturalTime: 0.8308702
+      UniformTime: 0.9215131
+    - AccumLength: 43.940994
+      Position: {x: -43.387478, y: -0.37805057, z: 1.6038136}
+      NaturalTime: 0.8527352
+      UniformTime: 0.93805957
+    - AccumLength: 44.6259
+      Position: {x: -44.045383, y: -0.18919438, z: 1.628133}
+      NaturalTime: 0.87460023
+      UniformTime: 0.95268106
+    - AccumLength: 45.21692
+      Position: {x: -44.602226, y: 0.00779438, z: 1.6487167}
+      NaturalTime: 0.89646524
+      UniformTime: 0.96529824
+    - AccumLength: 45.711735
+      Position: {x: -45.052277, y: 0.21278441, z: 1.6653527}
+      NaturalTime: 0.91833025
+      UniformTime: 0.97586167
+    - AccumLength: 46.110973
+      Position: {x: -45.38981, y: 0.42564443, z: 1.6778295}
+      NaturalTime: 0.94019526
+      UniformTime: 0.98438466
+    - AccumLength: 46.422115
+      Position: {x: -45.60908, y: 0.6462431, z: 1.6859349}
+      NaturalTime: 0.9620603
+      UniformTime: 0.991027
+    - AccumLength: 46.66944
+      Position: {x: -45.704365, y: 0.8744489, z: 1.6894572}
+      NaturalTime: 0.9839253
+      UniformTime: 0.9963069
+    - AccumLength: 46.842434
+      Position: {x: -45.692, y: 1.0469971, z: 1.6890001}
       NaturalTime: 1
       UniformTime: 1
     Bounds:
-      m_Center: {x: -0.013000488, y: 0.09207749, z: 18.511166}
-      m_Extent: {x: 0.013000488, y: 1.6509225, z: 18.511166}
+      m_Center: {x: -22.852182, y: -0.5997267, z: 0.8447286}
+      m_Extent: {x: 22.852182, y: 1.6467237, z: 0.8447286}
+  Spline2:
+    Resolution: 1
+    FirstControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    SecondControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    Length: 0
+    Points:
+    - AccumLength: 0
+      Position: {x: 0, y: 0, z: 0}
+      NaturalTime: 0
+      UniformTime: NaN
+    - AccumLength: 0
+      Position: {x: 0, y: 0, z: 0}
+      NaturalTime: 1
+      UniformTime: NaN
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1 &5890271296260379993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3330,6 +2515,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 16.353, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8573826589274104030}
   m_RootOrder: 3
@@ -3345,6 +2531,7 @@ LineRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -3375,20 +2562,52 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0.000005722045, y: 0, z: -0.0000121593475}
-  - {x: -0.96825, y: -0.8027485, z: 0.038901355}
-  - {x: -3.2309382, y: -1.5018705, z: 0.1298372}
-  - {x: -6.537237, y: -2.0914392, z: 0.26271498}
-  - {x: -10.636323, y: -2.5655289, z: 0.42745432}
-  - {x: -15.277372, y: -2.918212, z: 0.6139748}
-  - {x: -20.209564, y: -3.1435635, z: 0.8121962}
-  - {x: -25.182077, y: -3.2356555, z: 1.012038}
-  - {x: -29.944088, y: -3.1885617, z: 1.2034197}
-  - {x: -34.24477, y: -2.996356, z: 1.3762611}
-  - {x: -37.833305, y: -2.653112, z: 1.5204817}
-  - {x: -40.45887, y: -2.152903, z: 1.6260014}
-  - {x: -41.87064, y: -1.4898028, z: 1.6827394}
-  - {x: -42.02601, y: -0.99300003, z: 1.6889836}
+  - {x: 0, y: 0, z: 0}
+  - {x: -0.13371257, y: -0.26594585, z: 0}
+  - {x: -0.39442804, y: -0.5225531, z: 0}
+  - {x: -0.77595294, y: -0.76968104, z: 0}
+  - {x: -1.2720935, y: -1.0071889, z: 0}
+  - {x: -1.8766563, y: -1.2349358, z: 0}
+  - {x: -2.583448, y: -1.4527812, z: 0}
+  - {x: -3.386275, y: -1.6605843, z: 0}
+  - {x: -4.2789435, y: -1.8582042, z: 0}
+  - {x: -5.2552605, y: -2.0455, z: 0}
+  - {x: -6.3090315, y: -2.2223315, z: 0}
+  - {x: -7.434064, y: -2.3885572, z: 0}
+  - {x: -8.624165, y: -2.5440369, z: 0}
+  - {x: -9.873137, y: -2.6886299, z: 0}
+  - {x: -11.174791, y: -2.8221946, z: 0}
+  - {x: -12.522932, y: -2.944591, z: 0}
+  - {x: -13.9113655, y: -3.0556784, z: 0}
+  - {x: -15.3339, y: -3.1553156, z: 0}
+  - {x: -16.78434, y: -3.243362, z: 0}
+  - {x: -18.256493, y: -3.319677, z: 0}
+  - {x: -19.744164, y: -3.3841195, z: 0}
+  - {x: -21.241161, y: -3.4365492, z: 0}
+  - {x: -22.741291, y: -3.476825, z: 0}
+  - {x: -24.23836, y: -3.5048065, z: 0}
+  - {x: -25.72617, y: -3.5203524, z: 0}
+  - {x: -27.198534, y: -3.5233219, z: 0}
+  - {x: -28.649254, y: -3.5135748, z: 0}
+  - {x: -30.07214, y: -3.49097, z: 0}
+  - {x: -31.460995, y: -3.4553668, z: 0}
+  - {x: -32.80963, y: -3.4066243, z: 0}
+  - {x: -34.111847, y: -3.344602, z: 0}
+  - {x: -35.361454, y: -3.269159, z: 0}
+  - {x: -36.552254, y: -3.1801548, z: 0}
+  - {x: -37.678062, y: -3.0774484, z: 0}
+  - {x: -38.732677, y: -2.9608986, z: 0}
+  - {x: -39.709908, y: -2.8303657, z: 0}
+  - {x: -40.60356, y: -2.6857076, z: 0}
+  - {x: -41.407448, y: -2.5267844, z: 0}
+  - {x: -42.115364, y: -2.3534553, z: 0}
+  - {x: -42.721123, y: -2.1655796, z: 0}
+  - {x: -43.21853, y: -1.963016, z: 0}
+  - {x: -43.601387, y: -1.7456243, z: 0}
+  - {x: -43.863506, y: -1.5132635, z: 0}
+  - {x: -43.9987, y: -1.2657928, z: 0}
+  - {x: -44.000767, y: -1.0030717, z: 0}
+  - {x: -44, y: -1, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
@@ -3456,176 +2675,247 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa6548054ee48b4099c6fe1eac035c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Start:
+  StartTransform:
     Transform: {fileID: 972462585636301824}
     Offset: {x: 0, y: 0, z: 0}
-    Normal: {x: 0, y: -3, z: 3}
-  End:
+    Normal: {x: -0.9997418, y: -3.9693587, z: -0}
+  EndTransform:
     Transform: {fileID: 0}
     Offset: {x: 0, y: 0, z: 0}
-    Normal: {x: 0, y: -3, z: -3}
+    Normal: {x: -0.9997418, y: -3.9693587, z: -0}
+  MidPoint:
+    Transform: {fileID: 0}
+    Offset: {x: 0, y: 0, z: 0}
+    Normal: {x: 0, y: 0, z: 0}
   Resolution: 1
+  Tolerance: 0.01
+  Curviness: 1
+  Dynamic: 0
+  DynamicChainCount: 3
+  DynamicChainSize: {x: 0.1, y: 0.1, z: 0.1}
   Spline:
     Resolution: 1
     FirstControlPoint:
       _upVector: {x: 0, y: 1, z: 0}
-      Control: {x: 0, y: -3, z: 3}
+      Control: {x: -0.9997418, y: -3.9693587, z: -0}
       Position: {x: 0, y: 0, z: 0}
       Rotation: {x: 0, y: 0, z: 0}
     SecondControlPoint:
       _upVector: {x: 0, y: 1, z: 0}
-      Control: {x: 0, y: -3, z: -3}
-      Position: {x: 0, y: 0, z: 35.33333}
+      Control: {x: -0.9997418, y: -3.9693587, z: -0}
+      Position: {x: -44, y: -1, z: 0}
       Rotation: {x: 0, y: 0, z: 0}
+    Length: 45.31133
     Points:
     - AccumLength: 0
       Position: {x: 0, y: 0, z: 0}
       NaturalTime: 0
       UniformTime: 0
-    - AccumLength: 0.40202442
-      Position: {x: 0, y: -0.24750805, z: 0.31680182}
-      NaturalTime: 0.028301891
-      UniformTime: 0.011181937
-    - AccumLength: 0.8965926
-      Position: {x: 0, y: -0.48059815, z: 0.7529975}
-      NaturalTime: 0.056603782
-      UniformTime: 0.024937892
-    - AccumLength: 1.4870064
-      Position: {x: 0, y: -0.69927025, z: 1.3014234}
-      NaturalTime: 0.08490567
-      UniformTime: 0.041359708
-    - AccumLength: 2.171676
-      Position: {x: 0, y: -0.90352446, z: 1.954916}
-      NaturalTime: 0.113207564
-      UniformTime: 0.060403153
-    - AccumLength: 2.9466813
-      Position: {x: 0, y: -1.0933608, z: 2.7063117}
-      NaturalTime: 0.14150946
-      UniformTime: 0.08195921
-    - AccumLength: 3.806892
-      Position: {x: 0, y: -1.2687792, z: 3.5484464}
-      NaturalTime: 0.16981135
-      UniformTime: 0.10588517
-    - AccumLength: 4.746499
-      Position: {x: 0, y: -1.4297794, z: 4.4741573}
-      NaturalTime: 0.19811325
-      UniformTime: 0.13201948
-    - AccumLength: 5.759286
-      Position: {x: 0, y: -1.5763619, z: 5.47628}
-      NaturalTime: 0.22641514
-      UniformTime: 0.1601892
-    - AccumLength: 6.8387775
-      Position: {x: 0, y: -1.7085264, z: 6.547651}
-      NaturalTime: 0.25471702
-      UniformTime: 0.19021426
-    - AccumLength: 7.9783325
-      Position: {x: 0, y: -1.8262727, z: 7.6811066}
-      NaturalTime: 0.28301892
-      UniformTime: 0.22190993
-    - AccumLength: 9.171194
-      Position: {x: 0, y: -1.9296017, z: 8.869484}
-      NaturalTime: 0.3113208
-      UniformTime: 0.25508827
-    - AccumLength: 10.410522
-      Position: {x: 0, y: -2.018512, z: 10.1056185}
-      NaturalTime: 0.3396227
-      UniformTime: 0.28955904
-    - AccumLength: 11.689424
-      Position: {x: 0, y: -2.093005, z: 11.382348}
-      NaturalTime: 0.3679246
-      UniformTime: 0.3251305
-    - AccumLength: 13.0009575
-      Position: {x: 0, y: -2.1530793, z: 12.692506}
-      NaturalTime: 0.3962265
-      UniformTime: 0.36160958
-    - AccumLength: 14.338163
-      Position: {x: 0, y: -2.1987367, z: 14.028933}
-      NaturalTime: 0.4245284
-      UniformTime: 0.39880273
-    - AccumLength: 15.694051
-      Position: {x: 0, y: -2.2299747, z: 15.38446}
-      NaturalTime: 0.45283028
-      UniformTime: 0.43651548
-    - AccumLength: 17.061625
-      Position: {x: 0, y: -2.2467961, z: 16.75193}
-      NaturalTime: 0.48113218
-      UniformTime: 0.4745533
-    - AccumLength: 18.433867
-      Position: {x: 0, y: -2.249199, z: 18.12417}
-      NaturalTime: 0.50943404
-      UniformTime: 0.51272094
-    - AccumLength: 19.803778
-      Position: {x: 0, y: -2.237184, z: 19.494028}
-      NaturalTime: 0.53773594
-      UniformTime: 0.55082375
-    - AccumLength: 21.164337
-      Position: {x: 0, y: -2.210751, z: 20.85433}
-      NaturalTime: 0.56603783
-      UniformTime: 0.58866644
-    - AccumLength: 22.508549
-      Position: {x: 0, y: -2.1699002, z: 22.19792}
-      NaturalTime: 0.5943397
-      UniformTime: 0.6260544
-    - AccumLength: 23.829414
-      Position: {x: 0, y: -2.1146312, z: 23.51763}
-      NaturalTime: 0.6226416
-      UniformTime: 0.6627931
-    - AccumLength: 25.119967
-      Position: {x: 0, y: -2.0449445, z: 24.8063}
-      NaturalTime: 0.6509435
-      UniformTime: 0.6986886
-    - AccumLength: 26.373253
-      Position: {x: 0, y: -1.9608397, z: 26.05676}
-      NaturalTime: 0.6792454
-      UniformTime: 0.73354757
-    - AccumLength: 27.582365
-      Position: {x: 0, y: -1.862317, z: 27.261852}
-      NaturalTime: 0.7075473
-      UniformTime: 0.76717794
-    - AccumLength: 28.740442
-      Position: {x: 0, y: -1.7493763, z: 28.41441}
-      NaturalTime: 0.7358492
-      UniformTime: 0.79938877
-    - AccumLength: 29.840704
-      Position: {x: 0, y: -1.6220177, z: 29.507275}
-      NaturalTime: 0.7641511
-      UniformTime: 0.8299915
-    - AccumLength: 30.876451
-      Position: {x: 0, y: -1.4802412, z: 30.533274}
-      NaturalTime: 0.792453
-      UniformTime: 0.8587999
-    - AccumLength: 31.841156
-      Position: {x: 0, y: -1.3240467, z: 31.48525}
-      NaturalTime: 0.8207549
-      UniformTime: 0.8856323
-    - AccumLength: 32.728504
-      Position: {x: 0, y: -1.1534343, z: 32.35604}
-      NaturalTime: 0.8490568
-      UniformTime: 0.910313
-    - AccumLength: 33.53252
-      Position: {x: 0, y: -0.9684038, z: 33.138477}
-      NaturalTime: 0.8773587
-      UniformTime: 0.93267596
-    - AccumLength: 34.24781
-      Position: {x: 0, y: -0.7689555, z: 33.825397}
-      NaturalTime: 0.90566057
-      UniformTime: 0.9525711
-    - AccumLength: 34.869972
-      Position: {x: 0, y: -0.55508924, z: 34.409645}
-      NaturalTime: 0.93396246
-      UniformTime: 0.969876
-    - AccumLength: 35.39644
-      Position: {x: 0, y: -0.32680497, z: 34.88404}
-      NaturalTime: 0.96226436
-      UniformTime: 0.9845191
-    - AccumLength: 35.828453
-      Position: {x: 0, y: -0.08410276, z: 35.241436}
-      NaturalTime: 0.99056625
-      UniformTime: 0.99653524
-    - AccumLength: 35.953022
-      Position: {x: 0, y: 0, z: 35.33333}
+    - AccumLength: 0.297668
+      Position: {x: -0.13371257, y: -0.26594585, z: 0}
+      NaturalTime: 0.022721404
+      UniformTime: 0.006569395
+    - AccumLength: 0.66348195
+      Position: {x: -0.39442804, y: -0.5225531, z: 0}
+      NaturalTime: 0.04544281
+      UniformTime: 0.014642739
+    - AccumLength: 1.1180515
+      Position: {x: -0.77595294, y: -0.76968104, z: 0}
+      NaturalTime: 0.068164214
+      UniformTime: 0.024674878
+    - AccumLength: 1.6681111
+      Position: {x: -1.2720935, y: -1.0071889, z: 0}
+      NaturalTime: 0.09088562
+      UniformTime: 0.036814436
+    - AccumLength: 2.314149
+      Position: {x: -1.8766563, y: -1.2349358, z: 0}
+      NaturalTime: 0.11360702
+      UniformTime: 0.05107219
+    - AccumLength: 3.053751
+      Position: {x: -2.583448, y: -1.4527812, z: 0}
+      NaturalTime: 0.13632843
+      UniformTime: 0.06739487
+    - AccumLength: 3.883036
+      Position: {x: -3.386275, y: -1.6605843, z: 0}
+      NaturalTime: 0.15904984
+      UniformTime: 0.0856968
+    - AccumLength: 4.7973175
+      Position: {x: -4.2789435, y: -1.8582042, z: 0}
+      NaturalTime: 0.18177125
+      UniformTime: 0.10587457
+    - AccumLength: 5.7914376
+      Position: {x: -5.2552605, y: -2.0455, z: 0}
+      NaturalTime: 0.20449266
+      UniformTime: 0.12781434
+    - AccumLength: 6.8599424
+      Position: {x: -6.3090315, y: -2.2223315, z: 0}
+      NaturalTime: 0.22721407
+      UniformTime: 0.15139575
+    - AccumLength: 7.9971886
+      Position: {x: -7.434064, y: -2.3885572, z: 0}
+      NaturalTime: 0.24993548
+      UniformTime: 0.17649424
+    - AccumLength: 9.197403
+      Position: {x: -8.624165, y: -2.5440369, z: 0}
+      NaturalTime: 0.2726569
+      UniformTime: 0.20298241
+    - AccumLength: 10.454718
+      Position: {x: -9.873137, y: -2.6886299, z: 0}
+      NaturalTime: 0.2953783
+      UniformTime: 0.23073077
+    - AccumLength: 11.7632065
+      Position: {x: -11.174791, y: -2.8221946, z: 0}
+      NaturalTime: 0.3180997
+      UniformTime: 0.2596085
+    - AccumLength: 13.116892
+      Position: {x: -12.522932, y: -2.944591, z: 0}
+      NaturalTime: 0.34082112
+      UniformTime: 0.28948373
+    - AccumLength: 14.509762
+      Position: {x: -13.9113655, y: -3.0556784, z: 0}
+      NaturalTime: 0.36354253
+      UniformTime: 0.32022372
+    - AccumLength: 15.9357815
+      Position: {x: -15.3339, y: -3.1553156, z: 0}
+      NaturalTime: 0.38626394
+      UniformTime: 0.3516953
+    - AccumLength: 17.388891
+      Position: {x: -16.78434, y: -3.243362, z: 0}
+      NaturalTime: 0.40898535
+      UniformTime: 0.38376477
+    - AccumLength: 18.86302
+      Position: {x: -18.256493, y: -3.319677, z: 0}
+      NaturalTime: 0.43170676
+      UniformTime: 0.4162981
+    - AccumLength: 20.352085
+      Position: {x: -19.744164, y: -3.3841195, z: 0}
+      NaturalTime: 0.45442817
+      UniformTime: 0.44916108
+    - AccumLength: 21.85
+      Position: {x: -21.241161, y: -3.4365492, z: 0}
+      NaturalTime: 0.47714958
+      UniformTime: 0.48221937
+    - AccumLength: 23.35067
+      Position: {x: -22.741291, y: -3.476825, z: 0}
+      NaturalTime: 0.499871
+      UniformTime: 0.5153384
+    - AccumLength: 24.848
+      Position: {x: -24.23836, y: -3.5048065, z: 0}
+      NaturalTime: 0.52259237
+      UniformTime: 0.54838383
+    - AccumLength: 26.335892
+      Position: {x: -25.72617, y: -3.5203524, z: 0}
+      NaturalTime: 0.5453138
+      UniformTime: 0.5812209
+    - AccumLength: 27.80826
+      Position: {x: -27.198534, y: -3.5233219, z: 0}
+      NaturalTime: 0.5680352
+      UniformTime: 0.6137154
+    - AccumLength: 29.259012
+      Position: {x: -28.649254, y: -3.5135748, z: 0}
+      NaturalTime: 0.5907566
+      UniformTime: 0.6457328
+    - AccumLength: 30.682077
+      Position: {x: -30.07214, y: -3.49097, z: 0}
+      NaturalTime: 0.613478
+      UniformTime: 0.6771392
+    - AccumLength: 32.07139
+      Position: {x: -31.460995, y: -3.4553668, z: 0}
+      NaturalTime: 0.6361994
+      UniformTime: 0.7078006
+    - AccumLength: 33.420906
+      Position: {x: -32.80963, y: -3.4066243, z: 0}
+      NaturalTime: 0.6589208
+      UniformTime: 0.7375839
+    - AccumLength: 34.724598
+      Position: {x: -34.111847, y: -3.344602, z: 0}
+      NaturalTime: 0.68164223
+      UniformTime: 0.76635575
+    - AccumLength: 35.97648
+      Position: {x: -35.361454, y: -3.269159, z: 0}
+      NaturalTime: 0.70436364
+      UniformTime: 0.7939842
+    - AccumLength: 37.1706
+      Position: {x: -36.552254, y: -3.1801548, z: 0}
+      NaturalTime: 0.72708505
+      UniformTime: 0.8203379
+    - AccumLength: 38.301086
+      Position: {x: -37.678062, y: -3.0774484, z: 0}
+      NaturalTime: 0.74980646
+      UniformTime: 0.8452872
+    - AccumLength: 39.36212
+      Position: {x: -38.732677, y: -2.9608986, z: 0}
+      NaturalTime: 0.7725279
+      UniformTime: 0.8687038
+    - AccumLength: 40.34803
+      Position: {x: -39.709908, y: -2.8303657, z: 0}
+      NaturalTime: 0.7952493
+      UniformTime: 0.8904623
+    - AccumLength: 41.253315
+      Position: {x: -40.60356, y: -2.6857076, z: 0}
+      NaturalTime: 0.8179707
+      UniformTime: 0.9104415
+    - AccumLength: 42.07276
+      Position: {x: -41.407448, y: -2.5267844, z: 0}
+      NaturalTime: 0.8406921
+      UniformTime: 0.92852634
+    - AccumLength: 42.80159
+      Position: {x: -42.115364, y: -2.3534553, z: 0}
+      NaturalTime: 0.8634135
+      UniformTime: 0.94461125
+    - AccumLength: 43.435814
+      Position: {x: -42.721123, y: -2.1655796, z: 0}
+      NaturalTime: 0.8861349
+      UniformTime: 0.95860827
+    - AccumLength: 43.972885
+      Position: {x: -43.21853, y: -1.963016, z: 0}
+      NaturalTime: 0.90885633
+      UniformTime: 0.9704612
+    - AccumLength: 44.41316
+      Position: {x: -43.601387, y: -1.7456243, z: 0}
+      NaturalTime: 0.93157774
+      UniformTime: 0.9801778
+    - AccumLength: 44.763443
+      Position: {x: -43.863506, y: -1.5132635, z: 0}
+      NaturalTime: 0.95429915
+      UniformTime: 0.9879084
+    - AccumLength: 45.045433
+      Position: {x: -43.9987, y: -1.2657928, z: 0}
+      NaturalTime: 0.97702056
+      UniformTime: 0.9941318
+    - AccumLength: 45.308163
+      Position: {x: -44.000767, y: -1.0030717, z: 0}
+      NaturalTime: 0.999742
+      UniformTime: 0.99993014
+    - AccumLength: 45.31133
+      Position: {x: -44, y: -1, z: 0}
       NaturalTime: 1
       UniformTime: 1
     Bounds:
-      m_Center: {x: 0, y: -1.1245995, z: 17.666664}
-      m_Extent: {x: 0, y: 1.1245995, z: 17.666664}
+      m_Center: {x: -22.000383, y: -1.7616609, z: 0}
+      m_Extent: {x: 22.000383, y: 1.7616609, z: 0}
+  Spline2:
+    Resolution: 1
+    FirstControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    SecondControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    Length: 0
+    Points:
+    - AccumLength: 0
+      Position: {x: 0, y: 0, z: 0}
+      NaturalTime: 0
+      UniformTime: NaN
+    - AccumLength: 0
+      Position: {x: 0, y: 0, z: 0}
+      NaturalTime: 1
+      UniformTime: NaN
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}

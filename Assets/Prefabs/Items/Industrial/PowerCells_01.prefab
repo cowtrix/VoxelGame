@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8207959879522122270}
   - component: {fileID: 5695101893030664500}
   - component: {fileID: 188623488929127599}
+  - component: {fileID: -6194049627084292989}
   m_Layer: 9
   m_Name: PowerCells_01
   m_TagString: Untagged
@@ -34,6 +35,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.932, z: 0}
   m_LocalScale: {x: 0.5, y: -0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,6 +58,7 @@ MonoBehaviour:
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
   SnapToGrid: 0
+  SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
@@ -102,6 +105,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -204,13 +208,31 @@ MonoBehaviour:
         m_Calls: []
     MaxFocusDistance: 5
     MaxUseDistance: 2
-  Colliders: []
+  Colliders:
+  - {fileID: 6451513265330009198}
   ItemName: PortaPower Cell
-  Description: An object of mysterious origins.
-  EquippedOffset: {x: 0, y: 0, z: 0}
-  EquippedRotation: {x: 0, y: 0, z: 0}
+  Description: Buzzing with a unpleasant frequency.
   Icon:
     Texture: {fileID: 2800000, guid: 758330428518b244eb9983dc0be7a201, type: 3}
     Offset: {x: 0.5, y: 0.5, z: 0.5}
     FocusOffset: {x: 0, y: 0, z: 0}
   EquipOnPickup: 0
+--- !u!205 &-6194049627084292989
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8941757230760645144}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.111111134, y: 0.111111104, z: 0.11111112}
+  m_Size: 0.5555556
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.00435605
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 668150694554740766}
+  m_Enabled: 1

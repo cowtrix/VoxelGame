@@ -8,11 +8,10 @@ public struct GameDateTime
 
 	public int DayNumber;
 
-	[SerializeField]
 	[HideInInspector]
-	private float m_normalizedTime;
+	public float NormalizedTime;
 
-	private float FloatRepresentation => DayNumber + m_normalizedTime;
+	private float FloatRepresentation => DayNumber + NormalizedTime;
 
 	[Range(0, 27)]
 	public int Hour;
@@ -20,7 +19,7 @@ public struct GameDateTime
 	public int Minute;
 	[Range(0, 60)]
 	public int Second;
-
+	
 	public string GetTimeString() => $"{Hour:00}:{Minute:00}";
 	public string GetDateString() => $"Day {DayNumber}";
 
@@ -46,7 +45,7 @@ public struct GameDateTime
 	public GameDateTime(int dayNumber, float normalisedTime)
 	{
 		DayNumber = dayNumber;
-		m_normalizedTime = normalisedTime;
+		NormalizedTime = normalisedTime;
 		var time = normalisedTime * HoursInDay;
 		Hour = Mathf.FloorToInt(time);
 		Minute = Mathf.FloorToInt((time - Hour) * 10);

@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1976612428960384039
 Transform:
@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3437355098263652261}
   - {fileID: 4300733389300931825}
@@ -58,6 +59,7 @@ MonoBehaviour:
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
   SnapToGrid: 0
+  SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
@@ -104,6 +106,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -145,7 +148,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6804803083906651742, guid: e3e2ca0a73ab38a4ebca53b030be9115, type: 2}
 --- !u!1001 &1028327076194065622
@@ -155,10 +158,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1976612428960384039}
     m_Modifications:
-    - target: {fileID: 1050990140409348180, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
-      propertyPath: OpenPosition.z
-      value: -0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -169,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.1111112
+      value: 2.111111
       objectReference: {fileID: 0}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -207,14 +206,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drawer
       objectReference: {fileID: 0}
-    - target: {fileID: 3104107351271997319, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3543850550166386058, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
 --- !u!4 &3437355098263652261 stripped
@@ -245,6 +236,14 @@ PrefabInstance:
       propertyPath: ClosedPosition.y
       value: 0.7777778
       objectReference: {fileID: 0}
+    - target: {fileID: 1050990140409348180, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: Colliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050990140409348180, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: Colliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 6513851629060167528}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -295,11 +294,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3104107351271997319, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3543850550166386058, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5704879526128213867, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8971761104210756576, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: SnapToGrid
@@ -310,6 +313,11 @@ PrefabInstance:
 --- !u!4 &3798995225300095856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+  m_PrefabInstance: {fileID: 1535186785892452355}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &6513851629060167528 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 5704879526128213867, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
   m_PrefabInstance: {fileID: 1535186785892452355}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1898808218787055490
@@ -335,6 +343,14 @@ PrefabInstance:
       propertyPath: ClosedPosition.y
       value: 1.6666666
       objectReference: {fileID: 0}
+    - target: {fileID: 1050990140409348180, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: Colliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050990140409348180, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: Colliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 6157020713789184233}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -385,11 +401,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3104107351271997319, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3543850550166386058, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5704879526128213867, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8971761104210756576, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: SnapToGrid
@@ -400,6 +420,11 @@ PrefabInstance:
 --- !u!4 &4300733389300931825 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+  m_PrefabInstance: {fileID: 1898808218787055490}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &6157020713789184233 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 5704879526128213867, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
   m_PrefabInstance: {fileID: 1898808218787055490}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2323474939814003148
@@ -425,6 +450,14 @@ PrefabInstance:
       propertyPath: ClosedPosition.y
       value: 1.2222222
       objectReference: {fileID: 0}
+    - target: {fileID: 1050990140409348180, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: Colliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050990140409348180, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: Colliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 8004419987591110311}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -475,11 +508,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3104107351271997319, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3543850550166386058, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5704879526128213867, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8971761104210756576, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: SnapToGrid
@@ -490,6 +527,11 @@ PrefabInstance:
 --- !u!4 &128368108031597247 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+  m_PrefabInstance: {fileID: 2323474939814003148}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &8004419987591110311 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 5704879526128213867, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
   m_PrefabInstance: {fileID: 2323474939814003148}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2969231380586581118
@@ -519,6 +561,14 @@ PrefabInstance:
       propertyPath: ClosedPosition.y
       value: 0.33333334
       objectReference: {fileID: 0}
+    - target: {fileID: 1050990140409348180, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: Colliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050990140409348180, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: Colliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 7358628359976981269}
     - target: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -569,11 +619,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3104107351271997319, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3543850550166386058, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5704879526128213867, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8971761104210756576, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
       propertyPath: SnapToGrid
@@ -584,5 +638,10 @@ PrefabInstance:
 --- !u!4 &631205494372620045 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2447330609171045235, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
+  m_PrefabInstance: {fileID: 2969231380586581118}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &7358628359976981269 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 5704879526128213867, guid: c1dcde7e0e7c08c498b66ed42d2f6dab, type: 3}
   m_PrefabInstance: {fileID: 2969231380586581118}
   m_PrefabAsset: {fileID: 0}

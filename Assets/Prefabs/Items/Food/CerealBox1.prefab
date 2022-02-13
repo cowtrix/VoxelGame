@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8853282373053971137}
   - component: {fileID: 8160704332587729091}
   - component: {fileID: 8225818841288690647}
+  - component: {fileID: 8949514630473930118}
   m_Layer: 9
   m_Name: CerealBox1
   m_TagString: Untagged
@@ -34,6 +35,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.155, y: 0.68802214, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,6 +58,7 @@ MonoBehaviour:
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
   SnapToGrid: 0
+  SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
@@ -102,6 +105,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -203,13 +207,31 @@ MonoBehaviour:
         m_Calls: []
     MaxFocusDistance: 5
     MaxUseDistance: 2
-  Colliders: []
+  Colliders:
+  - {fileID: 1186663836264578213}
   ItemName: Scoob Lopps
   Description: '"Now with fewer carcinogens!"'
-  EquippedOffset: {x: 0, y: 0, z: 0}
-  EquippedRotation: {x: 0, y: 0, z: 0}
   Icon:
     Texture: {fileID: 2800000, guid: b04e29bc70a15454ab3afcd9434c7500, type: 3}
     Offset: {x: 0.6, y: 0.2, z: 0.2}
     FocusOffset: {x: 0, y: 0.05, z: 0}
   EquipOnPickup: 0
+--- !u!205 &8949514630473930118
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554738431189396337}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0.055555552, z: 0}
+  m_Size: 0.44444448
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.00435605
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6952090520075399881}
+  m_Enabled: 1

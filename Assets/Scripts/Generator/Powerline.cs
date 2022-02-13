@@ -2,21 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Voxul;
 using Voxul.Utilities;
 
 namespace Generation
 {
-	public class Powerline : MonoBehaviour
+	public class Powerline : ExtendedMonoBehaviour, IGenerationCallback
 	{
 		public Vector2 Sag = new Vector2(-3, -4);
 		public float Resolution = 1;
+		public float ConnectionDistance = 50;
 		public Powerline Next;
 		public BezierConnectorLineRenderer[] ConnectorPoints;
 
-		[ContextMenu("Randomize")]
-		public void Randomize()
+		public System.Guid LastGenerationID { get; set; }
+
+		[ContextMenu("Generate")]
+		public void Invalidate()
+		{
+			Generate(null);
+		}
+
+		public void Generate(ObjectGenerator objectGenerator)
 		{
 			DisconnectAll();
+
+			foreach(var neighbour in PowerPoint.Instances.Where(p => Vector3.Distance(p.transform.position, transform.position) < ConnectionDistance))
+			{
+				Debug.DrawLine(neighbour.transform.position, transform.position, Color.green, 10);
+				var nLine = neighbour.Line;
+				nLine.EndTransform.Transform = ConnectorPoints.Random().StartTransform.Transform;
+				var diff = (nLine.transform.worldToLocalMatrix.MultiplyVector(nLine.transform.position - nLine.EndTransform.Transform.position)
+					.normalized * (Sag.y - Sag.x))
+					.xz().x0z();
+				var sag = nLine.transform.worldToLocalMatrix.MultiplyVector(Vector3.down * Random.Range(Sag.x, Sag.y));
+				nLine.StartTransform.Normal = diff - sag;
+				nLine.EndTransform.Normal = diff - sag;
+				nLine.Resolution = Resolution;
+				nLine.Invalidate();
+			}
+
 			if (!Next)
 			{
 				foreach (var l in ConnectorPoints)
@@ -69,6 +94,12 @@ namespace Generation
 				var r = ConnectorPoints[i];
 				r.EndTransform.Transform = null;
 			}
+		}
+
+		private void OnDrawGizmosSelected()
+		{
+			Gizmos.matrix = transform.localToWorldMatrix;
+			Gizmos.DrawWireSphere(Vector3.zero, ConnectionDistance);
 		}
 	}
 }

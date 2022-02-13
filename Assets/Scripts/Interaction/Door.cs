@@ -18,8 +18,12 @@ namespace Interaction
 			public Vector3 ClosedPosition, ClosedRotation;
 		}
 
+		public bool RotationEnabled = true;
+		public bool PositionEnabled = true;
 		[Range(0, 1)]
 		public float OpenAmount;
+		private float m_lastOpenAmount;
+
 		public List<DoorTransform> Transforms;
 		public string DoorName = "Door";
 		public float Speed = 1;
@@ -51,19 +55,31 @@ namespace Interaction
 			m_targetOpen = OpenAmount;
 		}
 
-		private void Start()
+		protected override void Start()
 		{
 			m_targetOpen = OpenAmount;
+			base.Start();
 		}
 
 		private void Update()
 		{
-			foreach(var t in Transforms.Where(t => t.Transform))
-			{
-				t.Transform.localPosition = Vector3.Lerp(t.ClosedPosition, t.OpenPosition, OpenAmount);
-				t.Transform.localRotation = Quaternion.Euler(Vector3.Lerp(t.ClosedRotation, t.OpenRotation, OpenAmount));
-			}			
 			OpenAmount = Mathf.MoveTowards(OpenAmount, m_targetOpen, Speed * Time.deltaTime);
+			if (OpenAmount == m_lastOpenAmount)
+			{
+				return;
+			}
+			m_lastOpenAmount = OpenAmount;
+			foreach (var t in Transforms.Where(t => t.Transform))
+			{
+				if (PositionEnabled)
+				{
+					t.Transform.localPosition = Vector3.Lerp(t.ClosedPosition, t.OpenPosition, OpenAmount);
+				}
+				if (RotationEnabled)
+				{
+					t.Transform.localRotation = Quaternion.Euler(Vector3.Lerp(t.ClosedRotation, t.OpenRotation, OpenAmount));
+				}
+			}
 		}
 
 		public override void ExecuteAction(Actor actor, ActorAction action)
@@ -83,8 +99,9 @@ namespace Interaction
 			}
 		}
 
+		[ContextMenu("Open")]
 		public void Open() => m_targetOpen = 1;
-
+		[ContextMenu("Close")]
 		public void Close() => m_targetOpen = 0;
 	}
 }

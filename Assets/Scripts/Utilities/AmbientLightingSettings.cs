@@ -10,7 +10,7 @@ public class AmbientLightingSettings
 	public AmbientMode ambientMode;
 	public SphericalHarmonicsL2 ambientProbe;
 	public Color ambientSkyColor;
-	public Cubemap customReflection;
+	public Texture customReflection;
 	public DefaultReflectionMode defaultReflectionMode;
 	public int defaultReflectionResolution;
 	public float flareFadeSpeed;

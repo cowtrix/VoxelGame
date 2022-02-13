@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4753416302464396057}
   - component: {fileID: 1764590947944236297}
   - component: {fileID: 5704879526128213867}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Drawer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,6 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.1111112, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,6 +55,7 @@ MonoBehaviour:
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
   SnapToGrid: 0
+  SnapMode: 0
   SnapLayer: 1
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
@@ -92,13 +94,20 @@ MonoBehaviour:
         m_Calls: []
     MaxFocusDistance: 5
     MaxUseDistance: 2
+  Colliders:
+  - {fileID: 5704879526128213867}
+  RotationEnabled: 0
+  PositionEnabled: 1
   OpenAmount: 0
-  OpenPosition: {x: 0, y: 2.1111112, z: -0.5}
-  OpenRotation: {x: 0, y: 0, z: 0}
-  ClosedPosition: {x: 0, y: 2.1111112, z: 0}
-  ClosedRotation: {x: 0, y: 0, z: 0}
+  Transforms:
+  - Transform: {fileID: 2447330609171045235}
+    OpenPosition: {x: 0, y: 2.111111, z: -0.5}
+    OpenRotation: {x: 0, y: 0, z: 0}
+    ClosedPosition: {x: 0, y: 2.111111, z: 0}
+    ClosedRotation: {x: 0, y: 0, z: 0}
   DoorName: Door
   Speed: 1
+  Usable: 0
 --- !u!114 &4529742820345059657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +146,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -178,6 +188,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6133356314933572542, guid: c870ef15e062e1c428da678e7a000e76, type: 2}

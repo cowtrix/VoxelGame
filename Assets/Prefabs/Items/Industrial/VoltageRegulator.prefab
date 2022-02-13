@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4257911002814239726}
   - component: {fileID: 8927853652053568361}
   - component: {fileID: 475267523292893729}
+  - component: {fileID: -6784882544047914751}
   m_Layer: 9
   m_Name: VoltageRegulator
   m_TagString: Untagged
@@ -34,6 +35,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.826, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,6 +58,7 @@ MonoBehaviour:
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
   SnapToGrid: 0
+  SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
@@ -102,6 +105,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -203,13 +207,31 @@ MonoBehaviour:
         m_Calls: []
     MaxFocusDistance: 5
     MaxUseDistance: 2
-  Colliders: []
+  Colliders:
+  - {fileID: 8927853652053568361}
   ItemName: Voltage Regulator
-  Description: An object of mysterious origins.
-  EquippedOffset: {x: 0, y: 0, z: 0}
-  EquippedRotation: {x: 0, y: 0, z: 0}
+  Description: If you're voltage, watch out.
   Icon:
     Texture: {fileID: 2800000, guid: d1068d922457c984fb3e118c96251c1a, type: 3}
     Offset: {x: 0.5, y: 0.5, z: 0.5}
     FocusOffset: {x: 0, y: -0.05, z: 0}
   EquipOnPickup: 0
+--- !u!205 &-6784882544047914751
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4317661925812516239}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 0.5555555
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.00435605
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4191370257788071}
+  m_Enabled: 1

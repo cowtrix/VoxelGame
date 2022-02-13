@@ -31,7 +31,7 @@ namespace Common
 			m_instances.Remove(GUID);
 		}
 
-		public static IEnumerable<T> Instances => m_instances.Values.Where(i => i);
+		public static IEnumerable<T> Instances => Application.isPlaying ? m_instances.Values.Where(i => i) : FindObjectsOfType<T>();
 
 		public static bool TryGetValue(string guid, out T val)
 		{
