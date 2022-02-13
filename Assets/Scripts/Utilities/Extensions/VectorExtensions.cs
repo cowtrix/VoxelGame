@@ -43,6 +43,35 @@ namespace Common
 			yield return new Vector3(b.max.x, b.max.y, b.min.z);
 			yield return new Vector3(b.max.x, b.max.y, b.max.z);
 		}
+
+		public static Rect WorldBoundsToScreenRect(this Bounds worldBounds, Camera camera)
+		{
+			var screenRect = new Rect(camera.WorldToScreenPoint(worldBounds.center), Vector2.zero);
+			foreach (var p in worldBounds.AllPoints())
+			{
+				var screenP = camera.WorldToScreenPoint(p);
+				screenRect = screenRect.Encapsulate(screenP);
+			}
+			return screenRect;
+		}
+
+		public static Rect ScreenRectToViewportRect(this Rect rect) =>
+			new Rect(rect.x / Screen.width, rect.y / Screen.height, rect.width / Screen.width, rect.height / Screen.height);
+
+		public static bool ScreenRectIsOnScreen(this Rect rect) =>
+			rect.Overlaps(new Rect(0, 0, Screen.width, Screen.height));
+
+		public static Rect ClipToScreen(this Rect rect)
+		{
+			var xMin = Mathf.Max(0, rect.xMin);
+			var yMin = Mathf.Max(0, rect.yMin);
+
+			var xMax = Mathf.Min(Screen.width, rect.xMax);
+			var yMax = Mathf.Min(Screen.height, rect.yMax);
+
+			return Rect.MinMaxRect(xMin, yMin, xMax, yMax);
+		}
+			
 	}
 
 	public static class VectorExtensions
