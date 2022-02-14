@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using Voxul;
 
 public abstract class SlowUpdater : ExtendedMonoBehaviour
 {
     public float ThinkSpeed = 1;
-    protected virtual void OnEnable()
+    protected virtual void Start()
 	{
         StartCoroutine(Think());
 	}
@@ -14,7 +15,14 @@ public abstract class SlowUpdater : ExtendedMonoBehaviour
 	{
 		while (true)
 		{
-            Tick(ThinkSpeed);
+			try
+			{
+				Tick(ThinkSpeed);
+			}
+			catch(Exception e)
+			{
+				Debug.LogException(e);
+			}
             yield return new WaitForSeconds(ThinkSpeed);
 		}
 	}

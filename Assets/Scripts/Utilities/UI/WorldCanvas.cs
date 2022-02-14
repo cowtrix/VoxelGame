@@ -13,6 +13,10 @@ public class WorldCanvas : SlowUpdater
 
 	protected override void Tick(float dt)
 	{
+		if (!Camera)
+		{
+            return;
+		}
         var distance = Vector3.Distance(Camera.transform.position, transform.position);
         Canvas.enabled = distance < DisableDistance;
 		if (Raycaster)
@@ -21,7 +25,7 @@ public class WorldCanvas : SlowUpdater
         }
     }
 
-	void Awake()
+	protected void Awake()
     {
         Camera = Camera.main;
     }
