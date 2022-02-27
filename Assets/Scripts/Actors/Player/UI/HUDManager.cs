@@ -40,7 +40,7 @@ namespace UI
 		private void Update()
 		{
 			var interactable = PlayerActor.FocusedInteractable ?? PlayerActor.State.EquippedItem as Interactable;
-			if (interactable && interactable.CanUse(PlayerActor))
+			if (interactable)
 			{
 				FocusSprite.gameObject.SetActive(true);
 
@@ -52,15 +52,17 @@ namespace UI
 				}
 				FocusSprite.position = screenRect.center;
 				FocusSprite.sizeDelta = screenRect.size;
-				/*if (interactable != CameraController.Proxy)
-				{
-					ShowHoverObect(interactable);
-				}
-				else
-				{
-					HideHoverObject();
-				}*/
 
+				FocusedInteractableDisplayName.Invoke(interactable.DisplayName);
+			}
+			else
+			{
+				FocusSprite.gameObject.SetActive(false);
+				FocusedInteractableDisplayName.Invoke("");
+			}
+
+			if (interactable && interactable.CanUse(PlayerActor))
+			{
 				int actionIndex = 0;
 				foreach (var action in interactable.GetActions(PlayerActor))
 				{
@@ -85,19 +87,15 @@ namespace UI
 					m_labels[i].gameObject.SetActive(false);
 				}
 
-				FocusedInteractableDisplayName.Invoke(interactable.DisplayName);
 			}
 			else
 			{
-				FocusSprite.gameObject.SetActive(false);
-
 				Icon.sprite = null;
 				foreach (var label in m_labels)
 				{
 					label.gameObject.SetActive(false);
 				}
 				//HideHoverObject();
-				FocusedInteractableDisplayName.Invoke("");
 			}
 			Icon.gameObject.SetActive(Icon.sprite);
 		}

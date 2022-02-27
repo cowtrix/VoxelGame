@@ -11,7 +11,7 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 4c1aa02729a75e54591655d670f9a041, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -35,6 +35,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - Occlusion: 0.5
     - SPRITESHEET: 0
@@ -79,6 +80,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - Occlusion: 0.5
     - SPRITESHEET: 0
@@ -147,15 +149,16 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 4e5a26357404193428a87aac1d5ce7a9, type: 3}
   DefaultOptimisers:
     Data:
-    - id: 0
-    - id: 1
+    - rid: 0
+    - rid: 1
   references:
-    version: 1
-    00000000:
+    version: 2
+    RefIds:
+    - rid: 0
       type: {class: InternalFaceOptimiser, ns: Voxul.Meshing, asm: Voxul}
       data:
         Enabled: 1
-    00000001:
+    - rid: 1
       type: {class: FaceMerger, ns: Voxul.Meshing, asm: Voxul}
       data:
         Enabled: 1

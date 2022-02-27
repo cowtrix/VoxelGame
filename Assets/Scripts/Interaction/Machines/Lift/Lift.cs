@@ -21,7 +21,7 @@ namespace Interaction.Activities
 
 		public float Speed = 1;
 		public Transform ButtonContainer;
-		public Button ButtonPrefab;
+		public Toggle ButtonPrefab;
 
 		public void SetData(LiftLine line)
 		{
@@ -29,8 +29,8 @@ namespace Interaction.Activities
 			for(var i = 0; i < Line.Stops.Count; ++i)
 			{
 				var stop = Line.Stops[i];
-				var newButton = Instantiate(ButtonPrefab.gameObject).GetComponent<Button>();
-				newButton.onClick.AddListener(() => Line.RequestStop(stop));
+				var newButton = Instantiate(ButtonPrefab.gameObject).GetComponent<Toggle>();
+				newButton.onValueChanged.AddListener(b => { if (b) { Line.RequestStop(stop); } });
 				newButton.transform.SetParent(ButtonContainer);
 				newButton.transform.Reset();
 				newButton.GetComponentInChildren<Text>().text = LanguageUtility.Translate(i.ToString()).SafeSubstring(0, 1);
@@ -64,6 +64,7 @@ namespace Interaction.Activities
 				Line.StoppedAt(TargetStop);
 				Door.Open();
 				TargetStop.Door.Open();
+				
 				yield return new WaitForSeconds(5);
 				Door.Close();
 				TargetStop.Door.Close();

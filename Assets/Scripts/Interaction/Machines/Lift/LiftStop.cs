@@ -9,7 +9,7 @@ namespace Interaction.Activities
 	public class LiftStop : MonoBehaviour
 	{
 		public LiftLine Line { get; private set; }
-		public Button UpButton, DownButton;
+		public Toggle UpButton, DownButton;
 		public Vector3 Offset;
 		public Door Door;
 
@@ -31,8 +31,8 @@ namespace Interaction.Activities
 			{
 				DownButton.gameObject.SetActive(false);
 			}
-			DownButton.onClick.AddListener(() => OnClick(LiftLine.eLiftDirection.Down));
-			UpButton.onClick.AddListener(() => OnClick(LiftLine.eLiftDirection.Up));
+			DownButton.onValueChanged.AddListener(b => { if (b) { OnClick(LiftLine.eLiftDirection.Down); } });
+			UpButton.onValueChanged.AddListener(b => { if (b) { OnClick(LiftLine.eLiftDirection.Up); } });
 		}
 
 		private void OnClick(LiftLine.eLiftDirection direction)

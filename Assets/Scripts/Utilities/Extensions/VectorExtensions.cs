@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = System.Random;
 
@@ -61,6 +62,20 @@ namespace Common
 		public static bool ScreenRectIsOnScreen(this Rect rect) =>
 			rect.Overlaps(new Rect(0, 0, Screen.width, Screen.height));
 
+		public static Bounds GetEncompassingBounds(this IEnumerable<Bounds> enumerable)
+		{
+			if (enumerable == null || !enumerable.Any())
+			{
+				return default;
+			}
+			var b = enumerable.First();
+			foreach (var b2 in enumerable.Skip(1))
+			{
+				b.Encapsulate(b2);
+			}
+			return b;
+		}
+
 		public static Rect ClipToScreen(this Rect rect)
 		{
 			var xMin = Mathf.Max(0, rect.xMin);
@@ -71,7 +86,19 @@ namespace Common
 
 			return Rect.MinMaxRect(xMin, yMin, xMax, yMax);
 		}
-			
+
+		public static bool BoundsWithinFrustrum(this Camera camera, Bounds worldBounds)
+		{
+			foreach (var p in worldBounds.AllPoints())
+			{
+				var screenP = camera.WorldToScreenPoint(p);
+				if(screenP.z > 0)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 
 	public static class VectorExtensions

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6107333867782824224}
   - component: {fileID: 396636289680997737}
   - component: {fileID: 5129937044438690344}
-  - component: {fileID: 8789852178393003039}
   m_Layer: 0
   m_Name: LOD0
   m_TagString: Untagged
@@ -52,7 +51,7 @@ MonoBehaviour:
   CustomMaterials: 0
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
-  GenerateCollider: 1
+  GenerateCollider: 0
   SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
@@ -81,7 +80,7 @@ MonoBehaviour:
   Parent: {fileID: 1143747557201947233}
   MeshFilter: {fileID: 396636289680997737}
   MeshRenderer: {fileID: 5129937044438690344}
-  MeshCollider: {fileID: 8789852178393003039}
+  MeshCollider: {fileID: 0}
 --- !u!33 &396636289680997737
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -132,20 +131,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8789852178393003039
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4923940192285728267}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3045821902572500192, guid: 08999b993a7f49248991a056d2651645, type: 2}
 --- !u!1 &5924877294310905224
 GameObject:
   m_ObjectHideFlags: 0
@@ -8014,7 +7999,7 @@ MonoBehaviour:
   MaxCoroutineUpdateTime: 0.016666668
   m_voxWorker:
     VoxelMesh: {fileID: 0}
-  m_lastMeshHash: 99f74f09-8f4d-46fe-ad64-2bb1305ac02b
+  m_lastMeshHash: 612f1145-8702-42b8-9ab8-350a07f85eb5
   Submeshes:
   - {fileID: 4923089457599248595}
   Configuration:
@@ -9183,7 +9168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c19913eb679af47beb3a30e8f5b35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RandomiseOnStart: 0
   Rotation: {x: 0, y: 2, z: 0}
+  ForceMode: 0
 --- !u!114 &5924877296338449852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9214,7 +9201,8 @@ MonoBehaviour:
         m_Calls: []
     MaxFocusDistance: 50
     MaxUseDistance: 2
-  Colliders: []
+  Colliders:
+  - {fileID: 5924877296338449853}
   PlainText: Marcy's Market
 --- !u!65 &5924877296338449853
 BoxCollider:

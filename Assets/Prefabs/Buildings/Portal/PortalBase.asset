@@ -1,0 +1,3822 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7658a02d94aca5c4a85699d224076d82, type: 3}
+  m_Name: PortalBase
+  m_EditorClassIdentifier: 
+  CurrentWorker:
+    VoxelMesh: {fileID: 11400000}
+  UnityMeshInstances:
+  - UnityMesh: {fileID: 982227260423804521}
+  PointMapping:
+    keys: []
+    values: []
+  Hash: df3dcb3a-74c7-4291-99e9-dd808bd9fc92
+  Voxels:
+    keys:
+    - Layer: 1
+      X: 0
+      Y: 0
+      Z: 0
+    - Layer: 1
+      X: 2
+      Y: 0
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 0
+      Z: 0
+    - Layer: 1
+      X: -2
+      Y: 0
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 0
+      Z: 0
+    - Layer: 1
+      X: 3
+      Y: 0
+      Z: 0
+    - Layer: 1
+      X: -3
+      Y: 0
+      Z: 0
+    - Layer: 1
+      X: -4
+      Y: 0
+      Z: 0
+    - Layer: 1
+      X: -4
+      Y: 1
+      Z: 0
+    - Layer: 1
+      X: -4
+      Y: 2
+      Z: 0
+    - Layer: 1
+      X: -5
+      Y: 2
+      Z: 0
+    - Layer: 1
+      X: -5
+      Y: 3
+      Z: 0
+    - Layer: 1
+      X: -5
+      Y: 4
+      Z: 0
+    - Layer: 1
+      X: -5
+      Y: 5
+      Z: 0
+    - Layer: 1
+      X: -5
+      Y: 6
+      Z: 0
+    - Layer: 1
+      X: -4
+      Y: 6
+      Z: 0
+    - Layer: 1
+      X: -4
+      Y: 7
+      Z: 0
+    - Layer: 1
+      X: -4
+      Y: 8
+      Z: 0
+    - Layer: 1
+      X: -3
+      Y: 8
+      Z: 0
+    - Layer: 1
+      X: -2
+      Y: 8
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 8
+      Z: 0
+    - Layer: 1
+      X: 4
+      Y: 0
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 8
+      Z: 0
+    - Layer: 1
+      X: 4
+      Y: 1
+      Z: 0
+    - Layer: 1
+      X: 4
+      Y: 2
+      Z: 0
+    - Layer: 1
+      X: 4
+      Y: 6
+      Z: 0
+    - Layer: 1
+      X: 4
+      Y: 7
+      Z: 0
+    - Layer: 1
+      X: 4
+      Y: 8
+      Z: 0
+    - Layer: 1
+      X: 3
+      Y: 8
+      Z: 0
+    - Layer: 1
+      X: 2
+      Y: 8
+      Z: 0
+    - Layer: 1
+      X: 5
+      Y: 2
+      Z: 0
+    - Layer: 1
+      X: 4
+      Y: 0
+      Z: 1
+    - Layer: 1
+      X: -4
+      Y: 0
+      Z: 1
+    - Layer: 1
+      X: 0
+      Y: 8
+      Z: 0
+    - Layer: 1
+      X: 5
+      Y: 6
+      Z: 0
+    - Layer: 1
+      X: 5
+      Y: 5
+      Z: 0
+    - Layer: 1
+      X: 5
+      Y: 4
+      Z: 0
+    - Layer: 1
+      X: -3
+      Y: 0
+      Z: 1
+    - Layer: 1
+      X: 5
+      Y: 3
+      Z: 0
+    - Layer: 1
+      X: -2
+      Y: 0
+      Z: 1
+    - Layer: 1
+      X: -1
+      Y: 0
+      Z: 1
+    - Layer: 1
+      X: 0
+      Y: 0
+      Z: 1
+    - Layer: 1
+      X: 1
+      Y: 0
+      Z: 1
+    - Layer: 1
+      X: 2
+      Y: 0
+      Z: 1
+    - Layer: 1
+      X: 3
+      Y: 0
+      Z: 1
+    - Layer: 1
+      X: 4
+      Y: 0
+      Z: -1
+    - Layer: 1
+      X: -3
+      Y: 0
+      Z: -1
+    - Layer: 1
+      X: -2
+      Y: 0
+      Z: -1
+    - Layer: 1
+      X: -1
+      Y: 0
+      Z: -1
+    - Layer: 1
+      X: 0
+      Y: 0
+      Z: -1
+    - Layer: 1
+      X: 1
+      Y: 0
+      Z: -1
+    - Layer: 1
+      X: 2
+      Y: 0
+      Z: -1
+    - Layer: 1
+      X: 3
+      Y: 0
+      Z: -1
+    - Layer: 1
+      X: 3
+      Y: 0
+      Z: 2
+    - Layer: 1
+      X: -3
+      Y: 0
+      Z: 2
+    - Layer: 1
+      X: -2
+      Y: 0
+      Z: 2
+    - Layer: 1
+      X: -1
+      Y: 0
+      Z: 2
+    - Layer: 1
+      X: 0
+      Y: 0
+      Z: 2
+    - Layer: 1
+      X: 1
+      Y: 0
+      Z: 2
+    - Layer: 1
+      X: 2
+      Y: 0
+      Z: 2
+    - Layer: 1
+      X: 3
+      Y: 7
+      Z: 0
+    - Layer: 1
+      X: -4
+      Y: 3
+      Z: 0
+    - Layer: 1
+      X: -4
+      Y: 4
+      Z: 0
+    - Layer: 1
+      X: -4
+      Y: 5
+      Z: 0
+    - Layer: 1
+      X: -3
+      Y: 3
+      Z: 0
+    - Layer: 1
+      X: -3
+      Y: 4
+      Z: 0
+    - Layer: 1
+      X: -3
+      Y: 5
+      Z: 0
+    - Layer: 1
+      X: -3
+      Y: 6
+      Z: 0
+    - Layer: 1
+      X: -3
+      Y: 7
+      Z: 0
+    - Layer: 1
+      X: -2
+      Y: 3
+      Z: 0
+    - Layer: 1
+      X: -2
+      Y: 4
+      Z: 0
+    - Layer: 1
+      X: -2
+      Y: 5
+      Z: 0
+    - Layer: 1
+      X: -2
+      Y: 6
+      Z: 0
+    - Layer: 1
+      X: -2
+      Y: 7
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 3
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 4
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 5
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 6
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 7
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 3
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 4
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 5
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 6
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 7
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 3
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 4
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 5
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 6
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 7
+      Z: 0
+    - Layer: 1
+      X: 2
+      Y: 3
+      Z: 0
+    - Layer: 1
+      X: 2
+      Y: 4
+      Z: 0
+    - Layer: 1
+      X: 2
+      Y: 5
+      Z: 0
+    - Layer: 1
+      X: 2
+      Y: 6
+      Z: 0
+    - Layer: 1
+      X: 2
+      Y: 7
+      Z: 0
+    - Layer: 1
+      X: 3
+      Y: 3
+      Z: 0
+    - Layer: 1
+      X: 3
+      Y: 4
+      Z: 0
+    - Layer: 1
+      X: 3
+      Y: 5
+      Z: 0
+    - Layer: 1
+      X: 3
+      Y: 6
+      Z: 0
+    - Layer: 1
+      X: -3
+      Y: 1
+      Z: 0
+    - Layer: 1
+      X: -3
+      Y: 2
+      Z: 0
+    - Layer: 1
+      X: -2
+      Y: 1
+      Z: 0
+    - Layer: 1
+      X: -2
+      Y: 2
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 1
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 2
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 1
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 2
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 1
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 2
+      Z: 0
+    - Layer: 1
+      X: 2
+      Y: 1
+      Z: 0
+    - Layer: 1
+      X: 2
+      Y: 2
+      Z: 0
+    - Layer: 1
+      X: 3
+      Y: 1
+      Z: 0
+    - Layer: 1
+      X: 3
+      Y: 2
+      Z: 0
+    - Layer: 1
+      X: 4
+      Y: 4
+      Z: 0
+    - Layer: 1
+      X: 4
+      Y: 3
+      Z: 0
+    - Layer: 1
+      X: 4
+      Y: 5
+      Z: 0
+    - Layer: 1
+      X: -2
+      Y: 9
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 9
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 9
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 9
+      Z: 0
+    - Layer: 2
+      X: -11
+      Y: 7
+      Z: 2
+    - Layer: 2
+      X: -14
+      Y: 7
+      Z: 2
+    - Layer: 2
+      X: -14
+      Y: 17
+      Z: 2
+    - Layer: 2
+      X: -11
+      Y: 17
+      Z: 2
+    - Layer: 2
+      X: 11
+      Y: 7
+      Z: 2
+    - Layer: 2
+      X: 14
+      Y: 7
+      Z: 2
+    - Layer: 2
+      X: 14
+      Y: 17
+      Z: 2
+    - Layer: 2
+      X: 11
+      Y: 17
+      Z: 2
+    - Layer: 1
+      X: 2
+      Y: 9
+      Z: 0
+    values:
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 0
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 2
+        Y: 0
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 0
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -2
+        Y: 0
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 0
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 3
+        Y: 0
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -3
+        Y: 0
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -4
+        Y: 0
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -4
+        Y: 1
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -4
+        Y: 2
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -5
+        Y: 2
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -5
+        Y: 3
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -5
+        Y: 4
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -5
+        Y: 5
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -5
+        Y: 6
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -4
+        Y: 6
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -4
+        Y: 7
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -4
+        Y: 8
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -3
+        Y: 8
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -2
+        Y: 8
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 8
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 4
+        Y: 0
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 8
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 4
+        Y: 1
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 4
+        Y: 2
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 4
+        Y: 6
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 4
+        Y: 7
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 4
+        Y: 8
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 3
+        Y: 8
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 2
+        Y: 8
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 5
+        Y: 2
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 4
+        Y: 0
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -4
+        Y: 0
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 8
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 5
+        Y: 6
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 5
+        Y: 5
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 5
+        Y: 4
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -3
+        Y: 0
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 5
+        Y: 3
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -2
+        Y: 0
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 0
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 0
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 0
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 2
+        Y: 0
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 3
+        Y: 0
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 4
+        Y: 0
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -3
+        Y: 0
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -2
+        Y: 0
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 0
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 0
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 0
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 2
+        Y: 0
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 3
+        Y: 0
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 3
+        Y: 0
+        Z: 2
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -3
+        Y: 0
+        Z: 2
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -2
+        Y: 0
+        Z: 2
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 0
+        Z: 2
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 0
+        Z: 2
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 0
+        Z: 2
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.5188679, g: 0.40127015, b: 0.21864241, a: 1}
+            Metallic: 0
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 2
+        Y: 0
+        Z: 2
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 3
+        Y: 7
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -4
+        Y: 3
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -4
+        Y: 4
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -4
+        Y: 5
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -3
+        Y: 3
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -3
+        Y: 4
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -3
+        Y: 5
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -3
+        Y: 6
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -3
+        Y: 7
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -2
+        Y: 3
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -2
+        Y: 4
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -2
+        Y: 5
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -2
+        Y: 6
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -2
+        Y: 7
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 3
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 4
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 5
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 6
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 7
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 3
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 4
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 5
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 6
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 7
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 3
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 4
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 5
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 6
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 7
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 2
+        Y: 3
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 2
+        Y: 4
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 2
+        Y: 5
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 2
+        Y: 6
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 2
+        Y: 7
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 3
+        Y: 3
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 3
+        Y: 4
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 3
+        Y: 5
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 3
+        Y: 6
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -3
+        Y: 1
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -3
+        Y: 2
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -2
+        Y: 1
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -2
+        Y: 2
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 1
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 2
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 1
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 2
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 1
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 2
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 2
+        Y: 1
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 2
+        Y: 2
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 3
+        Y: 1
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 3
+        Y: 2
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.5209957, g: 0.40197787, b: 0.21952623, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 4
+        Y: 4
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 4
+        Y: 3
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 3
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.6132076, g: 0.27715713, b: 0.113771185, a: 1}
+            Metallic: 0
+            Smoothness: 0.3519061
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 4
+        Y: 5
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 2
+          Surface:
+            Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: -2
+        Y: 9
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 9
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 9
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 9
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 2
+        X: -11
+        Y: 7
+        Z: 2
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 2
+        X: -14
+        Y: 7
+        Z: 2
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 2
+        X: -14
+        Y: 17
+        Z: 2
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 2
+        X: -11
+        Y: 17
+        Z: 2
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 2
+        X: 11
+        Y: 7
+        Z: 2
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 2
+        X: 14
+        Y: 7
+        Z: 2
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 2
+        X: 14
+        Y: 17
+        Z: 2
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.38041517, g: 2.6985698, b: 1.8664118, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides: []
+      Coordinate:
+        Layer: 2
+        X: 11
+        Y: 17
+        Z: 2
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.745283, g: 0.52825063, b: 0.17343059, a: 1}
+          Metallic: 0
+          Smoothness: 0.44288084
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 0
+        Overrides:
+        - Direction: 2
+          Surface:
+            Albedo: {r: 0.5943396, g: 0.433107, b: 0.16634029, a: 1}
+            Metallic: 0
+            Smoothness: 0.44288084
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 0
+      Coordinate:
+        Layer: 1
+        X: 2
+        Y: 9
+        Z: 0
+  OptimiseMesh: 0
+  OverrideOptimisers: 0
+  OptimiserOverrides:
+    Data: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!43 &982227260423804521
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PortalBase_mesh_df3dcb3a-74c7-4291-99e9-dd808bd9fc92_0
+  serializedVersion: 10
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 912
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 608
+    localAABB:
+      m_Center: {x: 0, y: 1.5000001, z: 0.16666663}
+      m_Extent: {x: 1.8333335, y: 1.6666669, z: 0.66666687}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 0
+  m_KeepIndices: 0
+  m_IndexFormat: 0
+  m_IndexBuffer: 0300010000000300020001000700050004000700060005000b00090008000b000a0009000f000d000c000f000e000d001300110010001300120011001700150014001700160015001b00190018001b001a0019001f001d001c001f001e001d002300210020002300220021002700250024002700260025002b00290028002b002a0029002f002d002c002f002e002d003300310030003300320031003700350034003700360035003b00390038003b003a0039003f003d003c003f003e003d004300410040004300420041004700450044004700460045004b00490048004b004a0049004f004d004c004f004e004d005300510050005300520051005700550054005700560055005b00590058005b005a0059005f005d005c005f005e005d006300610060006300620061006700650064006700660065006b00690068006b006a0069006f006d006c006f006e006d007300710070007300720071007700750074007700760075007b00790078007b007a0079007f007d007c007f007e007d008300810080008300820081008700850084008700860085008b00890088008b008a0089008f008d008c008f008e008d009300910090009300920091009700950094009700960095009b00990098009b009a0099009f009d009c009f009e009d00a300a100a000a300a200a100a700a500a400a700a600a500ab00a900a800ab00aa00a900af00ad00ac00af00ae00ad00b300b100b000b300b200b100b700b500b400b700b600b500bb00b900b800bb00ba00b900bf00bd00bc00bf00be00bd00c300c100c000c300c200c100c700c500c400c700c600c500cb00c900c800cb00ca00c900cf00cd00cc00cf00ce00cd00d300d100d000d300d200d100d700d500d400d700d600d500db00d900d800db00da00d900df00dd00dc00df00de00dd00e300e100e000e300e200e100e700e500e400e700e600e500eb00e900e800eb00ea00e900ef00ed00ec00ef00ee00ed00f300f100f000f300f200f100f700f500f400f700f600f500fb00f900f800fb00fa00f900ff00fd00fc00ff00fe00fd000301010100010301020101010701050104010701060105010b01090108010b010a0109010f010d010c010f010e010d011301110110011301120111011701150114011701160115011b01190118011b011a0119011f011d011c011f011e011d012301210120012301220121012701250124012701260125012b01290128012b012a0129012f012d012c012f012e012d013301310130013301320131013701350134013701360135013b01390138013b013a0139013f013d013c013f013e013d014301410140014301420141014701450144014701460145014b01490148014b014a0149014f014d014c014f014e014d015301510150015301520151015701550154015701560155015b01590158015b015a0159015f015d015c015f015e015d016301610160016301620161016701650164016701660165016b01690168016b016a0169016f016d016c016f016e016d017301710170017301720171017701750174017701760175017b01790178017b017a0179017f017d017c017f017e017d018301810180018301820181018701850184018701860185018b01890188018b018a0189018f018d018c018f018e018d019301910190019301920191019701950194019701960195019b01990198019b019a0199019f019d019c019f019e019d01a301a101a001a301a201a101a701a501a401a701a601a501ab01a901a801ab01aa01a901af01ad01ac01af01ae01ad01b301b101b001b301b201b101b701b501b401b701b601b501bb01b901b801bb01ba01b901bf01bd01bc01bf01be01bd01c301c101c001c301c201c101c701c501c401c701c601c501cb01c901c801cb01ca01c901cf01cd01cc01cf01ce01cd01d301d101d001d301d201d101d701d501d401d701d601d501db01d901d801db01da01d901df01dd01dc01df01de01dd01e301e101e001e301e201e101e701e501e401e701e601e501eb01e901e801eb01ea01e901ef01ed01ec01ef01ee01ed01f301f101f001f301f201f101f701f501f401f701f601f501fb01f901f801fb01fa01f901ff01fd01fc01ff01fe01fd010302010200020302020201020702050204020702060205020b02090208020b020a0209020f020d020c020f020e020d021302110210021302120211021702150214021702160215021b02190218021b021a0219021f021d021c021f021e021d022302210220022302220221022702250224022702260225022b02290228022b022a0229022f022d022c022f022e022d023302310230023302320231023702350234023702360235023b02390238023b023a0239023f023d023c023f023e023d024302410240024302420241024702450244024702460245024b02490248024b024a0249024f024d024c024f024e024d025302510250025302520251025702550254025702560255025b02590258025b025a0259025f025d025c025f025e025d02
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 608
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 40
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 48
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 56
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 43776
+    _typelessdata: 585555bfabaa2a3eb4aa2a3e000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f585555bfb4aa2a3e00000000000000000000000000000000000000000000803f585555bfabaa2a3ea4aa2abe000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f585555bfa4aa2abe0000003b000000000000000000000000000000000000803f5655953fabaa2a3eb4aa2abe000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f5655953fb4aa2abe0000003b0000003b0000000000000000000000000000803f5655953fabaa2a3ea4aa2a3e000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f5655953fa4aa2a3e000000000000003b0000000000000000000000000000803f0000c0bfaeaa2abeabaa2abe00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f0000c0bfabaa2abe000000000000003b47c1e23e00000000000000000000803f0100c0bfaeaa2abeaeaa2a3e00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f0100c0bfaeaa2a3e0000003b0000003b47c1e23e00000000000000000000803f565595bfaeaa2abeabaa2a3e00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f565595bfabaa2a3e0000003b0000803b47c1e23e00000000000000000000803f555595bfaeaa2abeaeaa2abe00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f555595bfaeaa2abe000000000000803b47c1e23e00000000000000000000803f0000c0bfaeaa2abeabaa2abe0000000000000000000080bfa426183f33c0dd3e1c552a3e0000803f0000c0bfaeaa2abe000000000000803b47c1e23e00000000000000000000803f565595bfaeaa2abeabaa2abe0000000000000000000080bfa426183f33c0dd3e1c552a3e0000803f565595bfaeaa2abe0000003b0000803b47c1e23e00000000000000000000803f565595bfabaa2a3eaeaa2abe0000000000000000000080bfa426183f33c0dd3e1c552a3e0000803f565595bfabaa2a3e0000003b0000c03b47c1e23e00000000000000000000803f0000c0bfabaa2a3eaeaa2abe0000000000000000000080bfa426183f33c0dd3e1c552a3e0000803f0000c0bfabaa2a3e000000000000c03b47c1e23e00000000000000000000803f0000c0bfa9aa2a3eabaa2a3e000080bf0000000000000000deca3e3f6f3b073fca97313e0000803fa9aa2a3eabaa2a3e000000000000c03b47c1e23e00000000000000000000803f0000c0bfa9aa2a3eabaa2abe000080bf0000000000000000deca3e3f6f3b073fca97313e0000803fa9aa2a3eabaa2abe0000003b0000c03b47c1e23e00000000000000000000803f0000c0bf0000003fabaa2abe000080bf0000000000000000deca3e3f6f3b073fca97313e0000803f0000003fabaa2abe0000003b0000003c47c1e23e00000000000000000000803f0000c0bf0000003fabaa2a3e000080bf0000000000000000deca3e3f6f3b073fca97313e0000803f0000003fabaa2a3e000000000000003c47c1e23e00000000000000000000803f0000c0bfa6aa2a3eabaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0000c0bfa6aa2a3e000000000000003c47c1e23e00000000000000000000803f565595bfa6aa2a3eabaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f565595bfa6aa2a3e0000003b0000003c47c1e23e00000000000000000000803f565595bf0000003faeaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f565595bf0000003f0000003b0000203c47c1e23e00000000000000000000803f0000c0bf0000003faeaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0000c0bf0000003f000000000000203c47c1e23e00000000000000000000803f555595bfa6aa2a3eafaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f555595bfa6aa2a3e000000000000203c47c1e23e00000000000000000000803f0100c0bfa6aa2a3eafaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f0100c0bfa6aa2a3e0000003b0000203c47c1e23e00000000000000000000803f0100c0bf5655553faaaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f0100c0bf5655553f0000003b0000403c47c1e23e00000000000000000000803f555595bf5655553faaaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f555595bf5655553f000000000000403c47c1e23e00000000000000000000803f565595bfaaaa2a3eabaa2abe0000803f0000000000000000deca3e3f6f3b073fca97313e0000803faaaa2a3eabaa2abe000000000000403c47c1e23e00000000000000000000803f565595bfaaaa2a3eabaa2a3e0000803f0000000000000000deca3e3f6f3b073fca97313e0000803faaaa2a3eabaa2a3e0000003b0000403c47c1e23e00000000000000000000803f565595bf5655553fabaa2a3e0000803f0000000000000000deca3e3f6f3b073fca97313e0000803f5655553fabaa2a3e0000003b0000603c47c1e23e00000000000000000000803f565595bf5655553fabaa2abe0000803f0000000000000000deca3e3f6f3b073fca97313e0000803f5655553fabaa2abe000000000000603c47c1e23e00000000000000000000803f0000c0bf5655553faeaa2a3e000000000000803f00000000deca3e3f6f3b073fca97313e0000803f0000c0bfaeaa2a3e000000000000603c47c1e23e00000000000000000000803f0100c0bf5655553fabaa2abe000000000000803f00000000deca3e3f6f3b073fca97313e0000803f0100c0bfabaa2abe0000003b0000603c47c1e23e00000000000000000000803f565595bf5655553faeaa2abe000000000000803f00000000deca3e3f6f3b073fca97313e0000803f565595bfaeaa2abe0000003b0000803c47c1e23e00000000000000000000803f555595bf5655553fabaa2a3e000000000000803f00000000deca3e3f6f3b073fca97313e0000803f555595bfabaa2a3e000000000000803c47c1e23e00000000000000000000803fabaaeabfffffff3eabaa2abe00000000000080bf00000000deca3e3f6f3b073fca97313e0000803fabaaeabfabaa2abe000000000000803c47c1e23e00000000000000000000803facaaeabfffffff3eaeaa2a3e00000000000080bf00000000deca3e3f6f3b073fca97313e0000803facaaeabfaeaa2a3e0000003b0000803c47c1e23e00000000000000000000803f0100c0bfffffff3eabaa2a3e00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f0100c0bfabaa2a3e0000003b0000903c47c1e23e00000000000000000000803f0000c0bfffffff3eaeaa2abe00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f0000c0bfaeaa2abe000000000000903c47c1e23e00000000000000000000803fabaaeabf0200003fabaa2a3e000080bf0000000000000000deca3e3f6f3b073fca97313e0000803f0200003fabaa2a3e000000000000903c47c1e23e00000000000000000000803fabaaeabf0200003fabaa2abe000080bf0000000000000000deca3e3f6f3b073fca97313e0000803f0200003fabaa2abe0000003b0000903c47c1e23e00000000000000000000803fabaaeabfacaa0a40abaa2abe000080bf0000000000000000deca3e3f6f3b073fca97313e0000803facaa0a40abaa2abe0000003b0000a03c47c1e23e00000000000000000000803fabaaeabfacaa0a40abaa2a3e000080bf0000000000000000deca3e3f6f3b073fca97313e0000803facaa0a40abaa2a3e000000000000a03c47c1e23e00000000000000000000803facaaeabfffffff3eabaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803facaaeabfffffff3e000000000000a03c47c1e23e00000000000000000000803f565595bfffffff3eabaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f565595bfffffff3e0000003b0000a03c47c1e23e00000000000000000000803f565595bf5655553faeaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f565595bf5655553f0000003b0000b03c47c1e23e00000000000000000000803facaaeabf5655553faeaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803facaaeabf5655553f000000000000b03c47c1e23e00000000000000000000803f0000c0bffeffff3eb2aa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f0000c0bffeffff3e000000000000b03c47c1e23e00000000000000000000803facaaeabffeffff3eb2aa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803facaaeabffeffff3e0000003b0000b03c47c1e23e00000000000000000000803facaaeabfacaaea3fa7aa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803facaaeabfacaaea3f0000003b0000c03c47c1e23e00000000000000000000803f0000c0bfacaaea3fa7aa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f0000c0bfacaaea3f000000000000c03c47c1e23e00000000000000000000803f0100c0bf5655553fabaa2abe0000803f0000000000000000deca3e3f6f3b073fca97313e0000803f5655553fabaa2abe000000000000c03c47c1e23e00000000000000000000803f0100c0bf5655553fabaa2a3e0000803f0000000000000000deca3e3f6f3b073fca97313e0000803f5655553fabaa2a3e0000003b0000c03c47c1e23e00000000000000000000803f0100c0bfabaaea3fabaa2a3e0000803f0000000000000000deca3e3f6f3b073fca97313e0000803fabaaea3fabaa2a3e0000003b0000d03c47c1e23e00000000000000000000803f0100c0bfabaaea3fabaa2abe0000803f0000000000000000deca3e3f6f3b073fca97313e0000803fabaaea3fabaa2abe000000000000d03c47c1e23e00000000000000000000803fabaaeabf5355553fa7aa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803fabaaeabf5355553f000000000000d03c47c1e23e00000000000000000000803f0100c0bf5355553fa7aa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0100c0bf5355553f0000003b0000d03c47c1e23e00000000000000000000803f0100c0bfabaa0a40b2aa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0100c0bfabaa0a400000003b0000e03c47c1e23e00000000000000000000803fabaaeabfabaa0a40b2aa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803fabaaeabfabaa0a40000000000000e03c47c1e23e00000000000000000000803fabaaeabfabaa0a40aeaa2a3e000000000000803f00000000deca3e3f6f3b073fca97313e0000803fabaaeabfaeaa2a3e000000000000e03c47c1e23e00000000000000000000803facaaeabfabaa0a40abaa2abe000000000000803f00000000deca3e3f6f3b073fca97313e0000803facaaeabfabaa2abe0000003b0000e03c47c1e23e00000000000000000000803f0100c0bfabaa0a40aeaa2abe000000000000803f00000000deca3e3f6f3b073fca97313e0000803f0100c0bfaeaa2abe0000003b0000f03c47c1e23e00000000000000000000803f0000c0bfabaa0a40abaa2a3e000000000000803f00000000deca3e3f6f3b073fca97313e0000803f0000c0bfabaa2a3e000000000000f03c47c1e23e00000000000000000000803f0000c0bfaaaaea3fabaa2abe00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f0000c0bfabaa2abe000000000000f03c47c1e23e00000000000000000000803f0100c0bfaaaaea3faeaa2a3e00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f0100c0bfaeaa2a3e0000003b0000f03c47c1e23e00000000000000000000803f565595bfaaaaea3fabaa2a3e00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f565595bfabaa2a3e0000003b0000003d47c1e23e00000000000000000000803f555595bfaaaaea3faeaa2abe00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f555595bfaeaa2abe000000000000003d47c1e23e00000000000000000000803f565595bfaaaaea3faeaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f565595bfaaaaea3f000000000000003d47c1e23e00000000000000000000803facaaeabfaaaaea3faeaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803facaaeabfaaaaea3f0000003b0000003d47c1e23e00000000000000000000803facaaeabfabaa0a40abaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803facaaeabfabaa0a400000003b0000083d47c1e23e00000000000000000000803f565595bfabaa0a40abaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f565595bfabaa0a40000000000000083d47c1e23e00000000000000000000803f0000c0bfabaaea3faaaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0000c0bfabaaea3f000000000000083d47c1e23e00000000000000000000803f565595bfabaaea3faaaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f565595bfabaaea3f0000003b0000083d47c1e23e00000000000000000000803f565595bf00002040afaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f565595bf000020400000003b0000103d47c1e23e00000000000000000000803f0000c0bf00002040afaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0000c0bf00002040000000000000103d47c1e23e00000000000000000000803f565595bfabaaea3fabaa2abe0000803f0000000000000000deca3e3f6f3b073fca97313e0000803fabaaea3fabaa2abe000000000000103d47c1e23e00000000000000000000803f565595bfabaaea3fabaa2a3e0000803f0000000000000000deca3e3f6f3b073fca97313e0000803fabaaea3fabaa2a3e0000003b0000103d47c1e23e00000000000000000000803f565595bf00002040abaa2a3e0000803f0000000000000000deca3e3f6f3b073fca97313e0000803f00002040abaa2a3e0000003b0000183d47c1e23e00000000000000000000803f565595bf00002040abaa2abe0000803f0000000000000000deca3e3f6f3b073fca97313e0000803f00002040abaa2abe000000000000183d47c1e23e00000000000000000000803f0000c0bfabaa0a40abaa2a3e000080bf0000000000000000deca3e3f6f3b073fca97313e0000803fabaa0a40abaa2a3e000000000000183d47c1e23e00000000000000000000803f0000c0bfabaa0a40abaa2abe000080bf0000000000000000deca3e3f6f3b073fca97313e0000803fabaa0a40abaa2abe0000003b0000183d47c1e23e00000000000000000000803f0000c0bf55553540abaa2abe000080bf0000000000000000deca3e3f6f3b073fca97313e0000803f55553540abaa2abe0000003b0000203d47c1e23e00000000000000000000803f0000c0bf55553540abaa2a3e000080bf0000000000000000deca3e3f6f3b073fca97313e0000803f55553540abaa2a3e000000000000203d47c1e23e00000000000000000000803f555595bfaaaa0a40afaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f555595bfaaaa0a40000000000000203d47c1e23e00000000000000000000803f0100c0bfaaaa0a40afaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f0100c0bfaaaa0a400000003b0000203d47c1e23e00000000000000000000803f0100c0bf56553540aaaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f0100c0bf565535400000003b0000283d47c1e23e00000000000000000000803f555595bf56553540aaaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f555595bf56553540000000000000283d47c1e23e00000000000000000000803f0000c0bf00002040abaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0000c0bf00002040000000000000283d47c1e23e00000000000000000000803f545555bf00002040abaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f545555bf000020400000003b0000283d47c1e23e00000000000000000000803f545555bf56553540aeaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f545555bf565535400000003b0000303d47c1e23e00000000000000000000803f0000c0bf56553540aeaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0000c0bf56553540000000000000303d47c1e23e00000000000000000000803f0000c0bf56553540afaa2a3e000000000000803f00000000deca3e3f6f3b073fca97313e0000803f0000c0bfafaa2a3e000000000000303d47c1e23e00000000000000000000803f0000c0bf56553540aaaa2abe000000000000803f00000000deca3e3f6f3b073fca97313e0000803f0000c0bfaaaa2abe0000003b0000303d47c1e23e00000000000000000000803f545555bf56553540afaa2abe000000000000803f00000000deca3e3f6f3b073fca97313e0000803f545555bfafaa2abe0000003b0000383d47c1e23e00000000000000000000803f545555bf56553540aaaa2a3e000000000000803f00000000deca3e3f6f3b073fca97313e0000803f545555bfaaaa2a3e000000000000383d47c1e23e00000000000000000000803ffcffffbe00002040aeaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803ffcffffbe00002040000000000000383d47c1e23e00000000000000000000803f565595bf00002040aeaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f565595bf000020400000003b0000383d47c1e23e00000000000000000000803f565595bf56553540abaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f565595bf565535400000003b0000403d47c1e23e00000000000000000000803ffcffffbe56553540abaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803ffcffffbe56553540000000000000403d47c1e23e00000000000000000000803f0000c03fa9aa2a3eabaa2abe0000803f0000000000000000deca3e3f6f3b073fca97313e0000803fa9aa2a3eabaa2abe000000000000403d47c1e23e00000000000000000000803f0000c03fa9aa2a3eabaa2a3e0000803f0000000000000000deca3e3f6f3b073fca97313e0000803fa9aa2a3eabaa2a3e0000003b0000403d47c1e23e00000000000000000000803f0000c03f0000003fabaa2a3e0000803f0000000000000000deca3e3f6f3b073fca97313e0000803f0000003fabaa2a3e0000003b0000483d47c1e23e00000000000000000000803f0000c03f0000003fabaa2abe0000803f0000000000000000deca3e3f6f3b073fca97313e0000803f0000003fabaa2abe000000000000483d47c1e23e00000000000000000000803f5655953faaaa2a3eabaa2a3e000080bf0000000000000000deca3e3f6f3b073fca97313e0000803faaaa2a3eabaa2a3e000000000000483d47c1e23e00000000000000000000803f5655953faaaa2a3eabaa2abe000080bf0000000000000000deca3e3f6f3b073fca97313e0000803faaaa2a3eabaa2abe0000003b0000483d47c1e23e00000000000000000000803f5655953f5655553fabaa2abe000080bf0000000000000000deca3e3f6f3b073fca97313e0000803f5655553fabaa2abe0000003b0000503d47c1e23e00000000000000000000803f5655953f5655553fabaa2a3e000080bf0000000000000000deca3e3f6f3b073fca97313e0000803f5655553fabaa2a3e000000000000503d47c1e23e00000000000000000000803f0100c03fa6aa2a3eafaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f0100c03fa6aa2a3e000000000000503d47c1e23e00000000000000000000803f5555953fa6aa2a3eafaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f5555953fa6aa2a3e0000003b0000503d47c1e23e00000000000000000000803f5555953f5655553faaaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f5555953f5655553f0000003b0000583d47c1e23e00000000000000000000803f0100c03f5655553faaaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f0100c03f5655553f000000000000583d47c1e23e00000000000000000000803f5655953fa6aa2a3eaaaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f5655953fa6aa2a3e000000000000583d47c1e23e00000000000000000000803f0000c03fa6aa2a3eaaaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0000c03fa6aa2a3e0000003b0000583d47c1e23e00000000000000000000803f0000c03f5655553fafaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0000c03f5655553f0000003b0000603d47c1e23e00000000000000000000803f5655953f5655553fafaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f5655953f5655553f000000000000603d47c1e23e00000000000000000000803f5655953f5655553faeaa2a3e000000000000803f00000000deca3e3f6f3b073fca97313e0000803f5655953faeaa2a3e000000000000603d47c1e23e00000000000000000000803f5555953f5655553fabaa2abe000000000000803f00000000deca3e3f6f3b073fca97313e0000803f5555953fabaa2abe0000003b0000603d47c1e23e00000000000000000000803f0000c03f5655553faeaa2abe000000000000803f00000000deca3e3f6f3b073fca97313e0000803f0000c03faeaa2abe0000003b0000683d47c1e23e00000000000000000000803f0100c03f5655553fabaa2a3e000000000000803f00000000deca3e3f6f3b073fca97313e0000803f0100c03fabaa2a3e000000000000683d47c1e23e00000000000000000000803f5655953faaaaea3fabaa2abe00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f5655953fabaa2abe000000000000683d47c1e23e00000000000000000000803f5555953faaaaea3faeaa2a3e00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f5555953faeaa2a3e0000003b0000683d47c1e23e00000000000000000000803f0000c03faaaaea3fabaa2a3e00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f0000c03fabaa2a3e0000003b0000703d47c1e23e00000000000000000000803f0100c03faaaaea3faeaa2abe00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f0100c03faeaa2abe000000000000703d47c1e23e00000000000000000000803f0100c03facaaea3fb0aa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f0100c03facaaea3f000000000000703d47c1e23e00000000000000000000803f5555953facaaea3fb0aa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f5555953facaaea3f0000003b0000703d47c1e23e00000000000000000000803f5555953f56553540a8aa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f5555953f565535400000003b0000783d47c1e23e00000000000000000000803f0100c03f56553540a8aa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f0100c03f56553540000000000000783d47c1e23e00000000000000000000803f5655953fabaaea3fabaa2a3e000080bf0000000000000000deca3e3f6f3b073fca97313e0000803fabaaea3fabaa2a3e000000000000783d47c1e23e00000000000000000000803f5655953fabaaea3fabaa2abe000080bf0000000000000000deca3e3f6f3b073fca97313e0000803fabaaea3fabaa2abe0000003b0000783d47c1e23e00000000000000000000803f5655953f00002040abaa2abe000080bf0000000000000000deca3e3f6f3b073fca97313e0000803f00002040abaa2abe0000003b0000803d47c1e23e00000000000000000000803f5655953f00002040abaa2a3e000080bf0000000000000000deca3e3f6f3b073fca97313e0000803f00002040abaa2a3e000000000000803d47c1e23e00000000000000000000803f5655953fabaaea3faaaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f5655953fabaaea3f000000000000803d47c1e23e00000000000000000000803f0000c03fabaaea3faaaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0000c03fabaaea3f0000003b0000803d47c1e23e00000000000000000000803f0000c03f00002040afaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0000c03f000020400000003b0000843d47c1e23e00000000000000000000803f5655953f00002040afaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f5655953f00002040000000000000843d47c1e23e00000000000000000000803f0000c03fabaa0a40abaa2abe0000803f0000000000000000deca3e3f6f3b073fca97313e0000803fabaa0a40abaa2abe000000000000843d47c1e23e00000000000000000000803f0000c03fabaa0a40abaa2a3e0000803f0000000000000000deca3e3f6f3b073fca97313e0000803fabaa0a40abaa2a3e0000003b0000843d47c1e23e00000000000000000000803f0000c03f55553540abaa2a3e0000803f0000000000000000deca3e3f6f3b073fca97313e0000803f55553540abaa2a3e0000003b0000883d47c1e23e00000000000000000000803f0000c03f55553540abaa2abe0000803f0000000000000000deca3e3f6f3b073fca97313e0000803f55553540abaa2abe000000000000883d47c1e23e00000000000000000000803f575595bf00002040a3aa2abe00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f575595bfa3aa2abe000000000000883d47c1e23e00000000000000000000803f575595bf00002040b6aa2a3e00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f575595bfb6aa2a3e0000003b0000883d47c1e23e00000000000000000000803f5755953f00002040a3aa2a3e00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f5755953fa3aa2a3e0000003b00008c3d47c1e23e00000000000000000000803f5755953f00002040b6aa2abe00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f5755953fb6aa2abe0000000000008c3d47c1e23e00000000000000000000803f5455553f00002040abaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f5455553f000020400000000000008c3d47c1e23e00000000000000000000803f0000c03f00002040abaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0000c03f000020400000003b00008c3d47c1e23e00000000000000000000803f0000c03f56553540aeaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0000c03f565535400000003b0000903d47c1e23e00000000000000000000803f5455553f56553540aeaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f5455553f56553540000000000000903d47c1e23e00000000000000000000803f5455553f56553540afaa2a3e000000000000803f00000000deca3e3f6f3b073fca97313e0000803f5455553fafaa2a3e000000000000903d47c1e23e00000000000000000000803f5455553f56553540aaaa2abe000000000000803f00000000deca3e3f6f3b073fca97313e0000803f5455553faaaa2abe0000003b0000903d47c1e23e00000000000000000000803f0000c03f56553540afaa2abe000000000000803f00000000deca3e3f6f3b073fca97313e0000803f0000c03fafaa2abe0000003b0000943d47c1e23e00000000000000000000803f0000c03f56553540aaaa2a3e000000000000803f00000000deca3e3f6f3b073fca97313e0000803f0000c03faaaa2a3e000000000000943d47c1e23e00000000000000000000803f5655953f00002040aeaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f5655953f00002040000000000000943d47c1e23e00000000000000000000803ffcffff3e00002040aeaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803ffcffff3e000020400000003b0000943d47c1e23e00000000000000000000803ffcffff3e56553540abaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803ffcffff3e565535400000003b0000983d47c1e23e00000000000000000000803f5655953f56553540abaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f5655953f56553540000000000000983d47c1e23e00000000000000000000803f0100c03fffffff3eabaa2abe00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f0100c03fabaa2abe000000000000983d47c1e23e00000000000000000000803f0000c03fffffff3eaeaa2a3e00000000000080bf00000000deca3e3f6f3b073fca97313e0000803f0000c03faeaa2a3e0000003b0000983d47c1e23e00000000000000000000803fabaaea3fffffff3eabaa2a3e00000000000080bf00000000deca3e3f6f3b073fca97313e0000803fabaaea3fabaa2a3e0000003b00009c3d47c1e23e00000000000000000000803facaaea3fffffff3eaeaa2abe00000000000080bf00000000deca3e3f6f3b073fca97313e0000803facaaea3faeaa2abe0000000000009c3d47c1e23e00000000000000000000803f0100c03faeaa2abe0000003f00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f0100c03faeaa2abe0000000000009c3d47c1e23e00000000000000000000803f5555953faeaa2abe0000003f00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f5555953faeaa2abe0000003b00009c3d47c1e23e00000000000000000000803f5555953fabaa2a3e0000003f00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f5555953fabaa2a3e0000003b0000a03d47c1e23e00000000000000000000803f0100c03fabaa2a3e0000003f00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f0100c03fabaa2a3e000000000000a03d47c1e23e00000000000000000000803f0000c03fabaa2abe000000bf0000803f0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2abe000000bf000000000000a03d47c1e23e00000000000000000000803f0000c03fabaa2abe0000003f0000803f0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2abe0000003f0000003b0000a03d47c1e23e00000000000000000000803f0000c03fabaa2a3e0000003f0000803f0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2a3e0000003f0000003b0000a43d47c1e23e00000000000000000000803f0000c03fabaa2a3e000000bf0000803f0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2a3e000000bf000000000000a43d47c1e23e00000000000000000000803f0000c0bfabaa2abe0000003f000080bf0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2abe0000003f000000000000a43d47c1e23e00000000000000000000803f0000c0bfabaa2abeabaa2abe000080bf0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2abeabaa2abe0000003b0000a43d47c1e23e00000000000000000000803f0000c0bfabaa2a3eabaa2abe000080bf0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2a3eabaa2abe0000003b0000a83d47c1e23e00000000000000000000803f0000c0bfabaa2a3e0000003f000080bf0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2a3e0000003f000000000000a83d47c1e23e00000000000000000000803f555595bfaeaa2abe0000003f00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f555595bfaeaa2abe000000000000a83d47c1e23e00000000000000000000803f0100c0bfaeaa2abe0000003f00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f0100c0bfaeaa2abe0000003b0000a83d47c1e23e00000000000000000000803f0100c0bfabaa2a3e0000003f00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f0100c0bfabaa2a3e0000003b0000ac3d47c1e23e00000000000000000000803f555595bfabaa2a3e0000003f00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f555595bfabaa2a3e000000000000ac3d47c1e23e00000000000000000000803facaaea3f0000003fb3aa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803facaaea3f0000003f000000000000ac3d47c1e23e00000000000000000000803f0000c03f0000003fb3aa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f0000c03f0000003f0000003b0000ac3d47c1e23e00000000000000000000803f0000c03facaa0a40a6aa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f0000c03facaa0a400000003b0000b03d47c1e23e00000000000000000000803facaaea3facaa0a40a6aa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803facaaea3facaa0a40000000000000b03d47c1e23e00000000000000000000803f0100c03f0000003fa6aa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0100c03f0000003f000000000000b03d47c1e23e00000000000000000000803fabaaea3f0000003fa6aa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803fabaaea3f0000003f0000003b0000b03d47c1e23e00000000000000000000803fabaaea3facaa0a40b3aa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803fabaaea3facaa0a400000003b0000b43d47c1e23e00000000000000000000803f0100c03facaa0a40b3aa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f0100c03facaa0a40000000000000b43d47c1e23e00000000000000000000803fabaaea3f0200003fabaa2abe0000803f0000000000000000deca3e3f6f3b073fca97313e0000803f0200003fabaa2abe000000000000b43d47c1e23e00000000000000000000803fabaaea3f0200003fabaa2a3e0000803f0000000000000000deca3e3f6f3b073fca97313e0000803f0200003fabaa2a3e0000003b0000b43d47c1e23e00000000000000000000803fabaaea3facaa0a40abaa2a3e0000803f0000000000000000deca3e3f6f3b073fca97313e0000803facaa0a40abaa2a3e0000003b0000b83d47c1e23e00000000000000000000803fabaaea3facaa0a40abaa2abe0000803f0000000000000000deca3e3f6f3b073fca97313e0000803facaa0a40abaa2abe000000000000b83d47c1e23e00000000000000000000803f0100c03fabaa0a40aeaa2a3e000000000000803f00000000deca3e3f6f3b073fca97313e0000803f0100c03faeaa2a3e000000000000b83d47c1e23e00000000000000000000803f0000c03fabaa0a40abaa2abe000000000000803f00000000deca3e3f6f3b073fca97313e0000803f0000c03fabaa2abe0000003b0000b83d47c1e23e00000000000000000000803fabaaea3fabaa0a40aeaa2abe000000000000803f00000000deca3e3f6f3b073fca97313e0000803fabaaea3faeaa2abe0000003b0000bc3d47c1e23e00000000000000000000803facaaea3fabaa0a40abaa2a3e000000000000803f00000000deca3e3f6f3b073fca97313e0000803facaaea3fabaa2a3e000000000000bc3d47c1e23e00000000000000000000803f0100c03f5655553fabaa2a3e000080bf0000000000000000deca3e3f6f3b073fca97313e0000803f5655553fabaa2a3e000000000000bc3d47c1e23e00000000000000000000803f0100c03f5655553fabaa2abe000080bf0000000000000000deca3e3f6f3b073fca97313e0000803f5655553fabaa2abe0000003b0000bc3d47c1e23e00000000000000000000803f0100c03fabaaea3fabaa2abe000080bf0000000000000000deca3e3f6f3b073fca97313e0000803fabaaea3fabaa2abe0000003b0000c03d47c1e23e00000000000000000000803f0100c03fabaaea3fabaa2a3e000080bf0000000000000000deca3e3f6f3b073fca97313e0000803fabaaea3fabaa2a3e000000000000c03d47c1e23e00000000000000000000803f0100c0bfaeaa2abeb4aa2a3e00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f0100c0bfb4aa2a3e000000000000c03d47c1e23e00000000000000000000803f0200c0bfaeaa2abe0300003f00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f0200c0bf0300003f0000003b0000c03d47c1e23e00000000000000000000803f0100c03faeaa2abefaffff3e00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f0100c03ffaffff3e0000003b0000c43d47c1e23e00000000000000000000803f0200c03faeaa2abe9caa2a3e00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f0200c03f9caa2a3e000000000000c43d47c1e23e00000000000000000000803f0100c0bfabaa2a3e0300003f000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f0100c0bf0300003f000000000000c43d0000000000000000000000000000803f0200c0bfabaa2a3eb4aa2a3e000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f0200c0bfb4aa2a3e0000003b0000c43d0000000000000000000000000000803f0100c03fabaa2a3e9caa2a3e000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f0100c03f9caa2a3e0000003b0000c83d0000000000000000000000000000803f0200c03fabaa2a3efaffff3e000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f0200c03ffaffff3e000000000000c83d0000000000000000000000000000803f555595bfabaa2abeabaa2abe000080bf0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2abeabaa2abe000000000000c83d47c1e23e00000000000000000000803f555595bfabaa2abe000000bf000080bf0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2abe000000bf0000003b0000c83d47c1e23e00000000000000000000803f555595bfabaa2a3e000000bf000080bf0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2a3e000000bf0000003b0000cc3d47c1e23e00000000000000000000803f555595bfabaa2a3eabaa2abe000080bf0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2a3eabaa2abe000000000000cc3d47c1e23e00000000000000000000803f565595bfaeaa2abe000000bf0000000000000000000080bfa426183f33c0dd3e1c552a3e0000803f565595bfaeaa2abe000000000000cc3d47c1e23e00000000000000000000803f0000c03faeaa2abe000000bf0000000000000000000080bfa426183f33c0dd3e1c552a3e0000803f0000c03faeaa2abe0000003b0000cc3d47c1e23e00000000000000000000803f0000c03fabaa2a3e010000bf0000000000000000000080bfa426183f33c0dd3e1c552a3e0000803f0000c03fabaa2a3e0000003b0000d03d47c1e23e00000000000000000000803f565595bfabaa2a3e010000bf0000000000000000000080bfa426183f33c0dd3e1c552a3e0000803f565595bfabaa2a3e000000000000d03d47c1e23e00000000000000000000803f555595bfabaa2a3eb0aa2a3e000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f555595bfb0aa2a3e000000000000d03d0000000000000000000000000000803f565595bfabaa2a3e000000bf000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f565595bf000000bf0000003b0000d03d0000000000000000000000000000803f565555bfabaa2a3e010000bf000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f565555bf010000bf0000003b0000d43d0000000000000000000000000000803f545555bfabaa2a3eaeaa2a3e000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f545555bfaeaa2a3e000000000000d43d0000000000000000000000000000803f575595bfaeaa2abefcffffbe00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f575595bffcffffbe000000000000d43d47c1e23e00000000000000000000803f585595bfaeaa2abebaaa2a3e00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f585595bfbaaa2a3e0000003b0000d43d47c1e23e00000000000000000000803f0100c03faeaa2abea4aa2a3e00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f0100c03fa4aa2a3e0000003b0000d83d47c1e23e00000000000000000000803f0200c03faeaa2abe040000bf00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f0200c03f040000bf000000000000d83d47c1e23e00000000000000000000803f585555bfabaa2a3ea0aa2abe000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f585555bfa0aa2abe000000000000d83d0000000000000000000000000000803f585555bfabaa2a3efcffffbe000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f585555bffcffffbe0000003b0000d83d0000000000000000000000000000803f0200c03fabaa2a3e030000bf000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f0200c03f030000bf0000003b0000dc3d0000000000000000000000000000803f0200c03fabaa2a3eb3aa2abe000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f0200c03fb3aa2abe000000000000dc3d0000000000000000000000000000803f5555953fabaa2abe0000003f0000803f0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2abe0000003f000000000000dc3d47c1e23e00000000000000000000803f5555953fabaa2abe5655553f0000803f0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2abe5655553f0000003b0000dc3d47c1e23e00000000000000000000803f5555953fabaa2a3e5655553f0000803f0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2a3e5655553f0000003b0000e03d47c1e23e00000000000000000000803f5555953fabaa2a3e0000003f0000803f0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2a3e0000003f000000000000e03d47c1e23e00000000000000000000803f555595bfabaa2abe5655553f000080bf0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2abe5655553f000000000000e03d47c1e23e00000000000000000000803f555595bfabaa2abe0000003f000080bf0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2abe0000003f0000003b0000e03d47c1e23e00000000000000000000803f555595bfabaa2a3e0000003f000080bf0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2a3e0000003f0000003b0000e43d47c1e23e00000000000000000000803f555595bfabaa2a3e5655553f000080bf0000000000000000a426183f33c0dd3e1c552a3e0000803fabaa2a3e5655553f000000000000e43d47c1e23e00000000000000000000803f575595bfaeaa2abe0200003f00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f575595bf0200003f000000000000e43d47c1e23e00000000000000000000803f575595bfaeaa2abe5855553f00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f575595bf5855553f0000003b0000e43d47c1e23e00000000000000000000803f5755953faeaa2abe5455553f00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f5755953f5455553f0000003b0000e83d47c1e23e00000000000000000000803f5755953faeaa2abefbffff3e00000000000080bf00000000a426183f33c0dd3e1c552a3e0000803f5755953ffbffff3e000000000000e83d47c1e23e00000000000000000000803f5855953faeaa2abe5655553f00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f5855953faeaa2abe000000000000e83d47c1e23e00000000000000000000803f585595bfaeaa2abe5655553f00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f585595bfaeaa2abe0000003b0000e83d47c1e23e00000000000000000000803f585595bfabaa2a3e5655553f00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f585595bfabaa2a3e0000003b0000ec3d47c1e23e00000000000000000000803f5855953fabaa2a3e5655553f00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f5855953fabaa2a3e000000000000ec3d47c1e23e00000000000000000000803f575595bfabaa2a3e5855553f000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f575595bf5855553f000000000000ec3d0000000000000000000000000000803f575595bfabaa2a3e0200003f000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f575595bf0200003f0000003b0000ec3d0000000000000000000000000000803f5755953fabaa2a3efbffff3e000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f5755953ffbffff3e0000003b0000f03d0000000000000000000000000000803f5755953fabaa2a3e5455553f000000000000803f0000000087d4043f4873cd3ecce35f3e0000803f5755953f5455553f000000000000f03d0000000000000000000000000000803f5655953f0200c03f0000803300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5655953f0200c03f000000000000f03d47c1e23e00000000000000000000803f5455553f0200c03f0000803300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5455553f0200c03f0000003b0000f03d47c1e23e00000000000000000000803f5455553f01002040000080b300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5455553f010020400000003b0000f43d47c1e23e00000000000000000000803f5655953f01002040000080b300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5655953f01002040000000000000f43d47c1e23e00000000000000000000803f5555553fabaa0a40abaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f5555553fabaa0a40000000000000f43d47c1e23e00000000000000000000803f5555953fabaa0a40abaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f5555953fabaa0a400000003b0000f43d47c1e23e00000000000000000000803f5555953f01002040abaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f5555953f010020400000003b0000f83d47c1e23e00000000000000000000803f5555553f01002040abaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f5555553f01002040000000000000f83d47c1e23e00000000000000000000803f555595bf5555553f0000803300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f555595bf5555553f000000000000f83d47c1e23e00000000000000000000803f0100c0bf5555553f0000803300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0100c0bf5555553f0000003b0000f83d47c1e23e00000000000000000000803f0100c0bfacaaea3f000080b300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0100c0bfacaaea3f0000003b0000fc3d47c1e23e00000000000000000000803f555595bfacaaea3f000080b300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f555595bfacaaea3f000000000000fc3d47c1e23e00000000000000000000803f0000c0bf5555553fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f0000c0bf5555553f000000000000fc3d092db43e00000000000000000000803f565595bf5555553fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f565595bf5555553f0000003b0000fc3d092db43e00000000000000000000803f565595bf5655953fabaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f565595bf5655953f0000003b0000003e092db43e00000000000000000000803f0000c0bf5655953fabaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f0000c0bf5655953f000000000000003e092db43e00000000000000000000803f0000c0bf0000c03fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f0000c0bf0000c03f000000000000003e092db43e00000000000000000000803f000000bf0000c03fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f000000bf0000c03f0000003b0000003e092db43e00000000000000000000803f000000bfacaaea3fabaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f000000bfacaaea3f0000003b0000023e092db43e00000000000000000000803f0000c0bfacaaea3fabaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f0000c0bfacaaea3f000000000000023e092db43e00000000000000000000803f0000c0bf5655953fabaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f0000c0bf5655953f000000000000023e47c1e23e00000000000000000000803f545555bf5655953fabaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f545555bf5655953f0000003b0000023e47c1e23e00000000000000000000803f545555bf0000c03fabaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f545555bf0000c03f0000003b0000043e47c1e23e00000000000000000000803f0000c0bf0000c03fabaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f0000c0bf0000c03f000000000000043e47c1e23e00000000000000000000803f555595bfaaaaea3fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f555595bfaaaaea3f000000000000043e092db43e00000000000000000000803f555555bfaaaaea3fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f555555bfaaaaea3f0000003b0000043e092db43e00000000000000000000803f555555bfabaa0a40abaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f555555bfabaa0a400000003b0000063e092db43e00000000000000000000803f555595bfabaa0a40abaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f555595bfabaa0a40000000000000063e092db43e00000000000000000000803f555595bfabaa0a40abaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f555595bfabaa0a40000000000000063e47c1e23e00000000000000000000803f555555bfabaa0a40abaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f555555bfabaa0a400000003b0000063e47c1e23e00000000000000000000803f555555bf01002040abaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f555555bf010020400000003b0000083e47c1e23e00000000000000000000803f555595bf01002040abaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f555595bf01002040000000000000083e47c1e23e00000000000000000000803f565555bffeffff3e000080330000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f565555bffeffff3e000000000000083e47c1e23e00000000000000000000803f000000bffeffff3e000080330000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f000000bffeffff3e0000003b0000083e47c1e23e00000000000000000000803f000000bf0000c03f000080b30000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f000000bf0000c03f0000003b00000a3e47c1e23e00000000000000000000803f565555bf0000c03f000080b30000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f565555bf0000c03f0000000000000a3e47c1e23e00000000000000000000803f565555bfaaaaea3fabaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f565555bfaaaaea3f0000000000000a3e47c1e23e00000000000000000000803f000000bfaaaaea3fabaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f000000bfaaaaea3f0000003b00000a3e47c1e23e00000000000000000000803f000000bfabaa0a40abaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f000000bfabaa0a400000003b00000c3e47c1e23e00000000000000000000803f565555bfabaa0a40abaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f565555bfabaa0a400000000000000c3e47c1e23e00000000000000000000803f565555bfabaa0a40abaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f565555bfabaa0a400000000000000c3e092db43e00000000000000000000803f000000bfabaa0a40abaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f000000bfabaa0a400000003b00000c3e092db43e00000000000000000000803f000000bf01002040abaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f000000bf010020400000003b00000e3e092db43e00000000000000000000803f565555bf01002040abaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f565555bf010020400000000000000e3e092db43e00000000000000000000803f000000bffeffff3eabaa2a330000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f000000bffeffff3e0000000000000e3e092db43e00000000000000000000803f0000003ffeffff3eabaa2a330000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f0000003ffeffff3e0000003b00000e3e092db43e00000000000000000000803f0000003f5655953fabaa2ab30000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f0000003f5655953f0000003b0000103e092db43e00000000000000000000803f000000bf5655953fabaa2ab30000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f000000bf5655953f000000000000103e092db43e00000000000000000000803f000000bfabaaea3fabaa2a330000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f000000bfabaaea3f000000000000103e092db43e00000000000000000000803fabaa2abeabaaea3fabaa2a330000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803fabaa2abeabaaea3f0000003b0000103e092db43e00000000000000000000803fabaa2abe00002040abaa2ab30000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803fabaa2abe000020400000003b0000123e092db43e00000000000000000000803f000000bf00002040abaa2ab30000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f000000bf00002040000000000000123e092db43e00000000000000000000803fb8aa2a3ea0aa2a3e5655d53300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fb8aa2a3ea0aa2a3e000000000000123e47c1e23e00000000000000000000803f575595bfa0aa2a3e5655d53300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f575595bfa0aa2a3e0000003b0000123e47c1e23e00000000000000000000803f575595bfacaaea3f5655d5b300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f575595bfacaaea3f0000003b0000143e47c1e23e00000000000000000000803fb8aa2a3eacaaea3f5655d5b300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fb8aa2a3eacaaea3f000000000000143e47c1e23e00000000000000000000803fabaa2abeabaaea3fabaa2a330000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803fabaa2abeabaaea3f000000000000143e47c1e23e00000000000000000000803fabaa2a3eabaaea3fabaa2a330000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803fabaa2a3eabaaea3f0000003b0000143e47c1e23e00000000000000000000803fabaa2a3e00002040abaa2ab30000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803fabaa2a3e000020400000003b0000163e47c1e23e00000000000000000000803fabaa2abe00002040abaa2ab30000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803fabaa2abe00002040000000000000163e47c1e23e00000000000000000000803f0000003fa4aa2a3eabaaaa3300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0000003fa4aa2a3e000000000000163e47c1e23e00000000000000000000803fa6aa2a3ea4aa2a3eabaaaa3300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fa6aa2a3ea4aa2a3e0000003b0000163e47c1e23e00000000000000000000803fa6aa2a3e0000c03fabaaaab300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fa6aa2a3e0000c03f0000003b0000183e47c1e23e00000000000000000000803f0000003f0000c03fabaaaab300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0000003f0000c03f000000000000183e47c1e23e00000000000000000000803f000000bf5555953fabaa2a330000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f000000bf5555953f000000000000183e47c1e23e00000000000000000000803f0000003f5555953fabaa2a330000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f0000003f5555953f0000003b0000183e47c1e23e00000000000000000000803f0000003fabaaea3fabaa2ab30000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f0000003fabaaea3f0000003b00001a3e47c1e23e00000000000000000000803f000000bfabaaea3fabaa2ab30000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f000000bfabaaea3f0000000000001a3e47c1e23e00000000000000000000803fa9aa2a3eaaaaea3fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803fa9aa2a3eaaaaea3f0000000000001a3e092db43e00000000000000000000803f0000003faaaaea3fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f0000003faaaaea3f0000003b00001a3e092db43e00000000000000000000803f0000003fabaa0a40abaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f0000003fabaa0a400000003b00001c3e092db43e00000000000000000000803fa9aa2a3eabaa0a40abaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803fa9aa2a3eabaa0a400000000000001c3e092db43e00000000000000000000803f5655553fa4aa2a3e0000803300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5655553fa4aa2a3e0000000000001c3e47c1e23e00000000000000000000803fffffff3ea4aa2a3e0000803300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fffffff3ea4aa2a3e0000003b00001c3e47c1e23e00000000000000000000803fffffff3e5655953f000080b300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fffffff3e5655953f0000003b00001e3e47c1e23e00000000000000000000803f5655553f5655953f000080b300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5655553f5655953f0000000000001e3e47c1e23e00000000000000000000803f0000003ffeffff3e000080330000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f0000003ffeffff3e0000000000001e3e47c1e23e00000000000000000000803f5655553ffeffff3e000080330000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f5655553ffeffff3e0000003b00001e3e47c1e23e00000000000000000000803f5655553f0000c03f000080b30000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f5655553f0000c03f0000003b0000203e47c1e23e00000000000000000000803f0000003f0000c03f000080b30000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f0000003f0000c03f000000000000203e47c1e23e00000000000000000000803f5755553f0000c03fabaaaa3200000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5755553f0000c03f000000000000203e47c1e23e00000000000000000000803fa4aa2a3e0000c03fabaaaa3200000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fa4aa2a3e0000c03f0000003b0000203e47c1e23e00000000000000000000803fa4aa2a3eacaaea3fabaaaab200000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fa4aa2a3eacaaea3f0000003b0000223e47c1e23e00000000000000000000803f5755553facaaea3fabaaaab200000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5755553facaaea3f000000000000223e47c1e23e00000000000000000000803f0000003f0000c03fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f0000003f0000c03f000000000000223e092db43e00000000000000000000803f0000c03f0000c03fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f0000c03f0000c03f0000003b0000223e092db43e00000000000000000000803f0000c03facaaea3fabaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f0000c03facaaea3f0000003b0000243e092db43e00000000000000000000803f0000003facaaea3fabaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f0000003facaaea3f000000000000243e092db43e00000000000000000000803f0000003faaaaea3fabaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f0000003faaaaea3f000000000000243e47c1e23e00000000000000000000803f5655553faaaaea3fabaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f5655553faaaaea3f0000003b0000243e47c1e23e00000000000000000000803f5655553fabaa0a40abaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f5655553fabaa0a400000003b0000263e47c1e23e00000000000000000000803f0000003fabaa0a40abaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f0000003fabaa0a40000000000000263e47c1e23e00000000000000000000803f5a55553fabaaea3fabaa2a3300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5a55553fabaaea3f000000000000263e47c1e23e00000000000000000000803f575595bfabaaea3fabaa2a3300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f575595bfabaaea3f0000003b0000263e47c1e23e00000000000000000000803f575595bf00002040abaa2ab300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f575595bf000020400000003b0000283e47c1e23e00000000000000000000803f5a55553f00002040abaa2ab300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5a55553f00002040000000000000283e47c1e23e00000000000000000000803faaaa2a3eabaa0a40abaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803faaaa2a3eabaa0a40000000000000283e092db43e00000000000000000000803f5655553fabaa0a40abaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f5655553fabaa0a400000003b0000283e092db43e00000000000000000000803f5655553f01002040abaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f5655553f010020400000003b00002a3e092db43e00000000000000000000803faaaa2a3e01002040abaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803faaaa2a3e010020400000000000002a3e092db43e00000000000000000000803f5655953f5655953fabaaaa3200000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5655953f5655953f0000000000002a3e47c1e23e00000000000000000000803ffcffff3e5655953fabaaaa3200000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803ffcffff3e5655953f0000003b00002a3e47c1e23e00000000000000000000803ffcffff3e0000c03fabaaaab200000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803ffcffff3e0000c03f0000003b00002c3e47c1e23e00000000000000000000803f5655953f0000c03fabaaaab200000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5655953f0000c03f0000000000002c3e47c1e23e00000000000000000000803f5555553faaaaea3fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f5555553faaaaea3f0000000000002c3e092db43e00000000000000000000803f5555953faaaaea3fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f5555953faaaaea3f0000003b00002c3e092db43e00000000000000000000803f5555953fabaa0a40abaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f5555953fabaa0a400000003b00002e3e092db43e00000000000000000000803f5555553fabaa0a40abaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f5555553fabaa0a400000000000002e3e092db43e00000000000000000000803f555595bfa8aa2a3eabaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f555595bfa8aa2a3e0000000000002e3e47c1e23e00000000000000000000803f555555bfa8aa2a3eabaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f555555bfa8aa2a3e0000003b00002e3e47c1e23e00000000000000000000803f555555bf0000003fabaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f555555bf0000003f0000003b0000303e47c1e23e00000000000000000000803f555595bf0000003fabaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f555595bf0000003f000000000000303e47c1e23e00000000000000000000803f555595bffeffff3eabaa2a330000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f555595bffeffff3e000000000000303e092db43e00000000000000000000803f555555bffeffff3eabaa2a330000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f555555bffeffff3e0000003b0000303e092db43e00000000000000000000803f555555bf5655953fabaa2ab30000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f555555bf5655953f0000003b0000323e092db43e00000000000000000000803f555595bf5655953fabaa2ab30000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f555595bf5655953f000000000000323e092db43e00000000000000000000803f565555bfa8aa2a3eabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f565555bfa8aa2a3e000000000000323e092db43e00000000000000000000803f5655553fa8aa2a3eabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f5655553fa8aa2a3e0000003b0000323e092db43e00000000000000000000803f5655553f0000003fabaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f5655553f0000003f0000003b0000343e092db43e00000000000000000000803f565555bf0000003fabaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f565555bf0000003f000000000000343e092db43e00000000000000000000803f5555553fa8aa2a3eabaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f5555553fa8aa2a3e000000000000343e47c1e23e00000000000000000000803f5555953fa8aa2a3eabaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f5555953fa8aa2a3e0000003b0000343e47c1e23e00000000000000000000803f5555953f0000003fabaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f5555953f0000003f0000003b0000363e47c1e23e00000000000000000000803f5555553f0000003fabaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f5555553f0000003f000000000000363e47c1e23e00000000000000000000803f5655953fa8aa2a3eabaa2a3300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5655953fa8aa2a3e000000000000363e47c1e23e00000000000000000000803f5455553fa8aa2a3eabaa2a3300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5455553fa8aa2a3e0000003b0000363e47c1e23e00000000000000000000803f5455553f5655553fabaa2ab300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5455553f5655553f0000003b0000383e47c1e23e00000000000000000000803f5655953f5655553fabaa2ab300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5655953f5655553f000000000000383e47c1e23e00000000000000000000803f5555553f0000003fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f5555553f0000003f000000000000383e092db43e00000000000000000000803f5555953f0000003fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f5555953f0000003f0000003b0000383e092db43e00000000000000000000803f5555953f5655553fabaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f5555953f5655553f0000003b00003a3e092db43e00000000000000000000803f5555553f5655553fabaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f5555553f5655553f0000000000003a3e092db43e00000000000000000000803f5455553f5655953fabaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f5455553f5655953f0000000000003a3e47c1e23e00000000000000000000803f0000c03f5655953fabaaaa320000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f0000c03f5655953f0000003b00003a3e47c1e23e00000000000000000000803f0000c03f0000c03fabaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f0000c03f0000c03f0000003b00003c3e47c1e23e00000000000000000000803f5455553f0000c03fabaaaab20000000000000000000080bff95f053f0bd0cd3e7ccb603e0000803f5455553f0000c03f0000000000003c3e47c1e23e00000000000000000000803f0000c03f5555553fabaaaa3200000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0000c03f5555553f0000000000003c3e47c1e23e00000000000000000000803f5355553f5555553fabaaaa3200000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5355553f5555553f0000003b00003c3e47c1e23e00000000000000000000803f5355553f5655953fabaaaab200000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5355553f5655953f0000003b00003e3e47c1e23e00000000000000000000803f0000c03f5655953fabaaaab200000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0000c03f5655953f0000000000003e3e47c1e23e00000000000000000000803f5455553f5555553fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f5455553f5555553f0000000000003e3e092db43e00000000000000000000803f0000c03f5555553fabaaaa320000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f0000c03f5555553f0000003b00003e3e092db43e00000000000000000000803f0000c03f5655953fabaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f0000c03f5655953f0000003b0000403e092db43e00000000000000000000803f5455553f5655953fabaaaab20000000000000000000080bf2cfb1c3f8ae78d3ede00e93d0000803f5455553f5655953f000000000000403e092db43e00000000000000000000803f0100c03f5555953fabaa2a3300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0100c03f5555953f000000000000403e47c1e23e00000000000000000000803f5555953f5555953fabaa2a3300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5555953f5555953f0000003b0000403e47c1e23e00000000000000000000803f5555953fabaaea3fabaa2ab300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5555953fabaaea3f0000003b0000423e47c1e23e00000000000000000000803f0100c03fabaaea3fabaa2ab300000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0100c03fabaaea3f000000000000423e47c1e23e00000000000000000000803f565555bf55553540abaa2a3e000080bf0000000000000000deca3e3f6f3b073fca97313e0000803f55553540abaa2a3e000000000000423e47c1e23e00000000000000000000803f565555bf55553540abaa2abe000080bf0000000000000000deca3e3f6f3b073fca97313e0000803f55553540abaa2abe0000003b0000423e47c1e23e00000000000000000000803f565555bfabaa4a40abaa2abe000080bf0000000000000000deca3e3f6f3b073fca97313e0000803fabaa4a40abaa2abe0000003b0000443e47c1e23e00000000000000000000803f565555bfabaa4a40abaa2a3e000080bf0000000000000000deca3e3f6f3b073fca97313e0000803fabaa4a40abaa2a3e000000000000443e47c1e23e00000000000000000000803fffffffbe55553540aeaa2a3e00000000000000000000803fa426183f33c0dd3e1c552a3e0000803fffffffbe55553540000000000000443e47c1e23e00000000000000000000803f565555bf55553540aeaa2a3e00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f565555bf555535400000003b0000443e47c1e23e00000000000000000000803f565555bfabaa4a40abaa2a3e00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f565555bfabaa4a400000003b0000463e47c1e23e00000000000000000000803fffffffbeabaa4a40abaa2a3e00000000000000000000803fa426183f33c0dd3e1c552a3e0000803fffffffbeabaa4a40000000000000463e47c1e23e00000000000000000000803f575555bfabaa4a40b3aa2a3e000000000000803f00000000deca3e3f6f3b073fca97313e0000803f575555bfb3aa2a3e000000000000463e47c1e23e00000000000000000000803f585555bfabaa4a40a6aa2abe000000000000803f00000000deca3e3f6f3b073fca97313e0000803f585555bfa6aa2abe0000003b0000463e47c1e23e00000000000000000000803f5755553fabaa4a40b3aa2abe000000000000803f00000000deca3e3f6f3b073fca97313e0000803f5755553fb3aa2abe0000003b0000483e47c1e23e00000000000000000000803f5855553fabaa4a40a6aa2a3e000000000000803f00000000deca3e3f6f3b073fca97313e0000803f5855553fa6aa2a3e000000000000483e47c1e23e00000000000000000000803f0200003f00002040afaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f0200003f00002040000000000000483e47c1e23e00000000000000000000803f020000bf00002040afaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f020000bf000020400000003b0000483e47c1e23e00000000000000000000803f020000bfacaa4a40aaaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f020000bfacaa4a400000003b00004a3e47c1e23e00000000000000000000803f0200003facaa4a40aaaa2a3e00000000000000000000803fdeca3e3f6f3b073fca97313e0000803f0200003facaa4a400000000000004a3e47c1e23e00000000000000000000803f398ea3bf8ee3383facaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea3bfacaa2a3e0000000000004a3e47c1e23e00000000000000000000803f398ea3bf8ee3383fe5388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea3bfe5388e3e0000003b00004a3e47c1e23e00000000000000000000803f555595bf8ee3383fe4388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f555595bfe4388e3e0000003b00004c3e47c1e23e00000000000000000000803f555595bf8ee3383fabaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f555595bfabaa2a3e0000000000004c3e47c1e23e00000000000000000000803f398ea3bf8ee3383fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383fe4388e3e0000000000004c3e47c1e23e00000000000000000000803f398ea3bf8ee3383facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383facaa2a3e0000003b00004c3e47c1e23e00000000000000000000803f398ea3bf5655553facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553facaa2a3e0000003b00004e3e47c1e23e00000000000000000000803f398ea3bf5655553fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553fe4388e3e0000000000004e3e47c1e23e00000000000000000000803f555595bf8ee3383fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f555595bf8ee3383f0000000000004e3e47c1e23e00000000000000000000803f398ea3bf8ee3383fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f398ea3bf8ee3383f0000003b00004e3e47c1e23e00000000000000000000803f398ea3bf5655553fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f398ea3bf5655553f0000003b0000503e47c1e23e00000000000000000000803f555595bf5655553fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f555595bf5655553f000000000000503e47c1e23e00000000000000000000803f398ea3bf8ee3383facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f398ea3bf8ee3383f000000000000503e47c1e23e00000000000000000000803f555595bf8ee3383facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f555595bf8ee3383f0000003b0000503e47c1e23e00000000000000000000803f555595bf5655553fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f555595bf5655553f0000003b0000523e47c1e23e00000000000000000000803f398ea3bf5655553fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f398ea3bf5655553f000000000000523e47c1e23e00000000000000000000803f555595bf8ee3383facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383facaa2a3e000000000000523e47c1e23e00000000000000000000803f555595bf8ee3383fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383fe4388e3e0000003b0000523e47c1e23e00000000000000000000803f555595bf5655553fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553fe4388e3e0000003b0000543e47c1e23e00000000000000000000803f555595bf5655553facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553facaa2a3e000000000000543e47c1e23e00000000000000000000803f398ea3bf5655553fe5388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea3bfe5388e3e000000000000543e47c1e23e00000000000000000000803f398ea3bf5655553facaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea3bfacaa2a3e0000003b0000543e47c1e23e00000000000000000000803f555595bf5655553fabaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f555595bfabaa2a3e0000003b0000563e47c1e23e00000000000000000000803f555595bf5655553fe4388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f555595bfe4388e3e000000000000563e47c1e23e00000000000000000000803fe438cebf8ee3383facaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803fe438cebfacaa2a3e000000000000563e47c1e23e00000000000000000000803fe438cebf8ee3383fe5388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803fe438cebfe5388e3e0000003b0000563e47c1e23e00000000000000000000803f0000c0bf8ee3383fe4388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c0bfe4388e3e0000003b0000583e47c1e23e00000000000000000000803f0000c0bf8ee3383fabaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c0bfabaa2a3e000000000000583e47c1e23e00000000000000000000803fe438cebf8ee3383fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383fe4388e3e000000000000583e47c1e23e00000000000000000000803fe438cebf8ee3383facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383facaa2a3e0000003b0000583e47c1e23e00000000000000000000803fe438cebf5655553facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553facaa2a3e0000003b00005a3e47c1e23e00000000000000000000803fe438cebf5655553fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553fe4388e3e0000000000005a3e47c1e23e00000000000000000000803f0000c0bf8ee3383fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0000c0bf8ee3383f0000000000005a3e47c1e23e00000000000000000000803fe438cebf8ee3383fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fe438cebf8ee3383f0000003b00005a3e47c1e23e00000000000000000000803fe438cebf5655553fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fe438cebf5655553f0000003b00005c3e47c1e23e00000000000000000000803f0000c0bf5655553fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0000c0bf5655553f0000000000005c3e47c1e23e00000000000000000000803fe438cebf8ee3383facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803fe438cebf8ee3383f0000000000005c3e47c1e23e00000000000000000000803f0000c0bf8ee3383facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f0000c0bf8ee3383f0000003b00005c3e47c1e23e00000000000000000000803f0000c0bf5655553fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f0000c0bf5655553f0000003b00005e3e47c1e23e00000000000000000000803fe438cebf5655553fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803fe438cebf5655553f0000000000005e3e47c1e23e00000000000000000000803f0000c0bf8ee3383facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383facaa2a3e0000000000005e3e47c1e23e00000000000000000000803f0000c0bf8ee3383fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383fe4388e3e0000003b00005e3e47c1e23e00000000000000000000803f0000c0bf5655553fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553fe4388e3e0000003b0000603e47c1e23e00000000000000000000803f0000c0bf5655553facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553facaa2a3e000000000000603e47c1e23e00000000000000000000803fe438cebf5655553fe5388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803fe438cebfe5388e3e000000000000603e47c1e23e00000000000000000000803fe438cebf5655553facaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803fe438cebfacaa2a3e0000003b0000603e47c1e23e00000000000000000000803f0000c0bf5655553fabaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c0bfabaa2a3e0000003b0000623e47c1e23e00000000000000000000803f0000c0bf5655553fe4388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c0bfe4388e3e000000000000623e47c1e23e00000000000000000000803fe438cebfabaaea3facaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803fe438cebfacaa2a3e000000000000623e47c1e23e00000000000000000000803fe438cebfabaaea3fe5388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803fe438cebfe5388e3e0000003b0000623e47c1e23e00000000000000000000803f0000c0bfabaaea3fe4388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c0bfe4388e3e0000003b0000643e47c1e23e00000000000000000000803f0000c0bfabaaea3fabaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c0bfabaa2a3e000000000000643e47c1e23e00000000000000000000803fe438cebfabaaea3fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3fe4388e3e000000000000643e47c1e23e00000000000000000000803fe438cebfabaaea3facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3facaa2a3e0000003b0000643e47c1e23e00000000000000000000803fe438cebf8fe3f83facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83facaa2a3e0000003b0000663e47c1e23e00000000000000000000803fe438cebf8fe3f83fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83fe4388e3e000000000000663e47c1e23e00000000000000000000803f0000c0bfabaaea3fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0000c0bfabaaea3f000000000000663e47c1e23e00000000000000000000803fe438cebfabaaea3fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fe438cebfabaaea3f0000003b0000663e47c1e23e00000000000000000000803fe438cebf8fe3f83fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fe438cebf8fe3f83f0000003b0000683e47c1e23e00000000000000000000803f0000c0bf8fe3f83fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0000c0bf8fe3f83f000000000000683e47c1e23e00000000000000000000803fe438cebfabaaea3facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803fe438cebfabaaea3f000000000000683e47c1e23e00000000000000000000803f0000c0bfabaaea3facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f0000c0bfabaaea3f0000003b0000683e47c1e23e00000000000000000000803f0000c0bf8fe3f83fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f0000c0bf8fe3f83f0000003b00006a3e47c1e23e00000000000000000000803fe438cebf8fe3f83fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803fe438cebf8fe3f83f0000000000006a3e47c1e23e00000000000000000000803f0000c0bfabaaea3facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3facaa2a3e0000000000006a3e47c1e23e00000000000000000000803f0000c0bfabaaea3fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3fe4388e3e0000003b00006a3e47c1e23e00000000000000000000803f0000c0bf8fe3f83fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83fe4388e3e0000003b00006c3e47c1e23e00000000000000000000803f0000c0bf8fe3f83facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83facaa2a3e0000000000006c3e47c1e23e00000000000000000000803fe438cebf8fe3f83fe5388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803fe438cebfe5388e3e0000000000006c3e47c1e23e00000000000000000000803fe438cebf8fe3f83facaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803fe438cebfacaa2a3e0000003b00006c3e47c1e23e00000000000000000000803f0000c0bf8fe3f83fabaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c0bfabaa2a3e0000003b00006e3e47c1e23e00000000000000000000803f0000c0bf8fe3f83fe4388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c0bfe4388e3e0000000000006e3e47c1e23e00000000000000000000803f398ea3bfabaaea3facaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea3bfacaa2a3e0000000000006e3e47c1e23e00000000000000000000803f398ea3bfabaaea3fe5388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea3bfe5388e3e0000003b00006e3e47c1e23e00000000000000000000803f555595bfabaaea3fe4388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f555595bfe4388e3e0000003b0000703e47c1e23e00000000000000000000803f555595bfabaaea3fabaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f555595bfabaa2a3e000000000000703e47c1e23e00000000000000000000803f398ea3bfabaaea3fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3fe4388e3e000000000000703e47c1e23e00000000000000000000803f398ea3bfabaaea3facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3facaa2a3e0000003b0000703e47c1e23e00000000000000000000803f398ea3bf8fe3f83facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83facaa2a3e0000003b0000723e47c1e23e00000000000000000000803f398ea3bf8fe3f83fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83fe4388e3e000000000000723e47c1e23e00000000000000000000803f555595bfabaaea3fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f555595bfabaaea3f000000000000723e47c1e23e00000000000000000000803f398ea3bfabaaea3fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f398ea3bfabaaea3f0000003b0000723e47c1e23e00000000000000000000803f398ea3bf8fe3f83fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f398ea3bf8fe3f83f0000003b0000743e47c1e23e00000000000000000000803f555595bf8fe3f83fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f555595bf8fe3f83f000000000000743e47c1e23e00000000000000000000803f398ea3bfabaaea3facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f398ea3bfabaaea3f000000000000743e47c1e23e00000000000000000000803f555595bfabaaea3facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f555595bfabaaea3f0000003b0000743e47c1e23e00000000000000000000803f555595bf8fe3f83fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f555595bf8fe3f83f0000003b0000763e47c1e23e00000000000000000000803f398ea3bf8fe3f83fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f398ea3bf8fe3f83f000000000000763e47c1e23e00000000000000000000803f555595bfabaaea3facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3facaa2a3e000000000000763e47c1e23e00000000000000000000803f555595bfabaaea3fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3fe4388e3e0000003b0000763e47c1e23e00000000000000000000803f555595bf8fe3f83fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83fe4388e3e0000003b0000783e47c1e23e00000000000000000000803f555595bf8fe3f83facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83facaa2a3e000000000000783e47c1e23e00000000000000000000803f398ea3bf8fe3f83fe5388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea3bfe5388e3e000000000000783e47c1e23e00000000000000000000803f398ea3bf8fe3f83facaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea3bfacaa2a3e0000003b0000783e47c1e23e00000000000000000000803f555595bf8fe3f83fabaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f555595bfabaa2a3e0000003b00007a3e47c1e23e00000000000000000000803f555595bf8fe3f83fe4388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f555595bfe4388e3e0000000000007a3e47c1e23e00000000000000000000803f5555953f8ee3383facaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f5555953facaa2a3e0000000000007a3e47c1e23e00000000000000000000803f5555953f8ee3383fe5388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f5555953fe5388e3e0000003b00007a3e47c1e23e00000000000000000000803f398ea33f8ee3383fe4388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea33fe4388e3e0000003b00007c3e47c1e23e00000000000000000000803f398ea33f8ee3383fabaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea33fabaa2a3e0000000000007c3e47c1e23e00000000000000000000803f5555953f8ee3383fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383fe4388e3e0000000000007c3e47c1e23e00000000000000000000803f5555953f8ee3383facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383facaa2a3e0000003b00007c3e47c1e23e00000000000000000000803f5555953f5655553facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553facaa2a3e0000003b00007e3e47c1e23e00000000000000000000803f5555953f5655553fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553fe4388e3e0000000000007e3e47c1e23e00000000000000000000803f398ea33f8ee3383fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f398ea33f8ee3383f0000000000007e3e47c1e23e00000000000000000000803f5555953f8ee3383fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5555953f8ee3383f0000003b00007e3e47c1e23e00000000000000000000803f5555953f5655553fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5555953f5655553f0000003b0000803e47c1e23e00000000000000000000803f398ea33f5655553fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f398ea33f5655553f000000000000803e47c1e23e00000000000000000000803f5555953f8ee3383facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f5555953f8ee3383f000000000000803e47c1e23e00000000000000000000803f398ea33f8ee3383facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f398ea33f8ee3383f0000003b0000803e47c1e23e00000000000000000000803f398ea33f5655553fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f398ea33f5655553f0000003b0000813e47c1e23e00000000000000000000803f5555953f5655553fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f5555953f5655553f000000000000813e47c1e23e00000000000000000000803f398ea33f8ee3383facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383facaa2a3e000000000000813e47c1e23e00000000000000000000803f398ea33f8ee3383fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383fe4388e3e0000003b0000813e47c1e23e00000000000000000000803f398ea33f5655553fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553fe4388e3e0000003b0000823e47c1e23e00000000000000000000803f398ea33f5655553facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553facaa2a3e000000000000823e47c1e23e00000000000000000000803f5555953f5655553fe5388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f5555953fe5388e3e000000000000823e47c1e23e00000000000000000000803f5555953f5655553facaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f5555953facaa2a3e0000003b0000823e47c1e23e00000000000000000000803f398ea33f5655553fabaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea33fabaa2a3e0000003b0000833e47c1e23e00000000000000000000803f398ea33f5655553fe4388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea33fe4388e3e000000000000833e47c1e23e00000000000000000000803f0000c03f8ee3383facaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c03facaa2a3e000000000000833e47c1e23e00000000000000000000803f0000c03f8ee3383fe5388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c03fe5388e3e0000003b0000833e47c1e23e00000000000000000000803fe438ce3f8ee3383fe4388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803fe438ce3fe4388e3e0000003b0000843e47c1e23e00000000000000000000803fe438ce3f8ee3383fabaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803fe438ce3fabaa2a3e000000000000843e47c1e23e00000000000000000000803f0000c03f8ee3383fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383fe4388e3e000000000000843e47c1e23e00000000000000000000803f0000c03f8ee3383facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383facaa2a3e0000003b0000843e47c1e23e00000000000000000000803f0000c03f5655553facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553facaa2a3e0000003b0000853e47c1e23e00000000000000000000803f0000c03f5655553fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553fe4388e3e000000000000853e47c1e23e00000000000000000000803fe438ce3f8ee3383fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fe438ce3f8ee3383f000000000000853e47c1e23e00000000000000000000803f0000c03f8ee3383fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0000c03f8ee3383f0000003b0000853e47c1e23e00000000000000000000803f0000c03f5655553fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0000c03f5655553f0000003b0000863e47c1e23e00000000000000000000803fe438ce3f5655553fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fe438ce3f5655553f000000000000863e47c1e23e00000000000000000000803f0000c03f8ee3383facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f0000c03f8ee3383f000000000000863e47c1e23e00000000000000000000803fe438ce3f8ee3383facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803fe438ce3f8ee3383f0000003b0000863e47c1e23e00000000000000000000803fe438ce3f5655553fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803fe438ce3f5655553f0000003b0000873e47c1e23e00000000000000000000803f0000c03f5655553fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f0000c03f5655553f000000000000873e47c1e23e00000000000000000000803fe438ce3f8ee3383facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383facaa2a3e000000000000873e47c1e23e00000000000000000000803fe438ce3f8ee3383fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8ee3383fe4388e3e0000003b0000873e47c1e23e00000000000000000000803fe438ce3f5655553fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553fe4388e3e0000003b0000883e47c1e23e00000000000000000000803fe438ce3f5655553facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f5655553facaa2a3e000000000000883e47c1e23e00000000000000000000803f0000c03f5655553fe5388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c03fe5388e3e000000000000883e47c1e23e00000000000000000000803f0000c03f5655553facaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c03facaa2a3e0000003b0000883e47c1e23e00000000000000000000803fe438ce3f5655553fabaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803fe438ce3fabaa2a3e0000003b0000893e47c1e23e00000000000000000000803fe438ce3f5655553fe4388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803fe438ce3fe4388e3e000000000000893e47c1e23e00000000000000000000803f0000c03fabaaea3facaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c03facaa2a3e000000000000893e47c1e23e00000000000000000000803f0000c03fabaaea3fe5388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c03fe5388e3e0000003b0000893e47c1e23e00000000000000000000803fe438ce3fabaaea3fe4388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803fe438ce3fe4388e3e0000003b00008a3e47c1e23e00000000000000000000803fe438ce3fabaaea3fabaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803fe438ce3fabaa2a3e0000000000008a3e47c1e23e00000000000000000000803f0000c03fabaaea3fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3fe4388e3e0000000000008a3e47c1e23e00000000000000000000803f0000c03fabaaea3facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3facaa2a3e0000003b00008a3e47c1e23e00000000000000000000803f0000c03f8fe3f83facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83facaa2a3e0000003b00008b3e47c1e23e00000000000000000000803f0000c03f8fe3f83fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83fe4388e3e0000000000008b3e47c1e23e00000000000000000000803fe438ce3fabaaea3fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fe438ce3fabaaea3f0000000000008b3e47c1e23e00000000000000000000803f0000c03fabaaea3fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0000c03fabaaea3f0000003b00008b3e47c1e23e00000000000000000000803f0000c03f8fe3f83fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f0000c03f8fe3f83f0000003b00008c3e47c1e23e00000000000000000000803fe438ce3f8fe3f83fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803fe438ce3f8fe3f83f0000000000008c3e47c1e23e00000000000000000000803f0000c03fabaaea3facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f0000c03fabaaea3f0000000000008c3e47c1e23e00000000000000000000803fe438ce3fabaaea3facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803fe438ce3fabaaea3f0000003b00008c3e47c1e23e00000000000000000000803fe438ce3f8fe3f83fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803fe438ce3f8fe3f83f0000003b00008d3e47c1e23e00000000000000000000803f0000c03f8fe3f83fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f0000c03f8fe3f83f0000000000008d3e47c1e23e00000000000000000000803fe438ce3fabaaea3facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3facaa2a3e0000000000008d3e47c1e23e00000000000000000000803fe438ce3fabaaea3fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3fe4388e3e0000003b00008d3e47c1e23e00000000000000000000803fe438ce3f8fe3f83fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83fe4388e3e0000003b00008e3e47c1e23e00000000000000000000803fe438ce3f8fe3f83facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83facaa2a3e0000000000008e3e47c1e23e00000000000000000000803f0000c03f8fe3f83fe5388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c03fe5388e3e0000000000008e3e47c1e23e00000000000000000000803f0000c03f8fe3f83facaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f0000c03facaa2a3e0000003b00008e3e47c1e23e00000000000000000000803fe438ce3f8fe3f83fabaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803fe438ce3fabaa2a3e0000003b00008f3e47c1e23e00000000000000000000803fe438ce3f8fe3f83fe4388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803fe438ce3fe4388e3e0000000000008f3e47c1e23e00000000000000000000803f5555953fabaaea3facaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f5555953facaa2a3e0000000000008f3e47c1e23e00000000000000000000803f5555953fabaaea3fe5388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f5555953fe5388e3e0000003b00008f3e47c1e23e00000000000000000000803f398ea33fabaaea3fe4388e3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea33fe4388e3e0000003b0000903e47c1e23e00000000000000000000803f398ea33fabaaea3fabaa2a3e00000000000080bf00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea33fabaa2a3e000000000000903e47c1e23e00000000000000000000803f5555953fabaaea3fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3fe4388e3e000000000000903e47c1e23e00000000000000000000803f5555953fabaaea3facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3facaa2a3e0000003b0000903e47c1e23e00000000000000000000803f5555953f8fe3f83facaa2a3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83facaa2a3e0000003b0000913e47c1e23e00000000000000000000803f5555953f8fe3f83fe4388e3e000080bf0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83fe4388e3e000000000000913e47c1e23e00000000000000000000803f398ea33fabaaea3fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f398ea33fabaaea3f000000000000913e47c1e23e00000000000000000000803f5555953fabaaea3fe5388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5555953fabaaea3f0000003b0000913e47c1e23e00000000000000000000803f5555953f8fe3f83fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f5555953f8fe3f83f0000003b0000923e47c1e23e00000000000000000000803f398ea33f8fe3f83fe4388e3e00000000000000000000803fc7c5c23e5eb52c4095e6ee3f0000803f398ea33f8fe3f83f000000000000923e47c1e23e00000000000000000000803f5555953fabaaea3facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f5555953fabaaea3f000000000000923e47c1e23e00000000000000000000803f398ea33fabaaea3facaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f398ea33fabaaea3f0000003b0000923e47c1e23e00000000000000000000803f398ea33f8fe3f83fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f398ea33f8fe3f83f0000003b0000933e47c1e23e00000000000000000000803f5555953f8fe3f83fabaa2a3e0000000000000000000080bfc7c5c23e5eb52c4095e6ee3f0000803f5555953f8fe3f83f000000000000933e47c1e23e00000000000000000000803f398ea33fabaaea3facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3facaa2a3e000000000000933e47c1e23e00000000000000000000803f398ea33fabaaea3fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803fabaaea3fe4388e3e0000003b0000933e47c1e23e00000000000000000000803f398ea33f8fe3f83fe4388e3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83fe4388e3e0000003b0000943e47c1e23e00000000000000000000803f398ea33f8fe3f83facaa2a3e0000803f0000000000000000c7c5c23e5eb52c4095e6ee3f0000803f8fe3f83facaa2a3e000000000000943e47c1e23e00000000000000000000803f5555953f8fe3f83fe5388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f5555953fe5388e3e000000000000943e47c1e23e00000000000000000000803f5555953f8fe3f83facaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f5555953facaa2a3e0000003b0000943e47c1e23e00000000000000000000803f398ea33f8fe3f83fabaa2a3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea33fabaa2a3e0000003b0000953e47c1e23e00000000000000000000803f398ea33f8fe3f83fe4388e3e000000000000803f00000000c7c5c23e5eb52c4095e6ee3f0000803f398ea33fe4388e3e000000000000953e47c1e23e00000000000000000000803f5655553f55553540aeaa2a3e00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f5655553f55553540000000000000953e47c1e23e00000000000000000000803fffffff3e55553540aeaa2a3e00000000000000000000803fa426183f33c0dd3e1c552a3e0000803fffffff3e555535400000003b0000953e47c1e23e00000000000000000000803fffffff3eabaa4a40abaa2a3e00000000000000000000803fa426183f33c0dd3e1c552a3e0000803fffffff3eabaa4a400000003b0000963e47c1e23e00000000000000000000803f5655553fabaa4a40abaa2a3e00000000000000000000803fa426183f33c0dd3e1c552a3e0000803f5655553fabaa4a40000000000000963e47c1e23e00000000000000000000803f565555bf00002040aaaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f565555bf00002040000000000000963e47c1e23e00000000000000000000803f5655553f00002040aaaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f5655553f000020400000003b0000963e47c1e23e00000000000000000000803f5655553facaa4a40afaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f5655553facaa4a400000003b0000973e47c1e23e00000000000000000000803f565555bfacaa4a40afaa2abe0000000000000000000080bfdeca3e3f6f3b073fca97313e0000803f565555bfacaa4a40000000000000973e47c1e23e00000000000000000000803f5655553f55553540abaa2abe0000803f0000000000000000deca3e3f6f3b073fca97313e0000803f55553540abaa2abe000000000000973e47c1e23e00000000000000000000803f5655553f55553540abaa2a3e0000803f0000000000000000deca3e3f6f3b073fca97313e0000803f55553540abaa2a3e0000003b0000973e47c1e23e00000000000000000000803f5655553fabaa4a40abaa2a3e0000803f0000000000000000deca3e3f6f3b073fca97313e0000803fabaa4a40abaa2a3e0000003b0000983e47c1e23e00000000000000000000803f5655553fabaa4a40abaa2abe0000803f0000000000000000deca3e3f6f3b073fca97313e0000803fabaa4a40abaa2abe000000000000983e47c1e23e00000000000000000000803f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 1.5000001, z: 0.16666663}
+    m_Extent: {x: 1.8333335, y: 1.6666669, z: 0.66666687}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
