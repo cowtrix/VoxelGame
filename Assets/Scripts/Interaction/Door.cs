@@ -17,7 +17,7 @@ namespace Interaction
 			public Vector3 OpenPosition, OpenRotation;
 			public Vector3 ClosedPosition, ClosedRotation;
 		}
-
+		public AnimationCurve Curve = AnimationCurve.Linear(0, 0, 1, 1);
 		public bool RotationEnabled = true;
 		public bool PositionEnabled = true;
 		[Range(0, 1)]
@@ -69,15 +69,16 @@ namespace Interaction
 				return;
 			}
 			m_lastOpenAmount = OpenAmount;
+			var smoothedLerp = Curve.Evaluate(OpenAmount);
 			foreach (var t in Transforms.Where(t => t.Transform))
 			{
 				if (PositionEnabled)
 				{
-					t.Transform.localPosition = Vector3.Lerp(t.ClosedPosition, t.OpenPosition, OpenAmount);
+					t.Transform.localPosition = Vector3.Lerp(t.ClosedPosition, t.OpenPosition, smoothedLerp);
 				}
 				if (RotationEnabled)
 				{
-					t.Transform.localRotation = Quaternion.Euler(Vector3.Lerp(t.ClosedRotation, t.OpenRotation, OpenAmount));
+					t.Transform.localRotation = Quaternion.Euler(Vector3.Lerp(t.ClosedRotation, t.OpenRotation, smoothedLerp));
 				}
 			}
 		}
