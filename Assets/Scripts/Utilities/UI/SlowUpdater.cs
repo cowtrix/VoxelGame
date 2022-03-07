@@ -1,31 +1,18 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
-using Voxul;
+﻿using Voxul;
 
-public abstract class SlowUpdater : ExtendedMonoBehaviour
+namespace Common
 {
-    public float ThinkSpeed = 1;
-    protected virtual void Start()
-	{
-        StartCoroutine(Think());
-	}
 
-    protected virtual IEnumerator Think()
+	public abstract class SlowUpdater : TrackedObject<SlowUpdater>
 	{
-		while (true)
+		public float LastUpdateTime { get; set; }
+		public float ThinkSpeed = 1;
+
+		public void Think(float dt)
 		{
-			try
-			{
-				Tick(ThinkSpeed);
-			}
-			catch(Exception e)
-			{
-				Debug.LogException(e);
-			}
-            yield return new WaitForSeconds(ThinkSpeed);
+			Tick(dt);
 		}
-	}
 
-    protected abstract void Tick(float dt);
+		protected abstract void Tick(float dt);
+	}
 }

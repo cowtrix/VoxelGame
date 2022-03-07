@@ -1,8 +1,10 @@
 ﻿using Common;
 using Interaction;
+using Interaction.Activities;
 using NodeCanvas.DialogueTrees;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Voxul;
@@ -20,57 +22,31 @@ namespace Actors
 		MOVE,
 	}
 
-	[Serializable]
-	public struct ActorAction
+	public interface IMovementController
 	{
-		public eActionKey Key;
-		public string Description;
-		public Vector2 Context;
-
-		public override bool Equals(object obj)
-		{
-			return obj is ActorAction action &&
-				   Key == action.Key;
-		}
-
-		public override int GetHashCode()
-		{
-			return 990326508 + Key.GetHashCode();
-		}
-
-		public static bool operator ==(ActorAction left, ActorAction right)
-		{
-			return left.Equals(right);
-		}
-
-		public static bool operator !=(ActorAction left, ActorAction right)
-		{
-			return !(left == right);
-		}
-
-		public override string ToString() => $"{Description} [{CameraController.Instance.Input.GetControlNameForAction(Key)}]";
+		void Move(Vector2 dir);
 	}
 
 	[RequireComponent(typeof(ActorState))]
 	public class Actor : ExtendedMonoBehaviour, IDialogueActor
 	{
-		[Serializable]
-		public class ActorSettings
-		{
-			[Header("Interaction")]
-			public Vector2 InteractDistance = new Vector2(0, 10);
+		// Adapters
+		public ILookAdapter LookAdapter { get; protected set; }
+		public IMovementController MovementController { get; private set; }
 
-			[Header("Inventory")]
-			public Transform EquippedItemTransform;
-		}
+		public Transform EquippedItemTransform;
 
-		public ActorSettings Settings = new ActorSettings();
+		/// <summary>
+		/// The interactable item that the player is currently focused on, i.e. in the crosshairs
+		/// </summary>
 		public Interactable FocusedInteractable { get; protected set; }
+		// Activity the actor is currently engaging in
+		public Activity CurrentActivity { get; protected set; }
 		public List<Interactable> Interactables { get; private set; } = new List<Interactable>();
 		public Animator Animator { get; private set; }
 		public ActorState State { get; private set; }
 		public virtual string DisplayName => ActorName;
-		public ILookAdapter LookAdapter { get; protected set; }
+
 		public Transform GetDialogueContainer() => DialogueContainer;
 		public Transform DialogueContainer;
 		public LayerMask InteractionMask;
@@ -78,6 +54,7 @@ namespace Actors
 
 		private void Awake()
 		{
+			MovementController = gameObject.GetComponentByInterfaceInChildren<IMovementController>();
 			LookAdapter = gameObject.GetComponentByInterfaceInChildren<ILookAdapter>();
 			Animator = GetComponentInChildren<Animator>();
 			State = GetComponent<ActorState>();
@@ -95,7 +72,7 @@ namespace Actors
 			if (Physics.Raycast(cameraPos, cameraForward, out var interactionHit, 1000, InteractionMask, QueryTriggerInteraction.Collide))
 			{
 				Debug.DrawLine(cameraPos, interactionHit.point, Color.yellow);
-				var interactable = interactionHit.collider.GetComponent<Interactable>() ?? interactionHit.collider.GetComponentInParent<Interactable>();
+				var interactable = interactionHit.collider.GetComponent<Interactable>() ?? interactionHit.collider.GetComponent<InteractionForwarder>()?.Interactable;
 				if (interactable && interactable.enabled && interactionHit.distance < interactable.InteractionSettings.MaxFocusDistance)
 				{
 					if (interactable != FocusedInteractable)
@@ -107,9 +84,35 @@ namespace Actors
 					return;
 				}
 			}
+
 			FocusedInteractable?.ExitFocus(this);
 			FocusedInteractable = null;
 			Debug.DrawLine(cameraPos, cameraPos + cameraForward * 1000, Color.magenta);
+		}
+
+		public virtual void TryStartActivity(Activity activity)
+		{
+			if(CurrentActivity == activity)
+			{
+				return;
+			}
+			if (CurrentActivity)
+			{
+				TryStopActivity(CurrentActivity);
+			}
+			CurrentActivity = activity;
+			CurrentActivity.OnStartActivity(this);
+			CurrentActivity = activity;
+		}
+
+		public virtual void TryStopActivity(Activity activity)
+		{
+			if(CurrentActivity != activity)
+			{
+				return;
+			}
+			CurrentActivity.OnStopActivity(this);
+			CurrentActivity = null;
 		}
 
 		private void OnTriggerEnter(Collider other)

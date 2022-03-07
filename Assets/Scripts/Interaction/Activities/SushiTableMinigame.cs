@@ -25,10 +25,10 @@ namespace Interaction.Activities.SushiTable
 			}
 		}
 
-		public override void ExecuteAction(Actor actor, ActorAction action)
+		public override void ReceiveAction(Actor actor, ActorAction action)
 		{
 			Active = true;
-			base.ExecuteAction(actor, action);
+			base.ReceiveAction(actor, action);
 			StartCoroutine(PlayGame(actor));
 		}
 

@@ -110,13 +110,13 @@ namespace Interaction.Items
 			yield return new ActorAction { Key = eActionKey.USE, Description = "Pick Up" };
 		}
 
-		public override void ExecuteAction(Actor actor, ActorAction action)
+		public override void ReceiveAction(Actor actor, ActorAction action)
 		{
-			if (action.Key == eActionKey.USE)
+			if (action.State == eActionState.End && action.Key == eActionKey.USE)
 			{
 				actor.State.PickupItem(this);
 			}
-			base.ExecuteAction(actor, action);
+			base.ReceiveAction(actor, action);
 		}
 
 		public virtual void OnPickup(Actor actor)

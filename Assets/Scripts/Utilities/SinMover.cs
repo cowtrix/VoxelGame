@@ -34,7 +34,7 @@ public class SinMover : MonoBehaviour
 		}
 		if (RotationEnabled)
 		{
-			transform.localRotation = Quaternion.Lerp(Quaternion.Euler(EndRotation), Quaternion.Euler(StartRotation), t);
+			transform.localRotation = Quaternion.Euler(Vector3.Lerp(EndRotation, StartRotation, t)); 
 		}
 	}
 }

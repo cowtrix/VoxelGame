@@ -20,14 +20,14 @@ namespace Interaction
 			yield return new ActorAction { Key = eActionKey.USE, Description = "Take a ticket" };
 		}
 
-		public override void ExecuteAction(Actor actor, ActorAction action)
+		public override void ReceiveAction(Actor actor, ActorAction action)
 		{
 			if(action.Key == eActionKey.USE)
 			{
 				StartCoroutine(PrintTicket());
 				return;
 			}
-			base.ExecuteAction(actor, action);
+			base.ReceiveAction(actor, action);
 		}
 
 		IEnumerator PrintTicket()

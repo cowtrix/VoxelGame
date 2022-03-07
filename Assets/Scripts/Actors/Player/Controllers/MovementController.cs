@@ -12,10 +12,11 @@ namespace Actors
 		Transform transform { get; }
 	}
 
-	public class MovementController : ExtendedMonoBehaviour
+	public class MovementController : ExtendedMonoBehaviour, IMovementController
 	{
 		public bool IsGrounded { get; private set; }
 		public float TimeUngrounded { get; private set; }
+		public Vector2 MoveDirection { get; private set; }
 
 		private GravityManager GravityManager => GravityManager.Instance;
 		public ILookAdapter LookAdapter { get; protected set; }
@@ -32,16 +33,12 @@ namespace Actors
 		public Transform GroundingPoint;
 		public float PushOutSpeed = 10;
 
-		public Vector2 m_moveDirection;
 		protected bool m_inputJump;
-
-		public SmoothPositionVector3 SmoothPosition { get; private set; }
 
 		protected virtual void Start()
 		{
 			LookAdapter = gameObject.GetComponentByInterfaceInChildren<ILookAdapter>();
 			Rigidbody.useGravity = false;
-			SmoothPosition = new SmoothPositionVector3(10, transform.position);
 		}
 
 		private void FixedUpdate()
@@ -83,12 +80,6 @@ namespace Actors
 			}
 
 			{
-				if (Actor.FocusedInteractable is FocusableInteractable focusable && focusable.Actor == Actor)
-				{
-					focusable.ExecuteAction(Actor, new ActorAction { Key = eActionKey.MOVE, });
-					return;
-				}
-
 				// Move from input
 				if (m_inputJump)
 				{
@@ -100,7 +91,7 @@ namespace Actors
 					}
 				}
 
-				var movement = m_moveDirection;
+				var movement = MoveDirection;
 				if (movement.magnitude > 0)
 				{
 					var localVelocityDirection = new Vector3(movement.x, 0, movement.y);
@@ -128,7 +119,6 @@ namespace Actors
 					Rigidbody.velocity += worldVelocityDirection.normalized * (IsGrounded ? MovementSpeed : ThrusterSpeed) * dt;
 				}
 			}
-			SmoothPosition.Push(Rigidbody.position);
 			if (Actor.Animator)
 			{
 				Actor.Animator.SetFloat("VelocityX", Rigidbody.velocity.x);
@@ -142,6 +132,12 @@ namespace Actors
 			var gravityVec = GravityManager.GetGravityForce(transform.position);
 			Gizmos.DrawLine(transform.position, GroundingPoint.position);
 			Gizmos.DrawWireCube(GroundingPoint.position, Vector3.one * .05f);
+		}
+
+		public void Move(Vector2 dir)
+		{
+			Debug.Log($"Move: {dir}");
+			MoveDirection = dir;
 		}
 	}
 }

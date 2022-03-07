@@ -7,7 +7,7 @@ using Voxul.Utilities;
 
 namespace Interaction.Activities.AsteroidDefense
 {
-	public class ArcadeShooter : FocusableInteractable
+	public class ArcadeShooter : Activity
 	{
 		public override string DisplayName => "Asteroid Defence";
 

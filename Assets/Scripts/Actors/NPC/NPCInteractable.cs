@@ -16,10 +16,10 @@ namespace Interaction
 			}
 		}
 
-		public override void ExecuteAction(Actor instigator, ActorAction action)
+		public override void ReceiveAction(Actor instigator, ActorAction action)
 		{
 			Self.InteractWithActor(instigator, action);
-			base.ExecuteAction(instigator, action);
+			base.ReceiveAction(instigator, action);
 		}
 	}
 }

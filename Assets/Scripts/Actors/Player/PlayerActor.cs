@@ -3,45 +3,15 @@ using Interaction;
 using Interaction.Activities;
 using NodeCanvas.DialogueTrees;
 using Phone;
-using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Actors
 {
-	public static class ActorExtensions
-	{
-		static eActionKey[] m_keys = Enum.GetValues(typeof(eActionKey)).Cast<eActionKey>().ToArray();
-		public static eActionKey GetActionKey(this InputAction.CallbackContext cntxt)
-		{
-			foreach (var k in m_keys)
-			{
-				if (string.Equals(k.ToString(), cntxt.action.name, StringComparison.OrdinalIgnoreCase))
-				{
-					return k;
-				}
-			}
-			throw new Exception($"Input action with no key: {cntxt.action.name}");
-		}
-
-		public static string GetControlNameForAction(this PlayerInput input, eActionKey key)
-		{
-			foreach (var action in input.actions)
-			{
-				if (string.Equals(action.name, key.ToString(), StringComparison.OrdinalIgnoreCase))
-				{
-					return action.GetBindingDisplayString();
-				}
-			}
-			throw new Exception($"Couldn't find a control name for {key}");
-		}
-	}
-
 	public class PlayerActor : Actor
 	{
 		public CameraController CameraController => CameraController.Instance;
@@ -49,30 +19,45 @@ namespace Actors
 
 		public void OnActionExecuted(InputAction.CallbackContext cntxt)
 		{
-			if (!cntxt.started || CameraController.LockCameraLook)
+			// Construct action
+			var action = new ActorAction
 			{
+				Key = cntxt.GetActionKey(),
+				State = cntxt.started ? eActionState.Start : cntxt.canceled ? eActionState.End : eActionState.Tick,
+				Context = cntxt.valueType == typeof(Vector2) ? cntxt.ReadValue<Vector2>() : default 
+			};
+
+			Debug.Log($"Action: {action} {action.State} {action.Context}");
+
+			// First priority is if we have an active activity
+			if (CurrentActivity)
+			{
+				CurrentActivity.ReceiveAction(this, action);
 				return;
 			}
-			var action = new ActorAction { Key = cntxt.GetActionKey(), Context = cntxt.valueType == typeof(Vector2) ? cntxt.ReadValue<Vector2>() : default };
+
+			if(action.Key == eActionKey.MOVE)
+			{
+				// Always send mvoement to movement controller otherwise
+				MovementController.Move(action.Context);
+				return;
+			}
+
+			// If we have an equipped item, send it the action
 			if (State.EquippedItem != null 
 				&& State.EquippedItem.GetActions(this).Any(a => a.Key == action.Key))
 			{
-				State.EquippedItem.ExecuteAction(this, action);
+				State.EquippedItem.ReceiveAction(this, action);
 				return;
 			}
-			if (FocusedInteractable is FocusableInteractable focusable 
-				&& focusable.Actor == this
-				&& focusable.GetActions(this).Any(a => a.Key == action.Key))
-			{
-				focusable.ExecuteAction(this, action);
-				return;
-			}
+
+			// Otherwise, execute the action on the focused object
 			if (FocusedInteractable)
 			{
-				var actions = FocusedInteractable.GetActions(this).ToList();
+				var actions = FocusedInteractable.GetActions(this);
 				if(actions.Any(a => a.Key == action.Key))
 				{
-					FocusedInteractable.ExecuteAction(this, action);
+					FocusedInteractable.ReceiveAction(this, action);
 					return;
 				}
 			}

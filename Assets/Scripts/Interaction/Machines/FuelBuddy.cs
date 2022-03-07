@@ -48,7 +48,7 @@ namespace Interaction
 			return true;
 		}
 
-		public override void ExecuteAction(Actor actor, ActorAction action)
+		public override void ReceiveAction(Actor actor, ActorAction action)
 		{
 			if(action.Key == eActionKey.USE)
 			{
@@ -59,7 +59,7 @@ namespace Interaction
 					CurrentCapacity -= refuelAmount;
 				}
 			}
-			base.ExecuteAction(actor, action);
+			base.ReceiveAction(actor, action);
 		}
 
 		private void Start()

@@ -130,19 +130,22 @@ namespace Interaction.Activities
 			}
 		}
 
-		public override void ExecuteAction(Actor actor, ActorAction action)
+		public override void ReceiveAction(Actor actor, ActorAction action)
 		{
-			if(action.Key == eActionKey.NEXT && PageNumber < m_pages.Count - 2)
+			if(action.State == eActionState.End)
 			{
-				PageNumber += 2;
-				return;
+				if (action.Key == eActionKey.NEXT && PageNumber < m_pages.Count - 2)
+				{
+					PageNumber += 2;
+					return;
+				}
+				if (action.Key == eActionKey.PREV && PageNumber > 0)
+				{
+					PageNumber -= 2;
+					return;
+				}
 			}
-			if (action.Key == eActionKey.PREV && PageNumber > 0)
-			{
-				PageNumber -= 2;
-				return;
-			}
-			base.ExecuteAction(actor, action);
+			base.ReceiveAction(actor, action);
 		}
 	}
 }

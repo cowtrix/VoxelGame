@@ -18,12 +18,11 @@ public class SmoothPositionVector3
 	public void Push(Vector3 pos)
 	{
 		m_positions.Enqueue(pos);
-		while(m_positions.Count > PositionCount)
+		while (m_positions.Count > PositionCount)
 		{
 			m_positions.Dequeue();
 		}
 	}
-
 }
 
 public class PlayerChaser : MonoBehaviour

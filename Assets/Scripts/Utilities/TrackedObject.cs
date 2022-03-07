@@ -31,7 +31,26 @@ namespace Common
 			m_instances.Remove(GUID);
 		}
 
-		public static IEnumerable<T> Instances => Application.isPlaying ? m_instances.Values.Where(i => i) : FindObjectsOfType<T>();
+		public static IEnumerable<T> Instances
+		{
+			get
+			{
+				if (!Application.isPlaying)
+				{
+					foreach(var i in FindObjectsOfType<T>())
+					{
+						yield return i;
+					}
+				}
+				else
+				{
+					foreach (var instance in m_instances)
+					{
+						yield return instance.Value;
+					}
+				}
+			}
+		}
 
 		public static bool TryGetValue(string guid, out T val)
 		{

@@ -14,7 +14,7 @@ namespace Interaction.Activities
 		public virtual void OnEquip(Actor actor)
 		{
 			EquippedActor = actor;
-			transform.SetParent(actor.Settings.EquippedItemTransform);
+			transform.SetParent(actor.EquippedItemTransform);
 			transform.localPosition = EquippedOffset;
 			transform.localRotation = Quaternion.Euler(EquippedRotation);
 			gameObject.SetActive(true);
@@ -23,7 +23,7 @@ namespace Interaction.Activities
 			{
 				rb.isKinematic = true;
 				rb.detectCollisions = false;
-				rb.position = actor.Settings.EquippedItemTransform.position;
+				rb.position = actor.EquippedItemTransform.position;
 			}
 			var colliders = GetComponentsInChildren<Collider>();
 			foreach(var c in colliders)
@@ -54,7 +54,7 @@ namespace Interaction.Activities
 		{
 		}
 
-		public override void ExecuteAction(Actor actor, ActorAction action)
+		public override void ReceiveAction(Actor actor, ActorAction action)
 		{
 			if(action.Key == eActionKey.EQUIP)
 			{
@@ -68,7 +68,7 @@ namespace Interaction.Activities
 			}
 			if (!EquippedActor)
 			{
-				base.ExecuteAction(actor, action);
+				base.ReceiveAction(actor, action);
 			}
 		}
 

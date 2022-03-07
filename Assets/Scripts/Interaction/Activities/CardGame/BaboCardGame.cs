@@ -19,7 +19,7 @@ namespace Interaction.Activities.CardGame_Babo
 	}
 
 
-	public class BaboCardGame : FocusableInteractable
+	public class BaboCardGame : Activity
 	{
 		public override string DisplayName => "Card Game";
 

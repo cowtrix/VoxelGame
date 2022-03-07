@@ -9,7 +9,7 @@ using Voxul;
 
 namespace Interaction.Activities
 {
-	public class ClawMachine : FocusableInteractable
+	public class ClawMachine : Activity
 	{
 		public int PlayCost = 1;
 
@@ -46,10 +46,11 @@ namespace Interaction.Activities
 		private bool m_hasInitialized = false;
 		private ClawMachineClaw[] m_claws;
 
-		private void OnDrawGizmosSelected()
+		protected override void OnDrawGizmosSelected()
 		{
 			Gizmos.matrix = transform.localToWorldMatrix;
 			Gizmos.DrawWireCube(ClawBounds.center, ClawBounds.size);
+			base.OnDrawGizmosSelected();
 		}
 
 		private void Start()
@@ -117,19 +118,26 @@ namespace Interaction.Activities
 			}
 		}
 
-		public override void ExecuteAction(Actor actor, ActorAction action)
+		public override void ReceiveAction(Actor actor, ActorAction action)
 		{
-			switch(action.Key)
+			if (action.State == eActionState.End)
 			{
-				case eActionKey.MOVE:
-					var delta = action.Context;
-					Move(actor, delta);
-					return;
-				case eActionKey.USE:
-					Fire(actor);
-					return;
+				switch (action.Key)
+				{
+					case eActionKey.MOVE:
+						var delta = action.Context;
+						Move(actor, delta);
+						return;
+					case eActionKey.USE:
+						if(action.State == eActionState.End)
+						{
+							Fire(actor);
+						}
+						return;
+				}
 			}
-			base.ExecuteAction(actor, action);
+			
+			base.ReceiveAction(actor, action);
 		}
 
 		public void Fire(Actor playerActor)

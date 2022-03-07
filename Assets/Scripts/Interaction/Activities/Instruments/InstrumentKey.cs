@@ -12,7 +12,7 @@ namespace Interaction.Activities
 
 		public AudioClip Sound;
 
-		public override void ExecuteAction(Actor actor, ActorAction action)
+		public override void ReceiveAction(Actor actor, ActorAction action)
 		{
 			if (Sound)
 			{
@@ -22,7 +22,7 @@ namespace Interaction.Activities
 				source.PlayOneShot(Sound);
 				ObjectPool<AudioSource>.Release(source);
 			}
-			base.ExecuteAction(actor, action);
+			base.ReceiveAction(actor, action);
 		}
 	}
 }

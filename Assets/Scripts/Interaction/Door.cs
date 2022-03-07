@@ -20,6 +20,7 @@ namespace Interaction
 		public AnimationCurve Curve = AnimationCurve.Linear(0, 0, 1, 1);
 		public bool RotationEnabled = true;
 		public bool PositionEnabled = true;
+		public bool ExternallyDriven = false;
 		[Range(0, 1)]
 		public float OpenAmount;
 		private float m_lastOpenAmount;
@@ -63,7 +64,10 @@ namespace Interaction
 
 		private void Update()
 		{
-			OpenAmount = Mathf.MoveTowards(OpenAmount, m_targetOpen, Speed * Time.deltaTime);
+			if (!ExternallyDriven)
+			{
+				OpenAmount = Mathf.MoveTowards(OpenAmount, m_targetOpen, Speed * Time.deltaTime);
+			}
 			if (OpenAmount == m_lastOpenAmount)
 			{
 				return;
@@ -83,11 +87,11 @@ namespace Interaction
 			}
 		}
 
-		public override void ExecuteAction(Actor actor, ActorAction action)
+		public override void ReceiveAction(Actor actor, ActorAction action)
 		{
 			if(action.Key != eActionKey.USE)
 			{
-				base.ExecuteAction(actor, action);
+				base.ReceiveAction(actor, action);
 				return;
 			}
 			if (m_targetOpen <= 0)

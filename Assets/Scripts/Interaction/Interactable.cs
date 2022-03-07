@@ -21,7 +21,7 @@ namespace Interaction
 
 	public interface IInteractable
 	{
-		void ExecuteAction(Actor actor, ActorAction action);
+		void ReceiveAction(Actor actor, ActorAction action);
 		IEnumerable<ActorAction> GetActions(Actor context);
 		Transform transform { get; }
 		GameObject gameObject { get; }
@@ -68,7 +68,7 @@ namespace Interaction
 
 		protected virtual void Start()
 		{
-			CollectColliders();
+			//CollectColliders();
 		}
 
 		protected void CollectColliders()
@@ -123,9 +123,12 @@ namespace Interaction
 			InteractionSettings.OnFocusEnter.Invoke(actor);
 		}
 
-		public virtual void ExecuteAction(Actor actor, ActorAction action)
+		public virtual void ReceiveAction(Actor actor, ActorAction action)
 		{
-			InteractionSettings.OnUsed.Invoke(actor, action);
+			if(action.State == eActionState.End && action.Key == eActionKey.USE)
+			{
+				InteractionSettings.OnUsed.Invoke(actor, action);
+			}
 		}
 
 		public virtual void ExitAttention(Actor actor)
@@ -140,7 +143,7 @@ namespace Interaction
 
 		protected virtual void OnDrawGizmosSelected()
 		{
-			CollectColliders();
+			//CollectColliders();
 			var b = Bounds;
 			Gizmos.DrawWireCube(b.center, b.size);
 		}

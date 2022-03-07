@@ -18,7 +18,6 @@ public interface ICameraControllerProxy
 public class CameraController : Singleton<CameraController>, ILookAdapter
 {
 	public Actor Actor;
-	public ICameraControllerProxy Proxy { get; set; }
 	public bool LockCameraLook { get; set; }
 	public bool LockCursor { get; set; } = true;
 
@@ -27,6 +26,10 @@ public class CameraController : Singleton<CameraController>, ILookAdapter
 	public Vector2 LookAngle, LastDelta;
 	public Vector3 LookOffset = new Vector3(0, .5f, 0);
 	private InputAction m_look;
+
+	[Header("Proxy")]
+	public float ProxyChaseSpeed = 1;
+	public ICameraControllerProxy Proxy { get; set; }
 
 	public PlayerInput Input => transform.parent.GetComponent<PlayerInput>();
 
@@ -55,9 +58,17 @@ public class CameraController : Singleton<CameraController>, ILookAdapter
 			{
 				transform.rotation = Proxy.LookDirectionOverride.Value;
 			}
+			else
+			{
+				transform.localRotation = Quaternion.Euler(-LookAngle.y, LookAngle.x, 0);
+			}
 			if (Proxy.LookPositionOverride.HasValue)
 			{
-				transform.position = Proxy.LookPositionOverride.Value;
+				transform.position = Vector3.Lerp(transform.position, Proxy.LookPositionOverride.Value, Time.deltaTime * ProxyChaseSpeed);
+			}
+			else
+			{
+				transform.localPosition = LookOffset;
 			}
 		}
 		else
@@ -72,7 +83,5 @@ public class CameraController : Singleton<CameraController>, ILookAdapter
 		// Change to parent local
 		forward = transform.parent.worldToLocalMatrix.MultiplyVector(forward);
 		LookAngle.x = Vector2.Angle(forward.Flatten(), transform.forward.Flatten());
-		
-
 	}
 }
