@@ -10,7 +10,7 @@ namespace Interaction.Activities
 
 		public void SetPower(bool power) => IsPoweredOn = power;
 
-		protected override void Tick(float dt)
+		protected override int Tick(float dt)
 		{
 			if (IsPoweredOn)
 			{
@@ -20,6 +20,7 @@ namespace Interaction.Activities
 			{
 				PowerOff.Invoke();
 			}
+			return 1;
 		}
 
 		public UnityEvent PowerOn;

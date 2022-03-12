@@ -64,5 +64,11 @@ namespace Interaction.Activities
 		{
 			m_move = delta;
 		}
+		public override void OnStopActivity(Actor actor)
+		{
+			m_move = default;
+			base.OnStopActivity(actor);
+		}
+
 	}
 }

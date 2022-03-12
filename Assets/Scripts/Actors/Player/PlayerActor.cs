@@ -27,7 +27,7 @@ namespace Actors
 				Context = cntxt.valueType == typeof(Vector2) ? cntxt.ReadValue<Vector2>() : default 
 			};
 
-			Debug.Log($"Action: {action} {action.State} {action.Context}");
+			//Debug.Log($"Action: {action} {action.State} {action.Context}");
 
 			// First priority is if we have an active activity
 			if (CurrentActivity)

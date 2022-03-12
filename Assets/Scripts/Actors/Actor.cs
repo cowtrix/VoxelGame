@@ -27,6 +27,30 @@ namespace Actors
 		void Move(Vector2 dir);
 	}
 
+	public enum eStateKey
+	{
+		Credits,
+		Fuel,
+	}
+
+	public struct StateUpdate<T>
+	{
+		public eStateKey StateKey;
+		public T Delta;
+		public T Value;
+		public string Description;
+		public bool Success;
+
+		public StateUpdate(eStateKey key, string desc, T val, T delta, bool success)
+		{
+			StateKey = key;
+			Value = val;
+			Delta = delta;
+			Description = desc;
+			Success = success;
+		}
+	}
+
 	[RequireComponent(typeof(ActorState))]
 	public class Actor : ExtendedMonoBehaviour, IDialogueActor
 	{
@@ -44,7 +68,7 @@ namespace Actors
 		public Activity CurrentActivity { get; protected set; }
 		public List<Interactable> Interactables { get; private set; } = new List<Interactable>();
 		public Animator Animator { get; private set; }
-		public ActorState State { get; private set; }
+		public ActorState State => GetComponent<ActorState>();
 		public virtual string DisplayName => ActorName;
 
 		public Transform GetDialogueContainer() => DialogueContainer;
@@ -57,7 +81,6 @@ namespace Actors
 			MovementController = gameObject.GetComponentByInterfaceInChildren<IMovementController>();
 			LookAdapter = gameObject.GetComponentByInterfaceInChildren<ILookAdapter>();
 			Animator = GetComponentInChildren<Animator>();
-			State = GetComponent<ActorState>();
 		}
 
 		protected virtual void Update()

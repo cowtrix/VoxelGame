@@ -8,8 +8,9 @@ namespace Interaction.Items
 	[Serializable]
 	public class IntResourceDelta
 	{
-		public string ResourceName;
+		public eStateKey ResourceKey;
 		public int Amount;
+		public string Description;
 	}
 
 	public interface IConsumableItem
@@ -35,7 +36,7 @@ namespace Interaction.Items
 		{
 			foreach (var delta in Deltas)
 			{
-				actor.State.TryAdd(delta.ResourceName, delta.Amount);
+				actor.State.TryAdd(delta.ResourceKey, delta.Amount, delta.Description);
 			}
 			Destroy(gameObject);
 		}

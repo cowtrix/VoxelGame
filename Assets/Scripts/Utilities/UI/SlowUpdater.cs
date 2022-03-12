@@ -1,18 +1,21 @@
-﻿using Voxul;
+﻿using UnityEngine.Profiling;
+using Voxul;
 
 namespace Common
 {
-
 	public abstract class SlowUpdater : TrackedObject<SlowUpdater>
 	{
 		public float LastUpdateTime { get; set; }
 		public float ThinkSpeed = 1;
 
-		public void Think(float dt)
+		public int Think(float dt)
 		{
-			Tick(dt);
+			Profiler.BeginSample($"Think: {GetType().Name}");
+			var cost = Tick(dt);
+			Profiler.EndSample();
+			return cost;
 		}
 
-		protected abstract void Tick(float dt);
+		protected abstract int Tick(float dt);
 	}
 }

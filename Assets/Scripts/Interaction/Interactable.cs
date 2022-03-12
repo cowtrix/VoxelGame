@@ -1,4 +1,5 @@
 using Actors;
+using Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace Interaction
 
 	public interface IInteractable
 	{
+		string DisplayName { get; }
 		void ReceiveAction(Actor actor, ActorAction action);
 		IEnumerable<ActorAction> GetActions(Actor context);
 		Transform transform { get; }
@@ -30,7 +32,7 @@ namespace Interaction
 	[Serializable]
 	public class SpriteEvent : UnityEvent<Sprite> { }
 
-	public abstract class Interactable : ExtendedMonoBehaviour, IInteractable
+	public abstract class Interactable : SlowUpdater, IInteractable
 	{
 		[Serializable]
 		public class InteractableSettings
@@ -147,5 +149,7 @@ namespace Interaction
 			var b = Bounds;
 			Gizmos.DrawWireCube(b.center, b.size);
 		}
+
+		protected override int Tick(float dt) { return 0; }
 	}
 }

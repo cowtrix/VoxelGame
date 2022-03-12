@@ -31,8 +31,8 @@ namespace Interaction
 
 		private bool GetCostForActor(Actor actor, out float refuelAmount, out int refuelCost)
 		{
-			if (!actor.State.TryGetValue<float>(nameof(IFueledActor.ThrusterFuel), out var currentFuel) ||
-				!actor.State.TryGetValue<int>(nameof(ICreditConsumerActor.Credits), out var currentCredits))
+			if (!actor.State.TryGetValue<float>(eStateKey.Fuel, out var currentFuel) ||
+				!actor.State.TryGetValue<int>(eStateKey.Credits, out var currentCredits))
 			{
 				refuelAmount = 0;
 				refuelCost = 0;
@@ -53,9 +53,9 @@ namespace Interaction
 			if(action.Key == eActionKey.USE)
 			{
 				if (GetCostForActor(actor, out var refuelAmount, out var refuelCost)
-				&& actor.State.TryAdd(nameof(ICreditConsumerActor.Credits), -refuelCost))
+				&& actor.State.TryAdd(eStateKey.Credits, -refuelCost, DisplayName))
 				{
-					actor.State.TryAdd(nameof(IFueledActor.ThrusterFuel), refuelAmount);
+					actor.State.TryAdd(eStateKey.Fuel, refuelAmount, DisplayName);
 					CurrentCapacity -= refuelAmount;
 				}
 			}

@@ -124,7 +124,7 @@ namespace Phone
 
 			CursorClick.gameObject.SetActive(m_clickAction.IsPressed());
 
-			Actor.State.TryGetValue<int>(nameof(ICreditConsumerActor.Credits), out var credits);
+			Actor.State.TryGetValue<int>(eStateKey.Credits, out var credits);
 			CreditsText.text = $"¢{credits}";
 			TimeText.text = GameManager.Instance.CurrentTime.GetTimeString();
 		}

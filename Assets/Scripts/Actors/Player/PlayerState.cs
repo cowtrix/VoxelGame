@@ -7,21 +7,20 @@ namespace Actors
 {
 	public interface IFueledActor
 	{
-		public float ThrusterFuel { get; }
+		public float Fuel { get; }
 	}
 
 	public interface ICreditConsumerActor
 	{
 		public int Credits { get; }
-		public bool TryPurchase(IPurchaseableItem purchaseable);
+		public bool TryPurchase(IPurchaseableItem purchaseable, string sellerDescription);
 	}
 
 	public class PlayerState : ActorState, IFueledActor
 	{
-		public float ThrusterEfficiency { get; private set; } = -.05f;
 		public float ThrusterRecharge { get; private set; } = .1f;
 		[StateMin(0)]
-		public float ThrusterFuel { get; private set; } = 100;
+		public float Fuel { get; private set; } = 100;
 
 		public override int Credits
 		{
@@ -37,12 +36,12 @@ namespace Actors
 
 		protected override void Update()
 		{
-			ThrusterFuel = Mathf.Clamp(ThrusterFuel, 0, 100);
-			if (ThrusterFuel < 100)
+			Fuel = Mathf.Clamp(Fuel, 0, 100);
+			if (Fuel < 100)
 			{
 				var delta = ThrusterRecharge * Time.deltaTime;
-				ThrusterFuel += delta;
-				OnStateUpdate.Invoke(Actor, nameof(ThrusterFuel), ThrusterFuel, delta);
+				Fuel += delta;
+				OnStateUpdate.Invoke(Actor, new StateUpdate<float>(eStateKey.Fuel, "Jetpack", Fuel, delta, true));
 			}
 			base.Update();
 		}

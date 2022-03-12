@@ -20,7 +20,7 @@ public class WindmillChain : MonoBehaviour
 		Tick(Time.deltaTime);
 	}
 
-	protected void Tick(float t)
+	protected int Tick(float t)
 	{
 		Rotation += RotationSpeed * t;
 		while (Rotation > 360)
@@ -40,5 +40,6 @@ public class WindmillChain : MonoBehaviour
 			}
 			lastRotation = r.rotation.eulerAngles.y;
 		}
+		return 1;
 	}
 }

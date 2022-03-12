@@ -72,10 +72,10 @@ namespace Actors
 			transform.rotation = Rotation;
 		}
 
-		public virtual bool TryPurchase(IPurchaseableItem purchaseable)
+		public virtual bool TryPurchase(IPurchaseableItem purchaseable, string seller)
 		{
 			var cost = purchaseable.Cost;
-			return TryAdd(nameof(Credits), -cost);
+			return TryAdd(eStateKey.Credits, -cost, $"[{seller}] {purchaseable.DisplayName}");
 		}
 
 		public void EquipItem(IEquippableItem equippableItem)

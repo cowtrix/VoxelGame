@@ -45,12 +45,14 @@ namespace Interaction.Activities
 		public bool IsGrabbing { get; private set; }
 		private bool m_hasInitialized = false;
 		private ClawMachineClaw[] m_claws;
+		private Vector2 m_move;
 
 		protected override void OnDrawGizmosSelected()
 		{
+			base.OnDrawGizmosSelected();
+
 			Gizmos.matrix = transform.localToWorldMatrix;
 			Gizmos.DrawWireCube(ClawBounds.center, ClawBounds.size);
-			base.OnDrawGizmosSelected();
 		}
 
 		private void Start()
@@ -69,8 +71,25 @@ namespace Interaction.Activities
 			return ClawBounds.min + new Vector3(ClawBounds.size.x * normalizedPoint.x, ClawBounds.size.y * normalizedPoint.y, ClawBounds.size.z * normalizedPoint.z);
 		}
 
+		public override void OnStopActivity(Actor actor)
+		{
+			m_move = default;
+			base.OnStopActivity(actor);
+		}
+
 		private void Update()
 		{
+			{
+				// Update movement
+				var direction = m_move * MovementSpeed;
+				X = Mathf.Clamp01(X - direction.y);
+				Z = Mathf.Clamp01(Z + direction.x);
+
+				var offset = direction;
+				var angle = new Vector3(Mathf.Atan(offset.x / 1) * Mathf.Rad2Deg, 0, Mathf.Atan(offset.y / 1) * Mathf.Rad2Deg) * JoystickRotationAmount;
+				JoyStick.localRotation = Quaternion.Euler(angle);
+			}
+
 			foreach (var claw in m_claws)
 			{
 				claw.TargetOpenAmount = ClawOpen;
@@ -120,7 +139,7 @@ namespace Interaction.Activities
 
 		public override void ReceiveAction(Actor actor, ActorAction action)
 		{
-			if (action.State == eActionState.End)
+			if (Actor == actor)
 			{
 				switch (action.Key)
 				{
@@ -128,7 +147,7 @@ namespace Interaction.Activities
 						var delta = action.Context;
 						Move(actor, delta);
 						return;
-					case eActionKey.USE:
+					case eActionKey.EQUIP:
 						if(action.State == eActionState.End)
 						{
 							Fire(actor);
@@ -146,7 +165,7 @@ namespace Interaction.Activities
 			{
 				return;
 			}
-			if (!playerActor.State.TryAdd(nameof(ICreditConsumerActor.Credits), -PlayCost))
+			if (!playerActor.State.TryAdd(eStateKey.Credits, -PlayCost, DisplayName))
 			{
 				return;
 			}
@@ -198,15 +217,10 @@ namespace Interaction.Activities
 		{
 			if (IsGrabbing)
 			{
+				m_move = Vector2.zero;
 				return;
 			}
-			direction *= MovementSpeed;
-			X = Mathf.Clamp01(X - direction.y);
-			Z = Mathf.Clamp01(Z + direction.x);
-
-			var offset = direction;
-			var angle = new Vector3(Mathf.Atan(offset.x / 1) * Mathf.Rad2Deg, 0, Mathf.Atan(offset.y / 1) * Mathf.Rad2Deg) * JoystickRotationAmount;
-			JoyStick.localRotation = Quaternion.Euler(angle);
+			m_move = direction;
 		}
 	}
 }

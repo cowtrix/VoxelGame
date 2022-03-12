@@ -9,6 +9,7 @@ using UnityEditor;
 
 namespace Common
 {
+
 	public static class EditorExtensions
 	{
 		[MenuItem("CONTEXT/Transform/Randomise Flip")]

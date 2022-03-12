@@ -52,7 +52,8 @@ public class NPCMeshManager : ExtendedMonoBehaviour
 
 	protected IEnumerable<NPCMeshSegment> Children => GetComponentsInChildren<NPCMeshSegment>();
 
-	private void Reset()
+	[ContextMenu("Regenerate Seed")]
+	public void Reset()
 	{
 		Seed = Random.Range(int.MinValue, int.MaxValue);
 	}
@@ -70,6 +71,14 @@ public class NPCMeshManager : ExtendedMonoBehaviour
 	{
 		Random.InitState(Seed);
 		Colors.BaseColor = Random.ColorHSV(0, 1, 1, 1, 1, 1);
+		var rebaser = GetComponent<VoxelColorRebaser>();
+		if (rebaser)
+		{
+			rebaser.Red = Colors.BaseColor;
+			rebaser.Green = Colors.Compliment1;
+			rebaser.Blue = Colors.Compliment2;
+			rebaser.Invalidate();
+		}
 		var scaleFactor = Random.value;
 		foreach (var r in Children)
 		{

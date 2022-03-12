@@ -33,6 +33,8 @@ namespace Actors
 		public Transform GroundingPoint;
 		public float PushOutSpeed = 10;
 
+		public float ThrusterEfficiency = -.05f;
+
 		protected bool m_inputJump;
 
 		protected virtual void Start()
@@ -84,10 +86,10 @@ namespace Actors
 				if (m_inputJump)
 				{
 					// Do jump boost
-					if (!State.TryGetValue<float>(nameof(PlayerState.ThrusterFuel), out var thrusterFuel) || thrusterFuel > .1f)
+					if (!State.TryGetValue<float>(eStateKey.Fuel, out var thrusterFuel) || thrusterFuel > .1f)
 					{
 						Rigidbody.AddForce(transform.localToWorldMatrix.MultiplyVector(ThrusterSpeed * transform.up) * Rigidbody.mass);
-						State.TryAdd(nameof(PlayerState.ThrusterFuel), nameof(PlayerState.ThrusterEfficiency));
+						State.TryAdd(eStateKey.Fuel, ThrusterEfficiency, "Jetpack");
 					}
 				}
 
@@ -105,9 +107,9 @@ namespace Actors
 					else
 					{
 
-						if (TimeUngrounded > FreeFloatTime && (!State.TryGetValue<float>(nameof(PlayerState.ThrusterFuel), out var thrusterFuel) || thrusterFuel > .1f))
+						if (TimeUngrounded > FreeFloatTime && (!State.TryGetValue<float>(eStateKey.Credits, out var thrusterFuel) || thrusterFuel > .1f))
 						{
-							State.TryAdd(nameof(PlayerState.ThrusterFuel), nameof(PlayerState.ThrusterEfficiency));
+							State.TryAdd(eStateKey.Fuel, ThrusterEfficiency, "Jetpack");
 						}
 						else
 						{

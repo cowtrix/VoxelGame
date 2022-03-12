@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using Common;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -38,6 +39,14 @@ public class GameManager : Singleton<GameManager>
 
 	private void Start()
 	{
+		SlowUpdateManager.Instance.InstanceSorter = instance =>
+		{
+			if (!instance)
+			{
+				return float.MaxValue;
+			}
+			return Vector3.Distance(instance.transform.position, CameraController.Instance.transform.position);
+		};
 		Player = FindObjectOfType<PlayerActor>();
 		SceneManager.sceneLoaded += OnSceneLoaded;
 		if(!AllScenes().Any(s => s.path == CurrentScene.ScenePath))

@@ -14,10 +14,7 @@ using Interaction.Items;
 namespace Actors
 {
 	[Serializable]
-	public class FloatStateUpdateEvent : UnityEvent<Actor, string, float, float> { }
-
-	[Serializable]
-	public class FloatStateFailureUpdateEvent : UnityEvent<Actor, string, float> { }
+	public class FloatStateUpdateEvent : UnityEvent<Actor, StateUpdate<float>> { }
 
 	[Serializable]
 	public class InventoryStateUpdateEvent : UnityEvent<Actor, ActorState.eInventoryAction, Item> { }
@@ -35,7 +32,6 @@ namespace Actors
 		private Dictionary<string, PropertyInfo> m_fieldLookup;
 		public Actor Actor => GetComponent<Actor>();
 		public FloatStateUpdateEvent OnStateUpdate = new FloatStateUpdateEvent();
-		public FloatStateFailureUpdateEvent OnStateFailedUpdate = new FloatStateFailureUpdateEvent();
 
 		public IStateProvider[] StateProviders { get; private set; }
 
@@ -51,13 +47,18 @@ namespace Actors
 			foreach (var field in m_fieldLookup
 				.Where(f => f.Value.PropertyType == typeof(float) || f.Value.PropertyType == typeof(int)))
 			{
-				OnStateUpdate.Invoke(Actor, field.Key, (float)Convert.ChangeType(field.Value.GetValue(this), typeof(float)), 0);
+				if(!Enum.TryParse(typeof(eStateKey), field.Key, out var enumObj) || !(enumObj is eStateKey key))
+				{
+					continue;
+				}
+				var currentValue = (float)Convert.ChangeType(field.Value.GetValue(this), typeof(float));
+				OnStateUpdate.Invoke(Actor, new StateUpdate<float>(key, null, currentValue, 0, true));
 			}
 		}
 
-		public bool TryGetValue<T>(string name, out T result)
+		public bool TryGetValue<T>(eStateKey key, out T result)
 		{
-			if (!m_fieldLookup.TryGetValue(name, out var fieldInfo))
+			if (!m_fieldLookup.TryGetValue(key.ToString(), out var fieldInfo))
 			{
 				result = default;
 				return false;
@@ -67,25 +68,32 @@ namespace Actors
 			return true;
 		}
 
-		public bool TryAdd(string fieldA, string fieldB)
+		public bool TryAdd(eStateKey fieldA, eStateKey fieldB, string description)
 		{
-			if (!m_fieldLookup.TryGetValue(fieldA, out var fieldInfoA) || !m_fieldLookup.TryGetValue(fieldB, out var fieldInfoB))
+			if (!m_fieldLookup.TryGetValue(fieldA.ToString(), out var fieldInfoA) || !m_fieldLookup.TryGetValue(fieldB.ToString(), out var fieldInfoB))
 			{
 				return false;
 			}
-
 			dynamic a = fieldInfoA.GetValue(this);
 			dynamic b = fieldInfoB.GetValue(this);
+
 			var newVal = a + b;
+			var minAttr = fieldInfoA.GetCustomAttribute<StateMinAttribute>();
+			if (minAttr != null && newVal < minAttr.Min)
+			{
+				OnStateUpdate.Invoke(Actor, new StateUpdate<float>(fieldA, description, 0, a, false));
+				return false;
+			}
+
 			fieldInfoA.SetValue(this, newVal);
-			OnStateUpdate.Invoke(Actor, fieldA, newVal, b);
+			OnStateUpdate.Invoke(Actor, new StateUpdate<float>(fieldA, description, b, newVal, true));
 			//Debug.Log($"State update: {fieldA}: {newVal} ({b})");
 			return true;
 		}
 
-		public bool TryAdd(string field, float delta)
+		public bool TryAdd(eStateKey field, float delta, string description)
 		{
-			if (!m_fieldLookup.TryGetValue(field, out var fieldInfo))
+			if (!m_fieldLookup.TryGetValue(field.ToString(), out var fieldInfo))
 			{
 				Debug.LogWarning($"Tried to delta {field} but it did not exist on actor {Actor}", this);
 				return false;
@@ -100,21 +108,21 @@ namespace Actors
 			var minAttr = fieldInfo.GetCustomAttribute<StateMinAttribute>();
 			if (minAttr != null && newVal < minAttr.Min)
 			{
-				OnStateFailedUpdate.Invoke(Actor, field, delta);
+				OnStateUpdate.Invoke(Actor, new StateUpdate<float>(field, description, delta, val, false));
 				return false;
 			}
 
 			fieldInfo.SetValue(this, newVal);
-			OnStateUpdate.Invoke(Actor, field, newVal, delta);
+			OnStateUpdate.Invoke(Actor, new StateUpdate<float>(field, description, newVal, delta, true));
 			//Debug.Log($"State update: {field}: {newVal} ({delta})");
 			return true;
 		}
 
-		public bool TryAdd(string field, int delta)
+		public bool TryAdd(eStateKey key, int delta, string desc)
 		{
-			if (!m_fieldLookup.TryGetValue(field, out var fieldInfo))
+			if (!m_fieldLookup.TryGetValue(key.ToString(), out var fieldInfo))
 			{
-				Debug.LogWarning($"Tried to delta {field} but it did not exist on actor {Actor}", this);
+				Debug.LogWarning($"Tried to delta {key} but it did not exist on actor {Actor}", this);
 				return false;
 			}
 			/*if (fieldInfo.PropertyType != typeof(int))
@@ -127,11 +135,12 @@ namespace Actors
 			var minAttr = fieldInfo.GetCustomAttribute<StateMinAttribute>();
 			if (minAttr != null && newVal < minAttr.Min)
 			{
+				OnStateUpdate.Invoke(Actor, new StateUpdate<float>(key, desc, newVal, delta, false));
 				return false;
 			}
 
 			fieldInfo.SetValue(this, newVal);
-			OnStateUpdate.Invoke(Actor, field, newVal, delta);
+			OnStateUpdate.Invoke(Actor, new StateUpdate<float>(key, desc, newVal, delta, true));
 			//Debug.Log($"State update: {field}: {newVal} ({delta})");
 			return true;
 		}
@@ -165,22 +174,23 @@ namespace Actors
 					return;
 				}
 
-				var target = jObj.Path;
-				if (m_fieldLookup.TryGetValue(target, out var prop))
+				if (Enum.TryParse(typeof(eStateKey), jObj.Path, out var enumObj) 
+					&& enumObj is eStateKey key
+					&& m_fieldLookup.TryGetValue(key.ToString(), out var prop))
 				{
 					var obj = JsonUtility.FromJson(jObj.ToString(), prop.PropertyType);
 					prop.SetValue(this, obj);
 					return;
 				}
 
-				var provider = StateProviders.FirstOrDefault(s => s.GUID == target);
+				var provider = StateProviders.FirstOrDefault(s => s.GUID == jObj.Path);
 				if (provider != null)
 				{
 					Debug.Log($"Provider {provider} loaded save data {jObj}");
 					provider.LoadSaveData(jObj.ToString());
 				}
 
-				Debug.LogError($"Failed to find property with name: {target}", this);
+				Debug.LogError($"Failed to find property with name: {jObj.Path}", this);
 			}
 			OnSaveDataLoaded();
 		}

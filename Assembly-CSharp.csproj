@@ -135,7 +135,6 @@
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Gestures\SwipeInput.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\Lift\LiftStop.cs" />
     <Compile Include="Assets\Scripts\Utilities\ObjectBounds.cs" />
-    <Compile Include="Assets\Scripts\Actors\Player\UI\UIStateUpdateEntry.cs" />
     <Compile Include="Assets\Scripts\Actors\StateContainer.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\MovementController.cs" />
     <Compile Include="Assets\Scripts\Utilities\UI\MoveUpAndFade.cs" />
@@ -153,7 +152,6 @@
     <Compile Include="Assets\Scripts\Utilities\StringExtensions.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\Messages\MessagesApp.cs" />
     <Compile Include="Assets\Vectrosity\Plugins\Scripts\IVectorObject.cs" />
-    <Compile Include="Assets\Scripts\Actors\Player\UI\UIStatusUpdateEntry.cs" />
     <Compile Include="Assets\Scripts\Interaction\Activities\SushiTableMinigame.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\PhoneApp.cs" />
     <Compile Include="Assets\Scripts\Animation\TransformAnimationController.cs" />
@@ -197,7 +195,6 @@
     <Compile Include="Assets\Scripts\Utilities\Extensions\ArrayExtensions.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\Samples\CustomDeviceUsages\CustomDeviceUsages.cs" />
     <Compile Include="Assets\Scripts\Gravity\GravityManager.cs" />
-    <Compile Include="Assets\Scripts\Actors\Player\UI\UIInventoryUpdateEntry.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\TapTarget.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\TicketMachine.cs" />
     <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorObject2D.cs" />
@@ -211,6 +208,7 @@
     <Compile Include="Assets\Scripts\Actors\ActorState.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingController.cs" />
     <Compile Include="Assets\Scripts\Actors\NPC\NPCMeshSegment.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\Pinball\PinballScoreBouncer.cs" />
     <Compile Include="Assets\Scripts\Generator\ObjectPool.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\KeyboardMouseISX.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\KeyboardMouseBasic\Scripts\MouseOutputs.cs" />
@@ -224,6 +222,7 @@
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\KeyboardMouseBasic\Scripts\ProblematicKeysDebugLog.cs" />
     <Compile Include="Assets\Scripts\Utilities\ObjectExtensions.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\InteractionISX.cs" />
+    <Compile Include="Assets\Scripts\Actors\Player\ActorExtensions.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\LegacyInputManager\Scripts\ShowInertialData.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorFloatISX.cs" />
     <Compile Include="Assets\Scripts\DestroyableVoxel.cs" />
@@ -231,6 +230,7 @@
     <Compile Include="Assets\Scripts\Actors\NPC\LookTester.cs" />
     <Compile Include="Assets\Scripts\Utilities\UI\WorldCanvas.cs" />
     <Compile Include="Assets\Scripts\Interaction\SimpleInteractable.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\Pinball\PinballMachine.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\FuelBuddy.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Menu\LevelSelectItem.cs" />
     <Compile Include="Assets\Scripts\Utilities\Transporter.cs" />
@@ -265,7 +265,6 @@
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\SpawnController.cs" />
     <Compile Include="Assets\Scripts\Generator\Powerline.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\Samples\SimpleDemo\SimpleController_UsingPlayerInput.cs" />
-    <Compile Include="Assets\Scripts\Actors\Player\UI\UIStatusUpdate.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Drawing\PointerInputManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\Maths\RectExtensions.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Controller\GamepadInputManager.cs" />
@@ -281,6 +280,7 @@
     <Compile Include="Assets\Scripts\Utilities\AmbientLightingSettings.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\InventoryAppItem.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\UI\ColorSwatch.cs" />
+    <Compile Include="Assets\Scripts\Utilities\UI\SlowUpdateManager.cs" />
     <Compile Include="Assets\Scripts\Interaction\Activities\Instruments\InstrumentCollection.cs" />
     <Compile Include="Assets\Scripts\Utilities\LayerMaskFieldUtility.cs" />
     <Compile Include="Assets\Scripts\Utilities\MiscUtilities.cs" />
@@ -310,6 +310,7 @@
     <Compile Include="Assets\Scripts\Utilities\Extensions\TypeExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\SerializableDictionaryImplementations.cs" />
     <Compile Include="Assets\Scripts\Portal\Portal.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Extensions\Terminal.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\Samples\SimpleMultiplayer\SimpleMultiplayerPlayer.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\Samples\SimpleDemo\SimpleController_UsingState.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\GameObjectExtensions.cs" />
@@ -318,6 +319,7 @@
     <Compile Include="Assets\Scripts\Utilities\Helpers\AssetCreationHelper.cs" />
     <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\SpawnPosition.cs" />
+    <Compile Include="Assets\Scripts\Actors\ActorAction.cs" />
     <Compile Include="Assets\Vectrosity\Plugins\Scripts\VisibilityControl.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\ListExtensions.cs" />
     <Compile Include="Assets\Scripts\Generator\PowerPoint.cs" />
@@ -326,9 +328,6 @@
     <Compile Include="Assets\Scripts\Gravity\GravityRigidbody.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingLine.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\TouchISX.cs" />
-    <Compile Include="Assets\Scripts\Actors\ActorAction.cs" />
-    <Compile Include="Assets\Scripts\Actors\Player\ActorExtensions.cs" />
-    <Compile Include="Assets\Scripts\Utilities\UI\SlowUpdateManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\README.txt" />

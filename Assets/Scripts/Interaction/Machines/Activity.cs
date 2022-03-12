@@ -69,7 +69,7 @@ namespace Interaction.Activities
 			}
 		}
 
-		private void OnDrawGizmosSelected()
+		protected override void OnDrawGizmosSelected()
 		{
 			Gizmos.matrix = transform.localToWorldMatrix;
 			Gizmos.DrawCube(LookOffset, Vector3.one * .1f);
@@ -89,16 +89,25 @@ namespace Interaction.Activities
 			Gizmos.DrawLine(LookOffset, LookOffset + Quaternion.Euler(CameraRotationLimits.X.y, CameraRotationLimits.Y.y, CameraRotationLimits.Z.x) * forward);
 			Gizmos.DrawLine(LookOffset, LookOffset + Quaternion.Euler(CameraRotationLimits.X.y, CameraRotationLimits.Y.x, CameraRotationLimits.Z.y) * forward);
 			Gizmos.DrawLine(LookOffset, LookOffset + Quaternion.Euler(CameraRotationLimits.X.y, CameraRotationLimits.Y.y, CameraRotationLimits.Z.y) * forward);
+			base.OnDrawGizmosSelected();
 		}
 
-		public void OnStartActivity(Actor actor)
+		public virtual void OnStartActivity(Actor actor)
 		{
 			Actor = actor;
+			if(Actor is PlayerActor player)
+			{
+				player.CameraController.Proxy = this;
+			}
 			OnActivate?.Invoke(actor);
 		}
 
-		public void OnStopActivity(Actor actor)
+		public virtual void OnStopActivity(Actor actor)
 		{
+			if (Actor is PlayerActor player && (UnityEngine.Object)player.CameraController.Proxy == this)
+			{
+				player.CameraController.Proxy = null;
+			}
 			Actor = null;
 			OnDeactivate?.Invoke(actor);
 		}
@@ -107,5 +116,6 @@ namespace Interaction.Activities
 		{
 			m_additionalRotation = CameraRotationLimits.ClampRotation(m_additionalRotation + new Vector3(-lastDelta.y, lastDelta.x) * LookSpeed * Time.deltaTime);
 		}
+
 	}
 }

@@ -12,12 +12,12 @@ public class TimeOfDayRandomizer : SlowUpdater
 	public Vector2 ThinkSpeedRandom = new Vector2(10, 10);
 	public UnityEvent Off, On;
 
-	protected override void Tick(float dt)
+	protected override int Tick(float dt)
 	{
 		var gm = GameManager.Instance;
 		if (!gm)
 		{
-			return;
+			return 1;
 		}
 		var roll = Random.value;
 		var chance = ProbabilityOverTime.Evaluate(gm.CurrentTime.NormalizedTime);
@@ -30,5 +30,6 @@ public class TimeOfDayRandomizer : SlowUpdater
 			On.Invoke();
 		}
 		ThinkSpeed = Random.Range(ThinkSpeedRandom.x, ThinkSpeedRandom.y);
+		return 1;
 	}
 }

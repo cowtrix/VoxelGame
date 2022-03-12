@@ -2770,6 +2770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d0d21ed2804aa7419eeeafe764fa238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 
+  ThinkSpeed: 1
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -3959,9 +3961,6 @@ MonoBehaviour:
   OnStateUpdate:
     m_PersistentCalls:
       m_Calls: []
-  OnStateFailedUpdate:
-    m_PersistentCalls:
-      m_Calls: []
   OnInventoryUpdate:
     m_PersistentCalls:
       m_Calls: []
@@ -4046,6 +4045,7 @@ MonoBehaviour:
   FreeFloatTime: 0.2
   GroundingPoint: {fileID: 812114025}
   PushOutSpeed: 10
+  ThrusterEfficiency: -0.05
 --- !u!54 &1991683123750917676
 Rigidbody:
   m_ObjectHideFlags: 0

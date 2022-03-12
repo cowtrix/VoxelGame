@@ -12,11 +12,11 @@ public class WorldCanvas : SlowUpdater
     public GraphicRaycaster Raycaster => GetComponent<GraphicRaycaster>();
     public Camera Camera { get; private set; }
 
-	protected override void Tick(float dt)
+	protected override int Tick(float dt)
 	{
 		if (!Camera)
 		{
-            return;
+            return 0;
 		}
         var distance = Vector3.Distance(Camera.transform.position, transform.position);
         Canvas.enabled = distance < DisableDistance;
@@ -24,6 +24,7 @@ public class WorldCanvas : SlowUpdater
 		{
             Raycaster.enabled = distance < RaycastDistance;
         }
+        return 1;
     }
 
 	protected void Awake()
