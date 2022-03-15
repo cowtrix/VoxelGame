@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using Voxul.Utilities;
+using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -73,6 +74,56 @@ namespace Common
 			foreach (var gameObject in s)
 			{
 				gameObject.transform.SetAsLastSibling();
+			}
+		}
+
+		[MenuItem("Tools/Clean Up Lods")]
+		public static void CleanUpLods()
+		{
+			var allLodGroups = UnityEngine.Object.FindObjectsOfType<LODGroup>()
+				.ToList();
+			var dupeLodGroups = new List<LODGroup>();
+			foreach(var group1 in allLodGroups)
+			{
+				foreach(var group2 in allLodGroups)
+				{
+					if(group1 == group2)
+					{
+						continue;
+					}
+
+					var set1 = group1.GetLODs().SelectMany(g => g.renderers);
+					var set2 = group2.GetLODs().SelectMany(g => g.renderers);
+
+					var overlappingRenderers = set1.Where(r1 => set2.Contains(r1));
+
+					if (overlappingRenderers.Any())
+					{
+						var depth1 = group1.transform.GetHierarchyDepth();
+						var depth2 = group2.transform.GetHierarchyDepth();
+
+						if(depth1 == depth2)
+						{
+							continue;
+						}
+
+						var higherLodGroup = depth1 > depth2 ? group1 : group2;
+
+						var lods = higherLodGroup.GetLODs();
+						for (int i = 0; i < lods.Length; i++)
+						{
+							LOD l = lods[i];
+							var renderers = l.renderers.ToList();
+							foreach (var r in overlappingRenderers)
+								renderers.Remove(r);
+							l.renderers = renderers.ToArray();
+						}
+						higherLodGroup.SetLODs(lods);
+#if UNITY_EDITOR
+						UnityEditor.EditorUtility.SetDirty(higherLodGroup);
+#endif
+					}
+				}
 			}
 		}
 

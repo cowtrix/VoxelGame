@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Voxul;
 
-public class WindmillChain : MonoBehaviour
+public class WindmillChain : RenderBehaviour
 {
 	public float Rotation;
 	public float RotationSpeed = 1;
@@ -10,19 +10,9 @@ public class WindmillChain : MonoBehaviour
 	public float Torque = 1;
 	public float AngleLimit = 1;
 
-	private void Start()
+	protected override void UpdateOnScreen()
 	{
-		Tick(1000);
-	}
-
-	private void Update()
-	{
-		Tick(Time.deltaTime);
-	}
-
-	protected int Tick(float t)
-	{
-		Rotation += RotationSpeed * t;
+		Rotation += RotationSpeed * Time.deltaTime;
 		while (Rotation > 360)
 		{
 			Rotation -= 360;
@@ -33,13 +23,12 @@ public class WindmillChain : MonoBehaviour
 		{
 			var r = transform.GetChild(i);
 			var targetRot = Quaternion.Euler(0, lastRotation + 45 + Margin * Mathf.Sign(RotationSpeed), 0);
-			r.transform.localRotation = Quaternion.Lerp(r.transform.localRotation, targetRot, Mathf.Clamp01(Torque * t));
+			r.transform.localRotation = Quaternion.Lerp(r.transform.localRotation, targetRot, Mathf.Clamp01(Torque * Time.deltaTime));
 			if (Quaternion.Angle(r.transform.localRotation, targetRot) > AngleLimit)
 			{
 				break;
 			}
 			lastRotation = r.rotation.eulerAngles.y;
 		}
-		return 1;
 	}
 }

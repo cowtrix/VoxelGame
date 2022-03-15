@@ -55,11 +55,17 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 0
   SnapMode: 1
   SnapLayer: 1
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 04d52586ca8091042ad6ebc8975193d3, type: 2}
   m_lastMeshHash: d9c4c809-31a6-48e8-b997-2815a8788a74
@@ -234,11 +240,17 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 48629bf764bfbb84784f2013c66259a6, type: 2}
   m_lastMeshHash: 549b0ff2-9c2c-4765-a6da-81abefc5a4b2
@@ -413,11 +425,17 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 48629bf764bfbb84784f2013c66259a6, type: 2}
   m_lastMeshHash: 549b0ff2-9c2c-4765-a6da-81abefc5a4b2
@@ -692,6 +710,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d0d21ed2804aa7419eeeafe764fa238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 
+  ThinkSpeed: 1
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -1035,11 +1055,17 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: c5733a4268cf570438d82515a44849ea, type: 2}
   m_lastMeshHash: d5ff06dd-d1c5-4666-9153-aea50e2a196b
@@ -1421,11 +1447,17 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 0
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 9522fc508ea792d42b21a5c4bdd1b48e, type: 2}
   m_lastMeshHash: 16920417-8b43-4404-a98b-09326c485f62
@@ -1712,9 +1744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ef1a627263ecf448ba431f0ce3862d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Settings:
-    InteractDistance: {x: 0, y: 10}
-    EquippedItemTransform: {fileID: 0}
+  EquippedItemTransform: {fileID: 0}
   DialogueContainer: {fileID: 5113471201490309525}
   InteractionMask:
     serializedVersion: 2
@@ -1734,9 +1764,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: 
   OnStateUpdate:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateFailedUpdate:
     m_PersistentCalls:
       m_Calls: []
   OnInventoryUpdate:
@@ -2309,11 +2336,17 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 21d8aec2bc63fce439b711be1f4967a6, type: 2}
   m_lastMeshHash: fb65d770-859b-4b49-8769-ae392c7e031e
@@ -2488,11 +2521,17 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 21b9f893220affa4cbe1a2eb38e46c1b, type: 2}
   m_lastMeshHash: 3376bd09-103b-4733-8dde-132f761804f2
@@ -2697,11 +2736,17 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 22a3042c39d593c4ca06a7c29a65bbb6, type: 2}
   m_lastMeshHash: 94561ca5-552d-490e-8874-befd9adcf1c7
@@ -2875,11 +2920,17 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 0
   SnapMode: 1
   SnapLayer: 1
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: aa3aa90e8f6d169499b4530d5a806047, type: 2}
   m_lastMeshHash: cfe4fab0-5da6-43c6-bc01-ed90860e1540
@@ -3591,11 +3642,17 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 21b9f893220affa4cbe1a2eb38e46c1b, type: 2}
   m_lastMeshHash: 3376bd09-103b-4733-8dde-132f761804f2

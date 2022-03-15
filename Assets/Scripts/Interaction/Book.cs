@@ -29,7 +29,6 @@ namespace Interaction.Activities
 		public int PageNumber;
 
 		public override string DisplayName => Content.name;
-		public Rigidbody Rigidbody => GetComponent<Rigidbody>();
 
 		private float m_targetOpen = 0;
 		private float m_openAmount = 0;

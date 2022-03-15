@@ -51,7 +51,7 @@ namespace Voxul
 				return false;
 			}
 			var total = (v.Material.Default.Albedo.Luminosity() + v.Material.Overrides.Sum(z => z.Surface.Albedo.Luminosity()))
-					/ (1 + v.Material.Overrides.Length);
+					/ (1 + v.Material.Overrides.Count);
 			return total > 1;
 		}
 

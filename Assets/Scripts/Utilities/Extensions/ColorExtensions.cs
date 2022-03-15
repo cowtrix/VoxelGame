@@ -51,5 +51,10 @@ namespace Common
             s = Mathf.Min(1, s * saturationFactor);
             return Color.HSVToRGB(h, s, v);
 		}
+
+        public static float DistanceBetweenColors(Color first, Color second)
+		{
+            return Vector4.Distance(new Vector4(first.r, first.g, first.b, first.a), new Vector4(second.r, second.g, second.b, second.a));
+		}
     }
 }

@@ -55,7 +55,7 @@ namespace Interaction.Activities
 			Gizmos.DrawWireCube(ClawBounds.center, ClawBounds.size);
 		}
 
-		private void Start()
+		protected override void Start()
 		{
 			m_claws = GetComponentsInChildren<ClawMachineClaw>();
 			for (var i = 0; i < PrizeCount; ++i)
@@ -64,6 +64,7 @@ namespace Interaction.Activities
 				newPrize.transform.SetParent(transform);
 				newPrize.transform.localPosition = GetPoint(new Vector3(.5f, .5f, .5f));
 			}
+			base.Start();
 		}
 
 		private Vector3 GetPoint(Vector3 normalizedPoint)

@@ -99,6 +99,11 @@ namespace Common
 			}
 			return false;
 		}
+
+		public static Bounds GetBounds(this IEnumerable<Renderer> renderers)
+		{
+			return renderers.Select(r => r.bounds).GetEncompassingBounds();
+		}
 	}
 
 	public static class VectorExtensions

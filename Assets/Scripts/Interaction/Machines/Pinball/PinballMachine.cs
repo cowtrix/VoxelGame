@@ -35,12 +35,13 @@ namespace Interaction.Activities
 		private bool m_isPlaying;
 		private float m_paddleLRot, m_paddleRRot;
 
-		private void Start()
+		protected override void Start()
 		{
 			m_paddleLRot = PaddleRestRotation;
 			m_paddleRRot = PaddleRestRotation;
 			m_nextMusicPlay = Random.Range(MusicPlayTime.x, MusicPlayTime.y);
 			CurrentScore = 0;
+			base.Start();
 		}
 
 		private void Update()

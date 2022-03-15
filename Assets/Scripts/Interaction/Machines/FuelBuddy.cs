@@ -62,7 +62,7 @@ namespace Interaction
 			base.ReceiveAction(actor, action);
 		}
 
-		private void Start()
+		protected override void Start()
 		{
 			m_visibleCapacity = CurrentCapacity;
 		}

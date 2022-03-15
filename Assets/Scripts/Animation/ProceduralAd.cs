@@ -49,7 +49,7 @@ namespace Interaction
 			yield break;
 		}
 
-		private void Start()
+		protected override void Start()
 		{
 			StartCoroutine(PlayAds());
 		}

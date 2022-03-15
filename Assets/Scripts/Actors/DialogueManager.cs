@@ -10,7 +10,7 @@ public class DialogueManager : Singleton<DialogueManager>
 {
 	public GameObject DialoguePrefab;
 
-	private void Awake() { Subscribe(); }
+	public override void Awake() { Subscribe(); base.Awake(); }
 	void OnEnable() { UnSubscribe(); Subscribe(); }
 	void OnDisable() { UnSubscribe(); }
 
