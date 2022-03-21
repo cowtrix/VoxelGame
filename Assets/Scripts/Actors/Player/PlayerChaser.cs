@@ -6,19 +6,20 @@ using UnityEngine;
 public class SmoothPositionVector3
 {
 	private Queue<Vector3> m_positions;
-	public int PositionCount { get; set; }
+	public int Capacity { get; set; }
+	public int Count => m_positions.Count;
 	public Vector3 SmoothPosition => m_positions.Aggregate((x, y) => x + y) / m_positions.Count;
 
 	public SmoothPositionVector3(int count, Vector3 position)
 	{
-		PositionCount = count;
+		Capacity = count;
 		m_positions = new Queue<Vector3>(new[] { position });
 	}
 
 	public void Push(Vector3 pos)
 	{
 		m_positions.Enqueue(pos);
-		while (m_positions.Count > PositionCount)
+		while (m_positions.Count > Capacity)
 		{
 			m_positions.Dequeue();
 		}

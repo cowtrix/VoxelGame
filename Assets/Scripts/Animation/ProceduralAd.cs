@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Interaction
 {
-	public class ProceduralAd : Interactable
+	public class ProceduralAd : RenderBehaviour
 	{
 		[System.Serializable]
 		public class AdConfiguration
@@ -41,17 +41,12 @@ namespace Interaction
 		public float BackPulseSpeed = 1;
 
 		private AdConfiguration m_currentAd;
+		private IEnumerator m_coroutine;
 
-		public override string DisplayName => $"{m_currentAd?.ProductName}\n{m_currentAd?.Tagline}";
-
-		public override IEnumerable<ActorAction> GetActions(Actor context)
+		protected void Start()
 		{
-			yield break;
-		}
-
-		protected override void Start()
-		{
-			StartCoroutine(PlayAds());
+			m_coroutine = PlayAds();
+			m_coroutine.MoveNext();
 		}
 
 		IEnumerator PlayAds()
@@ -112,6 +107,11 @@ namespace Interaction
 				}
 				yield return null;
 			}
+		}
+
+		protected override void UpdateOnScreen()
+		{
+			m_coroutine.MoveNext();
 		}
 	}
 }

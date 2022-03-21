@@ -35,8 +35,15 @@ namespace Interaction.Activities
 		private bool m_isPlaying;
 		private float m_paddleLRot, m_paddleRRot;
 
+		private List<Rotator> m_rotators;
+
 		protected override void Start()
 		{
+			m_rotators = new List<Rotator>(GetComponentsInChildren<Rotator>());
+			foreach (var r in m_rotators)
+			{
+				r.enabled = false;
+			}
 			m_paddleLRot = PaddleRestRotation;
 			m_paddleRRot = PaddleRestRotation;
 			m_nextMusicPlay = Random.Range(MusicPlayTime.x, MusicPlayTime.y);
@@ -65,6 +72,10 @@ namespace Interaction.Activities
 			{
 				// Lose condition
 				m_isPlaying = false;
+				foreach(var r in m_rotators)
+				{
+					r.enabled = false;
+				}
 				Ball.velocity = Vector3.zero;
 				Ball.angularVelocity = Vector3.zero;
 			}
@@ -79,6 +90,10 @@ namespace Interaction.Activities
 				return;
 			}
 			m_isPlaying = true;
+			foreach (var r in m_rotators)
+			{
+				r.enabled = true;
+			}
 			CurrentScore = 0;
 			Ball.velocity = Vector3.zero;
 			Ball.angularVelocity = Vector3.zero;
@@ -107,7 +122,7 @@ namespace Interaction.Activities
 			{
 				if (!m_isPlaying)
 				{
-					yield return new ActorAction { Key = eActionKey.USE, Description = $"Insert Coint ({PlayCost}¢)" };
+					yield return new ActorAction { Key = eActionKey.USE, Description = $"Insert Coin ({PlayCost}¢)" };
 				}
 				yield return new ActorAction { Key = eActionKey.MOVE, Description = "Move Paddles" };
 			}

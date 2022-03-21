@@ -138,7 +138,7 @@ namespace Actors
 
 		public void Move(Vector2 dir)
 		{
-			Debug.Log($"Move: {dir}");
+			//Debug.Log($"Move: {dir}");
 			MoveDirection = dir;
 		}
 	}

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Common
@@ -12,6 +13,7 @@ namespace Common
 		public int FrameBudget = 100;
 
 		private List<SlowUpdater> m_instances = new List<SlowUpdater>();
+		private object m_lock = new object();
 
 		private void Start()
 		{
@@ -26,7 +28,21 @@ namespace Common
 				var instances = SlowUpdater.Instances;
 				if (InstanceSorter != null)
 				{
-					m_instances = instances.OrderBy(InstanceSorter).AsParallel().ToList();
+					bool isSorting = true;
+					var t = new Task(() =>
+					{
+						var newList = instances.OrderBy(InstanceSorter).ToList();
+						lock (m_lock)
+						{
+							m_instances = newList;
+						}
+						isSorting = false;
+					});
+					t.Start();
+					while (isSorting)
+					{
+						yield return null;
+					}
 					yield return new WaitForSeconds(1);
 				}
 			}
@@ -38,29 +54,29 @@ namespace Common
 			{
 				var t = Time.time;
 				var budgetCounter = 0;
-				foreach (var i in m_instances)
+				lock (m_lock)
 				{
-					if (!i)
+					for (int iter = 0; iter < m_instances.Count; iter++)
 					{
-						continue;
-					}
-					try
-					{
-						var dt = t - i.LastUpdateTime;
-						if (dt < i.ThinkSpeed)
+						var i = m_instances[iter];
+						try
 						{
-							continue;
+							var dt = t - i.LastUpdateTime;
+							if (dt < i.ThinkSpeed)
+							{
+								continue;
+							}
+							i.LastUpdateTime = t;
+							budgetCounter += i.Think(dt);
 						}
-						i.LastUpdateTime = t;
-						budgetCounter += i.Think(dt);
-					}
-					catch (Exception e)
-					{
-						Debug.LogException(e, i);
-					}
-					if (budgetCounter > FrameBudget)
-					{
-						break;
+						catch (Exception e)
+						{
+							Debug.LogException(e, i);
+						}
+						if (budgetCounter > FrameBudget)
+						{
+							break;
+						}
 					}
 				}
 				yield return null;

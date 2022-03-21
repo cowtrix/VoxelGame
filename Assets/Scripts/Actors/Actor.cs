@@ -20,6 +20,8 @@ namespace Actors
 		PREV,
 		EQUIP,
 		MOVE,
+		LOOK,
+		JUMP,
 	}
 
 	public interface IMovementController

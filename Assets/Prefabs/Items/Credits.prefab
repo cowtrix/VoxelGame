@@ -56,11 +56,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 9fe7992ad4156174c94c7540e9744feb, type: 2}
   m_lastMeshHash: 3310653e-b6f6-4b16-ad65-30289bdbca90
@@ -176,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1f6bb65f059bd4795fffab5c700406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: 03e79e73-331f-4f8e-bc2b-0b8519ef2043
+  m_guid: a4978086-ca3c-46f7-8baf-70c51a5ef7d8
   ThinkSpeed: 1
   InteractionSettings:
     OnFocusEnter:
@@ -196,7 +203,8 @@ MonoBehaviour:
         m_Calls: []
     MaxFocusDistance: 5
     MaxUseDistance: 2
-  Colliders: []
+  Colliders:
+  - {fileID: 3771667970065867105}
   ItemName: Credits
   Description: A card containing some credits.
   Icon:
@@ -221,5 +229,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b6e5e4cd8d80c41a8422047eb4b489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: df809f53-89e5-434b-9a01-834d2e5e4a76
+  m_guid: 38c18c44-4988-4746-8b84-b80bbd9f698c
   ThinkSpeed: 1

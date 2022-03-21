@@ -13,9 +13,6 @@ using Voxul.Utilities;
 
 public class AsteroidGenerator : DynamicVoxelGenerator
 {
-	public LODGroup LODGroup => GetComponent<LODGroup>();
-	public VoxelRenderer LOD1;
-
 	public Bounds Bounds;
 	public AnimationCurve Falloff = AnimationCurve.Linear(0, 1, 1, 0);
 	[Range(VoxelCoordinate.MIN_LAYER, VoxelCoordinate.MAX_LAYER)]
@@ -23,6 +20,7 @@ public class AsteroidGenerator : DynamicVoxelGenerator
 	public float Frequency = 1;
 	public float Magnitude = 1;
 	public int Octaves = 3;
+
 	[Range(0, 1)]
 	public float Cuttoff;
 	public VoxelBrush DefaultBrush;
@@ -106,7 +104,7 @@ public class AsteroidGenerator : DynamicVoxelGenerator
 		}
 
 		// Flood fill remove floaters
-		/*foreach (var voxCoord in renderer.Mesh.Voxels.Keys.ToList())
+		foreach (var voxCoord in renderer.Mesh.Voxels.Keys.ToList())
 		{
 			if (!renderer.Mesh.Voxels.ContainsKey(voxCoord))
 			{
@@ -139,25 +137,7 @@ public class AsteroidGenerator : DynamicVoxelGenerator
 			{
 				renderer.Mesh.Voxels.Remove(voxCoord);
 			}
-		}*/
-
-		// Generate LODs
-		var lodVoxels = Voxul.LevelOfDetail.LevelOfDetailBuilder.RetargetToLayer(renderer.Mesh.Voxels.Values, (sbyte)(Layer - 1));
-		if (!LOD1)
-		{
-			LOD1 = new GameObject("LOD0")
-				.AddComponent<VoxelRenderer>();
-			LOD1.transform.SetParent(transform);
-			LOD1.transform.localPosition = Vector3.zero;
-			LOD1.transform.localScale = Vector3.one;
-			LOD1.transform.localRotation = Quaternion.identity;
 		}
-		if (!LOD1.Mesh)
-		{
-			LOD1.Mesh = ScriptableObject.CreateInstance<VoxelMesh>();
-		}
-		LOD1.Mesh.Voxels = new VoxelMapping(lodVoxels);
-		LOD1.Mesh.Invalidate();
 	}
 
 	private void OnDrawGizmosSelected()
