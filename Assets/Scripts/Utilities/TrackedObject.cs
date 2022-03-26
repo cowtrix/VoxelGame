@@ -35,7 +35,7 @@ namespace Common
 		{
 			get
 			{
-				if (!Application.isPlaying)
+				if (UnityMainThreadDispatcher.IsOnMainThread && !Application.isPlaying)
 				{
 					foreach(var i in FindObjectsOfType<T>())
 					{

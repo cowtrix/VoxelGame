@@ -24,10 +24,13 @@ namespace Interaction.Activities
 	{
 		public virtual Quaternion? LookDirectionOverride => transform.localToWorldMatrix.rotation * Quaternion.Euler(LookRotation + m_additionalRotation);
 		public virtual Vector3? LookPositionOverride => transform.localToWorldMatrix.MultiplyPoint(LookOffset);
+		public Vector2 LookAngle { get; private set; }
 
+		[Header("Camera")]
 		public RotationLimits CameraRotationLimits;
 		public float LookSpeed = 1;
 		public Vector3 LookOffset, LookRotation;
+
 
 		protected Vector3 m_additionalRotation;
 
@@ -52,6 +55,14 @@ namespace Interaction.Activities
 			if(action.State != eActionState.End)
 			{
 				return;
+			}
+			if(Actor == actor)
+			{
+				if (action.Key == eActionKey.LOOK)
+				{
+					Look(actor, action.Context);
+					return;
+				}
 			}
 			switch (action.Key)
 			{
@@ -110,6 +121,7 @@ namespace Interaction.Activities
 			}
 			Actor = null;
 			OnDeactivate?.Invoke(actor);
+			m_additionalRotation = default;
 		}
 
 		public virtual void Look(Actor actor, Vector2 lastDelta)

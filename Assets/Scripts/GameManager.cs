@@ -39,13 +39,14 @@ public class GameManager : Singleton<GameManager>
 
 	private void Start()
 	{
+		var camController = CameraController.Instance;
 		SlowUpdateManager.Instance.InstanceSorter = instance =>
 		{
 			if (!instance)
 			{
 				return float.MaxValue;
 			}
-			return Vector3.Distance(instance.transform.position, CameraController.Instance.transform.position);
+			return Vector3.Distance(instance.transform.position, camController.transform.position);
 		};
 		Player = FindObjectOfType<PlayerActor>();
 		SceneManager.sceneLoaded += OnSceneLoaded;

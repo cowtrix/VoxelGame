@@ -13,7 +13,6 @@ namespace Interaction.Activities
 		public int AmmoCount { get; set; }
 		public int CurrentScore { get; set; }
 		public override string DisplayName => "Skeexball";
-		public Vector2 LookAngle { get; private set; }
 		public bool IsPlaying { get; private set; }
 		public float FireStrength { get; private set; }
 		public bool FirePressed { get; private set; }
@@ -112,12 +111,7 @@ namespace Interaction.Activities
 		{
 			if (actor == Actor)
 			{
-				if (action.Key == eActionKey.LOOK)
-				{
-					LookAngle += action.Context * GunSensitivity * Time.deltaTime;
-					LookAngle = GunRotationLimits.ClampRotation(LookAngle);
-					return;
-				}
+				
 				if (!IsPlaying && action.Key == eActionKey.USE && action.State == eActionState.End && actor.State.TryAdd(eStateKey.Credits, -PlayCost, DisplayName))
 				{
 					StartPlaying();

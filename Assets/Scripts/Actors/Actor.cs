@@ -54,7 +54,7 @@ namespace Actors
 	}
 
 	[RequireComponent(typeof(ActorState))]
-	public class Actor : ExtendedMonoBehaviour, IDialogueActor
+	public class Actor : SlowUpdater, IDialogueActor
 	{
 		// Adapters
 		public ILookAdapter LookAdapter { get; protected set; }
@@ -72,6 +72,7 @@ namespace Actors
 		public Animator Animator { get; private set; }
 		public ActorState State => GetComponent<ActorState>();
 		public virtual string DisplayName => ActorName;
+		public RaycastHit? LastRaycast { get; protected set; }
 
 		public Transform GetDialogueContainer() => DialogueContainer;
 		public Transform DialogueContainer;
@@ -83,36 +84,6 @@ namespace Actors
 			MovementController = gameObject.GetComponentByInterfaceInChildren<IMovementController>();
 			LookAdapter = gameObject.GetComponentByInterfaceInChildren<ILookAdapter>();
 			Animator = GetComponentInChildren<Animator>();
-		}
-
-		protected virtual void Update()
-		{
-			if (LookAdapter == null)
-			{
-				return;
-			}
-			var cameraForward = LookAdapter.transform.forward;
-			var cameraPos = LookAdapter.transform.position;
-
-			if (Physics.Raycast(cameraPos, cameraForward, out var interactionHit, 1000, InteractionMask, QueryTriggerInteraction.Collide))
-			{
-				Debug.DrawLine(cameraPos, interactionHit.point, Color.yellow);
-				var interactable = interactionHit.collider.GetComponent<Interactable>() ?? interactionHit.collider.GetComponent<InteractionForwarder>()?.Interactable;
-				if (interactable && interactable.enabled && interactionHit.distance < interactable.InteractionSettings.MaxFocusDistance)
-				{
-					if (interactable != FocusedInteractable)
-					{
-						FocusedInteractable?.ExitFocus(this);
-						FocusedInteractable = interactable;
-						FocusedInteractable.EnterFocus(this);
-					}
-					return;
-				}
-			}
-
-			FocusedInteractable?.ExitFocus(this);
-			FocusedInteractable = null;
-			Debug.DrawLine(cameraPos, cameraPos + cameraForward * 1000, Color.magenta);
 		}
 
 		public virtual void TryStartActivity(Activity activity)
@@ -160,6 +131,38 @@ namespace Actors
 			}
 			Interactables.Remove(interactable);
 			interactable.ExitAttention(this);
+		}
+
+		protected override int Tick(float dt)
+		{
+			if (LookAdapter == null)
+			{
+				return 0;
+			}
+			var cameraForward = LookAdapter.transform.forward;
+			var cameraPos = LookAdapter.transform.position;
+			var isHit = Physics.Raycast(cameraPos, cameraForward, out var interactionHit, 1000, InteractionMask, QueryTriggerInteraction.Collide);
+			LastRaycast = interactionHit;
+			if (isHit)
+			{
+				Debug.DrawLine(cameraPos, interactionHit.point, Color.yellow);
+				var interactable = interactionHit.collider.GetComponent<Interactable>() ?? interactionHit.collider.GetComponent<InteractionForwarder>()?.Interactable;
+				if (interactable && interactable.enabled && interactionHit.distance < interactable.InteractionSettings.MaxFocusDistance)
+				{
+					if (interactable != FocusedInteractable)
+					{
+						FocusedInteractable?.ExitFocus(this);
+						FocusedInteractable = interactable;
+						FocusedInteractable.EnterFocus(this);
+					}
+					return 3;
+				}
+			}
+
+			FocusedInteractable?.ExitFocus(this);
+			FocusedInteractable = null;
+			Debug.DrawLine(cameraPos, cameraPos + cameraForward * 1000, Color.magenta);
+			return 3;
 		}
 	}
 }

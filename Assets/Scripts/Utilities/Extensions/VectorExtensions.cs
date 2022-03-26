@@ -47,6 +47,10 @@ namespace Common
 
 		public static Rect WorldBoundsToScreenRect(this Bounds worldBounds, Camera camera)
 		{
+			if (!camera)
+			{
+				return default;
+			}
 			var screenRect = new Rect(camera.WorldToScreenPoint(worldBounds.center), Vector2.zero);
 			foreach (var p in worldBounds.AllPoints())
 			{

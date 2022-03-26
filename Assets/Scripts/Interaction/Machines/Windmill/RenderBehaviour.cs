@@ -8,13 +8,12 @@ public abstract class RenderBehaviour : SlowUpdater
 	public IEnumerable<Renderer> Renderers { get; private set; }
 	public Bounds Bounds { get; private set; }
 	public bool IsOnScreen { get; private set; }
-	public Camera Camera { get; private set; }
+	public Camera Camera => Camera.current;
 
 	private void Start()
 	{
 		Renderers = GetComponentsInChildren<Renderer>().ToList();
 		Bounds = Renderers.GetBounds();
-		Camera = Camera.main;
 	}
 
 	protected override int Tick(float dt)

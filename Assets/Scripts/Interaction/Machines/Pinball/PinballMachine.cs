@@ -12,9 +12,10 @@ namespace Interaction.Activities
 		public override string DisplayName => GameName;
 
 		public int CurrentScore { get; set; }
-
+		public AudioSource MusicSource => GetComponent<AudioSource>();
 		public int PlayCost = 1;
 
+		[Header("Game")]
 		public Vector3 BallSpawnPosition;
 		public Bounds BallCatcher;
 		public Vector3 BallGravity = new Vector3(1, -1, 0);
@@ -30,11 +31,10 @@ namespace Interaction.Activities
 		public float PaddleVolume = .5f;
 		public AudioClip[] Music;
 		public Vector2 MusicPlayTime = new Vector2(30, 60);
-		public AudioSource MusicSource => GetComponent<AudioSource>();
+		
 		private float m_nextMusicPlay;
 		private bool m_isPlaying;
 		private float m_paddleLRot, m_paddleRRot;
-
 		private List<Rotator> m_rotators;
 
 		protected override void Start()
