@@ -37,7 +37,7 @@ namespace Common
 					{
 						try
 						{
-							var newList = data.OrderBy(d => d.Item1)
+							var newList = data.OrderByDescending(d => d.Item1)
 								.Select(d => d.Item2)
 								.ToList();
 							lock (m_lock)
@@ -66,15 +66,25 @@ namespace Common
 
 		private IEnumerator ThinkAll()
 		{
+			var firstIteration = true;
 			while (true)
 			{
 				var t = Time.time;
 				var budgetCounter = 0;
 				lock (m_lock)
 				{
-					for (int i = 0; i < m_instances.Count; i++)
+					for (int i = m_instances.Count - 1; i >= 0; i--)
 					{
 						var instance = m_instances[i];
+						if (!instance)
+						{
+							m_instances.RemoveAt(i);
+							continue;
+						}
+						if (!instance.enabled || !instance.gameObject.activeInHierarchy)
+						{
+							continue;
+						}
 						try
 						{
 							var dt = t - instance.LastUpdateTime;
@@ -89,15 +99,21 @@ namespace Common
 						{
 							Debug.LogException(e, instance);
 						}
+						if (firstIteration)
+						{
+							continue;
+						}
 						if (budgetCounter > FrameBudget)
 						{
+							budgetCounter = 0;
 							yield return null;
 						}
-						if(i > MaxCyclePopulation)
+						if(i < m_instances.Count - MaxCyclePopulation)
 						{
 							break;
 						}
 					}
+					firstIteration = false;
 				}
 				yield return null;
 			}

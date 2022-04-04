@@ -32,8 +32,6 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 		public List<AudioClip> typingSounds;
 		private AudioSource playSource;
 
-		private HashSet<string> m_history = new HashSet<string>();
-
 		public Vector3 Offset;
 
 		//Group...
@@ -264,7 +262,7 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 				}
 
 				var cg = btn.GetComponent<CanvasGroup>();
-				cg.alpha = m_history.Contains($"{info.actor.transform.GetInstanceID()}_{pair.Key}") ? .5f : 1f;
+				cg.alpha = info.actor.HasSaid(pair.Key) ? .5f : 1f;
 				i++;
 			}
 			for (var j = m_cachedButtons.Count; j > i; j--)
@@ -314,7 +312,8 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 			{
 				btn.gameObject.SetActive(false);
 			}
-			m_history.Add($"{info.actor.transform.GetInstanceID()}_{statement}");
+			info.actor.RecordSaid(statement);
+			//m_history.Add($"{info.actor.transform.GetInstanceID()}_{statement}");
 			info.SelectOption(index);
 		}
 

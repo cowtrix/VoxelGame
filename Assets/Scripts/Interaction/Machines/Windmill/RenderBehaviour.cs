@@ -5,14 +5,18 @@ using UnityEngine;
 
 public abstract class RenderBehaviour : SlowUpdater
 {
-	public IEnumerable<Renderer> Renderers { get; private set; }
-	public Bounds Bounds { get; private set; }
+	public List<Renderer> Renderers { get; private set; }
+	public  virtual Bounds Bounds { get; private set; }
 	public bool IsOnScreen { get; private set; }
 	public Camera Camera => Camera.current;
 
-	private void Start()
+	protected virtual void Start()
 	{
 		Renderers = GetComponentsInChildren<Renderer>().ToList();
+		if (!Renderers.Any())
+		{
+			Renderers.Add(GetComponentInParent<Renderer>());
+		}
 		Bounds = Renderers.GetBounds();
 	}
 

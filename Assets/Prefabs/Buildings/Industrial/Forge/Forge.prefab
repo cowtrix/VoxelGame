@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6812154302122944851}
   - component: {fileID: 1230676863643930228}
   - component: {fileID: 8507730233990044573}
+  - component: {fileID: 8673917165547038154}
   m_Layer: 8
   m_Name: Forge
   m_TagString: Untagged
@@ -79,7 +80,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: e0affe05b4b404843b051ee3780b1f9c, type: 2}
-  m_lastMeshHash: 30169712-550f-4693-a2e8-7d7d3969049b
+  m_lastMeshHash: 479e27f9-2fc2-4b59-993f-8a03d890f6ac
   Submeshes:
   - {fileID: 2378896836377097630}
 --- !u!114 &2378896836377097630
@@ -187,7 +188,7 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718509171591920987}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: -0.5000148, y: 1.5, z: 0}
+  m_LocalReferencePoint: {x: -0.49999952, y: 1.4999998, z: 0}
   m_Size: 10.000001
   m_FadeMode: 0
   m_AnimateCrossFading: 0
@@ -202,6 +203,30 @@ LODGroup:
     renderers:
     - renderer: {fileID: 3154527117803904793}
   m_Enabled: 1
+--- !u!114 &8673917165547038154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718509171591920987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c38d94ed86b0f14b9b106ad04c6cc64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Paths:
+  - {x: 4.5, y: 0.1666667, z: 0}
+  Neighbours:
+  - {fileID: 8807417940892277706}
+  Center: {x: 0, y: 0.1666667, z: 0}
+  Type: 2
+  MoveSpeed: 1
+  HoldTime: 15
+  Light: {fileID: 3891166168435516029}
+  Tint: {fileID: 1230676863643930228}
+  HeatColor: {r: 2, g: 1.4980392, b: 0, a: 1}
+  DisposalPoint: {x: -2.5, y: -2, z: 0}
 --- !u!1 &5346708148530596369
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +293,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 8154872774057952270, guid: e0affe05b4b404843b051ee3780b1f9c, type: 2}
-  m_lastMeshHash: c04412d8-e42d-430d-91c0-3c9c127aad7c
+  m_lastMeshHash: 0b403295-0959-4efb-97d0-946da97169f4
   Submeshes:
   - {fileID: 4063829268244342159}
 --- !u!114 &4063829268244342159
@@ -510,6 +535,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt_Straight
       objectReference: {fileID: 0}
+    - target: {fileID: 5250657617678505816, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275440422572185406, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
+      propertyPath: Neighbours.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7275440422572185406, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
+      propertyPath: Neighbours.Array.data[0]
+      value: 
+      objectReference: {fileID: 8673917165547038154}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
 --- !u!4 &2593725374056793286 stripped
@@ -517,3 +554,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4409998254661765170, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
   m_PrefabInstance: {fileID: 2219629685760298228}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8807417940892277706 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7275440422572185406, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
+  m_PrefabInstance: {fileID: 2219629685760298228}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d4181af5756e04e9f0a21b00235dc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

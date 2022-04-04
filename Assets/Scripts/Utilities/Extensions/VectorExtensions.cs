@@ -106,6 +106,10 @@ namespace Common
 
 		public static Bounds GetBounds(this IEnumerable<Renderer> renderers)
 		{
+			if(renderers == null)
+			{
+				return default;
+			}
 			return renderers.Select(r => r.bounds).GetEncompassingBounds();
 		}
 	}

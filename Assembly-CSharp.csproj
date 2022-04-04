@@ -73,6 +73,7 @@
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\ArrowHighlight.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\Samples\CustomDevice\CustomDevice.cs" />
     <Compile Include="Assets\Scripts\Interaction\Door.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\Forge\ConveyorForge.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\Activity.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\GamepadOldInput.cs" />
     <Compile Include="Assets\Scripts\Utilities\Rotator.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\EditMode\TestMouseDelta.cs" />
     <Compile Include="Assets\Scripts\Utilities\StringExtensions.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\Messages\MessagesApp.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\Forge\ForgeConveyorManager.cs" />
     <Compile Include="Assets\Vectrosity\Plugins\Scripts\IVectorObject.cs" />
     <Compile Include="Assets\Scripts\Interaction\Activities\SushiTableMinigame.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\PhoneApp.cs" />
@@ -169,6 +171,7 @@
     <Compile Include="Assets\Scripts\Utilities\MovingPlatform.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\Messages\PhoneAppMessageChatGroup.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\Effects.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\Forge\ActionStringTest.cs" />
     <Compile Include="Assets\Scripts\Interaction\Item.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\Skeezball\Skeexball.cs" />
     <Compile Include="Assets\Scripts\Utilities\Lightning.cs" />
@@ -202,7 +205,7 @@
     <Compile Include="Assets\Scripts\Interaction\Machines\TicketMachine.cs" />
     <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorObject2D.cs" />
     <Compile Include="Assets\Scripts\Interaction\Activities\CardGame\BaboPlayer.cs" />
-    <Compile Include="Assets\Scripts\Interaction\Machines\Forge.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\Forge\Forge.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingTool.cs" />
     <Compile Include="Assets\Scripts\Actors\InteractionColliderEvent.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\KeyboardMouseBasic\Scripts\KeyboardPress.cs" />
@@ -224,10 +227,12 @@
     <Compile Include="Assets\Scripts\Actors\FaceControllerEditor.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\EditMode\EditModeGhostCam.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\KeyboardMouseBasic\Scripts\ProblematicKeysDebugLog.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\Forge\ForgeResource.cs" />
     <Compile Include="Assets\Scripts\Utilities\ObjectExtensions.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\InteractionISX.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\ActorExtensions.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\LegacyInputManager\Scripts\ShowInertialData.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\Forge\ConveyorLift.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorFloatISX.cs" />
     <Compile Include="Assets\Scripts\DestroyableVoxel.cs" />
     <Compile Include="Assets\Scripts\Actors\StateMinAttribute.cs" />
@@ -307,11 +312,13 @@
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\XRHaptics\XRHaptics.cs" />
     <Compile Include="Assets\Scripts\Interaction\DistanceLockedItem.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\ColorExtensions.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\Forge\ConveyorBelt.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\CameraController.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\KeyboardMouseBasic\Scripts\KeyboardLastKey.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\PlayerChaser.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Swiping\Trash.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\TypeExtensions.cs" />
+    <Compile Include="Assets\Scripts\Utilities\UI\CustomUIMaterial.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\SerializableDictionaryImplementations.cs" />
     <Compile Include="Assets\Scripts\Portal\Portal.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\Terminal.cs" />
@@ -332,6 +339,7 @@
     <Compile Include="Assets\Scripts\Gravity\GravityRigidbody.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingLine.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\TouchISX.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Firelight.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\README.txt" />
@@ -352,6 +360,7 @@
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Fonts\License.txt" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\Materials\AlwaysOnTop.shader" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\Lib\InputSystem\Assets\link.xml" />

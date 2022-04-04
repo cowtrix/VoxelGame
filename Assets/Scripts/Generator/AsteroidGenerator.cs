@@ -41,7 +41,8 @@ public class AsteroidGenerator : DynamicVoxelGenerator
 		var resourceSum = Resources.Sum(r => r.Amount) + 1;
 
 		// Noise fill
-		var randomOffset = new Vector3(UnityEngine.Random.Range(-5000, 5000), UnityEngine.Random.Range(-5000, 5000), UnityEngine.Random.Range(-5000, 5000));
+		var rnd = new System.Random();
+		var randomOffset = new Vector3(rnd.Next(-5000, 5000), rnd.Next(-5000, 5000), rnd.Next(-5000, 5000));
 		var layerScale = VoxelCoordinate.LayerToScale(Layer);
 		foreach (var rsc in Resources)
 		{
@@ -49,7 +50,6 @@ public class AsteroidGenerator : DynamicVoxelGenerator
 		}
 
 		var allTasks = new List<Task>();
-		var rnd = new System.Random();
 		var voxels = new ConcurrentBag<Voxel>();
 		for (var x = Bounds.min.x; x < Bounds.min.x + Bounds.size.x; x += layerScale)
 		{
@@ -128,7 +128,7 @@ public class AsteroidGenerator : DynamicVoxelGenerator
 					emptyCount++;
 					continue;
 				}
-				if (UnityEngine.Random.value < .5f)
+				if (rnd.NextDouble() < .5)
 				{
 					renderer.Mesh.Voxels[voxCoord] = new Voxel { Coordinate = voxCoord, Material = renderer.Mesh.Voxels[neighbour].Material.Copy() };
 				}

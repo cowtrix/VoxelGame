@@ -2,6 +2,7 @@ using ParadoxNotion;
 using NodeCanvas.Framework;
 using UnityEngine;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace NodeCanvas.DialogueTrees
 {
@@ -9,6 +10,7 @@ namespace NodeCanvas.DialogueTrees
     ///<summary>An interface to use for whats being said by a dialogue actor</summary>
     public interface IStatement
     {
+        DialogueTree Parent { get; set; }
         string text { get; }
         AudioClip audio { get; }
         string meta { get; }
@@ -18,13 +20,14 @@ namespace NodeCanvas.DialogueTrees
     [System.Serializable]
     public class Statement : IStatement
     {
-
         [SerializeField]
         private string _text = string.Empty;
         [SerializeField]
         private AudioClip _audio;
         [SerializeField]
         private string _meta = string.Empty;
+
+        public DialogueTree Parent { get; set; }
 
         public string text {
             get { return _text; }
@@ -86,5 +89,29 @@ namespace NodeCanvas.DialogueTrees
         public override string ToString() {
             return text;
         }
-    }
+
+		public override bool Equals(object obj)
+		{
+			return obj is Statement statement &&
+				   EqualityComparer<DialogueTree>.Default.Equals(Parent, statement.Parent) &&
+				   text == statement.text &&
+				   EqualityComparer<AudioClip>.Default.Equals(audio, statement.audio) &&
+				   meta == statement.meta;
+		}
+
+		public override int GetHashCode()
+		{
+			return System.HashCode.Combine(Parent, text, audio, meta);
+		}
+
+		public static bool operator ==(Statement left, Statement right)
+		{
+			return EqualityComparer<Statement>.Default.Equals(left, right);
+		}
+
+		public static bool operator !=(Statement left, Statement right)
+		{
+			return !(left == right);
+		}
+	}
 }

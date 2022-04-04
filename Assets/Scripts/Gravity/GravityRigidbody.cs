@@ -38,6 +38,10 @@ public class GravityRigidbody : SlowUpdater
 
 	protected override int Tick(float dt)
 	{
+		if (!m_gravityManager)
+		{
+			Start();
+		}
 		m_lastGravity = m_gravityManager.GetGravityForce(transform.position);
 		m_posHistory.Push(Rigidbody.position);
 		m_rotHistory.Push(Rigidbody.rotation.eulerAngles);

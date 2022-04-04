@@ -45,7 +45,7 @@ namespace UI
 		private void Update()
 		{
 			var interactable = PlayerActor.FocusedInteractable ?? PlayerActor.State.EquippedItem as Interactable ?? PlayerActor.CurrentActivity;
-			if (interactable)
+			if (interactable && interactable != PlayerActor.CurrentActivity)
 			{
 				FocusSprite.gameObject.SetActive(true);
 

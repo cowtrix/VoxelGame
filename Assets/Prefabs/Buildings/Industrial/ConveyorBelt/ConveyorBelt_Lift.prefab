@@ -55,8 +55,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt_Straight (13)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5250657617678505816, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7275440422572185406, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
+--- !u!4 &2150868719166581082 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4409998254661765170, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
+  m_PrefabInstance: {fileID: 2371740831642640744}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9201656096403416431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90,15 +100,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409998254661765170, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -53.333336
+      value: -17.333334
       objectReference: {fileID: 0}
     - target: {fileID: 4409998254661765170, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -50.333336
+      value: 9.666667
       objectReference: {fileID: 0}
     - target: {fileID: 4409998254661765170, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -31
+      value: 8.666667
       objectReference: {fileID: 0}
     - target: {fileID: 4409998254661765170, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
       propertyPath: m_LocalRotation.w
@@ -138,6 +148,7 @@ PrefabInstance:
       objectReference: {fileID: -2133997005080591668, guid: 781f19986c6d18142905caf4a395260c, type: 2}
     m_RemovedComponents:
     - {fileID: 7591136358410802125, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
+    - {fileID: 7275440422572185406, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}
 --- !u!64 &2225349175825117290 stripped
 MeshCollider:
@@ -168,6 +179,27 @@ MonoBehaviour:
   MeshFilter: {fileID: 5752212462186017561}
   MeshRenderer: {fileID: 5015626005819931500}
   MeshCollider: {fileID: 2225349175825117290}
+--- !u!114 &5448004048183719420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3993791541088088631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1755f6cd51e096d4a81e47277231bb2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Paths:
+  - {x: 2.5, y: 7, z: 0}
+  - {x: -1.5, y: -7, z: 0}
+  Neighbours: []
+  Center: {x: 0, y: 0.5, z: 0}
+  Type: 0
+  MoveSpeed: 3
+  HoldTime: 0
+  LiftFloor: {fileID: 2150868719166581082}
 --- !u!4 &4792304424508452189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4409998254661765170, guid: 9f3789f3e8a8fce4cabfe83169cafb10, type: 3}

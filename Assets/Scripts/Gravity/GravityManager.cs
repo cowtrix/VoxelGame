@@ -8,13 +8,12 @@ public class GravityManager : Singleton<GravityManager>
 {
 	public List<GravitySource> GravitySources { get; private set; }
 
-	private void Start()
-	{
-		GravitySources = GravitySource.Instances.ToList();
-	}
-
 	public Vector3 GetGravityForce(Vector3 worldPos)
 	{
+		if(GravitySources == null)
+		{
+			GravitySources = GravitySource.Instances.ToList();
+		}
 		var f = Vector3.zero;
 		foreach (var gravitySource in GravitySources)
 		{

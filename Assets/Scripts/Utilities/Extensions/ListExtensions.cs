@@ -36,13 +36,28 @@ public static class ListExtensions
 	{
 		if (array.Count == 0)
 		{
-			throw new Exception("Check for empty arrays before calling this!");
+			return default;
 		}
 		if (array.Count == 1)
 		{
 			return array[0];
 		}
 		return array[UnityEngine.Random.Range(0, array.Count())];
+	}
+
+	public static T Random<T>(this IEnumerable<T> array)
+	{
+		return array.ToList().Random();
+	}
+
+	public static Queue<T> ToQueue<T>(this IEnumerable<T> enumerator)
+	{
+		var q = new Queue<T>();
+		foreach(var v in enumerator)
+		{
+			q.Enqueue(v);
+		}
+		return q;
 	}
 
 	public static IOrderedEnumerable<T> Randomize<T>(this IList<T> source, int seed = 1324)

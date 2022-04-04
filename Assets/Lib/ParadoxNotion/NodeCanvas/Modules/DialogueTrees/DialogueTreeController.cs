@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NodeCanvas.Framework;
 using ParadoxNotion;
+using UnityEngine.Events;
 
 namespace NodeCanvas.DialogueTrees
 {
@@ -10,10 +11,14 @@ namespace NodeCanvas.DialogueTrees
     public class DialogueTreeController : GraphOwner<DialogueTree>
     {
         public virtual string DisplayName => name;
+        public UnityEvent OnFinished;
         public IDialogueActor Actor => gameObject.GetComponent(typeof(IDialogueActor)) as IDialogueActor;
 
-		///<summary>Start the DialogueTree without an Instigator</summary>
-		public void StartDialogue() {
+        private void FinishConversation() => OnFinished?.Invoke();
+
+        ///<summary>Start the DialogueTree without an Instigator</summary>
+        public void StartDialogue() {
+            graph.onFinish += (b) => FinishConversation();
             StartDialogue(Actor, null);
         }
 
@@ -51,6 +56,7 @@ namespace NodeCanvas.DialogueTrees
         ///<summary>Stop the DialogueTree</summary>
         public void StopDialogue() {
             graph.Stop();
+            FinishConversation();
         }
 
         ///<summary>Set an actor reference by parameter name</summary>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NodeCanvas.Framework;
 using ParadoxNotion;
 using ParadoxNotion.Design;
@@ -15,11 +16,17 @@ namespace NodeCanvas.DialogueTrees
     [Color("b3ff7f")]
     public class MultipleChoiceNode : DTNode
     {
+        public enum eChoiceType
+		{
+            Default,
+            RequireAllExplored,
+		}
 
         [System.Serializable]
         public class Choice
         {
             public bool isUnfolded = true;
+            public eChoiceType Type;
             public Statement statement;
             public ConditionTask condition;
             public Choice() { }
@@ -47,9 +54,14 @@ namespace NodeCanvas.DialogueTrees
             }
 
             var finalOptions = new Dictionary<IStatement, int>();
-
+            var actor = (IDialogueActor)agent;
             for ( var i = 0; i < availableChoices.Count; i++ ) {
-                var condition = availableChoices[i].condition;
+                var choice = availableChoices[i];
+                if(choice.Type == eChoiceType.RequireAllExplored && availableChoices.Any(c => c != choice && !actor.HasSaid(c.statement)))
+				{
+                    continue;
+				}
+                var condition = choice.condition;
                 if ( condition == null || condition.CheckOnce(finalActor.transform, bb) ) {
                     var tempStatement = availableChoices[i].statement.BlackboardReplace(bb);
                     finalOptions[tempStatement] = i;
@@ -142,6 +154,12 @@ namespace NodeCanvas.DialogueTrees
             EditorUtils.ReorderableList(availableChoices, (i, picked) =>
             {
                 var choice = availableChoices[i];
+
+                if(choice.statement.Parent == null)
+				{
+                    choice.statement.Parent = DLGTree;
+                }
+
                 GUILayout.BeginHorizontal("box");
 
                 var text = string.Format("{0} {1}", choice.isUnfolded ? "▼ " : "► ", choice.statement.text);
@@ -170,6 +188,7 @@ namespace NodeCanvas.DialogueTrees
             GUILayout.Space(10);
             GUILayout.BeginVertical("box");
 
+            choice.Type = (eChoiceType)UnityEditor.EditorGUILayout.EnumPopup("Type", choice.Type);
             choice.statement.text = UnityEditor.EditorGUILayout.TextField(choice.statement.text);
             choice.statement.audio = UnityEditor.EditorGUILayout.ObjectField("Audio File", choice.statement.audio, typeof(AudioClip), false) as AudioClip;
             choice.statement.meta = UnityEditor.EditorGUILayout.TextField("Meta Data", choice.statement.meta);

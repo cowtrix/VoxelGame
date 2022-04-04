@@ -79,6 +79,8 @@ namespace Actors
 		public LayerMask InteractionMask;
 		public string ActorName = "Unnamed Entity";
 
+		private HashSet<IStatement> m_chatHistory = new HashSet<IStatement>();
+
 		private void Awake()
 		{
 			MovementController = gameObject.GetComponentByInterfaceInChildren<IMovementController>();
@@ -164,5 +166,9 @@ namespace Actors
 			Debug.DrawLine(cameraPos, cameraPos + cameraForward * 1000, Color.magenta);
 			return 3;
 		}
+
+		public bool HasSaid(IStatement key) => m_chatHistory.Contains(key);
+
+		public void RecordSaid(IStatement statement) => m_chatHistory.Add(statement);
 	}
 }

@@ -31,7 +31,6 @@ namespace Interaction.Activities
 		public float LookSpeed = 1;
 		public Vector3 LookOffset, LookRotation;
 
-
 		protected Vector3 m_additionalRotation;
 
 		public Actor Actor { get; private set; }
