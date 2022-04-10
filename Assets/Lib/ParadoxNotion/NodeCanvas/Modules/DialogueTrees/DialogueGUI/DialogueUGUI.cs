@@ -4,9 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.EventSystems;
+using System;
+using UnityEngine.Events;
 
 namespace NodeCanvas.DialogueTrees.UI.Examples
 {
+	[Serializable]
+	public class StringEvent : UnityEvent<string> { }
+
 	public class DialogueUGUI : MonoBehaviour
 	{
 		[System.Serializable]
@@ -28,9 +33,8 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 		public Text actorSpeech;
 		public Text actorName;
 		public RectTransform waitInputIndicator;
+		public StringEvent OnWordSaid;
 		public SubtitleDelays subtitleDelays = new SubtitleDelays();
-		public List<AudioClip> typingSounds;
-		private AudioSource playSource;
 
 		public Vector3 Offset;
 
@@ -64,6 +68,7 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 		public void OnDialogueStarted(DialogueTree dlg)
 		{
 			var actor = dlg.GetActorReferenceByName(DialogueTree.SELF_NAME);
+			actor.OnDialogueStarted(dlg, this);
 			transform.parent.SetParent(actor.GetDialogueContainer());
 			transform.parent.localPosition = Vector3.zero;
 			transform.parent.localRotation = Quaternion.identity;
@@ -74,7 +79,6 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 			subtitlesGroup.gameObject.SetActive(false);
 			optionsGroup.gameObject.SetActive(false);
 			StopAllCoroutines();
-			if (playSource != null) playSource.Stop();
 		}
 
 		public void OnDialogueFinished(DialogueTree dlg)
@@ -109,7 +113,6 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 				button.gameObject.SetActive(false);
 			}
 			StopAllCoroutines();
-			if (playSource != null) playSource.Stop();
 		}
 
 		public void Skip()
@@ -131,38 +134,22 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 		{
 			optionsGroup.gameObject.SetActive(false);
 			var text = info.statement.text;
-			var audio = info.statement.audio;
 			var actor = info.actor;
 
 			subtitlesGroup.gameObject.SetActive(true);
 			actorSpeech.text = "";
 
 			actorName.text = actor.DisplayName;
-			if (audio != null)
-			{
-				var actorSource = actor.transform != null ? actor.transform.GetComponent<AudioSource>() : null;
-				playSource = actorSource != null ? actorSource : localSource;
-				playSource.clip = audio;
-				playSource.Play();
-				actorSpeech.text = text;
-				var timer = 0f;
-				while (timer < audio.length)
-				{
-					if (m_waitingForSkip)
-					{
-						playSource.Stop();
-						break;
-					}
-					timer += Time.deltaTime;
-					yield return null;
-				}
-			}
 
-			if (audio == null)
+			var tempText = "";
+			var wordSplit = text.Split(new[] { ' ', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+			for (int wordCounter = 0; wordCounter < wordSplit.Length; wordCounter++)
 			{
-				var tempText = "";
-				for (int i = 0; i < text.Length; i++)
+				var w = wordSplit[wordCounter];
+				OnWordSaid?.Invoke(w);
+				for (int i = 0; i < w.Length; i++)
 				{
+					char c = w[i];
 					if (m_waitingForSkip)
 					{
 						actorSpeech.text = text;
@@ -175,42 +162,27 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 						yield break;
 					}
 
-					char c = text[i];
 					tempText += c;
 					yield return StartCoroutine(DelayPrint(subtitleDelays.characterDelay));
-					PlayTypeSound();
 					actorSpeech.text = tempText;
 					if (c == '.' || c == '!' || c == '?')
 					{
 						yield return StartCoroutine(DelayPrint(subtitleDelays.sentenceDelay));
-						PlayTypeSound();
 					}
 					if (c == ',')
 					{
 						yield return StartCoroutine(DelayPrint(subtitleDelays.commaDelay));
-						PlayTypeSound();
 					}
 				}
-
-				yield return StartCoroutine(DelayPrint(subtitleDelays.finalDelay));
+				tempText += ' ';
 			}
+
+			yield return StartCoroutine(DelayPrint(subtitleDelays.finalDelay));
 
 			m_waitingForSkip = false;
 			m_printingSubtitles = false;
 			yield return null;
 			info.Continue();
-		}
-
-		void PlayTypeSound()
-		{
-			if (typingSounds.Count > 0)
-			{
-				var sound = typingSounds[Random.Range(0, typingSounds.Count)];
-				if (sound != null)
-				{
-					localSource.PlayOneShot(sound, Random.Range(0.6f, 1f));
-				}
-			}
 		}
 
 		IEnumerator DelayPrint(float time)

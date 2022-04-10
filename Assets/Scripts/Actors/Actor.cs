@@ -1,7 +1,9 @@
-﻿using Common;
+﻿using Actors.NPC;
+using Common;
 using Interaction;
 using Interaction.Activities;
 using NodeCanvas.DialogueTrees;
+using NodeCanvas.DialogueTrees.UI.Examples;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -170,5 +172,15 @@ namespace Actors
 		public bool HasSaid(IStatement key) => m_chatHistory.Contains(key);
 
 		public void RecordSaid(IStatement statement) => m_chatHistory.Add(statement);
+
+		public void OnDialogueStarted(DialogueTree dlg, DialogueUGUI dialogueUGUI)
+		{
+			var voice = GetComponentInChildren<ActorVoice>();
+			if (voice)
+			{
+				dialogueUGUI.OnWordSaid.RemoveAllListeners();
+				dialogueUGUI.OnWordSaid.AddListener((w) => voice.SayWord(w));
+			}
+		}
 	}
 }

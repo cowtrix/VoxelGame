@@ -3544,10 +3544,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d69c3ed8371f874fb2a3b0321c0cfd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 
+  ThinkSpeed: 1
   MaxLookDistance: 10
   LookAngle: 45
   LookSpeed: 3
   LookRotation: {x: 0, y: 90, z: 0}
+  LookRotationLimits:
+    X: {x: 0, y: 0}
+    Y: {x: 0, y: 0}
+    Z: {x: 0, y: 0}
 --- !u!1 &3377663310441962209
 GameObject:
   m_ObjectHideFlags: 0
@@ -4044,6 +4050,9 @@ MonoBehaviour:
   _updateMode: 0
   _graph: {fileID: 11400000, guid: 5f6a6001898e54848ae597114193ed8f, type: 2}
   _blackboard: {fileID: 1299207729663124498}
+  OnFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1299207729663124498
 MonoBehaviour:
   m_ObjectHideFlags: 0

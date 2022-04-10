@@ -31,6 +31,10 @@ namespace Actors
 
 		public void StopInteractingWithActor(Actor actor)
 		{
+			if (!Controller.isRunning)
+			{
+				return;
+			}
 			Controller.StopDialogue();
 		}
 	}

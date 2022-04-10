@@ -1,36 +1,51 @@
-using Actors;
 using Common;
+using Interaction.Activities;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Voxul;
 
-public class NPCHeadLooker : ExtendedMonoBehaviour, ILookAdapter
+namespace Actors.NPC
 {
-	public float MaxLookDistance = 10;
-	[Range(0, 90)]
-	public float LookAngle = 60;
-	public float LookSpeed = 1;
-
-	public Vector3 LookRotation;
-
-	public NPCObservable CurrentTarget { get; protected set; }
-
-	private void Start()
+	public class NPCHeadLooker : SlowUpdater, ILookAdapter
 	{
-		StartCoroutine(Think());
-	}
+		public float MaxLookDistance = 10;
+		[Range(0, 90)]
+		public float LookAngle = 60;
+		public float LookSpeed = 1;
 
-	IEnumerator Think()
-	{
-		while (true)
+		public Vector3 LookRotation;
+		public RotationLimits LookRotationLimits;
+
+		public NPCObservable CurrentTarget { get; protected set; }
+
+		private void Update()
+		{
+			// Hacky but works
+			var lastRot = transform.rotation;
+			transform.LookAt(CurrentTarget?.transform, transform.parent.up);
+			transform.rotation = Quaternion.Lerp(lastRot, transform.rotation, LookSpeed * Time.deltaTime);
+		}
+
+		private void OnDrawGizmosSelected()
+		{
+			GizmoExtensions.DrawCone(transform.position, Quaternion.Euler(LookRotation) * transform.parent.forward, Mathf.Deg2Rad * LookAngle, MaxLookDistance, CurrentTarget ? Color.white : Color.gray);
+			if (CurrentTarget)
+			{
+				Gizmos.color = Color.green;
+				Gizmos.DrawLine(transform.position, CurrentTarget.transform.position);
+			}
+		}
+
+		protected override int Tick(float dt)
 		{
 			var closestScaledDistance = float.MaxValue;
 			NPCObservable closestObservable = null;
-			foreach (var lookTarget in NPCObservable.Instances.ToList())
+			var allObservables = NPCObservable.Instances.ToList();
+			foreach (var lookTarget in allObservables)
 			{
-				if (lookTarget.enabled)
+				if (!lookTarget.enabled)
 				{
 					continue;
 				}
@@ -46,40 +61,9 @@ public class NPCHeadLooker : ExtendedMonoBehaviour, ILookAdapter
 					closestScaledDistance = scaledDistance;
 					closestObservable = lookTarget;
 				}
-				yield return null;
 			}
 			CurrentTarget = closestObservable;
-			yield return null;
+			return Mathf.CeilToInt(allObservables.Count / 3);
 		}
-	}
-
-	private void Update()
-	{
-		/*Vector3 dir;
-		var extraLookRotation = Quaternion.Euler(LookRotation);
-		var forward = extraLookRotation * transform.parent.forward;
-		if (CurrentTarget)
-		{
-			dir = (CurrentTarget.transform.position - transform.position).normalized;
-		}
-		else
-		{
-			dir = forward;
-		}
-		Debug.DrawLine(transform.position, transform.position + forward, Color.blue);
-		Debug.DrawLine(transform.position, transform.position + dir, Color.blue);
-
-		var inverseRot = Quaternion.Inverse(extraLookRotation);
-		transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, inverseRot * dir, LookSpeed * Time.deltaTime, 0), transform.parent.up);*/
-	}
-
-	private void OnDrawGizmosSelected()
-	{
-		/*GizmoExtensions.DrawCone(transform.position, Quaternion.Euler(LookRotation) * transform.parent.forward, Mathf.Deg2Rad * LookAngle, MaxLookDistance, CurrentTarget ? Color.white : Color.gray);
-		if (CurrentTarget)
-		{
-			Gizmos.color = Color.green;
-			Gizmos.DrawLine(transform.position, CurrentTarget.transform.position);
-		}*/
 	}
 }

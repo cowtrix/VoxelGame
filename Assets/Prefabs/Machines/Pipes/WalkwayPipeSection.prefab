@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1246986994932617575}
   - component: {fileID: 7923514068149782079}
   - component: {fileID: 4547783604734173348}
-  - component: {fileID: 3945632012235360828}
   m_Layer: 8
   m_Name: WalkwayPipeSection
   m_TagString: Untagged
@@ -53,18 +52,24 @@ MonoBehaviour:
   CustomMaterials: 0
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
-  GenerateCollider: 1
-  SnapToGrid: 0
+  GenerateCollider: 0
   SnapMode: 1
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 4523897c4851ea64a885ea0cf7f1a703, type: 2}
   m_lastMeshHash: 8d0d626c-2994-413b-8677-1a29bdf3bb14
   Submeshes:
   - {fileID: 7923514068149782079}
-  BatchingEnabled: 1
 --- !u!33 &2801604213905663463
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -133,7 +138,7 @@ MonoBehaviour:
   Parent: {fileID: 3769760207267689671}
   MeshFilter: {fileID: 2801604213905663463}
   MeshRenderer: {fileID: 1246986994932617575}
-  MeshCollider: {fileID: 3945632012235360828}
+  MeshCollider: {fileID: 0}
 --- !u!65 &4547783604734173348
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -147,17 +152,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 37.000004, z: 1}
   m_Center: {x: 0, y: 5, z: 0}
---- !u!64 &3945632012235360828
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2339442997060457273}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4916177276702610658, guid: 4523897c4851ea64a885ea0cf7f1a703, type: 2}

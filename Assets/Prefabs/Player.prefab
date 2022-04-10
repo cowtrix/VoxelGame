@@ -10297,7 +10297,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7812470021605113652}
         m_TargetAssemblyTypeName: Actors.PlayerActor, Assembly-CSharp
-        m_MethodName: OnActionExecuted
+        m_MethodName: ActionExecuted
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10313,7 +10313,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7812470021605113652}
         m_TargetAssemblyTypeName: Actors.PlayerActor, Assembly-CSharp
-        m_MethodName: OnActionExecuted
+        m_MethodName: ActionExecuted
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10329,7 +10329,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7812470021605113652}
         m_TargetAssemblyTypeName: Actors.PlayerActor, Assembly-CSharp
-        m_MethodName: OnActionExecuted
+        m_MethodName: ActionExecuted
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10345,7 +10345,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7812470021605113652}
         m_TargetAssemblyTypeName: Actors.PlayerActor, Assembly-CSharp
-        m_MethodName: OnActionExecuted
+        m_MethodName: ActionExecuted
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10405,7 +10405,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7812470021605113652}
         m_TargetAssemblyTypeName: Actors.PlayerActor, Assembly-CSharp
-        m_MethodName: OnActionExecuted
+        m_MethodName: ActionExecuted
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10421,7 +10421,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7812470021605113652}
         m_TargetAssemblyTypeName: Actors.PlayerActor, Assembly-CSharp
-        m_MethodName: OnActionExecuted
+        m_MethodName: ActionExecuted
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10437,7 +10437,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7812470021605113652}
         m_TargetAssemblyTypeName: Actors.PlayerActor, Assembly-CSharp
-        m_MethodName: OnActionExecuted
+        m_MethodName: ActionExecuted
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10453,7 +10453,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7812470021605113652}
         m_TargetAssemblyTypeName: Actors.PlayerActor, Assembly-CSharp
-        m_MethodName: OnActionExecuted
+        m_MethodName: ActionExecuted
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10469,7 +10469,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7812470021605113652}
         m_TargetAssemblyTypeName: Actors.PlayerActor, Assembly-CSharp
-        m_MethodName: OnActionExecuted
+        m_MethodName: ActionExecuted
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10498,7 +10498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b734cda1e3b2d5b4796609b294fd48c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: 6dcc3181-43d1-48b7-9b57-d5e33dd4abe0
+  m_guid: 836e420c-00d2-4c84-90bb-68b182600bf4
   ThinkSpeed: 0
   EquippedItemTransform: {fileID: 0}
   DialogueContainer: {fileID: 0}
@@ -10506,6 +10506,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 768
   ActorName: Unnamed Entity
+  OnActionExecuted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &66144037203230265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10518,7 +10521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcc03b386351584fa58c3f451f7e9f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: b035d67e-bf14-44d3-a67d-eac710f5825a
+  m_guid: 960f8773-a3be-4a05-b48e-eefd52c5718f
   OnStateUpdate:
     m_PersistentCalls:
       m_Calls: []
@@ -10817,6 +10820,10 @@ PrefabInstance:
     - target: {fileID: 5408945395056819717, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408945395056819717, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000019945204
       objectReference: {fileID: 0}
     - target: {fileID: 6436341569853196633, guid: 007cbb0cafcd29547a225f349a21c81f, type: 3}
       propertyPath: m_AnchorMax.y

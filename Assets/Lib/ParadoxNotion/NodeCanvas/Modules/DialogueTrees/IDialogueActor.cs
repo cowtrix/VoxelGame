@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using NodeCanvas.DialogueTrees.UI.Examples;
+using UnityEngine;
 
 
 namespace NodeCanvas.DialogueTrees
@@ -11,5 +12,6 @@ namespace NodeCanvas.DialogueTrees
         Transform transform { get; }
 		bool HasSaid(IStatement key);
 		void RecordSaid(IStatement statement);
+		void OnDialogueStarted(DialogueTree dlg, DialogueUGUI dialogueUGUI);
 	}
 }

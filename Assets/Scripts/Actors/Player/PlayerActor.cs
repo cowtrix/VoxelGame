@@ -9,13 +9,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using System;
 
 namespace Actors
 {
+	[Serializable]
+	public class ActorActionEvent : UnityEvent<ActorAction> { }
+
 	public class PlayerActor : Actor
 	{
 		public CameraController CameraController => CameraController.Instance;
 		public PhoneController Phone => GetComponentInChildren<PhoneController>(true);
+		public ActorActionEvent OnActionExecuted = new ActorActionEvent();
 
 		protected override int Tick(float dt) => 0;
 
@@ -47,7 +52,7 @@ namespace Actors
 			Debug.DrawLine(cameraPos, cameraPos + cameraForward * 1000, Color.magenta.WithAlpha(.25f));
 		}
 
-		public void OnActionExecuted(InputAction.CallbackContext cntxt)
+		public void ActionExecuted(InputAction.CallbackContext cntxt)
 		{
 			// Construct action
 			var action = new ActorAction
@@ -58,6 +63,7 @@ namespace Actors
 			};
 
 			//Debug.Log($"Action: {action} {action.State} {action.Context}");
+			OnActionExecuted.Invoke(action);
 
 			// First priority is if we have an active activity
 			if (CurrentActivity)
