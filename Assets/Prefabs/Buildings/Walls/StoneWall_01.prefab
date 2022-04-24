@@ -1,5 +1,143 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3971526567722966863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6162795286489496690}
+  - component: {fileID: 1800790257262090309}
+  - component: {fileID: 9097579385655126815}
+  - component: {fileID: 9213409897801561793}
+  - component: {fileID: 3923257090685766475}
+  m_Layer: 8
+  m_Name: LOD_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &6162795286489496690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971526567722966863}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2768044581174954109}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1800790257262090309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971526567722966863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e3a57cdce1fab4408533db885df689b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mesh: {fileID: 4873759443548757977, guid: 9b3e8022ba7259148b867e1fec9fe772, type: 2}
+  CustomMaterials: 0
+  OpaqueMaterial: {fileID: 0}
+  TransparentMaterial: {fileID: 0}
+  GenerateCollider: 0
+  SnapMode: 0
+  SnapLayer: 0
+  ThreadingMode: 1
+  MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
+  m_voxWorker:
+    VoxelMesh: {fileID: 4873759443548757977, guid: 9b3e8022ba7259148b867e1fec9fe772, type: 2}
+  m_lastMeshHash: 3c044cd5-79dc-4330-9597-4e2459736801
+  Submeshes:
+  - {fileID: 9097579385655126815}
+--- !u!114 &9097579385655126815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971526567722966863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a2e3b3e9cb77c43b8095897eb042e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnRender:
+    m_PersistentCalls:
+      m_Calls: []
+  Parent: {fileID: 1800790257262090309}
+  MeshFilter: {fileID: 9213409897801561793}
+  MeshRenderer: {fileID: 3923257090685766475}
+  MeshCollider: {fileID: 0}
+--- !u!33 &9213409897801561793
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971526567722966863}
+  m_Mesh: {fileID: 5854654197650639519, guid: 9b3e8022ba7259148b867e1fec9fe772, type: 2}
+--- !u!23 &3923257090685766475
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971526567722966863}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4366284924229153266
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,6 +152,7 @@ GameObject:
   - component: {fileID: 4400482288937791064}
   - component: {fileID: 6077033056572418755}
   - component: {fileID: 2437921321105030346}
+  - component: {fileID: 2625460872552247825}
   m_Layer: 8
   m_Name: StoneWall_01
   m_TagString: Untagged
@@ -32,7 +171,8 @@ Transform:
   m_LocalPosition: {x: 31.333334, y: -253, z: 42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6162795286489496690}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62,12 +202,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   LODSettings:
-    LODs: []
+    LODs:
+    - Renderer: {fileID: 1800790257262090309}
+      ScreenTransitionWidth: 0.005
+      MaxLayer: 1
+      MaterialMergeDistance: 0
+      FillRequirement: 0
+      Mode: 1
+      Collider: 0
     PrimaryScreenTransitionWidth: 0.05
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 9b3e8022ba7259148b867e1fec9fe772, type: 2}
-  m_lastMeshHash: 320273a5-b873-486d-822c-7dce809b82f6
+  m_lastMeshHash: 9e4f8ab3-af77-4f0d-b7a6-eb0b323810a9
   Submeshes:
   - {fileID: 3411596746332203932}
 --- !u!114 &3411596746332203932
@@ -153,3 +300,26 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7398048715084909818, guid: 9b3e8022ba7259148b867e1fec9fe772, type: 2}
+--- !u!205 &2625460872552247825
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4366284924229153266}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.3333332, y: 0, z: 0}
+  m_Size: 3.0000005
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.05
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6077033056572418755}
+  - screenRelativeHeight: 0.005
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3923257090685766475}
+  m_Enabled: 1

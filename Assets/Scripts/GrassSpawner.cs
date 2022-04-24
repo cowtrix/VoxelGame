@@ -13,7 +13,8 @@ public class GrassSpawner : ExtendedMonoBehaviour
     [Serializable]
     public class GrassPatch
     {
-        public MeshFilter Filter;
+        public MeshFilter Filter, LOD;
+        public Mesh Mesh;
 
         public void Regenerate(GrassSpawner spawner, List<Mesh> planeMeshes, Bounds spawnBounds)
         {
@@ -37,10 +38,24 @@ public class GrassSpawner : ExtendedMonoBehaviour
             {
                 for (var y = 0; y < collisionGridHeight; y++)
                 {
+                    var castDistance = 3;
                     var castPos = spawner.VoxelRenderer.transform.localToWorldMatrix.MultiplyPoint3x4(spawnBounds.min
-                        + new Vector3(((x + .5f) / (float)collisionGridWidth) * spawnBounds.size.x, 5, ((y + .5f) / (float)collisionGridHeight) * spawnBounds.size.z));
-                    collisionMask[x, y] = Physics.Raycast(castPos, Vector3.down, out var hit, 6, spawner.HitCheckMask) && hit.collider.gameObject == spawner.VoxelRenderer.gameObject;
-                    //Debug.DrawLine(castPos, castPos + Vector3.down * 2, collisionMask[x, y] ? Color.green : Color.red, 20);
+                        + new Vector3(((x + .5f) / (float)collisionGridWidth) * spawnBounds.size.x, castDistance, ((y + .5f) / (float)collisionGridHeight) * spawnBounds.size.z));
+
+                    if(!Physics.Raycast(castPos, Vector3.down, out var hit, castDistance + 1, spawner.HitCheckMask))
+                    {
+                        Debug.DrawLine(castPos, castPos + Vector3.down * (castDistance + 1), Color.red, 20);
+                        continue;
+                    }
+                    if(hit.collider.gameObject != spawner.VoxelRenderer.gameObject)
+                    {
+                        Debug.DrawLine(castPos, hit.point, Color.magenta, 20);
+                        continue;
+                    }
+                    collisionMask[x, y] = true;
+                    /*if (collisionMask[x, y])
+                        Debug.Log($"Hit {hit.collider}", hit.collider);
+                    */
                 }
             }
 
@@ -64,24 +79,37 @@ public class GrassSpawner : ExtendedMonoBehaviour
                 };
                 combineInstances.Add(newInstance);
             }
-            if (!Filter.sharedMesh)
+            bool newAsset = false;
+            if (!Mesh)
             {
-                Filter.sharedMesh = new Mesh();
+                Mesh = new Mesh();
+                newAsset = true;
             }
-            Filter.sharedMesh.CombineMeshes(combineInstances.ToArray(), true, true);
+            Mesh.CombineMeshes(combineInstances.ToArray(), true, true);
+            Filter.sharedMesh = Mesh;
+            Mesh.TrySetDirty();
+
+            if (newAsset)
+            {
+#if UNITY_EDITOR
+                UnityEditor.AssetDatabase.CreateAsset(Mesh, $"{spawner.GrassMeshDirectory}/{Mathf.Abs(Mesh.GetHashCode())}_GrassMesh.asset");
+#endif
+            }
 
             // Create LOD quad
-            var quadLod = new GameObject("GrassLod");
-            quadLod.transform.SetParent(Filter.transform);
-            quadLod.transform.Reset();
-            quadLod.transform.localPosition = Vector3.up * .02f;
-            quadLod.gameObject.isStatic = true;
-            quadLod.gameObject.layer = spawner.gameObject.layer;
-            var quadRenderer = quadLod.AddComponent<MeshRenderer>();
+            if (!LOD)
+            {
+                LOD = new GameObject("GrassLod").AddComponent<MeshFilter>();
+            }
+            LOD.transform.SetParent(Filter.transform);
+            LOD.transform.Reset();
+            LOD.transform.localPosition = Vector3.up * .02f;
+            LOD.gameObject.isStatic = true;
+            LOD.gameObject.layer = spawner.gameObject.layer;
+            var quadRenderer = LOD.gameObject.GetOrAddComponent<MeshRenderer>();
             quadRenderer.sharedMaterial = spawner.LODMaterial;
-            var quadFilter = quadLod.AddComponent<MeshFilter>();
-            quadFilter.sharedMesh = spawner.LODMesh;
-            quadLod.transform.localScale = spawnBounds.size;
+            LOD.sharedMesh = spawner.LODMesh;
+            LOD.transform.localScale = spawnBounds.size;
 
             var lodGroup = Filter.gameObject.GetOrAddComponent<LODGroup>();
             var lods = new LOD[]
@@ -188,16 +216,16 @@ public class GrassSpawner : ExtendedMonoBehaviour
     [ContextMenu("Regenerate")]
     public void Regenerate()
     {
-        foreach (var patch in GrassPatches)
-        {
-            patch.Filter.sharedMesh.SafeDestroy();
-            patch.Filter.gameObject.SafeDestroy();
-        }
         if (!LODMesh)
         {
             LODMesh = GetLODMesh();
         }
-        GrassPatches.Clear();
+#if UNITY_EDITOR
+        if (string.IsNullOrEmpty(UnityEditor.AssetDatabase.GetAssetPath(LODMesh)))
+        {
+            UnityEditor.AssetDatabase.CreateAsset(LODMesh, $"{GrassMeshDirectory}/LODMesh_GrassMesh.asset");
+        }
+#endif
         var planeMeshes = GetDoubleSidedPlaneMeshes();
         var voxels = VoxelRenderer.Mesh.Voxels;
         var coordinates = voxels.Select(v => v.Key).ToList();
@@ -209,12 +237,15 @@ public class GrassSpawner : ExtendedMonoBehaviour
             {
                 continue;
             }
-            var patch = new GrassPatch();
-            GrassPatches.Add(patch);
             var voxBounds = vox.Key.ToBounds();
             var topSurfaceBounds = new Bounds(voxBounds.center + new Vector3(0, voxBounds.extents.y, 0), voxBounds.size.Flatten());
-            patch.Regenerate(this, planeMeshes, topSurfaceBounds);
-            //break;
+            var existingPatch = GrassPatches.SingleOrDefault(p => Vector3.Distance(p.Filter.transform.localPosition, topSurfaceBounds.min) < .1f);
+            if (existingPatch == null)
+            {
+                existingPatch = new GrassPatch();
+                GrassPatches.Add(existingPatch);
+            }
+            existingPatch.Regenerate(this, planeMeshes, topSurfaceBounds);
         }
     }
 }

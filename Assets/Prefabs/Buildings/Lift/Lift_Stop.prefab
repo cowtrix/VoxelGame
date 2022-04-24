@@ -53,11 +53,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 9595904d076fbef4bbaa67f1b29198fe, type: 2}
   m_lastMeshHash: 28c32dec-d4c1-49a3-9fbd-757a4b99f61e
@@ -198,11 +205,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 9595904d076fbef4bbaa67f1b29198fe, type: 2}
   m_lastMeshHash: 28c32dec-d4c1-49a3-9fbd-757a4b99f61e
@@ -466,6 +480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d629c46dc07d1b94a8bf56f703b1b1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 0467a7dd-b3fd-481f-989c-93131e7af54e
+  ThinkSpeed: 1
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -485,8 +501,33 @@ MonoBehaviour:
     MaxFocusDistance: 5
     MaxUseDistance: 2
   Colliders: []
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   RotationEnabled: 1
   PositionEnabled: 1
+  ExternallyDriven: 0
   OpenAmount: 0
   Transforms:
   - Transform: {fileID: 5459359651343008947}
@@ -659,6 +700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b71ca78f1348fb34d90f925ed7e89872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 
   ThinkSpeed: 1
   DisableDistance: 100
   RaycastDistance: 2
@@ -791,11 +833,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 9595904d076fbef4bbaa67f1b29198fe, type: 2}
   m_lastMeshHash: 28c32dec-d4c1-49a3-9fbd-757a4b99f61e
@@ -978,6 +1027,7 @@ GameObject:
   - component: {fileID: 5775463562536411356}
   - component: {fileID: 5775463562536411357}
   - component: {fileID: 2648232632234290127}
+  - component: {fileID: 79318816959580678}
   m_Layer: 8
   m_Name: Lift_Stop
   m_TagString: Untagged
@@ -1021,11 +1071,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 0
   SnapMode: 1
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: a9cbddabe9be91e45880856c0edeca81, type: 2}
   m_lastMeshHash: 5fefc96f-e90b-4e37-a836-bc5116d1e6ad
@@ -1131,6 +1188,30 @@ MonoBehaviour:
   DownButton: {fileID: 3274852121056202174}
   Offset: {x: 0, y: 1.3333334, z: 0}
   Door: {fileID: 6524138876638164624}
+--- !u!205 &79318816959580678
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5775463562536411359}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.055555344, y: 2, z: 0}
+  m_Size: 9.111113
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.0031577786
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5775463562536411356}
+    - renderer: {fileID: 6526433447319261498}
+    - renderer: {fileID: 1468419426958200834}
+    - renderer: {fileID: 3252665245378593720}
+    - renderer: {fileID: 7543433858125331623}
+    - renderer: {fileID: 6504673649404829357}
+  m_Enabled: 1
 --- !u!1 &6761013635440144358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,11 +1472,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 9595904d076fbef4bbaa67f1b29198fe, type: 2}
   m_lastMeshHash: 28c32dec-d4c1-49a3-9fbd-757a4b99f61e
@@ -1536,11 +1624,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 9595904d076fbef4bbaa67f1b29198fe, type: 2}
   m_lastMeshHash: 28c32dec-d4c1-49a3-9fbd-757a4b99f61e
