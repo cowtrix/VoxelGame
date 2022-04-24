@@ -99,6 +99,14 @@ namespace Actors
 			}
 		}
 
+		public void ActivateCameraMagnet(string label)
+		{
+			foreach (var instance in CameraMagnet.Instances.Where(i => i.Label == label))
+			{
+				instance.PlayCameraMagnet();
+			}
+		}
+
 		public void EnablePhone()
 		{
 			Phone.gameObject.SetActive(true);

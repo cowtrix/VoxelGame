@@ -83,5 +83,6 @@ public class CameraController : Singleton<CameraController>, ILookAdapter
 		// Change to parent local
 		forward = transform.parent.worldToLocalMatrix.MultiplyVector(forward);
 		LookAngle.x = Vector2.Angle(forward.Flatten(), transform.forward.Flatten());
+		//LookAngle.y = Vector2.Angle(forward.yz(), transform.forward.yz());
 	}
 }

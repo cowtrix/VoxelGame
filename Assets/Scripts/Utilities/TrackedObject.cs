@@ -44,9 +44,10 @@ namespace Common
 				}
 				else
 				{
-					foreach (var instance in m_instances)
+					var keys = m_instances.Keys.ToList();
+					foreach (var key in keys)
 					{
-						yield return instance.Value;
+						yield return m_instances[key];
 					}
 				}
 			}
