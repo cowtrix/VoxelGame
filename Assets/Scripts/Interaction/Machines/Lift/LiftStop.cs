@@ -25,14 +25,14 @@ namespace Interaction.Activities
 			var stopIndex = StopIndex;
 			if (stopIndex == 0)
 			{
-				UpButton.gameObject.SetActive(false);
+				UpButton?.gameObject.SetActive(false);
 			}
 			else if (stopIndex == line.Stops.Count - 1)
 			{
-				DownButton.gameObject.SetActive(false);
+				DownButton?.gameObject.SetActive(false);
 			}
-			DownButton.onValueChanged.AddListener(b => { if (b) { OnClick(LiftLine.eLiftDirection.Down); } });
-			UpButton.onValueChanged.AddListener(b => { if (b) { OnClick(LiftLine.eLiftDirection.Up); } });
+			DownButton?.onValueChanged.AddListener(b => { if (b) { OnClick(LiftLine.eLiftDirection.Down); } });
+			UpButton?.onValueChanged.AddListener(b => { if (b) { OnClick(LiftLine.eLiftDirection.Up); } });
 		}
 
 		private void OnClick(LiftLine.eLiftDirection direction)
@@ -50,13 +50,20 @@ namespace Interaction.Activities
 
 		private IEnumerator OpenDoors()
 		{
-			Door.Open();
-			Line.LiftDoor.Open();
+			Door?.Open();
+			Line.LiftDoor?.Open();
 
 			yield return new WaitForSeconds(Line.DoorTime);
 
-			Door.Close();
-			Line.LiftDoor.Close();
+			Door?.Close();
+			Line.LiftDoor?.Close();
 		}
-	}
+
+        private void OnDrawGizmosSelected()
+        {
+			Gizmos.DrawWireSphere(WorldPosition, .1f);
+			Gizmos.matrix = transform.worldToLocalMatrix;
+			Gizmos.DrawCube(Offset, Vector3.one * .1f);
+        }
+    }
 }
