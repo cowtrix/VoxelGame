@@ -16,7 +16,7 @@ public class GrassSpawner : ExtendedMonoBehaviour
         public MeshFilter Filter, LOD;
         public Mesh Mesh;
 
-        public void Regenerate(GrassSpawner spawner, List<Mesh> planeMeshes, Bounds spawnBounds)
+        public void Regenerate(GrassSpawner spawner, List<Mesh> planeMeshes, Bounds spawnBounds, float amountScale)
         {
             if (!Filter)
             {
@@ -29,7 +29,7 @@ public class GrassSpawner : ExtendedMonoBehaviour
             renderer.gameObject.isStatic = true;
             renderer.gameObject.layer = spawner.gameObject.layer;
             var combineInstances = new List<CombineInstance>();
-            var density = spawnBounds.size.x * spawnBounds.size.z * spawner.Density;
+            var density = spawnBounds.size.x * spawnBounds.size.z * spawner.Density * amountScale;
 
             var collisionGridWidth = Mathf.CeilToInt(spawnBounds.size.x);
             var collisionGridHeight = Mathf.CeilToInt(spawnBounds.size.z);
@@ -42,12 +42,12 @@ public class GrassSpawner : ExtendedMonoBehaviour
                     var castPos = spawner.VoxelRenderer.transform.localToWorldMatrix.MultiplyPoint3x4(spawnBounds.min
                         + new Vector3(((x + .5f) / (float)collisionGridWidth) * spawnBounds.size.x, castDistance, ((y + .5f) / (float)collisionGridHeight) * spawnBounds.size.z));
 
-                    if(!Physics.Raycast(castPos, Vector3.down, out var hit, castDistance + 1, spawner.HitCheckMask))
+                    if (!Physics.Raycast(castPos, Vector3.down, out var hit, castDistance + 1, spawner.HitCheckMask))
                     {
                         Debug.DrawLine(castPos, castPos + Vector3.down * (castDistance + 1), Color.red, 20);
                         continue;
                     }
-                    if(hit.collider.gameObject != spawner.VoxelRenderer.gameObject)
+                    if (hit.collider.gameObject != spawner.VoxelRenderer.gameObject)
                     {
                         Debug.DrawLine(castPos, hit.point, Color.magenta, 20);
                         continue;
@@ -62,7 +62,8 @@ public class GrassSpawner : ExtendedMonoBehaviour
             for (var i = 0; i < density; ++i)
             {
                 var position = new Vector3(UnityEngine.Random.value * spawnBounds.size.x, 0, UnityEngine.Random.value * spawnBounds.size.z);
-                var gridPoint = (Mathf.FloorToInt((position.x / spawnBounds.size.x) * collisionGridWidth), Mathf.FloorToInt((position.z / spawnBounds.size.z) * collisionGridHeight));
+                var gridPoint = (Mathf.Clamp(Mathf.FloorToInt((position.x / (spawnBounds.size.x * .95f)) * collisionGridWidth), 0, collisionGridWidth - 1), Mathf.Clamp(Mathf.FloorToInt((position.z / (spawnBounds.size.z * .95f)) * collisionGridHeight), 0, collisionGridHeight - 1));
+
                 if (!collisionMask[gridPoint.Item1, gridPoint.Item2])
                 {
                     //DebugHelper.DrawPoint(renderer.transform.localToWorldMatrix.MultiplyPoint3x4(position), .1f, Color.red, 20);
@@ -85,7 +86,14 @@ public class GrassSpawner : ExtendedMonoBehaviour
                 Mesh = new Mesh();
                 newAsset = true;
             }
-            Mesh.CombineMeshes(combineInstances.ToArray(), true, true);
+            try
+            {
+                Mesh.CombineMeshes(combineInstances.ToArray(), true, true);
+            }
+            catch (ArgumentException ex)
+            {
+                Debug.LogException(ex, Filter.gameObject);
+            }
             Filter.sharedMesh = Mesh;
             Mesh.TrySetDirty();
 
@@ -229,8 +237,7 @@ public class GrassSpawner : ExtendedMonoBehaviour
         var planeMeshes = GetDoubleSidedPlaneMeshes();
         var voxels = VoxelRenderer.Mesh.Voxels;
         var coordinates = voxels.Select(v => v.Key).ToList();
-        int maxCount = 100;
-        int counter = 0;
+        var updatedPatches = new HashSet<GrassPatch>();
         foreach (var vox in voxels)
         {
             if (coordinates.CollideCheck(vox.Key + new VoxelCoordinate(0, 1, 0, vox.Key.Layer), out _))
@@ -239,13 +246,27 @@ public class GrassSpawner : ExtendedMonoBehaviour
             }
             var voxBounds = vox.Key.ToBounds();
             var topSurfaceBounds = new Bounds(voxBounds.center + new Vector3(0, voxBounds.extents.y, 0), voxBounds.size.Flatten());
-            var existingPatch = GrassPatches.SingleOrDefault(p => Vector3.Distance(p.Filter.transform.localPosition, topSurfaceBounds.min) < .1f);
-            if (existingPatch == null)
+            var surface = vox.Value.Material.GetSurface(EVoxelDirection.YPos);
+            if (surface.TextureFade == 1)
             {
-                existingPatch = new GrassPatch();
-                GrassPatches.Add(existingPatch);
+                continue;
             }
-            existingPatch.Regenerate(this, planeMeshes, topSurfaceBounds);
+            var patch = GrassPatches.SingleOrDefault(p => Vector3.Distance(p.Filter.transform.localPosition, topSurfaceBounds.min) < .1f);
+            if (patch == null)
+            {
+                patch = new GrassPatch();
+                GrassPatches.Add(patch);
+            }
+            patch.Regenerate(this, planeMeshes, topSurfaceBounds, Mathf.Clamp01(1 - surface.TextureFade));
+            updatedPatches.Add(patch);
+        }
+        foreach (var p in GrassPatches.Where(p => !updatedPatches.Contains(p)).ToList())
+        {
+#if UNITY_EDITOR
+            UnityEditor.AssetDatabase.DeleteAsset(UnityEditor.AssetDatabase.GetAssetPath(p.Mesh));
+#endif
+            p.Filter.gameObject.SafeDestroy();
+            GrassPatches.Remove(p);
         }
     }
 }

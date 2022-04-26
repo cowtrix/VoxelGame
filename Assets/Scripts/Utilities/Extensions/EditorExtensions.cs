@@ -37,7 +37,7 @@ namespace Common
 			UnityEngine.Random.InitState(command.GetHashCode());
 			var t = command.context as Transform;
 			var eul = t.localRotation.eulerAngles;
-			t.localRotation = Quaternion.Euler(eul.x, UnityEngine.Random.Range(0, 360), eul.y);
+			t.localRotation = Quaternion.Euler(eul.x, UnityEngine.Random.Range(0, 360), eul.z);
 		}
 
 		[MenuItem("CONTEXT/Transform/Randomise Y Rotation (Snap 90)")]

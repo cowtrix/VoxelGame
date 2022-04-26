@@ -60,8 +60,9 @@ public class GameManager : Singleton<GameManager>
 		}
 	}
 
-	private void OnSceneLoaded(Scene arg0, LoadSceneMode sceneMode)
+	private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
 	{
+		StartCoroutine(SetActiveSceneWhenLoaded(scene));
 		var spawn = FindObjectOfType<SpawnPosition>();
 		if (spawn)
 		{
@@ -72,6 +73,19 @@ public class GameManager : Singleton<GameManager>
 
 			Player.CameraController.LookAt(spawn.transform.forward);
 		}
+        else
+        {
+			Debug.LogError("No spawn point found!");
+        }
+	}
+
+	IEnumerator SetActiveSceneWhenLoaded(Scene scene)
+    {
+        while (!scene.isLoaded)
+        {
+			yield return null;
+        }
+		SceneManager.SetActiveScene(scene);
 	}
 
 	private void Update()

@@ -17,6 +17,7 @@ namespace Interaction.Activities
         public LiftStop TargetStop { get; private set; }
         public bool IsMoving { get; internal set; }
 
+        public UnityEvent OnStartMoving, OnStopMoving;
         public Door Door;
         public float DoorPauseTime = 5;
         public float Speed = 1;
@@ -57,6 +58,7 @@ namespace Interaction.Activities
                 }
 
                 IsMoving = true;
+                OnStartMoving?.Invoke();
                 Debug.Log($"Lift moving to {TargetStop}");
                 while ((Rigidbody.position - TargetStop.WorldPosition).magnitude > .01f)
                 {
@@ -64,6 +66,8 @@ namespace Interaction.Activities
                     yield return null;
                 }
                 Debug.Log($"Lift arrived at {TargetStop}");
+                IsMoving = false;
+                OnStopMoving?.Invoke();
                 Line?.StoppedAt(TargetStop);
                 Door?.Open();
                 TargetStop.Door?.Open();
