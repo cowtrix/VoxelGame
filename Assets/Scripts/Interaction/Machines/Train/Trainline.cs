@@ -9,23 +9,20 @@ public class Trainline : ExtendedMonoBehaviour
 {
     public List<RailTower> Line;
 	public TrainController Train;
-	public float TargetTime { get; private set; } = 1;
-	public float Floor = .3f;
-	public float StopTime = 30;
 	[SerializeField]
 	private List<SplineSegment> Splines;
 	[SerializeField]
-	private float m_totalDistance;
-
+	[HideInInspector]
+	public float TotalDistance;
 	public float Resolution = 2;
 
 	[ContextMenu("Invalidate")]
 	public void Invalidate()
 	{
-		m_totalDistance = 0;
+		TotalDistance = 0;
 		Splines.Clear();
 		RailTower current = Line.First();
-		foreach(var next in Line.Skip(1))
+		foreach(var next in Line.OrderBy(r => r.transform.position.y).Skip(1))
 		{
 			var segmnent = new SplineSegment
 			{
@@ -44,7 +41,7 @@ public class Trainline : ExtendedMonoBehaviour
 				}
 			};
 			segmnent.Recalculate();
-			m_totalDistance += segmnent.Length;
+			TotalDistance += segmnent.Length;
 			Splines.Add(segmnent);
 			current = next;
 		}
@@ -52,7 +49,7 @@ public class Trainline : ExtendedMonoBehaviour
 
 	public Vector3 GetPointOnLine(float time)
 	{
-		var targetDistance = time * m_totalDistance;
+		var targetDistance = time * TotalDistance;
 		var currentDistance = 0f;
 		foreach(var n in Splines)
 		{
@@ -86,27 +83,4 @@ public class Trainline : ExtendedMonoBehaviour
 		}
 	}
 
-	private void Start()
-	{
-		StartCoroutine(Think());
-	}
-
-	private IEnumerator Think()
-	{
-		while (true)
-		{
-			yield return null;
-			if (Train.Time >= 1 - Floor)
-			{
-				TargetTime = Floor;
-				yield return new WaitForSeconds(StopTime);
-			}
-			else if(Train.Time <= Floor)
-			{
-				TargetTime = 1;
-				yield return new WaitForSeconds(StopTime);
-			}
-			Train.Time = Mathf.Clamp01(Mathf.MoveTowards(Train.Time, TargetTime, Time.deltaTime * Train.Speed));
-		}		
-	}
 }

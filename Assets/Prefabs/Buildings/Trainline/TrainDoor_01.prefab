@@ -54,10 +54,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 0
+  SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 64814eb23435cf448a9a568892631678, type: 2}
   m_lastMeshHash: 5e00b5f2-c1bb-4aef-aebf-32cee6453384
@@ -159,6 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d629c46dc07d1b94a8bf56f703b1b1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 6d91a82d-5a32-4471-abb9-c818e673907a
+  ThinkSpeed: 1
+  Priority: 0
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -177,10 +188,36 @@ MonoBehaviour:
         m_Calls: []
     MaxFocusDistance: 5
     MaxUseDistance: 2
+  Colliders: []
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  RotationEnabled: 1
+  PositionEnabled: 1
+  ExternallyDriven: 0
   OpenAmount: 1
-  OpenPosition: {x: 1.5, y: 0, z: -2.6666667}
-  OpenRotation: {x: 0, y: 0, z: 0}
-  ClosedPosition: {x: 0, y: 0, z: -2.6666667}
-  ClosedRotation: {x: 0, y: 0, z: 0}
+  Transforms: []
   DoorName: Door
   Speed: 1
+  Usable: 0

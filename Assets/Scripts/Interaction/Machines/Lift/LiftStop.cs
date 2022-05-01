@@ -8,8 +8,9 @@ namespace Interaction.Activities
 {
 	public class LiftStop : MonoBehaviour
 	{
+		public UnityEvent OnLiftArrived;
 		public LiftLine Line { get; private set; }
-		public Toggle UpButton, DownButton;
+		public SimpleInteractable UpButton, DownButton;
 		public Vector3 Offset;
 		public Door Door;
 
@@ -31,11 +32,9 @@ namespace Interaction.Activities
 			{
 				DownButton?.gameObject.SetActive(false);
 			}
-			DownButton?.onValueChanged.AddListener(b => { if (b) { OnClick(LiftLine.eLiftDirection.Down); } });
-			UpButton?.onValueChanged.AddListener(b => { if (b) { OnClick(LiftLine.eLiftDirection.Up); } });
 		}
 
-		private void OnClick(LiftLine.eLiftDirection direction)
+		public void RequestStopUp()
 		{
 			if (!LiftIsAtStop)
 			{
@@ -50,7 +49,11 @@ namespace Interaction.Activities
 
 		private IEnumerator OpenDoors()
 		{
-			Door?.Open();
+			if (!LiftIsAtStop)
+			{
+				yield break;
+			}
+			Door?.Open();            
 			Line.LiftDoor?.Open();
 
 			yield return new WaitForSeconds(Line.DoorTime);
@@ -65,5 +68,11 @@ namespace Interaction.Activities
 			Gizmos.matrix = transform.worldToLocalMatrix;
 			Gizmos.DrawCube(Offset, Vector3.one * .1f);
         }
+
+        public void LiftArrived(Lift lift)
+        {
+			OnLiftArrived?.Invoke();
+			StartCoroutine(OpenDoors());
+		}
     }
 }

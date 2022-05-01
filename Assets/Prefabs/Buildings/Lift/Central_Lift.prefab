@@ -93,8 +93,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6dde589372216244944027e2272205b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: c63ffc64-0d6b-4478-847f-de1a59845ae1
-  ThinkSpeed: 1
+  m_guid: 5ac4f4b5-ffa6-4257-81b7-ee7adb3e484b
+  ThinkSpeed: 0.5
+  Priority: -1
   IsPoweredOn: 0
   PowerOn:
     m_PersistentCalls:
@@ -252,27 +253,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cad99e4e648092478819f733566d1fb, type: 3}
---- !u!1 &2573041761815802673 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2372371583441784330, guid: 3cad99e4e648092478819f733566d1fb, type: 3}
-  m_PrefabInstance: {fileID: 241255645851024699}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &241255646064358536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2573041761815802673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b71ca78f1348fb34d90f925ed7e89872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_guid: 
-  ThinkSpeed: 1
-  DisableDistance: 1000
-  RaycastDistance: 2
 --- !u!4 &6016682906988060133 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5775463562536411358, guid: 3cad99e4e648092478819f733566d1fb, type: 3}
@@ -427,27 +407,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cad99e4e648092478819f733566d1fb, type: 3}
---- !u!1 &2573041761920453746 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2372371583441784330, guid: 3cad99e4e648092478819f733566d1fb, type: 3}
-  m_PrefabInstance: {fileID: 241255645897343608}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &241255645415556759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2573041761920453746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b71ca78f1348fb34d90f925ed7e89872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_guid: 
-  ThinkSpeed: 1
-  DisableDistance: 1000
-  RaycastDistance: 2
 --- !u!4 &6016682907370070694 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5775463562536411358, guid: 3cad99e4e648092478819f733566d1fb, type: 3}
@@ -586,27 +545,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cad99e4e648092478819f733566d1fb, type: 3}
---- !u!1 &2573041762389531582 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2372371583441784330, guid: 3cad99e4e648092478819f733566d1fb, type: 3}
-  m_PrefabInstance: {fileID: 241255646358295988}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &241255645318158564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2573041762389531582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b71ca78f1348fb34d90f925ed7e89872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_guid: 
-  ThinkSpeed: 1
-  DisableDistance: 1000
-  RaycastDistance: 2
 --- !u!4 &6016682906482619754 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5775463562536411358, guid: 3cad99e4e648092478819f733566d1fb, type: 3}
@@ -2501,7 +2439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3973369291673911481, guid: cd9b35333b9134e45aa0258a0706c455, type: 3}
       propertyPath: m_guid
-      value: 2b98503f-3b15-45cf-905f-0a053a6067e2
+      value: c95e21a2-4473-4565-8f8b-6f5f5a03dd41
       objectReference: {fileID: 0}
     - target: {fileID: 5562229885632549376, guid: cd9b35333b9134e45aa0258a0706c455, type: 3}
       propertyPath: m_RootOrder
@@ -2621,6 +2559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: 
   ThinkSpeed: 1
+  Priority: 0
   DisableDistance: 1000
   RaycastDistance: 2
 --- !u!114 &5649798886151699909 stripped
@@ -2859,27 +2798,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5775463562536411358, guid: 3cad99e4e648092478819f733566d1fb, type: 3}
   m_PrefabInstance: {fileID: 6016682906433677222}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8328235822375741868 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2372371583441784330, guid: 3cad99e4e648092478819f733566d1fb, type: 3}
-  m_PrefabInstance: {fileID: 6016682906433677222}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &241255645557060080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8328235822375741868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b71ca78f1348fb34d90f925ed7e89872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_guid: 
-  ThinkSpeed: 1
-  DisableDistance: 1000
-  RaycastDistance: 2
 --- !u!1001 &6028074693139277337
 PrefabInstance:
   m_ObjectHideFlags: 0

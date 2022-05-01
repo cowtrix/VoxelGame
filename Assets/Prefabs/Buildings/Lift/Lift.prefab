@@ -705,7 +705,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29df4f85aa8a794bba73079e3c4cd94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnStartMoving:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopMoving:
+    m_PersistentCalls:
+      m_Calls: []
   Door: {fileID: 3973369291673911481}
+  DoorPauseTime: 5
   Speed: 15
   ButtonContainer: {fileID: 4701728093354579059}
   ButtonPrefab: {fileID: 7059312519290440315}
@@ -1068,6 +1075,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: c7f29178-0893-484f-a998-678a3e2044a7
   ThinkSpeed: 1
+  Priority: 0
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -1309,7 +1317,6 @@ GameObject:
   - component: {fileID: 449321668964211284}
   - component: {fileID: 1897646437583601940}
   - component: {fileID: 1860453045324934308}
-  - component: {fileID: 3052975434941038307}
   m_Layer: 8
   m_Name: LOD_0
   m_TagString: Untagged
@@ -1348,7 +1355,7 @@ MonoBehaviour:
   CustomMaterials: 0
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
-  GenerateCollider: 1
+  GenerateCollider: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
@@ -1384,7 +1391,7 @@ MonoBehaviour:
   Parent: {fileID: 7456026860141651868}
   MeshFilter: {fileID: 1897646437583601940}
   MeshRenderer: {fileID: 1860453045324934308}
-  MeshCollider: {fileID: 3052975434941038307}
+  MeshCollider: {fileID: 0}
 --- !u!33 &1897646437583601940
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1435,20 +1442,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3052975434941038307
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7429158768837672059}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8136184674883978001, guid: 824e461f4e2a23540b0a079d6849369d, type: 2}
 --- !u!1 &7972565256220320697
 GameObject:
   m_ObjectHideFlags: 0
@@ -1590,6 +1583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: 
   ThinkSpeed: 1
+  Priority: 0
   DisableDistance: 100
   RaycastDistance: 2
 --- !u!1 &8108653055604471132

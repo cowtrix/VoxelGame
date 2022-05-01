@@ -7,6 +7,9 @@ using Voxul;
 public class RailTower : ExtendedMonoBehaviour
 {
     public RailTower NextTower;
+
+	public float StopTime = 0;
+
 	public Vector3 Offset;
 	public float Curviness = 1;
     public BezierConnectorLineRenderer LeftOut, RightOut;
@@ -27,11 +30,11 @@ public class RailTower : ExtendedMonoBehaviour
 		RightOut.StartTransform.Transform = RightOut.transform;
 		RightOut.EndTransform.Transform = NextTower.RightIn;
 
-		LeftOut.StartTransform.Normal = Curviness * transform.worldToLocalMatrix.MultiplyVector(LeftOut.StartTransform.Transform.right);
-		RightOut.StartTransform.Normal = Curviness * transform.worldToLocalMatrix.MultiplyVector(RightOut.StartTransform.Transform.right);
+		LeftOut.EndTransform.Normal = Curviness * transform.worldToLocalMatrix.MultiplyVector(-LeftOut.StartTransform.Transform.right);
+		RightOut.EndTransform.Normal = Curviness * transform.worldToLocalMatrix.MultiplyVector(-RightOut.StartTransform.Transform.right);
 
-		LeftOut.EndTransform.Normal = Curviness * transform.worldToLocalMatrix.MultiplyVector(-NextTower.LeftIn.right);
-		RightOut.EndTransform.Normal = Curviness * transform.worldToLocalMatrix.MultiplyVector(-NextTower.RightIn.right);
+		LeftOut.StartTransform.Normal = Curviness * Vector3.right;
+		RightOut.StartTransform.Normal = Curviness * Vector3.right;
 
 		LeftOut.Invalidate();
 		RightOut.Invalidate();

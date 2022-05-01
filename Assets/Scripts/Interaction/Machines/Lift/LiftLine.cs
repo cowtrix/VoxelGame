@@ -31,11 +31,12 @@ namespace Interaction.Activities
 			}
 		}
 
-		private void Update()
-		{
+        protected override int Tick(float dt)
+        {
+			var cost = base.Tick(dt) + 1;
 			if (!m_requestedStops.Any() || Lift.IsMoving)
 			{
-				return;
+				return cost;
 			}
 			IEnumerable<LiftStop> validStops;
 			switch(CurrentDirection)
@@ -58,9 +59,10 @@ namespace Interaction.Activities
 			if(closestStop == null)
 			{
 				CurrentDirection = eLiftDirection.Idle;
-				return;
+				return cost;
 			}
 			Lift.SetTarget(closestStop);
+			return cost;
 		}
 
 		public void StoppedAt(LiftStop targetStop)

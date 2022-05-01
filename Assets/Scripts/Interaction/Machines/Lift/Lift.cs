@@ -71,6 +71,7 @@ namespace Interaction.Activities
                 Line?.StoppedAt(TargetStop);
                 Door?.Open();
                 TargetStop.Door?.Open();
+                TargetStop.LiftArrived(this);
                 yield return new WaitForSeconds(DoorPauseTime);
                 Door?.Close();
                 TargetStop.Door?.Close();

@@ -7,6 +7,7 @@ namespace Common
 	{
 		public float LastUpdateTime { get; set; }
 		public float ThinkSpeed = 1;
+		public int Priority = 0;
 
 		public int Think(float dt)
 		{

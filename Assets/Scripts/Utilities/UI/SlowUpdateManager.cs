@@ -37,7 +37,10 @@ namespace Common
 					{
 						try
 						{
-							var newList = data.OrderByDescending(d => d.Item1)
+							var newList = data
+								.OrderBy(d => d.Item2.Priority)
+								.ThenBy(d => d.Item1)
+								.Reverse()
 								.Select(d => d.Item2)
 								.ToList();
 							lock (m_lock)
