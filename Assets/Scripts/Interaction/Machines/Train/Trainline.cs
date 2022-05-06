@@ -33,6 +33,7 @@ public class Trainline : ExtendedMonoBehaviour
 					Control = current.transform.right * current.Curviness,
 					UpVector = current.transform.up,
 				},
+
 				SecondControlPoint = new SplineSegment.ControlPoint
 				{
 					Position = next.GetRailPosition(),
