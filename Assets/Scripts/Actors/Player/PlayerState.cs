@@ -1,4 +1,5 @@
-﻿using Interaction.Items;
+﻿using Actors.NPC.Player;
+using Interaction.Items;
 using Phone;
 using System;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace Actors
 	public class PlayerState : ActorState, IFueledActor
 	{
 		public float ThrusterRecharge { get; private set; } = .1f;
-		[StateMin(0)]
+		[StateMinMax(0, 100)]
 		public float Fuel { get; private set; } = 100;
 
 		public override int Credits

@@ -56,6 +56,17 @@ namespace Actors
 			}
 		}
 
+		public Vector2 GetMinMax(eStateKey key)
+        {
+			var field = GetType().GetProperty(key.ToString());
+			var attr = field.GetCustomAttribute<StateMinMaxAttribute>();
+			if(attr != null)
+            {
+				return new Vector2(attr.Min, attr.Max);
+            }
+			return new Vector2(float.MinValue, float.MaxValue);
+        }
+
 		public bool TryGetValue<T>(eStateKey key, out T result)
 		{
 			if (!m_fieldLookup.TryGetValue(key.ToString(), out var fieldInfo))
@@ -68,26 +79,44 @@ namespace Actors
 			return true;
 		}
 
-		public bool TryAdd(eStateKey fieldA, eStateKey fieldB, string description)
+		public bool TryGetValueNormalized(eStateKey key, out float result)
 		{
-			if (!m_fieldLookup.TryGetValue(fieldA.ToString(), out var fieldInfoA) || !m_fieldLookup.TryGetValue(fieldB.ToString(), out var fieldInfoB))
+			if (!m_fieldLookup.TryGetValue(key.ToString(), out var fieldInfo))
+			{
+				result = default;
+				return false;
+			}
+			var rawObject = fieldInfo.GetValue(this);
+			result = (float)Convert.ChangeType(rawObject, typeof(float));
+			var range = GetMinMax(key);
+			result = (result - range.x) / (range.y - range.x);
+			return true;
+		}
+
+		public bool TryAdd(eStateKey valueField, eStateKey deltaField, string description)
+		{
+			if (!m_fieldLookup.TryGetValue(valueField.ToString(), out var fieldInfoA) || !m_fieldLookup.TryGetValue(deltaField.ToString(), out var fieldInfoB))
 			{
 				return false;
 			}
+
 			dynamic a = fieldInfoA.GetValue(this);
 			dynamic b = fieldInfoB.GetValue(this);
 
 			var newVal = a + b;
-			var minAttr = fieldInfoA.GetCustomAttribute<StateMinAttribute>();
+			var range = GetMinMax(deltaField);
+			newVal = Mathf.Clamp(newVal, range.x, range.y);
+
+			var minAttr = fieldInfoA.GetCustomAttribute<StateMinMaxAttribute>();
 			if (minAttr != null && newVal < minAttr.Min)
 			{
-				OnStateUpdate.Invoke(Actor, new StateUpdate<float>(fieldA, description, 0, a, false));
+				OnStateUpdate.Invoke(Actor, new StateUpdate<float>(valueField, description, 0, a, false));
 				return false;
 			}
 
 			fieldInfoA.SetValue(this, newVal);
-			OnStateUpdate.Invoke(Actor, new StateUpdate<float>(fieldA, description, b, newVal, true));
-			//Debug.Log($"State update: {fieldA}: {newVal} ({b})");
+			OnStateUpdate.Invoke(Actor, new StateUpdate<float>(valueField, description, b, newVal, true));
+			
 			return true;
 		}
 
@@ -98,20 +127,17 @@ namespace Actors
 				Debug.LogWarning($"Tried to delta {field} but it did not exist on actor {Actor}", this);
 				return false;
 			}
-			/*if(fieldInfo.PropertyType != typeof(float))
-			{
-				throw new Exception($"State delta type mismatch for {field}, expected float but got {fieldInfo.PropertyType}");
-			}*/
+			
 			var val = (float)fieldInfo.GetValue(this);
 			var newVal = val + delta;
-
-			var minAttr = fieldInfo.GetCustomAttribute<StateMinAttribute>();
-			if (minAttr != null && newVal < minAttr.Min)
+			var range = GetMinMax(field);
+			if (newVal < range.x || newVal > range.y)
 			{
 				OnStateUpdate.Invoke(Actor, new StateUpdate<float>(field, description, delta, val, false));
 				return false;
 			}
 
+			newVal = Mathf.Clamp(newVal, range.x, range.y);
 			fieldInfo.SetValue(this, newVal);
 			OnStateUpdate.Invoke(Actor, new StateUpdate<float>(field, description, newVal, delta, true));
 			//Debug.Log($"State update: {field}: {newVal} ({delta})");
@@ -131,14 +157,15 @@ namespace Actors
 			}*/
 			var val = (int)fieldInfo.GetValue(this);
 			var newVal = val + delta;
-
-			var minAttr = fieldInfo.GetCustomAttribute<StateMinAttribute>();
-			if (minAttr != null && newVal < minAttr.Min)
+			var range = GetMinMax(key);
+			
+			if (newVal < range.x || newVal > range.y)
 			{
-				OnStateUpdate.Invoke(Actor, new StateUpdate<float>(key, desc, newVal, delta, false));
+				OnStateUpdate.Invoke(Actor, new StateUpdate<float>(key, desc, delta, val, false));
 				return false;
 			}
 
+			newVal = Mathf.RoundToInt(Mathf.Clamp(newVal, range.x, range.y));
 			fieldInfo.SetValue(this, newVal);
 			OnStateUpdate.Invoke(Actor, new StateUpdate<float>(key, desc, newVal, delta, true));
 			//Debug.Log($"State update: {field}: {newVal} ({delta})");

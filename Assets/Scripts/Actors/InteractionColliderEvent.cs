@@ -1,4 +1,5 @@
 using Actors;
+using Actors.NPC.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

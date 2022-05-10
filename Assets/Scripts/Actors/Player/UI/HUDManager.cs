@@ -1,4 +1,5 @@
 using Actors;
+using Actors.NPC.Player;
 using Common;
 using Interaction;
 using System;
@@ -11,7 +12,7 @@ using Voxul.Utilities;
 
 namespace UI
 {
-	[Serializable]
+    [Serializable]
 	public class StringEvent : UnityEvent<string> { }
 
 	public class HUDManager : Singleton<HUDManager>

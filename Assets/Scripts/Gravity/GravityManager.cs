@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using System;
+using Voxul.Utilities;
 
 [ExecuteAlways]
 public class GravityManager : Singleton<GravityManager>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Voxul;
+using Voxul.Utilities;
 
 public class TintGradient : ExtendedMonoBehaviour
 {
@@ -26,6 +27,7 @@ public class TintGradient : ExtendedMonoBehaviour
             var normalizedPos = new Vector3(relativePos.x / bounds.size.x, relativePos.y / bounds.size.y, relativePos.z / bounds.size.z);
             Debug.Log(normalizedPos);
             tint.Color = FlatGradient.Evaluate(normalizedPos.x) + YGradient.Evaluate(normalizedPos.y) + FlatGradient.Evaluate(normalizedPos.z);
+            tint.RefreshRenderers();
             tint.Invalidate();
         }
     }

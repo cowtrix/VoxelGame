@@ -1,0 +1,2595 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7658a02d94aca5c4a85699d224076d82, type: 3}
+  m_Name: BlockBuildingComponent_Chimney
+  m_EditorClassIdentifier: 
+  CurrentWorker:
+    VoxelMesh: {fileID: 11400000}
+  UnityMeshInstances:
+  - UnityMesh: {fileID: 2227103511612984819}
+  PointMapping:
+    keys: []
+    values: []
+  Hash: 42e6c3a8-aa5f-43b2-8886-84cae045e727
+  Voxels:
+    keys:
+    - Layer: 1
+      X: -1
+      Y: -1
+      Z: -1
+    - Layer: 1
+      X: -1
+      Y: 2
+      Z: -1
+    - Layer: 1
+      X: -1
+      Y: 5
+      Z: -1
+    - Layer: 1
+      X: -1
+      Y: 8
+      Z: -1
+    - Layer: 1
+      X: -1
+      Y: 8
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 8
+      Z: 1
+    - Layer: 1
+      X: -1
+      Y: 9
+      Z: -1
+    - Layer: 1
+      X: -1
+      Y: 9
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 9
+      Z: 1
+    - Layer: 1
+      X: -1
+      Y: 10
+      Z: -1
+    - Layer: 1
+      X: -1
+      Y: 10
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 10
+      Z: 1
+    - Layer: 1
+      X: 0
+      Y: 8
+      Z: -1
+    - Layer: 1
+      X: 0
+      Y: 8
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 8
+      Z: 1
+    - Layer: 1
+      X: 0
+      Y: 9
+      Z: -1
+    - Layer: 1
+      X: 0
+      Y: 9
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 9
+      Z: 1
+    - Layer: 1
+      X: 0
+      Y: 10
+      Z: -1
+    - Layer: 1
+      X: 0
+      Y: 10
+      Z: 1
+    - Layer: 1
+      X: 1
+      Y: 8
+      Z: -1
+    - Layer: 1
+      X: 1
+      Y: 8
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 8
+      Z: 1
+    - Layer: 1
+      X: 1
+      Y: 9
+      Z: -1
+    - Layer: 1
+      X: 1
+      Y: 9
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 9
+      Z: 1
+    - Layer: 1
+      X: 1
+      Y: 10
+      Z: -1
+    - Layer: 1
+      X: 1
+      Y: 10
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 10
+      Z: 1
+    - Layer: 1
+      X: -1
+      Y: -1
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: -1
+      Z: 1
+    - Layer: 1
+      X: -1
+      Y: 0
+      Z: -1
+    - Layer: 1
+      X: -1
+      Y: 0
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 0
+      Z: 1
+    - Layer: 1
+      X: -1
+      Y: 1
+      Z: -1
+    - Layer: 1
+      X: -1
+      Y: 1
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 1
+      Z: 1
+    - Layer: 1
+      X: 0
+      Y: -1
+      Z: -1
+    - Layer: 1
+      X: 0
+      Y: -1
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: -1
+      Z: 1
+    - Layer: 1
+      X: 0
+      Y: 0
+      Z: -1
+    - Layer: 1
+      X: 0
+      Y: 0
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 0
+      Z: 1
+    - Layer: 1
+      X: 0
+      Y: 1
+      Z: -1
+    - Layer: 1
+      X: 0
+      Y: 1
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 1
+      Z: 1
+    - Layer: 1
+      X: 1
+      Y: -1
+      Z: -1
+    - Layer: 1
+      X: 1
+      Y: -1
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: -1
+      Z: 1
+    - Layer: 1
+      X: 1
+      Y: 0
+      Z: -1
+    - Layer: 1
+      X: 1
+      Y: 0
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 0
+      Z: 1
+    - Layer: 1
+      X: 1
+      Y: 1
+      Z: -1
+    - Layer: 1
+      X: 1
+      Y: 1
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 1
+      Z: 1
+    - Layer: 1
+      X: -1
+      Y: 2
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 2
+      Z: 1
+    - Layer: 1
+      X: -1
+      Y: 3
+      Z: -1
+    - Layer: 1
+      X: -1
+      Y: 3
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 3
+      Z: 1
+    - Layer: 1
+      X: -1
+      Y: 4
+      Z: -1
+    - Layer: 1
+      X: -1
+      Y: 4
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 4
+      Z: 1
+    - Layer: 1
+      X: 0
+      Y: 2
+      Z: -1
+    - Layer: 1
+      X: 0
+      Y: 2
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 2
+      Z: 1
+    - Layer: 1
+      X: 0
+      Y: 3
+      Z: -1
+    - Layer: 1
+      X: 0
+      Y: 3
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 3
+      Z: 1
+    - Layer: 1
+      X: 0
+      Y: 4
+      Z: -1
+    - Layer: 1
+      X: 0
+      Y: 4
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 4
+      Z: 1
+    - Layer: 1
+      X: 1
+      Y: 2
+      Z: -1
+    - Layer: 1
+      X: 1
+      Y: 2
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 2
+      Z: 1
+    - Layer: 1
+      X: 1
+      Y: 3
+      Z: -1
+    - Layer: 1
+      X: 1
+      Y: 3
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 3
+      Z: 1
+    - Layer: 1
+      X: 1
+      Y: 4
+      Z: -1
+    - Layer: 1
+      X: 1
+      Y: 4
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 4
+      Z: 1
+    - Layer: 1
+      X: -1
+      Y: 5
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 5
+      Z: 1
+    - Layer: 1
+      X: -1
+      Y: 6
+      Z: -1
+    - Layer: 1
+      X: -1
+      Y: 6
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 6
+      Z: 1
+    - Layer: 1
+      X: -1
+      Y: 7
+      Z: -1
+    - Layer: 1
+      X: -1
+      Y: 7
+      Z: 0
+    - Layer: 1
+      X: -1
+      Y: 7
+      Z: 1
+    - Layer: 1
+      X: 0
+      Y: 5
+      Z: -1
+    - Layer: 1
+      X: 0
+      Y: 5
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 5
+      Z: 1
+    - Layer: 1
+      X: 0
+      Y: 6
+      Z: -1
+    - Layer: 1
+      X: 0
+      Y: 6
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 6
+      Z: 1
+    - Layer: 1
+      X: 0
+      Y: 7
+      Z: -1
+    - Layer: 1
+      X: 0
+      Y: 7
+      Z: 0
+    - Layer: 1
+      X: 0
+      Y: 7
+      Z: 1
+    - Layer: 1
+      X: 1
+      Y: 5
+      Z: -1
+    - Layer: 1
+      X: 1
+      Y: 5
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 5
+      Z: 1
+    - Layer: 1
+      X: 1
+      Y: 6
+      Z: -1
+    - Layer: 1
+      X: 1
+      Y: 6
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 6
+      Z: 1
+    - Layer: 1
+      X: 1
+      Y: 7
+      Z: -1
+    - Layer: 1
+      X: 1
+      Y: 7
+      Z: 0
+    - Layer: 1
+      X: 1
+      Y: 7
+      Z: 1
+    values:
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: -1
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 2
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 5
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 8
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 8
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 8
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 9
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 9
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 9
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 10
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides:
+        - Direction: 4
+          Surface:
+            Albedo: {r: 0.1981132, g: 0.182457, b: 0.17693128, a: 1}
+            Metallic: 0.5
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 1
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 10
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 10
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 8
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 8
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 8
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 9
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides:
+        - Direction: 5
+          Surface:
+            Albedo: {r: 0.066037714, g: 0.064237945, b: 0.063338056, a: 1}
+            Metallic: 0.5
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 1
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 9
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 9
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides:
+        - Direction: 2
+          Surface:
+            Albedo: {r: 0.1981132, g: 0.182457, b: 0.17693128, a: 1}
+            Metallic: 0.5
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 1
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 10
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides:
+        - Direction: 3
+          Surface:
+            Albedo: {r: 0.1981132, g: 0.182457, b: 0.17693128, a: 1}
+            Metallic: 0.5
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 1
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 10
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 8
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 8
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 8
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 9
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 9
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 9
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 10
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides:
+        - Direction: 1
+          Surface:
+            Albedo: {r: 0.1981132, g: 0.182457, b: 0.17693128, a: 1}
+            Metallic: 0.5
+            Smoothness: 0
+            Texture:
+              Index: 0
+            UVMode: 0
+            TextureFade: 1
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 10
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 10
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: -1
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: -1
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 0
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 0
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 0
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 1
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 1
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 1
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: -1
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: -1
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: -1
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 0
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 0
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 0
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 1
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 1
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 1
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: -1
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: -1
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: -1
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 0
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 0
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 0
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 1
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 1
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 1
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 2
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 2
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 3
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 3
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 3
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 4
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 4
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 4
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 2
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 2
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 2
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 3
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 3
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 3
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 4
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 4
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 4
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 2
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 2
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 2
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 3
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 3
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 3
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 4
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 4
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 4
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 5
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 5
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 6
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 6
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 6
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 7
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 7
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: -1
+        Y: 7
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 5
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 5
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 5
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 6
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 6
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 6
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 7
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 7
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 0
+        Y: 7
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 5
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 5
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 5
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 6
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 6
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 6
+        Z: 1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 7
+        Z: -1
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 7
+        Z: 0
+    - Material:
+        MaterialMode: 0
+        RenderMode: 0
+        NormalMode: 0
+        Default:
+          Albedo: {r: 0.3679245, g: 0.30233788, b: 0.27652186, a: 1}
+          Metallic: 0.5
+          Smoothness: 0
+          Texture:
+            Index: 0
+          UVMode: 0
+          TextureFade: 1
+        Overrides: []
+      Coordinate:
+        Layer: 1
+        X: 1
+        Y: 7
+        Z: 1
+  OptimiseMesh: 0
+  OverrideOptimisers: 0
+  OptimiserOverrides:
+    Data: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!43 &2227103511612984819
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BlockBuildingComponent_Chimney_mesh_42e6c3a8-aa5f-43b2-8886-84cae045e727_0
+  serializedVersion: 10
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 84
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 56
+    localAABB:
+      m_Center: {x: 0, y: 1.5, z: 0}
+      m_Extent: {x: 0.5000001, y: 2.0000002, z: 0.50000024}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 0
+  m_KeepIndices: 0
+  m_IndexFormat: 1
+  m_IndexBuffer: 0300000001000000000000000300000002000000010000000700000005000000040000000700000006000000050000000b00000009000000080000000b0000000a000000090000000f0000000d0000000c0000000f0000000e0000000d0000001300000011000000100000001300000012000000110000001700000015000000140000001700000016000000150000001b00000019000000180000001b0000001a000000190000001f0000001d0000001c0000001f0000001e0000001d0000002300000021000000200000002300000022000000210000002700000025000000240000002700000026000000250000002b00000029000000280000002b0000002a000000290000002f0000002d0000002c0000002f0000002e0000002d000000330000003100000030000000330000003200000031000000370000003500000034000000370000003600000035000000
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 56
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 40
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 48
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 56
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 4032
+    _typelessdata: abaa2abeabaa4a40abaa2abe0000803f000000000000000030de4a3e02d63a3e792d353e0000803fabaa4a40abaa2abe000000000000000000000000000000000000003f00000000abaa2abeabaa4a40abaa2a3e0000803f000000000000000030de4a3e02d63a3e792d353e0000803fabaa4a40abaa2a3e0000003b0000000000000000000000000000003f00000000abaa2abe01006040abaa2a3e0000803f000000000000000030de4a3e02d63a3e792d353e0000803f01006040abaa2a3e0000003b0000003b00000000000000000000003f00000000abaa2abe01006040abaa2abe0000803f000000000000000030de4a3e02d63a3e792d353e0000803f01006040abaa2abe000000000000003b00000000000000000000003f00000000000000bf000000bf0000003f000080bf00000000000000009a60bc3e08cc9a3e46948d3e0000803f000000bf0000003f000000000000003b00000000000000000000003f00000000000000bf000000bf000000bf000080bf00000000000000009a60bc3e08cc9a3e46948d3e0000803f000000bf000000bf0000003b0000003b00000000000000000000003f00000000000000bf00006040000000bf000080bf00000000000000009a60bc3e08cc9a3e46948d3e0000803f00006040000000bf0000003b0000803b00000000000000000000003f00000000000000bf000060400000003f000080bf00000000000000009a60bc3e08cc9a3e46948d3e0000803f000060400000003f000000000000803b00000000000000000000003f000000000200003f040000bf0400003f00000000000000000000803f9a60bc3e08cc9a3e46948d3e0000803f0200003f040000bf000000000000803b00000000000000000000003f00000000020000bf040000bf0400003f00000000000000000000803f9a60bc3e08cc9a3e46948d3e0000803f020000bf040000bf0000003b0000803b00000000000000000000003f00000000020000bf01006040f8ffff3e00000000000000000000803f9a60bc3e08cc9a3e46948d3e0000803f020000bf010060400000003b0000c03b00000000000000000000003f000000000200003f01006040f8ffff3e00000000000000000000803f9a60bc3e08cc9a3e46948d3e0000803f0200003f01006040000000000000c03b00000000000000000000003f00000000000000bf010060400100003f000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803f000000bf0100003f000000000000c03b00000000000000000000003f00000000010000bf01006040adaa2abe000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803f010000bfadaa2abe0000003b0000c03b00000000000000000000003f00000000acaa2abe01006040afaa2abe000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803facaa2abeafaa2abe0000003b0000003c00000000000000000000003f00000000a7aa2abe010060400100003f000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803fa7aa2abe0100003f000000000000003c00000000000000000000003f00000000abaa2abeabaa4a40aeaa2a3e000000000000803f00000000c83e873d2f8f833d62b7813d0000803fabaa2abeaeaa2a3e000000000000003c00000000000000000000003f00000000aeaa2abeabaa4a40abaa2abe000000000000803f00000000c83e873d2f8f833d62b7813d0000803faeaa2abeabaa2abe0000003b0000003c00000000000000000000003f00000000abaa2a3eabaa4a40aeaa2abe000000000000803f00000000c83e873d2f8f833d62b7813d0000803fabaa2a3eaeaa2abe0000003b0000203c00000000000000000000003f00000000aeaa2a3eabaa4a40abaa2a3e000000000000803f00000000c83e873d2f8f833d62b7813d0000803faeaa2a3eabaa2a3e000000000000203c00000000000000000000003f00000000aeaa2a3eabaa4a40a8aa2abe00000000000000000000803f30de4a3e02d63a3e792d353e0000803faeaa2a3eabaa4a40000000000000203c00000000000000000000003f00000000aeaa2abeabaa4a40a8aa2abe00000000000000000000803f30de4a3e02d63a3e792d353e0000803faeaa2abeabaa4a400000003b0000203c00000000000000000000003f00000000aeaa2abe01006040abaa2abe00000000000000000000803f30de4a3e02d63a3e792d353e0000803faeaa2abe010060400000003b0000403c00000000000000000000003f00000000aeaa2a3e01006040abaa2abe00000000000000000000803f30de4a3e02d63a3e792d353e0000803faeaa2a3e01006040000000000000403c00000000000000000000003f00000000000000bf01006040a7aa2abe000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803f000000bfa7aa2abe000000000000403c00000000000000000000003f00000000010000bf01006040000000bf000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803f010000bf000000bf0000003b0000403c00000000000000000000003f00000000aeaa2a3e01006040010000bf000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803faeaa2a3e010000bf0000003b0000603c00000000000000000000003f00000000b0aa2a3e01006040acaa2abe000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803fb0aa2a3eacaa2abe000000000000603c00000000000000000000003f00000000abaa2abeabaa4a40a9aa2a3e0000000000000000000080bf30de4a3e02d63a3e792d353e0000803fabaa2abeabaa4a40000000000000603c00000000000000000000003f00000000abaa2a3eabaa4a40a9aa2a3e0000000000000000000080bf30de4a3e02d63a3e792d353e0000803fabaa2a3eabaa4a400000003b0000603c00000000000000000000003f00000000abaa2a3e01006040a6aa2a3e0000000000000000000080bf30de4a3e02d63a3e792d353e0000803fabaa2a3e010060400000003b0000803c00000000000000000000003f00000000abaa2abe01006040a6aa2a3e0000000000000000000080bf30de4a3e02d63a3e792d353e0000803fabaa2abe01006040000000000000803c00000000000000000000003f00000000000000bf040000bff9ffffbe0000000000000000000080bf9a60bc3e08cc9a3e46948d3e0000803f000000bf040000bf000000000000803c00000000000000000000003f000000000000003f040000bff9ffffbe0000000000000000000080bf9a60bc3e08cc9a3e46948d3e0000803f0000003f040000bf0000003b0000803c00000000000000000000003f000000000000003f01006040040000bf0000000000000000000080bf9a60bc3e08cc9a3e46948d3e0000803f0000003f010060400000003b0000903c00000000000000000000003f00000000000000bf01006040040000bf0000000000000000000080bf9a60bc3e08cc9a3e46948d3e0000803f000000bf01006040000000000000903c00000000000000000000003f000000000000003f000000bf000000bf0000803f00000000000000009a60bc3e08cc9a3e46948d3e0000803f000000bf000000bf000000000000903c00000000000000000000003f000000000000003f000000bf0000003f0000803f00000000000000009a60bc3e08cc9a3e46948d3e0000803f000000bf0000003f0000003b0000903c00000000000000000000003f000000000000003f000060400000003f0000803f00000000000000009a60bc3e08cc9a3e46948d3e0000803f000060400000003f0000003b0000a03c00000000000000000000003f000000000000003f00006040000000bf0000803f00000000000000009a60bc3e08cc9a3e46948d3e0000803f00006040000000bf000000000000a03c00000000000000000000003f00000000a9aa2a3eabaa4a40abaa2a3e000080bf000000000000000030de4a3e02d63a3e792d353e0000803fabaa4a40abaa2a3e000000000000a03c00000000000000000000003f00000000a9aa2a3eabaa4a40abaa2abe000080bf000000000000000030de4a3e02d63a3e792d353e0000803fabaa4a40abaa2abe0000003b0000a03c00000000000000000000003f00000000a9aa2a3e01006040abaa2abe000080bf000000000000000030de4a3e02d63a3e792d353e0000803f01006040abaa2abe0000003b0000b03c00000000000000000000003f00000000a9aa2a3e01006040abaa2a3e000080bf000000000000000030de4a3e02d63a3e792d353e0000803f01006040abaa2a3e000000000000b03c00000000000000000000003f00000000aaaa2a3e01006040b0aa2a3e000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803faaaa2a3eb0aa2a3e000000000000b03c00000000000000000000003f00000000a5aa2a3e01006040000000bf000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803fa5aa2a3e000000bf0000003b0000b03c00000000000000000000003f00000000ffffff3e01006040010000bf000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803fffffff3e010000bf0000003b0000c03c00000000000000000000003f000000000100003f01006040aeaa2a3e000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803f0100003faeaa2a3e000000000000c03c00000000000000000000003f00000000adaa2abe010060400100003f000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803fadaa2abe0100003f000000000000c03c00000000000000000000003f00000000afaa2abe01006040aaaa2a3e000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803fafaa2abeaaaa2a3e0000003b0000c03c00000000000000000000003f000000000100003f01006040a5aa2a3e000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803f0100003fa5aa2a3e0000003b0000d03c00000000000000000000003f000000000100003f01006040ffffff3e000000000000803f000000009a60bc3e08cc9a3e46948d3e0000803f0100003fffffff3e000000000000d03c00000000000000000000003f00000000000000bf010000bf000000bf00000000000080bf000000009a60bc3e08cc9a3e46948d3e0000803f000000bf000000bf000000000000d03c00000000000000000000003f00000000020000bf010000bf0200003f00000000000080bf000000009a60bc3e08cc9a3e46948d3e0000803f020000bf0200003f0000003b0000d03c00000000000000000000003f000000000000003f010000bf0000003f00000000000080bf000000009a60bc3e08cc9a3e46948d3e0000803f0000003f0000003f0000003b0000e03c00000000000000000000003f000000000200003f010000bf020000bf00000000000080bf000000009a60bc3e08cc9a3e46948d3e0000803f0200003f020000bf000000000000e03c00000000000000000000003f00000000
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 1.5, z: 0}
+    m_Extent: {x: 0.5000001, y: 2.0000002, z: 0.50000024}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 

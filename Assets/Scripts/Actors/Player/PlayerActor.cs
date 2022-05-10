@@ -11,7 +11,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using System;
 
-namespace Actors
+namespace Actors.NPC.Player
 {
 	[Serializable]
 	public class ActorActionEvent : UnityEvent<ActorAction> { }
@@ -76,6 +76,12 @@ namespace Actors
 			{
 				// Always send mvoement to movement controller otherwise
 				MovementController.Move(action.Context);
+				return;
+			}
+
+			if (action.Key == eActionKey.JUMP && action.State == eActionState.Start)
+			{
+				MovementController.Jump();
 				return;
 			}
 

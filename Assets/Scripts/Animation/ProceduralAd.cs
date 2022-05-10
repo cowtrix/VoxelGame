@@ -43,8 +43,9 @@ namespace Interaction
 		private AdConfiguration m_currentAd;
 		private IEnumerator m_coroutine;
 
-		protected void Start()
+		protected override void Start()
 		{
+			base.Start();
 			m_coroutine = PlayAds();
 			m_coroutine.MoveNext();
 		}

@@ -44,8 +44,8 @@ namespace Actors
 		public IReadOnlyCollection<Item> Inventory => GetComponentsInChildren<Item>(true);
 		public Vector3 Position { get; private set; }
 		public Quaternion Rotation { get; private set; }
-		[StateMin(0)]
-		public virtual int Credits { get; protected set; } = 6;
+		[StateMinMax(0, int.MaxValue)]
+		public virtual int Credits { get; protected set; } = 100;
 		public Transform InventoryContainer { get; private set; }
 
 		protected override void Awake()

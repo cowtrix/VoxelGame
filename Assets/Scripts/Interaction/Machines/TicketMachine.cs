@@ -57,8 +57,9 @@ namespace Interaction
 			rb.detectCollisions = true;
 		}
 
-		private void OnDrawGizmosSelected()
+		protected virtual void OnDrawGizmosSelected()
 		{
+			base.OnDrawGizmosSelected();
 			Spline.Recalculate();
 			Gizmos.matrix = transform.localToWorldMatrix;
 			var lastP = Spline.Points[0].Position;

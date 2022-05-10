@@ -20,7 +20,7 @@ namespace Phone
 		}
 
 		public Text BalanceText;
-		public int Credits { get; set; }
+		public int Credits { get; set; } = 100;
 
 		public List<Transaction> Transactions;
 
@@ -32,6 +32,10 @@ namespace Phone
 
 		private void OnStateUpdate(Actor actor, StateUpdate<float> update)
 		{
+			if(update.StateKey != eStateKey.Credits)
+            {
+				return;
+            }
 			var transaction = new Transaction
 			{
 				Name = update.Description,

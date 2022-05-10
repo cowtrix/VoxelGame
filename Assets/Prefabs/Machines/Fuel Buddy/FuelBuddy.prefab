@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3793942901879632909}
   m_RootOrder: 0
@@ -71,6 +72,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -128,6 +130,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.059, z: 0.33333334}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3793942902217038865}
   m_Father: {fileID: 3793942902184184282}
@@ -150,10 +153,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 0
+  SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: cd88a4a2f2ef0b34eb0fa5e61a6b23cb, type: 2}
   m_lastMeshHash: f8862309-63ee-45fd-afc9-a8344cb231d3
@@ -187,6 +198,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.524, y: 0.029, z: -0.172}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3793942902184184282}
   m_RootOrder: 4
@@ -198,19 +210,19 @@ ParticleSystem:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3793942901783822833}
-  serializedVersion: 7
+  serializedVersion: 8
   lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
+  emitterVelocityMode: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
-  useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -760,6 +772,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     maxNumParticles: 1000
+    customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -4909,6 +4922,7 @@ ParticleSystemRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -4939,6 +4953,7 @@ ParticleSystemRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
+  m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
@@ -4962,6 +4977,10 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
+  m_MeshWeighting: 1
+  m_MeshWeighting1: 1
+  m_MeshWeighting2: 1
+  m_MeshWeighting3: 1
   m_MaskInteraction: 0
 --- !u!1 &3793942901795180267
 GameObject:
@@ -4993,6 +5012,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3793942902184184282}
   m_RootOrder: 0
@@ -5035,6 +5055,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5107,6 +5128,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.27, y: 0.855, z: 0.045}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2635280981330507055}
   m_Father: {fileID: 3793942902184184282}
@@ -5129,10 +5151,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 0
+  SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 0}
   m_lastMeshHash: 56218cee-fb95-4abf-8358-276e049deb4c
@@ -5754,9 +5784,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3793942902184184283}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.333334, y: 3.3333335, z: -46}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3793942901795180266}
   - {fileID: 3793942902360850858}
@@ -5783,10 +5814,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 1
+  SnapMode: 1
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: d4fd84d6f3c27734badf59880ac4c73e, type: 2}
   m_lastMeshHash: c430cfe9-7d83-40f8-a208-de7f8ec59948
@@ -5804,6 +5843,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb05849c028d70c4cac4adaa262957a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: b70aa4db-025b-451b-bf47-ecf497897d24
+  ThinkSpeed: 1
+  Priority: 0
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -5834,6 +5876,8 @@ MonoBehaviour:
         m_Calls: []
     MaxFocusDistance: 5
     MaxUseDistance: 2
+  Colliders:
+  - {fileID: 3793942902184184263}
   CurrentCapacity: 100
   CostPerUnit: 0.25
   RechargeSpeed: 0.5
@@ -5881,6 +5925,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3793942900602276447}
   m_RootOrder: 0
@@ -5923,6 +5968,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5996,6 +6042,7 @@ Transform:
   m_LocalRotation: {x: 0.70710576, y: -0, z: -0, w: 0.7071078}
   m_LocalPosition: {x: 0.003, y: 1.233, z: 0.326}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3793942902184184282}
   m_RootOrder: 1
@@ -6011,6 +6058,7 @@ LineRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -6041,16 +6089,16 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0.01192677, y: -0.0020313365, z: -0.009445555}
-  - {x: -0.0012332797, y: -0.082481675, z: 0.016090278}
-  - {x: -0.016752332, y: -0.14715071, z: -0.001388495}
-  - {x: 0.008220519, y: -0.22171363, z: -0.007740266}
-  - {x: -0.013521728, y: -0.29310963, z: 0.016767554}
-  - {x: -0.012808575, y: -0.3728264, z: -0.019542707}
-  - {x: -0.011597938, y: -0.4466948, z: -0.006246302}
-  - {x: -0.009796059, y: -0.5299261, z: -0.010063972}
-  - {x: -0.0033411335, y: -0.59671134, z: 0.0041484856}
-  - {x: 0.012848373, y: -0.68244886, z: 0.0066522732}
+  - {x: 0.018419413, y: 0.0050501004, z: -0.000919373}
+  - {x: 0.0052061453, y: -0.06976703, z: -0.009099624}
+  - {x: 0.0036112189, y: -0.14915428, z: -0.006889474}
+  - {x: -0.01404376, y: -0.22702776, z: -0.0020814107}
+  - {x: -0.018313002, y: -0.29687613, z: 0.0014692711}
+  - {x: -0.0007502055, y: -0.3694625, z: -0.0048118187}
+  - {x: 0.000004155636, y: -0.44496316, z: -0.001065638}
+  - {x: 0.009996957, y: -0.52202433, z: 0.019949174}
+  - {x: 0.009874395, y: -0.60038316, z: 0.015579619}
+  - {x: 0.0014500498, y: -0.66984344, z: 0.005047797}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.03

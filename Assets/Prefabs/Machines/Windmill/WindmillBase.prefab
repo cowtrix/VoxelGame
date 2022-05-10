@@ -1391,6 +1391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: 2a66ec17-8a7f-465b-90c6-136013e0c9be
   ThinkSpeed: 1
+  Priority: 0
   Rotation: 0
   RotationSpeed: 20
   Margin: -15
@@ -1815,6 +1816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: 8b10bb01-2ba4-4432-b1e0-5c9a088e89d1
   ThinkSpeed: 1
+  Priority: 0
   IsPoweredOn: 1
   PowerOn:
     m_PersistentCalls:
@@ -2390,7 +2392,6 @@ GameObject:
   - component: {fileID: 7844506257331506098}
   - component: {fileID: 5833445862508950390}
   - component: {fileID: 7335719193450266093}
-  - component: {fileID: 840665260974566761}
   m_Layer: 8
   m_Name: LOD_0
   m_TagString: Untagged
@@ -2444,7 +2445,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 7887674609652517893, guid: 8182c5dab0c16d84382d93986a468293, type: 2}
-  m_lastMeshHash: 1d10e073-65b0-474a-be21-b3cb2c51a22d
+  m_lastMeshHash: ab605e0f-e883-4c7a-a3b3-4e0249ca9696
   Submeshes:
   - {fileID: 7844506257331506098}
 --- !u!114 &7844506257331506098
@@ -2465,7 +2466,7 @@ MonoBehaviour:
   Parent: {fileID: 202022902944742809}
   MeshFilter: {fileID: 5833445862508950390}
   MeshRenderer: {fileID: 7335719193450266093}
-  MeshCollider: {fileID: 840665260974566761}
+  MeshCollider: {fileID: 0}
 --- !u!33 &5833445862508950390
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2516,20 +2517,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &840665260974566761
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7530439361912157647}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3013964927629575721, guid: 8182c5dab0c16d84382d93986a468293, type: 2}
 --- !u!1001 &4583066994877116
 PrefabInstance:
   m_ObjectHideFlags: 0

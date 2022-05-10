@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Voxul.Utilities;
 
 public class DialogueManager : Singleton<DialogueManager>
 {

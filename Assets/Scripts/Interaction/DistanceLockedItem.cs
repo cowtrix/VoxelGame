@@ -22,7 +22,7 @@ namespace Interaction.Items
 		IEnumerator ThinkEquipped(Actor actor)
 		{
 			var waiter = new WaitForSeconds(1);
-			while (actor.State.EquippedItem == this && Vector3.Distance(transform.position, Home.position) < MaxUseDistance)
+			while ((Object)actor.State.EquippedItem == this && Vector3.Distance(transform.position, Home.position) < MaxUseDistance)
 			{
 				yield return waiter;
 			}

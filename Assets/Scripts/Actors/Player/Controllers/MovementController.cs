@@ -46,7 +46,7 @@ namespace Actors
         public bool IsGrounded { get; private set; }
         public float TimeUngrounded { get; private set; }
         public Vector2 MoveDirection { get; private set; }
-
+        public Vector3 CurrentGravity { get; private set; }
         private GravityManager GravityManager => GravityManager.Instance;
         public AutoProperty<ILookAdapter> LookAdapter { get; private set; }
         public Rigidbody Rigidbody => GetComponent<Rigidbody>();
@@ -55,14 +55,11 @@ namespace Actors
 
         [Header("Parameters")]
         public float MovementSpeed = 30;
-        public float ThrusterSpeed = 60;
+        public float JumpForce = 60;
         public LayerMask CollisionMask = 1 << 8;
         public float RotateTowardGravitySpeed = 10;
-        public float FreeFloatTime = .2f;
         public Transform GroundingPoint;
         public float PushOutSpeed = 10;
-
-        public float ThrusterEfficiency = -.05f;
 
         protected bool m_inputJump;
 
@@ -72,19 +69,19 @@ namespace Actors
             Rigidbody.useGravity = false;
         }
 
-        private void FixedUpdate()
+        protected virtual void FixedUpdate()
         {
             var dt = Time.fixedDeltaTime;
-            var gravityVec = GravityManager.GetGravityForce(transform.position);
+            CurrentGravity = GravityManager.GetGravityForce(transform.position);
 
             var groundingDistance = Vector3.Distance(GroundingPoint.position, transform.position);
-            IsGrounded = Physics.Raycast(transform.position, gravityVec, out var groundHit, groundingDistance * 1.01f, CollisionMask, QueryTriggerInteraction.Ignore);
-            var isGroundedForward = Physics.Raycast(transform.position + LookAdapter.Value.transform.forward, gravityVec, out var forwardHit, groundingDistance, CollisionMask, QueryTriggerInteraction.Ignore);
-            Debug.DrawLine(transform.position, transform.position + gravityVec * dt, Color.green);
+            IsGrounded = Physics.Raycast(transform.position, CurrentGravity, out var groundHit, groundingDistance * 1.01f, CollisionMask, QueryTriggerInteraction.Ignore);
+            var isGroundedForward = Physics.Raycast(transform.position + LookAdapter.Value.transform.forward, CurrentGravity, out var forwardHit, groundingDistance, CollisionMask, QueryTriggerInteraction.Ignore);
+            Debug.DrawLine(transform.position, transform.position + CurrentGravity * dt, Color.green);
 
             if (!IsGrounded)
             {
-                Rigidbody.AddForce(gravityVec * dt * Rigidbody.mass);
+                Rigidbody.AddForce(CurrentGravity * dt * Rigidbody.mass);
                 TimeUngrounded += dt;
             }
             else
@@ -94,9 +91,9 @@ namespace Actors
 
             {
                 // Straighten up
-                var straightenQuat = Quaternion.Euler(Quaternion.FromToRotation(Vector3.up, -gravityVec.normalized)
+                var straightenQuat = Quaternion.Euler(Quaternion.FromToRotation(Vector3.up, -CurrentGravity.normalized)
                     .eulerAngles.xy().x0z(Rigidbody.rotation.eulerAngles.y));
-                var straightenLerp = RotateTowardGravitySpeed * dt * (gravityVec.magnitude / 1000f);
+                var straightenLerp = RotateTowardGravitySpeed * dt * (CurrentGravity.magnitude / 1000f);
                 Rigidbody.rotation = Quaternion.Lerp(Rigidbody.rotation, straightenQuat, straightenLerp);
                 //Rigidbody.rotation = straightenQuat;
                 Debug.DrawLine(transform.position, transform.position + straightenQuat * transform.forward, Color.yellow);
@@ -112,43 +109,29 @@ namespace Actors
 
             {
                 // Move from input
-                if (m_inputJump)
+                if (m_inputJump && IsGrounded)
                 {
-                    // Do jump boost
-                    if (!State.TryGetValue<float>(eStateKey.Fuel, out var thrusterFuel) || thrusterFuel > .1f)
-                    {
-                        Rigidbody.AddForce(transform.localToWorldMatrix.MultiplyVector(ThrusterSpeed * transform.up) * Rigidbody.mass);
-                        State.TryAdd(eStateKey.Fuel, ThrusterEfficiency, "Jetpack");
-                    }
+                    Rigidbody.AddForce(transform.localToWorldMatrix.MultiplyVector(JumpForce * transform.up) * Rigidbody.mass);
+                    m_inputJump = false;
                 }
 
                 var movement = MoveDirection;
-                if (movement.magnitude > 0)
+                var localVelocityDirection = new Vector3(movement.x, 0, movement.y);
+                var worldVelocityDirection = LookAdapter.Value.transform.localToWorldMatrix.MultiplyVector(localVelocityDirection);
+
+                if (IsGrounded)
                 {
-                    var localVelocityDirection = new Vector3(movement.x, 0, movement.y);
-                    var worldVelocityDirection = LookAdapter.Value.transform.localToWorldMatrix.MultiplyVector(localVelocityDirection);
-
-                    if (IsGrounded)
-                    {
-                        var normal = isGroundedForward ? forwardHit.normal : groundHit.normal;
-                        worldVelocityDirection -= normal * Vector3.Dot(worldVelocityDirection, normal);
-                    }
-                    else
-                    {
-
-                        if (TimeUngrounded > FreeFloatTime && (!State.TryGetValue<float>(eStateKey.Credits, out var thrusterFuel) || thrusterFuel > .1f))
-                        {
-                            State.TryAdd(eStateKey.Fuel, ThrusterEfficiency, "Jetpack");
-                        }
-                        else
-                        {
-                            worldVelocityDirection *= 0.01f;
-                        }
-                    }
-
-                    Debug.DrawLine(transform.position, transform.position + worldVelocityDirection, Color.cyan, 5);
-                    Rigidbody.velocity += worldVelocityDirection.normalized * (IsGrounded ? MovementSpeed : ThrusterSpeed) * dt;
+                    var normal = isGroundedForward ? forwardHit.normal : groundHit.normal;
+                    worldVelocityDirection -= normal * Vector3.Dot(worldVelocityDirection, normal);
+                    worldVelocityDirection = worldVelocityDirection.normalized * MovementSpeed;
                 }
+                else
+                {
+                    worldVelocityDirection = MutateUngroundedVelocity(worldVelocityDirection);
+                }
+
+                Debug.DrawLine(transform.position, transform.position + worldVelocityDirection, Color.cyan, 5);
+                Rigidbody.AddForce(worldVelocityDirection * dt);
             }
             if (Actor.Animator)
             {
@@ -156,6 +139,17 @@ namespace Actors
                 Actor.Animator.SetFloat("VelocityY", Rigidbody.velocity.y);
                 Actor.Animator.SetFloat("VelocityZ", Rigidbody.velocity.z);
             }
+        }
+
+        public void Jump()
+        {
+            m_inputJump = true;
+        }
+
+        protected virtual Vector3 MutateUngroundedVelocity(Vector3 worldVelocityDirection)
+        {
+            worldVelocityDirection *= 0.01f;
+            return worldVelocityDirection;
         }
 
         private void OnDrawGizmosSelected()

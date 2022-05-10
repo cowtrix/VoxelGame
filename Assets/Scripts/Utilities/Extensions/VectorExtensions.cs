@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Voxul.Utilities;
 using Random = System.Random;
 
 namespace Common
@@ -66,19 +67,7 @@ namespace Common
 		public static bool ScreenRectIsOnScreen(this Rect rect) =>
 			rect.Overlaps(new Rect(0, 0, Screen.width, Screen.height));
 
-		public static Bounds GetEncompassingBounds(this IEnumerable<Bounds> enumerable)
-		{
-			if (enumerable == null || !enumerable.Any())
-			{
-				return default;
-			}
-			var b = enumerable.First();
-			foreach (var b2 in enumerable.Skip(1))
-			{
-				b.Encapsulate(b2);
-			}
-			return b;
-		}
+		
 
 		public static Rect ClipToScreen(this Rect rect)
 		{

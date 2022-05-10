@@ -16,8 +16,9 @@ namespace Interaction.Activities.SushiTable
 
 		private List<Interactable> m_subInteractables;
 
-		private void Start()
+		protected override void Start()
 		{
+			base.Start();
 			m_subInteractables = new List<Interactable>(GetComponentsInChildren<Interactable>());
 			foreach(var i in m_subInteractables)
 			{

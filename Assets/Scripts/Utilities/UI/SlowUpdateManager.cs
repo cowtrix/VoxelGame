@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
+using Voxul.Utilities;
 
 namespace Common
 {
-	public class SlowUpdateManager : Singleton<SlowUpdateManager>
+    public class SlowUpdateManager : Singleton<SlowUpdateManager>
 	{
 		public Func<SlowUpdater, float> InstanceSorter;
 		public int FrameBudget = 100;

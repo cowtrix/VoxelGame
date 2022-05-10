@@ -715,6 +715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: 
   ThinkSpeed: 1
+  Priority: 0
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -747,6 +748,19 @@ MonoBehaviour:
     MaxUseDistance: 2
   Colliders:
   - {fileID: 3613840457347353077}
+  CameraRotationLimits:
+    X: {x: 0, y: 0}
+    Y: {x: 0, y: 0}
+    Z: {x: 0, y: 0}
+  LookSpeed: 1
+  LookOffset: {x: 0, y: 0, z: 0}
+  LookRotation: {x: 0, y: 0, z: 0}
+  OnActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeactivate:
+    m_PersistentCalls:
+      m_Calls: []
   Self: {fileID: 8812385386851755027}
 --- !u!1 &2596438689947930228
 GameObject:
@@ -1593,10 +1607,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d69c3ed8371f874fb2a3b0321c0cfd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 
+  ThinkSpeed: 1
+  Priority: 0
   MaxLookDistance: 10
   LookAngle: 45
   LookSpeed: 3
   LookRotation: {x: 0, y: 90, z: 0}
+  LookRotationLimits:
+    X: {x: 0, y: 0}
+    Y: {x: 0, y: 0}
+    Z: {x: 0, y: 0}
 --- !u!1 &2627125411396582489
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,14 +1770,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ef1a627263ecf448ba431f0ce3862d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: 
+  m_guid: ab55c4eb-3c3e-49b5-b7ee-8b5128361561
   ThinkSpeed: 1
+  Priority: 0
   EquippedItemTransform: {fileID: 0}
   DialogueContainer: {fileID: 5113471201490309525}
   InteractionMask:
     serializedVersion: 2
     m_Bits: 0
   ActorName: Unnamed Entity
+  Interactable: {fileID: 0}
 --- !u!114 &8812385386851755026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1805,6 +1828,9 @@ MonoBehaviour:
   _updateMode: 0
   _graph: {fileID: 0}
   _blackboard: {fileID: 1778082707422316142}
+  OnFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1778082707422316142
 MonoBehaviour:
   m_ObjectHideFlags: 0

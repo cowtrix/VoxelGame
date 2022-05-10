@@ -8,6 +8,8 @@ using UnityEngine.UI;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using Common;
+using Actors.NPC.Player;
+using Voxul.Utilities;
 
 public class GameManager : Singleton<GameManager>
 {

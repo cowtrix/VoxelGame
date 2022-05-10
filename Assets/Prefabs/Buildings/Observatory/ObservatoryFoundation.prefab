@@ -1133,6 +1133,7 @@ GameObject:
   - component: {fileID: 5870525168703284386}
   - component: {fileID: 5870525168703284387}
   - component: {fileID: 2504608315188622489}
+  - component: {fileID: 3234531616739292957}
   m_Layer: 8
   m_Name: ObservatoryFoundation
   m_TagString: Untagged
@@ -1193,7 +1194,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 802b9ee4683d27b419c574eeb70e1d9a, type: 2}
-  m_lastMeshHash: 8c9c4597-fcfe-420b-8e56-d7915cc90abb
+  m_lastMeshHash: b40fb8f6-9c82-40bd-bf23-8db77704462a
   Submeshes:
   - {fileID: 2504608315188622489}
 --- !u!33 &5870525168703284386
@@ -1264,7 +1265,21 @@ MonoBehaviour:
   Parent: {fileID: 5870525168703284385}
   MeshFilter: {fileID: 5870525168703284386}
   MeshRenderer: {fileID: 5870525168703284387}
-  MeshCollider: {fileID: 0}
+  MeshCollider: {fileID: 3234531616739292957}
+--- !u!64 &3234531616739292957
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870525168703284383}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 594677994641943349, guid: 802b9ee4683d27b419c574eeb70e1d9a, type: 2}
 --- !u!1 &5870525168990429186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,6 +1447,7 @@ GameObject:
   - component: {fileID: 5870525169045340407}
   - component: {fileID: 5870525169045340400}
   - component: {fileID: 5870525169045340404}
+  - component: {fileID: 3379476495947266765}
   m_Layer: 8
   m_Name: Telescope
   m_TagString: Untagged
@@ -1571,6 +1587,22 @@ MonoBehaviour:
   MeshFilter: {fileID: 5870525169045340406}
   MeshRenderer: {fileID: 5870525169045340407}
   MeshCollider: {fileID: 5870525169045340400}
+--- !u!114 &3379476495947266765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870525169045340403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &5870525169146111625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,6 +1618,7 @@ GameObject:
   - component: {fileID: 5870525169146111630}
   - component: {fileID: 5870525169146111631}
   - component: {fileID: 5870525169146111634}
+  - component: {fileID: 6928540643424283903}
   m_Layer: 8
   m_Name: TelescopeBase
   m_TagString: Untagged
@@ -1600,7 +1633,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5870525169146111625}
-  m_LocalRotation: {x: -0, y: 0.44737747, z: -0, w: 0.8943453}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.33333334, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1613,7 +1646,7 @@ Transform:
   - {fileID: 5870525169652113957}
   m_Father: {fileID: 5870525168703284382}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 53.151, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5870525169146111635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1743,7 +1776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d629c46dc07d1b94a8bf56f703b1b1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: 46ba2720-d35d-4933-beb3-b2d592d618cf
+  m_guid: d2a5ffbb-6106-4385-afde-36027ddd1f8c
   ThinkSpeed: 1
   Priority: 0
   InteractionSettings:
@@ -1832,6 +1865,22 @@ MonoBehaviour:
   DoorName: Telescope
   Speed: 1
   Usable: 0
+--- !u!114 &6928540643424283903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870525169146111625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &5870525169221572950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2307,6 +2356,7 @@ GameObject:
   - component: {fileID: 5870525169806225204}
   - component: {fileID: 5870525169806225205}
   - component: {fileID: 5870525169806225206}
+  - component: {fileID: 7457646481562314015}
   m_Layer: 8
   m_Name: ObservatoryFoundation_submesh
   m_TagString: Untagged
@@ -2446,6 +2496,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4619612371983350805, guid: 363eb2b35009cd444b6dd09d1db04a69, type: 2}
+--- !u!114 &7457646481562314015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870525169806225200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &7509626324502110398
 GameObject:
   m_ObjectHideFlags: 0

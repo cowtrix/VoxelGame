@@ -2786,6 +2786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: 
   ThinkSpeed: 1
+  Priority: 0
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -3546,6 +3547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: 
   ThinkSpeed: 1
+  Priority: 0
   MaxLookDistance: 10
   LookAngle: 45
   LookSpeed: 3
@@ -3993,8 +3995,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ef1a627263ecf448ba431f0ce3862d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: 
+  m_guid: cf369537-f477-4593-b475-58f9afc15bb4
   ThinkSpeed: 1
+  Priority: 0
   EquippedItemTransform: {fileID: 0}
   DialogueContainer: {fileID: 5502273608894526441}
   InteractionMask:
@@ -4097,15 +4100,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 30
-  ThrusterSpeed: 60
+  JumpForce: 60
   CollisionMask:
     serializedVersion: 2
     m_Bits: 256
   RotateTowardGravitySpeed: 10
-  FreeFloatTime: 0.2
   GroundingPoint: {fileID: 812114025}
   PushOutSpeed: 10
-  ThrusterEfficiency: -0.05
 --- !u!54 &1991683123750917676
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4134,8 +4135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b6e5e4cd8d80c41a8422047eb4b489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: 
+  m_guid: 3e04d291-935a-4386-b819-6c22f7e9bea7
   ThinkSpeed: 1
+  Priority: 0
 --- !u!1 &5256895003287986411
 GameObject:
   m_ObjectHideFlags: 0
