@@ -126,6 +126,7 @@
     <Compile Include="Assets\Scripts\Actors\Player\PlayerActor.cs" />
     <Compile Include="Assets\Scripts\Utilities\Maths\Mathfx.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\Windmill\RenderBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Activities\Dotc\DotcGameEntity.cs" />
     <Compile Include="Assets\Scripts\Utilities\StarOrbiter.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Common\ScoringController.cs" />
     <Compile Include="Assets\Scripts\Utilities\SoundRamper.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Assets\Scripts\Actors\NPC\LookTester.cs" />
     <Compile Include="Assets\Scripts\Utilities\UI\WorldCanvas.cs" />
     <Compile Include="Assets\Scripts\Interaction\SimpleInteractable.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Activities\Dotc\DotcAncient.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\Pinball\PinballMachine.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\FuelBuddy.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Menu\LevelSelectItem.cs" />
@@ -263,6 +265,7 @@
     <Compile Include="Assets\Scripts\Utilities\Extensions\DelegateExtensions.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ControllerDiagramISX.cs" />
     <Compile Include="Assets\Scripts\Actors\NPC\NPCObservable.cs" />
+    <Compile Include="Assets\Scripts\Utilities\LitSpriteRenderer.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Common\Helpers.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\Samples\SimpleDemo\SimpleController_UsingActionAsset.cs" />
     <Compile Include="Assets\Scripts\Utilities\ColliderFoley.cs" />
@@ -318,18 +321,22 @@
     <Compile Include="Assets\Scripts\Interaction\Machines\Train\TrainController.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\Train\RailTower.cs" />
     <Compile Include="Assets\Scripts\Generator\RandomDisableGenerator.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Activities\Dotc\DotcGame.cs" />
     <Compile Include="Assets\Scripts\Gravity\LevelGravitySource.cs" />
     <Compile Include="Assets\Scripts\Utilities\Cable.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\XRHaptics\XRHaptics.cs" />
     <Compile Include="Assets\Scripts\Interaction\DistanceLockedItem.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\VendingMachine.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\ColorExtensions.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\Forge\ConveyorBelt.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\CameraController.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\KeyboardMouseBasic\Scripts\KeyboardLastKey.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\PlayerChaser.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Swiping\Trash.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Activities\Dotc\DotcGameCreep.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\TypeExtensions.cs" />
     <Compile Include="Assets\Scripts\Utilities\UI\CustomUIMaterial.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Activities\Dotc\DotcGameTower.cs" />
     <Compile Include="Assets\Scripts\Utilities\SerializableDictionary\SerializableDictionaryImplementations.cs" />
     <Compile Include="Assets\Scripts\Portal\Portal.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\Terminal.cs" />
@@ -338,6 +345,7 @@
     <Compile Include="Assets\Scripts\Utilities\Extensions\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\Lift\LiftLine.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\GizmoExtensions.cs" />
+    <Compile Include="Assets\Scripts\Utilities\PropertyBlockSetter.cs" />
     <Compile Include="Assets\Scripts\Utilities\Helpers\AssetCreationHelper.cs" />
     <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\SpawnPosition.cs" />
@@ -351,11 +359,13 @@
     <Compile Include="Assets\Scripts\Gravity\GravityRigidbody.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingLine.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\TouchISX.cs" />
+    <Compile Include="Assets\Lib\QuickOutline\Scripts\Outline.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\README.txt" />
     <None Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Shaders\WorldCoord Diffuse.shader" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+    <None Include="Assets\Fonts\AlienFont\Font.txt" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Lib\InputSystem\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\Lib\InputSystem\projectlist.txt" />
@@ -367,9 +377,11 @@
     <None Include="Assets\Lib\InputSystem\Assets\steam_appid.txt" />
     <None Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Shaders\Drawing\Capture.shader" />
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\Assets\csc.rsp" />
+    <None Include="Assets\Lib\QuickOutline\Resources\Shaders\OutlineMask.shader" />
     <None Include="Assets\link.xml" />
     <None Include="Assets\Resources\AlienCharacters.txt" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Fonts\AlienFont\font.fnt" />
     <None Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Fonts\License.txt" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\Materials\AlwaysOnTop.shader" />
@@ -379,17 +391,21 @@
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Lib\QuickOutline\Readme.txt" />
     <None Include="Assets\Materials\ClipText.shader" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Materials\NewUnlitShader.shader" />
     <None Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Shaders\Drawing\Tool.shader" />
     <None Include="Assets\Books\The First Chronicle Of Azerioth.txt" />
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\api-analyzers\Unity.dictionary.xml" />
+    <None Include="Assets\Materials\OutlineStencilShader.shader" />
     <None Include="Assets\Vectrosity\Vectrosity Documentation\Vectrosity changelog.txt" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\Lib\QuickOutline\Resources\Shaders\OutlineFill.shader" />
     <None Include="Assets\Lib\InputSystem\steam_appid.txt" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
@@ -1338,8 +1354,14 @@
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.AI.Navigation.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.AI.Navigation">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>

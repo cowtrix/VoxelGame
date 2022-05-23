@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 6001332409719392108}
   - component: {fileID: 6001332409719392106}
   - component: {fileID: 2102345583}
+  - component: {fileID: 1179540760}
   m_Layer: 8
   m_Name: ProceduralAd
   m_TagString: Untagged
@@ -363,27 +364,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e4af81661f6804ab4f1f9e49437865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: ad75e26f-1306-40a0-9ee9-f0641d251d76
+  m_guid: b3330768-49c4-4140-b373-1f91c31cd3ac
   ThinkSpeed: 1
-  InteractionSettings:
-    OnFocusEnter:
-      m_PersistentCalls:
-        m_Calls: []
-    OnFocusExit:
-      m_PersistentCalls:
-        m_Calls: []
-    OnUsed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnEnterAttention:
-      m_PersistentCalls:
-        m_Calls: []
-    OnExitAttention:
-      m_PersistentCalls:
-        m_Calls: []
-    MaxFocusDistance: 30
-    MaxUseDistance: 2
-  Colliders: []
+  Priority: 0
+  IncludeManualBounds: 1
+  ManualBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.1, y: 3.6666667, z: 6}
   Ads:
   - ProductName: Zuzu Personal Thrusters
     Tagline: Beat's Walkin!
@@ -487,6 +474,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 11, y: 7, z: 0.01}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1179540760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6001332409719392111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ca78f1348fb34d90f925ed7e89872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_guid: 1fb15f20-611e-4c3a-9da1-fecfe6ddb8c7
+  ThinkSpeed: 1
+  Priority: 0
+  DisableDistance: 1000
+  RaycastDistance: 2
 --- !u!1 &6001332409862283564
 GameObject:
   m_ObjectHideFlags: 0

@@ -1120,10 +1120,14 @@ MonoBehaviour:
     OnExitAttention:
       m_PersistentCalls:
         m_Calls: []
+    Colliders:
+    - {fileID: 8715504906215686479}
+    - {fileID: 8715504906215686477}
+    Renderers:
+    - Renderer: {fileID: 8715504906215686472}
+      Mesh: {fileID: 6922329310778251665, guid: ae9b84e5d9d3c364185c517dcbe23e36, type: 2}
     MaxFocusDistance: 5
     MaxUseDistance: 2
-  Colliders:
-  - {fileID: 8715504906215686477}
   CameraRotationLimits:
     X: {x: -50, y: 50}
     Y: {x: -50, y: 50}
@@ -1137,6 +1141,7 @@ MonoBehaviour:
   OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+  PassThroughInteraction: 0
   Asteroid: {fileID: 0}
   AsteroidRotationSpeed: 50
   Gun: {fileID: 8715504907067895404}

@@ -5647,7 +5647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e2bca1220f2594194b9312f2e29d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: 8980c93e-198b-42a7-9005-398a4c009215
+  m_guid: 8422ea33-2e28-41ec-abaf-3d8019fa09ef
   ThinkSpeed: 1
   Priority: 0
   InteractionSettings:
@@ -5666,10 +5666,13 @@ MonoBehaviour:
     OnExitAttention:
       m_PersistentCalls:
         m_Calls: []
+    Colliders:
+    - {fileID: 6518238324029467205}
+    Renderers:
+    - Renderer: {fileID: 4090526313994806819}
+      Mesh: {fileID: -7052113370272439669, guid: 5e49869f3b5c5c14a951025572666517, type: 2}
     MaxFocusDistance: 5
     MaxUseDistance: 2
-  Colliders:
-  - {fileID: 6518238324029467205}
   CameraRotationLimits:
     X: {x: -20, y: 20}
     Y: {x: -20, y: 20}
@@ -5683,6 +5686,7 @@ MonoBehaviour:
   OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+  PassThroughInteraction: 0
   TargetPrefab: {fileID: 6376078215343470947}
   BallPrefab: {fileID: 4778428486174667912}
   GameBounds:

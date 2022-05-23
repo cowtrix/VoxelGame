@@ -7,118 +7,162 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 using Voxul.Utilities;
 
 namespace UI
 {
     [Serializable]
-	public class StringEvent : UnityEvent<string> { }
+    public class StringEvent : UnityEvent<string> { }
 
-	public class HUDManager : Singleton<HUDManager>
-	{
-		public Image Icon;
-		public UIActionLabel ActionLabel;
-		public RectTransform FocusSprite;
+    public class HUDManager : Singleton<HUDManager>
+    {
+        public const int OUTLINE_LAYER = 11;
 
-		private Camera Camera => CameraController.GetComponent<Camera>();
-		public CameraController CameraController => CameraController.Instance;
-		public PlayerActor PlayerActor;
-		public Material InteractionMaterial;
+        public Image Icon;
+        public UIActionLabel ActionLabel;
+        public RectTransform FocusSprite;
+        private Camera Camera => CameraController.GetComponent<Camera>();
+        public CameraController CameraController => CameraController.Instance;
+        public PlayerActor PlayerActor;
+        public Material InteractionMaterial;
+        public StringEvent FocusedInteractableDisplayName;
 
-		public MeshRenderer InteractionObjectRenderer;
-		public MeshFilter InteractionObjectFilter;
+        private List<UIActionLabel> m_labels = new List<UIActionLabel>();
+        private List<MeshRenderer> m_interactionOutlineRenderers = new List<MeshRenderer>();
 
-		public StringEvent FocusedInteractableDisplayName;
+        private GameObject m_outlineContainer;
+        private Outline m_outline;
 
-		private List<UIActionLabel> m_labels = new List<UIActionLabel>();
+        private void Start()
+        {
+            ActionLabel.gameObject.SetActive(false);
+            m_outlineContainer = new GameObject("OutlineContainer");
+            m_outline = new GameObject("Outline").AddComponent<Outline>();
+            m_outline.transform.SetParent(m_outlineContainer.transform);
+        }
 
-		private void Start()
-		{
-			InteractionObjectRenderer = new GameObject("InteractionRenderer")
-				.AddComponent<MeshRenderer>();
-			InteractionObjectRenderer.sharedMaterial = InteractionMaterial;
-			InteractionObjectFilter = InteractionObjectRenderer.gameObject.AddComponent<MeshFilter>();
+        private void Update()
+        {
+            var interactable = PlayerActor.FocusedInteractable ?? PlayerActor.State.EquippedItem as Interactable ?? PlayerActor.CurrentActivity;
+            if (interactable && interactable != PlayerActor.CurrentActivity)
+            {
+                FocusSprite.gameObject.SetActive(true);
 
-			ActionLabel.gameObject.SetActive(false);
-		}
+                m_outlineContainer.SetActive(true);
+                if (!m_interactionOutlineRenderers.SequenceEqual(interactable.InteractionSettings.Renderers.Select(r => r.Renderer)))
+                {
+                    for (var i = 0; i < interactable.InteractionSettings.Renderers.Count; i++)
+                    {
+                        var sourceRenderer = interactable.InteractionSettings.Renderers[i];
+                        MeshRenderer targetRenderer = null;
+                        MeshFilter meshfilter;
+                        if (m_interactionOutlineRenderers.Count <= i)
+                        {
+                            targetRenderer = new GameObject($"OutlineRenderer_{i}").AddComponent<MeshRenderer>();
+                            targetRenderer.gameObject.layer = OUTLINE_LAYER;
+                            targetRenderer.transform.SetParent(m_outlineContainer.transform, false);
+                            meshfilter = targetRenderer.gameObject.AddComponent<MeshFilter>();
+                            m_interactionOutlineRenderers.Add(targetRenderer);
+                        }
+                        else
+                        {
+                            targetRenderer = m_interactionOutlineRenderers[i];
+                            meshfilter = targetRenderer.GetComponent<MeshFilter>();
+                        }
+                        targetRenderer.sharedMaterial = InteractionMaterial;
+                        meshfilter.sharedMesh = sourceRenderer.Mesh;
+                        targetRenderer.transform.position = sourceRenderer.Renderer.transform.position;
+                        targetRenderer.transform.rotation = sourceRenderer.Renderer.transform.rotation;
+                        targetRenderer.transform.localScale = sourceRenderer.Renderer.transform.lossyScale;
+                    }
+                    for (var i = m_interactionOutlineRenderers.Count - 1; i > interactable.InteractionSettings.Renderers.Count; i--)
+                    {
+                        var toDestroy = m_interactionOutlineRenderers[i];
+                        m_interactionOutlineRenderers.RemoveAt(i);
+                        toDestroy.gameObject.SafeDestroy();
+                    }
+                    if (m_interactionOutlineRenderers.Any())
+                    {
+                        var center = m_interactionOutlineRenderers.First().transform.position;
+                        foreach (var pos in m_interactionOutlineRenderers.Skip(1).Select(r => r.transform.position))
+                        {
+                            center += pos;
+                        }
+                        center /= (float)m_interactionOutlineRenderers.Count;
+                        InteractionMaterial.SetVector("_WorldCenter", center);
+                    }
+                }
+                if(m_interactionOutlineRenderers.Count > 0)
+                {
+                    m_outline.gameObject.SetActive(true);
+                    m_outline.SetRenderers(m_interactionOutlineRenderers);
+                }
+                else
+                {
+                    m_outline.gameObject.SetActive(false);
+                }
 
-		private void Update()
-		{
-			var interactable = PlayerActor.FocusedInteractable ?? PlayerActor.State.EquippedItem as Interactable ?? PlayerActor.CurrentActivity;
-			if (interactable && interactable != PlayerActor.CurrentActivity)
-			{
-				FocusSprite.gameObject.SetActive(true);
+                var screenRect = new Rect(Camera.WorldToScreenPoint(interactable.transform.position), Vector2.zero);
+                var objBounds = interactable.Bounds;
+                foreach (var p in objBounds.AllPoints())
+                {
+                    screenRect = screenRect.Encapsulate(Camera.WorldToScreenPoint(p));
+                }
+                FocusSprite.position = screenRect.center;
+                FocusSprite.sizeDelta = screenRect.size;
 
-				var screenRect = new Rect(Camera.WorldToScreenPoint(interactable.transform.position), Vector2.zero);
-				var objBounds = interactable.Bounds;
-				foreach(var p in objBounds.AllPoints())
-				{
-					screenRect = screenRect.Encapsulate(Camera.WorldToScreenPoint(p));
-				}
-				FocusSprite.position = screenRect.center;
-				FocusSprite.sizeDelta = screenRect.size;
+                FocusedInteractableDisplayName.Invoke(interactable.DisplayName);
+            }
+            else
+            {
+                m_outlineContainer.SetActive(false);
+                FocusSprite.gameObject.SetActive(false);
+                FocusedInteractableDisplayName.Invoke("");
+            }
 
-				FocusedInteractableDisplayName.Invoke(interactable.DisplayName);
-			}
-			else
-			{
-				FocusSprite.gameObject.SetActive(false);
-				FocusedInteractableDisplayName.Invoke("");
-			}
+            if (interactable && interactable.CanUse(PlayerActor))
+            {
+                int actionIndex = 0;
+                foreach (var action in interactable.GetActions(PlayerActor))
+                {
+                    if (string.IsNullOrEmpty(action.Description))
+                    {
+                        // Hidden action
+                        continue;
+                    }
+                    UIActionLabel label;
+                    if (m_labels.Count <= actionIndex)
+                    {
+                        label = Instantiate(ActionLabel.gameObject).GetComponent<UIActionLabel>();
+                        label.transform.SetParent(ActionLabel.transform.parent);
+                        m_labels.Add(label);
+                    }
+                    else
+                    {
+                        label = m_labels[actionIndex];
+                    }
+                    label.gameObject.SetActive(true);
+                    label.ActionIcon.sprite = null;
+                    label.ActionName.text = action.ToString();
+                    actionIndex++;
+                }
+                for (var i = actionIndex; i < m_labels.Count; ++i)
+                {
+                    m_labels[i].gameObject.SetActive(false);
+                }
 
-			if (interactable && interactable.CanUse(PlayerActor))
-			{
-				int actionIndex = 0;
-				foreach (var action in interactable.GetActions(PlayerActor))
-				{
-					UIActionLabel label;
-					if (m_labels.Count <= actionIndex)
-					{
-						label = Instantiate(ActionLabel.gameObject).GetComponent<UIActionLabel>();
-						label.transform.SetParent(ActionLabel.transform.parent);
-						m_labels.Add(label);
-					}
-					else
-					{
-						label = m_labels[actionIndex];
-					}
-					label.gameObject.SetActive(true);
-					label.ActionIcon.sprite = null;
-					label.ActionName.text = action.ToString();
-					actionIndex++;
-				}
-				for (var i = actionIndex; i < m_labels.Count; ++i)
-				{
-					m_labels[i].gameObject.SetActive(false);
-				}
-
-			}
-			else
-			{
-				Icon.sprite = null;
-				foreach (var label in m_labels)
-				{
-					label.gameObject.SetActive(false);
-				}
-				//HideHoverObject();
-			}
-			Icon.gameObject.SetActive(Icon.sprite);
-		}
-
-		/*private void ShowHoverObect(Interactable interactable)
-		{
-			InteractionObjectFilter.gameObject.SetActive(true);
-			InteractionObjectFilter.sharedMesh = interactable.GetInteractionMesh();
-			InteractionObjectFilter.transform.position = interactable.transform.position;
-			InteractionObjectFilter.transform.rotation = interactable.transform.rotation;
-			InteractionObjectFilter.transform.localScale = interactable.transform.lossyScale;
-			Icon.sprite = PlayerActor.FocusedInteractable.InteractionSettings.Icon?.Invoke();
-		}
-
-		private void HideHoverObject()
-		{
-			InteractionObjectFilter.gameObject.SetActive(false);
-		}*/
-	}
+            }
+            else
+            {
+                Icon.sprite = null;
+                foreach (var label in m_labels)
+                {
+                    label.gameObject.SetActive(false);
+                }
+            }
+            Icon.gameObject.SetActive(Icon.sprite);
+        }
+    }
 }

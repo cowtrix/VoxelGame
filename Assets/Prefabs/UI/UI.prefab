@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -347,6 +347,42 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &536100451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 536100452}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &536100452
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536100451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1973607607}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &653324026
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,6 +664,7 @@ GameObject:
   - component: {fileID: 762578177}
   - component: {fileID: 762578179}
   - component: {fileID: 762578178}
+  - component: {fileID: 1596104837}
   m_Layer: 5
   m_Name: A
   m_TagString: Untagged
@@ -653,9 +690,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -107.9, y: -7.9999847}
+  m_AnchoredPosition: {x: -107.9, y: -57.999985}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &762578179
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -686,7 +723,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -130513497, guid: 560a5abdecc0500459bdfba5a7a42a69, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -694,6 +731,51 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1596104837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762578176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6efe2e2d05411408b1272a52e75675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Delay: 0.2
+  OffTime: 1
+  OnTime: 1
+  OnPulse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 762578178}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+        m_MethodName: set_sprite
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -130513497, guid: 560a5abdecc0500459bdfba5a7a42a69, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPulseEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 762578178}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+        m_MethodName: set_sprite
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1259284881, guid: 560a5abdecc0500459bdfba5a7a42a69, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &908181017
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,6 +787,7 @@ GameObject:
   - component: {fileID: 908181018}
   - component: {fileID: 908181020}
   - component: {fileID: 908181019}
+  - component: {fileID: 594184126}
   m_Layer: 5
   m_Name: D
   m_TagString: Untagged
@@ -730,9 +813,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 106.6, y: -8}
+  m_AnchoredPosition: {x: 106.6, y: -58}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &908181020
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -763,7 +846,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -130513497, guid: 560a5abdecc0500459bdfba5a7a42a69, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -771,6 +854,51 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &594184126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908181017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6efe2e2d05411408b1272a52e75675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Delay: 0.6
+  OffTime: 1
+  OnTime: 1
+  OnPulse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 908181019}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+        m_MethodName: set_sprite
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -130513497, guid: 560a5abdecc0500459bdfba5a7a42a69, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPulseEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 908181019}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+        m_MethodName: set_sprite
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1259284881, guid: 560a5abdecc0500459bdfba5a7a42a69, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &931975005
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,6 +910,7 @@ GameObject:
   - component: {fileID: 931975006}
   - component: {fileID: 931975008}
   - component: {fileID: 931975007}
+  - component: {fileID: 812026628}
   m_Layer: 5
   m_Name: S
   m_TagString: Untagged
@@ -807,9 +936,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -7.9999847}
+  m_AnchoredPosition: {x: 0, y: -57.999985}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &931975008
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -840,7 +969,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -130513497, guid: 560a5abdecc0500459bdfba5a7a42a69, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -848,6 +977,51 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &812026628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931975005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6efe2e2d05411408b1272a52e75675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Delay: 0.4
+  OffTime: 1
+  OnTime: 1
+  OnPulse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 931975007}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+        m_MethodName: set_sprite
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -130513497, guid: 560a5abdecc0500459bdfba5a7a42a69, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPulseEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 931975007}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+        m_MethodName: set_sprite
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1259284881, guid: 560a5abdecc0500459bdfba5a7a42a69, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &941374155
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,11 +1057,11 @@ RectTransform:
   m_Father: {fileID: 2211748765962362123}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 0, y: 500}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!225 &941374158
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -914,7 +1088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   FadeSpeed: 1
-  MinimumWaitTime: 3
+  MinimumWaitTime: 2
   Steps:
   - Group: {fileID: 2009703971}
     Key: 7
@@ -933,6 +1107,7 @@ GameObject:
   - component: {fileID: 958316684}
   - component: {fileID: 958316686}
   - component: {fileID: 958316685}
+  - component: {fileID: 1819042589}
   m_Layer: 5
   m_Name: W
   m_TagString: Untagged
@@ -958,9 +1133,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 96.20001}
+  m_AnchoredPosition: {x: 0, y: 46.200012}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &958316686
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -991,7 +1166,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -130513497, guid: 560a5abdecc0500459bdfba5a7a42a69, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -999,6 +1174,51 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1819042589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958316683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6efe2e2d05411408b1272a52e75675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Delay: 0
+  OffTime: 1
+  OnTime: 1
+  OnPulse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 958316685}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+        m_MethodName: set_sprite
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -130513497, guid: 560a5abdecc0500459bdfba5a7a42a69, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPulseEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 958316685}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+        m_MethodName: set_sprite
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1259284881, guid: 560a5abdecc0500459bdfba5a7a42a69, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1471635101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,6 +1543,84 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1973607606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1973607607}
+  - component: {fileID: 1973607609}
+  - component: {fileID: 1973607608}
+  - component: {fileID: 1973607610}
+  m_Layer: 5
+  m_Name: MainMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1973607607
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973607606}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 536100452}
+  m_Father: {fileID: 2211748765962362123}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1973607609
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973607606}
+  m_CullTransparentMesh: 1
+--- !u!114 &1973607608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973607606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ae214ee3a3e97489348aad6fb10584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OpenColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
+  ClosedColor: {r: 0.1, g: 0.1, b: 0.1, a: 0.5019608}
+  TileSprite: {fileID: 0}
+  Group: {fileID: 1973607610}
+  TileContainer: {fileID: 536100452}
+  TileSpeed: 1
+--- !u!225 &1973607610
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973607606}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2009703969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,6 +2017,7 @@ RectTransform:
   - {fileID: 2211748766509132722}
   - {fileID: 520424765}
   - {fileID: 941374156}
+  - {fileID: 1973607607}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1817,9 +2116,7 @@ MonoBehaviour:
   ActionLabel: {fileID: 2211748766490716840}
   FocusSprite: {fileID: 520424765}
   PlayerActor: {fileID: 0}
-  InteractionMaterial: {fileID: 2100000, guid: 56b5ef21f617a10449a2b77620001de1, type: 2}
-  InteractionObjectRenderer: {fileID: 0}
-  InteractionObjectFilter: {fileID: 0}
+  InteractionMaterial: {fileID: 2100000, guid: 4e687d4ebc0ed7b498cdc14438d964bc, type: 2}
   FocusedInteractableDisplayName:
     m_PersistentCalls:
       m_Calls:

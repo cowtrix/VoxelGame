@@ -114,6 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e31a82e18c700a44a5af8071f8e6df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 9f9cf79f-c5c1-462e-baa5-c2371c3cb5bf
+  ThinkSpeed: 1
+  Priority: 0
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -130,6 +133,11 @@ MonoBehaviour:
     OnExitAttention:
       m_PersistentCalls:
         m_Calls: []
+    Colliders:
+    - {fileID: 8418849843838413191}
+    Renderers:
+    - Renderer: {fileID: 6737183944057642216}
+      Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
     MaxFocusDistance: 5
     MaxUseDistance: 2
   PlainText: Missing! "Zeep" 300c Reward!

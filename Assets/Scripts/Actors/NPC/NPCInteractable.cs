@@ -36,7 +36,7 @@ namespace Interaction
 
 		public override void OnStartActivity(Actor actor)
 		{
-			if (!Actor)
+			if (!Actor && Self.CanTalkTo(actor))
 			{
 				Self.InteractWithActor(actor);
 			}

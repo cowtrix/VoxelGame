@@ -7,6 +7,7 @@ using UnityEngine;
 public class GravityRigidbody : SlowUpdater
 {
 	public Rigidbody Rigidbody { get; private set; }
+	public float GravityMultiplier = 1;
 	private Vector3 m_lastGravity;
 	private GravityManager m_gravityManager;
 	private bool m_positionChangedRecently;
@@ -42,7 +43,7 @@ public class GravityRigidbody : SlowUpdater
 		{
 			Start();
 		}
-		m_lastGravity = m_gravityManager.GetGravityForce(transform.position);
+		m_lastGravity = m_gravityManager.GetGravityForce(transform.position) * GravityMultiplier;
 		m_posHistory.Push(Rigidbody.position);
 		m_rotHistory.Push(Rigidbody.rotation.eulerAngles);
 		const float threshold = .5f;

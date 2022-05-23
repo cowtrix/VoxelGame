@@ -11,17 +11,27 @@ namespace Actors
 	[RequireComponent(typeof(DialogueTreeController))]
 	public class NPCActor : Actor, IDialogueActor
 	{
-		public NPCInteractable Interactable;
+		public AutoProperty<NPCInteractable> Interactable;
 		public DialogueTreeController Controller => GetComponent<DialogueTreeController>();
 
-		public bool CanTalkTo(Actor context)
+        private void Awake()
+        {
+            Interactable = new AutoProperty<NPCInteractable>(gameObject, (go) => go.GetComponentInChildren<NPCInteractable>());
+        }
+
+        public bool CanTalkTo(Actor context)
 		{
-			if (Interactable.Actor)
+			if (Interactable.Value.Actor || Controller.graph == null)
 			{
 				return false;
 			}
 			return !Controller.isRunning;
 		}
+
+		public bool IsTalking()
+        {
+			return Controller.isRunning;
+        }
 
 		public void InteractWithActor(Actor instigator)
 		{

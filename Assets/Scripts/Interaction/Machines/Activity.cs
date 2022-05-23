@@ -37,8 +37,9 @@ namespace Interaction.Activities
 		public Actor Actor { get; private set; }
 
 		public ActorEvent OnActivate, OnDeactivate;
+		public bool PassThroughInteraction;
 
-		public override IEnumerable<ActorAction> GetActions(Actor context)
+        public override IEnumerable<ActorAction> GetActions(Actor context)
 		{
 			if (!CanUse(context))
 				yield break;
@@ -48,6 +49,10 @@ namespace Interaction.Activities
 				yield break;
 			}
 			yield return new ActorAction { Key = eActionKey.USE, Description = "Start Using" };
+			if(Actor == context)
+            {
+				yield return new ActorAction { Key = eActionKey.MOVE };
+			}
 		}
 
 		public override void ReceiveAction(Actor actor, ActorAction action)

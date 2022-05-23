@@ -10,146 +10,174 @@ using Voxul;
 
 namespace Interaction
 {
-	[Serializable]
-	public class ActorEvent : UnityEvent<Actor>
-	{
-	}
+    [Serializable]
+    public class ActorEvent : UnityEvent<Actor>
+    {
+    }
 
-	[Serializable]
-	public class ActorActionEvent : UnityEvent<Actor, ActorAction>
-	{
-	}
+    [Serializable]
+    public class ActorActionEvent : UnityEvent<Actor, ActorAction>
+    {
+    }
 
-	public interface IInteractable
-	{
-		string DisplayName { get; }
-		void ReceiveAction(Actor actor, ActorAction action);
-		IEnumerable<ActorAction> GetActions(Actor context);
-		Transform transform { get; }
-		GameObject gameObject { get; }
-	}
+    public interface IInteractable
+    {
+        string DisplayName { get; }
+        void ReceiveAction(Actor actor, ActorAction action);
+        IEnumerable<ActorAction> GetActions(Actor context);
+        Transform transform { get; }
+        GameObject gameObject { get; }
+    }
 
-	[Serializable]
-	public class SpriteEvent : UnityEvent<Sprite> { }
+    [Serializable]
+    public class SpriteEvent : UnityEvent<Sprite> { }
 
-	public abstract class Interactable : SlowUpdater, IInteractable
-	{
-		[Serializable]
-		public class InteractableSettings
-		{
-			public ActorEvent OnFocusEnter;
-			public ActorEvent OnFocusExit;
-			public ActorActionEvent OnUsed;
-			public ActorEvent OnEnterAttention;
-			public ActorEvent OnExitAttention;
+    public abstract class Interactable : SlowUpdater, IInteractable
+    {
+        [Serializable]
+        public class InteractableSettings
+        {
+            [Serializable]
+            public class InteractionRenderer
+            {
+                public MeshRenderer Renderer;
+                public Mesh Mesh;
+            }
 
-			public Func<Sprite> Icon;
+            public ActorEvent OnFocusEnter;
+            public ActorEvent OnFocusExit;
+            public ActorActionEvent OnUsed;
+            public ActorEvent OnEnterAttention;
+            public ActorEvent OnExitAttention;
 
-			public float MaxFocusDistance = 5;
-			public float MaxUseDistance = 2;
-		}
+            public Func<Sprite> Icon;
 
-		public const int INTERACTION_LAYER = 9;
-		public InteractableSettings InteractionSettings = new InteractableSettings();
+            public List<Collider> Colliders;
+            public List<InteractionRenderer> Renderers;
 
-		public virtual IEnumerable<ActorAction> GetActions(Actor context)
-		{
-			if (!CanUse(context))
-			{
-				yield break;
-			}
-			yield return new ActorAction { Key = eActionKey.USE, Description = "Use" };
-		}
+            public float MaxFocusDistance = 5;
+            public float MaxUseDistance = 2;
+        }
 
-		public virtual bool CanUse(Actor context)
-		{
-			var distance = Vector3.Distance(context.transform.position, transform.position);
-			return distance <= InteractionSettings.MaxUseDistance;
-		}
-		public List<Collider> Colliders;
+        public const int INTERACTION_LAYER = 9;
+        public InteractableSettings InteractionSettings = new InteractableSettings();
 
-		protected virtual void Start()
-		{
-			//CollectColliders();
-		}
+        public virtual IEnumerable<ActorAction> GetActions(Actor context)
+        {
+            if (!CanUse(context))
+            {
+                yield break;
+            }
+            yield return new ActorAction { Key = eActionKey.USE, Description = "Use" };
+        }
 
-		protected void CollectColliders()
-		{
-			if (Colliders == null || !Colliders.Any())
-			{
-				Colliders = new List<Collider>(GetComponentsInChildren<Collider>().Where(c => c.enabled && c.gameObject.layer == INTERACTION_LAYER));
-			}
-		}
+        public virtual bool CanUse(Actor context)
+        {
+            var distance = Vector3.Distance(context.transform.position, transform.position);
+            return distance <= InteractionSettings.MaxUseDistance;
+        }
 
-		public Bounds Bounds
-		{
-			get
-			{
-				if (Colliders == null || Colliders.Count == 0)
-				{
-					return default;
-				}
-				var bounds = Colliders[0].bounds;
-				for (int i = 1; i < Colliders.Count; i++)
-				{
-					bounds.Encapsulate(Colliders[i].bounds);
-				}
-				return bounds;
-			}
-		}
+        private void OnValidate()
+        {
+            foreach(var r in InteractionSettings.Renderers)
+            {
+                if(r != null && r.Renderer)
+                    r.Mesh = r.Renderer.GetComponent<MeshFilter>()?.sharedMesh;
+            }   
+        }
 
-		public abstract string DisplayName { get; }
+        [ContextMenu("Collect Colliders & Renderers")]
+        public void CollectCollidersAndRenderers()
+        {
+            if (InteractionSettings.Renderers == null || !InteractionSettings.Renderers.Any())
+            {
+                InteractionSettings.Renderers = GetComponentsInChildren<MeshRenderer>()
+                    
+                    .Select(r => new InteractableSettings.InteractionRenderer
+                     {
+                         Mesh = r.GetComponent<MeshFilter>()?.sharedMesh,
+                         Renderer = r
+                     })
+                    .Where(c => c.Renderer.enabled && c.Mesh)
+                    .ToList();
+            }
+            if (InteractionSettings.Colliders == null || !InteractionSettings.Colliders.Any())
+            {
+                InteractionSettings.Colliders = new List<Collider>(GetComponentsInChildren<Collider>().Where(c => c.enabled));
+            }
+        }
 
-		public Mesh GetInteractionMesh()
-		{
-			var voxelRenderer = GetComponent<VoxelRenderer>();
-			if (voxelRenderer)
-			{
-				return voxelRenderer.Submeshes.FirstOrDefault()?.MeshFilter?.sharedMesh;
-			}
-			var thisFilter = GetComponent<MeshFilter>() ?? GetComponentInChildren<MeshFilter>();
-			if (thisFilter)
-			{
-				return thisFilter.sharedMesh;
-			}
-			return null;
-		}
+        protected virtual void Start() { }
 
-		public virtual void ExitFocus(Actor actor)
-		{
-			InteractionSettings.OnFocusExit.Invoke(actor);
-		}
+        public Bounds Bounds
+        {
+            get
+            {
+                if (InteractionSettings.Colliders == null || InteractionSettings.Colliders.Count == 0)
+                {
+                    return default;
+                }
+                var bounds = InteractionSettings.Colliders[0].bounds;
+                for (int i = 1; i < InteractionSettings.Colliders.Count; i++)
+                {
+                    bounds.Encapsulate(InteractionSettings.Colliders[i].bounds);
+                }
+                return bounds;
+            }
+        }
 
-		public virtual void EnterFocus(Actor actor)
-		{
-			InteractionSettings.OnFocusEnter.Invoke(actor);
-		}
+        public abstract string DisplayName { get; }
 
-		public virtual void ReceiveAction(Actor actor, ActorAction action)
-		{
-			if(action.State == eActionState.End && action.Key == eActionKey.USE)
-			{
-				InteractionSettings.OnUsed.Invoke(actor, action);
-			}
-		}
+        public Mesh GetInteractionMesh()
+        {
+            var voxelRenderer = GetComponent<VoxelRenderer>();
+            if (voxelRenderer)
+            {
+                return voxelRenderer.Submeshes.FirstOrDefault()?.MeshFilter?.sharedMesh;
+            }
+            var thisFilter = GetComponent<MeshFilter>() ?? GetComponentInChildren<MeshFilter>();
+            if (thisFilter)
+            {
+                return thisFilter.sharedMesh;
+            }
+            return null;
+        }
 
-		public virtual void ExitAttention(Actor actor)
-		{
-			InteractionSettings.OnExitAttention.Invoke(actor);
-		}
+        public virtual void ExitFocus(Actor actor)
+        {
+            InteractionSettings.OnFocusExit.Invoke(actor);
+        }
 
-		public virtual void EnterAttention(Actor actor)
-		{
-			InteractionSettings.OnEnterAttention.Invoke(actor);
-		}
+        public virtual void EnterFocus(Actor actor)
+        {
+            InteractionSettings.OnFocusEnter.Invoke(actor);
+        }
 
-		protected virtual void OnDrawGizmosSelected()
-		{
-			//CollectColliders();
-			var b = Bounds;
-			Gizmos.DrawWireCube(b.center, b.size);
-		}
+        public virtual void ReceiveAction(Actor actor, ActorAction action)
+        {
+            if (action.State == eActionState.End && action.Key == eActionKey.USE)
+            {
+                InteractionSettings.OnUsed.Invoke(actor, action);
+            }
+        }
 
-		protected override int Tick(float dt) { return 0; }
-	}
+        public virtual void ExitAttention(Actor actor)
+        {
+            InteractionSettings.OnExitAttention.Invoke(actor);
+        }
+
+        public virtual void EnterAttention(Actor actor)
+        {
+            InteractionSettings.OnEnterAttention.Invoke(actor);
+        }
+
+        protected virtual void OnDrawGizmosSelected()
+        {
+            //CollectColliders();
+            var b = Bounds;
+            Gizmos.DrawWireCube(b.center, b.size);
+        }
+
+        protected override int Tick(float dt) { return 0; }
+    }
 }

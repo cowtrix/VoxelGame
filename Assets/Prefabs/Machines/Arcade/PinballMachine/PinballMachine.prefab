@@ -1583,7 +1583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f4dc947f8cf234796a334fcbd70174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: 1beee7aa-aca8-41da-952d-be50b755cf1e
+  m_guid: 6efaafe0-b085-4f4d-8c8a-f71708637c35
   ThinkSpeed: 1
   Priority: 0
   InteractionSettings:
@@ -1602,10 +1602,13 @@ MonoBehaviour:
     OnExitAttention:
       m_PersistentCalls:
         m_Calls: []
+    Colliders:
+    - {fileID: 105569029280490095}
+    Renderers:
+    - Renderer: {fileID: 5844024633761707410}
+      Mesh: {fileID: 4589416630792596385, guid: a639a860e51e6ef498e704286fb775b4, type: 2}
     MaxFocusDistance: 5
     MaxUseDistance: 2
-  Colliders:
-  - {fileID: 105569029280490095}
   CameraRotationLimits:
     X: {x: -30, y: 30}
     Y: {x: -30, y: 30}
@@ -1619,6 +1622,7 @@ MonoBehaviour:
   OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+  PassThroughInteraction: 0
   GameName: Powzer's Pew Pew
   PlayCost: 1
   BallSpawnPosition: {x: 0, y: 0.4, z: 1.13}

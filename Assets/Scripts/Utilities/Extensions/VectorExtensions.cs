@@ -33,6 +33,11 @@ namespace Common
 			return startPlane.GetSide(worldPos) && endPlane.GetSide(worldPos);
 		}
 
+		public static Bounds TranslateBounds(Bounds bounds, Matrix4x4 trs)
+        {
+			return new Bounds(trs.MultiplyPoint3x4(bounds.center), bounds.size);
+        }
+
 		public static IEnumerable<Vector3> AllPoints(this Bounds b)
 		{
 			yield return new Vector3(b.min.x, b.min.y, b.min.z);
@@ -99,7 +104,9 @@ namespace Common
 			{
 				return default;
 			}
-			return renderers.Select(r => r.bounds).GetEncompassingBounds();
+			return renderers
+				.Where(r => r)
+				.Select(r => r.bounds).GetEncompassingBounds();
 		}
 	}
 

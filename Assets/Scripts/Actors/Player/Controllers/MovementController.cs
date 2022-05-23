@@ -54,8 +54,8 @@ namespace Actors
         public Actor Actor => GetComponent<Actor>();
 
         [Header("Parameters")]
-        public float MovementSpeed = 30;
-        public float JumpForce = 60;
+        public float MovementSpeed = 2000;
+        public float JumpForce = 300;
         public LayerMask CollisionMask = 1 << 8;
         public float RotateTowardGravitySpeed = 10;
         public Transform GroundingPoint;

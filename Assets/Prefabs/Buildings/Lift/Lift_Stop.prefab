@@ -486,6 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: 16c38a45-46d8-440e-be8d-9c5f121780b2
   ThinkSpeed: 1
+  Priority: 0
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -587,6 +588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: 58b4c13d-777d-4dd3-a778-13270eb10c57
   ThinkSpeed: 1
+  Priority: 0
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -845,6 +847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: 208a7275-2799-4507-81a2-c570554cd3eb
   ThinkSpeed: 1
+  Priority: 0
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -1063,6 +1066,7 @@ GameObject:
   - component: {fileID: 5775463562536411357}
   - component: {fileID: 2648232632234290127}
   - component: {fileID: 79318816959580678}
+  - component: {fileID: 2798815622752461967}
   m_Layer: 8
   m_Name: Lift_Stop
   m_TagString: Untagged
@@ -1275,6 +1279,26 @@ LODGroup:
     - renderer: {fileID: 7543433858125331623}
     - renderer: {fileID: 6504673649404829357}
   m_Enabled: 1
+--- !u!114 &2798815622752461967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5775463562536411359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0, z: -2.5}
+  m_EndPoint: {x: 0, y: 0, z: 2.5}
+  m_Width: 0
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!1 &8273318335730264256
 GameObject:
   m_ObjectHideFlags: 0

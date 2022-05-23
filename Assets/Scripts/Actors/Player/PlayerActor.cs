@@ -66,10 +66,21 @@ namespace Actors.NPC.Player
 			OnActionExecuted.Invoke(action);
 
 			// First priority is if we have an active activity
-			if (CurrentActivity)
+			if (CurrentActivity && !CurrentActivity.PassThroughInteraction)
 			{
 				CurrentActivity.ReceiveAction(this, action);
 				return;
+			}
+
+			// Otherwise, execute the action on the focused object
+			if (FocusedInteractable)
+			{
+				var actions = FocusedInteractable.GetActions(this);
+				if (actions.Any(a => a.Key == action.Key))
+				{
+					FocusedInteractable.ReceiveAction(this, action);
+					return;
+				}
 			}
 
 			if (action.Key == eActionKey.MOVE)
@@ -91,17 +102,6 @@ namespace Actors.NPC.Player
 			{
 				State.EquippedItem.ReceiveAction(this, action);
 				return;
-			}
-
-			// Otherwise, execute the action on the focused object
-			if (FocusedInteractable)
-			{
-				var actions = FocusedInteractable.GetActions(this);
-				if (actions.Any(a => a.Key == action.Key))
-				{
-					FocusedInteractable.ReceiveAction(this, action);
-					return;
-				}
 			}
 		}
 
