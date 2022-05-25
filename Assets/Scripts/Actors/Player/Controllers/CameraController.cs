@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 using Voxul.Utilities;
 
 public interface ICameraControllerProxy
@@ -21,6 +22,9 @@ public class CameraController : Singleton<CameraController>, ILookAdapter
 	public Actor Actor;
 	public bool LockCameraLook { get; set; }
 	public bool LockCursor { get; set; } = true;
+	public bool UIEnabled { get; set; }
+	public Camera Camera { get; private set; }
+	public InputSystemUIInputModule InputModule { get; private set; }
 
 	[Header("Camera")]
 	public float LookSensitivity = 1;
@@ -37,10 +41,13 @@ public class CameraController : Singleton<CameraController>, ILookAdapter
 	private void Start()
 	{
 		m_look = Input.actions.Single(a => a.name == "Look");
+		Camera = GetComponent<Camera>();
+		InputModule = GetComponent<InputSystemUIInputModule>();
 	}
 
 	private void Update()
 	{
+		InputModule.enabled = UIEnabled;
 		Cursor.lockState = LockCursor ? CursorLockMode.Locked : CursorLockMode.Confined;
 		LastDelta = m_look.ReadValue<Vector2>() * LookSensitivity;
 		if (LockCameraLook)

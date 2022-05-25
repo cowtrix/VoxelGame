@@ -23,6 +23,10 @@ namespace Interaction.Activities
 
 		private void Update()
 		{
+            if (!Machine.Actor)
+            {
+				return;
+            }
 			Tint.Color = Color.Lerp(Tint.Color, m_targetColor, FadeSpeed * Time.deltaTime);
 			Tint.Invalidate();
 		}

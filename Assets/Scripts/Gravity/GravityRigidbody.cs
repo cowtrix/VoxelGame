@@ -7,17 +7,23 @@ using UnityEngine;
 public class GravityRigidbody : SlowUpdater
 {
 	public Rigidbody Rigidbody { get; private set; }
+	public CameraController CameraController { get; private set; }
+	public float MaxUpdateDistance = 1000;
+
 	public float GravityMultiplier = 1;
 	private Vector3 m_lastGravity;
 	private GravityManager m_gravityManager;
-	private bool m_positionChangedRecently;
 
 	const int HISTORY_SIZE = 10;
 
 	private SmoothPositionVector3 m_posHistory, m_rotHistory;
 
-	private void Start()
+	public override float GetThinkSpeed() => .1f;
+
+    private void Start()
 	{
+		CameraController = CameraController.Instance;
+
 		Rigidbody = GetComponent<Rigidbody>();
 		Rigidbody.useGravity = false;
 		Rigidbody.sleepThreshold = 1;
@@ -30,10 +36,11 @@ public class GravityRigidbody : SlowUpdater
 
 	void FixedUpdate()
 	{
-		if (m_lastGravity.sqrMagnitude > 0)
+		if ((CameraController.transform.position - transform.position).sqrMagnitude < MaxUpdateDistance && m_lastGravity.sqrMagnitude > 0)
 		{
 			Rigidbody.WakeUp();
 			Rigidbody.AddForce(m_lastGravity * Time.fixedDeltaTime, ForceMode.Force);
+			m_lastGravity = Vector3.zero;
 		}
 	}
 
@@ -47,10 +54,10 @@ public class GravityRigidbody : SlowUpdater
 		m_posHistory.Push(Rigidbody.position);
 		m_rotHistory.Push(Rigidbody.rotation.eulerAngles);
 		const float threshold = .5f;
-		m_positionChangedRecently = m_posHistory.Count == m_posHistory.Capacity;
+		//m_positionChangedRecently = m_posHistory.Count == m_posHistory.Capacity;
 		if ((m_posHistory.SmoothPosition - transform.position).sqrMagnitude < threshold * threshold)
 		{
-			m_positionChangedRecently = false;
+			//m_positionChangedRecently = false;
 			Rigidbody.Sleep();
 		}
 		return 1;

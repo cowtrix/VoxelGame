@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Generation
 {
-	[CreateAssetMenu]
+	[CreateAssetMenu(menuName = "Custom/Generation/Object Set")]
 	public class ObjectSet : ScriptableObject
 	{
 		[System.Serializable]

@@ -19,9 +19,9 @@ namespace Phone
 
 	public class PhoneController : ExtendedMonoBehaviour
 	{
+		public InputSystemUIInputModule InputModule => CameraController.InputModule;
+
 		public PlayerInput Input;
-		public Camera Camera;
-		public InputSystemUIInputModule InputModule;
 		public Vector3 OpenPosition, ClosedPosition;
 		public float MoveSpeed = 1;
 		public UnityEvent OnHome;
@@ -92,6 +92,7 @@ namespace Phone
 		private void OnTogglePhone(InputAction.CallbackContext obj)
 		{
 			IsOpen = !IsOpen;
+			CameraController.UIEnabled = IsOpen;
 			CameraController.LockCameraLook = IsOpen;
 		}
 
@@ -117,10 +118,10 @@ namespace Phone
 				Mathf.Clamp(Cursor.anchoredPosition.y + lookDelta.y, -canvasSize.y / 2, canvasSize.y / 2)
 				);
 
-			var screenPoint = Camera.WorldToScreenPoint(Cursor.position).xy();
+			var screenPoint = CameraController.Camera.WorldToScreenPoint(Cursor.position).xy();
 			InputModule.ExplicitMousePosition = screenPoint;
 
-			var debugPoint = Camera.ScreenToWorldPoint(screenPoint.xy0(5));
+			var debugPoint = CameraController.Camera.ScreenToWorldPoint(screenPoint.xy0(5));
 			DebugHelper.DrawPoint(debugPoint, .1f, Color.cyan, 0);
 
 			CursorClick.gameObject.SetActive(m_clickAction.IsPressed());

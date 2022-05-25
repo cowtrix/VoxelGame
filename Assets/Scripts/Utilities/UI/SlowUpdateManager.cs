@@ -10,6 +10,8 @@ namespace Common
 {
     public class SlowUpdateManager : Singleton<SlowUpdateManager>
 	{
+		public int CurrentPopulation { get; private set; }
+
 		public Func<SlowUpdater, float> InstanceSorter;
 		public int FrameBudget = 100;
 		public int MaxCyclePopulation = 1000;
@@ -32,8 +34,23 @@ namespace Common
 				if (InstanceSorter != null)
 				{
 					m_isSorting = true;
-					var data = instances.Select(i => (InstanceSorter(i), i))
-						.ToList();
+					var data = new List<(float, SlowUpdater)>();
+					const int maxIterCount = 100;
+					var counter = 0;
+					foreach (var instance in instances)
+                    {
+                        if (!instance || !instance.isActiveAndEnabled)
+                        {
+							continue;
+                        }
+						data.Add((InstanceSorter.Invoke(instance), instance));
+						counter++;
+						if(counter == maxIterCount)
+                        {
+							counter = 0;
+							yield return null;
+						}
+                    }
 					var t = new Task(() =>
 					{
 						try
@@ -77,22 +94,14 @@ namespace Common
 				var budgetCounter = 0;
 				lock (m_lock)
 				{
+					CurrentPopulation = m_instances.Count;
 					for (int i = m_instances.Count - 1; i >= 0; i--)
 					{
 						var instance = m_instances[i];
-						if (!instance)
-						{
-							m_instances.RemoveAt(i);
-							continue;
-						}
-						if (!instance.enabled || !instance.gameObject.activeInHierarchy)
-						{
-							continue;
-						}
 						try
 						{
 							var dt = t - instance.LastUpdateTime;
-							if (dt < instance.ThinkSpeed)
+							if (dt < instance.GetThinkSpeed())
 							{
 								continue;
 							}

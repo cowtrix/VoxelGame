@@ -43,83 +43,99 @@ namespace UI
             m_outline.transform.SetParent(m_outlineContainer.transform);
         }
 
+        private void SetFocusDisplay(Interactable interactable)
+        {
+            FocusSprite.gameObject.SetActive(true);
+            m_outlineContainer.SetActive(true);
+            if (!m_interactionOutlineRenderers.SequenceEqual(interactable.InteractionSettings.Renderers.Select(r => r.Renderer)))
+            {
+                for (var i = 0; i < interactable.InteractionSettings.Renderers.Count; i++)
+                {
+                    var sourceRenderer = interactable.InteractionSettings.Renderers[i];
+                    MeshRenderer targetRenderer = null;
+                    MeshFilter meshfilter;
+                    if (m_interactionOutlineRenderers.Count <= i)
+                    {
+                        targetRenderer = new GameObject($"OutlineRenderer_{i}").AddComponent<MeshRenderer>();
+                        targetRenderer.gameObject.layer = OUTLINE_LAYER;
+                        targetRenderer.transform.SetParent(m_outlineContainer.transform, false);
+                        meshfilter = targetRenderer.gameObject.AddComponent<MeshFilter>();
+                        m_interactionOutlineRenderers.Add(targetRenderer);
+                    }
+                    else
+                    {
+                        targetRenderer = m_interactionOutlineRenderers[i];
+                        meshfilter = targetRenderer.GetComponent<MeshFilter>();
+                    }
+                    targetRenderer.sharedMaterial = InteractionMaterial;
+                    meshfilter.sharedMesh = sourceRenderer.Mesh;
+                    targetRenderer.transform.position = sourceRenderer.Renderer.transform.position;
+                    targetRenderer.transform.rotation = sourceRenderer.Renderer.transform.rotation;
+                    targetRenderer.transform.localScale = sourceRenderer.Renderer.transform.lossyScale;
+                }
+                for (var i = m_interactionOutlineRenderers.Count - 1; i > interactable.InteractionSettings.Renderers.Count; i--)
+                {
+                    var toDestroy = m_interactionOutlineRenderers[i];
+                    m_interactionOutlineRenderers.RemoveAt(i);
+                    toDestroy.gameObject.SafeDestroy();
+                }
+                if (m_interactionOutlineRenderers.Any())
+                {
+                    var center = m_interactionOutlineRenderers.First().transform.position;
+                    foreach (var pos in m_interactionOutlineRenderers.Skip(1).Select(r => r.transform.position))
+                    {
+                        center += pos;
+                    }
+                    center /= (float)m_interactionOutlineRenderers.Count;
+                    InteractionMaterial.SetVector("_WorldCenter", center);
+                }
+            }
+            if (m_interactionOutlineRenderers.Count > 0)
+            {
+                m_outline.gameObject.SetActive(true);
+                m_outline.SetRenderers(m_interactionOutlineRenderers);
+            }
+            else
+            {
+                m_outline.gameObject.SetActive(false);
+            }
+
+            var screenRect = new Rect(Camera.WorldToScreenPoint(interactable.transform.position), Vector2.zero);
+            var objBounds = interactable.Bounds;
+            foreach (var p in objBounds.AllPoints())
+            {
+                screenRect = screenRect.Encapsulate(Camera.WorldToScreenPoint(p));
+            }
+            FocusSprite.position = screenRect.center;
+            FocusSprite.sizeDelta = screenRect.size;
+        }
+
+        private void ClearFocusDisplay()
+        {
+            m_outlineContainer.SetActive(false);
+            FocusSprite.gameObject.SetActive(false);
+            FocusedInteractableDisplayName.Invoke("");
+        }
+
         private void Update()
         {
             var interactable = PlayerActor.FocusedInteractable ?? PlayerActor.State.EquippedItem as Interactable ?? PlayerActor.CurrentActivity;
             if (interactable && interactable != PlayerActor.CurrentActivity)
             {
-                FocusSprite.gameObject.SetActive(true);
-
-                m_outlineContainer.SetActive(true);
-                if (!m_interactionOutlineRenderers.SequenceEqual(interactable.InteractionSettings.Renderers.Select(r => r.Renderer)))
+                if(interactable != (Interactable)PlayerActor.State.EquippedItem)
                 {
-                    for (var i = 0; i < interactable.InteractionSettings.Renderers.Count; i++)
-                    {
-                        var sourceRenderer = interactable.InteractionSettings.Renderers[i];
-                        MeshRenderer targetRenderer = null;
-                        MeshFilter meshfilter;
-                        if (m_interactionOutlineRenderers.Count <= i)
-                        {
-                            targetRenderer = new GameObject($"OutlineRenderer_{i}").AddComponent<MeshRenderer>();
-                            targetRenderer.gameObject.layer = OUTLINE_LAYER;
-                            targetRenderer.transform.SetParent(m_outlineContainer.transform, false);
-                            meshfilter = targetRenderer.gameObject.AddComponent<MeshFilter>();
-                            m_interactionOutlineRenderers.Add(targetRenderer);
-                        }
-                        else
-                        {
-                            targetRenderer = m_interactionOutlineRenderers[i];
-                            meshfilter = targetRenderer.GetComponent<MeshFilter>();
-                        }
-                        targetRenderer.sharedMaterial = InteractionMaterial;
-                        meshfilter.sharedMesh = sourceRenderer.Mesh;
-                        targetRenderer.transform.position = sourceRenderer.Renderer.transform.position;
-                        targetRenderer.transform.rotation = sourceRenderer.Renderer.transform.rotation;
-                        targetRenderer.transform.localScale = sourceRenderer.Renderer.transform.lossyScale;
-                    }
-                    for (var i = m_interactionOutlineRenderers.Count - 1; i > interactable.InteractionSettings.Renderers.Count; i--)
-                    {
-                        var toDestroy = m_interactionOutlineRenderers[i];
-                        m_interactionOutlineRenderers.RemoveAt(i);
-                        toDestroy.gameObject.SafeDestroy();
-                    }
-                    if (m_interactionOutlineRenderers.Any())
-                    {
-                        var center = m_interactionOutlineRenderers.First().transform.position;
-                        foreach (var pos in m_interactionOutlineRenderers.Skip(1).Select(r => r.transform.position))
-                        {
-                            center += pos;
-                        }
-                        center /= (float)m_interactionOutlineRenderers.Count;
-                        InteractionMaterial.SetVector("_WorldCenter", center);
-                    }
-                }
-                if(m_interactionOutlineRenderers.Count > 0)
-                {
-                    m_outline.gameObject.SetActive(true);
-                    m_outline.SetRenderers(m_interactionOutlineRenderers);
+                    SetFocusDisplay(interactable);
                 }
                 else
                 {
-                    m_outline.gameObject.SetActive(false);
+                    ClearFocusDisplay();
                 }
-
-                var screenRect = new Rect(Camera.WorldToScreenPoint(interactable.transform.position), Vector2.zero);
-                var objBounds = interactable.Bounds;
-                foreach (var p in objBounds.AllPoints())
-                {
-                    screenRect = screenRect.Encapsulate(Camera.WorldToScreenPoint(p));
-                }
-                FocusSprite.position = screenRect.center;
-                FocusSprite.sizeDelta = screenRect.size;
 
                 FocusedInteractableDisplayName.Invoke(interactable.DisplayName);
             }
             else
             {
-                m_outlineContainer.SetActive(false);
-                FocusSprite.gameObject.SetActive(false);
-                FocusedInteractableDisplayName.Invoke("");
+                ClearFocusDisplay();
             }
 
             if (interactable && interactable.CanUse(PlayerActor))

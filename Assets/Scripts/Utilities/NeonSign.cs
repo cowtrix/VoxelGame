@@ -4,23 +4,21 @@ using UnityEngine;
 using Voxul;
 
 [RequireComponent(typeof(VoxelRenderer))]
-public class NeonSign : VoxelRendererPropertyModifier
+public class NeonSign : RenderBehaviour
 {
 	[GradientUsage(true)]
     public Gradient FlickerGradient;
-
 	private Color m_color;
 
-    protected VoxelColorTint Tint => GetComponent<VoxelColorTint>();
+    protected VoxelColorTint Tint { get; private set; }
 
-	private void Update()
-	{
-		m_color = FlickerGradient.Evaluate(Random.value);
-		Invalidate();
-	}
-
-	protected override void SetPropertyBlock(MaterialPropertyBlock block, VoxelRendererSubmesh submesh)
-	{
-		block.SetColor("AlbedoTint", m_color);
-	}
+    protected override void UpdateOnScreen()
+    {
+        if (!Tint)
+        {
+            Tint = GetComponent<VoxelColorTint>();
+        }
+        Tint.Color = FlickerGradient.Evaluate(Random.value);
+        Tint.Invalidate();
+    }
 }

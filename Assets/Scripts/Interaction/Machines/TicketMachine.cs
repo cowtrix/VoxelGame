@@ -57,7 +57,7 @@ namespace Interaction
 			rb.detectCollisions = true;
 		}
 
-		protected virtual void OnDrawGizmosSelected()
+		protected override void OnDrawGizmosSelected()
 		{
 			base.OnDrawGizmosSelected();
 			Spline.Recalculate();

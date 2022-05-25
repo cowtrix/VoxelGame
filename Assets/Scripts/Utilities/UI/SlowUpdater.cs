@@ -17,6 +17,7 @@ namespace Common
 			return cost;
 		}
 
+		public virtual float GetThinkSpeed() => ThinkSpeed;
 		protected abstract int Tick(float dt);
 	}
 }

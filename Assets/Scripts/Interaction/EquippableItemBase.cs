@@ -93,14 +93,5 @@ namespace Interaction.Activities
 				yield return new ActorAction { Key = eActionKey.USE, Description = "Pick Up" };
 			}
 		}
-
-		public override bool CanUse(Actor context)
-		{
-			if (EquippedActor)
-			{
-				return false;
-			}
-			return base.CanUse(context);
-		}
 	}
 }
