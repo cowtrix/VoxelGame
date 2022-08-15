@@ -13,7 +13,9 @@ public class NPCMeshSegment : MonoBehaviour
 	[Range(0, 2)]
 	public float Saturation = 1f;
 	public Vector2 Scale = new Vector2(1, 1);
+	public Vector3 BaseScale = new Vector3(1, 1, 1);
 	public ObjectSet Collection;
+	public List<NPCMeshSegment> Slaves;
 	public VoxelRenderer Renderer => GetComponent<VoxelRenderer>();
 	public NPCMeshManager NPCManager => transform.GetComponentInAncestors<NPCMeshManager>();
 	protected IEnumerable<NPCMeshSegment> Children => GetComponentsInChildren<NPCMeshSegment>()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Voxul;
@@ -14,7 +15,7 @@ namespace Phone
 		public float FadeSpeed = 2;
 
 		public Image AppIcon;
-		public Text FirstText, SecondText;
+		public TextMeshProUGUI FirstText, SecondText;
 
 		private RectTransform RectTransform => GetComponent<RectTransform>();
 		private CanvasGroup CanvasGroup => GetComponent<CanvasGroup>();

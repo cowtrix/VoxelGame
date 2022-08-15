@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Lib\QuickOutline\Scripts\Outline.cs" />
     <Compile Include="Assets\Scripts\Utilities\Helpers\DebugHelper.cs" />
     <Compile Include="Assets\Vectrosity\Plugins\Scripts\RefInt.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\UI\UIActionLabel.cs" />
@@ -282,11 +283,13 @@
     <Compile Include="Assets\Scripts\TimeOfDayRandomizer.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\CurveExtensions.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Gestures\TapInput.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Books\BookData.cs" />
     <Compile Include="Assets\Scripts\Gravity\GravitySource.cs" />
     <Compile Include="Assets\Scripts\Interaction\Books\BookItem.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\SpawnController.cs" />
     <Compile Include="Assets\Scripts\GrassSpawner.cs" />
     <Compile Include="Assets\Scripts\Generator\Powerline.cs" />
+    <Compile Include="Assets\Lib\muzak\MuzakTrack.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\Samples\SimpleDemo\SimpleController_UsingPlayerInput.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Drawing\PointerInputManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\Maths\RectExtensions.cs" />
@@ -354,13 +357,14 @@
     <Compile Include="Assets\Scripts\Utilities\Extensions\ListExtensions.cs" />
     <Compile Include="Assets\Scripts\Generator\PowerPoint.cs" />
     <Compile Include="Assets\Scripts\Utilities\LookAtPlayer.cs" />
+    <Compile Include="Assets\Lib\muzak\MuzakPlayer.cs" />
     <Compile Include="Assets\Scripts\Generator\AsteroidGenerator.cs" />
     <Compile Include="Assets\Scripts\Utilities\CameraMagnet.cs" />
     <Compile Include="Assets\Scripts\Gravity\GravityRigidbody.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingLine.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\TouchISX.cs" />
-    <Compile Include="Assets\Lib\QuickOutline\Scripts\Outline.cs" />
-    <Compile Include="Assets\Scripts\Interaction\Books\BookData.cs" />
+    <Compile Include="Assets\Scripts\Audio\AmbientAudioManager.cs" />
+    <Compile Include="Assets\Scripts\Audio\AmbientZone.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\README.txt" />
@@ -372,7 +376,6 @@
     <None Include="Assets\Lib\InputSystem\projectlist.txt" />
     <None Include="Assets\Lib\unity-scene-reference\unity-scene-reference\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\Books\The Dark Plane of Orit.txt" />
     <None Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Shaders\Drawing\Background.shader" />
     <None Include="Assets\Lib\InputSystem\Assets\steam_appid.txt" />
@@ -398,7 +401,6 @@
     <None Include="Assets\Lib\InputSystem\Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Materials\NewUnlitShader.shader" />
     <None Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Shaders\Drawing\Tool.shader" />
-    <None Include="Assets\Books\The First Chronicle Of Azerioth.txt" />
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\api-analyzers\Unity.dictionary.xml" />
     <None Include="Assets\Materials\OutlineStencilShader.shader" />
     <None Include="Assets\Vectrosity\Vectrosity Documentation\Vectrosity changelog.txt" />
@@ -676,6 +678,18 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\jillejr.newtonsoft.json-for-unity@f2c6cb0981\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Android.Types">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\mscorlib.dll</HintPath>

@@ -73,6 +73,7 @@ public class LitSpriteRenderer : ExtendedMonoBehaviour
             MeshFilter = gameObject.GetOrAddComponent<MeshFilter>();
         }
         MeshFilter.sharedMesh = GetQuadMesh();
+        OnValidate();
     }
 
     private void Start()

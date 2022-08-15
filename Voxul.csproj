@@ -58,7 +58,6 @@
   <ItemGroup>
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\VoxelObjectEditorBase.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\VoxelText.cs" />
-    <Compile Include="Assets\Lib\voxul\Scripts\Utilities\Pathfinding\VoxelNavmeshChunk.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\Tools\PaintTool.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\TextureIndexInspect.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\Interop\MagicaVoxelImporter.cs" />
@@ -128,7 +127,6 @@
     <Compile Include="Assets\Lib\voxul\Scripts\Utilities\UnityMainThreadDispatcher.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Meshing\VoxelMeshWorker.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Utilities\Singleton.cs" />
-    <Compile Include="Assets\Lib\voxul\Scripts\Utilities\BoundsOptTester.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\Tools\ClipboardTool.cs" />
     <Compile Include="Assets\Lib\voxul\Lib\CsharpVoxReader\Chunks\Pack.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\VoxelSpriteEditor.cs" />
@@ -137,7 +135,7 @@
     <Compile Include="Assets\Lib\voxul\Lib\CsharpVoxReader\Chunks\Model.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Voxel.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Utilities\MinMaxAttribute.cs" />
-    <Compile Include="Assets\Lib\voxul\Scripts\Utilities\Pathfinding\VoxelNavMeshTester.cs" />
+    <Compile Include="Assets\Lib\voxul\Scripts\Utilities\Pathfinding\VoxelMeshTester.cs" />
     <Compile Include="Assets\Lib\voxul\Lib\CsharpVoxReader\Chunks\Palette.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\Interop\MagicaVoxelImporterWindow.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\LOD\LevelOfDetailBuilder.cs" />
@@ -416,6 +414,15 @@
     <Reference Include="UnityEditor.Graphs">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\PlaybackEngines\WebGLSupport\UnityEditor.WebGL.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -451,6 +458,18 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\jillejr.newtonsoft.json-for-unity@f2c6cb0981\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Android.Types">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.19f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\mscorlib.dll</HintPath>

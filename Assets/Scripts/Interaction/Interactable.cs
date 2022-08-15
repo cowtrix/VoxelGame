@@ -79,7 +79,11 @@ namespace Interaction
 
         private void OnValidate()
         {
-            foreach(var r in InteractionSettings.Renderers)
+            if (InteractionSettings?.Renderers == null)
+            {
+                return;
+            }
+            foreach(var r in InteractionSettings?.Renderers)
             {
                 if(r != null && r.Renderer)
                     r.Mesh = r.Renderer.GetComponent<MeshFilter>()?.sharedMesh;

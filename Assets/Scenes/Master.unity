@@ -172,6 +172,90 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1597305721 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1478620310, guid: 72bf7c19753176146b8d40ff6bcc5b29, type: 3}
+  m_PrefabInstance: {fileID: 1737012673401163295}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1597305723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597305721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467ce2bae30f9674fa0c8b9cceda8390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Track: {fileID: 0}
+  Strength: 1
+  FadeInTime: 1
+  FadeInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  FadeOutTime: 1
+  FadeOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AudioSourcePrototype: {fileID: 0}
+--- !u!114 &1597305724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597305721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5ac664201c64f4187b578d8f6ac040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AmbientTracks:
+  - {fileID: 11400000, guid: 0fb9bc6316edd254db439c1cdc4820dd, type: 2}
 --- !u!114 &1814919617 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7812470021605113652, guid: 72bf7c19753176146b8d40ff6bcc5b29, type: 3}
@@ -302,6 +386,10 @@ PrefabInstance:
     - target: {fileID: 316969785, guid: 72bf7c19753176146b8d40ff6bcc5b29, type: 3}
       propertyPath: m_RendererIndex
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478620310, guid: 72bf7c19753176146b8d40ff6bcc5b29, type: 3}
+      propertyPath: m_Name
+      value: AmbientManager
       objectReference: {fileID: 0}
     - target: {fileID: 1089812946415010677, guid: 72bf7c19753176146b8d40ff6bcc5b29, type: 3}
       propertyPath: m_AnchorMax.x
@@ -505,9 +593,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7812470021605113652, guid: 72bf7c19753176146b8d40ff6bcc5b29, type: 3}
       propertyPath: m_guid
-      value: 8c3bff67-1f88-41f9-98a1-5df3debfd402
+      value: 1a33836d-65cd-4ff5-bfee-2f22d0490d7d
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1478620312, guid: 72bf7c19753176146b8d40ff6bcc5b29, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 72bf7c19753176146b8d40ff6bcc5b29, type: 3}
 --- !u!1001 &2211748765223977011
 PrefabInstance:

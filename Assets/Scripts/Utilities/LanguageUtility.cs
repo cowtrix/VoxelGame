@@ -6,15 +6,14 @@ using UnityEngine;
 
 public static class LanguageUtility
 {
-    public static string CharacterSet;
+    public const string CharacterSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    static LanguageUtility()
+    public static string Generate(int length, int? seed = null)
     {
-        CharacterSet = Resources.Load<TextAsset>("AlienCharacters").text;
-    }
-
-    public static string Generate(int length)
-    {
+        if (seed.HasValue)
+        {
+            UnityEngine.Random.InitState(seed.Value);
+        }
         var sb = new StringBuilder();
         for (var i = 0; i < length; i++)
         {
@@ -31,19 +30,19 @@ public static class LanguageUtility
         }
         UnityEngine.Random.InitState(str.GetHashCode());
         var length = UnityEngine.Random.Range(3, str.Length);
-        return Generate(length);
+        return GetStringForTextMesh(Generate(length));
     }
 
     public static string GetSpriteKeyForChar(char c)
     {
-        if(c == ' ')
+        if (c == ' ')
         {
             return "Space";
         }
         return c.ToString();
     }
 
-    public static string GetStringForTextMesh(string original)
+    public static string GetStringForTextMesh(string original, bool mixed = false)
     {
         var sb = new StringBuilder();
         var isAlien = false;
@@ -59,13 +58,40 @@ public static class LanguageUtility
                 isAlien = false;
                 continue;
             }
-            if (isAlien && c != '\n')
+            if (!mixed || (isAlien && c != '\n'))
             {
                 sb.Append($"<sprite name=\"{GetSpriteKeyForChar(c)}\" tint=1>");
             }
             else
             {
                 sb.Append(c);
+            }
+        }
+        return sb.ToString();
+    }
+
+    public static string GetGarbageText(int length)
+    {
+        const string charSet = CharacterSet;
+        var sb = new StringBuilder();
+        for (var i = 0; i < length; i++)
+        {
+            var roll = UnityEngine.Random.value;
+            if (roll < .1f)
+            {
+                sb.Append(' ');
+            }
+            else if (roll < .125f)
+            {
+                sb.Append('\n');
+            }
+            else if (roll < .15f)
+            {
+                sb.Append('.');
+            }
+            else
+            {
+                sb.Append(charSet.Random());
             }
         }
         return sb.ToString();

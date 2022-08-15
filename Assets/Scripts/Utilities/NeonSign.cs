@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Voxul;
+using Voxul.Utilities;
 
 [RequireComponent(typeof(VoxelRenderer))]
 public class NeonSign : RenderBehaviour
@@ -16,7 +17,7 @@ public class NeonSign : RenderBehaviour
     {
         if (!Tint)
         {
-            Tint = GetComponent<VoxelColorTint>();
+            Tint = gameObject.GetOrAddComponent<VoxelColorTint>();
         }
         Tint.Color = FlickerGradient.Evaluate(Random.value);
         Tint.Invalidate();

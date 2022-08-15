@@ -27,9 +27,17 @@ public class PropertyBlockSetter : ExtendedMonoBehaviour
         public Vector3 Value;
     }
 
+    [Serializable]
+    public class TextureRenderProperty
+    {
+        public string Name;
+        public Texture Value;
+    }
+
     public List<ColorRenderProperty> Colors = new List<ColorRenderProperty>();
     public List<FloatRenderProperty> Ints = new List<FloatRenderProperty>();
     public List<Vector3RenderProperty> Vector3s = new List<Vector3RenderProperty>();
+    public List<TextureRenderProperty> Textures = new List<TextureRenderProperty>();
 
     public AutoProperty<Renderer> Renderer;
 
@@ -57,6 +65,10 @@ public class PropertyBlockSetter : ExtendedMonoBehaviour
         foreach (var v in Vector3s)
         {
             MaterialPropertyBlock.SetVector(v.Name, v.Value);
+        }
+        foreach (var v in Textures)
+        {
+            MaterialPropertyBlock.SetTexture(v.Name, v.Value);
         }
         Renderer.Value.SetPropertyBlock(MaterialPropertyBlock);
     }
