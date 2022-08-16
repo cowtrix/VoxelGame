@@ -106,12 +106,12 @@ namespace Actors
 			OnInventoryUpdate.Invoke(Actor, eInventoryAction.PICKUP, item);
 		}
 
-		public void DropItem(Item item)
+		public void DropItem(IItem item)
 		{
 			DropItem(item, transform.position, transform.rotation);
 		}
 
-		public void DropItem(Item item, Vector3 position, Quaternion rotation)
+		public void DropItem(IItem item, Vector3 position, Quaternion rotation)
 		{
 			if (item is IEquippableItem equippable && EquippedItem == equippable)
 			{
@@ -125,7 +125,7 @@ namespace Actors
 			item.transform.SetParent(null);
 			item.OnDrop(Actor);
 
-			var rb = item.GetComponent<Rigidbody>();
+			var rb = item.gameObject.GetComponent<Rigidbody>();
 			if (rb)
 			{
 				rb.WakeUp();

@@ -7,6 +7,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using Voxul;
+using Voxul.Utilities;
 
 namespace Interaction
 {
@@ -83,11 +84,18 @@ namespace Interaction
             {
                 return;
             }
-            foreach(var r in InteractionSettings?.Renderers)
+            foreach (var r in InteractionSettings?.Renderers)
             {
-                if(r != null && r.Renderer)
-                    r.Mesh = r.Renderer.GetComponent<MeshFilter>()?.sharedMesh;
-            }   
+                if (r != null && r.Renderer)
+                {
+                    var mf = r.Renderer.GetComponent<MeshFilter>();
+                    if (!mf)
+                    {
+                        continue;
+                    }
+                    r.Mesh = mf.sharedMesh;
+                }
+            }
         }
 
         [ContextMenu("Collect Colliders & Renderers")]
@@ -96,12 +104,12 @@ namespace Interaction
             if (InteractionSettings.Renderers == null || !InteractionSettings.Renderers.Any())
             {
                 InteractionSettings.Renderers = GetComponentsInChildren<MeshRenderer>()
-                    
+
                     .Select(r => new InteractableSettings.InteractionRenderer
-                     {
-                         Mesh = r.GetComponent<MeshFilter>()?.sharedMesh,
-                         Renderer = r
-                     })
+                    {
+                        Mesh = r.GetComponent<MeshFilter>()?.sharedMesh,
+                        Renderer = r
+                    })
                     .Where(c => c.Renderer.enabled && c.Mesh)
                     .ToList();
             }
@@ -109,6 +117,7 @@ namespace Interaction
             {
                 InteractionSettings.Colliders = new List<Collider>(GetComponentsInChildren<Collider>().Where(c => c.enabled));
             }
+            this.TrySetDirty();
         }
 
         protected virtual void Start() { }

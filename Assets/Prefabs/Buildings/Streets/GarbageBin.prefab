@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 7116997436550010026}
   - component: {fileID: 6227659140052010715}
   - component: {fileID: 3274369059904695221}
-  m_Layer: 0
+  - component: {fileID: 7115030531531035871}
+  m_Layer: 8
   m_Name: GarbageBin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,11 +56,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 0
   SnapMode: 1
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 7dd051854feccb043a8c23285f6aaa78, type: 2}
   m_lastMeshHash: eaa91ba2-3a2d-418f-bc3b-9a09e0f1a115
@@ -170,6 +178,47 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.66666687, y: 1.2222223, z: 0.66666687}
   m_Center: {x: 0.16666669, y: 0.111111104, z: -0.16666667}
+--- !u!114 &7115030531531035871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561840339057098947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2a5257286b7c64b9d2af9c7a2a78d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_guid: f5085a41-9c86-4a0c-9578-eda4c0d743a7
+  ThinkSpeed: 1
+  Priority: 0
+  InteractionSettings:
+    OnFocusEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    OnFocusExit:
+      m_PersistentCalls:
+        m_Calls: []
+    OnUsed:
+      m_PersistentCalls:
+        m_Calls: []
+    OnEnterAttention:
+      m_PersistentCalls:
+        m_Calls: []
+    OnExitAttention:
+      m_PersistentCalls:
+        m_Calls: []
+    Colliders:
+    - {fileID: 3274369059904695221}
+    Renderers:
+    - Renderer: {fileID: 7116997436550010026}
+      Mesh: {fileID: -442664255521090303, guid: 7dd051854feccb043a8c23285f6aaa78, type: 2}
+    - Renderer: {fileID: 291820417692712760}
+      Mesh: {fileID: 2995605089289292750, guid: a8b8bf4e043fced49ade20c6f2c0618b, type: 2}
+    MaxFocusDistance: 5
+    MaxUseDistance: 2
+  Name: Garbage Bin
 --- !u!1 &6339181066511540203
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +232,7 @@ GameObject:
   - component: {fileID: 569288574820472761}
   - component: {fileID: 6410275388559071757}
   - component: {fileID: 291820417692712760}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GarbageBin_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,11 +271,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: a8b8bf4e043fced49ade20c6f2c0618b, type: 2}
   m_lastMeshHash: 52c6354d-8dde-4d21-816f-6e5ebbfbf3d1

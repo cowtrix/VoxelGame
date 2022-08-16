@@ -27,7 +27,7 @@ namespace Phone
 			Invalidate();
 		}
 
-		private void OnInventoryUpdate(Actor actor, ActorState.eInventoryAction action, Item item)
+		private void OnInventoryUpdate(Actor actor, ActorState.eInventoryAction action, IItem item)
 		{
 			Phone.NotificationManager.CreateNotification(this, GetActionString(action, item));
 			Invalidate();
@@ -83,7 +83,7 @@ namespace Phone
 			DetailsTransform.localScale = Vector3.MoveTowards(DetailsTransform.localScale, targetScale, Time.deltaTime * 5);
 		}
 
-		private string GetActionString(ActorState.eInventoryAction action, Item item)
+		private string GetActionString(ActorState.eInventoryAction action, IItem item)
 		{
 			switch (action)
 			{

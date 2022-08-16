@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 
@@ -44,6 +45,10 @@ public static class LanguageUtility
 
     public static string GetStringForTextMesh(string original, bool mixed = false)
     {
+        char[] reservedChars = new[]
+        {
+            '\n', '\r'
+        };
         var sb = new StringBuilder();
         var isAlien = false;
         foreach (var c in original)
@@ -58,7 +63,7 @@ public static class LanguageUtility
                 isAlien = false;
                 continue;
             }
-            if (!mixed || (isAlien && c != '\n'))
+            if ((!mixed || isAlien) && !reservedChars.Contains(c))
             {
                 sb.Append($"<sprite name=\"{GetSpriteKeyForChar(c)}\" tint=1>");
             }

@@ -17,7 +17,7 @@ namespace Actors
 	public class FloatStateUpdateEvent : UnityEvent<Actor, StateUpdate<float>> { }
 
 	[Serializable]
-	public class InventoryStateUpdateEvent : UnityEvent<Actor, ActorState.eInventoryAction, Item> { }
+	public class InventoryStateUpdateEvent : UnityEvent<Actor, ActorState.eInventoryAction, IItem> { }
 
 	public interface IStateProvider
 	{

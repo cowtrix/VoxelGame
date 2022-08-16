@@ -52,6 +52,10 @@ namespace UI
                 for (var i = 0; i < interactable.InteractionSettings.Renderers.Count; i++)
                 {
                     var sourceRenderer = interactable.InteractionSettings.Renderers[i];
+                    if (!sourceRenderer.Renderer)
+                    {
+                        continue;
+                    }
                     MeshRenderer targetRenderer = null;
                     MeshFilter meshfilter;
                     if (m_interactionOutlineRenderers.Count <= i)

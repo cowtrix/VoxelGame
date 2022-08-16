@@ -111,8 +111,12 @@ namespace Interaction.Activities
         {
             if (!EquippedActor)
             {
+                FrontCover.Root.parent.gameObject.SetActive(false);
+                BackCover.Root.parent.gameObject.SetActive(false);
                 return;
             }
+            FrontCover.Root.parent.gameObject.SetActive(true);
+            BackCover.Root.parent.gameObject.SetActive(true);
             UpdatePages();
             m_targetOpen = Mathf.Clamp01(m_targetOpen + Time.deltaTime * OpenSpeed);
         }

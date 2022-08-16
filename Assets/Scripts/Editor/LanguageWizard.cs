@@ -25,10 +25,16 @@ public class LanguageWizard : EditorWindow
 		}
 
 		Input = EditorGUILayout.TextField("Input", Input);
+
 		if (GUILayout.Button("Translate"))
 		{
 			Output = LanguageUtility.Translate(Input);
 		}
+		if (GUILayout.Button("GetForSprite"))
+		{
+			Output = LanguageUtility.GetStringForTextMesh(Input);
+		}
+
 		EditorGUILayout.SelectableLabel(Output);
 	}
 }
