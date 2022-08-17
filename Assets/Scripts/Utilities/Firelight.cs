@@ -23,15 +23,21 @@ public class Firelight : MonoBehaviour
 		m_ramp = Mathf.Clamp01(m_ramp + Time.deltaTime);
 		Light.color = Gradient.Evaluate(Perlin.Noise(Time.time * FlickerSpeed + Seed));
 		Light.intensity = m_ramp * Mathf.Lerp(Intensity.x, Intensity.y, Perlin.Noise(Time.time * FlickerSpeed - Seed));
-		Audio.volume = m_ramp * Volume;
+        if (Audio)
+        {
+			Audio.volume = m_ramp * Volume;
+		}
 	}
 
 	private void OnEnable()
 	{
-		Audio.Play();
+		if (Audio)
+		{
+			Audio.Play();
+		}
 		Light.enabled = true;
 		Light.intensity = 0;
-		if (StartSound)
+		if (Audio && StartSound)
 		{
 			Audio.volume = Volume;
 			Audio.PlayOneShot(StartSound);
@@ -41,7 +47,10 @@ public class Firelight : MonoBehaviour
 
 	private void OnDisable()
 	{
-		Audio.Stop();
+		if (Audio)
+		{
+			Audio.Stop();
+		}
 		Light.enabled = false;
 	}
 }

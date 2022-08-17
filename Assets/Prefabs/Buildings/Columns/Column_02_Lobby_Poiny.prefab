@@ -64,6 +64,7 @@ MonoBehaviour:
   LODSettings:
     LODs: []
     PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: -4218011181842119307, guid: fd9ddc58ee850ca40a107bc164c2ca0c, type: 2}
   m_lastMeshHash: d6557ee7-b2ed-4955-b8c3-f11efcc252c0
@@ -162,6 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 891526112894886849}
   - component: {fileID: 891526112894886854}
+  - component: {fileID: 3136848510757819607}
   m_Layer: 8
   m_Name: Light
   m_TagString: Untagged
@@ -202,7 +204,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -246,6 +248,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &3136848510757819607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891526112894886848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &891526113232601179
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +340,9 @@ MonoBehaviour:
       MaterialMergeDistance: 1
       FillRequirement: 0
       Mode: 0
+      Collider: 0
     PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: fd9ddc58ee850ca40a107bc164c2ca0c, type: 2}
   m_lastMeshHash: 44f4da31-ee6e-4961-9d23-5ace9852e80e

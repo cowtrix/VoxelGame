@@ -20,7 +20,7 @@ namespace Interaction.Activities
         {
             public Vector3 OpenRotation, CloseRotation;
             public TextMeshPro Content, PageNumber;
-            public Transform Root;
+            public Transform Root, Pages;
         }
 
         public int PageNumber { get; set; }
@@ -111,12 +111,12 @@ namespace Interaction.Activities
         {
             if (!EquippedActor)
             {
-                FrontCover.Root.parent.gameObject.SetActive(false);
-                BackCover.Root.parent.gameObject.SetActive(false);
+                FrontCover.Pages.gameObject.SetActive(false);
+                BackCover.Pages.gameObject.SetActive(false);
                 return;
             }
-            FrontCover.Root.parent.gameObject.SetActive(true);
-            BackCover.Root.parent.gameObject.SetActive(true);
+            FrontCover.Pages.gameObject.SetActive(true);
+            BackCover.Pages.gameObject.SetActive(true);
             UpdatePages();
             m_targetOpen = Mathf.Clamp01(m_targetOpen + Time.deltaTime * OpenSpeed);
         }

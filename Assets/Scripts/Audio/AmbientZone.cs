@@ -8,7 +8,7 @@ public class AmbientZone : TrackedObject<AmbientZone>
 {
     public MuzakPlayer Player => GetComponent<MuzakPlayer>();
     public float ActivationAmount { get; private set; }
-
+    public List<AudioSource> AmbientDirectSources;
     public List<MuzakTrack> AmbientTracks;
     public Bounds Bounds;
 
@@ -43,12 +43,29 @@ public class AmbientZone : TrackedObject<AmbientZone>
             {
                 Player.Stop();
             }
+            foreach(var directSource in AmbientDirectSources)
+            {
+                directSource.volume = Mathf.MoveTowards(directSource.volume, 0, Time.deltaTime);
+                if(directSource.volume <= 0)
+                {
+                    directSource.Stop();
+                }
+            }
         }
         else
         {
             if(Player.PlayState != MuzakPlayer.ePlayState.Playing)
             {
                 Player.Play();
+            }
+            foreach (var directSource in AmbientDirectSources)
+            {
+                if (!directSource.isPlaying)
+                {
+                    directSource.Play();
+                }
+                directSource.volume = Mathf.MoveTowards(directSource.volume, 1, Time.deltaTime);
+                
             }
         }
     }
