@@ -55,12 +55,11 @@ namespace Actors.NPC.Player
 		public void ActionExecuted(InputAction.CallbackContext cntxt)
 		{
 			// Construct action
-			var action = new ActorAction
-			{
-				Key = cntxt.GetActionKey(),
-				State = cntxt.started ? eActionState.Start : cntxt.canceled ? eActionState.End : eActionState.Tick,
-				Context = cntxt.valueType == typeof(Vector2) ? cntxt.ReadValue<Vector2>() : default,
-			};
+			var action = new ActorAction(
+				cntxt.GetActionKey(),
+				cntxt.started ? eActionState.Start : cntxt.canceled ? eActionState.End : eActionState.Tick,
+				FocusedInteractable ? FocusedInteractable.gameObject : null,
+				cntxt.valueType == typeof(Vector2) ? cntxt.ReadValue<Vector2>() : default);
 
 			//Debug.Log($"Action: {action} {action.State} {action.Context}");
 			OnActionExecuted.Invoke(action);
@@ -86,7 +85,7 @@ namespace Actors.NPC.Player
 			if (action.Key == eActionKey.MOVE)
 			{
 				// Always send mvoement to movement controller otherwise
-				MovementController.Move(action.Context);
+				MovementController.Move(action.VectorContext);
 				return;
 			}
 

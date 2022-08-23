@@ -27,7 +27,6 @@ namespace Actors
                     worldVelocityDirection += Vector3.up * Jetpack.ThrusterStrength * .5f;
                 }
                 Jetpack.ThrustersFiring = worldVelocityDirection.magnitude > 0;
-                Debug.Log($"Successfully consuming fuel: {worldVelocityDirection}");
                 return worldVelocityDirection;
             }
             return base.MutateUngroundedVelocity(worldVelocityDirection);

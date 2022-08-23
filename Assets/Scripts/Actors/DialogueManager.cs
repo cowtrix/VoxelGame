@@ -60,6 +60,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
 	private void OnDialogueFinished(DialogueTree dlg)
 	{
+		CameraController.Instance.UIEnabled = false;
 		var dialogue = GetOrCreateDialogue(dlg.Self);
 		dialogue.OnDialogueFinished(dlg);
 	}
@@ -72,6 +73,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
 	private void OnDialogueStarted(DialogueTree dlg)
 	{
+		CameraController.Instance.UIEnabled = true;
 		var dialogue = GetOrCreateDialogue(dlg.Self);
 		dialogue.OnDialogueStarted(dlg);
 	}

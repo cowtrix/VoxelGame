@@ -4,7 +4,6 @@ using Interaction;
 using Interaction.Activities;
 using NodeCanvas.DialogueTrees;
 using NodeCanvas.DialogueTrees.UI.Examples;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -65,6 +64,7 @@ namespace Actors
         // Adapters
         public ILookAdapter LookAdapter { get; protected set; }
         public IMovementController MovementController { get; private set; }
+        public ActorPerceiver Perceiver { get; protected set; }
 
         public Transform EquippedItemTransform;
 
@@ -92,6 +92,7 @@ namespace Actors
             MovementController = gameObject.GetComponentByInterfaceInChildren<IMovementController>();
             LookAdapter = gameObject.GetComponentByInterfaceInChildren<ILookAdapter>();
             Animator = GetComponentInChildren<Animator>();
+            Perceiver = gameObject.GetOrAddComponent<ActorPerceiver>();
         }
 
         public virtual void TryStartActivity(Activity activity)

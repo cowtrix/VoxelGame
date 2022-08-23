@@ -7,7 +7,7 @@ using Voxul.Utilities;
 
 namespace Interaction.Items
 {
-	public interface IItem : IInteractable
+    public interface IItem : IInteractable
 	{
 		void OnPickup(Actor actor);
 		void OnDrop(Actor actor);
@@ -15,15 +15,11 @@ namespace Interaction.Items
 
 	public interface IEquippableItem : IItem
 	{
-		void OnEquip(Actor actor);
+        bool EquipOnPickup { get; }
+        void OnEquip(Actor actor);
 		void OnUnequip(Actor actor);
 		void UseOn(Actor playerInteractionManager, GameObject target);
 		void OnEquipThink(Actor actorState);
-	}
-
-	public interface IPurchaseableItem : IItem
-	{
-		public int Cost { get; }
 	}
 
 	public class Item : Interactable, IItem
@@ -40,11 +36,11 @@ namespace Interaction.Items
 		public string ItemName = "Unknown Item";
 		public string Description = "An object of mysterious origins.";
 		public IconParameters Icon;
-		public bool EquipOnPickup;
 
 		private int m_layer;
 		private bool m_isKinematic;
 
+		protected ItemComponent[] Components => GetComponents<ItemComponent>();
 		protected Rigidbody Rigidbody => GetComponent<Rigidbody>();
 		public override string DisplayName => ItemName;
 
@@ -107,11 +103,24 @@ namespace Interaction.Items
 			{
 				yield break;
 			}
-			yield return new ActorAction { Key = eActionKey.USE, Description = "Pick Up" };
+			foreach(var component in Components)
+            {
+				foreach(var action in component.AddActions(actor))
+                {
+					yield return action;
+                }
+            }
 		}
 
 		public override void ReceiveAction(Actor actor, ActorAction action)
 		{
+			foreach(var component in Components)
+            {
+				if(component.InterceptAction(actor, action))
+                {
+					return;
+                }
+            }
 			if (action.State == eActionState.End && action.Key == eActionKey.USE)
 			{
 				actor.State.PickupItem(this);

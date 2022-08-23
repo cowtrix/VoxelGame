@@ -57,11 +57,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 1
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 79358d3dad69a4a4cb9ccd333ce431d3, type: 2}
   m_lastMeshHash: 3ca20656-bfed-4dd8-bb8a-22ddbab29bf9
@@ -158,8 +165,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4143117075723746881}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 3
+  m_Drag: 2
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -178,6 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b6e5e4cd8d80c41a8422047eb4b489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 
+  ThinkSpeed: 1
+  Priority: 0
+  MaxUpdateDistance: 1000
+  GravityMultiplier: 1
 --- !u!114 &2807330307525519055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30fd916bdd8cccd4598800e47edc31f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 
+  ThinkSpeed: 1
+  Priority: 0
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -206,17 +221,19 @@ MonoBehaviour:
     OnExitAttention:
       m_PersistentCalls:
         m_Calls: []
+    Colliders:
+    - {fileID: 4143117075723746938}
+    Renderers:
+    - Renderer: {fileID: 4143117075723746939}
+      Mesh: {fileID: -8177726990404751886, guid: 79358d3dad69a4a4cb9ccd333ce431d3, type: 2}
     MaxFocusDistance: 5
     MaxUseDistance: 2
-  Colliders:
-  - {fileID: 4143117075723746938}
   ItemName: Boolble Melons
   Description: Very immature.
   Icon:
     Texture: {fileID: 2800000, guid: 929b43ffb7748424bb288bb5c175010b, type: 3}
     Offset: {x: 0.35, y: 0.35, z: 0.35}
     FocusOffset: {x: 0, y: 0, z: 0}
-  EquipOnPickup: 0
 --- !u!205 &865802714321559369
 LODGroup:
   m_ObjectHideFlags: 0

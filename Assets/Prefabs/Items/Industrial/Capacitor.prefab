@@ -57,11 +57,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 32b531128f889be4b979fd600c6086c2, type: 2}
   m_lastMeshHash: ed865d44-45db-45f9-98d2-e8da35b01856
@@ -177,6 +184,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b6e5e4cd8d80c41a8422047eb4b489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 
+  ThinkSpeed: 1
+  Priority: 0
+  MaxUpdateDistance: 1000
+  GravityMultiplier: 1
 --- !u!114 &893371499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30fd916bdd8cccd4598800e47edc31f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: ae9d6f1f-c561-43a1-8fcb-8cbaf8ce83b5
+  ThinkSpeed: 1
+  Priority: 0
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -205,10 +220,13 @@ MonoBehaviour:
     OnExitAttention:
       m_PersistentCalls:
         m_Calls: []
+    Colliders:
+    - {fileID: 8887858412258247600}
+    Renderers:
+    - Renderer: {fileID: 7956767906116335026}
+      Mesh: {fileID: 3449348095835450627, guid: 32b531128f889be4b979fd600c6086c2, type: 2}
     MaxFocusDistance: 5
     MaxUseDistance: 2
-  Colliders:
-  - {fileID: 8887858412258247600}
   ItemName: Capacitor
   Description: Has the capacity to capacitate.
   Icon:

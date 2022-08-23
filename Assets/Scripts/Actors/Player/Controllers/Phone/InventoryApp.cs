@@ -3,6 +3,7 @@ using Interaction.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Voxul.Utilities;
@@ -11,9 +12,10 @@ namespace Phone
 {
 	public class InventoryApp : PhoneApp
 	{
+		public TextMeshProUGUI EmptyText;
+		public TextMeshProUGUI DetailsText;
 		public InventoryAppItem AppItemPrefab;
 		public RectTransform ItemContainer, DetailsTransform;
-		public Text DetailsText;
 		public GameObject DropButton, EquipButton, ConsumeButton;
 		public ToggleGroup ToggleGroup => ItemContainer.GetComponent<ToggleGroup>();
 		public Item FocusedItem { get; private set; }
@@ -29,7 +31,10 @@ namespace Phone
 
 		private void OnInventoryUpdate(Actor actor, ActorState.eInventoryAction action, IItem item)
 		{
-			Phone.NotificationManager.CreateNotification(this, GetActionString(action, item));
+			if(action == ActorState.eInventoryAction.PICKUP)
+            {
+				Phone.NotificationManager.CreateNotification(this, GetActionString(action, item));
+			}
 			Invalidate();
 		}
 
@@ -65,6 +70,7 @@ namespace Phone
 				m_items[i].gameObject.SafeDestroy();
 				m_items.RemoveAt(i);
 			}
+			EmptyText.gameObject.SetActive(counter == 0);
 		}
 
 		private void Update()

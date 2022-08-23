@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 871251645887058152}
   - component: {fileID: 3857668877721534948}
   - component: {fileID: 8933804474452239761}
-  - component: {fileID: 7852990152257692597}
   - component: {fileID: 7192936705249257940}
   - component: {fileID: 8241741213881815296}
   - component: {fileID: 8241741213881815295}
   - component: {fileID: 8241741213881815294}
   - component: {fileID: 4325565600643168482}
+  - component: {fileID: 5941300136386514903}
   m_Layer: 9
   m_Name: Radio
   m_TagString: Untagged
@@ -73,7 +73,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 21ae8af4bf420b74e9b8a965c4397ab5, type: 2}
-  m_lastMeshHash: d1c27987-5a25-4117-a923-464bda3b4c86
+  m_lastMeshHash: 307d3a0e-6041-4086-8b39-67b314034d4d
   Submeshes:
   - {fileID: 871251645887058152}
 --- !u!114 &871251645887058152
@@ -94,7 +94,7 @@ MonoBehaviour:
   Parent: {fileID: 408120105629852633}
   MeshFilter: {fileID: 3857668877721534948}
   MeshRenderer: {fileID: 8933804474452239761}
-  MeshCollider: {fileID: 7852990152257692597}
+  MeshCollider: {fileID: 0}
 --- !u!33 &3857668877721534948
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -102,7 +102,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3017792340705124924}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 2930112114500556436, guid: 21ae8af4bf420b74e9b8a965c4397ab5, type: 2}
 --- !u!23 &8933804474452239761
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -145,20 +145,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7852990152257692597
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3017792340705124924}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!114 &7192936705249257940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,8 +167,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3017792340705124924}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 5
+  m_Drag: 2
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -218,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e304df79d3bf84e87bbb94438da9c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: 3f374c41-9acc-4c24-8776-f8366fd390fb
+  m_guid: a8839091-6fa7-41a4-8e96-e5fa3c352661
   ThinkSpeed: 1
   Priority: 0
   InteractionSettings:
@@ -250,10 +236,10 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     Colliders:
-    - {fileID: 7852990152257692597}
+    - {fileID: 5941300136386514903}
     Renderers:
     - Renderer: {fileID: 8933804474452239761}
-      Mesh: {fileID: 0}
+      Mesh: {fileID: 2930112114500556436, guid: 21ae8af4bf420b74e9b8a965c4397ab5, type: 2}
     MaxFocusDistance: 5
     MaxUseDistance: 2
   Name: Radio
@@ -261,7 +247,8 @@ MonoBehaviour:
   - Key: 0
     Description: Switch
     State: 0
-    Context: {x: 0, y: 0}
+    VectorContext: {x: 0, y: 0}
+    Source: {fileID: 0}
 --- !u!114 &4325565600643168482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +314,19 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   AudioSourcePrototype: {fileID: 7072409860285040356}
+--- !u!65 &5941300136386514903
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3017792340705124924}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19753094, y: 0.33333337, z: 0.33333343}
+  m_Center: {x: 0.0061728293, y: 8.2238594e-18, z: 0}
 --- !u!1 &3432381956989073212
 GameObject:
   m_ObjectHideFlags: 0

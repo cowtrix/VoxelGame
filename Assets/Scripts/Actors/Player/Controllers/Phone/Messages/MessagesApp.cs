@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Voxul.Utilities;
@@ -92,7 +93,7 @@ namespace Phone
 		public Transform MessagesContainer;
 		public PhoneAppMessage MessagePrefab;
 		public Image CurrentConversationIcon;
-		public Text CurrentConversationName;
+		public TextMeshProUGUI CurrentConversationName;
 		private List<PhoneAppMessage> m_messages = new List<PhoneAppMessage>();
 		public ScrollRect ScrollRect;
 		public List<Conversation> Conversations;

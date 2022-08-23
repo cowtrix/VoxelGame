@@ -10,7 +10,9 @@ namespace Interaction.Items
 		public float MaxUseDistance = 3;
 		public Transform Home;
 
-		public override void ReceiveAction(Actor actor, ActorAction action)
+        public bool EquipOnPickup { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+        public override void ReceiveAction(Actor actor, ActorAction action)
 		{
 			base.ReceiveAction(actor, action);
 			if (action.State == eActionState.End && action.Key == eActionKey.USE)

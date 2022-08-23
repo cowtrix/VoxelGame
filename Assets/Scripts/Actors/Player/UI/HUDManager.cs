@@ -110,6 +110,11 @@ namespace UI
             {
                 screenRect = screenRect.Encapsulate(Camera.WorldToScreenPoint(p));
             }
+            const float nameMargin = 50f;
+            if(screenRect.yMin < nameMargin)
+            {
+                screenRect.yMin = nameMargin;
+            }
             FocusSprite.position = screenRect.center;
             FocusSprite.sizeDelta = screenRect.size;
         }

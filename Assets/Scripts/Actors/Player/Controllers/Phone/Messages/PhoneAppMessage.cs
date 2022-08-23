@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using TMPro;
 using UnityEngine.UI;
 using Voxul;
 
@@ -8,9 +9,9 @@ namespace Phone
 	{
 		public const int Margin = 32;
 
-		public Text MessageText;
-		public Text TimeText;
-		public Text NameText;
+		public TextMeshProUGUI MessageText;
+		public TextMeshProUGUI TimeText;
+		public TextMeshProUGUI NameText;
 
 		public HorizontalLayoutGroup LayoutGroup => GetComponent<HorizontalLayoutGroup>();
 

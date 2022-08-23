@@ -14,7 +14,6 @@ namespace Actors
 	public interface ICreditConsumerActor
 	{
 		public int Credits { get; }
-		public bool TryPurchase(IPurchaseableItem purchaseable, string sellerDescription);
 	}
 
 	public class PlayerState : ActorState, IFueledActor

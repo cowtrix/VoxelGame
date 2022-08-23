@@ -65,5 +65,11 @@ namespace Actors.NPC
 			CurrentTarget = closestObservable;
 			return Mathf.CeilToInt(allObservables.Count / 3);
 		}
-	}
+
+        public bool CanSee(Vector3 worldPosition)
+        {
+			// TODO
+			return true;
+        }
+    }
 }

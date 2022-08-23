@@ -6,13 +6,14 @@ using UnityEngine;
 
 namespace Actors
 {
-	public class ActorState : StateContainer, ICreditConsumerActor
+    public class ActorState : StateContainer, ICreditConsumerActor
 	{
 		public enum eInventoryAction
 		{
 			DROP, PICKUP, EQUIP,
-			UNEQUIP
-		}
+			UNEQUIP,
+            REFRESH
+        }
 
 		public InventoryStateUpdateEvent OnInventoryUpdate = new InventoryStateUpdateEvent();
 		public IEquippableItem EquippedItem
@@ -72,29 +73,23 @@ namespace Actors
 			transform.rotation = Rotation;
 		}
 
-		public virtual bool TryPurchase(IPurchaseableItem purchaseable, string seller)
-		{
-			var cost = purchaseable.Cost;
-			return TryAdd(eStateKey.Credits, -cost, $"[{seller}] {purchaseable.DisplayName}");
-		}
-
 		public void EquipItem(IEquippableItem equippableItem)
 		{
 			EquippedItem = equippableItem;
 		}
 
-		public void PickupItem(Item item)
+		public void PickupItem(IItem item, bool silent = false)
 		{
 			item.OnPickup(Actor);
 
-			var rb = item.GetComponent<Rigidbody>();
+			var rb = item.gameObject.GetComponent<Rigidbody>();
 			if (rb)
 			{
 				rb.Sleep();
 				rb.detectCollisions = false;
 			}
 
-			if (EquippedItem == null && item.EquipOnPickup && item is IEquippableItem equippable)
+			if (EquippedItem == null  && item is IEquippableItem equippable && equippable.EquipOnPickup)
 			{
 				equippable.OnEquip(Actor);
 			}
@@ -103,7 +98,7 @@ namespace Actors
 				item.transform.SetParent(transform);
 			}
 			item.gameObject.SetActive(false);
-			OnInventoryUpdate.Invoke(Actor, eInventoryAction.PICKUP, item);
+			OnInventoryUpdate.Invoke(Actor, silent ? eInventoryAction.REFRESH : eInventoryAction.PICKUP, item);
 		}
 
 		public void DropItem(IItem item)

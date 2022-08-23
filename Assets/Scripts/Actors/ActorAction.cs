@@ -11,12 +11,31 @@ namespace Actors
 	}
 
 	[Serializable]
-	public struct ActorAction
+	public class ActorAction
 	{
 		public eActionKey Key;
 		public string Description;
 		public eActionState State;
-		public Vector2 Context;
+		public Vector2 VectorContext;
+		public GameObject Source;
+
+		public ActorAction(eActionKey key, string description, GameObject source)
+        {
+			Key = key;
+			Description = description;
+			State = default;
+			VectorContext = default;
+			Source = source;
+        }
+
+		public ActorAction(eActionKey key, eActionState state, GameObject source, Vector2 vectorContext = default)
+        {
+			Key = key;
+			Description = default;
+			State = state;
+			VectorContext = vectorContext;
+			Source = source;
+		}
 
 		public override bool Equals(object obj)
 		{

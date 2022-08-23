@@ -57,11 +57,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: f6971eb57e575ec4c827f3f8a1c75b89, type: 2}
   m_lastMeshHash: 3c0e013f-28e8-477b-89fe-4182fd4f2a0b
@@ -178,6 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b6e5e4cd8d80c41a8422047eb4b489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 
+  ThinkSpeed: 1
+  Priority: 0
+  MaxUpdateDistance: 1000
+  GravityMultiplier: 1
 --- !u!114 &188623488929127599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30fd916bdd8cccd4598800e47edc31f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: f3605254-6cff-4350-af78-c09de84345da
+  ThinkSpeed: 1
+  Priority: 0
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -206,10 +221,13 @@ MonoBehaviour:
     OnExitAttention:
       m_PersistentCalls:
         m_Calls: []
+    Colliders:
+    - {fileID: 6451513265330009198}
+    Renderers:
+    - Renderer: {fileID: 668150694554740766}
+      Mesh: {fileID: 4619918746016999477, guid: f6971eb57e575ec4c827f3f8a1c75b89, type: 2}
     MaxFocusDistance: 5
     MaxUseDistance: 2
-  Colliders:
-  - {fileID: 6451513265330009198}
   ItemName: PortaPower Cell
   Description: Buzzing with a unpleasant frequency.
   Icon:

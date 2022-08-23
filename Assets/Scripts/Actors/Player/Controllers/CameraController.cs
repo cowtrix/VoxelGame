@@ -93,4 +93,10 @@ public class CameraController : Singleton<CameraController>, ILookAdapter
 		LookAngle.x = Vector2.Angle(forward.Flatten(), transform.forward.Flatten());
 		//LookAngle.y = Vector2.Angle(forward.yz(), transform.forward.yz());
 	}
+
+    public bool CanSee(Vector3 worldPosition)
+    {
+		// TODO
+		return true;
+    }
 }

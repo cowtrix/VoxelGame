@@ -17,13 +17,13 @@ namespace Interaction
             {
                 yield break;
             }
-            yield return new ActorAction { State = eActionState.End, Key = eActionKey.USE, Description = $"Dispose of {equippedItem.DisplayName}" };
+            yield return new ActorAction(eActionKey.USE, $"Dispose of {equippedItem.DisplayName}", gameObject);
         }
 
         public override void ReceiveAction(Actor actor, ActorAction action)
         {
             var equippedItem = actor.State.EquippedItem;
-            if(equippedItem != null && action.Key == eActionKey.USE && action.State == eActionState.End)
+            if (equippedItem != null && action.Key == eActionKey.USE && action.State == eActionState.End)
             {
                 actor.State.DropItem(equippedItem);
                 equippedItem.OnPickup(null);

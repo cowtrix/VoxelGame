@@ -1,5 +1,6 @@
 ﻿using Common;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Voxul;
@@ -8,7 +9,7 @@ namespace Phone
 {
 	public class PhoneAppMessageChatGroup : ExtendedMonoBehaviour
 	{
-		public Text Text;
+		public TextMeshProUGUI Text;
 		public Image IconImage;
 
 		private MessagesApp.Conversation m_conversation;

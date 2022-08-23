@@ -69,7 +69,7 @@ namespace Interaction
             {
                 yield break;
             }
-            yield return new ActorAction { Key = eActionKey.USE, Description = "Use" };
+            yield return new ActorAction(eActionKey.USE, "Use", gameObject);
         }
 
         public virtual bool CanUse(Actor context)

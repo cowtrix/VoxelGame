@@ -57,11 +57,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 60ac31a934dd33c41b5db6bf3402e23e, type: 2}
   m_lastMeshHash: 1256af2a-c104-4179-b416-992a2476638f
@@ -144,8 +151,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4648259639169446284}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 3
+  m_Drag: 2
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -164,6 +171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b6e5e4cd8d80c41a8422047eb4b489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 
+  ThinkSpeed: 1
+  Priority: 0
+  MaxUpdateDistance: 1000
+  GravityMultiplier: 1
 --- !u!65 &5121052981859554221
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -189,6 +201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30fd916bdd8cccd4598800e47edc31f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 0ab3bb11-53a3-427f-93f5-55ee8de83ca2
+  ThinkSpeed: 1
+  Priority: 0
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -205,10 +220,13 @@ MonoBehaviour:
     OnExitAttention:
       m_PersistentCalls:
         m_Calls: []
+    Colliders:
+    - {fileID: 5121052981859554221}
+    Renderers:
+    - Renderer: {fileID: 7175928063340354049}
+      Mesh: {fileID: -9082065011972984467, guid: 60ac31a934dd33c41b5db6bf3402e23e, type: 2}
     MaxFocusDistance: 5
     MaxUseDistance: 2
-  Colliders:
-  - {fileID: 5121052981859554221}
   ItemName: Plasma Melon
   Description: Apparently the free electrons are good for you. Bad for your mouth
     though.
@@ -216,7 +234,6 @@ MonoBehaviour:
     Texture: {fileID: 2800000, guid: c3a69e85ef54ce643bc74234a2960496, type: 3}
     Offset: {x: 0.35, y: 0.35, z: 0.35}
     FocusOffset: {x: 0, y: 0, z: 0}
-  EquipOnPickup: 0
 --- !u!205 &2147162248634823554
 LODGroup:
   m_ObjectHideFlags: 0

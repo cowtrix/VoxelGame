@@ -3,10 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Phone
 {
+
 	public class PhoneAppBank : PhoneApp
 	{
 		[Serializable]
@@ -19,6 +21,7 @@ namespace Phone
 			public bool Successful;
 		}
 
+		public UnityEvent OnSuccessfulTransaction, OnFailedTransaction;
 		public Text BalanceText;
 		public int Credits { get; set; } = 100;
 
@@ -46,6 +49,14 @@ namespace Phone
 			};
 			Transactions.Add(transaction);
 			Phone.NotificationManager.CreateNotification(this, $"{transaction.Name}: {transaction.Delta}¢ {(transaction.Successful ? "✓" : "! Transaction Failed")}");
+            if (transaction.Successful)
+            {
+				OnSuccessfulTransaction.Invoke();
+			}
+            else
+            {
+				OnFailedTransaction.Invoke();
+            }
 		}
 
 		private void Update()

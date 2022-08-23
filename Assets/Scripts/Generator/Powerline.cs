@@ -33,9 +33,9 @@ namespace Generation
 				var nLine = neighbour.Line;
 				nLine.EndTransform.Transform = ConnectorPoints.Random().StartTransform.Transform;
 				var diff = (nLine.transform.worldToLocalMatrix.MultiplyVector(nLine.transform.position - nLine.EndTransform.Transform.position)
-					.normalized * (Sag.y - Sag.x))
+					.normalized * (neighbour.Sag.y - neighbour.Sag.x))
 					.xz().x0z();
-				var sag = nLine.transform.worldToLocalMatrix.MultiplyVector(Vector3.down * Random.Range(Sag.x, Sag.y));
+				var sag = nLine.transform.worldToLocalMatrix.MultiplyVector(Vector3.down * Random.Range(neighbour.Sag.x, neighbour.Sag.y));
 				nLine.StartTransform.Normal = diff - sag;
 				nLine.EndTransform.Normal = diff - sag;
 				nLine.Resolution = Resolution;

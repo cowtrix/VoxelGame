@@ -156,8 +156,8 @@ namespace Interaction.Activities
         {
             if (EquippedActor && actor == EquippedActor)
             {
-                yield return new ActorAction { Key = eActionKey.NEXT, Description = "Next Page" };
-                yield return new ActorAction { Key = eActionKey.PREV, Description = "Previous Page" };
+                yield return new ActorAction(eActionKey.NEXT, "Next Page", gameObject);
+                yield return new ActorAction(eActionKey.PREV, "Previous Page", gameObject);
             }
             foreach (var s in base.GetActions(actor))
             {

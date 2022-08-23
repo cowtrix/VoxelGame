@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -40,7 +41,7 @@ namespace Phone
 		public List<PhoneApp> Apps;
 		public PhoneAppLaunchButton LaunchButtonPrefab;
 		public Transform LaunchContainer;
-		public Text TimeText, CreditsText;
+		public TextMeshProUGUI TimeText, CreditsText;
 		public AudioClip PingAudio;
 
 		private void Start()

@@ -57,11 +57,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: f7c4145ee5eae374a825ea0ed417b361, type: 2}
   m_lastMeshHash: 91a87e32-0912-4c47-b06d-b0585171b00f
@@ -144,8 +151,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2987928960486975998}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 3
+  m_Drag: 2
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -164,6 +171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b6e5e4cd8d80c41a8422047eb4b489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 
+  ThinkSpeed: 1
+  Priority: 0
+  MaxUpdateDistance: 1000
+  GravityMultiplier: 1
 --- !u!65 &5342698202893052107
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -189,6 +201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30fd916bdd8cccd4598800e47edc31f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 8fb8a3be-f337-4384-b991-f24e01c3ba43
+  ThinkSpeed: 1
+  Priority: 0
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -205,17 +220,19 @@ MonoBehaviour:
     OnExitAttention:
       m_PersistentCalls:
         m_Calls: []
+    Colliders:
+    - {fileID: 5342698202893052107}
+    Renderers:
+    - Renderer: {fileID: 1798089759676153286}
+      Mesh: {fileID: -8046604165349289729, guid: f7c4145ee5eae374a825ea0ed417b361, type: 2}
     MaxFocusDistance: 5
     MaxUseDistance: 2
-  Colliders:
-  - {fileID: 5342698202893052107}
   ItemName: Indeterminate Jam
   Description: A jam of mysterious origins.
   Icon:
     Texture: {fileID: 2800000, guid: 6771e647b6d0ef04e91bf49fae53eb6a, type: 3}
     Offset: {x: 0.2, y: 0.2, z: 0.2}
     FocusOffset: {x: 0, y: 0.05, z: 0}
-  EquipOnPickup: 0
 --- !u!205 &7839242276012903894
 LODGroup:
   m_ObjectHideFlags: 0

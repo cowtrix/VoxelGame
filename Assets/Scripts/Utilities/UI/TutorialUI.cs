@@ -46,7 +46,7 @@ public class TutorialUI : ExtendedMonoBehaviour
 		}
 		if (action.Key == CurrentControlListen.Value)
 		{
-			if (RequireDelta && action.Context.magnitude <= 0)
+			if (RequireDelta && action.VectorContext.magnitude <= 0)
 			{
 				return;
 			}
