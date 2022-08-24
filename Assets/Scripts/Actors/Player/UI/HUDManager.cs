@@ -77,7 +77,7 @@ namespace UI
                     targetRenderer.transform.rotation = sourceRenderer.Renderer.transform.rotation;
                     targetRenderer.transform.localScale = sourceRenderer.Renderer.transform.lossyScale;
                 }
-                for (var i = m_interactionOutlineRenderers.Count - 1; i > interactable.InteractionSettings.Renderers.Count; i--)
+                for (var i = m_interactionOutlineRenderers.Count - 1; i >= interactable.InteractionSettings.Renderers.Count; i--)
                 {
                     var toDestroy = m_interactionOutlineRenderers[i];
                     m_interactionOutlineRenderers.RemoveAt(i);
@@ -110,7 +110,7 @@ namespace UI
             {
                 screenRect = screenRect.Encapsulate(Camera.WorldToScreenPoint(p));
             }
-            const float nameMargin = 50f;
+            const float nameMargin = 0f;
             if(screenRect.yMin < nameMargin)
             {
                 screenRect.yMin = nameMargin;

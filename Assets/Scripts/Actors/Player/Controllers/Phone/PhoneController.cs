@@ -20,29 +20,27 @@ namespace Phone
 
 	public class PhoneController : ExtendedMonoBehaviour
 	{
+		private CameraController CameraController => CameraController.Instance;
 		public InputSystemUIInputModule InputModule => CameraController.InputModule;
+		public PlayerInput Input => CameraController.Instance.Input;
+		public bool IsOpen { get; private set; }
+		public PlayerActor Actor { get; private set; }
+		public PhoneApp CurrentApp { get; private set; }
 
-		public PlayerInput Input;
 		public Vector3 OpenPosition, ClosedPosition;
 		public float MoveSpeed = 1;
 		public UnityEvent OnHome;
 		public PhoneAppEvent OnAppFocused;
-
-		public bool IsOpen { get; private set; }
-		public PlayerActor Actor { get; private set; }
-
 		public RectTransform Cursor, CursorClick, Container;
 		public float CursorSensitivity = 1;
-
-		private InputAction m_togglePhoneAction, m_lookAction, m_clickAction;
-		private CameraController CameraController => CameraController.Instance;
 		public PhoneNotificationManager NotificationManager;
-		public PhoneApp CurrentApp { get; private set; }
 		public List<PhoneApp> Apps;
 		public PhoneAppLaunchButton LaunchButtonPrefab;
 		public Transform LaunchContainer;
 		public TextMeshProUGUI TimeText, CreditsText;
 		public AudioClip PingAudio;
+
+		private InputAction m_togglePhoneAction, m_lookAction, m_clickAction;
 
 		private void Start()
 		{

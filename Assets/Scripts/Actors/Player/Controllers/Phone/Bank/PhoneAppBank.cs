@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -22,7 +23,7 @@ namespace Phone
 		}
 
 		public UnityEvent OnSuccessfulTransaction, OnFailedTransaction;
-		public Text BalanceText;
+		public TextMeshProUGUI BalanceText;
 		public int Credits { get; set; } = 100;
 
 		public List<Transaction> Transactions;
@@ -48,7 +49,7 @@ namespace Phone
 				Successful = update.Success
 			};
 			Transactions.Add(transaction);
-			Phone.NotificationManager.CreateNotification(this, $"{transaction.Name}: {transaction.Delta}¢ {(transaction.Successful ? "✓" : "! Transaction Failed")}");
+			Phone.NotificationManager.CreateNotification(this, $"{transaction.Name}: {transaction.Delta}¢ {(transaction.Successful ? "" : " Transaction Failed!")}");
             if (transaction.Successful)
             {
 				OnSuccessfulTransaction.Invoke();
@@ -61,7 +62,7 @@ namespace Phone
 
 		private void Update()
 		{
-			BalanceText.text = $"<b>BALANCE:</b> {Credits}¢";
+			BalanceText.text = $"{Credits}¢";
 		}
 	}
 }
