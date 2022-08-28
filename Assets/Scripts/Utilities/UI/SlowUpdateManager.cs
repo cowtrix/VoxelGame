@@ -22,6 +22,10 @@ namespace Common
 
 		private void Start()
 		{
+			foreach(var instance in SlowUpdater.Instances)
+            {
+				instance.Think(0);
+            }
 			StartCoroutine(SortUpdaters());
 			StartCoroutine(ThinkAll());
 		}
@@ -87,7 +91,6 @@ namespace Common
 
 		private IEnumerator ThinkAll()
 		{
-			var firstIteration = true;
 			while (true)
 			{
 				var t = Time.time;
@@ -112,10 +115,6 @@ namespace Common
 						{
 							Debug.LogException(e, instance);
 						}
-						if (firstIteration)
-						{
-							continue;
-						}
 						if (budgetCounter > FrameBudget)
 						{
 							budgetCounter = 0;
@@ -126,7 +125,6 @@ namespace Common
 							break;
 						}
 					}
-					firstIteration = false;
 				}
 				yield return null;
 			}

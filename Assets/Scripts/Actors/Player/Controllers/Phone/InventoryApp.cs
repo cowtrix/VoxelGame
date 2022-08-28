@@ -1,4 +1,5 @@
 ﻿using Actors;
+using Common;
 using Interaction.Items;
 using System;
 using System.Collections.Generic;
@@ -79,8 +80,8 @@ namespace Phone
 			{
 				FocusedItem = null;
 			}
-			ConsumeButton.SetActive(FocusedItem is IConsumableItem);
-			EquipButton.SetActive(FocusedItem is IEquippableItem);
+			ConsumeButton.SetActive(FocusedItem && FocusedItem.Implements<ConsumableItemComponent>());
+			EquipButton.SetActive(FocusedItem && FocusedItem.Implements<IEquippableItemComponent>());
 			var targetScale = Vector3.one;
 			if (!FocusedItem)
 			{
@@ -124,20 +125,30 @@ namespace Phone
 
 		public void Consume()
 		{
-			if (!FocusedItem || !(FocusedItem is IConsumableItem consumable))
+			if (!FocusedItem)
 			{
 				return;
 			}
+			var consumable = FocusedItem.GetComponent<ConsumableItemComponent>();
+            if (!consumable)
+            {
+				return;
+            }
 			consumable.Consume(Phone.Actor);
 			Invalidate();
 		}
 
 		public void Equip()
 		{
-			if (!FocusedItem || !(FocusedItem is IEquippableItem equippable))
+			if (!FocusedItem)
 			{
 				return;
 			}
+			var equippable = FocusedItem.GetComponentByInterface<IEquippableItemComponent>();
+			if(equippable == null || equippable.Equals(null))
+            {
+				return;
+            }
 			Phone.Actor.State.EquipItem(equippable);
 			Invalidate();
 		}

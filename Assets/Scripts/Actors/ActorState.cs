@@ -16,7 +16,7 @@ namespace Actors
         }
 
 		public InventoryStateUpdateEvent OnInventoryUpdate = new InventoryStateUpdateEvent();
-		public IEquippableItem EquippedItem
+		public IEquippableItemComponent EquippedItem
 		{
 			get
 			{
@@ -31,17 +31,17 @@ namespace Actors
 				if (__equippedItem != null)
 				{
 					__equippedItem?.OnUnequip(Actor);
-					OnInventoryUpdate.Invoke(Actor, eInventoryAction.UNEQUIP, __equippedItem as Item);
+					OnInventoryUpdate.Invoke(Actor, eInventoryAction.UNEQUIP, __equippedItem.Item);
 				}
 				__equippedItem = value;
 				if(__equippedItem != null)
 				{
 					__equippedItem?.OnEquip(Actor);
-					OnInventoryUpdate.Invoke(Actor, eInventoryAction.EQUIP, __equippedItem as Item);
+					OnInventoryUpdate.Invoke(Actor, eInventoryAction.EQUIP, __equippedItem.Item);
 				}
 			}
 		}
-		private IEquippableItem __equippedItem;
+		private IEquippableItemComponent __equippedItem;
 		public IReadOnlyCollection<Item> Inventory => GetComponentsInChildren<Item>(true);
 		public Vector3 Position { get; private set; }
 		public Quaternion Rotation { get; private set; }
@@ -63,7 +63,7 @@ namespace Actors
 
 			if(EquippedItem != null)
 			{
-				EquippedItem.OnEquipThink(Actor);
+				EquippedItem.OnEquippedThink(Actor);
 			}
 		}
 
@@ -73,7 +73,7 @@ namespace Actors
 			transform.rotation = Rotation;
 		}
 
-		public void EquipItem(IEquippableItem equippableItem)
+		public void EquipItem(IEquippableItemComponent equippableItem)
 		{
 			EquippedItem = equippableItem;
 		}
@@ -89,7 +89,7 @@ namespace Actors
 				rb.detectCollisions = false;
 			}
 
-			if (EquippedItem == null  && item is IEquippableItem equippable && equippable.EquipOnPickup)
+			if (EquippedItem == null  && item is IEquippableItemComponent equippable && equippable.EquipOnPickup)
 			{
 				equippable.OnEquip(Actor);
 			}
@@ -108,7 +108,7 @@ namespace Actors
 
 		public void DropItem(IItem item, Vector3 position, Quaternion rotation)
 		{
-			if (item is IEquippableItem equippable && EquippedItem == equippable)
+			if (item is IEquippableItemComponent equippable && EquippedItem == equippable)
 			{
 				equippable.OnUnequip(Actor);
 				EquippedItem = null;

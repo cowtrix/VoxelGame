@@ -6,16 +6,24 @@ using Voxul;
 
 namespace Interaction.Items
 {
-    public abstract class ItemComponent : ExtendedMonoBehaviour
+    public abstract class ItemComponent : ExtendedMonoBehaviour, IItemComponent
     {
         public IItem Item => gameObject.GetComponentByInterface<IItem>();
 
-        public virtual IEnumerable<ActorAction> AddActions(Actor actor)
+        public virtual IEnumerable<ActorAction> GetActions(Actor actor)
         {
             yield break;
         }
 
-        public virtual bool InterceptAction(Actor actor, ActorAction action)
+        public virtual void OnDrop(Actor actor)
+        {
+        }
+
+        public virtual void OnPickup(Actor actor)
+        {
+        }
+
+        public virtual bool ReceiveAction(Actor actor, ActorAction action)
         {
             return false;
         }

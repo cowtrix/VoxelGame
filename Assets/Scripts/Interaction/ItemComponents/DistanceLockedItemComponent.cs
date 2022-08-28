@@ -5,20 +5,22 @@ using UnityEngine;
 
 namespace Interaction.Items
 {
-	public class DistanceLockedItem : Item, IEquippableItem
+	public class DistanceLockedItemComponent : ItemComponent
 	{
 		public float MaxUseDistance = 3;
 		public Transform Home;
 
         public bool EquipOnPickup { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
-        public override void ReceiveAction(Actor actor, ActorAction action)
+        public override bool ReceiveAction(Actor actor, ActorAction action)
 		{
 			base.ReceiveAction(actor, action);
 			if (action.State == eActionState.End && action.Key == eActionKey.USE)
 			{
 				StartCoroutine(ThinkEquipped(actor));
+				return true;
 			}
+			return false;
 		}
 
 		IEnumerator ThinkEquipped(Actor actor)
@@ -28,9 +30,9 @@ namespace Interaction.Items
 			{
 				yield return waiter;
 			}
-			if (actor.State.Inventory.Contains(this))
+			if (actor.State.Inventory.Contains(Item))
 			{
-				actor.State.DropItem(this, Home.position, Home.rotation);
+				actor.State.DropItem(Item, Home.position, Home.rotation);
 			}
 		}
 
@@ -42,8 +44,6 @@ namespace Interaction.Items
 
 		public void OnEquip(Actor actor)
 		{
-			//transform.localPosition = EquippedOffset;
-			//transform.localRotation = Quaternion.Euler(EquippedRotation);
 		}
 
 		public void OnUnequip(Actor actor)

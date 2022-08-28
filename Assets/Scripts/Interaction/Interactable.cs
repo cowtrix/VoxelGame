@@ -74,6 +74,22 @@ namespace Interaction
 
         public virtual bool CanUse(Actor context)
         {
+            Vector3? closestColliderPosition = null;
+            float bestDistance = float.MaxValue;
+            foreach (var coll in InteractionSettings.Colliders)
+            {
+                var closestPoint = coll.ClosestPoint(context.transform.position);
+                var dist = Vector3.Distance(context.transform.position, closestPoint);
+                if(dist < bestDistance)
+                {
+                    closestColliderPosition = closestPoint;
+                    bestDistance = dist;
+                }
+            }
+            if(closestColliderPosition != null)
+            {
+                return bestDistance < InteractionSettings.MaxUseDistance;
+            }
             var distance = Vector3.Distance(context.transform.position, transform.position);
             return distance <= InteractionSettings.MaxUseDistance;
         }

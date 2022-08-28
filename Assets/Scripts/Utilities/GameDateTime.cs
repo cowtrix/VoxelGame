@@ -20,8 +20,11 @@ public struct GameDateTime
 	[Range(0, 60)]
 	public int Second;
 	
-	public string GetTimeString() => $"{Hour:00}:{Minute:00}";
+	public string GetShortTimeString() => $"{Hour:00}:{Minute:00}";
+	public string GetLongTimeString() => $"{Hour:00}:{Minute:00}:{Second:00}";
 	public string GetDateString() => $"Day {DayNumber}";
+
+	public override string ToString() => GetLongTimeString();
 
 	public override bool Equals(object obj)
 	{
@@ -46,10 +49,13 @@ public struct GameDateTime
 	{
 		DayNumber = dayNumber;
 		NormalizedTime = normalisedTime;
+
 		var time = normalisedTime * HoursInDay;
 		Hour = Mathf.FloorToInt(time);
-		Minute = Mathf.FloorToInt((time - Hour) * 10);
-		Second = Mathf.FloorToInt((time - Hour - Minute) * 100);
+		var mF = time - Hour;
+		var sF = time - Hour - Mathf.FloorToInt(mF);
+		Minute = Mathf.FloorToInt(mF * 60);
+		Second = Mathf.FloorToInt(sF * 60 * 60);
 	}
 
 	public static bool operator ==(GameDateTime left, GameDateTime right)

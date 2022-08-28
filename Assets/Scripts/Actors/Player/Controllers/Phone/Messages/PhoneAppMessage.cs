@@ -44,7 +44,7 @@ namespace Phone
 				}
 			}
 			MessageText.text = message.Content;
-			TimeText.text = message.TimeReceived.GetTimeString();
+			TimeText.text = message.TimeReceived.GetShortTimeString();
 		}
 	}
 }

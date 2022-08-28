@@ -86,13 +86,5 @@ namespace Common
                                 m.GetColumn(2).magnitude);
         }
 
-        public static void SetLayerRecursive(this Transform t, int layer)
-        {
-            t.gameObject.layer = layer;
-            foreach (Transform child in t)
-            {
-                child.SetLayerRecursive(layer);
-            }
-        }
     }
 }

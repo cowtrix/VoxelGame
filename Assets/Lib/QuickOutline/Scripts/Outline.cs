@@ -215,6 +215,9 @@ public class Outline : MonoBehaviour
 
             // Serialize smooth normals
             var smoothNormals = SmoothNormals(meshFilter.sharedMesh);
+            if (smoothNormals == null) {
+                continue;
+            }
 
             bakeKeys.Add(meshFilter.sharedMesh);
             bakeValues.Add(new ListVector3() { data = smoothNormals });
@@ -237,6 +240,10 @@ public class Outline : MonoBehaviour
             // Retrieve or generate smooth normals
             var index = bakeKeys.IndexOf(meshFilter.sharedMesh);
             var smoothNormals = (index >= 0) ? bakeValues[index].data : SmoothNormals(meshFilter.sharedMesh);
+            if(smoothNormals == null)
+            {
+                continue;
+            }
 
             // Store smooth normals in UV3
             meshFilter.sharedMesh.SetUVs(3, smoothNormals);
@@ -270,7 +277,10 @@ public class Outline : MonoBehaviour
 
     List<Vector3> SmoothNormals(Mesh mesh)
     {
-
+        if(!mesh || mesh == null)
+        {
+            return null;
+        }
         // Group vertices by location
         var groups = mesh.vertices.Select((vertex, index) => new KeyValuePair<Vector3, int>(vertex, index)).GroupBy(pair => pair.Key);
 

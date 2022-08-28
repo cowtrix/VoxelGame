@@ -13,12 +13,7 @@ namespace Interaction.Items
 		public string Description;
 	}
 
-	public interface IConsumableItem
-	{
-		void Consume(Actor actor);
-	}
-
-	public class ConsumableItem : Item, IConsumableItem
+	public class ConsumableItemComponent : ItemComponent
 	{
 		public List<IntResourceDelta> Deltas;
 		public bool ConsumeOnPickup;
@@ -38,7 +33,7 @@ namespace Interaction.Items
 			{
 				actor.State.TryAdd(delta.ResourceKey, delta.Amount, delta.Description);
 			}
-			Destroy(gameObject);
+			Destroy(Item.gameObject);
 		}
 	}
 }

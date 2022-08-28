@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 525284300469774599}
   - component: {fileID: 6279843355705831479}
   - component: {fileID: 6667146223434979885}
+  - component: {fileID: -5521052460261939102}
   m_Layer: 8
   m_Name: Map_01
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 5360545463954274259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7505484445655438074}
@@ -167,7 +168,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncludeChildren: 1
-  Color: {r: 0.5849056, g: 0.29061344, b: 0.29061344, a: 1}
+  Color: {r: 0.58431375, g: 0.45561564, b: 0.2901961, a: 1}
+--- !u!114 &-5521052460261939102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5360545463954274259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e31a82e18c700a44a5af8071f8e6df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_guid: fdaf4bf8-70ae-4e88-9a5a-56080ae83382
+  ThinkSpeed: 1
+  Priority: 0
+  InteractionSettings:
+    OnFocusEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    OnFocusExit:
+      m_PersistentCalls:
+        m_Calls: []
+    OnUsed:
+      m_PersistentCalls:
+        m_Calls: []
+    OnEnterAttention:
+      m_PersistentCalls:
+        m_Calls: []
+    OnExitAttention:
+      m_PersistentCalls:
+        m_Calls: []
+    Colliders:
+    - {fileID: 6279843355705831479}
+    Renderers: []
+    MaxFocusDistance: 5
+    MaxUseDistance: 2
+  PlainText: East Lobnitz and its Outer Cities
+  TranslatedText: 
+  TextMeshPro: {fileID: 0}
 --- !u!1 &8595721982723235923
 GameObject:
   m_ObjectHideFlags: 0

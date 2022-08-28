@@ -11,7 +11,7 @@ namespace Interaction
     {
         public override string DisplayName => "Ticket Machine";
         public SplineSegment Spline;
-        public EquippableItemBase Ticket;
+        public EquippableItemComponent Ticket;
         public int LineResolution = 10;
         public float PrintSpeed = 1;
 
@@ -33,7 +33,7 @@ namespace Interaction
         IEnumerator PrintTicket()
         {
             var ticketAmount = 0f;
-            var newTicket = Instantiate(Ticket.gameObject).GetComponent<EquippableItemBase>();
+            var newTicket = Instantiate(Ticket.gameObject).GetComponent<EquippableItemComponent>();
             newTicket.transform.position = transform.localToWorldMatrix.MultiplyPoint3x4(Spline.Bounds.center);
             var line = newTicket.GetComponent<LineRenderer>();
             var rb = newTicket.GetComponent<Rigidbody>();

@@ -1,7 +1,9 @@
 using Actors;
+using Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using Voxul.Utilities;
 
@@ -9,20 +11,31 @@ namespace Interaction.Items
 {
     public interface IItem : IInteractable
 	{
-		void OnPickup(Actor actor);
+		public IEnumerable<IItemComponent> Components { get; }
+        Rigidbody Rigidbody { get; }
+        void OnPickup(Actor actor);
 		void OnDrop(Actor actor);
 	}
 
-	public interface IEquippableItem : IItem
+	public interface IEquippableItemComponent : IItemComponent
 	{
         bool EquipOnPickup { get; }
         void OnEquip(Actor actor);
 		void OnUnequip(Actor actor);
 		void UseOn(Actor playerInteractionManager, GameObject target);
-		void OnEquipThink(Actor actorState);
+		void OnEquippedThink(Actor actorState);
 	}
 
-	public class Item : Interactable, IItem
+	public interface IItemComponent
+    {
+		public IItem Item { get; }
+		void OnPickup(Actor actor);
+		void OnDrop(Actor actor);
+        bool ReceiveAction(Actor actor, ActorAction action);
+        IEnumerable<ActorAction> GetActions(Actor actor);
+    }
+
+	public sealed class Item : Interactable, IItem
 	{
 		[Serializable]
 		public struct IconParameters
@@ -30,6 +43,9 @@ namespace Interaction.Items
 			public Texture2D Texture;
 			public Vector3 Offset, FocusOffset;
 		}
+		public IEnumerable<IItemComponent> Components => gameObject.GetComponentsByInterface<IItemComponent>();
+		public Rigidbody Rigidbody => GetComponent<Rigidbody>();
+		public override string DisplayName => ItemName;
 
 		public const int IconSize = 64;
 
@@ -39,10 +55,6 @@ namespace Interaction.Items
 
 		private int m_layer;
 		private bool m_isKinematic;
-
-		protected ItemComponent[] Components => GetComponents<ItemComponent>();
-		protected Rigidbody Rigidbody => GetComponent<Rigidbody>();
-		public override string DisplayName => ItemName;
 
 		protected override void Start()
 		{
@@ -97,7 +109,9 @@ namespace Interaction.Items
 			ambientSettings.Apply();
 		}
 
-		public override IEnumerable<ActorAction> GetActions(Actor actor)
+		public bool Implements<T>() where T : IItemComponent => Components.Any(c => c is T);
+
+        public override IEnumerable<ActorAction> GetActions(Actor actor)
 		{
 			if (!CanUse(actor))
 			{
@@ -105,7 +119,7 @@ namespace Interaction.Items
 			}
 			foreach(var component in Components)
             {
-				foreach(var action in component.AddActions(actor))
+				foreach(var action in component.GetActions(actor))
                 {
 					yield return action;
                 }
@@ -116,7 +130,7 @@ namespace Interaction.Items
 		{
 			foreach(var component in Components)
             {
-				if(component.InterceptAction(actor, action))
+				if(component.ReceiveAction(actor, action))
                 {
 					return;
                 }
@@ -128,7 +142,7 @@ namespace Interaction.Items
 			base.ReceiveAction(actor, action);
 		}
 
-		public virtual void OnPickup(Actor actor)
+		public void OnPickup(Actor actor)
 		{
 			var rb = Rigidbody;
 			if (rb)
@@ -138,7 +152,7 @@ namespace Interaction.Items
 			}
 		}
 
-		public virtual void OnDrop(Actor actor)
+		public void OnDrop(Actor actor)
 		{
 			var rb = Rigidbody;
 			if (rb)

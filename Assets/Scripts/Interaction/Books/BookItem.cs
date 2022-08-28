@@ -13,7 +13,7 @@ using Voxul;
 
 namespace Interaction.Activities
 {
-    public class BookItem : EquippableItemBase
+    public class BookItem : EquippableItemComponent
     {
         [Serializable]
         public class Page
@@ -34,7 +34,7 @@ namespace Interaction.Activities
         public int Rows = 50;
         public int Columns = 30;
 
-        public override string DisplayName => Content ? Content.Title : LanguageUtility.GetStringForTextMesh(LanguageUtility.Generate(5, gameObject.GetHashCode()));
+       // public override string DisplayName => Content ? Content.Title : LanguageUtility.GetStringForTextMesh(LanguageUtility.Generate(5, gameObject.GetHashCode()));
 
         private float m_targetOpen = 0;
         private float m_openAmount = 0;
@@ -43,7 +43,7 @@ namespace Interaction.Activities
         [Range(0, 1)]
         private float m_pageTurnAmount = 0;
 
-        protected override void Start()
+        protected void Start()
         {
             GeneratePages();
             Tint.Color = Content ? Content.Color : UnityEngine.Random.ColorHSV(0, 1, .5f, .75f, .5f, .75f);
@@ -139,16 +139,16 @@ namespace Interaction.Activities
         public override void OnEquip(Actor actor)
         {
             m_targetOpen = 1;
-            Rigidbody.isKinematic = true;
-            Rigidbody.detectCollisions = false;
+            Item.Rigidbody.isKinematic = true;
+            Item.Rigidbody.detectCollisions = false;
             base.OnEquip(actor);
         }
 
         public override void OnUnequip(Actor actor)
         {
             m_targetOpen = 0;
-            Rigidbody.isKinematic = false;
-            Rigidbody.detectCollisions = true;
+            Item.Rigidbody.isKinematic = false;
+            Item.Rigidbody.detectCollisions = true;
             base.OnUnequip(actor);
         }
 
@@ -165,22 +165,22 @@ namespace Interaction.Activities
             }
         }
 
-        public override void ReceiveAction(Actor actor, ActorAction action)
+        public override bool ReceiveAction(Actor actor, ActorAction action)
         {
             if (action.State == eActionState.End && EquippedActor == actor)
             {
                 if (action.Key == eActionKey.NEXT && PageNumber < m_pages.Count - 2)
                 {
                     PageNumber += 2;
-                    return;
+                    return true;
                 }
                 if (action.Key == eActionKey.PREV && PageNumber > 0)
                 {
                     PageNumber -= 2;
-                    return;
+                    return true;
                 }
             }
-            base.ReceiveAction(actor, action);
+            return false;
         }
     }
 }

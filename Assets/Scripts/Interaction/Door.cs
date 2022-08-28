@@ -4,10 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Voxul;
+using Voxul.Utilities;
 
 namespace Interaction
 {
-    [ExecuteAlways]
     public class Door : Interactable
     {
         [Serializable]
@@ -74,17 +75,7 @@ namespace Interaction
             }
             m_lastOpenAmount = OpenAmount;
             var smoothedLerp = Curve.Evaluate(OpenAmount);
-            foreach (var t in Transforms.Where(t => t.Transform))
-            {
-                if (PositionEnabled)
-                {
-                    t.Transform.localPosition = Vector3.Lerp(t.ClosedPosition, t.OpenPosition, smoothedLerp);
-                }
-                if (RotationEnabled)
-                {
-                    t.Transform.localRotation = Quaternion.Euler(Vector3.Lerp(t.ClosedRotation, t.OpenRotation, smoothedLerp));
-                }
-            }
+            ThinkTransforms(smoothedLerp);
         }
 
         public override void ReceiveAction(Actor actor, ActorAction action)
@@ -104,9 +95,37 @@ namespace Interaction
             }
         }
 
+        private void ThinkTransforms(float time)
+        {
+            foreach (var t in Transforms.Where(t => t.Transform))
+            {
+                if (PositionEnabled)
+                {
+                    t.Transform.localPosition = Vector3.Lerp(t.ClosedPosition, t.OpenPosition, time);
+                }
+                if (RotationEnabled)
+                {
+                    t.Transform.localRotation = Quaternion.Euler(Vector3.Lerp(t.ClosedRotation, t.OpenRotation, time));
+                }
+                t.Transform.TrySetDirty();
+            }
+        }
+
         [ContextMenu("Open")]
-        public void Open() => m_targetOpen = 1;
+        public void OpenInstant()
+        {
+            m_targetOpen = 1;
+            ThinkTransforms(m_targetOpen);
+        }
         [ContextMenu("Close")]
+        public void CloseInstant()
+        {
+            m_targetOpen = 0;
+            ThinkTransforms(m_targetOpen);
+        }
+
+        public void Open() => m_targetOpen = 1;
+        
         public void Close() => m_targetOpen = 0;
     }
 }

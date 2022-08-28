@@ -127,7 +127,7 @@ namespace Phone
 
 			Actor.State.TryGetValue<int>(eStateKey.Credits, out var credits);
 			CreditsText.text = $"¢{credits}";
-			TimeText.text = GameManager.Instance.CurrentTime.GetTimeString();
+			TimeText.text = GameManager.Instance.CurrentTime.GetShortTimeString();
 		}
 
 		public void Ping()

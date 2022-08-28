@@ -45,7 +45,7 @@ namespace Common
 		{
 			var t = command.context as Transform;
 			var eul = t.localRotation.eulerAngles;
-			t.localRotation = Quaternion.Euler(new Vector3(eul.x, UnityEngine.Random.Range(0, 360), eul.y).ClosestAxisNormal());
+			t.localRotation = Quaternion.Euler(new Vector3(eul.x, UnityEngine.Random.Range(0, 4) * 90, eul.y));
 		}
 
 		public static void HelpButton(string url, float size = 20)

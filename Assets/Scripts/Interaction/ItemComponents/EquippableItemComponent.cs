@@ -6,7 +6,7 @@ using Voxul.Utilities;
 
 namespace Interaction.Activities
 {
-    public class EquippableItemBase : Item, IEquippableItem
+    public class EquippableItemComponent : ItemComponent, IEquippableItemComponent
     {
         public Vector3 EquippedOffset, EquippedRotation;
         public Actor EquippedActor { get; private set; }
@@ -21,7 +21,7 @@ namespace Interaction.Activities
             transform.localPosition = EquippedOffset;
             transform.localRotation = Quaternion.Euler(EquippedRotation);
             gameObject.SetActive(true);
-            var rb = Rigidbody;
+            var rb = Item.Rigidbody;
             if (rb)
             {
                 rb.isKinematic = true;
@@ -47,7 +47,7 @@ namespace Interaction.Activities
             }
         }
 
-        public virtual void OnEquipThink(Actor actor)
+        public virtual void OnEquippedThink(Actor actor)
         {
             transform.localPosition = EquippedOffset;
             transform.localRotation = Quaternion.Euler(EquippedRotation);
@@ -57,22 +57,19 @@ namespace Interaction.Activities
         {
         }
 
-        public override void ReceiveAction(Actor actor, ActorAction action)
+        public override bool ReceiveAction(Actor actor, ActorAction action)
         {
-            if (action.Key == eActionKey.EQUIP)
+            if (action.Key == eActionKey.EQUIP && action.State == eActionState.End)
             {
                 actor.State.EquipItem(this);
-                return;
+                return true;
             }
-            if (action.Key == eActionKey.EXIT)
+            if (action.Key == eActionKey.EXIT && action.State == eActionState.End)
             {
                 actor.State.EquipItem(null);
-                return;
+                return true;
             }
-            if (!EquippedActor)
-            {
-                base.ReceiveAction(actor, action);
-            }
+            return false;
         }
 
         public override IEnumerable<ActorAction> GetActions(Actor actor)

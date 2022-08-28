@@ -6,12 +6,12 @@ namespace Interaction.Items
     public class ItemComponentPurchaseable : ItemComponent
     {
         public int Cost = 1;
-        public override IEnumerable<ActorAction> AddActions(Actor actor)
+        public override IEnumerable<ActorAction> GetActions(Actor actor)
         {
             yield return new ActorAction(eActionKey.USE, $"Purchase ({Cost}¢)", Item.gameObject);
         }
 
-        public override bool InterceptAction(Actor actor, ActorAction action)
+        public override bool ReceiveAction(Actor actor, ActorAction action)
         {
             if (action.Key == eActionKey.USE && action.State == eActionState.End)
             {
@@ -22,7 +22,7 @@ namespace Interaction.Items
                 }
                 return true;
             }
-            return base.InterceptAction(actor, action);
+            return base.ReceiveAction(actor, action);
         }
     }
 }
