@@ -35,6 +35,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.341, z: -3.59}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,15 +57,22 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 0
+  SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 660972ab463ceb546a4ac89a81065a6c, type: 2}
-  m_lastMeshHash: 3ff1e830-bea7-4e06-8f89-e8f86f84cdf6
+  m_lastMeshHash: 732ff8f9-364a-4016-9662-890b4ffeb99f
   Submeshes:
-  - {fileID: 7740772019059000554}
   - {fileID: 7740772019059000554}
 --- !u!114 &7740772019059000554
 MonoBehaviour:
@@ -92,7 +100,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7740772019059000547}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -1710115038286900210, guid: 660972ab463ceb546a4ac89a81065a6c, type: 2}
 --- !u!23 &7740772019059000548
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -104,6 +112,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -143,7 +152,7 @@ MeshCollider:
   m_GameObject: {fileID: 7740772019059000547}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -176,6 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b6e5e4cd8d80c41a8422047eb4b489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_guid: 
+  ThinkSpeed: 1
+  Priority: 0
+  MaxUpdateDistance: 1000
+  GravityMultiplier: 1
 --- !u!120 &3005529843198905990
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -187,6 +201,7 @@ LineRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -298,7 +313,13 @@ MonoBehaviour:
     Transform: {fileID: 0}
     Offset: {x: 0, y: 1.6, z: 0}
     Normal: {x: 0, y: -0.4, z: 0}
+  MidPoint:
+    Transform: {fileID: 0}
+    Offset: {x: 0, y: 0, z: 0}
+    Normal: {x: 0, y: 0, z: 0}
   Resolution: 1
+  Tolerance: 0.01
+  Curviness: 1
   Dynamic: 1
   DynamicChainCount: 3
   DynamicChainSize: {x: 0.5, y: 0.1, z: 0.1}
@@ -343,3 +364,20 @@ MonoBehaviour:
     Bounds:
       m_Center: {x: 1.136869e-15, y: 1.4519854, z: 2.2599986}
       m_Extent: {x: 1.0516034e-14, y: 0.14801478, z: 2.2600005}
+  Spline2:
+    Resolution: 0.1
+    FirstControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    SecondControlPoint:
+      _upVector: {x: 0, y: 1, z: 0}
+      Control: {x: 0, y: 0, z: 0}
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0}
+    Length: 0
+    Points: []
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
