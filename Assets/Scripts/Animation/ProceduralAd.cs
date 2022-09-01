@@ -90,7 +90,8 @@ namespace Interaction
 			ProductName.transform.localPosition = Container.rect.center + new Vector2(Random.Range(-adSize.x / 4f, adSize.x / 4f), Random.Range(-adSize.y / 4f, adSize.y / 4f)); ;
 			ProductName.transform.localRotation = Quaternion.Euler(0, 0, Random.Range(-10, 10));
 			ProductName.text = LanguageUtility.Translate(ad.ProductName).SafeSubstring(0, 6);
-			Tagline.Content = LanguageUtility.Translate(ad.Tagline);
+			Tagline.Content.Clear();
+			Tagline.Content.Add(LanguageUtility.Translate(ad.Tagline));
 
 			var timeStarted = Time.time;
 			var bump = Random.value;

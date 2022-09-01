@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Voxul;
 
 [ExecuteAlways]
@@ -21,10 +22,17 @@ public class PropertyBlockSetter : ExtendedMonoBehaviour
     }
 
     [Serializable]
-    public class Vector3RenderProperty
+    public class VectorRenderProperty
     {
         public string Name;
-        public Vector3 Value;
+        public Vector4 Value;
+    }
+
+    [Serializable]
+    public class Vector2RenderProperty
+    {
+        public string Name;
+        public Vector2 Value;
     }
 
     [Serializable]
@@ -36,7 +44,8 @@ public class PropertyBlockSetter : ExtendedMonoBehaviour
 
     public List<ColorRenderProperty> Colors = new List<ColorRenderProperty>();
     public List<FloatRenderProperty> Ints = new List<FloatRenderProperty>();
-    public List<Vector3RenderProperty> Vector3s = new List<Vector3RenderProperty>();
+    [FormerlySerializedAs("Vector3s")]
+    public List<VectorRenderProperty> Vectors = new List<VectorRenderProperty>();
     public List<TextureRenderProperty> Textures = new List<TextureRenderProperty>();
 
     public AutoProperty<Renderer> Renderer;
@@ -52,9 +61,9 @@ public class PropertyBlockSetter : ExtendedMonoBehaviour
         if(MaterialPropertyBlock == null)
         {
             MaterialPropertyBlock = new MaterialPropertyBlock();
-            Renderer.Value.GetPropertyBlock(MaterialPropertyBlock);
         }
-        foreach(var c in Colors)
+        Renderer.Value.GetPropertyBlock(MaterialPropertyBlock);
+        foreach (var c in Colors)
         {
             MaterialPropertyBlock.SetColor(c.Name, c.Color);
         }
@@ -62,12 +71,16 @@ public class PropertyBlockSetter : ExtendedMonoBehaviour
         {
             MaterialPropertyBlock.SetFloat(k.Name, k.Value);
         }
-        foreach (var v in Vector3s)
+        foreach (var v in Vectors)
         {
             MaterialPropertyBlock.SetVector(v.Name, v.Value);
         }
         foreach (var v in Textures)
         {
+            if (!v.Value)
+            {
+                continue;
+            }
             MaterialPropertyBlock.SetTexture(v.Name, v.Value);
         }
         Renderer.Value.SetPropertyBlock(MaterialPropertyBlock);

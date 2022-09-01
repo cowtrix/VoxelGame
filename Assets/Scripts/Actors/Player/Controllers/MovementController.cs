@@ -48,11 +48,11 @@ namespace Actors
         public float TimeUngrounded { get; private set; }
         public Vector2 MoveDirection { get; private set; }
         public Vector3 CurrentGravity { get; private set; }
-        private GravityManager GravityManager => GravityManager.Instance;
         public AutoProperty<ILookAdapter> LookAdapter { get; private set; }
         public Rigidbody Rigidbody => GetComponent<Rigidbody>();
         public ActorState State => GetComponent<ActorState>();
         public Actor Actor => GetComponent<Actor>();
+        private GravityManager GravityManager => GravityManager.Instance;
 
         [Header("Parameters")]
         public float MovementSpeed = 2000;

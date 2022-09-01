@@ -22,13 +22,18 @@ public class GravityRigidbody : SlowUpdater
 
     private void Start()
 	{
-		CameraController = CameraController.Instance;
+        if (CameraController.HasInstance())
+        {
+			CameraController = CameraController.Instance;
+		}
+        if (GravityManager.HasInstance())
+        {
+			m_gravityManager = GravityManager.Instance;
+		}
 
 		Rigidbody = GetComponent<Rigidbody>();
 		Rigidbody.useGravity = false;
 		Rigidbody.sleepThreshold = 1;
-
-		m_gravityManager = GravityManager.Instance;
 
 		m_posHistory = new SmoothPositionVector3(HISTORY_SIZE, transform.position);
 		m_rotHistory = new SmoothPositionVector3(HISTORY_SIZE, transform.position);
@@ -36,6 +41,10 @@ public class GravityRigidbody : SlowUpdater
 
 	void FixedUpdate()
 	{
+        if (!CameraController)
+        {
+			return;
+        }
 		if ((CameraController.transform.position - transform.position).sqrMagnitude < MaxUpdateDistance && m_lastGravity.sqrMagnitude > 0)
 		{
 			Rigidbody.WakeUp();
@@ -48,7 +57,7 @@ public class GravityRigidbody : SlowUpdater
 	{
 		if (!m_gravityManager)
 		{
-			Start();
+			return 0;
 		}
 		m_lastGravity = m_gravityManager.GetGravityForce(transform.position) * GravityMultiplier;
 		m_posHistory.Push(Rigidbody.position);
