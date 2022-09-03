@@ -46,7 +46,7 @@ namespace Actors
     {
         public bool IsGrounded { get; private set; }
         public float TimeUngrounded { get; private set; }
-        public Vector2 MoveDirection { get; private set; }
+        public Vector3 MoveDirection { get; set; }
         public Vector3 CurrentGravity { get; private set; }
         public AutoProperty<ILookAdapter> LookAdapter { get; private set; }
         public Rigidbody Rigidbody => GetComponent<Rigidbody>();
@@ -114,9 +114,7 @@ namespace Actors
                     m_inputJump = false;
                 }
 
-                var movement = MoveDirection;
-                var localVelocityDirection = new Vector3(movement.x, 0, movement.y);
-                var worldVelocityDirection = LookAdapter.Value.transform.localToWorldMatrix.MultiplyVector(localVelocityDirection);
+                var worldVelocityDirection = new Vector3(MoveDirection.x, 0, MoveDirection.z);
 
                 if (IsGrounded)
                 {
@@ -162,10 +160,10 @@ namespace Actors
             Gizmos.DrawWireCube(GroundingPoint.position, Vector3.one * .05f);
         }
 
-        public void Move(Vector2 dir)
+        public void MoveInput(Vector2 dir)
         {
             //Debug.Log($"Move: {dir}");
-            MoveDirection = dir;
+            MoveDirection = LookAdapter.Value.transform.localToWorldMatrix.MultiplyVector(new Vector3(dir.x, 0, dir.y));
         }
     }
 }

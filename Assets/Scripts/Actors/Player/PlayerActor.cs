@@ -85,7 +85,7 @@ namespace Actors.NPC.Player
 			if (action.Key == eActionKey.MOVE)
 			{
 				// Always send mvoement to movement controller otherwise
-				MovementController.Move(action.VectorContext);
+				MovementController.MoveInput(action.VectorContext);
 				return;
 			}
 

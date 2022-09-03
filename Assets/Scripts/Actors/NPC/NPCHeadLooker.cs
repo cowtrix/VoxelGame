@@ -4,8 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Voxul;
-using Voxul.Utilities;
 
 namespace Actors.NPC
 {
@@ -39,14 +37,14 @@ namespace Actors.NPC
 
         private void Update()
         {
-            transform.RotateTowardsPosition(CurrentLookPosition, Time.deltaTime * LookSpeed, Quaternion.identity);
+            Voxul.Utilities.TransformExtensions.RotateTowardsPosition(transform, CurrentLookPosition, Time.deltaTime * LookSpeed, Quaternion.identity);
         }
 
         private void OnDrawGizmosSelected()
         {
-            GizmoExtensions.DrawCone(transform.position, Quaternion.Euler(LookRotation) * transform.parent.forward, Mathf.Deg2Rad * LookAngle, MaxLookDistance, CurrentTarget ? Color.white : Color.gray);
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(transform.position, CurrentLookPosition);
+            //GizmoExtensions.DrawCone(transform.position, Quaternion.Euler(LookRotation) * transform.parent.forward, Mathf.Deg2Rad * LookAngle, MaxLookDistance, CurrentTarget ? Color.white.WithAlpha(.25f) : Color.gray.WithAlpha(.25f));
+            //Gizmos.color = Color.green;
+            //Gizmos.DrawLine(transform.position, CurrentLookPosition);
         }
 
         protected override int Tick(float dt)

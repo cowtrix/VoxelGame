@@ -28,9 +28,9 @@ namespace Actors
     public interface IMovementController
     {
         Vector3 CurrentGravity { get; }
-        Vector2 MoveDirection { get; }
+        Vector3 MoveDirection { get; set; }
         bool IsGrounded { get; }
-        void Move(Vector2 dir);
+        void MoveInput(Vector2 dir);
         void Jump();
     }
 

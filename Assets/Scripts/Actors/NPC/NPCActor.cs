@@ -1,10 +1,8 @@
 using Interaction;
-using NodeCanvas.BehaviourTrees;
 using NodeCanvas.DialogueTrees;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using Voxul.Utilities;
 
 namespace Actors
 {

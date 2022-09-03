@@ -6,6 +6,7 @@ using Voxul.Utilities;
 
 namespace Generation
 {
+    [DisallowMultipleComponent]
     public class MeshAttachment : ExtendedMonoBehaviour
     {
         public VoxelRenderer Renderer => GetComponent<VoxelRenderer>();
@@ -15,7 +16,7 @@ namespace Generation
 
         private void OnDrawGizmosSelected()
         {
-            if (Configuration == null)
+            if (!Configuration || Configuration == null)
             {
                 return;
             }
@@ -32,16 +33,17 @@ namespace Generation
             {
                 gameObject.AddComponent<VoxelRenderer>();
             }
-            Renderer.hideFlags = HideFlags.HideInInspector;
+            Renderer.hideFlags = HideFlags.None;
         }
 
-        public void OnValidate()
+        [ContextMenu("Invalidate")]
+        public void Invalidate()
         {
             if (Parent && Parent.Configuration)
             {
-                foreach(var attachment in Parent.Configuration.AttachmentPoints)
+                foreach (var attachment in Parent.Configuration.AttachmentPoints)
                 {
-                    if(attachment.Name == ParentAttachmentPoint)
+                    if (attachment.Name == ParentAttachmentPoint)
                     {
                         transform.localPosition = attachment.Position;
                         transform.TrySetDirty();
@@ -50,20 +52,26 @@ namespace Generation
             }
             if (!Configuration)
             {
+                if (Renderer)
+                {
+                    Renderer.Mesh = null;
+                    Renderer.Invalidate(false, false, true);
+                }
                 return;
             }
             SetupComponents();
             Renderer.Mesh = Configuration.Mesh;
             Renderer.GenerateCollider = false;
-            Renderer.Invalidate(false, false);
-            foreach(var child in GetComponentsInChildren<MeshAttachment>())
+            Renderer.Invalidate(false, false, true);
+            foreach (var child in GetComponentsInChildren<MeshAttachment>())
             {
-                if(child == this)
+                if (child == this)
                 {
                     continue;
                 }
-                child.OnValidate();
+                child.Invalidate();
             }
+            gameObject.TrySetDirty();
         }
     }
 }

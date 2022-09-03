@@ -27,6 +27,6 @@ namespace Generation
         }
 
         public VoxelMesh Mesh;
-        public List<AttachmentPoint> AttachmentPoints;
+        public List<AttachmentPoint> AttachmentPoints = new List<AttachmentPoint>();
     }
 }
