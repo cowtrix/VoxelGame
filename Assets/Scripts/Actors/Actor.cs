@@ -87,11 +87,11 @@ namespace Actors
 
         private HashSet<IStatement> m_chatHistory = new HashSet<IStatement>();
 
-        private void Awake()
+        protected virtual void Awake()
         {
             MovementController = gameObject.GetComponentByInterfaceInChildren<IMovementController>();
             LookAdapter = gameObject.GetComponentByInterfaceInChildren<ILookAdapter>();
-            Animator = GetComponentInChildren<Animator>();
+            Animator = GetComponentInChildren<Animator>(true);
             Perceiver = gameObject.GetOrAddComponent<ActorPerceiver>();
         }
 

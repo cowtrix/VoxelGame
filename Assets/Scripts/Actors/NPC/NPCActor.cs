@@ -14,9 +14,10 @@ namespace Actors
 		public AutoProperty<NPCInteractable> Interactable;
 		public DialogueTreeController Controller => GetComponent<DialogueTreeController>();
 
-        private void Awake()
+        protected override void Awake()
         {
             Interactable = new AutoProperty<NPCInteractable>(gameObject, (go) => go.GetComponentInChildren<NPCInteractable>());
+			base.Awake();
         }
 
         public bool CanTalkTo(Actor context)

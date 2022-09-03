@@ -1,22 +1,24 @@
-﻿using Common;
-using UnityEngine;
+﻿using UnityEngine;
 using Voxul;
+using Voxul.Utilities;
 
 public class LookTester : ExtendedMonoBehaviour
 {
-	public Transform Target, Test;
+	public Transform Target;
 	[Range(0, 90)]
-	public float Angle = 90;
+	public float MaxAngle = 1;
 
-	private void OnDrawGizmos()
+	private void Update()
 	{
-		var lookVector = Target.position - transform.position;
-
-		Color c = Color.white;
-		if (Mathfx.PointIsInCone(Test.position, transform.position, lookVector.normalized, Mathf.Deg2Rad * Angle))
-			c = Color.green;
-
-		GizmoExtensions.DrawCone(transform.position, lookVector.normalized, Mathf.Deg2Rad * Angle, lookVector.magnitude, c);
+		//transform.RotateTowardsPosition(Target.position, Time.deltaTime * MaxAngle);
 	}
+
+    private void OnDrawGizmos()
+    {
+		Gizmos.DrawLine(transform.position, Target.position);
+		Gizmos.matrix = transform.localToWorldMatrix;
+		Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+		Gizmos.DrawLine(Vector3.zero, Vector3.forward);
+    }
 }
   

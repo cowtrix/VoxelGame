@@ -113,6 +113,7 @@
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorVector3ISX.cs" />
     <Compile Include="Assets\Scripts\Actors\NPC\NPCInteractable.cs" />
     <Compile Include="Assets\Scripts\Utilities\Maths\RotationalBounds.cs" />
+    <Compile Include="Assets\Scripts\Actors\NPC\SeedAttribute.cs" />
     <Compile Include="Assets\Scripts\Interaction\LevelTrigger.cs" />
     <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorChar.cs" />
     <Compile Include="Assets\Scripts\Actors\Actor.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Assets\Scripts\Actors\Player\PlayerActor.cs" />
     <Compile Include="Assets\Scripts\Utilities\Maths\Mathfx.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\Windmill\RenderBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Generator\DynamicGeneratorMeshAttachmentNode.cs" />
     <Compile Include="Assets\Scripts\Interaction\Activities\Dotc\DotcGameEntity.cs" />
     <Compile Include="Assets\Scripts\Utilities\StarOrbiter.cs" />
     <Compile Include="Assets\Scripts\Ambience\AmbientManager.cs" />
@@ -147,7 +149,7 @@
     <Compile Include="Assets\Scripts\Interaction\Machines\Lift\LiftStop.cs" />
     <Compile Include="Assets\Scripts\Utilities\ObjectBounds.cs" />
     <Compile Include="Assets\Scripts\Actors\StateContainer.cs" />
-    <Compile Include="Assets\Scripts\Actors\Player\Controllers\MovementController.cs" />
+    <Compile Include="Assets\Scripts\Actors\MovementController.cs" />
     <Compile Include="Assets\Scripts\Utilities\UI\MoveUpAndFade.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Swiping\SpawnController.cs" />
     <Compile Include="Assets\Scripts\Utilities\DestroyInTime.cs" />
@@ -187,7 +189,6 @@
     <Compile Include="Assets\Scripts\Interaction\Machines\Skeezball\Skeexball.cs" />
     <Compile Include="Assets\Scripts\Utilities\Lightning.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\ClawMachineClaw.cs" />
-    <Compile Include="Assets\Scripts\Actors\NPC\NPCMeshManager.cs" />
     <Compile Include="Assets\Vectrosity\Plugins\Scripts\VisibilityControlStatic.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\TappingController.cs" />
     <Compile Include="Assets\Scripts\Animation\ProceduralAd.cs" />
@@ -231,7 +232,7 @@
     <Compile Include="Assets\Scripts\Actors\ActorState.cs" />
     <Compile Include="Assets\Scripts\Utilities\UI\TutorialUI.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingController.cs" />
-    <Compile Include="Assets\Scripts\Actors\NPC\NPCMeshSegment.cs" />
+    <Compile Include="Assets\Scripts\Generator\DynamicGeneratorNode.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\Pinball\PinballScoreBouncer.cs" />
     <Compile Include="Assets\Scripts\Generator\ObjectPool.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\KeyboardMouseISX.cs" />
@@ -257,11 +258,12 @@
     <Compile Include="Assets\Scripts\Actors\StateMinMaxAttribute.cs" />
     <Compile Include="Assets\Scripts\Actors\NPC\LookTester.cs" />
     <Compile Include="Assets\Scripts\Utilities\UI\WorldCanvas.cs" />
+    <Compile Include="Assets\Scripts\Actors\NPC\TriColorSet.cs" />
     <Compile Include="Assets\Scripts\Interaction\SimpleInteractable.cs" />
     <Compile Include="Assets\Scripts\Interaction\Activities\Dotc\DotcAncient.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\Pinball\PinballMachine.cs" />
-    <Compile Include="Assets\Scripts\Interaction\Machines\FuelBuddy.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Menu\LevelSelectItem.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\FuelBuddy.cs" />
     <Compile Include="Assets\Scripts\Utilities\Transporter.cs" />
     <Compile Include="Assets\Scripts\Jobs\GameJob.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\TouchOldInput.cs" />
@@ -278,6 +280,7 @@
     <Compile Include="Assets\Lib\InputSystem\Assets\Samples\SimpleDemo\SimpleController_UsingActionAsset.cs" />
     <Compile Include="Assets\Scripts\Utilities\ColliderFoley.cs" />
     <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorUtilities.cs" />
+    <Compile Include="Assets\Scripts\Generator\MeshAttachmentConfiguration.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\Camera\PhoneAppCamera.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Drawing\PointerInput.cs" />
     <Compile Include="Assets\Scripts\Utilities\NeonSign.cs" />
@@ -294,6 +297,7 @@
     <Compile Include="Assets\Scripts\Gravity\GravitySource.cs" />
     <Compile Include="Assets\Scripts\Interaction\Books\BookItem.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Tapping\SpawnController.cs" />
+    <Compile Include="Assets\Scripts\Generator\MeshAttachment.cs" />
     <Compile Include="Assets\Scripts\GrassSpawner.cs" />
     <Compile Include="Assets\Scripts\Actors\ActorFaction.cs" />
     <Compile Include="Assets\Scripts\Generator\Powerline.cs" />
@@ -1303,11 +1307,17 @@
     <Reference Include="Unity.VisualEffectGraph.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualEffectGraph.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Recorder.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Recorder.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder.Base">
+      <HintPath>Library\ScriptAssemblies\Unity.Recorder.Base.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
@@ -1389,6 +1399,9 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder">
+      <HintPath>Library\ScriptAssemblies\Unity.Recorder.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

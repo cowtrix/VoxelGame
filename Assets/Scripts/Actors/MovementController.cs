@@ -98,9 +98,7 @@ namespace Actors
                 Rigidbody.rotation = Quaternion.Lerp(Rigidbody.rotation, straightenQuat, straightenLerp);
                 //Rigidbody.rotation = straightenQuat;
                 Debug.DrawLine(transform.position, transform.position + straightenQuat * transform.forward, Color.yellow);
-            }
 
-            {
                 // Push out
                 if (groundHit.distance < groundingDistance)
                 {
@@ -155,6 +153,10 @@ namespace Actors
 
         private void OnDrawGizmosSelected()
         {
+            if (!GravityManager)
+            {
+                return;
+            }
             var gravityVec = GravityManager.GetGravityForce(transform.position);
             Gizmos.DrawLine(transform.position, GroundingPoint.position);
             Gizmos.DrawWireCube(GroundingPoint.position, Vector3.one * .05f);
