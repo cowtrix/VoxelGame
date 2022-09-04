@@ -21,11 +21,19 @@ namespace Interaction.Activities
             new Vector3(Mathf.Clamp(rot.x, X.x, X.y), Mathf.Clamp(rot.y, Y.x, Y.y), Mathf.Clamp(rot.z, Z.x, Z.y));
     }
 
-    public abstract class Activity : Interactable, ICameraControllerProxy
+    public interface IActivity : IInteractable {
+        bool ShouldPassThroughInteraction { get; }
+        void OnStartActivity(Actor actor);
+        void OnStopActivity(Actor actor);
+        void Look(Actor actor, Vector2 lastDelta);
+    }
+
+    public abstract class Activity : Interactable, ICameraControllerProxy, IActivity
     {
         public virtual Quaternion? LookDirectionOverride => transform.localToWorldMatrix.rotation * Quaternion.Euler(LookRotation + m_additionalRotation);
         public virtual Vector3? LookPositionOverride => transform.localToWorldMatrix.MultiplyPoint(LookOffset);
         public Vector2 LookAngle { get; private set; }
+        public bool ShouldPassThroughInteraction => PassThroughInteraction;
 
         [Header("Camera")]
         public RotationLimits CameraRotationLimits;
@@ -34,7 +42,7 @@ namespace Interaction.Activities
 
         protected Vector3 m_additionalRotation;
 
-        public Actor Actor { get; private set; }
+        public Actor Actor { get; protected set; }
 
         public ActorEvent OnActivate, OnDeactivate;
         public bool PassThroughInteraction;
@@ -120,10 +128,16 @@ namespace Interaction.Activities
 
         public virtual void OnStopActivity(Actor actor)
         {
+            if (Actor != actor)
+            {
+                Actor = null;
+            }
+
             if (Actor is PlayerActor player && (UnityEngine.Object)player.CameraController.Proxy == this)
             {
                 player.CameraController.Proxy = null;
             }
+
             Actor = null;
             OnDeactivate?.Invoke(actor);
             m_additionalRotation = default;

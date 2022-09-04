@@ -719,7 +719,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 767153937112354127}
-  - component: {fileID: 864345276715792637}
   m_Layer: 6
   m_Name: Mesh
   m_TagString: Untagged
@@ -743,26 +742,6 @@ Transform:
   m_Father: {fileID: 4867487799302520789}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &864345276715792637
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 769152390078714935}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 1edf3e6eeaa105d4296ee53dd19ed54d, type: 3}
-  m_Controller: {fileID: 9100000, guid: 652f5e1a6040ff44087351fd2fa07164, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &769164970609493937
 GameObject:
   m_ObjectHideFlags: 0
@@ -2571,7 +2550,7 @@ GameObject:
   - component: {fileID: 5057917078084929406}
   - component: {fileID: 4074705401993554825}
   - component: {fileID: 2956652948055321227}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Interactable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2604,7 +2583,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.3, y: 1.3, z: 1.3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2956652948055321227
 MonoBehaviour:
@@ -2618,7 +2597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d0d21ed2804aa7419eeeafe764fa238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: 4b87ee0c-ba9b-4326-8410-3e42210e3ba4
+  m_guid: bb82f35c-4b1c-486b-95ba-dcc1d8a2a7d2
   ThinkSpeed: 1
   Priority: 0
   InteractionSettings:
@@ -4257,6 +4236,7 @@ GameObject:
   - component: {fileID: 1899501806400372029}
   - component: {fileID: 1099571296588858001}
   - component: {fileID: -8865872912607605858}
+  - component: {fileID: 6869352661947542601}
   m_Layer: 6
   m_Name: NPC_BipedTemplate
   m_TagString: Untagged
@@ -4461,8 +4441,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e4099c14e971d64a991d546e58e6c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinVelocity: 0.002
-  AnimationExpressiveness: 10
+  AnimationExpressiveness: 2
+--- !u!95 &6869352661947542601
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223422397712182990}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 1edf3e6eeaa105d4296ee53dd19ed54d, type: 3}
+  m_Controller: {fileID: 9100000, guid: 652f5e1a6040ff44087351fd2fa07164, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4353365876968466915
 GameObject:
   m_ObjectHideFlags: 0

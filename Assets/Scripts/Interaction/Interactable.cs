@@ -26,6 +26,9 @@ namespace Interaction
         string DisplayName { get; }
         void ReceiveAction(Actor actor, ActorAction action);
         IEnumerable<ActorAction> GetActions(Actor context);
+        public InteractableSettings GetSettings();
+        public Bounds GetBounds();
+        public bool CanUse(Actor actor);
         Transform transform { get; }
         GameObject gameObject { get; }
     }
@@ -33,33 +36,33 @@ namespace Interaction
     [Serializable]
     public class SpriteEvent : UnityEvent<Sprite> { }
 
-    public abstract class Interactable : SlowUpdater, IInteractable
+    [Serializable]
+    public class InteractableSettings
     {
         [Serializable]
-        public class InteractableSettings
+        public class InteractionRenderer
         {
-            [Serializable]
-            public class InteractionRenderer
-            {
-                public MeshRenderer Renderer;
-                public Mesh Mesh;
-            }
-
-            public ActorEvent OnFocusEnter;
-            public ActorEvent OnFocusExit;
-            public ActorActionEvent OnUsed;
-            public ActorEvent OnEnterAttention;
-            public ActorEvent OnExitAttention;
-
-            public Func<Sprite> Icon;
-
-            public List<Collider> Colliders;
-            public List<InteractionRenderer> Renderers;
-
-            public float MaxFocusDistance = 5;
-            public float MaxUseDistance = 2;
+            public MeshRenderer Renderer;
+            public Mesh Mesh;
         }
 
+        public ActorEvent OnFocusEnter;
+        public ActorEvent OnFocusExit;
+        public ActorActionEvent OnUsed;
+        public ActorEvent OnEnterAttention;
+        public ActorEvent OnExitAttention;
+
+        public Func<Sprite> Icon;
+
+        public List<Collider> Colliders;
+        public List<InteractionRenderer> Renderers;
+
+        public float MaxFocusDistance = 5;
+        public float MaxUseDistance = 2;
+    }
+
+    public abstract class Interactable : SlowUpdater, IInteractable
+    {
         public const int INTERACTION_LAYER = 9;
         public InteractableSettings InteractionSettings = new InteractableSettings();
 
@@ -80,13 +83,13 @@ namespace Interaction
             {
                 var closestPoint = coll.ClosestPoint(context.transform.position);
                 var dist = Vector3.Distance(context.transform.position, closestPoint);
-                if(dist < bestDistance)
+                if (dist < bestDistance)
                 {
                     closestColliderPosition = closestPoint;
                     bestDistance = dist;
                 }
             }
-            if(closestColliderPosition != null)
+            if (closestColliderPosition != null)
             {
                 return bestDistance < InteractionSettings.MaxUseDistance;
             }
@@ -208,5 +211,9 @@ namespace Interaction
         }
 
         protected override int Tick(float dt) { return 0; }
+
+        public InteractableSettings GetSettings() => InteractionSettings;
+
+        public Bounds GetBounds() => Bounds;
     }
 }

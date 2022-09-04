@@ -11,8 +11,9 @@ namespace Actors
 	{
 		public AutoProperty<NPCInteractable> Interactable;
 		public DialogueTreeController Controller => GetComponent<DialogueTreeController>();
+		public bool IsTalking => Controller.isRunning;
 
-        protected override void Awake()
+		protected override void Awake()
         {
             Interactable = new AutoProperty<NPCInteractable>(gameObject, (go) => go.GetComponentInChildren<NPCInteractable>());
 			base.Awake();
@@ -24,27 +25,17 @@ namespace Actors
 			{
 				return false;
 			}
+			if(!LookAdapter.CanSee(context.transform.position + Vector3.up))
+            {
+				return false;
+            }
 			return !Controller.isRunning;
 		}
-
-		public bool IsTalking()
-        {
-			return Controller.isRunning;
-        }
 
 		public void InteractWithActor(Actor instigator)
 		{
 			Controller.SetActorReference(DialogueTree.SELF_NAME, this);
 			Controller.StartDialogue(instigator);
-		}
-
-		public void StopInteractingWithActor(Actor actor)
-		{
-			if (!Controller.isRunning)
-			{
-				return;
-			}
-			Controller.StopDialogue();
 		}
 	}
 }

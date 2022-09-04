@@ -77,8 +77,7 @@ namespace Actors.NPC
 
         public bool CanSee(Vector3 worldPosition)
         {
-            // TODO
-            return true;
+            return Mathfx.PointIsInCone(worldPosition, transform.position, Quaternion.Euler(LookRotation) * transform.parent.forward, Mathf.Deg2Rad * LookAngle);
         }
     }
 }

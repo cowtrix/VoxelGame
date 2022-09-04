@@ -43,15 +43,16 @@ namespace UI
             m_outline.transform.SetParent(m_outlineContainer.transform);
         }
 
-        private void SetFocusDisplay(Interactable interactable)
+        private void SetFocusDisplay(IInteractable interactable)
         {
             FocusSprite.gameObject.SetActive(true);
             m_outlineContainer.SetActive(true);
-            if (!m_interactionOutlineRenderers.SequenceEqual(interactable.InteractionSettings.Renderers.Select(r => r.Renderer)))
+            var settings = interactable.GetSettings();
+            if (!m_interactionOutlineRenderers.SequenceEqual(settings.Renderers.Select(r => r.Renderer)))
             {
-                for (var i = 0; i < interactable.InteractionSettings.Renderers.Count; i++)
+                for (var i = 0; i < settings.Renderers.Count; i++)
                 {
-                    var sourceRenderer = interactable.InteractionSettings.Renderers[i];
+                    var sourceRenderer = settings.Renderers[i];
                     if (!sourceRenderer.Renderer)
                     {
                         continue;
@@ -77,7 +78,7 @@ namespace UI
                     targetRenderer.transform.rotation = sourceRenderer.Renderer.transform.rotation;
                     targetRenderer.transform.localScale = sourceRenderer.Renderer.transform.lossyScale;
                 }
-                for (var i = m_interactionOutlineRenderers.Count - 1; i >= interactable.InteractionSettings.Renderers.Count; i--)
+                for (var i = m_interactionOutlineRenderers.Count - 1; i >= settings.Renderers.Count; i--)
                 {
                     var toDestroy = m_interactionOutlineRenderers[i];
                     m_interactionOutlineRenderers.RemoveAt(i);
@@ -105,7 +106,7 @@ namespace UI
             }
 
             var screenRect = new Rect(Camera.WorldToScreenPoint(interactable.transform.position), Vector2.zero);
-            var objBounds = interactable.Bounds;
+            Bounds objBounds = interactable.GetBounds();
             foreach (var p in objBounds.AllPoints())
             {
                 screenRect = screenRect.Encapsulate(Camera.WorldToScreenPoint(p));
@@ -128,10 +129,10 @@ namespace UI
 
         private void Update()
         {
-            var interactable = PlayerActor.FocusedInteractable ?? PlayerActor.State.EquippedItem as Interactable ?? PlayerActor.CurrentActivity;
-            if (interactable && interactable != PlayerActor.CurrentActivity)
+            var interactable = PlayerActor.FocusedInteractable ?? PlayerActor.State.EquippedItem as IInteractable ?? PlayerActor.CurrentActivity;
+            if (interactable != null && interactable != PlayerActor.CurrentActivity)
             {
-                if(interactable != (Interactable)PlayerActor.State.EquippedItem)
+                if(interactable != (IInteractable)PlayerActor.State.EquippedItem)
                 {
                     SetFocusDisplay(interactable);
                 }
@@ -147,7 +148,7 @@ namespace UI
                 ClearFocusDisplay();
             }
 
-            if (interactable && interactable.CanUse(PlayerActor))
+            if (interactable != null && interactable.CanUse(PlayerActor))
             {
                 int actionIndex = 0;
                 foreach (var action in interactable.GetActions(PlayerActor))

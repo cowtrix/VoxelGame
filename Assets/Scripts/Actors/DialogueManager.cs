@@ -1,3 +1,4 @@
+using Common;
 using NodeCanvas.DialogueTrees;
 using NodeCanvas.DialogueTrees.UI.Examples;
 using System;
@@ -15,7 +16,7 @@ public class DialogueManager : Singleton<DialogueManager>
 	void OnEnable() { UnSubscribe(); Subscribe(); }
 	void OnDisable() { UnSubscribe(); }
 
-	Dictionary<IDialogueActor, DialogueUGUI> m_activeDialogues = new Dictionary<IDialogueActor, DialogueUGUI>();
+	Dictionary<IDialogueActor, IDialogueUI> m_activeDialogues = new Dictionary<IDialogueActor, IDialogueUI>();
 
 	void Subscribe()
 	{
@@ -26,20 +27,20 @@ public class DialogueManager : Singleton<DialogueManager>
 		DialogueTree.OnMultipleChoiceRequest += OnMultipleChoiceRequest;
 	}
 
-	private DialogueUGUI GetOrCreateDialogue(IDialogueActor actor)
+	private IDialogueUI GetOrCreateDialogue(IDialogueActor actor)
 	{
-		if(m_activeDialogues.TryGetValue(actor, out var dialogue) && dialogue)
+		if(m_activeDialogues.TryGetValue(actor, out var dialogue) && dialogue != null && !dialogue.Equals(null))
 		{
 			return dialogue;
 		}
-		var newPrefab = Instantiate(DialoguePrefab).GetComponentInChildren<DialogueUGUI>();
+		var newPrefab = Instantiate(DialoguePrefab).gameObject.GetComponentByInterfaceInChildren<IDialogueUI>();
 		m_activeDialogues[actor] = newPrefab;
 		return newPrefab;
 	}
 
-	private DialogueUGUI GetDialogue(IDialogueActor actor)
+	private IDialogueUI GetDialogue(IDialogueActor actor)
 	{
-		if (m_activeDialogues.TryGetValue(actor, out var dialogue) && dialogue)
+		if (m_activeDialogues.TryGetValue(actor, out var dialogue) && dialogue != null && !dialogue.Equals(null))
 		{
 			return dialogue;
 		}
@@ -61,6 +62,7 @@ public class DialogueManager : Singleton<DialogueManager>
 	private void OnDialogueFinished(DialogueTree dlg)
 	{
 		CameraController.Instance.UIEnabled = false;
+		
 		var dialogue = GetOrCreateDialogue(dlg.Self);
 		dialogue.OnDialogueFinished(dlg);
 	}
@@ -74,7 +76,7 @@ public class DialogueManager : Singleton<DialogueManager>
 	private void OnDialogueStarted(DialogueTree dlg)
 	{
 		CameraController.Instance.UIEnabled = true;
-		var dialogue = GetOrCreateDialogue(dlg.Self);
+        var dialogue = GetOrCreateDialogue(dlg.Self);
 		dialogue.OnDialogueStarted(dlg);
 	}
 

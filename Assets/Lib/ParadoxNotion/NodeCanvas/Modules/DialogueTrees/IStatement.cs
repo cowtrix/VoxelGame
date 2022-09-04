@@ -12,6 +12,8 @@ namespace NodeCanvas.DialogueTrees
     {
         DialogueTree Parent { get; set; }
         string text { get; }
+        bool translate { get; }
+        bool takeFocus { get; }
         AudioClip audio { get; }
         string meta { get; }
     }
@@ -22,6 +24,10 @@ namespace NodeCanvas.DialogueTrees
     {
         [SerializeField]
         private string _text = string.Empty;
+        [SerializeField]
+        private bool _translate = false;
+        [SerializeField]
+        private bool _takeFocus = true;
         [SerializeField]
         private AudioClip _audio;
         [SerializeField]
@@ -42,6 +48,18 @@ namespace NodeCanvas.DialogueTrees
         public string meta {
             get { return _meta; }
             set { _meta = value; }
+        }
+
+        public bool translate
+        {
+            get { return _translate; }
+            set { _translate = value; }
+        }
+
+        public bool takeFocus
+        {
+            get { return _takeFocus; }
+            set { _takeFocus = value; }
         }
 
         //required
@@ -90,21 +108,22 @@ namespace NodeCanvas.DialogueTrees
             return text;
         }
 
-		public override bool Equals(object obj)
-		{
-			return obj is Statement statement &&
-				   EqualityComparer<DialogueTree>.Default.Equals(Parent, statement.Parent) &&
-				   text == statement.text &&
-				   EqualityComparer<AudioClip>.Default.Equals(audio, statement.audio) &&
-				   meta == statement.meta;
-		}
+        public override bool Equals(object obj)
+        {
+            return obj is Statement statement &&
+                   text == statement.text &&
+                   EqualityComparer<AudioClip>.Default.Equals(audio, statement.audio) &&
+                   meta == statement.meta &&
+                   translate == statement.translate &&
+                   takeFocus == statement.takeFocus;
+        }
 
-		public override int GetHashCode()
-		{
-			return System.HashCode.Combine(Parent, text, audio, meta);
-		}
+        public override int GetHashCode()
+        {
+            return System.HashCode.Combine(text, audio, meta, translate, takeFocus);
+        }
 
-		public static bool operator ==(Statement left, Statement right)
+        public static bool operator ==(Statement left, Statement right)
 		{
 			return EqualityComparer<Statement>.Default.Equals(left, right);
 		}

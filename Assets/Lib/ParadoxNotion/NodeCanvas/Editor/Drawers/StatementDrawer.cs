@@ -13,6 +13,8 @@ namespace NodeCanvas.Editor
         public override Statement OnGUI(GUIContent content, Statement instance) {
             if ( instance == null ) { instance = new Statement("..."); }
             instance.text = UnityEditor.EditorGUILayout.TextArea(instance.text, Styles.wrapTextArea, GUILayout.Height(100));
+            instance.translate = UnityEditor.EditorGUILayout.Toggle("Translate", instance.translate);
+            instance.takeFocus = UnityEditor.EditorGUILayout.Toggle("Take Focus", instance.takeFocus);
             instance.audio = UnityEditor.EditorGUILayout.ObjectField("Audio File", instance.audio, typeof(AudioClip), false) as AudioClip;
             instance.meta = UnityEditor.EditorGUILayout.TextField("Metadata", instance.meta);
             return instance;

@@ -34,21 +34,28 @@ namespace Interaction
             }
         }
 
-        public override void OnStartActivity(Actor actor)
+        public override void ReceiveAction(Actor actor, ActorAction action)
         {
-            if (!Actor && Self.CanTalkTo(actor))
+            if(action.Key == eActionKey.USE && action.State == eActionState.End && CanUse(actor))
             {
                 Self.InteractWithActor(actor);
             }
-            base.OnStartActivity(actor);
         }
+
+        public override void OnStartActivity(Actor actor)
+        {
+            /*if (!Actor && Self.CanTalkTo(actor))
+            {
+                Self.InteractWithActor(actor);
+            }*/
+            //base.OnStartActivity(actor);
+        }
+
+        public override bool CanUse(Actor context) => Self.CanTalkTo(context);
 
         public override void OnStopActivity(Actor actor)
         {
-            if (Actor == actor)
-            {
-                Self.StopInteractingWithActor(Actor);
-            }
+            
             base.OnStopActivity(actor);
         }
     }

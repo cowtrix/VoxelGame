@@ -65,7 +65,7 @@ namespace Actors.NPC.Player
 			OnActionExecuted.Invoke(action);
 
 			// First priority is if we have an active activity
-			if (CurrentActivity && !CurrentActivity.PassThroughInteraction)
+			if (CurrentActivity != null && !CurrentActivity.ShouldPassThroughInteraction)
 			{
 				CurrentActivity.ReceiveAction(this, action);
 				return;

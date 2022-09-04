@@ -8,7 +8,10 @@ using UnityEngine;
 public static class LanguageUtility
 {
     public const string CharacterSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
+    static char[] m_unsupportedCharacters = new[]
+        {
+            '?'
+        };
     public static string Generate(int length, int? seed = null)
     {
         if (seed.HasValue)
@@ -36,11 +39,16 @@ public static class LanguageUtility
 
     public static string GetSpriteKeyForChar(char c)
     {
+        if (m_unsupportedCharacters.Contains(c))
+        {
+            return "";
+        }
+        var key = c.ToString();
         if (c == ' ')
         {
-            return "Space";
+            key = "Space";
         }
-        return c.ToString();
+        return $"<sprite name=\"{key}\" tint=1>";
     }
 
     public static string GetStringForTextMesh(string original, bool mixed = false)
@@ -65,7 +73,7 @@ public static class LanguageUtility
             }
             if ((!mixed || isAlien) && !reservedChars.Contains(c))
             {
-                sb.Append($"<sprite name=\"{GetSpriteKeyForChar(c)}\" tint=1>");
+                sb.Append(GetSpriteKeyForChar(c));
             }
             else
             {

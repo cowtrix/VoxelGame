@@ -16,27 +16,28 @@ namespace Actors
         public Vector3 MoveDirection { get; set; }
         public bool IsGrounded => Navmesh.isOnNavMesh;
 
-        public float MinVelocity = .01f;
         public float AnimationExpressiveness = 1;
         public NavMeshQueryFilter NavmeshFilter;
         private NavMeshPath m_currentPath;
-        private Vector3 m_lastPosition;
+
+        private SmoothPositionVector3 m_smoothPosition;
+
+        private void Start()
+        {
+            m_smoothPosition = new SmoothPositionVector3(10, transform.position);
+        }
 
         private void Update()
         {
             if (Actor.Animator)
             {
-                var localVelocity = transform.worldToLocalMatrix.MultiplyVector(transform.position - m_lastPosition) * AnimationExpressiveness;
-                if(localVelocity.magnitude < MinVelocity)
-                {
-                    localVelocity = Vector3.zero;
-                }
+                var localVelocity = transform.worldToLocalMatrix.MultiplyVector(transform.position - m_smoothPosition.SmoothPosition) * AnimationExpressiveness;
                 Debug.DrawLine(transform.position, transform.position + transform.localToWorldMatrix.MultiplyVector(localVelocity), Color.cyan);
                 Actor.Animator.SetFloat("VelocityX", localVelocity.z);
                 Actor.Animator.SetFloat("VelocityY", localVelocity.y);
                 Actor.Animator.SetFloat("VelocityZ", localVelocity.x);
             }
-            m_lastPosition = transform.position;
+            m_smoothPosition.Push(transform.position);
         }
 
         public void MoveToPosition(Vector3 worldPos)

@@ -12,7 +12,19 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 	[Serializable]
 	public class StringEvent : UnityEvent<string> { }
 
-	public class DialogueUGUI : MonoBehaviour
+    public interface IDialogueUI 
+	{
+		StringEvent onWordsSaidEvent { get; }
+		void OnDialogueStarted(DialogueTree dlg);
+		void OnDialoguePaused(DialogueTree dlg);
+		void OnDialogueFinished(DialogueTree dlg);
+		void OnSubtitlesRequest(SubtitlesRequestInfo info);
+		void Skip();
+		void OnMultipleChoiceRequest(MultipleChoiceRequestInfo info);
+	}
+
+
+    public class DialogueUGUI : MonoBehaviour, IDialogueUI
 	{
 		[System.Serializable]
 		public class SubtitleDelays
@@ -22,6 +34,8 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
 			public float commaDelay = 0.1f;
 			public float finalDelay = 1.2f;
 		}
+
+		public StringEvent onWordsSaidEvent => OnWordSaid;
 
 		//Options...
 		[Header("Input Options")]

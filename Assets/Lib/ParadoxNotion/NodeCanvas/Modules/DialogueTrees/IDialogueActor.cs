@@ -12,6 +12,6 @@ namespace NodeCanvas.DialogueTrees
         Transform transform { get; }
 		bool HasSaid(IStatement key);
 		void RecordSaid(IStatement statement);
-		void OnDialogueStarted(DialogueTree dlg, DialogueUGUI dialogueUGUI);
+		void OnDialogueStarted(DialogueTree dlg, IDialogueUI dialogueUGUI);
 	}
 }

@@ -73,7 +73,7 @@ namespace Actors
         /// </summary>
         public Interactable FocusedInteractable { get; protected set; }
         // Activity the actor is currently engaging in
-        public Activity CurrentActivity { get; protected set; }
+        public IActivity CurrentActivity { get; protected set; }
         public List<Interactable> Interactables { get; private set; } = new List<Interactable>();
         public Animator Animator { get; private set; }
         public ActorState State => GetComponent<ActorState>();
@@ -95,22 +95,21 @@ namespace Actors
             Perceiver = gameObject.GetOrAddComponent<ActorPerceiver>();
         }
 
-        public virtual void TryStartActivity(Activity activity)
+        public virtual void TryStartActivity(IActivity activity)
         {
             if (CurrentActivity == activity)
             {
                 return;
             }
-            if (CurrentActivity)
+            if (CurrentActivity != null && !CurrentActivity.Equals(null))
             {
                 TryStopActivity(CurrentActivity);
             }
             CurrentActivity = activity;
             CurrentActivity.OnStartActivity(this);
-            CurrentActivity = activity;
         }
 
-        public virtual void TryStopActivity(Activity activity)
+        public virtual void TryStopActivity(IActivity activity)
         {
             if (CurrentActivity != activity)
             {
@@ -178,13 +177,13 @@ namespace Actors
 
         public void RecordSaid(IStatement statement) => m_chatHistory.Add(statement);
 
-        public void OnDialogueStarted(DialogueTree dlg, DialogueUGUI dialogueUGUI)
+        public void OnDialogueStarted(DialogueTree dlg, IDialogueUI dialogueUGUI)
         {
             var voice = GetComponentInChildren<ActorVoice>();
             if (voice)
             {
-                dialogueUGUI.OnWordSaid.RemoveAllListeners();
-                dialogueUGUI.OnWordSaid.AddListener((w) => voice.SayWord(w));
+                dialogueUGUI.onWordsSaidEvent.RemoveAllListeners();
+                dialogueUGUI.onWordsSaidEvent.AddListener((w) => voice.SayWord(w));
             }
         }
     }

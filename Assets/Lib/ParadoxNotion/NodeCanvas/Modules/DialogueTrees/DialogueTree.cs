@@ -180,7 +180,9 @@ namespace NodeCanvas.DialogueTrees
 			var param = actorParameters.Find(p => p.name == paramName);
 			if (param == null)
 			{
-				Logger.LogError(string.Format("There is no defined Actor key name '{0}'", paramName), "Dialogue Tree", this);
+				param = new ActorParameter(paramName, actor);
+				actorParameters.Add(param);
+				//Logger.LogError(string.Format("There is no defined Actor key name '{0}'", paramName), "Dialogue Tree", this);
 				return;
 			}
 			param.actor = actor;
