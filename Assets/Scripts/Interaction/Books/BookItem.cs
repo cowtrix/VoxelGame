@@ -24,8 +24,6 @@ namespace Interaction.Activities
         }
 
         public int PageNumber { get; set; }
-        public VoxelColorTint Tint => GetComponent<VoxelColorTint>();
-
         public Page FrontCover, BackCover;
         public BookData Content;
         public float HoldDistance = 1;
@@ -46,8 +44,6 @@ namespace Interaction.Activities
         protected void Start()
         {
             GeneratePages();
-            Tint.Color = Content ? Content.Color : UnityEngine.Random.ColorHSV(0, 1, .5f, .75f, .5f, .75f);
-            Tint.Invalidate();
         }
 
         [ContextMenu("Generate Pages")]

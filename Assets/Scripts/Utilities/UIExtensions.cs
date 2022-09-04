@@ -9,6 +9,17 @@ public static class UIExtensions {
 	{
 		rect.GetWorldCorners(_worldRectCache);
 		return new Rect(_worldRectCache[0].x, _worldRectCache[0].y, _worldRectCache[2].x - _worldRectCache[0].x, _worldRectCache[2].y - _worldRectCache[0].y);
-		
 	}
+
+	public static Bounds GetBounds(this Canvas canvas)
+    {
+		var b = new Bounds(canvas.transform.position, Vector3.zero);
+		var rt = canvas.GetComponent<RectTransform>();
+		rt.GetWorldCorners(_worldRectCache);
+		foreach(var p in _worldRectCache)
+        {
+			b.Encapsulate(p);
+        }
+		return b;
+    }
 }

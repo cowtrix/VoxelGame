@@ -10,7 +10,7 @@ public static class LanguageUtility
     public const string CharacterSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     static char[] m_unsupportedCharacters = new[]
         {
-            '?'
+            '?', '<', '>', '\''
         };
     public static string Generate(int length, int? seed = null)
     {

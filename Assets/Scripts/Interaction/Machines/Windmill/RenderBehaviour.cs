@@ -2,31 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Voxul.Utilities;
 
 public abstract class RenderBehaviour : SlowUpdater
 {
-    public List<Renderer> Renderers { get; private set; }
-    public List<Canvas> Canvases { get; private set; }
-    public virtual Bounds Bounds { get; private set; }
+    public List<Renderer> Renderers = new List<Renderer>();
+    public List<Canvas> Canvases = new List<Canvas>();
+    public Bounds Bounds;
     public bool IsOnScreen { get; private set; }
     public Camera Camera => Camera.current;
-    public bool IncludeManualBounds;
-    public Bounds ManualBounds;
 
-    protected virtual void Start()
+    public void RecalculateBounds()
     {
-        Renderers = GetComponentsInChildren<Renderer>().ToList();
+        Bounds = default;
         if (!Renderers.Any())
         {
-            Renderers.Add(GetComponentInParent<Renderer>());
+            Renderers = new List<Renderer>(GetComponentsInChildren<Renderer>());
         }
         if (Renderers.Any())
         {
             Bounds = Renderers.GetBounds();
         }
-        if (IncludeManualBounds)
+        Canvases = new List<Canvas>(GetComponentsInChildren<Canvas>());
+        foreach(var canvas in Canvases)
         {
-            Bounds.Encapsulate(GeometryExtensions.TranslateBounds(ManualBounds, transform.localToWorldMatrix));
+            var wCanvasBounds = canvas.GetBounds();
+            var lCanvasBounds = GeometryExtensions.TranslateBounds(wCanvasBounds, transform.worldToLocalMatrix);
+            Bounds.Encapsulate(lCanvasBounds);
         }
     }
 
@@ -47,12 +49,4 @@ public abstract class RenderBehaviour : SlowUpdater
 
     protected abstract void UpdateOnScreen();
 
-    private void OnDrawGizmosSelected()
-    {
-        var translatedBounds = GeometryExtensions.TranslateBounds(ManualBounds, transform.localToWorldMatrix);
-        if (IncludeManualBounds)
-        {
-            Gizmos.DrawWireCube(translatedBounds.center, translatedBounds.size);
-        }
-    }
 }

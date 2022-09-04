@@ -114,7 +114,7 @@ namespace Actors
                     m_inputJump = false;
                 }
 
-                var worldVelocityDirection = new Vector3(MoveDirection.x, 0, MoveDirection.z);
+                var worldVelocityDirection = LookAdapter.Value.transform.localToWorldMatrix.MultiplyVector(new Vector3(MoveDirection.x, 0, MoveDirection.z));
 
                 if (IsGrounded)
                 {
@@ -163,7 +163,7 @@ namespace Actors
         public void MoveInput(Vector2 dir)
         {
             //Debug.Log($"Move: {dir}");
-            MoveDirection = LookAdapter.Value.transform.localToWorldMatrix.MultiplyVector(new Vector3(dir.x, 0, dir.y));
+            MoveDirection = new Vector3(dir.x, 0, dir.y);
         }
     }
 }

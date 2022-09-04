@@ -35,7 +35,7 @@ namespace Common
 
 		public static Bounds TranslateBounds(Bounds bounds, Matrix4x4 trs)
         {
-			return new Bounds(trs.MultiplyPoint3x4(bounds.center), bounds.size);
+			return new Bounds(trs.MultiplyPoint3x4(bounds.center), trs.MultiplyVector(bounds.size));
         }
 
 		public static IEnumerable<Vector3> AllPoints(this Bounds b)

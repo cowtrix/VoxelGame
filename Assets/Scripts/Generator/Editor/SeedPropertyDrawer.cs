@@ -10,6 +10,10 @@ namespace Generation
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
+            if (property.hasMultipleDifferentValues)
+            {
+                return;
+            }
             EditorGUI.BeginProperty(position, label, property);
             const int rerollWidth = 64;
             var valueRect = new Rect(position.x, position.y, position.width - rerollWidth, position.height);
