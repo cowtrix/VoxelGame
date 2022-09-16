@@ -20,7 +20,7 @@ namespace Generation
             public float ValueShift;
         }
 
-        public List<Tint> Tints;
+        public List<Tint> Tints = new List<Tint>();
 
         public Vector2 Hue = new Vector2(0, 1);
         public Vector2 Saturation = new Vector2(0, 1);

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6547506253927556261}
   - component: {fileID: 1420602941819237000}
   - component: {fileID: 6693565922794679140}
+  - component: {fileID: 1654325196262681842}
   m_Layer: 8
   m_Name: ShippingContainer
   m_TagString: Untagged
@@ -155,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncludeChildren: 1
-  Color: {r: 1, g: 0.19496846, b: 0.19496846, a: 1}
+  Color: {r: 0.23561743, g: 0.5652786, b: 0.39885312, a: 1}
 --- !u!205 &1420602941819237000
 LODGroup:
   m_ObjectHideFlags: 0
@@ -192,6 +193,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.2222238, y: 3.1111116, z: 3.2222226}
   m_Center: {x: -0.00000023841858, y: 0.055555582, z: 0}
+--- !u!114 &1654325196262681842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5703091408855058201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f41d4bb42ce4c940a7b5800158b4578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Children: []
+  Seed: 0
+  Tints:
+  - Name: {fileID: 6547506253927556261}
+    HueShift: 0
+    SaturationShift: 0
+    ValueShift: 0
+  Hue: {x: 0, y: 1}
+  Saturation: {x: 0.5, y: 0.7}
+  Value: {x: 0.5, y: 1}
 --- !u!1 &7151617688366060459
 GameObject:
   m_ObjectHideFlags: 0

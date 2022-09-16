@@ -64,6 +64,7 @@
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\Interop\MagicaVoxelImporter.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Optimisers\InternalFaceOptimiser.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\VoxelExtensions.cs" />
+    <Compile Include="Assets\Lib\voxul\Scripts\Utilities\RectanglePacker\PackingRectangle.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Optimisers\FaceMerger.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Utilities\VoxelRendererPropertyModifier.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\VoxelBrushAsset.cs" />
@@ -128,10 +129,12 @@
     <Compile Include="Assets\Lib\voxul\Scripts\Utilities\UnityMainThreadDispatcher.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Meshing\VoxelMeshWorker.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Utilities\Singleton.cs" />
+    <Compile Include="Assets\Lib\voxul\Scripts\Utilities\RectanglePacker\PackingHintExtensions.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Utilities\Pathfinding\VoxelTree.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\Tools\ClipboardTool.cs" />
     <Compile Include="Assets\Lib\voxul\Lib\CsharpVoxReader\Chunks\Pack.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\VoxelSpriteEditor.cs" />
+    <Compile Include="Assets\Lib\voxul\Scripts\Utilities\RectExtensions.cs" />
     <Compile Include="Assets\Lib\voxul\Lib\CsharpVoxReader\Chunks\Unknown.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\VoxelCoordinate.cs" />
     <Compile Include="Assets\Lib\voxul\Lib\CsharpVoxReader\Chunks\Model.cs" />
@@ -141,10 +144,12 @@
     <Compile Include="Assets\Lib\voxul\Lib\CsharpVoxReader\Chunks\Palette.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\Interop\MagicaVoxelImporterWindow.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\LOD\LevelOfDetailBuilder.cs" />
+    <Compile Include="Assets\Lib\voxul\Scripts\Utilities\RectanglePacker\RectanglePacker.cs" />
     <Compile Include="Assets\Lib\voxul\Lib\CsharpVoxReader\Chunks\Material.cs" />
     <Compile Include="Assets\Lib\voxul\Lib\CsharpVoxReader\Chunks\Main.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\NativeEditorWrapper.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Utilities\PerlinNoiseGenerator.cs" />
+    <Compile Include="Assets\Lib\voxul\Scripts\Utilities\RectanglePacker\PackingHints.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Utilities\Extensions\TransformExtensions.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Meshing\VoxelMesh.cs" />
     <Compile Include="Assets\Lib\voxul\Scripts\Editor\ExtendedMonobehaviourEditor.cs" />
@@ -168,6 +173,7 @@
   <ItemGroup>
     <None Include="Assets\Lib\voxul\Shaders\DebugGrid.shader" />
     <None Include="Assets\Lib\voxul\VoxulAssembly.asmdef" />
+    <None Include="Assets\Lib\voxul\Scripts\Utilities\RectanglePacker\ATTRIB.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

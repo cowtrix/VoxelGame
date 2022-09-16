@@ -9,7 +9,7 @@ public class GravityRigidbody : SlowUpdater
 	public Rigidbody Rigidbody { get; private set; }
 	public CameraController CameraController { get; private set; }
 	public float MaxUpdateDistance = 1000;
-
+	public bool SleepOnStart;
 	public float GravityMultiplier = 1;
 	private Vector3 m_lastGravity;
 	private GravityManager m_gravityManager;
@@ -34,6 +34,11 @@ public class GravityRigidbody : SlowUpdater
 		Rigidbody = GetComponent<Rigidbody>();
 		Rigidbody.useGravity = false;
 		Rigidbody.sleepThreshold = 1;
+
+        if (SleepOnStart)
+        {
+			Rigidbody.Sleep();
+        }
 
 		m_posHistory = new SmoothPositionVector3(HISTORY_SIZE, transform.position);
 		m_rotHistory = new SmoothPositionVector3(HISTORY_SIZE, transform.position);

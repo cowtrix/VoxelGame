@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 6476831895985437532}
   - component: {fileID: 1762186148703487611}
   - component: {fileID: 8511395990388224842}
+  - component: {fileID: 973055033136523246}
   m_Layer: 8
   m_Name: Barrel_Metal_01
   m_TagString: Untagged
@@ -357,6 +358,7 @@ MonoBehaviour:
   ThinkSpeed: 1
   Priority: 0
   MaxUpdateDistance: 1000
+  SleepOnStart: 0
   GravityMultiplier: 1
 --- !u!114 &8511395990388224842
 MonoBehaviour:
@@ -371,4 +373,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncludeChildren: 1
-  Color: {r: 0.7085855, g: 0.8018868, b: 0.7124529, a: 1}
+  Color: {r: 0.7359007, g: 0.78480756, b: 0.55469865, a: 1}
+--- !u!114 &973055033136523246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6675893464448280428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f41d4bb42ce4c940a7b5800158b4578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Children: []
+  Seed: 1522437856
+  Tints:
+  - Name: {fileID: 8511395990388224842}
+    HueShift: 0
+    SaturationShift: 0
+    ValueShift: 0
+  Hue: {x: 0.2, y: 0.3}
+  Saturation: {x: 0.2, y: 0.4}
+  Value: {x: 0.7, y: 0.9}

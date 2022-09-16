@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4588165293745131297}
   - component: {fileID: 4588165293745131296}
   - component: {fileID: 4588165293745131303}
-  - component: {fileID: 4588165293745131302}
   m_Layer: 9
   m_Name: BookPress_Handle
   m_TagString: Untagged
@@ -88,7 +87,7 @@ MonoBehaviour:
   Parent: {fileID: 4588165293745131298}
   MeshFilter: {fileID: 4588165293745131296}
   MeshRenderer: {fileID: 4588165293745131303}
-  MeshCollider: {fileID: 4588165293745131302}
+  MeshCollider: {fileID: 0}
 --- !u!33 &4588165293745131296
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -139,20 +138,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4588165293745131302
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4588165293745131300}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7049333940111196435, guid: 35985ee9f690d7a43b977d3a7ecdaa86, type: 2}
 --- !u!1 &4588165294588774928
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +150,6 @@ GameObject:
   - component: {fileID: 4588165294588775150}
   - component: {fileID: 4588165294588775149}
   - component: {fileID: 4588165294588775148}
-  - component: {fileID: 4588165294588774931}
   - component: {fileID: 4588165294588774930}
   m_Layer: 9
   m_Name: BookPress_Press
@@ -274,20 +258,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4588165294588774931
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4588165294588774928}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1338519821764998405, guid: a79ead180d8de204f9bb783db5bec3fc, type: 2}
 --- !u!114 &4588165294588774930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +276,7 @@ MonoBehaviour:
   Parent: {fileID: 4588165294588775150}
   MeshFilter: {fileID: 4588165294588775149}
   MeshRenderer: {fileID: 4588165294588775148}
-  MeshCollider: {fileID: 4588165294588774931}
+  MeshCollider: {fileID: 0}
 --- !u!1 &4588165295137240576
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,6 +292,7 @@ GameObject:
   - component: {fileID: 4588165295137240578}
   - component: {fileID: 4588165295137240577}
   - component: {fileID: 4588165295137240607}
+  - component: {fileID: 643288809610542086}
   m_Layer: 9
   m_Name: BookPress
   m_TagString: Untagged
@@ -494,9 +465,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     Colliders:
-    - {fileID: 4588165295137240577}
-    - {fileID: 4588165294588774931}
-    - {fileID: 4588165293745131302}
+    - {fileID: 643288809610542086}
     Renderers:
     - Renderer: {fileID: 4588165295137240578}
       Mesh: {fileID: -5941991386900259545, guid: a33974f1fe254e840a92f3ecf929df9a, type: 2}
@@ -548,3 +517,16 @@ MonoBehaviour:
   DoorName: Book Press
   Speed: 1
   Usable: 0
+--- !u!65 &643288809610542086
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4588165295137240576}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2222224, y: 0.888889, z: 1.2222224}
+  m_Center: {x: 0, y: -0.055555552, z: 0}
