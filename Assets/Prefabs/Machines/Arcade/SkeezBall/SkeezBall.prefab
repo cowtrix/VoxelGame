@@ -5457,7 +5457,6 @@ GameObject:
   - component: {fileID: 4090526313994806819}
   - component: {fileID: 4090526313994807004}
   - component: {fileID: 4090526313994807005}
-  - component: {fileID: 4090526313994807006}
   - component: {fileID: 1315608196}
   - component: {fileID: 6518238324029467205}
   m_Layer: 8
@@ -5517,7 +5516,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 5e49869f3b5c5c14a951025572666517, type: 2}
-  m_lastMeshHash: f3973065-1028-454c-a416-7a93c256f75d
+  m_lastMeshHash: 1ab4e9ec-0fd2-404f-ab90-b58f4e8cd418
   Submeshes:
   - {fileID: 4090526313994806817}
 --- !u!114 &4090526313994806817
@@ -5546,7 +5545,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4090526313994807001}
-  m_Mesh: {fileID: -7052113370272439669, guid: 5e49869f3b5c5c14a951025572666517, type: 2}
+  m_Mesh: {fileID: 522498036794266997, guid: 5e49869f3b5c5c14a951025572666517, type: 2}
 --- !u!23 &4090526313994806819
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5603,7 +5602,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -7052113370272439669, guid: 5e49869f3b5c5c14a951025572666517, type: 2}
+  m_Mesh: {fileID: 522498036794266997, guid: 5e49869f3b5c5c14a951025572666517, type: 2}
 --- !u!114 &4090526313994807005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5620,21 +5619,6 @@ MonoBehaviour:
   Red: {r: 0.012515068, g: 0, b: 1, a: 1}
   Green: {r: 1, g: 0.01251483, b: 0, a: 1}
   Blue: {r: 0, g: 1, b: 0.01251483, a: 1}
---- !u!114 &4090526313994807006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4090526313994807001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab18cdad832480f4abe28a4df37b9095, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Seed: -1437775497
-  Colors:
-    BaseColor: {r: 0.012515068, g: 0, b: 1, a: 1}
 --- !u!114 &1315608196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5670,7 +5654,7 @@ MonoBehaviour:
     - {fileID: 6518238324029467205}
     Renderers:
     - Renderer: {fileID: 4090526313994806819}
-      Mesh: {fileID: -7052113370272439669, guid: 5e49869f3b5c5c14a951025572666517, type: 2}
+      Mesh: {fileID: 522498036794266997, guid: 5e49869f3b5c5c14a951025572666517, type: 2}
     MaxFocusDistance: 5
     MaxUseDistance: 2
   CameraRotationLimits:

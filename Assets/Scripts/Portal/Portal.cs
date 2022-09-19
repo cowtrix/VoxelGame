@@ -41,6 +41,10 @@ namespace Portals
 
 		private void Update()
 		{
+			if (!Destination)
+			{
+				return;
+			}
 			var playerPosition = m_playerCamera.transform.position;
 			var playerForward = m_playerCamera.transform.forward;
 
@@ -89,6 +93,13 @@ namespace Portals
 			{
 				m_propertyBlock = new MaterialPropertyBlock();
 			}
+
+			if (!Destination)
+			{
+				m_propertyBlock.SetFloat("DistanceFade", 1);
+				return;
+			}
+
 			m_propertyBlock.SetTexture("PortalTexture", Destination.Output);
 			var distanceFloat = FadeCurve.Evaluate(1 - Mathf.Clamp01(Vector3.Distance(m_playerCamera.transform.position, transform.position) / PortalDistance));
 			m_propertyBlock.SetFloat("DistanceFade", distanceFloat);

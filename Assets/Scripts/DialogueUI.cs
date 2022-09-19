@@ -246,7 +246,7 @@ namespace Actors
                 }
                 btn.gameObject.SetActive(true);
                 btn.transform.SetParent(optionsGroup.transform, false);
-                btn.GetComponentInChildren<Text>().text = pair.Key.text;
+                btn.GetComponentInChildren<TMP_Text>().text = pair.Key.text;
 
                 btn.onClick.RemoveAllListeners();
                 btn.onClick.AddListener(() => { Finalize(info, pair.Key, pair.Value); });
