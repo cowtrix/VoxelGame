@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3d35a9fbded4e40aa3931ac8a5194a, type: 3}
   m_Name: Glass
   m_EditorClassIdentifier: 
-  Data:
+  Material:
     MaterialMode: 1
-    RenderMode: 1
+    RenderMode: 0
     NormalMode: 0
     Default:
-      Albedo: {r: 1, g: 1, b: 1, a: 0.45490196}
-      Metallic: 0.362
-      Smoothness: 1
-      Texture:
-        Index: 3
       UVMode: 0
-      TextureFade: 0
+      Albedo:
+        colorKeys:
+        - Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 0.1254902}
+          Time: 0
+        alphaKeys:
+        - Alpha: 0.1254902
+          Time: 0
+        mode: 0
+      Metallic: {x: 0, y: 0}
+      Smoothness: {x: 0.8, y: 0.8}
+      TextureFade: {x: 0, y: 0}
     Overrides: []

@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 552600475401853460}
   - component: {fileID: 8982750039670325905}
   - component: {fileID: 6521770450846253141}
-  - component: {fileID: 6941318909677124564}
   - component: {fileID: 8197655069357311987}
   - component: {fileID: 8935034410632115829}
+  - component: {fileID: 1635219655579417762}
+  - component: {fileID: 6374761331648463154}
   m_Layer: 8
   m_Name: Fence_Metal_01
   m_TagString: Untagged
@@ -55,7 +56,7 @@ MonoBehaviour:
   CustomMaterials: 0
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
-  GenerateCollider: 1
+  GenerateCollider: 0
   SnapMode: 1
   SnapLayer: 0
   ThreadingMode: 1
@@ -65,19 +66,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   LODSettings:
-    LODs:
-    - Renderer: {fileID: 3044539667456249321}
-      ScreenTransitionWidth: 0.005
-      MaxLayer: 1
-      MaterialMergeDistance: 0.5
-      FillRequirement: 0
-      Mode: 1
-      Collider: 0
+    LODs: []
     PrimaryScreenTransitionWidth: 0.02
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 6157ed066d8a529419d8d056d36c6ff8, type: 2}
-  m_lastMeshHash: a8d4fe51-af13-4654-8fdb-e5d7125736dc
+  m_lastMeshHash: c7712bc1-82bd-4530-8bae-349f40dadf79
   Submeshes:
   - {fileID: 552600475401853460}
 --- !u!114 &552600475401853460
@@ -98,7 +92,7 @@ MonoBehaviour:
   Parent: {fileID: 3968377528345361111}
   MeshFilter: {fileID: 8982750039670325905}
   MeshRenderer: {fileID: 6521770450846253141}
-  MeshCollider: {fileID: 6941318909677124564}
+  MeshCollider: {fileID: 0}
 --- !u!33 &8982750039670325905
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -149,20 +143,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6941318909677124564
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3080744847134766781}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7167811800553895737, guid: 6157ed066d8a529419d8d056d36c6ff8, type: 2}
 --- !u!205 &8197655069357311987
 LODGroup:
   m_ObjectHideFlags: 0
@@ -171,13 +151,13 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3080744847134766781}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: -0.0000076293945, y: 1.5, z: -0.0000076293945}
+  m_LocalReferencePoint: {x: 0, y: 1.5, z: 0.0000076293945}
   m_Size: 4.0000005
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
+  m_FadeMode: 1
+  m_AnimateCrossFading: 1
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.02
+  - screenRelativeHeight: 0.019588213
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 6521770450846253141}
@@ -200,6 +180,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IncludeChildren: 1
   Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!65 &1635219655579417762
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3080744847134766781}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.33333382, y: 4.0000005, z: 3.0000012}
+  m_Center: {x: 0, y: 1.5, z: 0.0000038146973}
+--- !u!114 &6374761331648463154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3080744847134766781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f41d4bb42ce4c940a7b5800158b4578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Children: []
+  Seed: 1543019746
+  Tints:
+  - Name: {fileID: 8935034410632115829}
+    HueShift: 0
+    SaturationShift: 0
+    ValueShift: 0
+  Hue: {x: 0, y: 0}
+  Saturation: {x: 0, y: 0}
+  Value: {x: 0.8, y: 1}
 --- !u!1 &7474313875407951222
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +281,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: -3408559838834078932, guid: 6157ed066d8a529419d8d056d36c6ff8, type: 2}
-  m_lastMeshHash: 108a397d-f712-4d8e-8a8a-d08954446b35
+  m_lastMeshHash: adeb5a65-732c-4282-a60f-c84d6c693b5b
   Submeshes:
   - {fileID: 6416529195488043397}
 --- !u!114 &6416529195488043397

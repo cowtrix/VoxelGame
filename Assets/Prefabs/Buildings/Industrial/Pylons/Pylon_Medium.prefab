@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5653283122291638283}
   - component: {fileID: 5021592806589913492}
   - component: {fileID: 4509019021874985192}
-  - component: {fileID: 6620761285663025118}
   m_Layer: 8
   m_Name: LOD0
   m_TagString: Untagged
@@ -52,12 +51,19 @@ MonoBehaviour:
   CustomMaterials: 0
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
-  GenerateCollider: 1
-  SnapToGrid: 0
+  GenerateCollider: 0
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: b753f23d85466d34e8e5d2a30dac9120, type: 2}
   m_lastMeshHash: fe91df65-7336-4a8a-bb36-7d69a8671519
@@ -81,7 +87,7 @@ MonoBehaviour:
   Parent: {fileID: 1130006622496583380}
   MeshFilter: {fileID: 5021592806589913492}
   MeshRenderer: {fileID: 4509019021874985192}
-  MeshCollider: {fileID: 6620761285663025118}
+  MeshCollider: {fileID: 0}
 --- !u!33 &5021592806589913492
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -132,20 +138,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6620761285663025118
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 505394407771361777}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8304475386843940378, guid: b753f23d85466d34e8e5d2a30dac9120, type: 2}
 --- !u!1 &2212503345455481201
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +152,7 @@ GameObject:
   - component: {fileID: 8610558431836336588}
   - component: {fileID: 1000123773696878562}
   - component: {fileID: 2837280958749636240}
+  - component: {fileID: 7056035267527804225}
   m_Layer: 8
   m_Name: Pylon_Medium
   m_TagString: Untagged
@@ -200,11 +193,18 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapToGrid: 0
   SnapMode: 1
   SnapLayer: -1
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
+  BatchingEnabled: 1
+  OnMeshRebuilt:
+    m_PersistentCalls:
+      m_Calls: []
+  LODSettings:
+    LODs: []
+    PrimaryScreenTransitionWidth: 0.05
+    GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 55351e807890cac4ba17543f3a12f44a, type: 2}
   m_lastMeshHash: e5bac38d-4d77-4983-86f9-04c137b6aa2f
@@ -289,8 +289,8 @@ LODGroup:
   serializedVersion: 2
   m_LocalReferencePoint: {x: 0, y: 0, z: 0}
   m_Size: 9.000005
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
+  m_FadeMode: 1
+  m_AnimateCrossFading: 1
   m_LastLODIsBillboard: 0
   m_LODs:
   - screenRelativeHeight: 0.04772
@@ -302,3 +302,16 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4509019021874985192}
   m_Enabled: 1
+--- !u!65 &7056035267527804225
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2212503345455481201}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.0000017, y: 9.000002, z: 3.0000012}
+  m_Center: {x: -0.0000076293945, y: 0, z: 0}

@@ -21,6 +21,10 @@ namespace Generation
 		[ContextMenu("Generate")]
 		public void Invalidate()
 		{
+            if (!Line)
+            {
+				gameObject.AddComponent<LineRenderer3D>();
+            }
 			Line.Points = new List<Vector3>(Connectors.SelectMany(c => c.GetWorldspacePoints()).Select(p => transform.worldToLocalMatrix.MultiplyPoint3x4(p)));
 			Line.RebakeMesh();
 		}
