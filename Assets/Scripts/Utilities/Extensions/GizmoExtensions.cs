@@ -82,22 +82,21 @@ public static class GizmoExtensions
 #endif
     }
 
-    public static void DrawCircle(Vector3 origin, float radius, Quaternion rotation, Color color)
+    public static void DrawCircle(Vector3 origin, float radius, Quaternion rotation, Color color, float resolution = 24)
     {
 #if !UNITY_EDITOR
         return;
 #else
-        DrawCircle(origin, radius, rotation, float.MinValue, float.MaxValue, color);
+        DrawCircle(origin, radius, rotation, float.MinValue, float.MaxValue, color, resolution);
 #endif
     }
 
-    public static void DrawCone(Vector3 origin, Vector3 normal, float angle, float distance, Color color)
+    public static void DrawCone(Vector3 origin, Vector3 normal, float angle, float distance, Color color, float resolution = 24)
 	{
         var radius = Mathf.Tan(angle) * distance;
         var rotation = Quaternion.LookRotation(normal);
-        DrawCircle(origin + normal * distance, radius, rotation, color);
+        DrawCircle(origin + normal * distance, radius, rotation, color, resolution: resolution);
         Gizmos.color = color;
-        float resolution = 24;
         for (var i = 0; i <= resolution; ++i)
         {
             float a = (i / resolution) * Mathf.PI * 2;
@@ -110,13 +109,12 @@ public static class GizmoExtensions
         Gizmos.color = Color.white;
     }
 
-    public static void DrawCircle(Vector3 origin, float radius, Quaternion rotation, float startAngle, float endAngle, Color color)
+    public static void DrawCircle(Vector3 origin, float radius, Quaternion rotation, float startAngle, float endAngle, Color color, float resolution = 24)
     {
 #if !UNITY_EDITOR
         return;
 #else
         Gizmos.color = color;
-        float resolution = 24;
         Vector3 lastPoint = Vector3.zero;
         for (var i = 0; i <= resolution; ++i)
         {
