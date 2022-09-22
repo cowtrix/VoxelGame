@@ -8,10 +8,12 @@ namespace Splines
     [Serializable]
     public class Spline
     {
+        public Vector3 Start => Segments.First().FirstControlPoint.Position;
+        public Vector3 End => Segments.Last().SecondControlPoint.Position;
+
         public List<SplineSegment> Segments = new List<SplineSegment>();
-
         public float Length;
-
+        
         public void Recalculate()
         {
             for (int i = 0; i < Segments.Count; i++)

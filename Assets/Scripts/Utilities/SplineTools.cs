@@ -3,7 +3,6 @@ using Voxul.Utilities;
 
 namespace Splines
 {
-
     public static class SplineTools
     {
         public static Bounds GetApproximateBounds(this SplineSegment s)
@@ -35,7 +34,7 @@ namespace Splines
             var rot = s.GetRotation(naturalT);
             up = rot * up;
 
-            return Vector3.Cross(s.GetDeltaOnSpline(naturalT), up);
+            return Vector3.Cross(s.GetDeltaOnSplineSegment(naturalT), up);
         }
 
         public static Quaternion GetRotation(this SplineSegment s, float naturalT)
@@ -48,7 +47,7 @@ namespace Splines
             return Vector3.Lerp(s.FirstControlPoint.UpVector, s.SecondControlPoint.UpVector, naturalT);
         }
 
-        public static Vector3 GetDeltaOnSpline(this SplineSegment s, float naturalT)
+        public static Vector3 GetDeltaOnSplineSegment(this SplineSegment s, float naturalT)
         {
             var p0 = s.FirstControlPoint.Position;
             var p1 = s.FirstControlPoint.Position + s.FirstControlPoint.Control;
@@ -107,7 +106,7 @@ namespace Splines
             return 1;
         }
 
-        public static Vector3 GetNaturalPointOnSpline(this SplineSegment s, float naturalT)
+        public static Vector3 GetNaturalPointOnSplineSegment(this SplineSegment s, float naturalT)
         {
             var p0 = s.FirstControlPoint.Position;
             var p1 = s.FirstControlPoint.Position + s.FirstControlPoint.Control;
@@ -124,7 +123,7 @@ namespace Splines
             return p0 * mt3 + 3 * p1 * mt2 * naturalT + 3 * p2 * mt * t2 + p3 * t3;
         }
 
-        public static Vector3 GetUniformPointOnSpline(this SplineSegment s, float uniformTime)
+        public static Vector3 GetUniformPointOnSplineSegment(this SplineSegment s, float uniformTime)
         {
             var totalDist = s.Length;
 
@@ -178,7 +177,7 @@ namespace Splines
         /// <param name="s"></param>
         /// <param name="worldPosxz"></param>
         /// <returns></returns>
-        public static float GetClosestUniformTimeOnSplineXZ(this SplineSegment s, Vector2 worldPosxz/*, float threshold*/)
+        public static float GetClosestUniformTimeOnSplineSegmentXZ(this SplineSegment s, Vector2 worldPosxz/*, float threshold*/)
         {
             //Profiler.BeginSample("GetClosestUniformTimeOnSplineXZ");
             float bestTime = 0;
@@ -194,45 +193,9 @@ namespace Splines
             }
             //Profiler.EndSample();
             return bestTime;
-
-
-            /*threshold *= s.Length;
-
-			// Basically a binary search along a spline
-			var rangeT = new Vector2(0, 1);
-			while (true)
-			{
-				var midPointT = Mathf.Lerp(rangeT.x, rangeT.y, .5f);
-
-				var minPos = s.GetUniformPointOnSpline(rangeT.x).xz();
-				var midPos = s.GetUniformPointOnSpline(midPointT).xz();
-				var maxPos = s.GetUniformPointOnSpline(rangeT.y).xz();
-
-				var firstDist = (minPos - worldPosxz).magnitude;
-				var midDist = (midPos - worldPosxz).magnitude;
-				var secondDist = (maxPos - worldPosxz).magnitude;
-
-				var firstSegment = firstDist + midDist;
-				var secondSegment = midDist + secondDist;
-
-				// The current candidate is good enough
-				if (Mathf.Abs(firstDist - secondDist) < threshold)
-				{
-					return midPointT;
-				}
-
-				if (firstSegment < secondSegment)
-				{
-					rangeT = new Vector2(rangeT.x, midPointT);
-				}
-				else
-				{
-					rangeT = new Vector2(midPointT, rangeT.y);
-				}
-			}*/
         }
 
-        public static float GetClosestUniformTimeOnSpline(this SplineSegment s, Vector3 worldPos, float threshold)
+        public static float GetClosestUniformTimeOnSplineSegment(this SplineSegment s, Vector3 worldPos, float threshold)
         {
             // Basically a binary search along a spline
             var rangeT = new Vector2(0, 1);
@@ -240,9 +203,9 @@ namespace Splines
             {
                 var midPointT = Mathf.Lerp(rangeT.x, rangeT.y, .5f);
 
-                var minPos = s.GetUniformPointOnSpline(rangeT.x);
-                var midPos = s.GetUniformPointOnSpline(midPointT);
-                var maxPos = s.GetUniformPointOnSpline(rangeT.y);
+                var minPos = s.GetUniformPointOnSplineSegment(rangeT.x);
+                var midPos = s.GetUniformPointOnSplineSegment(midPointT);
+                var maxPos = s.GetUniformPointOnSplineSegment(rangeT.y);
 
                 var firstDist = (minPos - worldPos).magnitude;
                 var midDist = (midPos - worldPos).magnitude;
@@ -268,5 +231,42 @@ namespace Splines
             }
         }
 
+        public static Vector3 GetDistancePointAlongSplineSegment(this SplineSegment s, float distance)
+        {
+            if (distance >= s.Length)
+            {
+                return s.SecondControlPoint.Position;
+            }
+            else if (distance <= 0)
+            {
+                return s.FirstControlPoint.Position;
+            }
+            var t = distance / s.Length;
+            return s.GetUniformPointOnSplineSegment(t);
+        }
+
+        public static Vector3 GetDistancePointAlongSpline(this Spline s, float distance)
+        {
+            if (distance >= s.Length)
+            {
+                return s.End;
+            }
+            else if (distance <= 0)
+            {
+                return s.Start;
+            }
+            var lengthAccum = 0f;
+            foreach (var segment in s.Segments)
+            {
+                if(lengthAccum + segment.Length <= distance)
+                {
+                    lengthAccum += segment.Length;
+                    continue;
+                }
+                var fracLength = distance - lengthAccum;
+                return segment.GetDistancePointAlongSplineSegment(fracLength);
+            }
+            throw new System.Exception("Finding point on spline failed unexpectedly.");
+        }
     }
 }

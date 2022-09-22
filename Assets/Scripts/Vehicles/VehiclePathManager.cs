@@ -8,36 +8,13 @@ namespace Vehicles.AI
 {
     public class VehiclePathManager : Singleton<VehiclePathManager>
     {
-        public static VehiclePathNode GetClosestNode(Vector3 position, Vector3 velocity, out int laneIndex)
-        {
-            foreach(var node in VehiclePathNode.Instances
-                .OrderBy(n => Vector3.Distance(position, n.transform.position)))
-            {
-                var bestLane = node.Lanes.OrderBy(l => 
-                    (Vector3.Angle(velocity.normalized, node.transform.localToWorldMatrix.MultiplyVector(l.Normal.normalized))))
-                    .First();
-                laneIndex = node.Lanes.IndexOf(bestLane);
-                return node;
-                /*for (int i = 0; i < node.Lanes.Count; i++)
-                {
-                    VehiclePathLane lane = node.Lanes[i];
-                    if ( > .5f)
-                    {
-                        laneIndex = i;
-                        return node;
-                    }
-                }*/
-            }
-            laneIndex = -1;
-            return null;
-        }
-
         public float PathResolution = .2f;
 
         private class Node
         {
             public VehiclePathNode Component { get; private set; }
-            public int LaneIndex { get; private set; }
+            public int TargetLaneIndex => Component.Lanes[SourceLaneIndex].TargetLaneIndex;
+            public int SourceLaneIndex { get; private set; }
             public Vector3 Position { get; private set; }
             public Node Parent { get; set; }
             public List<Node> Connections { get; private set; } = new List<Node>();
@@ -47,14 +24,30 @@ namespace Vehicles.AI
             public Node(VehiclePathNode node, int laneIndex)
             {
                 Component = node;
-                LaneIndex = laneIndex;
+                SourceLaneIndex = laneIndex;
                 Position = Component.transform.position + Component.transform.localToWorldMatrix.MultiplyVector(Component.Lanes[laneIndex].Offset);
             }
         }
 
-        public Spline GetPath(Vector3 startingPos, Vector3 startingVel, Vector3 endPos, float laneJoinDistance = 50f)
+        public static VehiclePathNode GetClosestNode(Vector3 position, Vector3 velocity, out int laneIndex)
         {
-            var s = new Spline();
+            foreach (var node in VehiclePathNode.Instances
+                .OrderBy(n => Vector3.Distance(position, n.transform.position)))
+            {
+                var bestLane = node.Lanes.OrderBy(l =>
+                    (Vector3.Angle(velocity.normalized, node.transform.localToWorldMatrix.MultiplyVector(l.Normal.normalized))))
+                    .First();
+                laneIndex = bestLane.Index;
+                return node;
+            }
+            laneIndex = -1;
+            return null;
+        }
+
+        public bool GetPath(Vector3 startingPos, Vector3 startingVel, Vector3 endPos, out Spline s, float laneJoinDistance = float.MaxValue)
+        {
+            s = new Spline();
+            var isValid = true;
             var closestNodeToStart = GetClosestNode(startingPos, startingVel, out var laneIndex);
             var closestNodeToEnd = GetClosestNode(endPos, -startingVel, out _);
 
@@ -82,47 +75,72 @@ namespace Vehicles.AI
                 var closed = new List<Node>();
                 {
                     var n = new Node(closestNodeToStart, laneIndex);
-                    n.DistanceToTarget = Vector3.Distance(n.Position, endPos);
+                    n.DistanceToTarget = Vector3.Distance(n.Position, closestNodeToEnd.transform.position);
                     open.Add(n);
                 }
 
+                Node lastNode = null;
                 while (open.Any())
                 {
                     var next = open.OrderBy(n => n.TotalScore).First();
                     open.Remove(next);
 
-                    if (open.Any(n => n == next && n.TotalScore < next.TotalScore))
-                    {
-                        continue;
-                    }
+                    DebugHelper.DrawCube(next.Position, Vector3.one * 2, Quaternion.identity, Color.blue, 0);
 
                     closed.Add(next);
 
                     if (next.Component == closestNodeToEnd)
                     {
+                        lastNode = next;
                         break;
                     }
 
-                    var lane = next.Component.Lanes[laneIndex];
-                    if (!lane.Node.gameObject.activeInHierarchy || closed.Any(n => n.Component == lane.Node))
+                    var lanes = next.Component.Lanes.Where(l => l.Index == next.SourceLaneIndex);
+                    foreach (var lane in lanes)
                     {
-                        continue;
+                        foreach (var connectingNode in lane.Nodes)
+                        {
+                            if (!connectingNode.gameObject.activeInHierarchy || closed.Any(n => n.Component == connectingNode))
+                            {
+                                continue;
+                            }
+                            var newNode = new Node(connectingNode, lane.TargetLaneIndex) { Parent = next };
+                            newNode.DistanceToTarget = Vector3.Distance(newNode.Position, closestNodeToEnd.transform.position);
+                            if (newNode.Parent != null)
+                            {
+                                newNode.AccumulatedCost = newNode.Parent.AccumulatedCost
+                                    + Vector3.Distance(next.Component.transform.position, newNode.Component.transform.position);
+                            }
+                            next.Connections.Add(newNode);
+
+                            var existingInOpen = open.FirstOrDefault(n => n.Component == newNode.Component);
+                            if (existingInOpen != null && existingInOpen.TotalScore < newNode.TotalScore)
+                            {
+                                continue;
+                            }
+
+                            var existingInClosed = closed.FirstOrDefault(n => n.Component == newNode.Component);
+                            if (existingInClosed != null && existingInClosed.TotalScore < newNode.TotalScore)
+                            {
+                                continue;
+                            }
+
+                            open.Add(newNode);
+                        }
                     }
-                    var newNode = new Node(lane.Node, laneIndex) { Parent = next };
-                    newNode.DistanceToTarget = Vector3.Distance(newNode.Position, endPos);
-                    if (newNode.Parent != null)
-                    {
-                        newNode.AccumulatedCost = newNode.Parent.AccumulatedCost
-                            + Vector3.Distance(next.Component.transform.position, newNode.Component.transform.position);
-                    }
-                    next.Connections.Add(newNode);
-                    open.Add(newNode);
+                    lastNode = next;
                 }
 
-                var path = ReconstructPath(closed.Single(c => c.Parent == null))
+                if(lastNode.Component != closestNodeToEnd)
+                {
+                    isValid = false;
+                }
+
+                var path = ReconstructPath(lastNode)
+                    .Reverse()
                     .ToList();
 
-                VehiclePathNode lastNode = null;
+                Node lastVehicleNode = null;
                 for (int i = 0; i < path.Count; i++)
                 {
                     var n = path[i];
@@ -132,26 +150,26 @@ namespace Vehicles.AI
                         {
                             FirstControlPoint = new SplineSegment.ControlPoint
                             {
-                                Position = lastNode.GetWorldLanePosition(laneIndex),
-                                Control = -lastNode.GetWorldNormal(laneIndex),
+                                Position = lastVehicleNode.Component.GetWorldLanePosition(lastVehicleNode.SourceLaneIndex),
+                                Control = -lastVehicleNode.Component.GetWorldNormal(lastVehicleNode.SourceLaneIndex),
                             },
                             SecondControlPoint = new SplineSegment.ControlPoint
                             {
-                                Position = n.GetWorldLanePosition(laneIndex),
-                                Control = n.GetWorldNormal(laneIndex),
+                                Position = n.Component.GetWorldLanePosition(n.SourceLaneIndex),
+                                Control = n.Component.GetWorldNormal(n.SourceLaneIndex),
                             },
                             Resolution = PathResolution,
                         });
                     }
-                    lastNode = n;
+                    lastVehicleNode = n;
                 }
 
                 s.Segments.Add(new SplineSegment
                 {
                     FirstControlPoint = new SplineSegment.ControlPoint
                     {
-                        Position = lastNode.GetWorldLanePosition(laneIndex),
-                        Control = -lastNode.GetWorldNormal(laneIndex),
+                        Position = lastVehicleNode.Component.GetWorldLanePosition(lastVehicleNode.SourceLaneIndex),
+                        Control = -lastVehicleNode.Component.GetWorldNormal(lastVehicleNode.SourceLaneIndex),
                     },
                     SecondControlPoint = new SplineSegment.ControlPoint
                     {
@@ -178,20 +196,19 @@ namespace Vehicles.AI
             }
 
             s.Recalculate();
-            return s;
+            return isValid;
         }
 
-        private static IEnumerable<VehiclePathNode> ReconstructPath(Node node)
+        private static IEnumerable<Node> ReconstructPath(Node node)
         {
-            yield return node.Component;
-            if (node.Connections == null || !node.Connections.Any())
+            yield return node;
+            if(node.Parent == null)
             {
                 yield break;
             }
-            var bestConnection = node.Connections.OrderBy(c => c.TotalScore).First();
-            foreach (var children in ReconstructPath(bestConnection))
+            foreach(var child in ReconstructPath(node.Parent))
             {
-                yield return children;
+                yield return child;
             }
         }
     }

@@ -47,7 +47,7 @@ namespace Interaction
                 for (var i = 0; i < LineResolution; ++i)
                 {
                     var t = ticketAmount - (i / (float)(LineResolution - 1)) * ticketAmount;
-                    var p = transform.localToWorldMatrix.MultiplyPoint3x4(Spline.GetUniformPointOnSpline(t));
+                    var p = transform.localToWorldMatrix.MultiplyPoint3x4(Spline.GetUniformPointOnSplineSegment(t));
                     p = line.transform.worldToLocalMatrix.MultiplyPoint3x4(p);
                     line.SetPosition(i, p);
                 }

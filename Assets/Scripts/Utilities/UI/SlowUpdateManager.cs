@@ -60,7 +60,8 @@ namespace Common
 						try
 						{
 							var newList = data
-								.OrderBy(d => d.Item2.Priority)
+								.OrderByDescending(d => d.Item2.Priority)
+								.ThenBy(d => d.Item2.UpdateCount)
 								.ThenBy(d => d.Item1)
 								.Reverse()
 								.Select(d => d.Item2)
@@ -88,6 +89,11 @@ namespace Common
 				}
 			}
 		}
+
+		public void DeRegister(SlowUpdater slowUpdater)
+        {
+			m_instances.Remove(slowUpdater);
+        }
 
 		private IEnumerator ThinkAll()
 		{

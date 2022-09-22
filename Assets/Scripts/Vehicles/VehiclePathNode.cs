@@ -4,18 +4,41 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
+using Voxul.Utilities;
 
 namespace Vehicles.AI
 {
     [Serializable]
     public class VehiclePathLane
     {
+        public int Index;
         public Vector3 Offset;
         public bool ReverseDirection;
-        public VehiclePathNode Node;
+        public List<VehiclePathNode> Nodes = new List<VehiclePathNode>();
         public int TargetLaneIndex;
         public Vector3 Normal => Vector3.forward * (ReverseDirection ? 1 : -1);
+    }
+
+    public class ConnectorWizard : ScriptableWizard
+    {
+        public VehiclePathNode Target;
+        public VehiclePathNode Source => Selection.activeGameObject.GetComponent<VehiclePathNode>();
+
+        [MenuItem("Tools/Vehicle Path Connector")]
+        static void CreateWizard()
+        {
+            DisplayWizard<ConnectorWizard>("Create Light", "Connect");
+        }
+
+        void OnWizardCreate()
+        {
+            Source.Lanes[1].Nodes.Add(Target);
+            Target.Lanes[0].Nodes.Add(Source);
+            Source.TrySetDirty();
+            Target.TrySetDirty();
+        }
     }
 
     public class VehiclePathNode : TrackedObject<VehiclePathNode>
@@ -24,7 +47,6 @@ namespace Vehicles.AI
 
         public float Curve = 1;
         public float Radius = 1;
-        public float LaneSnapDistance = 100;
 
         public Vector3 GetWorldLanePosition(int laneIndex)
         {
@@ -42,29 +64,38 @@ namespace Vehicles.AI
             for (int i = 0; i < Lanes.Count; i++)
             {
                 VehiclePathLane lane = Lanes[i];
-                GizmoExtensions.DrawCircle(lane.Offset, Radius, Quaternion.identity, Color.white);
-                GizmoExtensions.DrawCone(lane.Offset, lane.Normal, Mathf.Deg2Rad * 30f, 3, Color.white, 4);
-                if (lane.Node)
+                GizmoExtensions.DrawCircle(lane.Offset, Radius, Quaternion.identity, lane.Nodes.Any() ? Color.white : Color.red, 10);
+                UnityEngine.Random.InitState(lane.Index);
+                GizmoExtensions.DrawCone(lane.Offset, lane.Normal, Mathf.Deg2Rad * 30f, 3, UnityEngine.Random.ColorHSV(), 4);
+                foreach (var n in lane.Nodes)
                 {
-                    var connectedLane = lane.Node.Lanes[lane.TargetLaneIndex];
-                    var seg = new SplineSegment
+                    var connectedLanes = n.Lanes.Where(l => l.Index == lane.TargetLaneIndex);
+                    foreach(var connectedLane in connectedLanes)
                     {
-                        FirstControlPoint = new SplineSegment.ControlPoint
+                        if (!n.gameObject.activeInHierarchy)
                         {
-                            Position = lane.Offset,
-                            Control = -lane.Normal * Curve,
-                        },
-                        SecondControlPoint = new SplineSegment.ControlPoint
+                            continue;
+                        }
+                        var seg = new SplineSegment
                         {
-                            Position = transform.worldToLocalMatrix.MultiplyPoint3x4(lane.Node.transform.localToWorldMatrix.MultiplyPoint3x4(connectedLane.Offset)),
-                            Control = transform.worldToLocalMatrix.MultiplyVector(lane.Node.transform.localToWorldMatrix.MultiplyVector(connectedLane.Normal))
-                        },
-                        Resolution = .3f
-                    };
-                    seg.Recalculate();
-                    seg.DrawGizmos(Color.white);
+                            FirstControlPoint = new SplineSegment.ControlPoint
+                            {
+                                Position = lane.Offset,
+                                Control = -lane.Normal * Curve,
+                            },
+                            SecondControlPoint = new SplineSegment.ControlPoint
+                            {
+                                Position = transform.worldToLocalMatrix.MultiplyPoint3x4(n.transform.localToWorldMatrix.MultiplyPoint3x4(connectedLane.Offset)),
+                                Control = transform.worldToLocalMatrix.MultiplyVector(n.transform.localToWorldMatrix.MultiplyVector(connectedLane.Normal)) * n.Curve
+                            },
+                            Resolution = .1f
+                        };
+                        seg.Recalculate();
+                        UnityEngine.Random.InitState(connectedLane.Index);
+                        seg.DrawGizmos(Util.WithAlpha(UnityEngine.Random.ColorHSV(), .25f));
+                    }
                 }
-                Gizmos.DrawLine(lane.Offset, lane.Offset + lane.Normal * Curve);
+                //Gizmos.DrawLine(lane.Offset, lane.Offset + lane.Normal * Curve);
             }
         }
     }

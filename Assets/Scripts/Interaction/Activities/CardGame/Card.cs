@@ -101,7 +101,7 @@ namespace Interaction.Activities.CardGame_Babo
 			}
 
 			m_splineTime = Mathf.Clamp01(m_splineTime + Time.deltaTime * MoveSpeed);
-			transform.localPosition = m_moveSpline.GetNaturalPointOnSpline(m_splineTime);
+			transform.localPosition = m_moveSpline.GetNaturalPointOnSplineSegment(m_splineTime);
 			transform.localRotation = Quaternion.Lerp(transform.localRotation, TargetRotation, Time.deltaTime * RotationSpeed);
 
 			ActivatedContainer.SetActive(Activated && Interactable.enabled);

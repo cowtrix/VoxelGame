@@ -14,7 +14,8 @@ public class DependentLevels : ExtendedMonoBehaviour
     {
         foreach (var s in Levels)
         {
-            UnityEditor.SceneManagement.EditorSceneManager.OpenScene(s, UnityEditor.SceneManagement.OpenSceneMode.Additive);
+            if(UnityEditor.SceneManagement.EditorSceneManager.GetSceneByPath(s.ScenePath) == null)
+                UnityEditor.SceneManagement.EditorSceneManager.OpenScene(s, UnityEditor.SceneManagement.OpenSceneMode.Additive);
         }
     }
 #endif
@@ -23,7 +24,9 @@ public class DependentLevels : ExtendedMonoBehaviour
     {
         foreach (var s in Levels)
         {
-            SceneManager.LoadScene(s, LoadSceneMode.Additive);
+            var loadedScene = SceneManager.GetSceneByPath(s.ScenePath);
+            if (loadedScene == null && !loadedScene.isLoaded)
+                SceneManager.LoadScene(s, LoadSceneMode.Additive);
         }
     }
 }

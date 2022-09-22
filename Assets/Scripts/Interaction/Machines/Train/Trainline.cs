@@ -58,7 +58,7 @@ public class Trainline : ExtendedMonoBehaviour
 			if(currentDistance + n.Length >= targetDistance)
 			{
 				var adjustedTime = (targetDistance - currentDistance) / n.Length;
-				var position = n.GetUniformPointOnSpline(adjustedTime);
+				var position = n.GetUniformPointOnSplineSegment(adjustedTime);
 				return position;
 			}	
 			currentDistance += n.Length;
@@ -78,7 +78,7 @@ public class Trainline : ExtendedMonoBehaviour
 		{
 			for(var i = 0f; i < 1; i += .2f)
 			{
-				var p = s.GetNaturalPointOnSpline(i);
+				var p = s.GetNaturalPointOnSplineSegment(i);
 				Gizmos.DrawLine(lastPoint, p);
 				lastPoint = p;
 			}

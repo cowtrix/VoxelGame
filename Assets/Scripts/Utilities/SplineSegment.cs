@@ -81,7 +81,7 @@ namespace Splines
 
             while (t < 1)
             {
-                var point = this.GetNaturalPointOnSpline(t);
+                var point = this.GetNaturalPointOnSplineSegment(t);
                 accumLength += (lastPoint - point).magnitude;
 
                 Points.Add(new SplinePoint(point, t, accumLength));
