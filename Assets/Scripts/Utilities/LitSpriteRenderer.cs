@@ -10,10 +10,11 @@ public class LitSpriteRenderer : ExtendedMonoBehaviour
     
     public Sprite Sprite;
     public Material Material;
-    [ColorUsage(false, true)]
+    [ColorUsage(true, true)]
     public Color Color = Color.white;
     public MeshRenderer MeshRenderer;
     public MeshFilter MeshFilter;
+    public bool Transparent;
 
     private MaterialPropertyBlock m_propertyBlock;
 
@@ -56,7 +57,7 @@ public class LitSpriteRenderer : ExtendedMonoBehaviour
         {
             return Material;
         }
-        return Resources.Load<Material>("SpriteLitMaterial");
+        return Transparent ? Resources.Load<Material>("SpriteLitMaterial_Transparent") : Resources.Load<Material>("SpriteLitMaterial");
     }
 
     [ContextMenu("Invalidate")]

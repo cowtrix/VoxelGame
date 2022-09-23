@@ -110,7 +110,7 @@
     <Compile Include="Assets\Scripts\Utilities\Maths\Geometry2D.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\TextHighlight.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\PlayerMovementController.cs" />
-    <Compile Include="Assets\Scripts\Utilities\SplineSegment.cs" />
+    <Compile Include="Assets\Lib\zSplines\SplineSegment.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorVector3ISX.cs" />
     <Compile Include="Assets\Scripts\Actors\NPC\NPCInteractable.cs" />
     <Compile Include="Assets\Scripts\Utilities\Maths\RotationalBounds.cs" />
@@ -214,7 +214,7 @@
     <Compile Include="Assets\Scripts\Utilities\Extensions\HandleExtensions.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Tests\LegacyInputManager\Scripts\ImageRedIfMultiTouchEnabled.cs" />
     <Compile Include="Assets\Scripts\Actors\DialogueManager.cs" />
-    <Compile Include="Assets\Scripts\Utilities\SplineTools.cs" />
+    <Compile Include="Assets\Lib\zSplines\SplineTools.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorQuaternionISX.cs" />
     <Compile Include="Assets\Scripts\Actors\ActorEventData.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extensions\ArrayExtensions.cs" />
@@ -260,6 +260,7 @@
     <Compile Include="Assets\Scripts\Interaction\Machines\Forge\ConveyorLift.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorFloatISX.cs" />
     <Compile Include="Assets\Scripts\DestroyableVoxel.cs" />
+    <Compile Include="Assets\Scripts\Vehicles\VehiclePathTester.cs" />
     <Compile Include="Assets\Scripts\Actors\StateMinMaxAttribute.cs" />
     <Compile Include="Assets\Scripts\Actors\NPC\LookTester.cs" />
     <Compile Include="Assets\Scripts\Vehicles\FlyingVehicleAIManager.cs" />
@@ -287,6 +288,7 @@
     <Compile Include="Assets\Scripts\Utilities\ColliderFoley.cs" />
     <Compile Include="Assets\Vectrosity\Plugins\Scripts\VectorUtilities.cs" />
     <Compile Include="Assets\Scripts\Generator\MeshAttachmentConfiguration.cs" />
+    <Compile Include="Assets\Scripts\Generator\Spawners\ObjectBin.cs" />
     <Compile Include="Assets\Scripts\Actors\Player\Controllers\Phone\Camera\PhoneAppCamera.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Scripts\Drawing\PointerInput.cs" />
     <Compile Include="Assets\Scripts\Generator\DynamicGeneratorColorTintNode.cs" />
@@ -318,7 +320,7 @@
     <Compile Include="Assets\Scripts\Utilities\Extensions\VectorExtensions.cs" />
     <Compile Include="Assets\Scripts\Interaction\InteractionForwarder.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\ProcessorISX.cs" />
-    <Compile Include="Assets\Scripts\Utilities\Spline.cs" />
+    <Compile Include="Assets\Lib\zSplines\Spline.cs" />
     <Compile Include="Assets\Lib\InputSystem\Assets\QA\Input_Test\LegacyIMETest.cs" />
     <Compile Include="Assets\Scripts\Animation\EventPulse.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\DualShockISX.cs" />
@@ -340,8 +342,8 @@
     <Compile Include="Assets\Scripts\Interaction\Label.cs" />
     <Compile Include="Assets\Scripts\Utilities\Maths\Triangle.cs" />
     <Compile Include="Assets\Scripts\Utilities\ObjectArranger.cs" />
+    <Compile Include="Assets\Scripts\Generator\Spawners\ObjectSpawner.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\EventsystemPicker.cs" />
-    <Compile Include="Assets\Scripts\Interaction\Machines\ItemContainer.cs" />
     <Compile Include="Assets\Scripts\Utilities\TextScroller.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\Train\TrainController.cs" />
     <Compile Include="Assets\Scripts\Interaction\Machines\Train\RailTower.cs" />
@@ -387,9 +389,8 @@
     <Compile Include="Assets\Scripts\Gravity\GravityRigidbody.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\TouchSamples\Assets\Demo\Scripts\Drawing\DrawingLine.cs" />
     <Compile Include="Assets\Lib\InputSystem\ExternalSampleProjects\InputDeviceTester\Assets\InputDeviceTester\Scripts\Input\TouchISX.cs" />
-    <Compile Include="Assets\Scripts\Generator\Spawners\ObjectSpawner.cs" />
-    <Compile Include="Assets\Scripts\Generator\Spawners\ObjectBin.cs" />
-    <Compile Include="Assets\Scripts\Vehicles\VehiclePathTester.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\ItemBin.cs" />
+    <Compile Include="Assets\Scripts\Interaction\Machines\Letterbox.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Lib\InputSystem\Tools\CodeAnalyzerTestProject\README.txt" />

@@ -1,6 +1,6 @@
 ﻿using Common;
 using Generation.Spawning;
-using Splines;
+using vSplines;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,16 +14,20 @@ namespace Vehicles.AI
     {
         public List<Collider> Colliders { get; private set; }
         public Vector3 CurrentTargetPosition { get; private set; }
+        public Vector3 CurrentTargetLookPosition { get; private set; }
         public float CurrentTargetDistance { get; private set; }
+        public float CurrentSpeed { get; private set; }
         public Spline CurrentPath { get; private set; }
         public eState CurrentState { get; private set; }
         public bool BlockedByObstacle { get; private set; }
+        public Rigidbody Rigidbody => GetComponent<Rigidbody>();
 
         public UnityEvent OnReachDestination;
         public LayerMask CollisionCheckMask;
         public Bounds CollisionBounds;
-        public float Speed = 10;
-        public float TurnSpeed = 1;
+        public float MaxSpeed = 10;
+        public float Thrust = 1;
+        public float TurnSpeed = 30;
 
 
         public enum eState
@@ -41,7 +45,7 @@ namespace Vehicles.AI
             if (CurrentState == eState.WANDER_TRANSIENT && CurrentPath == null)
             {
                 var targetBin = GetDistantBin();
-                if (!VehiclePathManager.Instance.GetPath(transform.position, (transform.position - targetBin.transform.position).normalized * Speed, targetBin.transform.position, out var newPath))
+                if (!VehiclePathManager.Instance.GetPath(transform.position, (transform.position - targetBin.transform.position).normalized * MaxSpeed, targetBin.transform.position, out var newPath))
                 {
                     return 2;
                 }
@@ -51,29 +55,31 @@ namespace Vehicles.AI
                 OnReachDestination.AddListener(OnReachDestination_WanderTransient);
                 return 2;
             }
-            var colliders = Physics.OverlapBox(transform.localToWorldMatrix.MultiplyPoint3x4(CollisionBounds.center + Vector3.forward * CollisionBounds.size.z), CollisionBounds.extents, transform.rotation, CollisionCheckMask);
+            
+            var colliders = Physics.OverlapBox(CurrentTargetLookPosition, CollisionBounds.extents, transform.rotation, CollisionCheckMask);
             BlockedByObstacle = colliders.Any(c => !Colliders.Contains(c));
-            return 0;
+            return 1;
         }
 
         private void Update()
         {
-            if (CurrentPath == null)
-            {
-                Tick(0);
-                return;
-            }
             if (CurrentPath != null && Vector3.Distance(transform.position, CurrentTargetPosition) < .1f)
             {
                 CurrentTargetDistance += 1;
                 CurrentTargetPosition = CurrentPath.GetDistancePointAlongSpline(CurrentTargetDistance);
+                CurrentTargetLookPosition = CurrentPath.GetDistancePointAlongSpline(CurrentTargetDistance + CollisionBounds.size.z);
             }
-            if (!BlockedByObstacle)
+            if (BlockedByObstacle)
             {
-                transform.position = Vector3.MoveTowards(transform.position, CurrentTargetPosition, Speed * Time.deltaTime);
+                CurrentSpeed = Mathf.Clamp(CurrentSpeed - Thrust * Time.deltaTime, 0, MaxSpeed);
             }
-            transform.RotateTowardsPosition(CurrentPath.GetDistancePointAlongSpline(CurrentTargetDistance + 1), TurnSpeed * Time.deltaTime, Quaternion.identity);
-            if (CurrentTargetDistance > CurrentPath.Length)
+            else
+            {
+                CurrentSpeed = Mathf.Clamp(CurrentSpeed + Thrust * Time.deltaTime, 0, MaxSpeed);
+            }
+            Rigidbody.position = Vector3.MoveTowards(Rigidbody.position, CurrentTargetPosition, CurrentSpeed * Time.deltaTime);
+            Rigidbody.RotateTowardsPosition(CurrentTargetLookPosition, TurnSpeed * Time.deltaTime, Quaternion.identity);
+            if (CurrentPath != null && CurrentTargetDistance > CurrentPath.Length)
             {
                 OnReachDestination.Invoke();
                 CurrentPath = null;
@@ -82,7 +88,9 @@ namespace Vehicles.AI
 
         public ObjectBin GetDistantBin()
         {
-            return ObjectBin.Instances.OrderBy(b => Vector3.Distance(b.transform.position, transform.position)).Last();
+            return ObjectBin.Instances
+                .Where(b => b.BinType == ObjectBin.eBinType.VEHICLE)
+                .OrderBy(b => Vector3.Distance(b.transform.position, transform.position)).Last();
         }
 
         public void OnReachDestination_WanderTransient()

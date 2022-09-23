@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using vSplines;
 
 namespace Vehicles.AI
 {
@@ -8,11 +9,27 @@ namespace Vehicles.AI
 
         private void OnDrawGizmos()
         {
-            var validPath = VehiclePathManager.Instance.GetPath(transform.position, (transform.position - Target.position).normalized, Target.position, out var path);
-            if (path != null)
+            var spline = new Spline();
+            spline.Segments.Add(new SplineSegment // We add a new segment
             {
-                path.DrawGizmos(validPath ? Color.white : Color.red);
-            }
+                FirstControlPoint = new SplineSegment.ControlPoint
+                {
+                    Position = new Vector3(-10, 0, -10),
+                    Control = new Vector3(10, 0, 0),      // Determines the normal of the spline point
+                },
+                SecondControlPoint = new SplineSegment.ControlPoint
+                {
+                    Position = new Vector3(10, 0, 10),
+                    Control = new Vector3(0, 0, -10),
+                },
+                Resolution = .25f,  // Determines how many points are calculated on the spline path
+            });
+            spline.Recalculate();
+            spline.DrawGizmos(Color.white);
+
+            var distance = 4.5f;
+            var point = spline.GetDistancePointAlongSpline(distance);
+            Gizmos.DrawCube(point, Vector3.one);
         }
     }
 }

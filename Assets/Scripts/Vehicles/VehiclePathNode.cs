@@ -1,5 +1,5 @@
 using Common;
-using Splines;
+using vSplines;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,7 +58,7 @@ namespace Vehicles.AI
             return transform.localToWorldMatrix.MultiplyVector(Lanes[laneIndex].Normal) * Curve;
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             Gizmos.matrix = transform.localToWorldMatrix;
             for (int i = 0; i < Lanes.Count; i++)

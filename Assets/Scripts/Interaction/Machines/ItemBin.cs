@@ -5,26 +5,29 @@ using UnityEngine;
 
 namespace Interaction.Items
 {
-    public class ItemContainer : Interactable
+    public class ItemBin : Interactable
     {
         public override string DisplayName => Name;
-
+        public string ItemFilter;
+        public string Verb = "Dispose of";
         public string Name = "Untitled Container";
 
         public override IEnumerable<ActorAction> GetActions(Actor context)
         {
             var equippedItem = context.State.EquippedItem;
-            if (equippedItem == null)
+            if (equippedItem == null || (!string.IsNullOrEmpty(ItemFilter) && !equippedItem.Item.DisplayName.StartsWith(ItemFilter)))
             {
                 yield break;
             }
-            yield return new ActorAction(eActionKey.USE, $"Dispose of {equippedItem.Item.DisplayName}", gameObject);
+            yield return new ActorAction(eActionKey.USE, $"{Verb} {equippedItem.Item.DisplayName}", gameObject);
         }
 
         public override void ReceiveAction(Actor actor, ActorAction action)
         {
             var equippedItem = actor.State.EquippedItem;
-            if (equippedItem != null && action.Key == eActionKey.USE && action.State == eActionState.End)
+            if (equippedItem != null && 
+                (string.IsNullOrEmpty(ItemFilter) || equippedItem.Item.DisplayName.StartsWith(ItemFilter)) && 
+                action.Key == eActionKey.USE && action.State == eActionState.End)
             {
                 actor.State.DropItem(equippedItem.Item);
                 equippedItem.OnPickup(null);
