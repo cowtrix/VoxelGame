@@ -976,13 +976,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: a753fe10-7248-4aa2-b107-398f62e02893
   ThinkSpeed: 1
+  Priority: 0
   EquippedItemTransform: {fileID: 0}
   DialogueContainer: {fileID: 7698145190196496847}
   InteractionMask:
     serializedVersion: 2
     m_Bits: 0
   ActorName: Ootlo
-  Interactable: {fileID: 1117291566383468717}
 --- !u!114 &6226258804639153224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1901,6 +1901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_guid: f8d35922-4a20-4e1d-9af2-ee12592ed1bf
   ThinkSpeed: 1
+  Priority: 0
   InteractionSettings:
     OnFocusEnter:
       m_PersistentCalls:
@@ -1929,10 +1930,11 @@ MonoBehaviour:
     OnExitAttention:
       m_PersistentCalls:
         m_Calls: []
+    Colliders:
+    - {fileID: 2163148437574488495}
+    Renderers: []
     MaxFocusDistance: 10
     MaxUseDistance: 5
-  Colliders:
-  - {fileID: 2163148437574488495}
   CameraRotationLimits:
     X: {x: 0, y: 0}
     Y: {x: 0, y: 0}
@@ -1946,6 +1948,7 @@ MonoBehaviour:
   OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+  PassThroughInteraction: 0
   Self: {fileID: 6226258804639153225}
 --- !u!82 &3252658111576782625
 AudioSource:

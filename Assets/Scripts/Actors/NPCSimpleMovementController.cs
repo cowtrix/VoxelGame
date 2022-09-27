@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using Voxul;
-
+using Voxul.Utilities;
 
 namespace Actors
 {
@@ -15,9 +15,14 @@ namespace Actors
         public Vector3 CurrentGravity => GravityManager.Instance.GetGravityForce(transform.position);
         public Vector3 MoveDirection { get; set; }
         public bool IsGrounded => Navmesh.isOnNavMesh;
+        public Vector3 LookPosition => transform.position + (Navmesh.velocity.sqrMagnitude > 0 ? Navmesh.velocity.normalized : transform.forward);
 
+        public Vector3 ExtraRotation;
+        public float TurnSpeed = 30;
         public float AnimationExpressiveness = 1;
         public NavMeshQueryFilter NavmeshFilter;
+
+        private Quaternion m_lastRotation;
         private NavMeshPath m_currentPath;
 
         private SmoothPositionVector3 m_smoothPosition;
@@ -25,10 +30,12 @@ namespace Actors
         private void Start()
         {
             m_smoothPosition = new SmoothPositionVector3(10, transform.position);
+            Navmesh.updateRotation = false;
         }
 
         private void Update()
         {
+            Navmesh.updateRotation = false;
             if (Actor.Animator)
             {
                 var localVelocity = transform.worldToLocalMatrix.MultiplyVector(transform.position - m_smoothPosition.SmoothPosition) * AnimationExpressiveness;
@@ -38,6 +45,19 @@ namespace Actors
                 Actor.Animator.SetFloat("VelocityZ", localVelocity.x);
             }
             m_smoothPosition.Push(transform.position);
+        }
+
+        private void LateUpdate()
+        {
+            if (Navmesh.path != null && Navmesh.velocity.magnitude > 0)
+            {
+                transform.rotation = m_lastRotation.RotateTowardsPosition(transform.position, LookPosition, TurnSpeed * Mathf.Deg2Rad * Time.deltaTime, Quaternion.Euler(ExtraRotation));
+                m_lastRotation = transform.rotation;
+            }
+            else
+            {
+                transform.rotation = m_lastRotation;
+            }
         }
 
         public void MoveToPosition(Vector3 worldPos)
@@ -61,12 +81,13 @@ namespace Actors
 
         private void OnDrawGizmosSelected()
         {
-            if(Navmesh.path != null)
+            if (Navmesh.path != null)
             {
                 for (int i = 0; i < Navmesh.path.corners.Length - 1; i++)
                 {
                     Gizmos.DrawLine(Navmesh.path.corners[i], Navmesh.path.corners[i + 1]);
                 }
+                Gizmos.DrawWireCube(LookPosition, Vector3.one * .2f);
             }
         }
     }

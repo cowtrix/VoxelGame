@@ -127,6 +127,35 @@ namespace Common
 			}
 		}
 
+		[MenuItem("GameObject/Group %g")]
+		public static void GroupSelection()
+        {
+			Vector3 avgPos = default;
+            for (int i = 0; i < Selection.gameObjects.Length; i++)
+            {
+                var target = Selection.gameObjects[i];
+				if(i == 0)
+                {
+					avgPos = target.transform.position;
+                }
+                else
+                {
+					avgPos += target.transform.position;
+				}
+            }
+			avgPos /= (float)Selection.gameObjects.Length;
+			var newParent = new GameObject("New Group");
+			newParent.transform.position = avgPos;
+			var inheritor = Selection.gameObjects[0];
+			newParent.transform.SetParent(inheritor.transform.parent);
+			newParent.layer = inheritor.layer;
+			newParent.isStatic = inheritor.isStatic;
+			foreach(var target in Selection.gameObjects)
+            {
+				target.transform.SetParent(newParent.transform);
+            }
+        }
+
 		public static void DrawArrow(Vector3 start, Vector3 end, Color color, float size)
 		{
 			Gizmos.color = color;
@@ -229,7 +258,6 @@ namespace Common
 			GUILayout.Box(GUIContent.none, _seperator, GUILayout.Height(1), GUILayout.ExpandWidth(true));
 			EditorGUILayout.EndHorizontal();
 		}
-
 
 		public static object GetParent(this SerializedProperty prop)
 		{

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Voxul;
+using vSplines;
 
 public class RailTower : ExtendedMonoBehaviour
 {
@@ -14,6 +15,9 @@ public class RailTower : ExtendedMonoBehaviour
 	public float Curviness = 1;
     public BezierConnectorLineRenderer LeftOut, RightOut;
     public Transform LeftIn, RightIn;
+    public float Distance;
+	public Trainline TrainLine;
+	public float StopOffset;
 
     [ContextMenu("Invalidate")]
     public void Invalidate()
@@ -40,8 +44,20 @@ public class RailTower : ExtendedMonoBehaviour
 		RightOut.Invalidate();
 	}
 
-	public Vector3 GetRailPosition()
+	public Vector3 GetLeftRailPosition()
 	{
-		return transform.position + transform.localToWorldMatrix.MultiplyVector(Offset);
+		return (LeftIn.position + RightIn.position) / 2f;
+	}
+
+	public Vector3 GetRightRailPosition()
+	{
+		return (LeftOut.transform.position + RightOut.transform.position) / 2f;
+	}
+
+    private void OnDrawGizmosSelected()
+    {
+		//Gizmos.DrawWireCube(GetLeftRailPosition(), Vector3.one);
+		//Gizmos.DrawWireCube(GetRightRailPosition(), Vector3.one);
+		Gizmos.DrawWireCube(TrainLine.Track.GetDistancePointAlongSpline(Distance), Vector3.one);
 	}
 }

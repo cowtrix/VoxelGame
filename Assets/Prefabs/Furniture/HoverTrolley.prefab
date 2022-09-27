@@ -9641,6 +9641,7 @@ GameObject:
   - component: {fileID: 3203048210802143639}
   - component: {fileID: 2877520850642699477}
   - component: {fileID: 5610090098822443100}
+  - component: {fileID: 1201308229468699991}
   m_Layer: 0
   m_Name: HoverTrolley
   m_TagString: Untagged
@@ -9826,4 +9827,21 @@ MonoBehaviour:
   ThinkSpeed: 1
   Priority: 0
   MaxUpdateDistance: 1000
+  SleepOnStart: 0
   GravityMultiplier: 1
+--- !u!208 &1201308229468699991
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6223403519974966851}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.6110001, y: 0.611, z: 0.83300006}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.11100001, y: 0.44400004, z: 0}
+  m_TimeToStationary: 0.5
