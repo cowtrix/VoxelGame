@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interaction;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class TrainController : ExtendedMonoBehaviour
     public Vector3 Rotation;
     public Vector2 Buffer;
     public float Offset = 1;
-
+    public Door Door;
     public List<TrainController> Carriages;
     public float Space = .1f;
 
@@ -63,9 +64,31 @@ public class TrainController : ExtendedMonoBehaviour
                 if (nextStop.StopTime > 0)
                 {
                     Debug.Log($"Stopping at station {nextStop} for {nextStop.StopTime}s", nextStop);
+                    SetDoorsOpen(true);
                     yield return new WaitForSeconds(nextStop.StopTime);
+                    SetDoorsOpen(false);
                 }
                 nextStopIndex += CurrentDirection;
+            }
+        }
+    }
+
+    public void SetDoorsOpen(bool open)
+    {
+        if (open)
+        {
+            Door.Open();
+            foreach(var carriage in Carriages)
+            {
+                carriage.Door.Open();
+            }
+        }
+        else
+        {
+            Door.Close();
+            foreach (var carriage in Carriages)
+            {
+                carriage.Door.Close();
             }
         }
     }

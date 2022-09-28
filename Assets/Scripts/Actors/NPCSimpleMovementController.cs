@@ -30,12 +30,12 @@ namespace Actors
         private void Start()
         {
             m_smoothPosition = new SmoothPositionVector3(10, transform.position);
-            Navmesh.updateRotation = false;
+            //Navmesh.updateRotation = false;
         }
 
         private void Update()
         {
-            Navmesh.updateRotation = false;
+            //Navmesh.updateRotation = false;
             if (Actor.Animator)
             {
                 var localVelocity = transform.worldToLocalMatrix.MultiplyVector(transform.position - m_smoothPosition.SmoothPosition) * AnimationExpressiveness;
@@ -49,7 +49,7 @@ namespace Actors
 
         private void LateUpdate()
         {
-            if (Navmesh.path != null && Navmesh.velocity.magnitude > 0)
+            /*if (Navmesh.path != null && Navmesh.velocity.magnitude > 0)
             {
                 transform.rotation = m_lastRotation.RotateTowardsPosition(transform.position, LookPosition, TurnSpeed * Mathf.Deg2Rad * Time.deltaTime, Quaternion.Euler(ExtraRotation));
                 m_lastRotation = transform.rotation;
@@ -57,7 +57,7 @@ namespace Actors
             else
             {
                 transform.rotation = m_lastRotation;
-            }
+            }*/
         }
 
         public void MoveToPosition(Vector3 worldPos)

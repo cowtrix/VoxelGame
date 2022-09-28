@@ -28,6 +28,10 @@ namespace Generation
         public virtual void Generate()
         {
             GenerateInternal();
+            if(Children == null)
+            {
+                return;
+            }
             foreach(var child in Children)
             {
                 child.Seed = Seed;

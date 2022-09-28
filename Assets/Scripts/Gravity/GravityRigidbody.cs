@@ -6,74 +6,90 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class GravityRigidbody : SlowUpdater
 {
-	public Rigidbody Rigidbody { get; private set; }
-	public CameraController CameraController { get; private set; }
-	public float MaxUpdateDistance = 1000;
-	public bool SleepOnStart;
-	public float GravityMultiplier = 1;
-	private Vector3 m_lastGravity;
-	private GravityManager m_gravityManager;
+    const float WakeupDistance = .2f;
+    const int SleepFrameCount = 120;
 
-	const int HISTORY_SIZE = 10;
+    public Rigidbody Rigidbody { get; private set; }
+    public CameraController CameraController { get; private set; }
+    public float MaxUpdateDistance = 1000;
+    public bool SleepOnStart;
+    public float GravityMultiplier = 1;
+    private Vector3 m_lastGravity;
+    private GravityManager m_gravityManager;
 
-	private SmoothPositionVector3 m_posHistory, m_rotHistory;
+    const int HISTORY_SIZE = 10;
 
-	public override float GetThinkSpeed() => .1f;
+    private SmoothPositionVector3 m_posHistory, m_rotHistory;
+    private int m_sleepFrameCounter;
+
+    public override float GetThinkSpeed() => .1f;
 
     private void Start()
-	{
+    {
         if (CameraController.HasInstance())
         {
-			CameraController = CameraController.Instance;
-		}
-        if (GravityManager.HasInstance())
-        {
-			m_gravityManager = GravityManager.Instance;
-		}
+            CameraController = CameraController.Instance;
+        }
+        m_gravityManager = GravityManager.Instance;
 
-		Rigidbody = GetComponent<Rigidbody>();
-		Rigidbody.useGravity = false;
-		Rigidbody.sleepThreshold = 1;
+        Rigidbody = GetComponent<Rigidbody>();
+        Rigidbody.useGravity = false;
+        Rigidbody.sleepThreshold = 1;
 
         if (SleepOnStart)
         {
-			Rigidbody.Sleep();
+            Rigidbody.Sleep();
+        }
+        else
+        {
+            Tick(0);
         }
 
-		m_posHistory = new SmoothPositionVector3(HISTORY_SIZE, transform.position);
-		m_rotHistory = new SmoothPositionVector3(HISTORY_SIZE, transform.position);
-	}
+        m_posHistory = new SmoothPositionVector3(HISTORY_SIZE, transform.position);
+        m_rotHistory = new SmoothPositionVector3(HISTORY_SIZE, transform.position);
+    }
 
-	void FixedUpdate()
-	{
+    void FixedUpdate()
+    {
         if (!CameraController)
         {
-			return;
+            return;
         }
-		if ((CameraController.transform.position - transform.position).sqrMagnitude < MaxUpdateDistance && m_lastGravity.sqrMagnitude > 0)
-		{
-			Rigidbody.WakeUp();
-			Rigidbody.AddForce(m_lastGravity * Time.fixedDeltaTime, ForceMode.Force);
-			m_lastGravity = Vector3.zero;
-		}
-	}
+        m_posHistory.Push(Rigidbody.position);
+        m_rotHistory.Push(Rigidbody.rotation.eulerAngles);
+        if ((CameraController.transform.position - transform.position).sqrMagnitude < MaxUpdateDistance &&
+            m_lastGravity.sqrMagnitude > 0 &&
+            (m_posHistory.SmoothPosition - transform.position).sqrMagnitude < WakeupDistance * WakeupDistance)
+        {
+            m_sleepFrameCounter = 0;
+            Rigidbody.WakeUp();
+            Rigidbody.AddForce(m_lastGravity * Time.fixedDeltaTime, ForceMode.Acceleration);
+        }
+        else
+        {
+            m_sleepFrameCounter++;
+        }
+        if (m_sleepFrameCounter > SleepFrameCount)
+        {
+            Rigidbody.Sleep();
+            m_lastGravity = default;
+        }
+    }
 
-	protected override int Tick(float dt)
-	{
-		if (!m_gravityManager)
-		{
-			return 0;
-		}
-		m_lastGravity = m_gravityManager.GetGravityForce(transform.position) * GravityMultiplier;
-		m_posHistory.Push(Rigidbody.position);
-		m_rotHistory.Push(Rigidbody.rotation.eulerAngles);
-		const float threshold = .5f;
-		//m_positionChangedRecently = m_posHistory.Count == m_posHistory.Capacity;
-		if ((m_posHistory.SmoothPosition - transform.position).sqrMagnitude < threshold * threshold)
-		{
-			//m_positionChangedRecently = false;
-			Rigidbody.Sleep();
-		}
-		return 1;
-	}
+    protected override int Tick(float dt)
+    {
+        if (!m_gravityManager)
+        {
+            if (GravityManager.HasInstance())
+            {
+                m_gravityManager = GravityManager.Instance;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        m_lastGravity = m_gravityManager.GetGravityForce(transform.position) * GravityMultiplier;
+        return 1;
+    }
 }
