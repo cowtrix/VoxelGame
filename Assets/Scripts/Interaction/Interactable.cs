@@ -210,8 +210,6 @@ namespace Interaction
             Gizmos.DrawWireCube(b.center, b.size);
         }
 
-        protected override int Tick(float dt) { return 0; }
-
         public InteractableSettings GetSettings() => InteractionSettings;
 
         public Bounds GetBounds() => Bounds;

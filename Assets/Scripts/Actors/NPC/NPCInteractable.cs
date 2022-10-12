@@ -16,7 +16,7 @@ namespace Interaction
         protected override void Start()
         {
             base.Start();
-            Self.Controller.OnFinished.AddListener(() => Actor?.TryStopActivity(this));
+            Self.Dialogue.OnFinished.AddListener(() => Actor?.TryStopActivity(this));
         }
 
         public override IEnumerable<ActorAction> GetActions(Actor context)

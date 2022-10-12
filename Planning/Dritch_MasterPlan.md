@@ -15,6 +15,10 @@
         - [ ] Claw
     - Asteroid miner
         - [ ] Implement jerb
+    - Fix windmills
+        - [ ] Can't walk inside
+        - [ ] Chain doesn't turn
+        - [ ] Ambient zone
 
 - Level 4 SLUMS
     - [ ] Mail jerb

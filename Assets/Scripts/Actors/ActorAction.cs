@@ -16,7 +16,9 @@ namespace Actors
 		public eActionKey Key;
 		public string Description;
 		public eActionState State;
+		[HideInInspector]
 		public Vector2 VectorContext;
+		[HideInInspector]
 		public GameObject Source;
 
 		public ActorAction(eActionKey key, string description, GameObject source)

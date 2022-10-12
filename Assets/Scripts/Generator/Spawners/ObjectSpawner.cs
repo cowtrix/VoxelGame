@@ -17,7 +17,7 @@ namespace Generation.Spawning
         public int InstanceCountLimit = 10;
         private float m_spawnTimer;
 
-        protected override int Tick(float dt)
+        protected override int TickOnThread(float dt)
         {
             m_spawnTimer -= dt;
             for (int i = TrackedInstances.Count - 1; i >= 0; i--)

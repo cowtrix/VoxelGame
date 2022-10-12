@@ -7,6 +7,7 @@ using UnityEngine;
 
 public static class LanguageUtility
 {
+    private static Dictionary<string, string> m_quickCharLookup = new Dictionary<string, string>();
     public const string CharacterSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     static char[] m_unsupportedCharacters = new[]
         {
@@ -48,7 +49,12 @@ public static class LanguageUtility
         {
             key = "Space";
         }
-        return $"<sprite name=\"{key}\" tint=1>";
+        if(!m_quickCharLookup.TryGetValue(key, out var result))
+        {
+            result = $"<sprite name=\"{key}\" tint=1>";
+            m_quickCharLookup[key] = result;
+        }
+        return result;
     }
 
     public static string GetStringForTextMesh(string original, bool mixed = false)

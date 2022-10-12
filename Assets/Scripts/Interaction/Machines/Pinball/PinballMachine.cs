@@ -104,7 +104,7 @@ namespace Interaction.Activities
             }
         }
 
-        protected override int Tick(float dt)
+        protected override int TickOnThread(float dt)
         {
             m_nextMusicPlay -= dt;
             if (m_nextMusicPlay < 0)

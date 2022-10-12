@@ -7,20 +7,29 @@ using Voxul.Utilities;
 
 public class TimeOfDayRandomizer : SlowUpdater
 {
-	public GameManager GameManager { get; private set; }
+	public GameManager GameManager => GameManager.Instance;
 	public AnimationCurve ProbabilityOverTime;
 	public Vector2 ThinkSpeedRandom = new Vector2(10, 10);
 	public UnityEvent Off, On;
 
-	protected override int Tick(float dt)
+	private bool? m_lastValue;
+	private float m_timer;
+
+	protected override int TickOnThread(float dt)
 	{
-		if(GameManager == null)
-		{
-			GameManager = GameManager.Instance;
-		}
+		m_timer -= dt;
+		if(m_timer > 0)
+        {
+			return 0;
+        }
 		var roll = Random.value;
-		var chance = ProbabilityOverTime.Evaluate(GameManager.CurrentTime.NormalizedTime);
-		if (roll > chance)
+		var success = roll < ProbabilityOverTime.Evaluate(GameManager.CurrentTime.NormalizedTime);
+		if(m_lastValue.HasValue && success == m_lastValue)
+        {
+			return 0;
+        }
+		m_lastValue = success;
+		if (!success)
 		{
 			Off.Invoke();
 		}
@@ -28,7 +37,7 @@ public class TimeOfDayRandomizer : SlowUpdater
 		{
 			On.Invoke();
 		}
-		ThinkSpeed = Random.Range(ThinkSpeedRandom.x, ThinkSpeedRandom.y);
+		m_timer = Random.Range(ThinkSpeedRandom.x, ThinkSpeedRandom.y);
 		return 1;
 	}
 }

@@ -1,5 +1,6 @@
 using Generation.Spawning;
 using Interaction;
+using NodeCanvas.BehaviourTrees;
 using NodeCanvas.DialogueTrees;
 using System.Linq;
 using UnityEngine;
@@ -12,9 +13,10 @@ namespace Actors
 	public class NPCActor : Actor, IDialogueActor
 	{
 		public AutoProperty<NPCInteractable> Interactable;
-		public DialogueTreeController Controller => GetComponent<DialogueTreeController>();
+		public DialogueTreeController Dialogue => GetComponent<DialogueTreeController>();
+		public BehaviourTreeOwner BehaviourTree => GetComponent<BehaviourTreeOwner>();
 		public NavMeshAgent NavmeshAgent => GetComponent<NavMeshAgent>();
-		public bool IsTalking => Controller.isRunning;
+		public bool IsTalking => Dialogue.isRunning;
 
 		protected override void Awake()
         {
@@ -29,7 +31,7 @@ namespace Actors
 
         public bool CanTalkTo(Actor context)
 		{
-			if (Interactable.Value.Actor || Controller.graph == null)
+			if (Interactable.Value.Actor || Dialogue.graph == null)
 			{
 				return false;
 			}
@@ -37,7 +39,7 @@ namespace Actors
             {
 				return false;
             }
-			return !Controller.isRunning;
+			return !Dialogue.isRunning;
 		}
 
 		public Vector3 GetClosestBin()
@@ -51,8 +53,14 @@ namespace Actors
 
 		public void InteractWithActor(Actor instigator)
 		{
-			Controller.SetActorReference(DialogueTree.SELF_NAME, this);
-			Controller.StartDialogue(instigator);
+			Dialogue.SetActorReference(DialogueTree.SELF_NAME, this);
+			Dialogue.StartDialogue(instigator);
 		}
+
+		protected override int TickOffThread(float dt)
+        {
+			BehaviourTree.Tick();
+			return base.TickOffThread(dt) + 1;
+        }
 	}
 }

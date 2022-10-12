@@ -15,7 +15,7 @@ namespace Interaction.Activities
 		public int StackCount { get; set; } = 15;
 		public ForgeResource ResourcePrefab;
 
-		protected override int Tick(float dt)
+		protected override int TickOnThread(float dt)
 		{
 			var smelter = Smelter;
 			if (StackCount <= 0 || smelter.CurrentItem)

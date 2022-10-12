@@ -14,7 +14,6 @@ namespace Common
 
 		public Func<SlowUpdater, float> InstanceSorter;
 		public int FrameBudget = 100;
-		public int MaxCyclePopulation = 1000;
 
 		private List<SlowUpdater> m_instances = new List<SlowUpdater>();
 		private object m_lock = new object();
@@ -27,7 +26,8 @@ namespace Common
 				instance.Think(0);
             }
 			StartCoroutine(SortUpdaters());
-			StartCoroutine(ThinkAll());
+			StartCoroutine(ThinkOnThread());
+			new Task(ThinkOffThread).Start();
 		}
 
 		private IEnumerator SortUpdaters()
@@ -61,7 +61,7 @@ namespace Common
 						{
 							var newList = data
 								.OrderByDescending(d => d.Item2.Priority)
-								.ThenBy(d => d.Item2.UpdateCount)
+								.ThenBy(d => d.Item2.OnThreadUpdateCount)
 								.ThenBy(d => d.Item1)
 								.Reverse()
 								.Select(d => d.Item2)
@@ -95,7 +95,7 @@ namespace Common
 			m_instances.Remove(slowUpdater);
         }
 
-		private IEnumerator ThinkAll()
+		private IEnumerator ThinkOnThread()
 		{
 			while (true)
 			{
@@ -109,12 +109,12 @@ namespace Common
 						var instance = m_instances[i];
 						try
 						{
-							var dt = t - instance.LastUpdateTime;
+							var dt = t - instance.LastOnThreadUpdateTime;
 							if (dt < instance.GetThinkSpeed())
 							{
 								continue;
 							}
-							instance.LastUpdateTime = t;
+							instance.LastOnThreadUpdateTime = t;
 							budgetCounter += instance.Think(dt);
 						}
 						catch (Exception e)
@@ -126,14 +126,37 @@ namespace Common
 							budgetCounter = 0;
 							yield return null;
 						}
-						if(i < m_instances.Count - MaxCyclePopulation)
-						{
-							break;
-						}
 					}
 				}
 				yield return null;
 			}
 		}
+
+		private void ThinkOffThread()
+        {
+            while (true)
+            {
+				var t = Time.time;
+				var budgetCounter = 0;
+				for (int i = m_instances.Count - 1; i >= 0; i--)
+				{
+					var instance = m_instances[i];
+					try
+					{
+						var dt = t - instance.LastOffThreadUpdateTime;
+						if (dt < instance.GetThinkSpeed())
+						{
+							continue;
+						}
+						instance.LastOffThreadUpdateTime = t;
+						budgetCounter += instance.ThinkOffThread(dt);
+					}
+					catch (Exception e)
+					{
+						Debug.LogException(e, instance);
+					}
+				}
+			}
+        }
 	}
 }

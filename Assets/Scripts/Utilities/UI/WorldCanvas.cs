@@ -12,7 +12,7 @@ public class WorldCanvas : SlowUpdater
     public GraphicRaycaster Raycaster => GetComponent<GraphicRaycaster>();
     public Camera Camera { get; private set; }
 
-	protected override int Tick(float dt)
+	protected override int TickOnThread(float dt)
 	{
 		if (!Camera)
 		{

@@ -24,7 +24,7 @@ namespace Interaction.Activities.Dotc
             base.OnDrawGizmosSelected();
         }
 
-        protected override int Tick(float dt)
+        protected override int TickOnThread(float dt)
         {
             LocalEntities = Physics.OverlapSphere(transform.position, AttackRadius, Game.LayerMask, QueryTriggerInteraction.Collide)
                 .Select(c => c.GetComponent<DotcGameEntity>())

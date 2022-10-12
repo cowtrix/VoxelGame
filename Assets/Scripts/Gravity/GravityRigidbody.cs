@@ -22,8 +22,6 @@ public class GravityRigidbody : SlowUpdater
     private SmoothPositionVector3 m_posHistory, m_rotHistory;
     private int m_sleepFrameCounter;
 
-    public override float GetThinkSpeed() => .1f;
-
     private void Start()
     {
         if (CameraController.HasInstance())
@@ -36,17 +34,17 @@ public class GravityRigidbody : SlowUpdater
         Rigidbody.useGravity = false;
         Rigidbody.sleepThreshold = 1;
 
+        m_posHistory = new SmoothPositionVector3(HISTORY_SIZE, transform.position);
+        m_rotHistory = new SmoothPositionVector3(HISTORY_SIZE, transform.position);
+
         if (SleepOnStart)
         {
             Rigidbody.Sleep();
         }
         else
         {
-            Tick(0);
+            TickOnThread(0);
         }
-
-        m_posHistory = new SmoothPositionVector3(HISTORY_SIZE, transform.position);
-        m_rotHistory = new SmoothPositionVector3(HISTORY_SIZE, transform.position);
     }
 
     void FixedUpdate()
@@ -55,28 +53,10 @@ public class GravityRigidbody : SlowUpdater
         {
             return;
         }
-        m_posHistory.Push(Rigidbody.position);
-        m_rotHistory.Push(Rigidbody.rotation.eulerAngles);
-        if ((CameraController.transform.position - transform.position).sqrMagnitude < MaxUpdateDistance &&
-            m_lastGravity.sqrMagnitude > 0 &&
-            (m_posHistory.SmoothPosition - transform.position).sqrMagnitude < WakeupDistance * WakeupDistance)
-        {
-            m_sleepFrameCounter = 0;
-            Rigidbody.WakeUp();
-            Rigidbody.AddForce(m_lastGravity * Time.fixedDeltaTime, ForceMode.Acceleration);
-        }
-        else
-        {
-            m_sleepFrameCounter++;
-        }
-        if (m_sleepFrameCounter > SleepFrameCount)
-        {
-            Rigidbody.Sleep();
-            m_lastGravity = default;
-        }
+        Rigidbody.AddForce(m_lastGravity * Time.fixedDeltaTime, ForceMode.Acceleration);
     }
 
-    protected override int Tick(float dt)
+    protected override int TickOnThread(float dt)
     {
         if (!m_gravityManager)
         {
@@ -88,6 +68,24 @@ public class GravityRigidbody : SlowUpdater
             {
                 return 0;
             }
+        }
+        m_posHistory.Push(Rigidbody.position);
+        m_rotHistory.Push(Rigidbody.rotation.eulerAngles);
+        if ((CameraController.transform.position - transform.position).sqrMagnitude < MaxUpdateDistance &&
+            m_lastGravity.sqrMagnitude > 0 &&
+            (m_posHistory.SmoothPosition - transform.position).sqrMagnitude < WakeupDistance * WakeupDistance)
+        {
+            m_sleepFrameCounter = 0;
+            Rigidbody.WakeUp();
+        }
+        else
+        {
+            m_sleepFrameCounter++;
+        }
+        if (m_sleepFrameCounter > SleepFrameCount)
+        {
+            Rigidbody.Sleep();
+            m_lastGravity = default;
         }
         m_lastGravity = m_gravityManager.GetGravityForce(transform.position) * GravityMultiplier;
         return 1;

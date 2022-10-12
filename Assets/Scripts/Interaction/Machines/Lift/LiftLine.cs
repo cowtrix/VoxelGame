@@ -31,9 +31,9 @@ namespace Interaction.Activities
 			}
 		}
 
-        protected override int Tick(float dt)
+        protected override int TickOnThread(float dt)
         {
-			var cost = base.Tick(dt) + 1;
+			var cost = base.TickOnThread(dt) + 1;
 			if (!m_requestedStops.Any() || Lift.IsMoving)
 			{
 				return cost;

@@ -33,7 +33,7 @@ namespace Interaction.Activities
 			transform.localScale = Vector3.Lerp(TransitionStartScale, TransitionEndScale, TransitionAmount);
 		}
 
-		protected override int Tick(float dt)
+		protected override int TickOnThread(float dt)
 		{
 			if(Path == null)
 			{

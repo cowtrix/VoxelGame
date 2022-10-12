@@ -35,11 +35,6 @@ namespace Interaction.Activities.Dotc
         }
         public Faction Radiant, Dire;
 
-        protected override int Tick(float dt)
-        {
-            return base.Tick(dt);
-        }
-
         public IEnumerable<Transform> GetPathTo(eFaction faction, Transform target)
         {
             var otherAncient = faction == eFaction.Dire ? Radiant.Ancient : Dire.Ancient;

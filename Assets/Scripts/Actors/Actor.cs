@@ -5,9 +5,7 @@ using Interaction.Activities;
 using NodeCanvas.DialogueTrees;
 using NodeCanvas.DialogueTrees.UI.Examples;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Actors
 {
@@ -140,9 +138,9 @@ namespace Actors
             interactable.ExitAttention(this);
         }
 
-        protected override int Tick(float dt)
+        protected override int TickOnThread(float dt)
         {
-            if (LookAdapter == null)
+            /*if (LookAdapter == null)
             {
                 return 0;
             }
@@ -168,8 +166,8 @@ namespace Actors
 
             FocusedInteractable?.ExitFocus(this);
             FocusedInteractable = null;
-            Debug.DrawLine(cameraPos, cameraPos + cameraForward * 1000, Color.magenta);
-            return 3;
+            Debug.DrawLine(cameraPos, cameraPos + cameraForward * 1000, Color.magenta);*/
+            return 0;
         }
 
         public bool HasSaid(IStatement key) => m_chatHistory.Contains(key);

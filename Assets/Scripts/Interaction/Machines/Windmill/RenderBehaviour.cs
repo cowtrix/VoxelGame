@@ -32,7 +32,7 @@ public abstract class RenderBehaviour : SlowUpdater
         }
     }
 
-    protected override int Tick(float dt)
+    protected override int TickOnThread(float dt)
     {
         var screenRect = GeometryExtensions.WorldBoundsToScreenRect(Bounds, Camera);
         IsOnScreen = screenRect.ScreenRectIsOnScreen();

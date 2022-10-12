@@ -5,16 +5,28 @@ namespace Common
 {
 	public abstract class SlowUpdater : TrackedObject<SlowUpdater>
 	{
-		public uint UpdateCount { get; private set; }
-		public float LastUpdateTime { get; set; }
+		public uint OnThreadUpdateCount { get; private set; }
+		public uint OffThreadUpdateCount { get; private set; }
+		public float LastOnThreadUpdateTime { get; set; }
+		public float LastOffThreadUpdateTime { get; set; }
+
 		public float ThinkSpeed = 1;
 		public int Priority = 0;
+
+		public virtual float GetThinkSpeed() => ThinkSpeed;
+
+		public int ThinkOffThread(float dt)
+        {
+			OffThreadUpdateCount++;
+			var cost = TickOffThread(dt);
+			return cost;
+		}
 
 		public int Think(float dt)
 		{
 			Profiler.BeginSample($"Think: {GetType().Name}");
-			UpdateCount++;
-			var cost = Tick(dt);
+			OnThreadUpdateCount++;
+			var cost = TickOnThread(dt);
 			Profiler.EndSample();
 			return cost;
 		}
@@ -28,7 +40,7 @@ namespace Common
 			base.OnDestroy();
         }
 
-        public virtual float GetThinkSpeed() => ThinkSpeed;
-		protected abstract int Tick(float dt);
+		protected virtual int TickOnThread(float dt) => 0;
+		protected virtual int TickOffThread(float dt) => 0;
 	}
 }

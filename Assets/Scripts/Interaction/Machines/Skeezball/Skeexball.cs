@@ -141,7 +141,7 @@ namespace Interaction.Activities
             UpdateAmmoDisplay();
         }
 
-        protected override int Tick(float dt)
+        protected override int TickOnThread(float dt)
         {
             for (int i = Rigidbodies.Count - 1; i >= 0; i--)
             {
@@ -152,7 +152,7 @@ namespace Interaction.Activities
                     Rigidbodies.RemoveAt(i);
                 }
             }
-            return base.Tick(dt);
+            return base.TickOnThread(dt);
         }
 
         public void UpdateAmmoDisplay()

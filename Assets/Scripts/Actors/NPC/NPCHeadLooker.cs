@@ -47,7 +47,7 @@ namespace Actors.NPC
             //Gizmos.DrawLine(transform.position, CurrentLookPosition);
         }
 
-        protected override int Tick(float dt)
+        protected override int TickOnThread(float dt)
         {
             var closestScaledDistance = float.MaxValue;
             NPCObservable closestObservable = null;

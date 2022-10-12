@@ -22,7 +22,7 @@ namespace Actors.NPC.Player
 		public PhoneController Phone => GetComponentInChildren<PhoneController>(true);
 		public ActorActionEvent OnActionExecuted = new ActorActionEvent();
 
-		protected override int Tick(float dt) => 0;
+		protected override int TickOnThread(float dt) => 0;
 
 		private void Update()
 		{
@@ -75,7 +75,7 @@ namespace Actors.NPC.Player
 			if (FocusedInteractable)
 			{
 				var actions = FocusedInteractable.GetActions(this);
-				if (actions.Any(a => a.Key == action.Key))
+				if (actions.Any(a => a.Key == action.Key && a.State == action.State))
 				{
 					FocusedInteractable.ReceiveAction(this, action);
 					return;

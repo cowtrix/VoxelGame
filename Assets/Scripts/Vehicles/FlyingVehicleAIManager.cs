@@ -40,7 +40,7 @@ namespace Vehicles.AI
             Colliders = GetComponentsInChildren<Collider>().ToList();
         }
 
-        protected override int Tick(float dt)
+        protected override int TickOnThread(float dt)
         {
             if (CurrentState == eState.WANDER_TRANSIENT && CurrentPath == null)
             {
