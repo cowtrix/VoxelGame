@@ -1,46 +1,62 @@
-﻿using UnityEngine.Profiling;
-using Voxul;
+﻿using UnityEngine;
 
 namespace Common
 {
-	public abstract class SlowUpdater : TrackedObject<SlowUpdater>
-	{
-		public uint OnThreadUpdateCount { get; private set; }
-		public uint OffThreadUpdateCount { get; private set; }
-		public float LastOnThreadUpdateTime { get; set; }
-		public float LastOffThreadUpdateTime { get; set; }
-
-		public float ThinkSpeed = 1;
-		public int Priority = 0;
-
-		public virtual float GetThinkSpeed() => ThinkSpeed;
-
-		public int ThinkOffThread(float dt)
+    public abstract class SlowUpdater : TrackedObject<SlowUpdater>
+    {
+        public class SlowUpdateState
         {
-			OffThreadUpdateCount++;
-			var cost = TickOffThread(dt);
-			return cost;
-		}
+            public uint OnThreadUpdateCount { get; set; }
+            public uint OffThreadUpdateCount { get; set; }
+            public float LastOnThreadUpdateTime { get; set; }
+            public float LastOffThreadUpdateTime { get; set; }
+            public bool RequiresUpdate { get; set; }
+            public Vector3 LastPosition { get; set; }
+        }
+        public SlowUpdateState SlowUpdateInfo { get; private set; } = new SlowUpdateState();
 
-		public int Think(float dt)
-		{
-			Profiler.BeginSample($"Think: {GetType().Name}");
-			OnThreadUpdateCount++;
-			var cost = TickOnThread(dt);
-			Profiler.EndSample();
-			return cost;
-		}
+        public float ThinkSpeed = 1;
+        public int Priority = 0;
+
+        public virtual float GetThinkSpeed() => ThinkSpeed;
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            ThinkOffThread(0);
+            ThinkOnThread(0);
+        }
+
+        private void Update()
+        {
+            SlowUpdateInfo.LastPosition = transform.position;
+        }
+
+        public void ThinkOffThread(float dt)
+        {
+            SlowUpdateInfo.OffThreadUpdateCount++;
+            TickOffThread(dt);
+        }
+
+        public int ThinkOnThread(float dt)
+        {
+            //Profiler.BeginSample($"Think: {GetType().Name}");
+            SlowUpdateInfo.OnThreadUpdateCount++;
+            var cost = TickOnThread(dt);
+            //Profiler.EndSample();
+            return cost;
+        }
 
         protected override void OnDestroy()
         {
             if (SlowUpdateManager.HasInstance())
             {
-				SlowUpdateManager.Instance.DeRegister(this);
+                SlowUpdateManager.Instance.DeRegister(this);
             }
-			base.OnDestroy();
+            base.OnDestroy();
         }
 
-		protected virtual int TickOnThread(float dt) => 0;
-		protected virtual int TickOffThread(float dt) => 0;
-	}
+        protected virtual int TickOnThread(float dt) => 0;
+        protected virtual void TickOffThread(float dt) { }
+    }
 }

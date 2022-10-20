@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameJobs
+namespace Jerbs
 {
-    public class GameJob : TrackedObject<GameJob>
+    public abstract class Jerb : TrackedObject<Jerb>
     {
         public Sprite Icon;
         public string Name;

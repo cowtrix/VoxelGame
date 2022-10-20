@@ -4,12 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Voxul;
 using Voxul.Utilities;
 
 namespace Interaction
 {
-    public class Door : Interactable
+    public class Door : ToggleInteractable
     {
         [Serializable]
         public class DoorTransform
@@ -22,17 +21,15 @@ namespace Interaction
         public bool RotationEnabled = true;
         public bool PositionEnabled = true;
         public bool ExternallyDriven = false;
+
         [Range(0, 1)]
         public float OpenAmount;
         private float m_lastOpenAmount;
 
         public List<DoorTransform> Transforms;
-        public string DoorName = "Door";
         public float Speed = 1;
         public bool Usable;
         private float m_targetOpen;
-
-        public override string DisplayName => DoorName;
 
         public override bool CanUse(Actor context) => Usable && base.CanUse(context);
 
@@ -60,6 +57,7 @@ namespace Interaction
         protected override void Start()
         {
             m_targetOpen = OpenAmount;
+            ToggleState = OpenAmount == 1;
             base.Start();
         }
 
@@ -115,17 +113,27 @@ namespace Interaction
         public void OpenInstant()
         {
             m_targetOpen = 1;
+            ToggleState = true;
             ThinkTransforms(m_targetOpen);
         }
         [ContextMenu("Close")]
         public void CloseInstant()
         {
             m_targetOpen = 0;
+            ToggleState = false;
             ThinkTransforms(m_targetOpen);
         }
 
-        public void Open() => m_targetOpen = 1;
-        
-        public void Close() => m_targetOpen = 0;
+        public void Open()
+        {
+            m_targetOpen = 1;
+            ToggleState = true;
+        }
+
+        public void Close()
+        {
+            m_targetOpen = 0;
+            ToggleState = false;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Common;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,7 +8,7 @@ using Voxul.Utilities;
 
 namespace Actors
 {
-    public class NPCSimpleMovementController : ExtendedMonoBehaviour, IMovementController
+    public class NPCSimpleMovementController : SlowUpdater, IMovementController
     {
         public Rigidbody Rigidbody => GetComponent<Rigidbody>();
         public NavMeshAgent Navmesh => GetComponent<NavMeshAgent>();
@@ -33,18 +34,18 @@ namespace Actors
             //Navmesh.updateRotation = false;
         }
 
-        private void Update()
+        protected override int TickOnThread(float dt)
         {
-            //Navmesh.updateRotation = false;
             if (Actor.Animator)
             {
                 var localVelocity = transform.worldToLocalMatrix.MultiplyVector(transform.position - m_smoothPosition.SmoothPosition) * AnimationExpressiveness;
-                Debug.DrawLine(transform.position, transform.position + transform.localToWorldMatrix.MultiplyVector(localVelocity), Color.cyan);
+                //Debug.DrawLine(transform.position, transform.position + transform.localToWorldMatrix.MultiplyVector(localVelocity), Color.cyan);
                 Actor.Animator.SetFloat("VelocityX", localVelocity.z);
                 Actor.Animator.SetFloat("VelocityY", localVelocity.y);
                 Actor.Animator.SetFloat("VelocityZ", localVelocity.x);
             }
             m_smoothPosition.Push(transform.position);
+            return 1;
         }
 
         private void LateUpdate()

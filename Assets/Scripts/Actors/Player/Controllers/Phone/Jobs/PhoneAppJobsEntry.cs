@@ -1,4 +1,4 @@
-using GameJobs;
+using Jerbs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,9 +15,9 @@ namespace Phone
 		public Button Button => GetComponent<Button>();
 		public bool Expanded { get; private set; }
 
-		public GameJob Job { get; private set; }
+		public Jerb Job { get; private set; }
 
-		public void SetData(GameJob job)
+		public void SetData(Jerb job)
 		{
 			Job = job;
 			Invalidate();

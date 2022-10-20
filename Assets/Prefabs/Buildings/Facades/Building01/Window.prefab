@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8872832593530845576}
   - component: {fileID: 3265819087976799161}
   - component: {fileID: 2436828970389586690}
+  - component: {fileID: 8636278846601182947}
   m_Layer: 8
   m_Name: LOD0
   m_TagString: Untagged
@@ -51,7 +52,7 @@ MonoBehaviour:
   CustomMaterials: 0
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
-  GenerateCollider: 0
+  GenerateCollider: 1
   SnapMode: 1
   SnapLayer: 0
   ThreadingMode: 1
@@ -66,7 +67,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 7898e7db783853c4fb895a2ffeccfcff, type: 2}
-  m_lastMeshHash: e6b5ccac-a4d4-46cb-b23b-645a2b1e08db
+  m_lastMeshHash: c0d71a81-da82-4072-9ffd-0ed482d1d696
   Submeshes:
   - {fileID: 8872832593530845576}
 --- !u!114 &8872832593530845576
@@ -87,7 +88,7 @@ MonoBehaviour:
   Parent: {fileID: 8431314123694065436}
   MeshFilter: {fileID: 3265819087976799161}
   MeshRenderer: {fileID: 2436828970389586690}
-  MeshCollider: {fileID: 0}
+  MeshCollider: {fileID: 8636278846601182947}
 --- !u!33 &3265819087976799161
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -138,6 +139,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8636278846601182947
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69579795089399263}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -9105956757495187327, guid: 7898e7db783853c4fb895a2ffeccfcff, type: 2}
 --- !u!1 &795054297032106011
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +169,6 @@ GameObject:
   - component: {fileID: 4441304254778120220}
   - component: {fileID: 6794437909002260135}
   - component: {fileID: 7967102963005480292}
-  - component: {fileID: 8525462789107022063}
   - component: {fileID: 1902909732224127445}
   m_Layer: 8
   m_Name: Window
@@ -210,7 +224,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 1e57e12cf2038aa468eda697e4b2ddb5, type: 2}
-  m_lastMeshHash: e6b5ccac-a4d4-46cb-b23b-645a2b1e08db
+  m_lastMeshHash: 31d734f7-ef3d-49e0-afa4-8b920089350f
   Submeshes:
   - {fileID: 6091437384817530705}
 --- !u!114 &6091437384817530705
@@ -293,7 +307,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -765155325067953619, guid: 1e57e12cf2038aa468eda697e4b2ddb5, type: 2}
 --- !u!114 &6794437909002260135
@@ -323,7 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_guid: fef2be17-376e-45af-8f71-bc922996badf
-  ThinkSpeed: 1
+  ThinkSpeed: 30
   Priority: 0
   ProbabilityOverTime:
     serializedVersion: 2
@@ -371,52 +385,6 @@ MonoBehaviour:
   Off:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8525462789107022063}
-        m_TargetAssemblyTypeName: Interaction.Activities.BasicMachine, Assembly-CSharp
-        m_MethodName: SetPower
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  On:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8525462789107022063}
-        m_TargetAssemblyTypeName: Interaction.Activities.BasicMachine, Assembly-CSharp
-        m_MethodName: SetPower
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
---- !u!114 &8525462789107022063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795054297032106011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b290b3d370074974eb263e89d3d7c8f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_guid: f168c760-eb2e-4cb2-b95c-cda5db02e25a
-  ThinkSpeed: 1
-  Priority: 0
-  IsPoweredOn: 0
-  PowerOn:
-    m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 6794437909002260135}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
@@ -429,7 +397,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  PowerOff:
+  On:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6794437909002260135}

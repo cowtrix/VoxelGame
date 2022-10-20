@@ -1,18 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using Jerbs;
+using System.Collections.Generic;
 using UnityEngine;
 using Voxul.Utilities;
 
 namespace Phone
 {
 	public class JobsApp : PhoneApp
-	{
-		public float MaxSearchDistance = 1000;
+    {
+        public Jerb CurrentJerb { get; set; }
 
+        public float MaxSearchDistance = 1000;
 		public PhoneAppJobsEntry EntryPrefab;
-		private List<PhoneAppJobsEntry> m_entries = new List<PhoneAppJobsEntry>();
 		public Transform EntryContainer;
 
-		protected override void OnEnable()
+        private List<PhoneAppJobsEntry> m_entries = new List<PhoneAppJobsEntry>();
+
+        protected override void OnEnable()
 		{
 			Refresh();
 			base.OnEnable();
@@ -21,7 +24,7 @@ namespace Phone
 		public void Refresh()
 		{
 			int counter = 0;
-			foreach(var job in GameJobs.GameJob.Instances)
+			foreach(var job in Jerbs.Jerb.Instances)
 			{
 				var distance = Mathf.FloorToInt((job.GetCurrentPosition() - transform.position).magnitude);
 				if(distance > MaxSearchDistance)

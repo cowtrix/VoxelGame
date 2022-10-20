@@ -168,7 +168,6 @@ GameObject:
   - component: {fileID: 6882493520699755229}
   - component: {fileID: 7815201538088535518}
   - component: {fileID: 3082229588331387172}
-  - component: {fileID: 2372395288621919326}
   - component: {fileID: 2239119686984454032}
   m_Layer: 8
   m_Name: Window_Arch_01
@@ -338,52 +337,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IncludeChildren: 1
   Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
---- !u!114 &2372395288621919326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3094579991639027205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b290b3d370074974eb263e89d3d7c8f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_guid: 4bfc9087-a993-42e6-8659-04e7e05fd5b7
-  ThinkSpeed: 1
-  Priority: 0
-  IsPoweredOn: 0
-  PowerOn:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3082229588331387172}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  PowerOff:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3082229588331387172}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2239119686984454032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_guid: 856fbce5-3a84-4850-b971-e34844065c28
-  ThinkSpeed: 1
+  ThinkSpeed: 30
   Priority: 0
   ProbabilityOverTime:
     serializedVersion: 2
@@ -445,9 +398,9 @@ MonoBehaviour:
   Off:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2372395288621919326}
-        m_TargetAssemblyTypeName: Interaction.Activities.BasicMachine, Assembly-CSharp
-        m_MethodName: SetPower
+      - m_Target: {fileID: 3082229588331387172}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -460,9 +413,9 @@ MonoBehaviour:
   On:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2372395288621919326}
-        m_TargetAssemblyTypeName: Interaction.Activities.BasicMachine, Assembly-CSharp
-        m_MethodName: SetPower
+      - m_Target: {fileID: 3082229588331387172}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

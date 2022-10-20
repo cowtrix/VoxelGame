@@ -13,7 +13,7 @@ namespace Utility
     {
         static int BakeLevelsFromCLI()
         {
-            AssetDatabase.Refresh();
+            //AssetDatabase.Refresh();
 
             var scenePaths = System.Environment.GetCommandLineArgs()
                 .Where(arg => arg.StartsWith("Assets/"))

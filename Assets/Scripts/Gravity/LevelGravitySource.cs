@@ -14,6 +14,9 @@ public class LevelGravitySource : GravitySource
 
 	public AnimationCurve Falloff;
 
+	private Vector3 m_lastPosition;
+	private Matrix4x4 m_lastTransformMatrix;
+
 	private void Start()
 	{
 		m_targetGravityDirection = GravityDirection;
@@ -21,12 +24,12 @@ public class LevelGravitySource : GravitySource
 
 	public override Vector3 GetGravityForce(Vector3 position)
 	{
-		var localPos = transform.worldToLocalMatrix.MultiplyPoint3x4(position);
+		var localPos = m_lastTransformMatrix.MultiplyPoint3x4(position);
 		if (AxisGravityBounds.Contains(localPos))
 		{
 			return GravityDirection * GravityStrength;
 		}
-		var grav = transform.position - position;
+		var grav = m_lastTransformMatrix.GetPosition() - position;
 		var dist = grav.sqrMagnitude / (Radius * Radius);
 		var str = Falloff.Evaluate(dist) * GravityStrength;
 		return grav.normalized * str * 0;
@@ -43,7 +46,8 @@ public class LevelGravitySource : GravitySource
 
 	private void Update()
 	{
-		/*var playerPos = CameraController.Instance.transform.position;
+		m_lastTransformMatrix = transform.localToWorldMatrix;
+        /*var playerPos = CameraController.Instance.transform.position;
 		playerPos = transform.worldToLocalMatrix.MultiplyPoint3x4(playerPos);
 		if (!AxisGravityBounds.Contains(playerPos))
 		{
@@ -52,7 +56,7 @@ public class LevelGravitySource : GravitySource
 		m_targetGravityDirection = m_targetGravityDirection.ClosestAxisNormal();
 		GravityDirection = Vector3.RotateTowards(GravityDirection, m_targetGravityDirection,
 			GravityTransitionSpeed * Time.deltaTime, 1);*/
-	}
+    }
 
 	private void OnDrawGizmos()
 	{

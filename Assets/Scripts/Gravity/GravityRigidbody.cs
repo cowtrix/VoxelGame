@@ -14,7 +14,8 @@ public class GravityRigidbody : SlowUpdater
     public float MaxUpdateDistance = 1000;
     public bool SleepOnStart;
     public float GravityMultiplier = 1;
-    private Vector3 m_lastGravity;
+    private Vector3 m_lastGravity, m_lastPosition;
+    private Quaternion m_lastRotation;
     private GravityManager m_gravityManager;
 
     const int HISTORY_SIZE = 10;
@@ -53,7 +54,12 @@ public class GravityRigidbody : SlowUpdater
         {
             return;
         }
-        Rigidbody.AddForce(m_lastGravity * Time.fixedDeltaTime, ForceMode.Acceleration);
+        if(m_lastGravity.sqrMagnitude > 0)
+        {
+            Rigidbody.AddForce(m_lastGravity * Time.fixedDeltaTime, ForceMode.Acceleration);
+        }
+        m_lastPosition = Rigidbody.position;
+        m_lastRotation = Rigidbody.rotation;
     }
 
     protected override int TickOnThread(float dt)
@@ -69,8 +75,7 @@ public class GravityRigidbody : SlowUpdater
                 return 0;
             }
         }
-        m_posHistory.Push(Rigidbody.position);
-        m_rotHistory.Push(Rigidbody.rotation.eulerAngles);
+        
         if ((CameraController.transform.position - transform.position).sqrMagnitude < MaxUpdateDistance &&
             m_lastGravity.sqrMagnitude > 0 &&
             (m_posHistory.SmoothPosition - transform.position).sqrMagnitude < WakeupDistance * WakeupDistance)
@@ -87,7 +92,14 @@ public class GravityRigidbody : SlowUpdater
             Rigidbody.Sleep();
             m_lastGravity = default;
         }
-        m_lastGravity = m_gravityManager.GetGravityForce(transform.position) * GravityMultiplier;
+        
         return 1;
+    }
+
+    protected override void TickOffThread(float dt)
+    {
+        m_posHistory.Push(m_lastPosition);
+        m_rotHistory.Push(m_lastRotation.eulerAngles);
+        m_lastGravity = m_gravityManager.GetGravityForce(m_lastPosition) * GravityMultiplier;
     }
 }

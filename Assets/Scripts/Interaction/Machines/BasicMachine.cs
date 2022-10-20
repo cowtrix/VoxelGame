@@ -4,32 +4,40 @@ using Voxul;
 
 namespace Interaction.Activities
 {
-	public class BasicMachine : SlowUpdater
-	{
-		public bool IsPoweredOn;
-		private bool? m_lastPower;
+    public class BasicMachine : SlowUpdater
+    {
+        public bool IsPoweredOn { get; private set; }
+        private bool m_isDirty;
 
-		public void SetPower(bool power) => IsPoweredOn = power;
-
-		protected override int TickOnThread(float dt)
-		{
-			if(m_lastPower.HasValue && m_lastPower == IsPoweredOn)
+        public void SetPower(bool power)
+        {
+            if(power == IsPoweredOn)
             {
-				return 0;
+                return;
             }
-			m_lastPower = IsPoweredOn;
-			if (IsPoweredOn)
-			{
-				PowerOn.Invoke();
-			}
-			else
-			{
-				PowerOff.Invoke();
-			}
-			return 1;
-		}
+            IsPoweredOn = power;
+            m_isDirty = true;
+        }
 
-		public UnityEvent PowerOn;
-		public UnityEvent PowerOff;
-	}
+        protected override int TickOnThread(float dt)
+        {
+            if (m_isDirty)
+            {
+                if (IsPoweredOn)
+                {
+                    PowerOn.Invoke();
+                }
+                else
+                {
+                    PowerOff.Invoke();
+                }
+                m_isDirty = false;
+                return 10;
+            }
+            return 0;
+        }
+
+        public UnityEvent PowerOn;
+        public UnityEvent PowerOff;
+    }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5050524867762483105}
   - component: {fileID: 5050524867762483106}
   - component: {fileID: 3579525520407193253}
+  - component: {fileID: 7761401489072944385}
   m_Layer: 8
   m_Name: CentralColumn_Huge
   m_TagString: Untagged
@@ -53,7 +54,7 @@ MonoBehaviour:
   CustomMaterials: 0
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
-  GenerateCollider: 0
+  GenerateCollider: 1
   SnapMode: 1
   SnapLayer: -2
   ThreadingMode: 1
@@ -68,7 +69,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: ebef0a1b79782d441a999f7d61153078, type: 2}
-  m_lastMeshHash: c2688820-d006-4737-8e5a-eeb56b444b92
+  m_lastMeshHash: 3525366b-c202-4a15-9cb4-d7d6a58cdd1d
   Submeshes:
   - {fileID: 5050524867762483104}
 --- !u!114 &5050524867762483104
@@ -89,7 +90,7 @@ MonoBehaviour:
   Parent: {fileID: 5050524867762483111}
   MeshFilter: {fileID: 5050524867762483105}
   MeshRenderer: {fileID: 5050524867762483106}
-  MeshCollider: {fileID: 0}
+  MeshCollider: {fileID: 7761401489072944385}
 --- !u!33 &5050524867762483105
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -179,6 +180,20 @@ LODGroup:
     - renderer: {fileID: 0}
     - renderer: {fileID: 0}
   m_Enabled: 1
+--- !u!64 &7761401489072944385
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5050524867762483037}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8072968359303938900, guid: ebef0a1b79782d441a999f7d61153078, type: 2}
 --- !u!1 &6274783950975413831
 GameObject:
   m_ObjectHideFlags: 0

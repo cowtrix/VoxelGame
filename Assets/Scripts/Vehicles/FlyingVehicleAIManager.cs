@@ -18,6 +18,9 @@ namespace Vehicles.AI
         public float CurrentTargetDistance { get; private set; }
         public float CurrentSpeed { get; private set; }
         public Spline CurrentPath { get; private set; }
+        public Vector3? CurrentDestination { get; private set; }
+        public Vector3 LastPosition { get; private set; }
+        public bool RequiresPath { get; private set; }
         public eState CurrentState { get; private set; }
         public bool BlockedByObstacle { get; private set; }
         public Rigidbody Rigidbody => GetComponent<Rigidbody>();
@@ -42,27 +45,34 @@ namespace Vehicles.AI
 
         protected override int TickOnThread(float dt)
         {
-            if (CurrentState == eState.WANDER_TRANSIENT && CurrentPath == null)
+            if (CurrentState == eState.WANDER_TRANSIENT && !CurrentDestination.HasValue)
             {
-                var targetBin = GetDistantBin();
-                if (!VehiclePathManager.Instance.GetPath(transform.position, (transform.position - targetBin.transform.position).normalized * MaxSpeed, targetBin.transform.position, out var newPath))
-                {
-                    return 2;
-                }
-                CurrentPath = newPath;
-                CurrentTargetPosition = CurrentPath.Start;
-                OnReachDestination.RemoveListener(OnReachDestination_WanderTransient);
-                OnReachDestination.AddListener(OnReachDestination_WanderTransient);
-                return 2;
+                CurrentDestination = GetDistantBin().transform.position;
             }
-            
+
             var colliders = Physics.OverlapBox(CurrentTargetLookPosition, CollisionBounds.extents, transform.rotation, CollisionCheckMask);
             BlockedByObstacle = colliders.Any(c => !Colliders.Contains(c));
             return 1;
         }
 
+        protected override void TickOffThread(float dt)
+        {
+            if (CurrentState == eState.WANDER_TRANSIENT && CurrentDestination.HasValue && CurrentPath == null)
+            {
+                if (!VehiclePathManager.Instance.GetPath(LastPosition, (LastPosition - CurrentDestination.Value).normalized * MaxSpeed, CurrentDestination.Value, out var newPath))
+                {
+                    return;
+                }
+                CurrentPath = newPath;
+                CurrentTargetPosition = CurrentPath.Start;
+                OnReachDestination.RemoveListener(OnReachDestination_WanderTransient);
+                OnReachDestination.AddListener(OnReachDestination_WanderTransient);
+            }
+        }
+
         private void Update()
         {
+            LastPosition = transform.position;
             if (CurrentPath != null && Vector3.Distance(transform.position, CurrentTargetPosition) < .1f)
             {
                 CurrentTargetDistance += 1;
@@ -77,8 +87,11 @@ namespace Vehicles.AI
             {
                 CurrentSpeed = Mathf.Clamp(CurrentSpeed + Thrust * Time.deltaTime, 0, MaxSpeed);
             }
-            Rigidbody.position = Vector3.MoveTowards(Rigidbody.position, CurrentTargetPosition, CurrentSpeed * Time.deltaTime);
-            Rigidbody.RotateTowardsPosition(CurrentTargetLookPosition, TurnSpeed * Time.deltaTime, Quaternion.identity);
+            if(CurrentPath != null)
+            {
+                Rigidbody.position = Vector3.MoveTowards(Rigidbody.position, CurrentTargetPosition, CurrentSpeed * Time.deltaTime);
+                Rigidbody.RotateTowardsPosition(CurrentTargetLookPosition, TurnSpeed * Time.deltaTime, Quaternion.identity);
+            }
             if (CurrentPath != null && CurrentTargetDistance > CurrentPath.Length)
             {
                 OnReachDestination.Invoke();
