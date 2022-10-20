@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2558204206357672104}
   - component: {fileID: 5402448283748285619}
   - component: {fileID: 4733938387667552016}
+  - component: {fileID: -4644695978521727857}
   m_Layer: 8
   m_Name: Painting_01
   m_TagString: Untagged
@@ -56,7 +57,7 @@ MonoBehaviour:
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
   GenerateCollider: 0
-  SnapMode: 1
+  SnapMode: 0
   SnapLayer: 1
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
@@ -70,7 +71,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 02fa2379ccc0db04094da915ed4e08a8, type: 2}
-  m_lastMeshHash: dfb907d8-b93f-4bf9-b06a-eb70545224e8
+  m_lastMeshHash: 884f1c9d-308d-4b82-9d90-5b97a714b099
   Submeshes:
   - {fileID: 5256384223889121701}
 --- !u!114 &5256384223889121701
@@ -181,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e31a82e18c700a44a5af8071f8e6df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: 9ee993bc-d0ab-4b4d-89fc-a2c363224f27
+  m_guid: 47ec474b-8a5c-42ef-aa08-865819bf0cb6
   ThinkSpeed: 1
   Priority: 0
   InteractionSettings:
@@ -208,6 +209,30 @@ MonoBehaviour:
   PlainText: Tgupiter 6 from the moon Keruak - Reekle Snorz
   TranslatedText: 
   TextMeshPro: {fileID: 0}
+--- !u!205 &-4644695978521727857
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5360545463954274259}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1.6666669
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.08
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 525284300469774599}
+    - renderer: {fileID: 1145294658878181987}
+  - screenRelativeHeight: 0.01
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1145294658878181987}
+  m_Enabled: 1
 --- !u!1 &8595721982723235923
 GameObject:
   m_ObjectHideFlags: 0

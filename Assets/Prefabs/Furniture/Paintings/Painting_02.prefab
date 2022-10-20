@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2558204206357672104}
   - component: {fileID: 4733938387667552016}
   - component: {fileID: 3036195597932186065}
+  - component: {fileID: 3287553784518262674}
   m_Layer: 8
   m_Name: Painting_02
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5360545463954274259}
-  m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -55,8 +56,8 @@ MonoBehaviour:
   CustomMaterials: 0
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
-  GenerateCollider: 1
-  SnapMode: 1
+  GenerateCollider: 0
+  SnapMode: 0
   SnapLayer: 1
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
@@ -70,7 +71,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 500597410bcbc524fb7bdadca18364d2, type: 2}
-  m_lastMeshHash: 10a32fbb-6956-41d0-a685-b5e0824b8a73
+  m_lastMeshHash: 504931c5-e286-454a-ab23-c5f9c272f3d9
   Submeshes:
   - {fileID: 5256384223889121701}
 --- !u!114 &5256384223889121701
@@ -208,6 +209,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.11111132, y: 1.2222223, z: 1.6666669}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!205 &3287553784518262674
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5360545463954274259}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1.666668
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.08
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 525284300469774599}
+    - renderer: {fileID: 1145294658878181987}
+  - screenRelativeHeight: 0.01
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1145294658878181987}
+  m_Enabled: 1
 --- !u!1 &8595721982723235923
 GameObject:
   m_ObjectHideFlags: 0

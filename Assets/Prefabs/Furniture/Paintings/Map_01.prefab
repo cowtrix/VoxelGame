@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6279843355705831479}
   - component: {fileID: 6667146223434979885}
   - component: {fileID: -5521052460261939102}
+  - component: {fileID: -8528983224470730901}
   m_Layer: 8
   m_Name: Map_01
   m_TagString: Untagged
@@ -55,8 +56,8 @@ MonoBehaviour:
   CustomMaterials: 0
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
-  GenerateCollider: 1
-  SnapMode: 1
+  GenerateCollider: 0
+  SnapMode: 0
   SnapLayer: 1
   ThreadingMode: 1
   MaxCoroutineUpdateTime: 0.016666668
@@ -70,7 +71,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 02fa2379ccc0db04094da915ed4e08a8, type: 2}
-  m_lastMeshHash: bf6caf0a-f520-4251-b190-3454504f9ade
+  m_lastMeshHash: 8606cb66-bd04-4788-8ba7-ffa0b7da7716
   Submeshes:
   - {fileID: 5256384223889121701}
 --- !u!114 &5256384223889121701
@@ -208,6 +209,30 @@ MonoBehaviour:
   PlainText: East Lobnitz and its Outer Cities
   TranslatedText: 
   TextMeshPro: {fileID: 0}
+--- !u!205 &-8528983224470730901
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5360545463954274259}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1.6666669
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.053849224
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 525284300469774599}
+    - renderer: {fileID: 1145294658878181987}
+  - screenRelativeHeight: 0.0045441194
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1145294658878181987}
+  m_Enabled: 1
 --- !u!1 &8595721982723235923
 GameObject:
   m_ObjectHideFlags: 0

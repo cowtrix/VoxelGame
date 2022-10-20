@@ -205,7 +205,6 @@ namespace Common
                             var dt = m_time - instance.SlowUpdateInfo.LastOffThreadUpdateTime;
                             if (dt < instance.GetThinkSpeed())
                             {
-                                instance.SlowUpdateInfo.RequiresUpdate = false;
                                 continue;
                             }
                             instance.SlowUpdateInfo.RequiresUpdate = true;

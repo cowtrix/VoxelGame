@@ -60,8 +60,11 @@ namespace Jerbs
         {
             // Refill or empty the water tank
             WaterLevel = Mathf.Clamp01(WaterLevel + WaterValve.OpenAmount * WaterFlowRate * Time.deltaTime - (WaterTap.ToggleState ? WaterTapRate * Time.deltaTime : 0));
-            // We're adding cool water so reduce by the open flow rate
-            Temperature /= 1 + WaterValve.OpenAmount * WaterFlowRate * Time.deltaTime;
+            if(WaterLevel < 1)
+            {
+                // We're adding cool water so reduce by the open flow rate
+                Temperature /= 1 + WaterValve.OpenAmount * WaterFlowRate * Time.deltaTime;
+            }
             if (PressureValveOpen)
             {
                 WaterLevel -= PressureReleaseRate * Time.deltaTime;

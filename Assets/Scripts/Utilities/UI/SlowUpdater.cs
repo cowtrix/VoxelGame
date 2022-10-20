@@ -10,8 +10,10 @@ namespace Common
             public uint OffThreadUpdateCount { get; set; }
             public float LastOnThreadUpdateTime { get; set; }
             public float LastOffThreadUpdateTime { get; set; }
-            public bool RequiresUpdate { get; set; }
+            public bool RequiresUpdate { get; set; } = true;
             public Vector3 LastPosition { get; set; }
+
+            public override string ToString() => $"Off: [{OffThreadUpdateCount}] On: {OnThreadUpdateCount}";
         }
         public SlowUpdateState SlowUpdateInfo { get; private set; } = new SlowUpdateState();
 
@@ -19,13 +21,6 @@ namespace Common
         public int Priority = 0;
 
         public virtual float GetThinkSpeed() => ThinkSpeed;
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            ThinkOffThread(0);
-            ThinkOnThread(0);
-        }
 
         private void Update()
         {
