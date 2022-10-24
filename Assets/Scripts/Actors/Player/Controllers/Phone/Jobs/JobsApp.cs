@@ -1,4 +1,5 @@
 ﻿using Jerbs;
+using Jerbs.UI;
 using System.Collections.Generic;
 using UnityEngine;
 using Voxul.Utilities;
@@ -37,6 +38,7 @@ namespace Phone
 					entry = Instantiate(EntryPrefab.gameObject).GetComponent<PhoneAppJobsEntry>();
 					entry.transform.SetParent(EntryContainer);
 					entry.transform.Reset();
+					entry.Button.onClick.AddListener(() => ActivateJerb(job));
 					m_entries.Add(entry);
 				}
 				else
@@ -52,5 +54,17 @@ namespace Phone
 				m_entries[i].gameObject.SetActive(false);
 			}
 		}
-	}
+
+		public void ActivateJerb(Jerb job)
+		{
+			CurrentJerb = job;
+			JobTooltipUI.Instance.SetData(job);
+		}
+
+        public void DeactivateCurrentJerb()
+        {
+            CurrentJerb = null;
+            JobTooltipUI.Instance.SetData(null);
+        }
+    }
 }

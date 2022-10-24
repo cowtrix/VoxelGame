@@ -42,7 +42,8 @@ public static class ListExtensions
 		{
 			return array[0];
 		}
-		return array[UnityEngine.Random.Range(0, array.Count())];
+		var rnd = new System.Random();
+		return array[rnd.Next(array.Count())];
 	}
 
 	public static T Random<T>(this IEnumerable<T> array)

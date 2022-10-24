@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7436938771009982023}
   - component: {fileID: 5388842406478353144}
   - component: {fileID: 4706179244228139022}
+  - component: {fileID: 847371548867078819}
   m_Layer: 8
   m_Name: LOD_0
   m_TagString: Untagged
@@ -66,7 +67,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: -2776072413125047093, guid: 11342f8cfda4c9744ab1c01c7c70c6fc, type: 2}
-  m_lastMeshHash: 7debe2fd-f816-4669-add9-5cb7946a7c99
+  m_lastMeshHash: 7ee1a2b9-942e-4336-8f5a-0e9ae6698f16
   Submeshes:
   - {fileID: 7436938771009982023}
 --- !u!114 &7436938771009982023
@@ -87,7 +88,7 @@ MonoBehaviour:
   Parent: {fileID: 7035293336717158842}
   MeshFilter: {fileID: 5388842406478353144}
   MeshRenderer: {fileID: 4706179244228139022}
-  MeshCollider: {fileID: 0}
+  MeshCollider: {fileID: 847371548867078819}
 --- !u!33 &5388842406478353144
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -138,6 +139,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &847371548867078819
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3250255990362789642}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -745694958975056227, guid: 11342f8cfda4c9744ab1c01c7c70c6fc, type: 2}
 --- !u!1 &6374814158533517262
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,8 +167,8 @@ GameObject:
   - component: {fileID: 6374814158533517258}
   - component: {fileID: 6374814158533517261}
   - component: {fileID: 6374814158533517260}
-  - component: {fileID: 6005856487452715011}
   - component: {fileID: 8020249767846932190}
+  - component: {fileID: 2441851975249829081}
   m_Layer: 8
   m_Name: FloorPlate_01
   m_TagString: Untagged
@@ -215,7 +230,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 11342f8cfda4c9744ab1c01c7c70c6fc, type: 2}
-  m_lastMeshHash: 2c3b9b94-f97d-42a9-b82a-146fecfd6160
+  m_lastMeshHash: c718a3ee-c303-45bb-9ac2-f9702f0648bb
   Submeshes:
   - {fileID: 6374814158533517259}
 --- !u!114 &6374814158533517259
@@ -236,7 +251,7 @@ MonoBehaviour:
   Parent: {fileID: 6374814158533517256}
   MeshFilter: {fileID: 6374814158533517258}
   MeshRenderer: {fileID: 6374814158533517261}
-  MeshCollider: {fileID: 6005856487452715011}
+  MeshCollider: {fileID: 2441851975249829081}
 --- !u!33 &6374814158533517258
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -300,20 +315,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 21.000006, y: 1.0000001, z: 21.000002}
   m_Center: {x: 0, y: -0.000000059604645, z: 0}
---- !u!64 &6005856487452715011
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6374814158533517262}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 9173108491248264389, guid: 11342f8cfda4c9744ab1c01c7c70c6fc, type: 2}
 --- !u!205 &8020249767846932190
 LODGroup:
   m_ObjectHideFlags: 0
@@ -322,7 +323,7 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6374814158533517262}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: 0, y: -0.000000059604645, z: -0.000030517578}
+  m_LocalReferencePoint: {x: 0, y: -0.000000059604645, z: 0}
   m_Size: 21.000006
   m_FadeMode: 0
   m_AnimateCrossFading: 0
@@ -337,3 +338,17 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4706179244228139022}
   m_Enabled: 1
+--- !u!64 &2441851975249829081
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374814158533517262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 9173108491248264389, guid: 11342f8cfda4c9744ab1c01c7c70c6fc, type: 2}

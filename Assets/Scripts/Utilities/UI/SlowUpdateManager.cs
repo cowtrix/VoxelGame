@@ -34,7 +34,7 @@ namespace Common
             get
             {
                 var sum = 0;
-                foreach(var bucket in Buckets)
+                foreach (var bucket in Buckets)
                 {
                     sum += bucket.Value.Count;
                 }
@@ -113,7 +113,7 @@ namespace Common
                 {
                     try
                     {
-                        foreach(var instance in instances)
+                        foreach (var instance in instances)
                         {
                             m_buckets.TryAdd(instance.Priority, instance);
                         }
@@ -148,11 +148,11 @@ namespace Common
                 keyList.AddRange(m_buckets.Buckets.Keys);
                 keyList.Sort();
 
-                for (var i = 0; i < keyList.Count - 1; i++)
+                for (var i = keyList.Count - 1; i >= 0; i--)
                 {
                     var bucketID = keyList[i];
                     var bucket = m_buckets.Buckets[bucketID];
-                    for(var j = 0; j < bucket.Count; j++)
+                    for (var j = 0; j < bucket.Count; j++)
                     {
                         var instance = bucket[j];
                         try
@@ -193,7 +193,7 @@ namespace Common
                 keyList.AddRange(m_buckets.Buckets.Keys);
                 keyList.Sort();
 
-                for (var i = 0; i < keyList.Count - 1; i++)
+                for (var i = keyList.Count - 1; i >= 0; i--)
                 {
                     var bucketID = keyList[i];
                     var bucket = m_buckets.Buckets[bucketID];

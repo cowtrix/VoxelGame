@@ -45,9 +45,10 @@ Shader "UI/AlwaysOnTop"
             Cull Off
             Lighting Off
             ZWrite Off
-            ZTest Always
+            ZTest Off
             Blend SrcAlpha OneMinusSrcAlpha
             ColorMask[_ColorMask]
+            //Offset -1, -10
 
             Pass
             {

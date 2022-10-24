@@ -69,7 +69,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: eb5d33212960f424d903925e49cb4e84, type: 2}
-  m_lastMeshHash: b819d73d-846a-45e8-87ed-96f5d48d46d9
+  m_lastMeshHash: 89298a10-5472-41f1-9bf0-ba30a91e1554
   Submeshes:
   - {fileID: 1495348085829379594}
 --- !u!114 &1495348085829379594
@@ -98,7 +98,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949678250920243036}
-  m_Mesh: {fileID: -5162080497090801813, guid: eb5d33212960f424d903925e49cb4e84, type: 2}
+  m_Mesh: {fileID: -58646270216041582, guid: eb5d33212960f424d903925e49cb4e84, type: 2}
 --- !u!23 &8508679992901452897
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -119,7 +119,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -154,7 +154,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -5162080497090801813, guid: eb5d33212960f424d903925e49cb4e84, type: 2}
+  m_Mesh: {fileID: -58646270216041582, guid: eb5d33212960f424d903925e49cb4e84, type: 2}
 --- !u!114 &4434658030822040679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 1175722245285458911}
   - component: {fileID: 8396111294260342090}
   - component: {fileID: 2990976136322932450}
+  - component: {fileID: 3364260018587015303}
   m_Layer: 8
   m_Name: Sauce (1)
   m_TagString: Untagged
@@ -239,7 +240,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 87f12f03206ed454b9e634885427b22b, type: 2}
-  m_lastMeshHash: 07cc0258-c30f-4a7b-9f95-b980ab3653a1
+  m_lastMeshHash: feceb149-c00f-4885-9d42-75b72afd5cc5
   Submeshes:
   - {fileID: 3073288567703487452}
 --- !u!114 &3073288567703487452
@@ -260,7 +261,7 @@ MonoBehaviour:
   Parent: {fileID: 5494737985483832964}
   MeshFilter: {fileID: 2296908502793121979}
   MeshRenderer: {fileID: 48293961838690928}
-  MeshCollider: {fileID: 0}
+  MeshCollider: {fileID: 3364260018587015303}
 --- !u!33 &2296908502793121979
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -289,7 +290,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -395,6 +396,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2222223, y: 0.5, z: 0.22222227}
   m_Center: {x: 0, y: 0.33333334, z: -0.05555555}
+--- !u!64 &3364260018587015303
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797716281557544093}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -692955739571545487, guid: 87f12f03206ed454b9e634885427b22b, type: 2}
 --- !u!1 &2094901475151398859
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +426,7 @@ GameObject:
   - component: {fileID: 7104275777359335087}
   - component: {fileID: 2375187550784946539}
   - component: {fileID: 3595730064039850026}
+  - component: {fileID: 191017837451648078}
   m_Layer: 8
   m_Name: Sauce
   m_TagString: Untagged
@@ -465,7 +481,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 87f12f03206ed454b9e634885427b22b, type: 2}
-  m_lastMeshHash: 07cc0258-c30f-4a7b-9f95-b980ab3653a1
+  m_lastMeshHash: 667d45ae-8092-4309-ab37-f67abd9e3217
   Submeshes:
   - {fileID: 8916687126204926446}
 --- !u!114 &8916687126204926446
@@ -486,7 +502,7 @@ MonoBehaviour:
   Parent: {fileID: 3176723944939921102}
   MeshFilter: {fileID: 6432431218789878420}
   MeshRenderer: {fileID: 7408890993615339287}
-  MeshCollider: {fileID: 0}
+  MeshCollider: {fileID: 191017837451648078}
 --- !u!33 &6432431218789878420
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -515,7 +531,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -621,6 +637,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2222223, y: 0.5, z: 0.22222227}
   m_Center: {x: 0, y: 0.33333334, z: -0.05555555}
+--- !u!64 &191017837451648078
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094901475151398859}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -692955739571545487, guid: 87f12f03206ed454b9e634885427b22b, type: 2}
 --- !u!1 &2506702084070069448
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,7 +796,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 7523669f1125fbe43bbc2d85c01a6efc, type: 2}
-  m_lastMeshHash: 97a88def-94c3-4b39-a73e-a2dccd5724f7
+  m_lastMeshHash: 9c8ebdea-5548-4ba9-b1e7-75be423bf428
   Submeshes:
   - {fileID: 5635105945832173092}
 --- !u!114 &5635105945832173092
@@ -816,7 +846,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11172,9 +11202,13 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5400522686891674602, guid: 468e822a9fe87cf4eb64a7cadb9bfedc, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400522686891674602, guid: 468e822a9fe87cf4eb64a7cadb9bfedc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -7435874483709053190, guid: 512fa98a06484194f9eda63e56f537c2, type: 2}
     - target: {fileID: 8086346254733280132, guid: 468e822a9fe87cf4eb64a7cadb9bfedc, type: 3}
       propertyPath: m_Name
       value: Lantern_01
@@ -11234,6 +11268,10 @@ PrefabInstance:
     - target: {fileID: 8086346254733280133, guid: 468e822a9fe87cf4eb64a7cadb9bfedc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086346254733280250, guid: 468e822a9fe87cf4eb64a7cadb9bfedc, type: 3}
+      propertyPath: m_lastMeshHash
+      value: 88c6c350-496a-4a7d-808b-4598bf68b75c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 468e822a9fe87cf4eb64a7cadb9bfedc, type: 3}

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5185239242137314304}
   - component: {fileID: 7220241575202852910}
   - component: {fileID: 2322427649788639495}
-  - component: {fileID: 1615068913085991694}
   m_Layer: 8
   m_Name: LOD_1
   m_TagString: Untagged
@@ -67,7 +66,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: -3151333217084932901, guid: 964efe4e3b1131242a975bedb1f28cae, type: 2}
-  m_lastMeshHash: 09bf1b98-c073-452f-9b96-1beba0641f69
+  m_lastMeshHash: 3394eb28-4d31-4657-90ca-ace0885f72b1
   Submeshes:
   - {fileID: 5185239242137314304}
 --- !u!114 &5185239242137314304
@@ -88,7 +87,7 @@ MonoBehaviour:
   Parent: {fileID: 2449750043238771526}
   MeshFilter: {fileID: 7220241575202852910}
   MeshRenderer: {fileID: 2322427649788639495}
-  MeshCollider: {fileID: 1615068913085991694}
+  MeshCollider: {fileID: 0}
 --- !u!33 &7220241575202852910
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -139,20 +138,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1615068913085991694
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495614244233401856}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4103267731567154162, guid: 964efe4e3b1131242a975bedb1f28cae, type: 2}
 --- !u!1 &4482180809666659443
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +152,6 @@ GameObject:
   - component: {fileID: 4482180809666659447}
   - component: {fileID: 4482180809666659444}
   - component: {fileID: 5515807309673269820}
-  - component: {fileID: 7561301007799061799}
   m_Layer: 8
   m_Name: Column_02_Lobby
   m_TagString: Untagged
@@ -208,7 +192,7 @@ MonoBehaviour:
   CustomMaterials: 0
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
-  GenerateCollider: 1
+  GenerateCollider: 0
   SnapMode: 1
   SnapLayer: 0
   ThreadingMode: 1
@@ -218,26 +202,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   LODSettings:
-    LODs:
-    - Renderer: {fileID: 6246831216103315458}
-      ScreenTransitionWidth: 0.01
-      MaxLayer: 0
-      MaterialMergeDistance: 0.15
-      FillRequirement: 0.5
-      Mode: 0
-      Collider: 0
-    - Renderer: {fileID: 2449750043238771526}
-      ScreenTransitionWidth: 0.002
-      MaxLayer: -1
-      MaterialMergeDistance: 1
-      FillRequirement: 0.5
-      Mode: 0
-      Collider: 1
+    LODs: []
     PrimaryScreenTransitionWidth: 0.05
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: 11400000, guid: 964efe4e3b1131242a975bedb1f28cae, type: 2}
-  m_lastMeshHash: ffaee799-f95f-4a15-981c-e2e7a012891e
+  m_lastMeshHash: 075f5af9-a6e6-420e-8cba-a3a791086b81
   Submeshes:
   - {fileID: 4482180809666659446}
 --- !u!114 &4482180809666659446
@@ -258,7 +228,7 @@ MonoBehaviour:
   Parent: {fileID: 4482180809666659721}
   MeshFilter: {fileID: 4482180809666659447}
   MeshRenderer: {fileID: 4482180809666659444}
-  MeshCollider: {fileID: 7561301007799061799}
+  MeshCollider: {fileID: 0}
 --- !u!33 &4482180809666659447
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -323,11 +293,11 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.05
+  - screenRelativeHeight: 0.028075395
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 4482180809666659444}
-  - screenRelativeHeight: 0.01
+  - screenRelativeHeight: 0.00952173
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2019669046820079313}
@@ -336,20 +306,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2322427649788639495}
   m_Enabled: 1
---- !u!64 &7561301007799061799
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4482180809666659443}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6631099869778598501, guid: 964efe4e3b1131242a975bedb1f28cae, type: 2}
 --- !u!1 &4818797139760390617
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +358,7 @@ MonoBehaviour:
   CustomMaterials: 0
   OpaqueMaterial: {fileID: 0}
   TransparentMaterial: {fileID: 0}
-  GenerateCollider: 0
+  GenerateCollider: 1
   SnapMode: 0
   SnapLayer: 0
   ThreadingMode: 1
@@ -417,7 +373,7 @@ MonoBehaviour:
     GenerateLODGroup: 1
   m_voxWorker:
     VoxelMesh: {fileID: -7215657815043954503, guid: 964efe4e3b1131242a975bedb1f28cae, type: 2}
-  m_lastMeshHash: e9d9bc37-2d1a-4880-b2d3-f89f4a5d7584
+  m_lastMeshHash: b411d44d-19fe-4986-aaf3-ba87ce50fca6
   Submeshes:
   - {fileID: 6070212074066278345}
 --- !u!33 &6360840721162798381
@@ -479,11 +435,11 @@ MeshCollider:
   m_GameObject: {fileID: 4818797139760390617}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -8916127313807682974, guid: 964efe4e3b1131242a975bedb1f28cae, type: 2}
 --- !u!114 &6070212074066278345
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 316969785}
   - component: {fileID: 316969784}
   - component: {fileID: 452728394}
-  - component: {fileID: 806598836}
   - component: {fileID: 488162579100196419}
   - component: {fileID: 7742336}
   - component: {fileID: 7742342}
@@ -161,19 +160,6 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
---- !u!135 &806598836
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 316969782}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &488162579100196419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15efea61c0a2a1247b6b39ccb9366601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: 82a970e5-c5a1-4884-b1a9-e160785a890b
+  m_guid: 11c83434-d1fa-4bb5-8128-9b8c330a40f7
   AttentionDistance: 10
   AttentionPriority: 0
 --- !u!114 &7742336
@@ -10726,6 +10712,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 73df577b-bf82-482b-91d7-9e1e8900ce02
     m_ActionName: Player/MainMenu[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Jerbs.UI.JobTooltipUI, Assembly-CSharp
+        m_MethodName: OnToggleTooltip
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ec8b5f5a-396f-4876-ac56-d2a184dd90ed
+    m_ActionName: Player/ViewTooltipo[/Keyboard/i]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -10743,7 +10745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b734cda1e3b2d5b4796609b294fd48c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_guid: 3929814c-1e1d-49fe-a75f-a536afc7a9c7
+  m_guid: c452ee8c-d230-4b5c-ae53-aad038dc95ac
   ThinkSpeed: 0
   Priority: 0
   EquippedItemTransform: {fileID: 8449882934255358499}

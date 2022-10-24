@@ -27,6 +27,19 @@ namespace Vehicles.AI
                 SourceLaneIndex = laneIndex;
                 Position = Component.transform.position + Component.transform.localToWorldMatrix.MultiplyVector(Component.Lanes[laneIndex].Offset);
             }
+
+            public override bool Equals(object obj)
+            {
+                return obj is Node node &&
+                       EqualityComparer<VehiclePathNode>.Default.Equals(Component, node.Component) &&
+                       TargetLaneIndex == node.TargetLaneIndex &&
+                       SourceLaneIndex == node.SourceLaneIndex;
+            }
+
+            public override int GetHashCode()
+            {
+                return System.HashCode.Combine(Component, TargetLaneIndex, SourceLaneIndex);
+            }
         }
 
         public static VehiclePathNode GetClosestNode(Vector3 position, Vector3 velocity, out int laneIndex)
@@ -87,20 +100,25 @@ namespace Vehicles.AI
 
                     DebugHelper.DrawCube(next.Position, Vector3.one * 2, Quaternion.identity, Color.blue, 0);
 
-                    closed.Add(next);
-
                     if (next.Component == closestNodeToEnd)
                     {
                         lastNode = next;
                         break;
                     }
 
-                    var lanes = next.Component.Lanes.Where(l => l.Index == next.SourceLaneIndex);
-                    foreach (var lane in lanes)
+                    closed.Add(next);
+
+                    var lanes = next.Component.Lanes;
+                    for (int i = 0; i < lanes.Count; i++)
                     {
+                        var lane = lanes[i];
+                        if(lane.Index != next.SourceLaneIndex)
+                        {
+                            continue;
+                        }
                         foreach (var connectingNode in lane.Nodes)
                         {
-                            if (!connectingNode.gameObject.activeInHierarchy || closed.Any(n => n.Component == connectingNode))
+                            if (!connectingNode.gameObject.activeInHierarchy || closed.Any(n => n.Component == connectingNode && n.SourceLaneIndex == lane.TargetLaneIndex))
                             {
                                 continue;
                             }
@@ -113,13 +131,13 @@ namespace Vehicles.AI
                             }
                             next.Connections.Add(newNode);
 
-                            var existingInOpen = open.FirstOrDefault(n => n.Component == newNode.Component);
+                            var existingInOpen = open.FirstOrDefault(n => n.Equals(newNode));
                             if (existingInOpen != null && existingInOpen.TotalScore < newNode.TotalScore)
                             {
                                 continue;
                             }
 
-                            var existingInClosed = closed.FirstOrDefault(n => n.Component == newNode.Component);
+                            var existingInClosed = closed.FirstOrDefault(n => n.Equals(newNode));
                             if (existingInClosed != null && existingInClosed.TotalScore < newNode.TotalScore)
                             {
                                 continue;

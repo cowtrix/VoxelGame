@@ -30,9 +30,9 @@ namespace Phone
 				gameObject.SetActive(false);
 				return;
 			}
-			JobIcon.sprite = Job.Icon;
-			JobDescription.text = $"<b>{Job.Name}</b>\n{Job.Description}";
-			JobReward.text = Job.Reward;
+			JobIcon.sprite = Job.JobInfo.Icon;
+			JobDescription.text = $"<b>{Job.JobInfo.Name}</b>\n{Job.JobInfo.Description}";
+			JobReward.text = Job.JobInfo.Reward;
 		}
 
 		public void ToggleExpanded()

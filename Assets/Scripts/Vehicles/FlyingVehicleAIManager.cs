@@ -32,7 +32,6 @@ namespace Vehicles.AI
         public float Thrust = 1;
         public float TurnSpeed = 30;
 
-
         public enum eState
         {
             WANDER_TRANSIENT, // The vehicle will wander to a distant vehicle bin
@@ -49,25 +48,22 @@ namespace Vehicles.AI
             {
                 CurrentDestination = GetDistantBin().transform.position;
             }
-
-            var colliders = Physics.OverlapBox(CurrentTargetLookPosition, CollisionBounds.extents, transform.rotation, CollisionCheckMask);
-            BlockedByObstacle = colliders.Any(c => !Colliders.Contains(c));
-            return 1;
-        }
-
-        protected override void TickOffThread(float dt)
-        {
+            var cost = 1;
             if (CurrentState == eState.WANDER_TRANSIENT && CurrentDestination.HasValue && CurrentPath == null)
             {
-                if (!VehiclePathManager.Instance.GetPath(LastPosition, (LastPosition - CurrentDestination.Value).normalized * MaxSpeed, CurrentDestination.Value, out var newPath))
+                if (!VehiclePathManager.Instance.GetPath(LastPosition, (CurrentDestination.Value - LastPosition).normalized, CurrentDestination.Value, out var newPath))
                 {
-                    return;
+                    return 2;
                 }
                 CurrentPath = newPath;
                 CurrentTargetPosition = CurrentPath.Start;
                 OnReachDestination.RemoveListener(OnReachDestination_WanderTransient);
                 OnReachDestination.AddListener(OnReachDestination_WanderTransient);
+                cost += 2;
             }
+            var colliders = Physics.OverlapBox(CurrentTargetLookPosition, CollisionBounds.extents, transform.rotation, CollisionCheckMask);
+            BlockedByObstacle = colliders.Any(c => !Colliders.Contains(c));
+            return cost;
         }
 
         private void Update()
